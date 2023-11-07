@@ -6,4 +6,3 @@ export default function Home() {
     <div className={s.home}><HeroSection /></div>
   )
 }
- 
