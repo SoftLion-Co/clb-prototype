@@ -1,10 +1,9 @@
 import s from "./page.module.scss"
-
+import HeroSection from "./sections/HeroSection"
 
 export default function Home() {
   return (
-    <div className={s.main}>Commodities & 
-    Logistics Brokers</div>
+    <div className={s.home}><HeroSection /></div>
   )
 }
  
