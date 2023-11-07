@@ -1,7 +1,5 @@
 @import-normalize;
 
-@import url("https://fonts.googleapis.com/css2?family=Besley&family=Open+Sans&family=Roboto:wght@300;400;500&display=swap");
-
 @import "./colors";
 @import "./container";
 @import "./viewports";
@@ -16,13 +14,11 @@ html {
 
 body {
   margin: 0;
-  font-family: "Roboto";
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-family: "Manrope";
 }
 
 code {
-  font-family: "Roboto";
+  font-family: "Manrope";
 }
 
 a {
