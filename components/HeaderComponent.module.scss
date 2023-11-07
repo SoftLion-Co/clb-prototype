@@ -1,5 +1,32 @@
 .header {
+  width: 100%;
+  padding: 24px;
+
+  &__box {
     display: flex;
-    width: 100%;
-    padding: 24px;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 89px;
+    background: #e7e7e7;
+    border-radius: 24px;
+  }
+
+  &__logo {
+    font-size: 40px;
+  }
+
+  &__list {
+    display: flex;
+    gap: 32px;
+  }
+  
+  &__item {
+    font-size: 18px;
+  }
+
+  &__contents {
+    display: flex;
+    align-items: center;
+    gap: 80px;
+  }
 }
