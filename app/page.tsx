@@ -1,8 +1,12 @@
-import s from "./page.module.scss"
-import HeroSection from "./sections/HeroSection"
+import s from "./page.module.scss";
+import HeroSection from "./sections/HeroSection";
+import ContactUsSection from "./sections/main_page/ContactUsSection";
 
 export default function Home() {
   return (
-    <div className={s.home}><HeroSection /></div>
-  )
+    <div className={s.home}>
+      <HeroSection />
+      <ContactUsSection />
+    </div>
+  );
 }
