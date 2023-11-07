@@ -7,8 +7,8 @@ interface MainButtonProps {
 
 const MainButtonComponent: React.FC<MainButtonProps> = ({ text }) => {
   return (
-    <div>
-      <a className={s.main_button}>{text}</a>
+    <div className={s.main_button}>
+      <a>{text}</a>
     </div>
   );
 };
