@@ -12,22 +12,22 @@ export const metadata: Metadata = {
 const manrope = localFont({
   src: [
     {
-      path: "./../style/fonts/Manrope-Regular.woff2",
+      path: "./../style/fonts/manrope-400.woff2",
       weight: "400",
       style: "normal",
     },
     {
-      path: "./../style/fonts/Manrope-Medium.woff2",
+      path: "./../style/fonts/manrope-500.woff2",
       weight: "500",
       style: "normal",
     },
     {
-      path: "./../style/fonts/Manrope-SemiBold.woff2",
+      path: "./../style/fonts/manrope-600.woff2",
       weight: "600",
       style: "normal",
     },
     {
-      path: "./../style/fonts/Manrope-Bold.woff2",
+      path: "./../style/fonts/manrope-700.woff2",
       weight: "700",
       style: "normal",
     },
