@@ -3,27 +3,25 @@ import MainButtonComponent from "./MainButtonComponent";
 
 const HeaderComponent = () => {
   return (
-    <div className={s.header}>
+    <header className={s.header}>
       <div>
         <p>Logo</p>
       </div>
 
-      <div>
-        <nav>
-          <ul>
-            <li>About us</li>
-            <li>Services ⌵</li>
-            <li>Blog</li>
-            <li>Careers</li>
-          </ul>
-        </nav>
-      </div>
+      <nav className={s.header__}>
+        <ul className={s.header__}>
+          <li className={s.header__}>About us</li>
+          <li className={s.header__}>Services ⌵</li>
+          <li className={s.header__}>Blog</li>
+          <li className={s.header__}>Careers</li>
+        </ul>
+      </nav>
 
-      <div>
-        <div>Flag ⌵</div>
+      <div className={s.header__}>
+        <div className={s.header__}>Flag ⌵</div>
         <MainButtonComponent text="Get in touch" />
       </div>
-    </div>
+    </header>
   );
 };
 
