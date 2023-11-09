@@ -6,7 +6,7 @@ import MainTitleComponent from "@/components/MainTitleComponent";
 import Image from "next/image";
 import Picture from "@/images/home-hero-test.png";
 import classNames from "classnames";
-import Question from "@/images/question.svg";
+import Question from "@/images/vectors/question.svg";
 
 const InputField = ({
   type,
