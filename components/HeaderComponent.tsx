@@ -6,7 +6,7 @@ const HeaderComponent = () => {
     <header className={s.header}>
       <div className={s.header__box}>
         <div className={s.header__logo}>
-          <p>Logo</p>
+          <p>LOGO</p>
         </div>
 
         <nav className={s.header__navigation}>
