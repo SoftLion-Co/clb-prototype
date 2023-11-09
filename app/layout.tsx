@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import classNames from "classnames";
 import HeaderComponent from "@/components/HeaderComponent";
+import FooterComponent from "@/components/FooterComponent";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -44,6 +45,7 @@ export default function RootLayout({
       <body>
         <HeaderComponent />
         {children}
+        <FooterComponent />
       </body>
     </html>
   );
