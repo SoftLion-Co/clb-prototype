@@ -1,0 +1,12 @@
+@import "./../../style/container";
+
+.blog__title {
+  margin-bottom: 214px;
+}
+
+.blog__cards {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  row-gap: 48px;
+}

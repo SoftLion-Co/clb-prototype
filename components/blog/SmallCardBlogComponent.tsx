@@ -6,36 +6,23 @@ import ReadMoreComponent from "@/components/ReadMoreComponent";
 
 interface SmallCardProps {
   className?: string;
+  data: { title: string; text: string };
 }
 
-const cardData = [
-  {
-    title: "Article title 1",
-    text: "Lorem ipsum dolor sit amet consectetur. Nibh leo non luctus diam sed quam. Vitae donec enim rhoncus iaculis amet non semper. Ut enim vulputate proin laoreet rhoncus enim. Dictum mollis eu aliquam massa.",
-  },
-  {
-    title: "Article title 2",
-    text: "Lorem ipsum dolor sit amet consectetur. Nibh leo non luctus diam sed quam. Vitae donec enim rhoncus iaculis amet non semper. Ut enim vulputate proin laoreet rhoncus enim. Dictum mollis eu aliquam massa.",
-  },
-  {
-    title: "Article title 3",
-    text: "Lorem ipsum dolor sit amet consectetur. Nibh leo non luctus diam sed quam. Vitae donec enim rhoncus iaculis amet non semper. Ut enim vulputate proin laoreet rhoncus enim. Dictum mollis eu aliquam massa.",
-  },
-];
-
-const SmallCardBlogComponent: React.FC<SmallCardProps> = ({ className }) => {
+const SmallCardBlogComponent: React.FC<SmallCardProps> = ({
+  className,
+  data,
+}) => {
   return (
     <div className={classNames(className, s.blog__container)}>
-      {cardData.map((data, index) => (
-        <div className={classNames(s.blog)} key={index}>
-          <Image className={s.blog__picture} src={Picture} alt="Picture" />
+      <div className={classNames(s.blog)}>
+        <Image className={s.blog__picture} src={Picture} alt="Picture" />
 
-          <h3 className={s.blog__title}>{data.title}</h3>
-          <p className={s.blog__text}>{data.text}</p>
+        <h3 className={s.blog__title}>{data.title}</h3>
+        <p className={s.blog__text}>{data.text}</p>
 
-          <ReadMoreComponent />
-        </div>
-      ))}
+        <ReadMoreComponent />
+      </div>
     </div>
   );
 };
