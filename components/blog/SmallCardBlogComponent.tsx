@@ -2,7 +2,7 @@ import s from "./SmallCardBlogComponent.module.scss";
 import Image from "next/image";
 import classNames from "classnames";
 import Picture from "@/images/home-hero-test.png";
-import Arrow from "@/images/question.svg";
+import Arrow from "@/images/vectors/arrow.svg";
 
 interface SmallCardProps {
   className?: string;
