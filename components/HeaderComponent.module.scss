@@ -1,6 +1,8 @@
+@import "./../style/viewports";
+
 .header {
   width: 100%;
-  padding: 24px 24px 0px 24px;
+  padding: 24px 24px 0 24px;
 
   &__box {
     display: flex;
@@ -15,11 +17,17 @@
     font-size: 40px;
   }
 
+  &__navigation {
+    @include for-size(phone) {
+      display: none;
+    }
+  }
+
   &__list {
     display: flex;
     gap: 32px;
   }
-  
+
   &__item {
     font-size: 18px;
   }

@@ -1,6 +1,6 @@
 import s from "./OurServicesCardComponent.module.scss";
 import Image from "next/image";
-import arrow from "@/images/arrow.svg";
+import Arrow from "@/images/vectors/arrow.svg";
 
 const OurServicesCardComponent = () => {
   // В serviceData потрібно буде додати ще один параметр, Read more повинен вести нас на сторінку відповідної карточки
@@ -34,7 +34,7 @@ const OurServicesCardComponent = () => {
               <a className={s.card__link} href="">
                 Read more
               </a>
-              <Image src={arrow} alt="arrow" />
+              <Image src={Arrow} alt="arrow" />
             </div>
           </div>
         </div>

@@ -3,7 +3,7 @@ import Image from "next/image";
 import s from "./ContactUsSection.module.scss";
 import MainTitleComponent from "@/components/MainTitleComponent";
 import MainButtonComponent from "@/components/MainButtonComponent";
-import Question from "@/images/question.svg";
+import Question from "@/images/vectors/question.svg";
 
 import Picture from "@/images/home-hero-test.png";
 import classNames from "classnames";
