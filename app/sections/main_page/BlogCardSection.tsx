@@ -38,7 +38,7 @@ const BlogCardSection = () => {
         ))}
       </div>
 
-      <MainButtonComponent text="More in Blog" arrowSrc={Arrow} />
+      <MainButtonComponent text="More in Blog" arrowSrc={Arrow} href={"/blog"}/>
     </section>
   );
 };

@@ -21,19 +21,19 @@ const MainButtonComponent: React.FC<MainButtonProps> = ({
   return (
     <div className={classNames(s.main__button, className)}>
       {href ? (
-        <Link href={href}>
+        <Link href={href} >
           {text}
           {arrowSrc && (
             <Image className={s.main__arrow} src={arrowSrc} alt="arrow" />
           )}
         </Link>
       ) : (
-        <div>
+        <Link href={""}>
           {text}
           {arrowSrc && (
             <Image className={s.main__arrow} src={arrowSrc} alt="arrow" />
           )}
-        </div>
+        </Link>
       )}
     </div>
   );

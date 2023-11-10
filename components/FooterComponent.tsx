@@ -37,7 +37,7 @@ const FooterComponent = () => {
       <div className={classNames(s.container, s.footer__container)}>
         <div className={s.footer__content}>
           <div className={s.footer__logo}>
-            <Link href="">LOGO</Link>
+            <Link href="/">LOGO</Link>
           </div>
 
           <ul className={s.footer__info}>
