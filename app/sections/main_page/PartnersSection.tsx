@@ -17,7 +17,7 @@ export interface Acf {
   partner_company_logo: string;
 }
 
-const OurServicesSection = async () => {
+const PartnersSection = async () => {
   const req = await fetch(reqUrl);
   const partners: Root2[] = await req.json();
   console.log(partners);
@@ -42,4 +42,4 @@ const OurServicesSection = async () => {
   );
 };
 
-export default OurServicesSection;
+export default PartnersSection;
