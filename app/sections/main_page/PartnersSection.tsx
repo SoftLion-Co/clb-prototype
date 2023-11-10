@@ -8,7 +8,6 @@ const PartnersSection = () => {
   return (
     <section className={classNames(s.container, s.partners)}>
       <MainTitleComponent title="Partners" className={s.partners__title} />
-
       <GetPartnersComponent />
     </section>
   );
