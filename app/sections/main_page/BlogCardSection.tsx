@@ -35,7 +35,6 @@ const BlogCardSection = () => {
       </div>
 
       <MainButtonComponent text="More in Blog" arrowSrc={Arrow} />
-      <BigCardBlogComponent />
     </section>
   );
 };

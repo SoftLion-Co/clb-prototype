@@ -15,13 +15,15 @@ const SmallCardBlogComponent: React.FC<SmallCardProps> = ({
 }) => {
   return (
     <div className={classNames(className, s.blog__container)}>
-      <div className={classNames(s.blog)}>
+      <div className={s.blog}>
         <Image className={s.blog__picture} src={Picture} alt="Picture" />
 
-        <h3 className={s.blog__title}>{data.title}</h3>
-        <p className={s.blog__text}>{data.text}</p>
+        <div className={s.blog__content}>
+          <h3 className={s.blog__title}>{data.title}</h3>
+          <p className={s.blog__text}>{data.text}</p>
 
-        <ReadMoreComponent />
+          <ReadMoreComponent />
+        </div>
       </div>
     </div>
   );

@@ -1,12 +1,72 @@
 @import "./../../style/container";
+@import "./../../style/font_default";
 
-.blog__title {
-  margin-bottom: 214px;
+.blog {
+  margin-top: 100px;
+  margin-bottom: 146px;
+
+  &__content {
+    margin-bottom: 148px;
+  }
+
+  &__title {
+    margin-bottom: 214px;
+  }
+
+  &__cards {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    row-gap: 48px;
+  }
+
+  &__grid {
+    display: grid;
+  }
 }
 
-.blog__cards {
+.pagination {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 150%;
+
+  list-style: none;
   display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  row-gap: 48px;
+  gap: 36px;
+  justify-content: center;
+  align-items: center;
+}
+
+.pagesPagination {
+  cursor: pointer;
+
+  &.active {
+    color: #000000;
+    border: 1px solid #000000;
+    border-radius: 24px;
+    padding: 8.5px 32px;
+  }
+}
+
+.break__me {
+  cursor: pointer;
+}
+
+.paginationArrowPrevious {
+  margin-right: 136px;
+  transform: scaleX(-1);
+}
+.paginationArrowNext {
+  margin-left: 136px;
+}
+.paginationArrowImage {
+  height: 24px;
+  width: 28px;
+}
+.paginationArrowPrevious,
+.paginationArrowNext {
+  border: 1px solid #000000;
+  border-radius: 24px;
+  padding: 8.5px 32px;
+  max-width: max-content;
 }
