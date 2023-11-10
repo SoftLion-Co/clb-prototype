@@ -1,5 +1,6 @@
 import s from "./HeaderComponent.module.scss";
 import MainButtonComponent from "./MainButtonComponent";
+import Link from "next/link";
 
 const HeaderComponent = () => {
   return (
@@ -13,7 +14,9 @@ const HeaderComponent = () => {
           <ul className={s.header__list}>
             <li className={s.header__item}>About us</li>
             <li className={s.header__item}>Services ⌵</li>
-            <li className={s.header__item}>Blog</li>
+            <li className={s.header__item}>
+              <Link href="/blog">Blog</Link>
+            </li>
             <li className={s.header__item}>Careers</li>
           </ul>
         </nav>

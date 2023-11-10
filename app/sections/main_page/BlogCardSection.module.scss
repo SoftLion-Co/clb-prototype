@@ -6,4 +6,9 @@
   align-items: center;
   gap: 68px;
   margin-bottom: 160px;
+
+  &__cards {
+    display: flex;
+    gap: 24px;
+  }
 }
