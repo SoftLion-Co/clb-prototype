@@ -2,10 +2,17 @@ import { useState, useEffect } from "react";
 
 const useScrollToTop = () => {
   const [scrollToTop, setScrollToTop] = useState(false);
+  const [interruptScroll, setInterruptScroll] = useState(false);
 
   useEffect(() => {
     const scrollToTopAnimation = () => {
-      const scrollStep = window.scrollY / (window.scrollY > 500 ? 30 : 40); // змінна швидкості прокрутки, else це швидкість прокрутки в кінці сторінки, щоб були в курсі
+      const scrollStep = window.scrollY / (window.scrollY > 500 ? 25 : 30);
+
+      if (interruptScroll) {
+        setScrollToTop(false);
+        setInterruptScroll(false);
+        return;
+      }
 
       if (window.scrollY !== 0) {
         window.scrollTo(0, window.scrollY - scrollStep);
@@ -18,11 +25,16 @@ const useScrollToTop = () => {
     if (scrollToTop) {
       requestAnimationFrame(scrollToTopAnimation);
     }
-  }, [scrollToTop]);
+  }, [scrollToTop, interruptScroll]);
 
   return {
     scrollToTop,
-    setScrollToTop,
+    setScrollToTop: () => {
+      setScrollToTop(true);
+    },
+    setInterruptScroll: () => {
+      setInterruptScroll(true);
+    },
   };
 };
 
