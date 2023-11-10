@@ -1,0 +1,32 @@
+@import "./../../../style/container";
+
+.partners {
+  margin-bottom: 42px;
+
+  &__title {
+    margin-bottom: 68px;
+  }
+
+  &__wrapper {
+    display: grid;
+    gap: 4.25rem 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  }
+
+  &__image{
+    aspect-ratio: 3/2;
+    object-fit: contain;
+    height: 4.25rem;
+  }
+
+  &__image_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black;
+    height: 100%;
+    width: 100%;
+    transition: all 500ms;
+    padding: 2.125rem 3.75rem;
+  }
+}
