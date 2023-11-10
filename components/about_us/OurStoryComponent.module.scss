@@ -1,0 +1,24 @@
+@import "./../../style/font_default";
+
+.story {
+  display: flex;
+  gap: 24px;
+
+  &__card {
+    display: flex;
+    align-items: center;
+    padding: 48px 32.5px;
+    background: #e7e7e7;
+    border-radius: 24px;
+  }
+
+  &__text {
+    width: 399px;
+  }
+
+  &__picture {
+    width: 464px;
+    height: 339px;
+    border-radius: 25px;
+  }
+}
