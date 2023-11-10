@@ -9,7 +9,7 @@ const BlogCardSection = () => {
     <section className={classNames(s.container, s.blog)}>
       <MainTitleComponent className={s.blog__title}  title="Our Blog" />
       <SmallCardBlogComponent className={s.blog__card} />
-      <MainButtonComponent text="More in Blog" />
+      <MainButtonComponent text="More in Blog"/>
     </section>
   );
 };
