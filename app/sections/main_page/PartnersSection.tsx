@@ -1,3 +1,6 @@
+"use client"
+
+import React, { useState, useEffect } from "react";
 import s from "./PartnersSection.module.scss";
 import MainTitleComponent from "@/components/MainTitleComponent";
 import classNames from "classnames";
@@ -17,10 +20,34 @@ export interface Acf {
   partner_company_logo: string;
 }
 
-const PartnersSection = async () => {
-  const req = await fetch(reqUrl);
-  const partners: Root2[] = await req.json();
-  console.log(partners);
+const PartnersSection = () => {
+  const [partners, setPartners] = useState<Root2[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const req = await fetch(reqUrl);
+        const partnersData: Root2[] = await req.json();
+        setPartners(partnersData);
+      } catch (error) {
+        setError("Error fetching data");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
 
   return (
     <section className={classNames(s.container, s.services)}>
@@ -29,7 +56,7 @@ const PartnersSection = async () => {
       <div className={s.photos}>
         {partners.map((partner, index) => (
           <Image
-            key={index}
+            key={partner.id}
             src={partner.acf.partner_company_logo}
             alt={`Partner Logo ${index + 1}`}
             className={s.photo}
