@@ -1,3 +1,4 @@
+import classNames from "classnames";
 import s from "./PageTitleComponent.module.scss";
 
 interface MainTitleProps {
@@ -12,7 +13,7 @@ const PageTitleComponent: React.FC<MainTitleProps> = ({
   className,
 }) => {
   return (
-    <div className={s.page}>
+    <div className={classNames(s.page, className)}>
       <h1 className={s.page__title}>{title}</h1>
       <p className={s.page__text}>{text}</p>
     </div>

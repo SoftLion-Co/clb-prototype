@@ -1,4 +1,5 @@
 import "./globals.css";
+import s from "./layout.module.scss";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import classNames from "classnames";
@@ -43,9 +44,13 @@ export default function RootLayout({
   return (
     <html lang="en" className={classNames(manrope.className)}>
       <body>
-        <HeaderComponent />
-        {children}
-        <FooterComponent />
+        <div className={s.main}>
+          <HeaderComponent />
+          <div className={s.page} id="layout">
+            {children}
+          </div>
+          <FooterComponent />
+        </div>
       </body>
     </html>
   );
