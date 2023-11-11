@@ -3,9 +3,9 @@ import Link from "next/link";
 import Image from "next/image";
 import Arrow from "@/images/vectors/arrow.svg";
 
-const ReadMoreComponent = (id: any) => {
+const ReadMoreComponent = (href: any) => {
   return (
-    <Link className={s.read__link} href={`/blog/${id.id}`}>
+    <Link className={s.read__link} href={href.href}>
       Read more <Image className={s.read__arrow} src={Arrow} alt="Arrow" />
     </Link>
   );

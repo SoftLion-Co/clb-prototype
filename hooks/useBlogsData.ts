@@ -1,17 +1,19 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 
-const reqUrl = "https://softlion.blog/wp-json/wp/v2/blogs?acf_format=standard&_fields=title,acf,id";
+const reqUrl =
+  "https://softlion.blog/wp-json/wp/v2/blogs?acf_format=standard&_fields=title,acf,id";
 
-export interface Blog {
+interface Blog {
+  id: number;
   title: Title;
   acf: Acf;
 }
 
-export interface Title {
+interface Title {
   rendered: string;
 }
 
-export interface Acf {
+interface Acf {
   heading: string;
   date: string;
   mainimage: string;
@@ -34,7 +36,6 @@ const useBlogsData = () => {
       setLoading(true);
       const req = await fetch(reqUrl, { cache: "no-cache" });
       const fetchedBlogs: Blog[] = await req.json();
-      console.log(fetchedBlogs);
       setBlogs(fetchedBlogs);
       setLoading(false);
     } catch (error: any) {
@@ -44,11 +45,12 @@ const useBlogsData = () => {
   };
 
   useEffect(() => {
-    // Call fetchBlogs only when the component mounts
     fetchBlogs();
-  }, []); // Empty dependency array ensures this effect runs only once, equivalent to componentDidMount
+  }, []);
 
-  return { blogs, loading, error, fetchBlogs };
+  const latestBlogs = blogs.slice(Math.max(blogs.length - 3, 0));
+
+  return { blogs, loading, error, latestBlogs };
 };
 
 export default useBlogsData;
