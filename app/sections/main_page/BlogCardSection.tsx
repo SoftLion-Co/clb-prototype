@@ -24,7 +24,7 @@ const BlogCardSection = () => {
       title: "Article title 3",
       text: "Lorem ipsum dolor sit amet consectetur. Nibh leo non luctus diam sed quam. Vitae donec enim rhoncus iaculis amet non semper. Ut enim vulputate proin laoreet rhoncus enim. Dictum mollis eu aliquam massa.",
     },
-  ];
+  ].reverse();
 
   return (
     <section className={classNames(s.container, s.blog)}>
@@ -38,7 +38,11 @@ const BlogCardSection = () => {
         ))}
       </div>
 
-      <MainButtonComponent text="More in Blog" arrowSrc={Arrow} href={"/blog"}/>
+      <MainButtonComponent
+        text="More in Blog"
+        arrowSrc={Arrow}
+        href={"/blog"}
+      />
     </section>
   );
 };
