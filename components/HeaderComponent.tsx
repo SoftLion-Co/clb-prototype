@@ -7,7 +7,9 @@ const HeaderComponent = () => {
     <header className={s.header}>
       <div className={s.header__box}>
         <div className={s.header__logo}>
-          <p>LOGO</p>
+          <Link href={"/"}>
+            <p>LOGO</p>
+          </Link>
         </div>
 
         <nav className={s.header__navigation}>
