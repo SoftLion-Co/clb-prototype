@@ -4,28 +4,21 @@ import ReadMoreComponent from "@/components/ReadMoreComponent";
 import Image from "next/image";
 import classNames from "classnames";
 
-interface BigCardProps {
-  className?: string;
-  data: { title: string; text: string; imageSrc: string };
-}
 
-const BigCardBlogComponent: React.FC<BigCardProps> = ({
-  className,
-  data = {},
-}) => {
-  const { title = "", text = "", imageSrc } = data;
+const BigCardBlogComponent = (data: any) => {
+  console.log(data)
 
   return (
-    <div className={classNames(className, s.blog__container)}>
+    <div className={classNames(s.blog__container)}>
       <div className={s.blog}>
         <div className={s.blog__content}>
-          {title && <h3 className={s.blog__title}>{data.title}</h3>}
-          {text && <p className={s.blog__text}>{data.text}</p>}
+          <h3 className={s.blog__title}>{data.data.title.rendered}</h3>
+          <p className={s.blog__text}>{data.data.acf.subheading1}</p>
           <ReadMoreComponent />
         </div>
-        {imageSrc && (
-          <Image className={s.blog__picture} src={imageSrc} alt="Picture" />
-        )}
+        
+          <Image className={s.blog__picture} src={data.data.acf.mainimage} alt="Picture" width={500} height={500}/>
+        
       </div>
     </div>
   );

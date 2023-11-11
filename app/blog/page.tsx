@@ -14,80 +14,84 @@ import BigCardBlogComponent from "@/components/blog/BigCardBlogComponent";
 import SmallCardBlogComponent from "@/components/blog/SmallCardBlogComponent";
 
 import useScrollToTop from "@/hooks/useScrollToTop";
+import useBlogsData from "@/hooks/useBlogsData";
 
 export default function Blog() {
-  const cardData: Array<any> = [
-    {
-      imageSrc: Picture,
-      title: "Article title 1",
-      text: "Lorem ipsum dolor sit amet consectetur. Nibh leo non luctus diam sed quam. Vitae donec enim rhoncus iaculis amet non semper. Ut enim vulputate proin laoreet rhoncus enim. Dictum mollis eu aliquam massa.",
-    },
-    {
-      imageSrc: Picture,
-      title: "Article title 2",
-      text: "Lorem ipsum dolor sit amet consectetur. Nibh leo non luctus diam sed quam. Vitae donec enim rhoncus iaculis amet non semper. Ut enim vulputate proin laoreet rhoncus enim. Dictum mollis eu aliquam massa.",
-    },
-    {
-      imageSrc: Picture,
-      title: "Article title 3",
-      text: "Lorem ipsum dolor sit amet consectetur. Nibh leo non luctus diam sed quam. Vitae donec enim rhoncus iaculis amet non semper. Ut enim vulputate proin laoreet rhoncus enim. Dictum mollis eu aliquam massa.",
-    },
-    {
-      imageSrc: Picture,
-      title: "Article title 4",
-      text: "Lorem ipsum dolor sit amet consectetur. Nibh leo non luctus diam sed quam. Vitae donec enim rhoncus iaculis amet non semper. Ut enim vulputate proin laoreet rhoncus enim. Dictum mollis eu aliquam massa.",
-    },
-    {
-      imageSrc: Picture,
-      title: "Article title 5",
-      text: "Lorem ipsum dolor sit amet consectetur. Nibh leo non luctus diam sed quam. Vitae donec enim rhoncus iaculis amet non semper. Ut enim vulputate proin laoreet rhoncus enim. Dictum mollis eu aliquam massa.",
-    },
-    {
-      imageSrc: Picture,
-      title: "Article title 6",
-      text: "Lorem ipsum dolor sit amet consectetur. Nibh leo non luctus diam sed quam. Vitae donec enim rhoncus iaculis amet non semper. Ut enim vulputate proin laoreet rhoncus enim. Dictum mollis eu aliquam massa.",
-    },
-    {
-      imageSrc: Picture,
-      title: "Article title 7",
-      text: "Lorem ipsum dolor sit amet consectetur. Nibh leo non luctus diam sed quam. Vitae donec enim rhoncus iaculis amet non semper. Ut enim vulputate proin laoreet rhoncus enim. Dictum mollis eu aliquam massa.",
-    },
-    {
-      imageSrc: Picture,
-      title: "Article title 8",
-      text: "Lorem ipsum dolor sit amet consectetur. Nibh leo non luctus diam sed quam. Vitae donec enim rhoncus iaculis amet non semper. Ut enim vulputate proin laoreet rhoncus enim. Dictum mollis eu aliquam massa.",
-    },
-    {
-      imageSrc: Picture,
-      title: "Article title 9",
-      text: "Lorem ipsum dolor sit amet consectetur. Nibh leo non luctus diam sed quam. Vitae donec enim rhoncus iaculis amet non semper. Ut enim vulputate proin laoreet rhoncus enim. Dictum mollis eu aliquam massa.",
-    },
-    {
-      imageSrc: Picture,
-      title: "Article title 10",
-      text: "Lorem ipsum dolor sit amet consectetur. Nibh leo non luctus diam sed quam. Vitae donec enim rhoncus iaculis amet non semper. Ut enim vulputate proin laoreet rhoncus enim. Dictum mollis eu aliquam massa.",
-    },
-    {
-      imageSrc: Picture,
-      title: "Article title 11",
-      text: "Lorem ipsum dolor sit amet consectetur. Nibh leo non luctus diam sed quam. Vitae donec enim rhoncus iaculis amet non semper. Ut enim vulputate proin laoreet rhoncus enim. Dictum mollis eu aliquam massa.",
-    },
-    {
-      imageSrc: Picture,
-      title: "Article title 12",
-      text: "Lorem ipsum dolor sit amet consectetur. Nibh leo non luctus diam sed quam. Vitae donec enim rhoncus iaculis amet non semper. Ut enim vulputate proin laoreet rhoncus enim. Dictum mollis eu aliquam massa.",
-    },
-    {
-      imageSrc: Picture,
-      title: "Article title 13",
-      text: "Lorem ipsum dolor sit amet consectetur. Nibh leo non luctus diam sed quam. Vitae donec enim rhoncus iaculis amet non semper. Ut enim vulputate proin laoreet rhoncus enim. Dictum mollis eu aliquam massa.",
-    },
-    {
-      imageSrc: Picture,
-      title: "Article title 14",
-      text: "Lorem ipsum dolor sit amet consectetur. Nibh leo non luctus diam sed quam. Vitae donec enim rhoncus iaculis amet non semper. Ut enim vulputate proin laoreet rhoncus enim. Dictum mollis eu aliquam massa.",
-    },
-  ].reverse();
+
+  const { blogs, loading, error, fetchBlogs } = useBlogsData();
+  
+  // const cardData: Array<any> = [
+  //   {
+  //     imageSrc: Picture,
+  //     title: "Article title 1",
+  //     text: "Lorem ipsum dolor sit amet consectetur. Nibh leo non luctus diam sed quam. Vitae donec enim rhoncus iaculis amet non semper. Ut enim vulputate proin laoreet rhoncus enim. Dictum mollis eu aliquam massa.",
+  //   },
+  //   {
+  //     imageSrc: Picture,
+  //     title: "Article title 2",
+  //     text: "Lorem ipsum dolor sit amet consectetur. Nibh leo non luctus diam sed quam. Vitae donec enim rhoncus iaculis amet non semper. Ut enim vulputate proin laoreet rhoncus enim. Dictum mollis eu aliquam massa.",
+  //   },
+  //   {
+  //     imageSrc: Picture,
+  //     title: "Article title 3",
+  //     text: "Lorem ipsum dolor sit amet consectetur. Nibh leo non luctus diam sed quam. Vitae donec enim rhoncus iaculis amet non semper. Ut enim vulputate proin laoreet rhoncus enim. Dictum mollis eu aliquam massa.",
+  //   },
+  //   {
+  //     imageSrc: Picture,
+  //     title: "Article title 4",
+  //     text: "Lorem ipsum dolor sit amet consectetur. Nibh leo non luctus diam sed quam. Vitae donec enim rhoncus iaculis amet non semper. Ut enim vulputate proin laoreet rhoncus enim. Dictum mollis eu aliquam massa.",
+  //   },
+  //   {
+  //     imageSrc: Picture,
+  //     title: "Article title 5",
+  //     text: "Lorem ipsum dolor sit amet consectetur. Nibh leo non luctus diam sed quam. Vitae donec enim rhoncus iaculis amet non semper. Ut enim vulputate proin laoreet rhoncus enim. Dictum mollis eu aliquam massa.",
+  //   },
+  //   {
+  //     imageSrc: Picture,
+  //     title: "Article title 6",
+  //     text: "Lorem ipsum dolor sit amet consectetur. Nibh leo non luctus diam sed quam. Vitae donec enim rhoncus iaculis amet non semper. Ut enim vulputate proin laoreet rhoncus enim. Dictum mollis eu aliquam massa.",
+  //   },
+  //   {
+  //     imageSrc: Picture,
+  //     title: "Article title 7",
+  //     text: "Lorem ipsum dolor sit amet consectetur. Nibh leo non luctus diam sed quam. Vitae donec enim rhoncus iaculis amet non semper. Ut enim vulputate proin laoreet rhoncus enim. Dictum mollis eu aliquam massa.",
+  //   },
+  //   {
+  //     imageSrc: Picture,
+  //     title: "Article title 8",
+  //     text: "Lorem ipsum dolor sit amet consectetur. Nibh leo non luctus diam sed quam. Vitae donec enim rhoncus iaculis amet non semper. Ut enim vulputate proin laoreet rhoncus enim. Dictum mollis eu aliquam massa.",
+  //   },
+  //   {
+  //     imageSrc: Picture,
+  //     title: "Article title 9",
+  //     text: "Lorem ipsum dolor sit amet consectetur. Nibh leo non luctus diam sed quam. Vitae donec enim rhoncus iaculis amet non semper. Ut enim vulputate proin laoreet rhoncus enim. Dictum mollis eu aliquam massa.",
+  //   },
+  //   {
+  //     imageSrc: Picture,
+  //     title: "Article title 10",
+  //     text: "Lorem ipsum dolor sit amet consectetur. Nibh leo non luctus diam sed quam. Vitae donec enim rhoncus iaculis amet non semper. Ut enim vulputate proin laoreet rhoncus enim. Dictum mollis eu aliquam massa.",
+  //   },
+  //   {
+  //     imageSrc: Picture,
+  //     title: "Article title 11",
+  //     text: "Lorem ipsum dolor sit amet consectetur. Nibh leo non luctus diam sed quam. Vitae donec enim rhoncus iaculis amet non semper. Ut enim vulputate proin laoreet rhoncus enim. Dictum mollis eu aliquam massa.",
+  //   },
+  //   {
+  //     imageSrc: Picture,
+  //     title: "Article title 12",
+  //     text: "Lorem ipsum dolor sit amet consectetur. Nibh leo non luctus diam sed quam. Vitae donec enim rhoncus iaculis amet non semper. Ut enim vulputate proin laoreet rhoncus enim. Dictum mollis eu aliquam massa.",
+  //   },
+  //   {
+  //     imageSrc: Picture,
+  //     title: "Article title 13",
+  //     text: "Lorem ipsum dolor sit amet consectetur. Nibh leo non luctus diam sed quam. Vitae donec enim rhoncus iaculis amet non semper. Ut enim vulputate proin laoreet rhoncus enim. Dictum mollis eu aliquam massa.",
+  //   },
+  //   {
+  //     imageSrc: Picture,
+  //     title: "Article title 14",
+  //     text: "Lorem ipsum dolor sit amet consectetur. Nibh leo non luctus diam sed quam. Vitae donec enim rhoncus iaculis amet non semper. Ut enim vulputate proin laoreet rhoncus enim. Dictum mollis eu aliquam massa.",
+  //   },
+  // ].reverse();
 
   const itemsPerPage = 7;
   const [currentPage, setCurrentPage] = useState(0);
@@ -100,7 +104,7 @@ export default function Blog() {
 
   const startIndex = currentPage * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
-  const visibleItems = cardData.slice(startIndex, endIndex);
+  const visibleItems = blogs.slice(startIndex, endIndex);
 
   const firstBigCardIndex = 0;
   const lastBigCardIndex = Math.min(visibleItems.length - 1, 6);
@@ -108,15 +112,19 @@ export default function Blog() {
   return (
     <section className={classNames(s.blog, s.container)}>
       <PageTitleComponent
-        className={s.blog__title}
-        title="our news"
-        text="lorem ipsum dolor sit amet consectetur."
-      />
+      className={s.blog__title}
+      title="our news"
+      text="lorem ipsum dolor sit amet consectetur."
+    />
 
+    {loading && <p>Loading...</p>}
+    {error && <p>Error: {error}</p>}
+
+    {blogs.length > 0 && (
       <div className={s.blog__cards}>
         {visibleItems.map((data, index) => (
           <div key={index} className={s.blog__grid}>
-            {cardData.length === 2 ? (
+            {blogs.length === 2 ? (
               index === 0 ? (
                 <BigCardBlogComponent data={data} />
               ) : (
@@ -135,6 +143,7 @@ export default function Blog() {
           </div>
         ))}
       </div>
+    )}
 
       <ReactPaginate
         previousLabel={
@@ -157,7 +166,7 @@ export default function Blog() {
         }
         breakLabel={"..."}
         breakClassName={pagination.pagination__break}
-        pageCount={Math.ceil(cardData.length / itemsPerPage)}
+        pageCount={Math.ceil(blogs.length / itemsPerPage)}
         marginPagesDisplayed={2}
         pageRangeDisplayed={3}
         onPageChange={handlePageChange}
@@ -168,3 +177,4 @@ export default function Blog() {
     </section>
   );
 }
+
