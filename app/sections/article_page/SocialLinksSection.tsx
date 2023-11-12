@@ -5,50 +5,51 @@ import Image from "next/image";
 import Link from "next/link";
 
 import telegram from "@/images/footer/icon-telegram.svg";
-import linkedin from "@/images/footer/icon-linkedin.svg";
 import tiktok from "@/images/footer/icon-tiktok.svg";
 import instagram from "@/images/footer/icon-instagram.svg";
 import facebook from "@/images/footer/icon-facebook.svg";
-import youtube from "@/images/footer/icon-youtube.svg";
 import whatsapp from "@/images/footer/icon-whatsapp.svg";
+
+import {
+  TelegramShareButton,
+  FacebookShareButton,
+  WhatsappShareButton,
+} from "react-share";
 
 const socialMediaIcons: { [key: string]: any } = {
   telegram,
-  linkedin,
   tiktok,
   instagram,
   facebook,
-  youtube,
   whatsapp,
 };
 
-const socialMediaLinks = [
-  { name: "Telegram", href: "https://t.me/" },
-  { name: "TikTok", href: "https://www.tiktok.com/" },
-  { name: "Instagram", href: "https://www.instagram.com/" },
-  { name: "Facebook", href: "https://www.facebook.com/" },
-  { name: "WhatsApp", href: "https://wa.me/" },
-];
-
 const SocialLinksSection = () => {
+  const currentPath = "clb.com" + window.location.pathname;
+
   return (
     <section className={s.links}>
       <p className={s.pDefault}>Share:</p>
-      <ul className={s.links__list}>
-        {socialMediaLinks.map((socialMedia, index) => (
-          <li key={index}>
-            <Link
-              href={socialMedia.href}
-              target="_blank"
-            >
-              <Image
-                src={socialMediaIcons[socialMedia.name.toLowerCase()]}
-                alt={socialMedia.name}
-              />
-            </Link>
-          </li>
-        ))}
-      </ul>
+      <div className={s.links__list}>
+        <TelegramShareButton
+          url={currentPath}
+          title={"Hello, check this awesome article!"}
+        >
+          <Image src={telegram} alt={"telegram"} />
+        </TelegramShareButton>
+        <FacebookShareButton
+          url={currentPath}
+          title={"Hello, check this awesome article!"}
+        >
+          <Image src={facebook} alt={"facebook"} />
+        </FacebookShareButton>
+        <WhatsappShareButton
+          url={currentPath}
+          title={"Hello, check this awesome article!"}
+        >
+          <Image src={whatsapp} alt={"whatsapp"} />
+        </WhatsappShareButton>{" "}
+      </div>
     </section>
   );
 };
