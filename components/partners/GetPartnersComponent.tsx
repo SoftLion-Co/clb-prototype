@@ -26,10 +26,10 @@ const GetPartnersComponent = async () => {
 
   return (
     <div className={s.partners__wrapper}>
-      {partners.map((partner, index) => (
+      {partners.map((partner) => (
         <div className={s.partners__image_container}>
           <Image
-            key={index}
+            key={partner.id}
             src={partner.acf.partner_company_logo}
             alt={partner.title.rendered}
             width={200}

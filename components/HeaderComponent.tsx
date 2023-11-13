@@ -21,7 +21,8 @@ const HeaderComponent = () => {
             <li className={s.header__item}>
               <Link href="/blog">Blog</Link>
             </li>
-            <li className={s.header__item}>Careers</li>
+            <li className={s.header__item}>
+              <Link href="/careers">Careers</Link></li>
           </ul>
         </nav>
 

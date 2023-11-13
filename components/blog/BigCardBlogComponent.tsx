@@ -10,12 +10,7 @@ interface Info {
 
 interface Blog {
   id: number;
-  title: Title;
   acf: Acf;
-}
-
-interface Title {
-  rendered: string;
 }
 
 interface Acf {
@@ -38,7 +33,7 @@ const BigCardBlogComponent = (data: Info) => {
     <div className={classNames(s.blog__container)}>
       <div className={s.blog}>
         <div className={s.blog__content}>
-          <h3 className={s.blog__title}>{data.info.title.rendered}</h3>
+          <h3 className={s.blog__title}>{data.info.acf.heading}</h3>
           <p className={s.blog__text}>{data.info.acf.subheading1}</p>
           <ReadMoreComponent href={articleLink} />
         </div>

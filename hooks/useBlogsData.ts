@@ -1,16 +1,11 @@
 import { useState, useEffect } from "react";
 
 const reqUrl =
-  "https://softlion.blog/wp-json/wp/v2/blogs?acf_format=standard&_fields=title,acf,id";
+  "https://softlion.blog/wp-json/wp/v2/blogs?acf_format=standard&_fields=acf,id";
 
 interface Blog {
   id: number;
-  title: Title;
   acf: Acf;
-}
-
-interface Title {
-  rendered: string;
 }
 
 interface Acf {
