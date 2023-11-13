@@ -1,0 +1,57 @@
+"use client";
+import classNames from "classnames";
+import s from "./SocialLinksSection.module.scss";
+import Image from "next/image";
+import Link from "next/link";
+
+import telegram from "@/images/footer/icon-telegram.svg";
+import tiktok from "@/images/footer/icon-tiktok.svg";
+import instagram from "@/images/footer/icon-instagram.svg";
+import facebook from "@/images/footer/icon-facebook.svg";
+import whatsapp from "@/images/footer/icon-whatsapp.svg";
+
+import {
+  TelegramShareButton,
+  FacebookShareButton,
+  WhatsappShareButton,
+} from "react-share";
+
+const socialMediaIcons: { [key: string]: any } = {
+  telegram,
+  tiktok,
+  instagram,
+  facebook,
+  whatsapp,
+};
+
+const SocialLinksSection = () => {
+  const currentPath = "clb.com" + window.location.pathname;
+
+  return (
+    <section className={s.links}>
+      <p className={s.pDefault}>Share:</p>
+      <div className={s.links__list}>
+        <TelegramShareButton
+          url={currentPath}
+          title={"Hello, check this awesome article!"}
+        >
+          <Image src={telegram} alt={"telegram"} />
+        </TelegramShareButton>
+        <FacebookShareButton
+          url={currentPath}
+          title={"Hello, check this awesome article!"}
+        >
+          <Image src={facebook} alt={"facebook"} />
+        </FacebookShareButton>
+        <WhatsappShareButton
+          url={currentPath}
+          title={"Hello, check this awesome article!"}
+        >
+          <Image src={whatsapp} alt={"whatsapp"} />
+        </WhatsappShareButton>{" "}
+      </div>
+    </section>
+  );
+};
+
+export default SocialLinksSection;
