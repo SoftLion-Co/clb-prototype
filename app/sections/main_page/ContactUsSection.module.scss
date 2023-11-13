@@ -88,4 +88,39 @@
     max-width: fit-content;
     font-size: 20px;
   }
+
+  &__attach {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+
+ 
+}
+
+
+.form__file {
+  &::-webkit-file-upload-button {
+    visibility: hidden;
+  }
+
+  &::before {
+    content: "Attach your CV";
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #e7e7e7;
+    border-radius: 24px;
+    width: 464px;
+    height: 44px;
+    padding: 10px 15px;
+    outline: none;
+    white-space: nowrap;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: 400;
+  }
+  // &:hover::before {
+  //   background-color: #e7e7e7;
+  // }
 }

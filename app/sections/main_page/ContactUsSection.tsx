@@ -14,29 +14,54 @@ const InputField = ({
   label,
   value,
   onChange,
+  inputRef,
 }: {
   type: string;
   name: string;
   label: string;
   value: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  inputRef?: React.RefObject<HTMLInputElement>;
 }) => {
   return (
     <div className={s.form__group}>
       <label className={s.form__label}>{label}</label>
-      <input
-        type={type}
-        className={s.form__input}
-        name={name}
-        value={value}
-        onChange={onChange}
-      />
+      {type === "file" ? (
+        <>
+          <input
+          type={type}
+          className={s.form__file}
+          name={name}
+          onChange={onChange}
+        />
+        </>
+      ) : (
+        <input
+          type={type}
+          className={s.form__input}
+          name={name}
+          value={value}
+          onChange={onChange}
+          ref={inputRef}
+        />
+      )}
     </div>
   );
 };
 
-const ContactUsSection = () => {
-  const [formData, setFormData] = useState({
+interface FormData {
+  firstname: string;
+  lastname: string;
+  email: string;
+  phone: string;
+  company: string;
+  subject: string;
+  message: string;
+  cvFile: File | null; // Explicitly define the type for cvFile
+}
+
+const ContactUsSection = ({ cv }: { cv: boolean }) => {
+  const [formData, setFormData] = useState<FormData>({
     firstname: "",
     lastname: "",
     email: "",
@@ -44,11 +69,18 @@ const ContactUsSection = () => {
     company: "",
     subject: "",
     message: "",
+    cvFile: null,
   });
 
   const handleInputChange = (e: any) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    const { name, value, type, files } = e.target;
+
+    // If the input is a file input, update the state with the file
+    if (type === "file") {
+      setFormData({ ...formData, [name]: files[0] });
+    } else {
+      setFormData({ ...formData, [name]: value });
+    }
   };
 
   const handleSubmit = async (e: any) => {
@@ -151,9 +183,25 @@ const ContactUsSection = () => {
           </div>
         </div>
 
-        <button type="submit" className={s.form__button}>
-          Contact us
-        </button>
+        {cv ? (
+          <div className={s.form__attach}>
+            <InputField
+              type="file"
+              name="cvFile"
+              label=""
+              value={formData.cvFile ? formData.cvFile.name : ""}
+              onChange={handleInputChange}
+            />
+
+            <button type="submit" className={s.form__button}>
+              Submit
+            </button>
+          </div>
+        ) : (
+          <button type="submit" className={s.form__button}>
+            Contact us
+          </button>
+        )}
       </form>
     </section>
   );
