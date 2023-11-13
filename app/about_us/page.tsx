@@ -3,6 +3,7 @@ import classNames from "classnames";
 import PageTitleComponent from "@/components/PageTitleComponent";
 import OurStorySection from "@/app/sections/about_us_page/OurStorySection";
 import ContactUsSection from "@/app/sections/main_page/ContactUsSection";
+import OurTeamSection from "@/app/sections/about_us_page/OurTeamSection";
 
 export default function AboutUs() {
   return (
@@ -14,6 +15,7 @@ export default function AboutUs() {
       />
 
       <OurStorySection />
+      <OurTeamSection />
       <ContactUsSection />
     </div>
   );
