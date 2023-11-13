@@ -12,14 +12,14 @@ const InputField = ({
   type,
   name,
   label,
-  value, 
-  onChange, 
+  value,
+  onChange,
 }: {
   type: string;
   name: string;
   label: string;
-  value: string; 
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void; 
+  value: string;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }) => {
   return (
     <div className={s.form__group}>
@@ -28,8 +28,8 @@ const InputField = ({
         type={type}
         className={s.form__input}
         name={name}
-        value={value} 
-        onChange={onChange} 
+        value={value}
+        onChange={onChange}
       />
     </div>
   );
@@ -69,7 +69,7 @@ const ContactUsSection = () => {
   };
 
   return (
-    <div className={s.container}>
+    <section className={s.container}>
       <MainTitleComponent className={s.form__title} title={"Contact Us"} />
       <form className={s.form} onSubmit={handleSubmit}>
         <div className={s.form__content}>
@@ -155,7 +155,7 @@ const ContactUsSection = () => {
           Contact us
         </button>
       </form>
-    </div>
+    </section>
   );
 };
 
