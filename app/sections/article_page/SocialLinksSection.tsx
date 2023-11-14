@@ -1,12 +1,8 @@
 "use client";
-import classNames from "classnames";
 import s from "./SocialLinksSection.module.scss";
 import Image from "next/image";
-import Link from "next/link";
 
 import telegram from "@/images/footer/icon-telegram.svg";
-import tiktok from "@/images/footer/icon-tiktok.svg";
-import instagram from "@/images/footer/icon-instagram.svg";
 import facebook from "@/images/footer/icon-facebook.svg";
 import whatsapp from "@/images/footer/icon-whatsapp.svg";
 
@@ -15,14 +11,6 @@ import {
   FacebookShareButton,
   WhatsappShareButton,
 } from "react-share";
-
-const socialMediaIcons: { [key: string]: any } = {
-  telegram,
-  tiktok,
-  instagram,
-  facebook,
-  whatsapp,
-};
 
 const SocialLinksSection = () => {
   const currentPath = "clb.com" + window.location.pathname;

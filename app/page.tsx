@@ -1,5 +1,5 @@
 import s from "./page.module.scss";
-import HeroSection from "./sections/HeroSection";
+import HeroSection from "./sections/main_page/HeroSection";
 import OurServicesSection from "./sections/main_page/OurServicesSection";
 import ContactUsSection from "./sections/main_page/ContactUsSection";
 import BlogCardsSection from "./sections/main_page/BlogCardsSection";
@@ -12,7 +12,7 @@ export default function Home() {
       <OurServicesSection />
       <PartnersSection />
       <BlogCardsSection />
-      <ContactUsSection />
+      <ContactUsSection/>
     </div>
   );
 }

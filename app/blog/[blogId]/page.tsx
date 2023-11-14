@@ -1,7 +1,5 @@
 "use client";
-import classNames from "classnames";
 import s from "./page.module.scss";
-import Image from "next/image";
 import useBlogsData from "@/hooks/useBlogsData";
 import MainArticleSection from "@/app/sections/article_page/MainArticleSection";
 import SocialLinksSection from "@/app/sections/article_page/SocialLinksSection";

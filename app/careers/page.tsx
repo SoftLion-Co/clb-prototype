@@ -16,7 +16,7 @@ const Careers = () => {
         <CardsSection />
         <VacanciesSection />
       </div>
-      <ContactUsSection />
+      <ContactUsSection cv/>
     </div>
   );
 };

@@ -5,7 +5,12 @@ const reqUrl =
 
 interface Blog {
   id: number;
+  title: Title;
   acf: Acf;
+}
+
+interface Title {
+  rendered: string;
 }
 
 interface Acf {
