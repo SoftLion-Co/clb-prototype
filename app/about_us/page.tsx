@@ -1,5 +1,4 @@
 import s from "./page.module.scss";
-import classNames from "classnames";
 import PageTitleComponent from "@/components/PageTitleComponent";
 import OurStorySection from "@/app/sections/about_us_page/OurStorySection";
 import OurAdvantagesSection from "@/app/sections/about_us_page/OurAdvantagesSection";
@@ -18,7 +17,7 @@ export default function AboutUs() {
       <OurStorySection />
       <OurAdvantagesSection />
       <OurTeamSection />
-      <ContactUsSection />
+      <ContactUsSection cv={false}/>
     </div>
   );
 }
