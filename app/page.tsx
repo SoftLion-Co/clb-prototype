@@ -12,7 +12,7 @@ export default function Home() {
       <OurServicesSection />
       <PartnersSection />
       <BlogCardsSection />
-      <ContactUsSection cv={false}/>
+      <ContactUsSection/>
     </div>
   );
 }

@@ -23,7 +23,7 @@ interface FormData {
   cvFile: File | null;
 }
 
-const ContactUsSection = ({ cv }: { cv: boolean }) => {
+const ContactUsSection = ({ cv }: { cv?: boolean}) => {
   const topics = [
     "",
     "General Inquiry",
