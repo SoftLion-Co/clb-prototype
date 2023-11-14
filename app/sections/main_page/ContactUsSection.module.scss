@@ -16,7 +16,7 @@
   &__content {
     display: flex;
     align-items: flex-end;
-    justify-content: space-between;
+    gap: 24px;
     margin-bottom: 65px;
   }
 
@@ -88,4 +88,40 @@
     max-width: fit-content;
     font-size: 20px;
   }
+
+  &__attach {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    margin-top: 58px;
+  }
+}
+
+.inputfile {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+
+.inputfile + label {
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 150%;
+  color: #000;
+  background-color: #e7e7e7;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 24px;
+  width: 464px;
+  height: 44px;
+  padding: 10px 15px;
+}
+
+.inputfile + label * {
+  pointer-events: none;
 }

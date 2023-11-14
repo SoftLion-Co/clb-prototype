@@ -1,0 +1,23 @@
+.advantages {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  row-gap: 68px;
+
+  &__content {
+    display: flex;
+    align-items: center;
+    padding: 48px 52px;
+    border: 1px solid #000;
+    border-radius: 24px;
+  }
+
+  &__text {
+    text-align: center;
+    color: #000;
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 150%;
+    width: 359px;
+  }
+}

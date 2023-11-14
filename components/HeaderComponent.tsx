@@ -62,7 +62,9 @@ const HeaderComponent = () => {
     <header className={s.header}>
       <div className={s.header__box}>
         <div className={s.header__logo}>
-          <p>LOGO</p>
+          <Link href={"/"}>
+            <p>LOGO</p>
+          </Link>
         </div>
 
         <nav className={s.header__navigation}>
@@ -98,7 +100,8 @@ const HeaderComponent = () => {
             <li className={s.header__item}>
               <Link href="/blog">Blog</Link>
             </li>
-            <li className={s.header__item}>Careers</li>
+            <li className={s.header__item}>
+              <Link href="/careers">Careers</Link></li>
           </ul>
         </nav>
 

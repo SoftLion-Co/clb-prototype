@@ -1,0 +1,13 @@
+.articles {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 146px;
+  margin-bottom: 96px;
+  
+  &__cards {
+    display: flex;
+    flex-direction: row;
+    gap: 24px;
+  }
+}
