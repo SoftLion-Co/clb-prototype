@@ -94,7 +94,34 @@ const ContactUsSection = ({ cv }: { cv?: boolean}) => {
       body: formData,
     };
 
-    await fetch(url, reqOptions);
+    try {
+      const response = await fetch(url, reqOptions);
+      if (response.ok) {
+        const jsonResponse = await response.json();
+        console.log(jsonResponse)
+        if (jsonResponse.status === "mail_sent") {
+          setFormData({
+            firstname: "",
+            lastname: "",
+            email: "",
+            phone: "",
+            company: "",
+            subject: "",
+            message: "",
+            time: "",
+            vacancy: "",
+            cvFile: null,
+          });
+          console.log("Form submitted successfully!");
+        } else {
+          console.error("Form submission failed. Status:", jsonResponse.status);
+        }
+      } else {
+        console.error("Form submission failed:", response.statusText);
+      }
+    } catch (error) {
+      console.error("An error occurred during form submission:", error);
+    }
   };
 
   const fields = cv ? fieldsCV : fieldsWithoutCV;
