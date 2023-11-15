@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import Modal from "react-modal";
@@ -53,6 +53,7 @@ const HeaderComponent = () => {
   const [selectedCountry, setSelectedCountry] = useState(countriesMenu[0]);
   const [isArrowRotated, setArrowRotated] = useState(false);
   const [isModalOpen, setModalOpen] = useState(false);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
   const handleDropdownMouseEnter = (dropdownType: any) => {
     switch (dropdownType) {
@@ -89,9 +90,25 @@ const HeaderComponent = () => {
     }
   };
 
+  const handleResize = () => {
+    setWindowWidth(window.innerWidth);
+    if (window.innerWidth > 1280) {
+      closeModal();
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   const openModal = () => {
     setModalOpen(true);
-    document.body.style.overflow = "hidden";
+    if (windowWidth <= 1280) {
+      document.body.style.overflow = "hidden";
+    }
   };
 
   const closeModal = () => {

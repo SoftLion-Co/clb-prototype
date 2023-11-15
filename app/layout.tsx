@@ -49,7 +49,7 @@ export default function RootLayout({
           <div className={s.page} id="layout">
             {children}
           </div>
-          {/* <FooterComponent /> */}
+          <FooterComponent />
         </div>
       </body>
     </html>
