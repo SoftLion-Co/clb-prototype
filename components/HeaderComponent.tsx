@@ -15,7 +15,7 @@ const HeaderComponent = () => {
         <nav className={s.header__navigation}>
           <ul className={s.header__list}>
             <li className={s.header__item}>
-              <Link href="/about_us">About us</Link>
+              <Link href="/about-us">About us</Link>
             </li>
             <li className={s.header__item}>Services ⌵</li>
             <li className={s.header__item}>
