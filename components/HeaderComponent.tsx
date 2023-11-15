@@ -199,7 +199,7 @@ const HeaderComponent = () => {
                         onClick={() => handleCountrySelection(country)}
                       >
                         <Image
-                          className={s.header__flag_image}
+                          className={s.flag__image}
                           src={country.flag}
                           alt={country.name}
                           width={30}
