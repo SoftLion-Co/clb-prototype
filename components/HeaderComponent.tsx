@@ -7,6 +7,7 @@ import classNames from "classnames";
 import s from "./HeaderComponent.module.scss";
 import Close from "@/images/vectors/close.svg";
 import Burger from "@/images/vectors/burger-menu.svg";
+import ArrowMenu from "@/images/vectors/arrow-menu.svg";
 
 import MainButtonComponent from "./MainButtonComponent";
 
@@ -138,7 +139,7 @@ const HeaderComponent = () => {
                       (item.type === "services" && isServicesMenuOpen)),
                 })}
               >
-                ⌵
+                <Image src={ArrowMenu} alt="⌵" />
               </span>
             </>
           )}
@@ -186,7 +187,7 @@ const HeaderComponent = () => {
                   [s.arrow__rotated]: isFlagDropdownOpen,
                 })}
               >
-                ⌵
+                <Image src={ArrowMenu} alt="⌵" />
               </span>
             </div>
             {isFlagDropdownOpen && (
