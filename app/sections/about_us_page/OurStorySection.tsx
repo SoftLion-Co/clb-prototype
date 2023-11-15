@@ -10,11 +10,13 @@ const OurStorySection = () => {
       <ThreeCardsComponent
         imagePosition={3}
         imageSrc="ourStory"
-        smallText={"We are CL Broker, your indispensable assistant in the agricultural trade, specializing in grains and oilseeds. Our mission is not just about connecting producers with end buyers but to make this process as efficient and comfortable for both parties as possible. For over eight years, we have been deeply involved in consultancy, helping even novice farmers understand the intricacies of international exports."}
-          bigText={
-            "Our mission is not just about connecting producers with end buyers but to make this process as efficient and comfortable for both parties as possible."
-          }
-        />
+        smallText={
+          "We are CL Broker, your indispensable assistant in the agricultural trade, specializing in grains and oilseeds. Our mission is not just about connecting producers with end buyers but to make this process as efficient and comfortable for both parties as possible. For over eight years, we have been deeply involved in consultancy, helping even novice farmers understand the intricacies of international exports."
+        }
+        bigText={
+          "Our mission is not just about connecting producers with end buyers but to make this process as efficient and comfortable for both parties as possible."
+        }
+      />
     </section>
   );
 };
