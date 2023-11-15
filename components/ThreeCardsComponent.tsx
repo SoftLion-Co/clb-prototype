@@ -2,11 +2,16 @@ import React, { FC } from "react";
 import s from "./ThreeCardsComponent.module.scss";
 import Image from "next/image";
 
+import executionImage from "@/images/home-hero-test.png";
+import exportConsultingImage from "@/images/footer/icon-facebook.svg";
+import freightBrokerageImage from "@/images/footer/icon-instagram.svg";
+import ourStoryImage from "@/images/home-hero-test.png";
+
 const images = {
-  execution: require("@/images/home-hero-test.png"),
-  exportConsulting: require("@/images/footer/icon-facebook.svg"),
-  freightBrokerage: require("@/images/footer/icon-instagram.svg"),
-  ourStory: require("@/images/home-hero-test.png"),
+  execution: executionImage,
+  exportConsulting: exportConsultingImage,
+  freightBrokerage: freightBrokerageImage,
+  ourStory: ourStoryImage,
 };
 
 interface ThreeCardsProps {
