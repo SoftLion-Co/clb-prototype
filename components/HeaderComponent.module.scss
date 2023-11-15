@@ -1,0 +1,40 @@
+@import "./../style/viewports";
+
+.header {
+  width: 100%;
+  padding: 24px 24px 0 24px;
+
+  &__box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 89px;
+    background: #e7e7e7;
+    border-radius: 24px;
+  }
+
+  &__logo {
+    font-size: 40px;
+  }
+
+  &__navigation {
+    @include for-size(phone) {
+      display: none;
+    }
+  }
+
+  &__list {
+    display: flex;
+    gap: 32px;
+  }
+
+  &__item {
+    font-size: 18px;
+  }
+
+  &__contents {
+    display: flex;
+    align-items: center;
+    gap: 80px;
+  }
+}
