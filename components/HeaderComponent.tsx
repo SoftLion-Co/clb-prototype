@@ -40,7 +40,7 @@ const servicesMenu = [
 ];
 
 const aboutUsMenu = [
-  { title: "Our Services", link: "/about_us/services" },
+  { title: "About Us", link: "/about-us" },
   { title: "Partners", link: "/about_us/partners" },
   { title: "Our Blog", link: "/about_us/our_blog" },
   { title: "Contact Us", link: "/about_us/contact_us" },
@@ -53,7 +53,9 @@ const HeaderComponent = () => {
   const [selectedCountry, setSelectedCountry] = useState(countriesMenu[0]);
   const [isArrowRotated, setArrowRotated] = useState(false);
   const [isModalOpen, setModalOpen] = useState(false);
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const [windowWidth, setWindowWidth] = useState(
+    typeof window !== "undefined" ? window.innerWidth : 0
+  );
 
   const handleDropdownMouseEnter = (dropdownType: any) => {
     switch (dropdownType) {
@@ -98,10 +100,13 @@ const HeaderComponent = () => {
   };
 
   useEffect(() => {
-    window.addEventListener("resize", handleResize);
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
+    if (typeof window !== "undefined") {
+      setWindowWidth(window.innerWidth);
+      window.addEventListener("resize", handleResize);
+      return () => {
+        window.removeEventListener("resize", handleResize);
+      };
+    }
   }, []);
 
   const openModal = () => {
@@ -197,7 +202,7 @@ const HeaderComponent = () => {
                   alt={selectedCountry.name}
                   width={30}
                   height={20}
-                />{" "}
+                />
               </Link>
               <span
                 className={classNames(s.arrow, {
