@@ -1,8 +1,10 @@
 @import "./../../style/container";
 
 .about {
-  display: grid;
-  gap: 140px;
   margin-top: 90px;
   margin-bottom: 150px;
+
+  &__title{
+    margin-bottom: 140px;
+  }
 }
