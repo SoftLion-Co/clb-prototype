@@ -35,7 +35,7 @@ const MainArticleSection = (data: Data) => {
   return (
     <section className={s.article}>
       <h1 className={classNames(s.h1Default, s.article__title)}>
-        {data.data.title.rendered}
+        {data.data.acf.heading}
       </h1>
       <p className={classNames(s.pDefault, s.article__date)}>
         {data.data.acf.date}
@@ -44,7 +44,7 @@ const MainArticleSection = (data: Data) => {
         <div className={s.image__container}>
           <Image
             src={data.data.acf.mainimage}
-            alt={data.data.title.rendered}
+            alt={data.data.acf.heading}
             className={s.image}
             width={1440}
             height={649}
@@ -56,7 +56,7 @@ const MainArticleSection = (data: Data) => {
         <ImageAndTextCardsComponent
           text={data.data.acf.quote}
           image={data.data.acf.secondimage}
-          alt={data.data.title.rendered}
+          alt={data.data.acf.heading}
         />
         <h2 className={s.article__subheading}>{data.data.acf.subheading2}</h2>
         <p className={s.article__text}>{data.data.acf.text3}</p>
