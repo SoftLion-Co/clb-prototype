@@ -2,18 +2,16 @@ import s from "./page.module.scss";
 import ContactUsSection from "../sections/main_page/ContactUsSection";
 import PageTitleComponent from "@/components/PageTitleComponent";
 import ThreeCardsComponent from "@/components/ThreeCardsComponent";
-import MainTitleComponent from "@/components/MainTitleComponent";
-import ListCardsComponent from "@/components/ListCardsComponent";
 import ProductPortfolioSection from "../sections/freight_brokerage/ProductPortfolioSection";
 
-const Execution = () => {
+const Freight = () => {
   return (
-    <div className={s.execution}>
+    <div className={s.freight}>
       <div className={s.container}>
         <PageTitleComponent
           title={"Freight Brokerage"}
           text={"Lorem ipsum dolor sit amet consectetur."}
-          className={s.execution__title}
+          className={s.freight__title}
         />
         <ThreeCardsComponent
           imagePosition={1}
@@ -31,4 +29,4 @@ const Execution = () => {
   );
 };
 
-export default Execution;
+export default Freight;

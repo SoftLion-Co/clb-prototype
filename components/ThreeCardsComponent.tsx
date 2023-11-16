@@ -3,8 +3,8 @@ import s from "./ThreeCardsComponent.module.scss";
 import Image from "next/image";
 
 import executionImage from "@/images/home-hero-test.png";
-import exportConsultingImage from "@/images/footer/icon-facebook.svg";
-import freightBrokerageImage from "@/images/footer/icon-instagram.svg";
+import exportConsultingImage from "@/images/home-hero-test.png";
+import freightBrokerageImage from "@/images/home-hero-test.png";
 import ourStoryImage from "@/images/home-hero-test.png";
 
 const images = {
