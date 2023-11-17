@@ -1,4 +1,7 @@
-import "./globals.css";
+import { useLocale } from "next-intl";
+import { notFound } from "next/navigation";
+
+import "./../globals.css";
 import s from "./layout.module.scss";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
@@ -14,22 +17,22 @@ export const metadata: Metadata = {
 const manrope = localFont({
   src: [
     {
-      path: "./../style/fonts/manrope-400.woff2",
+      path: "./../../style/fonts/manrope-400.woff2",
       weight: "400",
       style: "normal",
     },
     {
-      path: "./../style/fonts/manrope-500.woff2",
+      path: "./../../style/fonts/manrope-500.woff2",
       weight: "500",
       style: "normal",
     },
     {
-      path: "./../style/fonts/manrope-600.woff2",
+      path: "./../../style/fonts/manrope-600.woff2",
       weight: "600",
       style: "normal",
     },
     {
-      path: "./../style/fonts/manrope-700.woff2",
+      path: "./../../style/fonts/manrope-700.woff2",
       weight: "700",
       style: "normal",
     },
@@ -38,11 +41,20 @@ const manrope = localFont({
 
 export default function RootLayout({
   children,
+  params,
 }: {
   children: React.ReactNode;
+  params: any;
 }) {
+  const locale = useLocale();
+
+  //show 404 error if IDIOM does not exist
+  if (params.locale !== locale) {
+    notFound();
+  }
+
   return (
-    <html lang="en" className={classNames(manrope.className)}>
+    <html lang={locale} className={classNames(manrope.className)}>
       <body>
         <div className={s.main}>
           <HeaderComponent />

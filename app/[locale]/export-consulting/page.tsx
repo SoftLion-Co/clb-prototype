@@ -1,9 +1,9 @@
 import s from "./page.module.scss";
-import ContactUsSection from "../sections/main_page/ContactUsSection";
+import ContactUsSection from "../../sections/main_page/ContactUsSection";
 import PageTitleComponent from "@/components/PageTitleComponent";
 import ThreeCardsComponent from "@/components/ThreeCardsComponent";
-import ProductPortfolioSection from "../sections/export_consulting/ProductPortfolioSection";
-import OurCoreServices from "../sections/export_consulting/OurCoreServices";
+import ProductPortfolioSection from "../../sections/export_consulting/ProductPortfolioSection";
+import OurCoreServices from "../../sections/export_consulting/OurCoreServices";
 
 const Export = () => {
   return (

@@ -1,8 +1,8 @@
 import s from "./page.module.scss";
-import CardsSection from "../sections/careers_page/CardsSection";
+import CardsSection from "../../sections/careers_page/CardsSection";
 import PageTitleComponent from "@/components/PageTitleComponent";
-import VacanciesSection from "../sections/careers_page/VacanciesSection";
-import ContactUsSection from "../sections/main_page/ContactUsSection";
+import VacanciesSection from "../../sections/careers_page/VacanciesSection";
+import ContactUsSection from "../../sections/main_page/ContactUsSection";
 
 const Careers = () => {
   return (

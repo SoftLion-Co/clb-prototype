@@ -1,6 +1,6 @@
 import s from "./page.module.scss";
 
-import ContactUsSection from "../sections/main_page/ContactUsSection";
+import ContactUsSection from "../../sections/main_page/ContactUsSection";
 import ThreeCardsComponent from "@/components/ThreeCardsComponent";
 import PageTitleComponent from "@/components/PageTitleComponent";
 

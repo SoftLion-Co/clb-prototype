@@ -1,8 +1,8 @@
 import s from "./page.module.scss";
-import ContactUsSection from "../sections/main_page/ContactUsSection";
+import ContactUsSection from "../../sections/main_page/ContactUsSection";
 import PageTitleComponent from "@/components/PageTitleComponent";
 import ThreeCardsComponent from "@/components/ThreeCardsComponent";
-import ProductPortfolioSection from "../sections/freight_brokerage/ProductPortfolioSection";
+import ProductPortfolioSection from "../../sections/freight_brokerage/ProductPortfolioSection";
 
 const Freight = () => {
   return (
