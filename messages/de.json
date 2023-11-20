@@ -1,5 +1,13 @@
 {
-  "Index": {
-    "title": "deutchland!"
+  "header": {
+    "aboutUs": "Über uns",
+    "services": "Dienstleistungen",
+    "blog": "Blog",
+    "careers": "Karriere",
+    "getInTouch": "Kontakt aufnehmen"
+  },
+  "homePage": {
+    "hero": "Commodities & Logistics Brokers",
+    "heroText": "Die Sonne geht hinter dem Horizont unter und taucht den Himmel in zauberhafte Farbtöne. Ein sanfter Wind berührt zärtlich das Gesicht. Im Park genießen die Menschen den Abend."
   }
 }

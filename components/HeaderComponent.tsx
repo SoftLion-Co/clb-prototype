@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import Link from "next/link";
+import { Link } from "../navigation";
 import Image from "next/image";
 import Modal from "react-modal";
 import classNames from "classnames";
@@ -8,8 +8,8 @@ import s from "./HeaderComponent.module.scss";
 import Close from "@/images/vectors/close.svg";
 import Burger from "@/images/vectors/burger-menu.svg";
 import ArrowMenu from "@/images/vectors/arrow-menu.svg";
-
 import MainButtonComponent from "./MainButtonComponent";
+import { usePathname } from "next/navigation";
 
 import UK from "@/images/flags/UK.svg";
 import ES from "@/images/flags/ES.svg";
@@ -17,12 +17,19 @@ import DE from "@/images/flags/DE.svg";
 import UA from "@/images/flags/UA.svg";
 import RU from "@/images/flags/RU.svg";
 
-const countriesMenu = [
-  { code: "UK", name: "United Kingdom", flag: UK },
-  { code: "ES", name: "Spain", flag: ES },
-  { code: "DE", name: "Germany", flag: DE },
-  { code: "UA", name: "Ukraine", flag: UA },
-  { code: "RU", name: "Russia", flag: RU },
+type Country = {
+  code: string;
+  name: string;
+  flag: string;
+  locale: "en" | "es" | "de" | "ua" | "ru" | undefined;
+};
+
+const countriesMenu: Country[] = [
+  { code: "UK", name: "United Kingdom", flag: UK, locale: "en" },
+  { code: "ES", name: "Spain", flag: ES, locale: "es" },
+  { code: "DE", name: "Germany", flag: DE, locale: "de" },
+  { code: "UA", name: "Ukraine", flag: UA, locale: "ua" },
+  { code: "RU", name: "Russia", flag: RU, locale: "ru" },
 ];
 
 const menuItems = [
@@ -47,10 +54,31 @@ const aboutUsMenu = [
 ];
 
 const HeaderComponent = () => {
+  const pathname = usePathname();
+  const initialLocale = pathname.split('/')[1];
+
+  const defaultCountry = countriesMenu[4];
+  const initialCountry = countriesMenu.find(country => country.locale === initialLocale);
+
+  const [selectedCountry, setSelectedCountry] = useState(
+    initialCountry || defaultCountry
+  );
+
+  useEffect(() => {
+    const locale = pathname.split('/')[1];
+    const matchingCountry = countriesMenu.find(country => country.locale === locale);
+
+    if (matchingCountry) {
+      setSelectedCountry(matchingCountry);
+    } else {
+      // Якщо локаль не знайдена, встановлюємо значення за замовчуванням
+      setSelectedCountry(defaultCountry);
+    }
+  }, [pathname, defaultCountry]);
+
   const [isFlagDropdownOpen, setFlagDropdownOpen] = useState(false);
   const [isServicesMenuOpen, setServicesMenuOpen] = useState(false);
   const [isAboutUsMenuOpen, setAboutUsMenuOpen] = useState(false);
-  const [selectedCountry, setSelectedCountry] = useState(countriesMenu[0]);
   const [isArrowRotated, setArrowRotated] = useState(false);
   const [isModalOpen, setModalOpen] = useState(false);
   const [windowWidth, setWindowWidth] = useState(
@@ -221,13 +249,15 @@ const HeaderComponent = () => {
                         key={country.code}
                         onClick={() => handleCountrySelection(country)}
                       >
-                        <Image
-                          className={s.flag__image}
-                          src={country.flag}
-                          alt={country.name}
-                          width={30}
-                          height={20}
-                        />
+                        <Link href="/" locale={country.locale}>
+                          <Image
+                            className={s.flag__image}
+                            src={country.flag}
+                            alt={country.name}
+                            width={30}
+                            height={20}
+                          />
+                        </Link>
                       </li>
                     );
                   }

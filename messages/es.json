@@ -1,5 +1,13 @@
 {
-  "Index": {
-    "title": "Hello world!"
+  "header": {
+    "aboutUs": "Sobre nosotros",
+    "services": "Servicios",
+    "blog": "Blog",
+    "careers": "Carreras",
+    "getInTouch": "Ponte en contacto"
+  },
+  "homePage": {
+    "hero": "Commodities & Logistics Brokers",
+    "heroText": "El sol se pone tras el horizonte, pintando el cielo con tonos mágicos. Una brisa suave acaricia delicadamente el rostro. En el parque, la gente disfruta de la tarde."
   }
 }

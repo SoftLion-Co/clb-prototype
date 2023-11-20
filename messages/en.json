@@ -1,5 +1,26 @@
 {
-  "Index": {
-    "title": "Muchachos!"
-  }
+  "header": {
+    "aboutUs": "About us",
+    "services": "Services",
+    "blog": "Blog",
+    "careers": "Careers",
+    "getInTouch": "Get in touch",
+    "servicesMenu": {
+      "partners": "Partners",
+      "onlineTrading": "Online trading",
+      "ourBlog": "Our Blog",
+      "contactUs": "Contact Us"
+    },
+    "aboutUsMenu": {
+      "aboutUs": "About Us",
+      "partners": "Partners",
+      "ourBlog": "Our Blog",
+      "contactUs": "Contact Us"
+    }
+  },
+  "homePage": {
+    "hero": "Commodities & Logistics Brokers",
+    "heroText": "The sun sets behind the horizon, painting the sky in magical hues. A gentle breeze tenderly touches the face. In the park, people enjoy the evening."
+  },
+  "components": {}
 }
