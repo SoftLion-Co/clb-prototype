@@ -21,9 +21,47 @@
   "homePage": {
     "hero": "Commodities & Logistics Brokers",
     "heroText": "El sol se pone tras el horizonte, pintando el cielo con tonos mágicos. Una brisa suave acaricia delicadamente el rostro. En el parque, la gente disfruta de la tarde.",
-    "servicesHeading": "Nuestros Servicios"
+    "servicesHeading": "Nuestros Servicios",
+    "partnersHeading": "Socios",
+    "blogHeading": "Nuestro Blog",
+    "contactUs": {
+      "contactUsHeading": "Contáctenos",
+      "firstname": "Nombre",
+      "phone": "Número de teléfono",
+      "lastname": "Apellido",
+      "company": "Nombre de la empresa",
+      "email": "Correo electrónico",
+      "topicOfEnquiry": "Tema de la consulta",
+      "yourMessage": "Su mensaje (opcional)",
+      "time": "Cuándo estás listo para empezar a trabajar",
+      "appliedVacancy": "La vacante para la que estás aplicando",
+      "chooseFile": "Elegir un archivo",
+      "submitButton": "Enviar",
+      "contactUsButton": "Contáctenos"
+    },
+    "servicesCards": [
+      {
+        "title": "Corretaje de productos básicos",
+        "text": "Lorem ipsum dolor sit amet consectetur. In ac vitae dignissim placerat. Feugiat sed amet ac massa arcu tristique adipiscing pellentesque elementum."
+      },
+      {
+        "title": "Corretaje de carga",
+        "text": "Lorem ipsum dolor sit amet consectetur. In ac vitae dignissim placerat. Feugiat sed amet ac massa arcu tristique adipiscing pellentesque elementum."
+      },
+      {
+        "title": "Ejecución",
+        "text": "Lorem ipsum dolor sit amet consectetur. In ac vitae dignissim placerat. Feugiat sed amet ac massa arcu tristique adipiscing pellentesque elementum."
+      },
+      {
+        "title": "Asesoramiento en exportaciones",
+        "text": "Lorem ipsum dolor sit amet consectetur. In ac vitae dignissim placerat. Feugiat sed amet ac massa arcu tristique adipiscing pellentesque elementum."
+      }
+    ]
   },
+
   "components": {
-    "ourSercvicesButton": "Nuestros Servicios"
+    "ourSercvicesButton": "Nuestros Servicios",
+    "readMoreButton": "Leer más",
+    "moreInBlog": "Más en el Blog"
   }
 }

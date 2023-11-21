@@ -21,7 +21,25 @@
   "homePage": {
     "hero": "Commodities & Logistics Brokers",
     "heroText": "Солнце садится за горизонт, крася небо в волшебные оттенки. Легкий ветерок ласково касается лица. В парке гуляющие люди наслаждаются вечером.",
-    "servicesHeading": "Наши услуги"
+    "servicesHeading": "Наши услуги",
+    "servicesCards": [
+      {
+        "title": "Commodity brokerage",
+        "text": "Lorem ipsum dolor sit amet consectetur. In ac vitae dignissim placerat. Feugiat sed amet ac massa arcu tristique adipiscing pellentesque elementum."
+      },
+      {
+        "title": "Freight brokerage",
+        "text": "Lorem ipsum dolor sit amet consectetur. In ac vitae dignissim placerat. Feugiat sed amet ac massa arcu tristique adipiscing pellentesque elementum."
+      },
+      {
+        "title": "Execution",
+        "text": "Lorem ipsum dolor sit amet consectetur. In ac vitae dignissim placerat. Feugiat sed amet ac massa arcu tristique adipiscing pellentesque elementum."
+      },
+      {
+        "title": "Export consulting",
+        "text": "Lorem ipsum dolor sit amet consectetur. In ac vitae dignissim placerat. Feugiat sed amet ac massa arcu tristique adipiscing pellentesque elementum."
+      }
+    ]
   },
   "components": {
     "ourSercvicesButton": "Наши услуги"

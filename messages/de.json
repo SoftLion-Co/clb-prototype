@@ -21,9 +21,46 @@
   "homePage": {
     "hero": "Commodities & Logistics Brokers",
     "heroText": "Die Sonne geht hinter dem Horizont unter und taucht den Himmel in zauberhafte Farbtöne. Ein sanfter Wind berührt zärtlich das Gesicht. Im Park genießen die Menschen den Abend.",
-    "servicesHeading": "Unsere Dienstleistungen"
+    "servicesHeading": "Unsere Dienstleistungen",
+    "partnersHeading": "Partner",
+    "blogHeading": "Unser Blog",
+    "contactUs": {
+      "contactUsHeading": "Kontaktiere uns",
+      "firstname": "Vorname",
+      "phone": "Telefonnummer",
+      "lastname": "Nachname",
+      "company": "Firmenname",
+      "email": "E-Mail",
+      "topicOfEnquiry": "Anfrage-Thema",
+      "yourMessage": "Ihre Nachricht (optional)",
+      "time": "Wann sind Sie bereit zu arbeiten?",
+      "appliedVacancy": "Die Stelle, auf die Sie sich bewerben",
+      "chooseFile": "Datei auswählen",
+      "submitButton": "Absenden",
+      "contactUsButton": "Kontaktiere uns"
+    },
+    "servicesCards": [
+      {
+        "title": "Warenmakler",
+        "text": "Lorem ipsum dolor sit amet consectetur. In ac vitae dignissim placerat. Feugiat sed amet ac massa arcu tristique adipiscing pellentesque elementum."
+      },
+      {
+        "title": "Frachtvermittlung",
+        "text": "Lorem ipsum dolor sit amet consectetur. In ac vitae dignissim placerat. Feugiat sed amet ac massa arcu tristique adipiscing pellentesque elementum."
+      },
+      {
+        "title": "Durchführung",
+        "text": "Lorem ipsum dolor sit amet consectetur. In ac vitae dignissim placerat. Feugiat sed amet ac massa arcu tristique adipiscing pellentesque elementum."
+      },
+      {
+        "title": "Exportberatung",
+        "text": "Lorem ipsum dolor sit amet consectetur. In ac vitae dignissim placerat. Feugiat sed amet ac massa arcu tristique adipiscing pellentesque elementum."
+      }
+    ]
   },
   "components": {
-    "ourSercvicesButton": "Unsere Dienstleistungen"
+    "ourSercvicesButton": "Unsere Dienstleistungen",
+    "readMoreButton": "Mehr lesen",
+    "moreInBlog": "Mehr im Blog"
   }
 }

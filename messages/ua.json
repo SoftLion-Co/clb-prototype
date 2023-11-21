@@ -21,9 +21,47 @@
   "homePage": {
     "hero": "Commodities & Logistics Brokers",
     "heroText": "Сонце сідає за обрій, фарбуючи небо в чарівні відтінки. Вітерець ласкаво доторкнувся обличчям. У парку люди насолоджуються вечором.",
-    "servicesHeading": "Наші послуги"
+    "servicesHeading": "Наші послуги",
+    "partnersHeading": "Партнери",
+    "blogHeading": "Наш блог",
+    "contactUs": {
+      "contactUsHeading": "Зв'яжіться з нами",
+      "firstname": "Ім'я",
+      "phone": "Номер телефону",
+      "lastname": "Прізвище",
+      "company": "Назва компанії",
+      "email": "Електронна пошта",
+      "topicOfEnquiry": "Тема запитання",
+      "yourMessage": "Ваше повідомлення (необов'язково)",
+      "time": "Коли ви готові почати працювати",
+      "appliedVacancy": "Вакансія, на яку ви подаєте заяву",
+      "chooseFile": "Обрати файл",
+      "submitButton": "Відправити",
+      "contactUsButton": "Зв'яжіться з нами"
+    },
+    "servicesCards": [
+      {
+        "title": "Товарний брокераж",
+        "text": "Lorem ipsum dolor sit amet consectetur. In ac vitae dignissim placerat. Feugiat sed amet ac massa arcu tristique adipiscing pellentesque elementum."
+      },
+      {
+        "title": "Вантажний брокераж",
+        "text": "Lorem ipsum dolor sit amet consectetur. In ac vitae dignissim placerat. Feugiat sed amet ac massa arcu tristique adipiscing pellentesque elementum."
+      },
+      {
+        "title": "Виконання",
+        "text": "Lorem ipsum dolor sit amet consectetur. In ac vitae dignissim placerat. Feugiat sed amet ac massa arcu tristique adipiscing pellentesque elementum."
+      },
+      {
+        "title": "Експортне консультування",
+        "text": "Lorem ipsum dolor sit amet consectetur. In ac vitae dignissim placerat. Feugiat sed amet ac massa arcu tristique adipiscing pellentesque elementum."
+      }
+    ]
   },
+
   "components": {
-    "ourSercvicesButton": "Наші послуги"
+    "ourSercvicesButton": "Наші послуги",
+    "readMoreButton": "Читати далі",
+    "moreInBlog": "Більше в блозі"
   }
 }

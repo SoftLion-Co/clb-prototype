@@ -9,6 +9,7 @@ import classNames from "classnames";
 import Question from "@/images/vectors/question.svg";
 import useVacancies from "@/hooks/useVacancies";
 import InputField from "@/components/form/InputField";
+import { useTranslations } from "next-intl";
 
 interface FormData {
   firstname: string;
@@ -126,9 +127,11 @@ const ContactUsSection = ({ cv }: { cv?: boolean}) => {
 
   const fields = cv ? fieldsCV : fieldsWithoutCV;
 
+  const t = useTranslations("homePage.contactUs")
+
   return (
     <section className={s.container}>
-      <MainTitleComponent className={s.form__title} title="Contact Us" />
+      <MainTitleComponent className={s.form__title} title={t("contactUsHeading")} />
       <form className={s.form} onSubmit={handleSubmit}>
         <div className={s.form__content}>
           <div className={s.form__box}>
@@ -138,14 +141,14 @@ const ContactUsSection = ({ cv }: { cv?: boolean}) => {
                   key={field.name}
                   type={field.type}
                   name={field.name}
-                  label={field.label}
+                  label={field.name}
                   value={(formData as any)[field.name]}
                   onChange={handleInputChange}
                 />
               ))}
               {!cv ? (
                 <div className={s.form__group}>
-                  <label className={s.form__label}>Topic of Enquiry:</label>
+                  <label className={s.form__label}>{t("topicOfEnquiry")}</label>
                   <select
                     name="subject"
                     value={formData.subject}
@@ -162,7 +165,7 @@ const ContactUsSection = ({ cv }: { cv?: boolean}) => {
               ) : (
                 <div className={s.form__group}>
                   <label className={s.form__label}>
-                    The vacancy you are applying for:
+                    {t("appliedVacancy")}
                   </label>
                   <select
                     name="vacancy"
@@ -184,7 +187,7 @@ const ContactUsSection = ({ cv }: { cv?: boolean}) => {
                 <div
                   className={classNames(s.form__textarea_box, s.form__label)}
                 >
-                  <label htmlFor="message">Your message (optional)</label>
+                  <label htmlFor="message">{t("yourMessage")}</label>
                   <Image
                     src={Question}
                     alt="Question"
@@ -204,7 +207,7 @@ const ContactUsSection = ({ cv }: { cv?: boolean}) => {
                 <InputField
                   type="file"
                   name="cvFile"
-                  label=""
+                  label={null}
                   value={formData.cvFile ? formData.cvFile.name : ""}
                   onChange={handleInputChange}
                 />
@@ -216,7 +219,7 @@ const ContactUsSection = ({ cv }: { cv?: boolean}) => {
           </div>
         </div>
         <button type="submit" className={s.form__button}>
-          {cv ? "Submit" : "Contact Us"}
+          {cv ? t("submitButton") : t("contactUsButton")}
         </button>
       </form>
     </section>

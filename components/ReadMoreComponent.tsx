@@ -2,11 +2,14 @@ import s from "./ReadMoreComponent.module.scss";
 import Link from "next/link";
 import Image from "next/image";
 import Arrow from "@/images/vectors/arrow.svg";
+import { useTranslations } from "next-intl";
 
 const ReadMoreComponent = (href: any) => {
+  const  t  = useTranslations("components");
+
   return (
     <Link className={s.read__link} href={href.href}>
-      Read more <Image className={s.read__arrow} src={Arrow} alt="Arrow" />
+      {t("readMoreButton")}<Image className={s.read__arrow} src={Arrow} alt="Arrow" />
     </Link>
   );
 };
