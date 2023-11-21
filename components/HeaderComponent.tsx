@@ -10,6 +10,8 @@ import Burger from "@/images/vectors/burger-menu.svg";
 import ArrowMenu from "@/images/vectors/arrow-menu.svg";
 import MainButtonComponent from "./MainButtonComponent";
 import { usePathname } from "next/navigation";
+import { useTranslations } from "next-intl";
+
 
 import UK from "@/images/flags/UK.svg";
 import ES from "@/images/flags/ES.svg";
@@ -33,10 +35,10 @@ const countriesMenu: Country[] = [
 ];
 
 const menuItems = [
-  { title: "About us", type: "aboutUs", link: "" },
-  { title: "Services", type: "services", link: "" },
-  { title: "Blog", type: "link", link: "/blog" },
-  { title: "Careers", type: "link", link: "/careers" },
+  { title: "aboutUs", type: "aboutUs", link: "" },
+  { title: "services", type: "services", link: "" },
+  { title: "blog", type: "link", link: "/blog" },
+  { title: "careers", type: "link", link: "/careers" },
 ];
 
 const servicesMenu = [
@@ -54,6 +56,8 @@ const aboutUsMenu = [
 ];
 
 const HeaderComponent = () => {
+  const t = useTranslations("header")
+
   const pathname = usePathname();
   const initialLocale = pathname.split('/')[1];
 
@@ -71,7 +75,6 @@ const HeaderComponent = () => {
     if (matchingCountry) {
       setSelectedCountry(matchingCountry);
     } else {
-      // Якщо локаль не знайдена, встановлюємо значення за замовчуванням
       setSelectedCountry(defaultCountry);
     }
   }, [pathname, defaultCountry]);
@@ -153,16 +156,16 @@ const HeaderComponent = () => {
     <ul className={s.header__list}>
       {menuItems.map((item) => (
         <li
-          key={item.title}
+          key={item.type}
           className={s.header__item}
           onMouseEnter={() => handleDropdownMouseEnter(item.type)}
           onMouseLeave={handleDropdownMouseLeave}
         >
           {item.type === "link" ? (
-            <Link href={item.link}>{item.title}</Link>
+            <Link href={item.link}>{t(item.title)}</Link>
           ) : (
             <>
-              <Link href={item.link}>{item.title}</Link>
+              <Link href={item.link}>{t(item.title)}</Link>
               {item.type === "aboutUs" && isAboutUsMenuOpen && (
                 <ul className={s.header__dropdown}>
                   {aboutUsMenu.map((subItem) => (
@@ -269,7 +272,7 @@ const HeaderComponent = () => {
 
           <MainButtonComponent
             className={s.header__touch}
-            text="Get in touch"
+            text={t("getInTouch")}
           />
 
           <button

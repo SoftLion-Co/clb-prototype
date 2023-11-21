@@ -1,5 +1,6 @@
 import { useLocale } from "next-intl";
 import { notFound } from "next/navigation";
+import { NextIntlClientProvider } from "next-intl";
 
 import "./../globals.css";
 import s from "./layout.module.scss";
@@ -39,30 +40,32 @@ const manrope = localFont({
   ],
 });
 
-export default function RootLayout({
-  children,
-  params,
-}: {
+interface RootLayoutProps {
   children: React.ReactNode;
-  params: any;
-}) {
-  const locale = useLocale();
+  params: {
+    locale: string;
+  };
+}
 
-  //show 404 error if IDIOM does not exist
-  if (params.locale !== locale) {
+export default async function RootLayout({ children, params: { locale } }: RootLayoutProps) {
+  let messages;
+  try {
+    messages = (await import(`@/messages/${locale}.json`)).default;
+  } catch (error) {
     notFound();
   }
-
   return (
     <html lang={locale} className={classNames(manrope.className)}>
       <body>
-        <div className={s.main}>
-          <HeaderComponent />
-          <div className={s.page} id="layout">
-            {children}
+        <NextIntlClientProvider messages={messages}>
+          <div className={s.main}>
+            <HeaderComponent />
+            <div className={s.page} id="layout">
+              {children}
+            </div>
+            <FooterComponent />
           </div>
-          <FooterComponent />
-        </div>
+        </NextIntlClientProvider>
       </body>
     </html>
   );

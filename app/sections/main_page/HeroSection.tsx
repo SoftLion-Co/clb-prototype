@@ -8,13 +8,14 @@ import { useTranslations } from "next-intl";
 
 function HeroSection() {
   const t = useTranslations("homePage")
+  const t1 = useTranslations("components")
 
   return (
     <div className={classNames(s.hero, s.container)}>
       <div className={s.hero__text}>
         <h1 className={s.hero__heading}>{t("hero")}</h1>
         <p className={s.hero__paragraph}>{t("heroText")}</p>
-        <MainButtonComponent text="Our Services"/>
+        <MainButtonComponent text={t1("ourSercvicesButton")}/>
       </div>
       <div className={s.hero__image}>
         <Image src={HeroTestImage} alt="Hero Image"/>

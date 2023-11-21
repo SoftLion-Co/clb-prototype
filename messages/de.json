@@ -6,8 +6,24 @@
     "careers": "Karriere",
     "getInTouch": "Kontakt aufnehmen"
   },
+  "servicesMenu": {
+    "partners": "Partner",
+    "onlineTrading": "Online-Handel",
+    "ourBlog": "Unser Blog",
+    "contactUs": "Kontaktiere uns"
+  },
+  "aboutUsMenu": {
+    "aboutUs": "Über uns",
+    "partners": "Partner",
+    "ourBlog": "Unser Blog",
+    "contactUs": "Kontaktiere uns"
+  },
   "homePage": {
     "hero": "Commodities & Logistics Brokers",
-    "heroText": "Die Sonne geht hinter dem Horizont unter und taucht den Himmel in zauberhafte Farbtöne. Ein sanfter Wind berührt zärtlich das Gesicht. Im Park genießen die Menschen den Abend."
+    "heroText": "Die Sonne geht hinter dem Horizont unter und taucht den Himmel in zauberhafte Farbtöne. Ein sanfter Wind berührt zärtlich das Gesicht. Im Park genießen die Menschen den Abend.",
+    "servicesHeading": "Unsere Dienstleistungen"
+  },
+  "components": {
+    "ourSercvicesButton": "Unsere Dienstleistungen"
   }
 }
