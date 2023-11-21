@@ -37,7 +37,15 @@
       "appliedVacancy": "The Vacancy You Are Applying For",
       "chooseFile": "Choose a File",
       "submitButton": "Submit",
-      "contactUsButton": "Contact Us"
+      "contactUsButton": "Contact Us",
+      "topics": {
+        "selectTopic": "Select a topic",
+        "": "",
+        "generalInquiry": "General Inquiry",
+        "productInformation": "Product Information",
+        "supportRequest": "Support Request",
+        "other": "Other"
+      }
     },
     "servicesCards": [
       {

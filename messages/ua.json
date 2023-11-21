@@ -37,7 +37,15 @@
       "appliedVacancy": "Вакансія, на яку ви подаєте заяву",
       "chooseFile": "Обрати файл",
       "submitButton": "Відправити",
-      "contactUsButton": "Зв'яжіться з нами"
+      "contactUsButton": "Зв'яжіться з нами",
+      "topics": {
+        "selectTopic": "Оберіть тему",
+        "": "",
+        "generalInquiry": "Загальний запит",
+        "productInformation": "Інформація про продукт",
+        "supportRequest": "Запит на підтримку",
+        "other": "Інше"
+      }
     },
     "servicesCards": [
       {

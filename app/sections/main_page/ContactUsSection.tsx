@@ -24,35 +24,35 @@ interface FormData {
   cvFile: File | null;
 }
 
-const ContactUsSection = ({ cv }: { cv?: boolean}) => {
+const ContactUsSection = ({ cv }: { cv?: boolean }) => {
+  const t = useTranslations("homePage.contactUs");
+
   const topics = [
     "",
-    "General Inquiry",
-    "Product Information",
-    "Support Request",
-    "Other",
+    "generalInquiry",
+    "productInformation",
+    "supportRequest",
+    "other",
   ];
-  
+
+  const translatedTopics = topics.map((topic) => t(`topics.${topic}`));
+
   const vacancies = useVacancies();
-  
+
   const fieldsWithoutCV = [
-    { type: "text", name: "firstname", label: "First Name:" },
-    { type: "tel", name: "phone", label: "Phone Number:" },
-    { type: "text", name: "lastname", label: "Last Name:" },
-    { type: "text", name: "company", label: "Company Name:" },
-    { type: "email", name: "email", label: "Email:" },
+    { type: "text", name: "firstname" },
+    { type: "tel", name: "phone" },
+    { type: "text", name: "lastname" },
+    { type: "text", name: "company" },
+    { type: "email", name: "email" },
   ];
-  
+
   const fieldsCV = [
-    { type: "text", name: "firstname", label: "First Name:" },
-    { type: "tel", name: "phone", label: "Phone Number:" },
-    { type: "text", name: "lastname", label: "Last Name:" },
-    {
-      type: "text",
-      name: "time",
-      label: "When you are ready to start working?",
-    },
-    { type: "email", name: "email", label: "Email:" },
+    { type: "text", name: "firstname" },
+    { type: "tel", name: "phone" },
+    { type: "text", name: "lastname" },
+    { type: "text", name: "time" },
+    { type: "email", name: "email" },
   ];
 
   const [formData, setFormData] = useState<FormData>({
@@ -99,7 +99,7 @@ const ContactUsSection = ({ cv }: { cv?: boolean}) => {
       const response = await fetch(url, reqOptions);
       if (response.ok) {
         const jsonResponse = await response.json();
-        console.log(jsonResponse)
+        console.log(jsonResponse);
         if (jsonResponse.status === "mail_sent") {
           setFormData({
             firstname: "",
@@ -127,11 +127,12 @@ const ContactUsSection = ({ cv }: { cv?: boolean}) => {
 
   const fields = cv ? fieldsCV : fieldsWithoutCV;
 
-  const t = useTranslations("homePage.contactUs")
-
   return (
     <section className={s.container}>
-      <MainTitleComponent className={s.form__title} title={t("contactUsHeading")} />
+      <MainTitleComponent
+        className={s.form__title}
+        title={t("contactUsHeading")}
+      />
       <form className={s.form} onSubmit={handleSubmit}>
         <div className={s.form__content}>
           <div className={s.form__box}>
@@ -155,25 +156,23 @@ const ContactUsSection = ({ cv }: { cv?: boolean}) => {
                     onChange={handleInputChange}
                     className={s.form__input}
                   >
-                    {topics.map((topic) => (
+                    {translatedTopics.map((topic) => (
                       <option key={topic} value={topic}>
-                        {topic || "Select a topic"}
+                        {topic || t(`topics.selectTopic`)}
                       </option>
                     ))}
                   </select>
                 </div>
               ) : (
                 <div className={s.form__group}>
-                  <label className={s.form__label}>
-                    {t("appliedVacancy")}
-                  </label>
+                  <label className={s.form__label}>{t("appliedVacancy")}</label>
                   <select
                     name="vacancy"
                     value={formData.vacancy}
                     onChange={handleInputChange}
                     className={s.form__input}
                   >
-                    {vacancies.map(vacancy => (
+                    {vacancies.map((vacancy) => (
                       <option key={vacancy.id} value={vacancy.acf.vacancies}>
                         {vacancy.acf.vacancies}
                       </option>

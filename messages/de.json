@@ -37,7 +37,15 @@
       "appliedVacancy": "Die Stelle, auf die Sie sich bewerben",
       "chooseFile": "Datei auswählen",
       "submitButton": "Absenden",
-      "contactUsButton": "Kontaktiere uns"
+      "contactUsButton": "Kontaktiere uns",
+      "topics": {
+        "selectTopic": "Wählen Sie ein Thema",
+        "": "",
+        "generalInquiry": "Allgemeine Anfrage",
+        "productInformation": "Produktinformation",
+        "supportRequest": "Support-Anfrage",
+        "other": "Sonstiges"
+      }
     },
     "servicesCards": [
       {
