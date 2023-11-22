@@ -22,6 +22,8 @@
     "classnames": "^2.3.2",
     "embla-carousel-react": "^7.1.0",
     "i18n": "^0.15.1",
+    "leaflet": "^1.9.4",
+    "mapbox-gl": "^2.15.0",
     "next": "13.4.19",
     "normalize.css": "^8.0.1",
     "postcss": "8.4.28",
@@ -29,6 +31,8 @@
     "react-dom": "18.2.0",
     "react-hook-form": "^7.45.4",
     "react-icons": "^4.10.1",
+    "react-leaflet": "^4.2.1",
+    "react-map-gl": "^7.1.6",
     "react-paginate": "^8.2.0",
     "react-share": "^4.4.1",
     "sass": "^1.69.5",
@@ -36,6 +40,7 @@
     "typescript": "5.2.2"
   },
   "devDependencies": {
+    "@types/leaflet": "^1.9.8",
     "@types/react-js-pagination": "^3.0.7"
   }
 }
