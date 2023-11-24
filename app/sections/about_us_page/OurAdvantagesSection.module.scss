@@ -4,4 +4,11 @@
   display: grid;
   gap: 68px;
   margin-bottom: 140px;
+
+  &__cards{
+    display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  row-gap: 68px;
+  }
 }

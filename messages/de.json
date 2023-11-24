@@ -81,6 +81,68 @@
     },
     "ourTeam": {
       "heading": "Unser Team"
+    },
+    "ourAdvantages": {
+      "ourAdvantagesTitle": "Unsere Vorteile",
+      "cards": {
+        "card1": "Ein umfangreiches globales Netzwerk von Brokern, das es uns ermöglicht, optimale Bedingungen für einen Deal zu finden",
+        "card2": "Tiefgreifendes Wissen in der Logistik: sei es Schienenverkehr, Straßentransport oder Seefracht - wir haben die besten Lösungen für Sie",
+        "card3": "Starke Partnerschaften mit zahlreichen internationalen Unternehmen, die uns mit den neuesten Markttrends auf dem Laufenden halten",
+        "card4": "Ein umfangreiches globales Netzwerk von Brokern, das es uns ermöglicht, optimale Bedingungen für einen Deal zu finden",
+        "card5": "Tiefgreifendes Wissen in der Logistik: sei es Schienenverkehr, Straßentransport oder Seefracht - wir haben die besten Lösungen für Sie",
+        "card6": "Starke Partnerschaften mit zahlreichen internationalen Unternehmen, die uns mit den neuesten Markttrends auf dem Laufenden halten"
+      }
     }
+  },
+  "blog": {
+    "blogTitle": "Unsere Nachrichten",
+    "blogSubtitle": "Lorem ipsum dolor sit amet consectetur."
+  },
+  "careers": {
+    "careersTitle": "Karriere",
+    "careersSubtitle": "Den Weg zu Innovation und neuen Horizonten ebnen",
+    "cardsBigText": "Wir expandieren rasant und sind auf der Suche nach neuen Talenten, um unser Team zu erweitern und unsere Mission weiter zu verbreiten.",
+    "cardsSmallText": "Wir veröffentlichen häufig spezifische Stellenangebote, aber wenn Sie glauben, dass Sie über ein einzigartiges Fähigkeitenprofil verfügen und einen Beitrag leisten können, freuen wir uns auf Ihre Bewerbung. Wir suchen Broker mit herausragender Erfahrung im Handel, insbesondere im Bereich Getreide, Ölsaaten und mineralischer Dünger. Unsere Ausführungsmanager verfügen über ein tiefes Verständnis für internationale wirtschaftliche Verträge. Wir suchen Kandidaten mit fließenden Englischkenntnissen sowie Kenntnissen in anderen Fremdsprachen. Schließen Sie sich uns an und werden Sie Teil des Teams von Commodities Logistics Brokers - Führungskräfte in unserer Branche.",
+    "openVacanciesTitle": "Offene Stellen"
+  },
+  "commodityBrokerage": {
+    "commodityBrokerageTitle": "Warenmakler",
+    "commodityBrokerageSubtitle": "Ihre Verbindung zwischen Käufer und Verkäufer",
+    "heroText": "In der Welt des landwirtschaftlichen Handels zählt jede Einzelheit. Commodities Logistics Brokers, als Ihr Warenmakler, tut mehr als nur Käufer und Verkäufer verbinden. Wir agieren als Ihr strategischer Partner, bieten tiefgehende Marktanalysen an und schaffen optimale Bedingungen für beide Parteien.",
+    "productPortfolioTitle": "Produktportfolio",
+    "coreServicesTitle": "Unsere Kernleistungen"
+  },
+  "execution": {
+    "executionTitle": "Durchführung",
+    "executionSubtitle": "Lorem ipsum dolor sit amet consectetur.",
+    "heroBigText": "Mit professionellem Einblick in die GAFTA- und FOSFA-Vorschriften unterziehen sich unsere Experten regelmäßig Schulungen, um auf dem neuesten Stand der neuesten Empfehlungen und Verschiebungen im globalen Handelsumfeld zu bleiben.",
+    "heroSmallText": "Erfahren in verschiedenen Vertragsbedingungen wie EXW, FCA, CPT, DAP, FOB, CNF und CIF gewährleisten wir reibungslose Ausführung und Einhaltung aller Bestimmungen in jeder Phase des Vertragsprozesses. Da wir die entscheidende Rolle der rechtlichen Expertise im Vertragsmanagement anerkennen, haben wir ein externes Team erfahrener Anwälte bereit, bei Bedarf zu helfen. Dieses juristische Team, ausgestattet mit einem tiefen Verständnis des internationalen Handelsrechts, garantiert den Schutz der Rechte unserer Kunden und die Erfüllung der Verpflichtungen."
+  },
+  "exportConsulting": {
+    "exportConsultingTitle": "Exportberatung",
+    "exportConsultingSubtitle": "Lorem ipsum dolor sit amet consectetur.",
+    "heroBigText": "Mit professionellen Einblicken in die GAFTA- und FOSFA-Vorschriften unterziehen sich unsere Experten regelmäßig Schulungen, um auf dem neuesten Stand der neuesten Empfehlungen und Verschiebungen im globalen Handelsumfeld zu bleiben.",
+    "heroSmallText": "Erfahren in verschiedenen Vertragsbedingungen wie EXW, FCA, CPT, DAP, FOB, CNF und CIF gewährleisten wir reibungslose Ausführung und Einhaltung aller Bestimmungen in jeder Phase des Vertragsprozesses. Da wir die entscheidende Rolle der rechtlichen Expertise im Vertragsmanagement anerkennen, haben wir ein externes Team erfahrener Anwälte bereit, bei Bedarf zu helfen. Dieses juristische Team, ausgestattet mit einem tiefen Verständnis des internationalen Handelsrechts, garantiert den Schutz der Rechte unserer Kunden und die Erfüllung der Verpflichtungen.",
+    "productPortfolioTitle": "Produktportfolio",
+    "coreServicesTitle": "Unsere Kernleistungen",
+    "services": {
+      "title1": "Marktanalyse",
+      "text1": "Unser Team von Fachleuten untersucht aktuelle Trends, um Ihnen die relevantesten Informationen und Empfehlungen zu bieten",
+      "title2": "Persönlicher Ansatz",
+      "text2": "Wir berücksichtigen die Bedürfnisse und Erwartungen beider Parteien, um die besten Kollaborationsbedingungen festzulegen",
+      "title3": "Unterstützung bei der Vertragsabwicklung",
+      "text3": "Schritt für Schritt stehen wir Ihnen zur Seite und bieten Beratung sowie aktive Teilnahme an Verhandlungen, um die besten Vertragsbedingungen zu erreichen",
+      "title4": "Partnerschaftsgeografie",
+      "text4": "Wir schlagen verschiedene Optionen potenzieller Partner aus verschiedenen Regionen vor, basierend auf Ihrer Geschäftsstrategie",
+      "title5": "Optimierung der Preispolitik",
+      "text5": "Unser Ziel ist es, Ihnen die besten Preise und Bedingungen zu bieten und sicherzustellen, dass Ihre Zusammenarbeit nicht nur profitabel, sondern auch stabil ist"
+    }
+  },
+  "freightBrokerage": {
+    "freightBrokerageTitle": "Frachtvermittlung",
+    "freightBrokerageSubtitle": "Lorem ipsum dolor sit amet consectetur.",
+    "heroBigText": "Commodities & Logistics Brokers ist Ihr zuverlässiger Partner in der Welt des Frachttransports. Wir sind vertrauenswürdig, weil wir bewährte Lösungen und einen professionellen Ansatz für jeden Kunden bieten.",
+    "heroSmallText": "Lorem ipsum dolor sit amet consectetur. Facilisi consectetur a volutpat odio sit. A senectus ut eget molestie ac commodo feugiat. Lorem viverra nibh suspendisse egestas lacus semper vulputate tincidunt tempus. Id tincidunt faucibus et et pretium tristique habitant eget consequat. Consectetur arcu lectus semper euismod. Blandit quam nulla accumsan ac amet feugiat consectetur mauris. Est sed in donec enim vel condimentum netus cursus pharetra.",
+    "productPortfolioTitle": "Produktportfolio"
   }
 }

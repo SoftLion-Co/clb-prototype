@@ -81,6 +81,68 @@
     },
     "ourTeam": {
       "heading": "Nuestro equipo"
+    },
+    "ourAdvantages": {
+      "ourAdvantagesTitle": "Nuestras ventajas",
+      "cards": {
+        "card1": "Una vasta red global de corredores, lo que nos permite encontrar las condiciones óptimas para un acuerdo",
+        "card2": "Conocimientos profundos en logística: ya sea transporte ferroviario, transporte por carretera o envío marítimo, tenemos las mejores soluciones para usted",
+        "card3": "Sólidas asociaciones con numerosas empresas internacionales, manteniéndonos actualizados con las últimas tendencias del mercado",
+        "card4": "Una vasta red global de corredores, lo que nos permite encontrar las condiciones óptimas para un acuerdo",
+        "card5": "Conocimientos profundos en logística: ya sea transporte ferroviario, transporte por carretera o envío marítimo, tenemos las mejores soluciones para usted",
+        "card6": "Sólidas asociaciones con numerosas empresas internacionales, manteniéndonos actualizados con las últimas tendencias del mercado"
+      }
     }
+  },
+  "blog": {
+    "blogTitle": "Nuestras noticias",
+    "blogSubtitle": "Lorem ipsum dolor sit amet consectetur."
+  },
+  "careers": {
+    "careersTitle": "Carreras",
+    "careersSubtitle": "Abriendo el camino a la innovación y nuevos horizontes",
+    "cardsBigText": "Nos estamos expandiendo rápidamente y en busca de nuevos talentos para ampliar nuestro equipo y llevar nuestra misión aún más lejos.",
+    "cardsSmallText": "Aunque publicamos con frecuencia listados de trabajos específicos, si crees que tienes un conjunto único de habilidades y estás listo para hacer una contribución, esperamos con interés tu solicitud. Estamos en busca de corredores con experiencia ejemplar en el comercio, especialmente en los ámbitos de cereales, oleaginosas y fertilizantes minerales. Nuestros gerentes de ejecución poseen una comprensión profunda de los contratos económicos internacionales. Buscamos candidatos con fluidez en inglés, así como conocimientos de otros idiomas extranjeros. Únete a nosotros y sé parte del equipo de Commodities Logistics Brokers, líderes en nuestro campo.",
+    "openVacanciesTitle": "Vacantes Abiertas"
+  },
+  "commodityBrokerage": {
+    "commodityBrokerageTitle": "Corretaje de productos básicos",
+    "commodityBrokerageSubtitle": "Su enlace entre comprador y vendedor",
+    "heroText": "En el mundo del comercio agrícola, cada detalle cuenta. Commodities Logistics Brokers, como su corredor de productos básicos, hace más que simplemente conectar compradores y vendedores. Actuamos como su socio estratégico, ofreciendo un análisis de mercado profundo y proporcionando condiciones óptimas para ambas partes.",
+    "productPortfolioTitle": "Portafolio de productos",
+    "coreServicesTitle": "Nuestros servicios principales"
+  },
+  "execution": {
+    "executionTitle": "Ejecución",
+    "executionSubtitle": "Lorem ipsum dolor sit amet consectetur.",
+    "heroBigText": "Con conocimientos profesionales sobre las regulaciones de GAFTA y FOSFA, nuestros expertos se someten regularmente a capacitación para mantenerse al tanto de las últimas recomendaciones y cambios en el panorama mundial del comercio.",
+    "heroSmallText": "Experimentados en varios términos de contrato como EXW, FCA, CPT, DAP, FOB, CNF y CIF, garantizamos una ejecución sin problemas y el cumplimiento de todas las estipulaciones en cada etapa del proceso contractual. Reconociendo el papel crucial de la experiencia legal en la gestión de contratos, contamos con un equipo externalizado de abogados experimentados listos para ayudar cuando sea necesario. Este equipo legal, armado con un profundo conocimiento de las leyes de comercio internacional, garantiza la protección de los derechos de nuestros clientes y el cumplimiento de las obligaciones."
+  },
+  "exportConsulting": {
+    "exportConsultingTitle": "Asesoría en Exportaciones",
+    "exportConsultingSubtitle": "Lorem ipsum dolor sit amet consectetur.",
+    "heroBigText": "Con conocimientos profesionales sobre las regulaciones de GAFTA y FOSFA, nuestros expertos se someten regularmente a capacitación para mantenerse al tanto de las últimas recomendaciones y cambios en el panorama mundial del comercio.",
+    "heroSmallText": "Experimentados en varios términos de contrato como EXW, FCA, CPT, DAP, FOB, CNF y CIF, garantizamos una ejecución sin problemas y el cumplimiento de todas las estipulaciones en cada etapa del proceso contractual. Reconociendo el papel crucial de la experiencia legal en la gestión de contratos, contamos con un equipo externalizado de abogados experimentados listos para ayudar cuando sea necesario. Este equipo legal, armado con un profundo conocimiento de las leyes de comercio internacional, garantiza la protección de los derechos de nuestros clientes y el cumplimiento de las obligaciones.",
+    "productPortfolioTitle": "Portafolio de productos",
+    "coreServicesTitle": "Nuestros servicios principales",
+    "services": {
+      "title1": "Análisis de mercado",
+      "text1": "Nuestro equipo de profesionales estudia las tendencias actuales para proporcionarle la información y recomendaciones más relevantes",
+      "title2": "Enfoque personalizado",
+      "text2": "Consideramos las necesidades y expectativas de ambas partes para establecer las mejores condiciones de colaboración",
+      "title3": "Soporte para la ejecución de contratos",
+      "text3": "En cada paso, estamos a su lado, ofreciendo asesoramiento y participación activa en las negociaciones para lograr los mejores términos del acuerdo",
+      "title4": "Geografía de asociaciones",
+      "text4": "Proponemos diversas opciones de posibles socios de diversas regiones, según su estrategia comercial",
+      "title5": "Optimización de la política de precios",
+      "text5": "Nuestro objetivo es proporcionarle los mejores precios y condiciones, asegurando que su colaboración sea no solo rentable sino también estable"
+    }
+  },
+  "freightBrokerage": {
+    "freightBrokerageTitle": "Corretaje de Carga",
+    "freightBrokerageSubtitle": "Lorem ipsum dolor sit amet consectetur.",
+    "heroBigText": "Commodities & Logistics Brokers es su socio confiable en el mundo del transporte de carga. Somos de confianza porque ofrecemos soluciones probadas en el tiempo y un enfoque profesional para cada cliente.",
+    "heroSmallText": "Lorem ipsum dolor sit amet consectetur. Facilisi consectetur a volutpat odio sit. A senectus ut eget molestie ac commodo feugiat. Lorem viverra nibh suspendisse egestas lacus semper vulputate tincidunt tempus. Id tincidunt faucibus et et pretium tristique habitant eget consequat. Consectetur arcu lectus semper euismod. Blandit quam nulla accumsan ac amet feugiat consectetur mauris. Est sed in donec enim vel condimentum netus cursus pharetra.",
+    "productPortfolioTitle": "Portafolio de productos"
   }
 }

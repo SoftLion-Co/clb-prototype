@@ -11,8 +11,12 @@ import BigCardBlogComponent from "@/components/blog/BigCardBlogComponent";
 import SmallCardBlogComponent from "@/components/blog/SmallCardBlogComponent";
 import useScrollToTop from "@/hooks/useScrollToTop";
 import useBlogsData from "@/hooks/useBlogsData";
+import { useTranslations } from "next-intl";
+
 
 export default function Blog() {
+  const t = useTranslations("blog")
+
   const { blogs, loading, error } = useBlogsData();
   const itemsPerPage = 7;
   const [currentPage, setCurrentPage] = useState(0);
@@ -34,8 +38,8 @@ export default function Blog() {
     <section className={classNames(s.blog, s.container)}>
       <PageTitleComponent
         className={s.blog__title}
-        title="our news"
-        text="lorem ipsum dolor sit amet consectetur."
+        title={t("blogTitle")}
+        text={t("blogSubtitle")}
       />
 
       {loading && <p>Loading...</p>}

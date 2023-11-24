@@ -79,8 +79,69 @@
       "bigCard": "Our mission is not just about connecting producers with end buyers but to make this process as efficient and comfortable for both parties as possible.",
       "smallCard": "We are CL Broker, your indispensable assistant in the agricultural trade, specializing in grains and oilseeds. Our mission is not just about connecting producers with end buyers but to make this process as efficient and comfortable for both parties as possible. For over eight years, we have been deeply involved in consultancy, helping even novice farmers understand the intricacies of international exports."
     },
-    "ourTeam":{
+    "ourTeam": {
       "heading": "Our Team"
+    },
+    "ourAdvantages": {
+      "ourAdvantagesTitle": "Our Advantages",
+      "cards": {
+        "card1": "A vast global network of brokers, allowing us to find the optimal conditions for a deal",
+        "card2": "In-depth knowledge in logistics: be it rail transport, road transport, or sea shipment - we have the best solutions for you",
+        "card3": "Strong partnerships with numerous international companies, keeping us updated with the latest market trends",
+        "card4": "A vast global network of brokers, allowing us to find the optimal conditions for a deal",
+        "card5": "In-depth knowledge in logistics: be it rail transport, road transport, or sea shipment - we have the best solutions for you",
+        "card6": "Strong partnerships with numerous international companies, keeping us updated with the latest market trends"
+      }
     }
+  },
+  "blog": {
+    "blogTitle": "Our News",
+    "blogSubtitle": "Lorem ipsum dolor sit amet consectetur."
+  },
+  "careers": {
+    "careersTitle": "Careers",
+    "careersSubtitle": "Paving the Way to Innovation and New Horizons",
+    "cardsBigText": "We are rapidly expanding and in search of new talents to broaden our team and spread our mission further.",
+    "cardsSmallText": "While we frequently post specific job listings, if you believe you have a unique skil set and are poised to make a contribution, we eagerly await your application. We are on the lookout for brokers with exemplary experience in trading, particularly within the realms of cereals, oilseeds, and mineral fertilizers. Our execution managers possess an in-depth understanding of international economic contracts. We seek candidates with fluent English proficiency, as well as knowledge of other foreign languages. Join us and become a part of the Commodities Logistics  Brokers team — leaders in our field!",
+    "openVacanciesTitle": "Open Vacancies"
+  },
+  "commodityBrokerage": {
+    "commodityBrokerageTitle": "Commodity Brokerage",
+    "commodityBrokerageSubtitle": "Your link between buyer and seller",
+    "heroText": "In the world of agricultural trade, every detail matters. Commodities Logistics Brokers, as your commodity broker, does more than just connect buyers and sellers. We act as your strategic partner, offering in-depth market analysis and providing optimal conditions for both parties.",
+    "productPortfolioTitle": "Product portfolio"
+  },
+  "execution": {
+    "executionTitle": "Execution",
+    "executionSubtitle": "Lorem ipsum dolor sit amet consectetur.",
+    "heroBigText": "With professional insights into GAFTA and FOSFA regulations, our experts regularly undergo training to stay abreast of the latest recommendations and shifts in the global trade landscape.",
+    "heroSmallText": "Experienced in various contract terms like EXW, FCA, CPT, DAP, FOB, CNF, and CIF, we ensure seamless execution and adherence to all stipulations at every stage of the contractual process. Recognizing the pivotal role of legal expertise in contract management, we have an outsourced team of seasoned attorneys ready to assist when needed. This legal squad, armed with a deep understanding of international trade laws, guarantees the protection of our clients' rights and obligations fulfillment."
+  },
+  "exportConsulting": {
+    "exportConsultingTitle": "Export Сonsulting",
+    "exportConsultingSubtitle": "Lorem ipsum dolor sit amet consectetur.",
+    "heroBigText": "With professional insights into GAFTA and FOSFA regulations, our experts regularly undergo training to stay abreast of the latest recommendations and shifts in the global trade landscape.",
+    "heroSmallText": "Experienced in various contract terms like EXW, FCA, CPT, DAP, FOB, CNF, and CIF, we ensure seamless execution and adherence to all stipulations at every stage of the contractual process. Recognizing the pivotal role of legal expertise in contract management, we have an outsourced team of seasoned attorneys ready to assist when needed. This legal squad, armed with a deep understanding of international trade laws, guarantees the protection of our clients' rights and obligations fulfillment.",
+    "productPortfolioTitle": "Product portfolio",
+    "coreServicesTitle": "Our Core Services",
+    "services": {
+      "title1": "Market Analysis",
+      "text1": "Our team of professionals studies current trends to provide you with the most relevant information and recommendations",
+      "title2": "Personalized Approach",
+      "text2": "We consider the needs and expectations of both parties to establish the best collaboration conditions",
+      "title3": "Contract Execution Support",
+      "text3": "At every step, we stand by your side, offering advice and active participation in negotiations to achieve the best deal terms",
+      "title4": "Partnership Geography",
+      "text4": "We propose diverse options of potential partners from various regions, based on your business strategy",
+      "title5": "Price Policy Optimization",
+      "text5": "Our goal is to provide you with the best prices and terms, ensuring your collaboration is not only profitable but also stable"
+    }
+  },
+  "freightBrokerage": {
+    "freightBrokerageTitle": "Freight Brokerage",
+    "freightBrokerageSubtitle": "Lorem ipsum dolor sit amet consectetur.",
+    "heroBigText": "Commodities & Logistics Brokers is your reliable partner in the world of freight transport. We're trusted because we offer time-tested solutions and a professional approach to each client.",
+    "heroSmallText": "Lorem ipsum dolor sit amet consectetur. Facilisi consectetur a volutpat odio sit. A senectus ut eget molestie ac commodo feugiat. Lorem viverra nibh suspendisse egestas lacus semper vulputate tincidunt tempus. Id tincidunt faucibus et et pretium tristique habitant eget consequat. Consectetur arcu lectus semper euismod. Blandit quam nulla accumsan ac amet feugiat consectetur mauris. Est sed in donec enim vel condimentum netus cursus pharetra.",
+    "productPortfolioTitle": "Product portfolio"
   }
 }
