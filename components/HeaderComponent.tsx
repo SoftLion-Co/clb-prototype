@@ -59,6 +59,7 @@ const HeaderComponent = () => {
   const t = useTranslations("header")
 
   const pathname = usePathname();
+  const pathWithoutLanguage = pathname.replace(/^\/[a-zA-Z]{2}\//, '/');
   const initialLocale = pathname.split('/')[1];
 
   const defaultCountry = countriesMenu[4];
@@ -252,7 +253,7 @@ const HeaderComponent = () => {
                         key={country.code}
                         onClick={() => handleCountrySelection(country)}
                       >
-                        <Link href="/" locale={country.locale}>
+                        <Link href={`/${pathWithoutLanguage}`} locale={country.locale}>
                           <Image
                             className={s.flag__image}
                             src={country.flag}
