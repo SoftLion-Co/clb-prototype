@@ -1,29 +1,39 @@
 import s from "./OurTeamComponent.module.scss";
 import Image from "next/image";
-import Picture from "@/images/home-hero-test.png";
 import classNames from "classnames";
+
+// Assuming TeamMember is defined somewhere like this
+interface TeamMember {
+  id: number;
+  acf: TeamMemberAcf;
+}
+
+interface TeamMemberAcf {
+    fullname: string;
+    jobtitle: string;
+    image: string;
+}
+
 
 const OurTeamComponent = ({
   teamMembers,
 }: {
-  teamMembers: Array<{
-    img: string;
-    name: string;
-    position: string;
-  }>;
+  teamMembers: TeamMember[];
 }) => {
   return (
     <div className={s.team}>
       {teamMembers.map((teamMember, index) => (
-        <div className={s.team__content} key={index}>
+        <div className={s.team__content} key={teamMember.id}>
           <Image
             className={s.team__picture}
-            src={Picture}
-            alt={teamMember.name}
+            src={teamMember.acf.image}
+            alt={teamMember.acf.fullname}
+            width={800}
+            height={800}
           />
-          <h3 className={s.team__name}>{teamMember.name}</h3>
+          <h3 className={s.team__name}>{teamMember.acf.fullname}</h3>
           <p className={classNames(s.team__position, s.pDefault)}>
-            {teamMember.position}
+            {teamMember.acf.jobtitle}
           </p>
         </div>
       ))}
