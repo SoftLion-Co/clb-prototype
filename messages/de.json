@@ -70,5 +70,17 @@
     "ourSercvicesButton": "Unsere Dienstleistungen",
     "readMoreButton": "Mehr lesen",
     "moreInBlog": "Mehr im Blog"
+  },
+  "aboutUs": {
+    "aboutUsTitle": "Über uns",
+    "aboutUsText": "Commodities & Logistics Brokers ist Ihr zuverlässiger Partner in der Welt des Frachttransports. Wir sind vertrauenswürdig, weil wir bewährte Lösungen und einen professionellen Ansatz für jeden Kunden bieten.",
+    "ourStory": {
+      "heading": "Unsere Geschichte",
+      "bigCard": "Unsere Mission besteht nicht nur darin, Produzenten mit Endkunden zu verbinden, sondern diesen Prozess so effizient und komfortabel wie möglich für beide Seiten zu gestalten.",
+      "smallCard": "Wir sind CL Broker, Ihr unverzichtbarer Assistent im Agrarhandel, spezialisiert auf Getreide und Ölsaaten. Unsere Mission besteht nicht nur darin, Produzenten mit Endkunden zu verbinden, sondern diesen Prozess so effizient und komfortabel wie möglich für beide Seiten zu gestalten. Seit über acht Jahren sind wir tief in die Beratung eingebunden und helfen sogar Anfängern, die Feinheiten des internationalen Exports zu verstehen."
+    },
+    "ourTeam": {
+      "heading": "Unser Team"
+    }
   }
 }
