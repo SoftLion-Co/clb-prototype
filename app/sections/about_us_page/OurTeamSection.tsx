@@ -9,54 +9,14 @@ import Image from "next/image";
 import MainTitleComponent from "@/components/MainTitleComponent";
 import OurTeamComponent from "@/components/about_us/OurTeamComponent";
 import Arrow from "@/images/vectors/arrow.svg";
+import useOurTeamData from "@/hooks/useOurTeamData";
 
 const OurTeamSection = () => {
   const [currentPage, setCurrentPage] = useState(0);
   const itemsPerPage = 4;
-  const cardData = [
-    {
-      img: "path",
-      name: "1 John Smith",
-      position: "Broker",
-    },
-    {
-      img: "path",
-      name: "2 John Smith",
-      position: "Broker",
-    },
-    {
-      img: "path",
-      name: "3 John Smith",
-      position: "Broker",
-    },
-    {
-      img: "path",
-      name: "4 John Smith",
-      position: "Broker",
-    },
-    {
-      img: "path",
-      name: "5 John Smith",
-      position: "Broker",
-    },
-    {
-      img: "path",
-      name: "6 John Smith",
-      position: "Broker",
-    },
-    {
-      img: "path",
-      name: "7 John Smith",
-      position: "Broker",
-    },
-    {
-      img: "path",
-      name: "8 John Smith",
-      position: "Broker",
-    },
-  ].reverse();
+  const { team, loading, error } = useOurTeamData();
 
-  const pageCount = Math.ceil(cardData.length / itemsPerPage);
+  const pageCount = Math.ceil(team.length / itemsPerPage);
 
   const handlePageChange = ({ selected }: { selected: number }) => {
     if (selected === 0) {
@@ -70,7 +30,7 @@ const OurTeamSection = () => {
     }
   };
 
-  const displayedData = cardData.slice(
+  const displayedData = team.slice(
     currentPage * itemsPerPage,
     (currentPage + 1) * itemsPerPage
   );
