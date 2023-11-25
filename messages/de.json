@@ -6,6 +6,16 @@
     "careers": "Karriere",
     "getInTouch": "Kontakt aufnehmen"
   },
+  "footer": {
+    "commoditiesBrokerage": "Warenmakler",
+    "freightBrokerage": "Frachtvermittlung",
+    "execution": "Durchführung",
+    "exportConsulting": "Exportberatung",
+    "aboutUs": "Über uns",
+    "ourVacancies": "Unsere Stellenangebote",
+    "ourNews": "Unsere Nachrichten",
+    "privacyPolicy": "Datenschutzbestimmungen"
+  },
   "servicesMenu": {
     "partners": "Partner",
     "onlineTrading": "Online-Handel",

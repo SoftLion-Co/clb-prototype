@@ -6,6 +6,16 @@
     "careers": "Кар'єра",
     "getInTouch": "Зв'яжіться з нами"
   },
+  "footer": {
+    "commoditiesBrokerage": "Брокераж сировини",
+    "freightBrokerage": "Брокераж вантажів",
+    "execution": "Виконання",
+    "exportConsulting": "Експортне консультування",
+    "aboutUs": "Про нас",
+    "ourVacancies": "Наші вакансії",
+    "ourNews": "Наші новини",
+    "privacyPolicy": "Політика конфіденційності"
+  },
   "servicesMenu": {
     "partners": "Партнери",
     "onlineTrading": "Онлайн-торгівля",

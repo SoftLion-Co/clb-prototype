@@ -6,6 +6,16 @@
     "careers": "Careers",
     "getInTouch": "Get in touch"
   },
+  "footer": {
+    "commoditiesBrokerage": "Commodities Brokerage",
+    "freightBrokerage": "Freight Brokerage",
+    "execution": "Execution",
+    "exportConsulting": "Export Consulting",
+    "aboutUs": "About Us",
+    "ourVacancies": "Our Vacancies",
+    "ourNews": "Our News",
+    "privacyPolicy": "Privacy Policy"
+  },
   "servicesMenu": {
     "partners": "Partners",
     "onlineTrading": "Online trading",

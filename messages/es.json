@@ -6,6 +6,16 @@
     "careers": "Carreras",
     "getInTouch": "Ponte en contacto"
   },
+  "footer": {
+    "commoditiesBrokerage": "Corretaje de Materias Primas",
+    "freightBrokerage": "Corretaje de Carga",
+    "execution": "Ejecución",
+    "exportConsulting": "Asesoría en Exportaciones",
+    "aboutUs": "Acerca de Nosotros",
+    "ourVacancies": "Nuestras Vacantes",
+    "ourNews": "Nuestras Noticias",
+    "privacyPolicy": "Política de Privacidad"
+  },
   "servicesMenu": {
     "partners": "Socios",
     "onlineTrading": "Comercio en línea",
