@@ -157,7 +157,7 @@ const HeaderComponent = () => {
     <ul className={s.header__list}>
       {menuItems.map((item) => (
         <li
-          key={item.type}
+          key={item.title}
           className={s.header__item}
           onMouseEnter={() => handleDropdownMouseEnter(item.type)}
           onMouseLeave={handleDropdownMouseLeave}

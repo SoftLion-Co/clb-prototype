@@ -79,7 +79,8 @@
   "components": {
     "ourSercvicesButton": "Unsere Dienstleistungen",
     "readMoreButton": "Mehr lesen",
-    "moreInBlog": "Mehr im Blog"
+    "moreInBlog": "Mehr im Blog",
+    "share": "Teilen:"
   },
   "aboutUs": {
     "aboutUsTitle": "Über uns",

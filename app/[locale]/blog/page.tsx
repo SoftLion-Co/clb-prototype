@@ -12,6 +12,7 @@ import SmallCardBlogComponent from "@/components/blog/SmallCardBlogComponent";
 import useScrollToTop from "@/hooks/useScrollToTop";
 import useBlogsData from "@/hooks/useBlogsData";
 import { useTranslations } from "next-intl";
+import useLocale from "@/hooks/useLocale";
 
 
 export default function Blog() {
@@ -34,6 +35,8 @@ export default function Blog() {
   const firstBigCardIndex = 0;
   const lastBigCardIndex = Math.min(visibleItems.length - 1, 6);
 
+  const locale = useLocale();
+
   return (
     <section className={classNames(s.blog, s.container)}>
       <PageTitleComponent
@@ -51,17 +54,17 @@ export default function Blog() {
             <div key={index} className={s.blog__grid}>
               {blogs.length === 2 ? (
                 index === 0 ? (
-                  <BigCardBlogComponent info={data} />
+                  <BigCardBlogComponent info={data} locale={locale}/>
                 ) : (
-                  <SmallCardBlogComponent info={data} />
+                  <SmallCardBlogComponent info={data} locale={locale}/>
                 )
               ) : (
                 <>
                   {index === firstBigCardIndex ||
                   (index === lastBigCardIndex && visibleItems.length > 6) ? (
-                    <BigCardBlogComponent info={data} />
+                    <BigCardBlogComponent info={data} locale={locale}/>
                   ) : (
-                    <SmallCardBlogComponent info={data} />
+                    <SmallCardBlogComponent info={data} locale={locale}/>
                   )}
                 </>
               )}

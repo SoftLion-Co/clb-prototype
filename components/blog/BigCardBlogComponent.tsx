@@ -6,6 +6,7 @@ import classNames from "classnames";
 
 interface Info {
   info: Blog;
+  locale: string;
 }
 
 interface Blog {
@@ -14,30 +15,31 @@ interface Blog {
 }
 
 interface Acf {
-  heading: string;
-  date: string;
+  heading_en: string;
   mainimage: string;
-  text1: string;
-  subheading1: string;
-  text2: string;
-  quote: string;
-  secondimage: string;
-  subheading2: string;
-  text3: string;
+  subheading1_en: string;
+  heading_es: string;
+  subheading1_es: string;
+  heading_de: string;
+  subheading1_de: string;
+  heading_ua: string;
+  subheading1_ua: string;
 }
 
+
 const BigCardBlogComponent = (data: Info) => {
-  const articleLink = `/blog/${data.info.id}`;
+
+  const articleLink = `blog/${data.info.id}`;
 
   return (
     <div className={classNames(s.blog__container)}>
       <div className={s.blog}>
         <div className={s.blog__content}>
           <div>
-            <h3 className={s.blog__title}>{data.info.acf.heading}</h3>
+          <h3 className={s.blog__title}>{data.info.acf[`heading_${data.locale}` as keyof Acf]}</h3>
           </div>
           <div>
-            <p className={s.blog__text}>{data.info.acf.subheading1}</p>
+          <p className={s.blog__text}>{data.info.acf[`subheading_${data.locale}` as keyof Acf]}</p>
             <ReadMoreComponent href={articleLink} />
           </div>
         </div>

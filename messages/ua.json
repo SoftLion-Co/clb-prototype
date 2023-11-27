@@ -79,7 +79,8 @@
   "components": {
     "ourSercvicesButton": "Наші послуги",
     "readMoreButton": "Читати далі",
-    "moreInBlog": "Більше в блозі"
+    "moreInBlog": "Більше в блозі",
+    "share": "Поділитися:"
   },
   "aboutUs": {
     "aboutUsTitle": "Про нас",
