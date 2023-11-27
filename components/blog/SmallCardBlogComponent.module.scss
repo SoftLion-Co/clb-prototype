@@ -16,6 +16,8 @@
   padding: 24px;
 
   &__picture {
+    border-radius: 24px;
+    object-fit: cover;
     user-select: none;
     width: 416px;
     height: 250px;
