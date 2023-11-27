@@ -3,6 +3,10 @@ import classNames from "classnames";
 import s from "./MainArticleSection.module.scss";
 import Image from "next/image";
 import ImageAndTextCardsComponent from "@/components/ImageAndTextCardsComponent";
+import useLocale from "@/hooks/useLocale";
+import { DateTime } from 'luxon';
+import useDateFormat from "@/hooks/useDateFormat";
+
 
 
 interface Data {
@@ -55,15 +59,17 @@ interface Acf {
 }
 
 const MainArticleSection = (data: Data) => {
-  
+  const locale = useLocale(); // Отримати поточну локаль
 
+  const formattedDate = useDateFormat(data.data.acf.date, locale);
+  
   return (
     <section className={s.article}>
       <h1 className={classNames(s.h1Default, s.article__title)}>
       {data.data.acf[`heading_${data.locale}` as keyof Acf]}
       </h1>
       <p className={classNames(s.pDefault, s.article__date)}>
-        {data.data.acf.date}
+      {formattedDate}
       </p>
       <div className={s.article__content}>
         <div className={s.image__container}>
