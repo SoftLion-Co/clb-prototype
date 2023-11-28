@@ -42,14 +42,15 @@ const menuItems = [
 ];
 
 const servicesMenu = [
-  { title: "Partners", link: "/partners" },
-  { title: "Online trading", link: "/online_trading" },
-  { title: "Our Blog", link: "/our_blog" },
-  { title: "Contact Us", link: "/contact_us" },
+  { title: "partners", link: "/partners" },
+  { title: "onlineTrading", link: "/online_trading" },
+  { title: "ourBlog", link: "/our_blog" },
+  { title: "contactUs", link: "/contact_us" },
 ];
 
 const HeaderComponent = () => {
   const t = useTranslations("header")
+  const t1 = useTranslations("servicesMenu")
 
   const pathname = usePathname();
   const pathWithoutLanguage = pathname.replace(/^\/[a-zA-Z]{2}\//, '/');
@@ -75,7 +76,6 @@ const HeaderComponent = () => {
 
   const [isFlagDropdownOpen, setFlagDropdownOpen] = useState(false);
   const [isServicesMenuOpen, setServicesMenuOpen] = useState(false);
-  const [isAboutUsMenuOpen, setAboutUsMenuOpen] = useState(false);
   const [isArrowRotated, setArrowRotated] = useState(false);
   const [isModalOpen, setModalOpen] = useState(false);
   const [windowWidth, setWindowWidth] = useState(
@@ -155,12 +155,12 @@ const HeaderComponent = () => {
             <Link href={item.link}>{t(item.title)}</Link>
           ) : (
             <>
-              <Link href={item.link}>{item.title}</Link>
+              <Link href={item.link}>{t(item.title)}</Link>
               {item.type === "services" && isServicesMenuOpen && (
                 <ul className={s.header__dropdown}>
                   {servicesMenu.map((subItem) => (
                     <li key={subItem.title}>
-                      <Link href={subItem.link}>{subItem.title}</Link>
+                      <Link href={subItem.link}>{t1(subItem.title)}</Link>
                     </li>
                   ))}
                 </ul>
