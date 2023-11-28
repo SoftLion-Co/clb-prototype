@@ -39,17 +39,9 @@ const servicesMenu = [
   { title: "Contact Us", link: "/contact_us" },
 ];
 
-const aboutUsMenu = [
-  { title: "About Us", link: "/about-us" },
-  { title: "Partners", link: "/about_us/partners" },
-  { title: "Our Blog", link: "/about_us/our_blog" },
-  { title: "Contact Us", link: "/about_us/contact_us" },
-];
-
 const HeaderComponent = () => {
   const [isFlagDropdownOpen, setFlagDropdownOpen] = useState(false);
   const [isServicesMenuOpen, setServicesMenuOpen] = useState(false);
-  const [isAboutUsMenuOpen, setAboutUsMenuOpen] = useState(false);
   const [selectedCountry, setSelectedCountry] = useState(countriesMenu[0]);
   const [isArrowRotated, setArrowRotated] = useState(false);
   const [isModalOpen, setModalOpen] = useState(false);
@@ -62,15 +54,12 @@ const HeaderComponent = () => {
       case "flag":
         setFlagDropdownOpen(true);
         setServicesMenuOpen(false);
-        setAboutUsMenuOpen(false);
         break;
       case "aboutUs":
-        setAboutUsMenuOpen(true);
         setServicesMenuOpen(false);
         break;
       case "services":
         setServicesMenuOpen(true);
-        setAboutUsMenuOpen(false);
         break;
       default:
         break;
@@ -81,7 +70,6 @@ const HeaderComponent = () => {
   const handleDropdownMouseLeave = () => {
     setFlagDropdownOpen(false);
     setServicesMenuOpen(false);
-    setAboutUsMenuOpen(false);
     setArrowRotated(false);
   };
 
@@ -135,15 +123,6 @@ const HeaderComponent = () => {
           ) : (
             <>
               <Link href={item.link}>{item.title}</Link>
-              {item.type === "aboutUs" && isAboutUsMenuOpen && (
-                <ul className={s.header__dropdown}>
-                  {aboutUsMenu.map((subItem) => (
-                    <li key={subItem.title}>
-                      <Link href={subItem.link}>{subItem.title}</Link>
-                    </li>
-                  ))}
-                </ul>
-              )}
               {item.type === "services" && isServicesMenuOpen && (
                 <ul className={s.header__dropdown}>
                   {servicesMenu.map((subItem) => (
@@ -153,16 +132,15 @@ const HeaderComponent = () => {
                   ))}
                 </ul>
               )}
-              <span
-                className={classNames(s.arrow, {
-                  [s.arrow__rotated]:
-                    isArrowRotated &&
-                    ((item.type === "aboutUs" && isAboutUsMenuOpen) ||
-                      (item.type === "services" && isServicesMenuOpen)),
-                })}
-              >
-                <Image src={ArrowMenu} alt="⌵" />
-              </span>
+              {item.type === "services" && (
+                <span
+                  className={classNames(s.arrow, {
+                    [s.arrow__rotated]: isArrowRotated && isServicesMenuOpen,
+                  })}
+                >
+                  <Image src={ArrowMenu} alt="⌵" />
+                </span>
+              )}
             </>
           )}
         </li>
