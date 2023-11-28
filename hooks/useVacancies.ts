@@ -10,7 +10,10 @@ interface Vacancies {
 }
 
 interface Acf {
-  vacancies: string;
+  vacancies_en: string;
+  vacancies_de: string;
+  vacancies_es: string;
+  vacancies_ua: string;
   position: number;
 }
 
