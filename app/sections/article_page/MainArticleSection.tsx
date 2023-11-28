@@ -59,7 +59,7 @@ interface Acf {
 }
 
 const MainArticleSection = (data: Data) => {
-  const locale = useLocale(); // Отримати поточну локаль
+  const locale = useLocale(); 
 
   const formattedDate = useDateFormat(data.data.acf.date, locale);
   
