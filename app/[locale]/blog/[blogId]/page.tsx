@@ -5,6 +5,7 @@ import MainArticleSection from "@/app/sections/article_page/MainArticleSection";
 import SocialLinksSection from "@/app/sections/article_page/SocialLinksSection";
 import MoreArticlesSection from "@/app/sections/article_page/MoreArticlesSection";
 import useLocale from "@/hooks/useLocale";
+import useBlogData from "@/hooks/useBlogData";
 
 interface BlogArticleParams {
   blogId: string;
@@ -12,10 +13,9 @@ interface BlogArticleParams {
 
 const BlogArticle: React.FC<{ params: BlogArticleParams }> = ({ params }) => {
   const blogId = params.blogId;
-  const { blogs, loading, error } = useBlogsData();
+  const { blog, loading, error } = useBlogData(blogId);
   const locale = useLocale(); // Move this hook call to the top level
 
-  const selectedBlog = blogs.find((blog) => blog.id.toString() === blogId);
 
   if (loading) {
     return <p>Loading...</p>;
@@ -25,13 +25,13 @@ const BlogArticle: React.FC<{ params: BlogArticleParams }> = ({ params }) => {
     return <p>Error: {error}</p>;
   }
 
-  if (!selectedBlog) {
+  if (!blog) {
     return <p>Blog not found</p>;
   }
 
   return (
     <div className={s.container}>
-      <MainArticleSection data={selectedBlog} locale={locale} />
+      <MainArticleSection data={blog} locale={locale} />
       <SocialLinksSection />
       <MoreArticlesSection blogId={blogId} locale={locale}/>
     </div>
