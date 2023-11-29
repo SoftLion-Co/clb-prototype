@@ -39,7 +39,7 @@ const BigCardBlogComponent = (data: Info) => {
           <h3 className={s.blog__title}>{data.info.acf[`heading_${data.locale}` as keyof Acf]}</h3>
           </div>
           <div>
-          <p className={s.blog__text}>{data.info.acf[`subheading_${data.locale}` as keyof Acf]}</p>
+          <p className={s.blog__text}>{data.info.acf[`subheading1_${data.locale}` as keyof Acf]}</p>
             <ReadMoreComponent href={articleLink} />
           </div>
         </div>

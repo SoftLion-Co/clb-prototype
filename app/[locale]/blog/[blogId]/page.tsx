@@ -33,7 +33,7 @@ const BlogArticle: React.FC<{ params: BlogArticleParams }> = ({ params }) => {
     <div className={s.container}>
       <MainArticleSection data={selectedBlog} locale={locale} />
       <SocialLinksSection />
-      <MoreArticlesSection blogId={blogId} />
+      <MoreArticlesSection blogId={blogId} locale={locale}/>
     </div>
   );
 };

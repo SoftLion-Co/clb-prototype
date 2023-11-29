@@ -10,10 +10,12 @@ import Arrow from "@/images/vectors/arrow.svg";
 
 interface MoreArticlesSectionProps {
   blogId: string;
+  locale: string;
 }
 
 const MoreArticlesSection: React.FC<MoreArticlesSectionProps> = ({
   blogId,
+  locale,
 }) => {
   const { blogs, loading, error } = useBlogsData();
   const itemsPerPage = 3;
@@ -42,7 +44,7 @@ const MoreArticlesSection: React.FC<MoreArticlesSectionProps> = ({
       <div className={s.articles__cards}>
         {visibleItems.map((blog, index) => (
           <div key={index}>
-            <SmallCardBlogComponent info={blog} />
+            <SmallCardBlogComponent info={blog} locale={locale}/>
           </div>
         ))}
       </div>

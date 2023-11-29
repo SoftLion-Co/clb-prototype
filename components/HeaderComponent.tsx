@@ -35,7 +35,7 @@ const countriesMenu: Country[] = [
 ];
 
 const menuItems = [
-  { title: "aboutUs", type: "aboutUs", link: "" },
+  { title: "aboutUs", type: "aboutUs", link: "/about-us" },
   { title: "services", type: "services", link: "" },
   { title: "blog", type: "link", link: "/blog" },
   { title: "careers", type: "link", link: "/careers" },
@@ -53,7 +53,7 @@ const HeaderComponent = () => {
   const t1 = useTranslations("servicesMenu")
 
   const pathname = usePathname();
-  const pathWithoutLanguage = pathname.replace(/^\/[a-zA-Z]{2}\//, '/');
+  const pathWithoutLanguage = pathname.replace(/^\/[a-zA-Z]{2}(\/)?/, '/');
   const initialLocale = pathname.split('/')[1];
 
   const defaultCountry = countriesMenu[4];

@@ -8,11 +8,17 @@ const useDateFormat = (dateString: string, locale: string) => {
     day: parseInt(dateParts[0], 10),
   });
 
+  // Map 'ua' to 'uk' for Luxon locale
+  if (locale === 'ua') {
+    locale = 'uk';
+  }
+
   const formattedDate = parsedDate.setLocale(locale).toLocaleString({
     month: 'long',
     day: 'numeric',
     year: 'numeric',
   });
+
 
   return formattedDate;
 };
