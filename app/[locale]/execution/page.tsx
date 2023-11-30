@@ -3,9 +3,12 @@ import ContactUsSection from "../../sections/main_page/ContactUsSection";
 import ThreeCardsComponent from "@/components/ThreeCardsComponent";
 import PageTitleComponent from "@/components/PageTitleComponent";
 import { useTranslations } from "next-intl";
+import useLocale from "@/hooks/useLocale";
 
 const Execution = () => {
   const t = useTranslations("execution");
+
+  const locale = useLocale()
 
   return (
     <div className={s.execution}>
@@ -17,7 +20,7 @@ const Execution = () => {
         />
         <ThreeCardsComponent imagePosition={2} smallText={t("heroSmallText")} bigText={t("heroBigText")} />
       </div>
-      <ContactUsSection />
+      <ContactUsSection locale={locale}/>
     </div>
   );
 };

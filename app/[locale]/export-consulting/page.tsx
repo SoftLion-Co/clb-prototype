@@ -5,9 +5,11 @@ import ThreeCardsComponent from "@/components/ThreeCardsComponent";
 import ProductPortfolioSection from "../../sections/export_consulting/ProductPortfolioSection";
 import OurCoreServices from "../../sections/export_consulting/OurCoreServices";
 import { useTranslations } from "next-intl";
+import useLocale from "@/hooks/useLocale";
 
 const Export = () => {
   const t = useTranslations("exportConsulting");
+  const locale = useLocale()
   return (
     <div className={s.export}>
       <div className={s.container}>
@@ -25,7 +27,7 @@ const Export = () => {
         <ProductPortfolioSection />
         <OurCoreServices />
       </div>
-      <ContactUsSection />
+      <ContactUsSection locale={locale}/>
     </div>
   );
 };

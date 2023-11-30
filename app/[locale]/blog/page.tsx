@@ -13,7 +13,7 @@ import useScrollToTop from "@/hooks/useScrollToTop";
 import useBlogsData from "@/hooks/useBlogsData";
 import { useTranslations } from "next-intl";
 import useLocale from "@/hooks/useLocale";
-
+import BlogSkeleton from "@/components/skeleton/BlogSkeleton";
 
 export default function Blog() {
   const t = useTranslations("blog")
@@ -45,7 +45,7 @@ export default function Blog() {
         text={t("blogSubtitle")}
       />
 
-      {loading && <p>Loading...</p>}
+      {(blogs.length === 0) && <BlogSkeleton />}
       {error && <p>Error: {error}</p>}
 
       {blogs.length > 0 && (
@@ -73,35 +73,37 @@ export default function Blog() {
         </div>
       )}
 
-      <ReactPaginate
-        previousLabel={
-          <div className={pagination.pagination__arrow_previous}>
-            <Image
-              className={pagination.pagination__arrow_image}
-              src={Arrow}
-              alt="arrow"
-            />
-          </div>
-        }
-        nextLabel={
-          <div className={pagination.pagination__arrow_next}>
-            <Image
-              className={pagination.pagination__arrow_image}
-              src={Arrow}
-              alt="arrow"
-            />
-          </div>
-        }
-        breakLabel={"..."}
-        breakClassName={pagination.pagination__break}
-        pageCount={Math.ceil(blogs.length / itemsPerPage)}
-        marginPagesDisplayed={2}
-        pageRangeDisplayed={3}
-        onPageChange={handlePageChange}
-        containerClassName={pagination.pagination}
-        pageClassName={pagination.pagination__pages}
-        activeClassName={pagination.active}
-      />
+      {blogs.length > 0 && (
+        <ReactPaginate
+          previousLabel={
+            <div className={pagination.pagination__arrow_previous}>
+              <Image
+                className={pagination.pagination__arrow_image}
+                src={Arrow}
+                alt="arrow"
+              />
+            </div>
+          }
+          nextLabel={
+            <div className={pagination.pagination__arrow_next}>
+              <Image
+                className={pagination.pagination__arrow_image}
+                src={Arrow}
+                alt="arrow"
+              />
+            </div>
+          }
+          breakLabel={"..."}
+          breakClassName={pagination.pagination__break}
+          pageCount={Math.ceil(blogs.length / itemsPerPage)}
+          marginPagesDisplayed={2}
+          pageRangeDisplayed={3}
+          onPageChange={handlePageChange}
+          containerClassName={pagination.pagination}
+          pageClassName={pagination.pagination__pages}
+          activeClassName={pagination.active}
+        />
+      )}
     </section>
   );
 }

@@ -24,7 +24,7 @@ interface FormData {
   cvFile: File | null;
 }
 
-const ContactUsSection = ({ cv }: { cv?: boolean }) => {
+const ContactUsSection = ({ cv, locale }: { cv?: boolean; locale: string }) => {
   const t = useTranslations("homePage.contactUs");
 
   const topics = [
@@ -173,8 +173,11 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
                     className={s.form__input}
                   >
                     {vacancies.map((vacancy) => (
-                      <option key={vacancy.id} value={vacancy.acf.vacancies}>
-                        {vacancy.acf.vacancies}
+                      <option
+                        key={vacancy.id}
+                        value={(vacancy.acf as any)[`vacancies_${locale}`]}
+                      >
+                        {(vacancy.acf as any)[`vacancies_${locale}`]}
                       </option>
                     ))}
                   </select>
