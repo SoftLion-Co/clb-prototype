@@ -10,6 +10,7 @@ import Question from "@/images/vectors/question.svg";
 import useVacancies from "@/hooks/useVacancies";
 import InputField from "@/components/form/InputField";
 import { useTranslations } from "next-intl";
+import useLocale from "@/hooks/useLocale";
 
 interface FormData {
   firstname: string;
@@ -24,7 +25,7 @@ interface FormData {
   cvFile: File | null;
 }
 
-const ContactUsSection = ({ cv, locale }: { cv?: boolean; locale: string }) => {
+const ContactUsSection = ({ cv, }: { cv?: boolean;}) => {
   const t = useTranslations("homePage.contactUs");
 
   const topics = [
@@ -126,6 +127,8 @@ const ContactUsSection = ({ cv, locale }: { cv?: boolean; locale: string }) => {
   };
 
   const fields = cv ? fieldsCV : fieldsWithoutCV;
+
+  const locale = useLocale();
 
   return (
     <section className={s.container}>
