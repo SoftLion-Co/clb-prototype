@@ -27,7 +27,7 @@ interface Acf {
   text2_es: string;
   quote_es: string;
   subheading2_es: string;
-  text3_es: string; 
+  text3_es: string;
   heading_de: string;
   subheading1_de: string;
   text1_de: string;

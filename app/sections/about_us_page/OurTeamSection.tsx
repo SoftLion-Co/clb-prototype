@@ -12,7 +12,7 @@ import Arrow from "@/images/vectors/arrow.svg";
 import { useTranslations } from "next-intl";
 import useOurTeamData from "@/hooks/useOurTeamData";
 
-const OurTeamSection = () => {  
+const OurTeamSection = () => {
   const t = useTranslations("aboutUs.ourTeam");
 
   const [currentPage, setCurrentPage] = useState(0);

@@ -13,7 +13,7 @@ import {
 } from "react-share";
 
 const SocialLinksSection = () => {
-  const t = useTranslations("components")
+  const t = useTranslations("components");
 
   const currentPath = "clb.com" + window.location.pathname;
 

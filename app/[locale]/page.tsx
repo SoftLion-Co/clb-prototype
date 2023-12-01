@@ -7,14 +7,14 @@ import PartnersSection from "../sections/main_page/PartnersSection";
 import useLocale from "@/hooks/useLocale";
 
 export default function Home() {
-  const locale = useLocale()
+  const locale = useLocale();
   return (
     <div className={s.home}>
       <HeroSection />
       <OurServicesSection />
       <PartnersSection />
       <BlogCardsSection />
-      <ContactUsSection locale={locale}/>
+      <ContactUsSection locale={locale} />
     </div>
   );
 }

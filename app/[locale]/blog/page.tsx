@@ -16,7 +16,7 @@ import useLocale from "@/hooks/useLocale";
 import BlogSkeleton from "@/components/skeleton/BlogSkeleton";
 
 export default function Blog() {
-  const t = useTranslations("blog")
+  const t = useTranslations("blog");
 
   const { blogs, loading, error } = useBlogsData();
   const itemsPerPage = 7;
@@ -45,7 +45,7 @@ export default function Blog() {
         text={t("blogSubtitle")}
       />
 
-      {(blogs.length === 0) && <BlogSkeleton />}
+      {blogs.length === 0 && <BlogSkeleton />}
       {error && <p>Error: {error}</p>}
 
       {blogs.length > 0 && (
@@ -54,17 +54,17 @@ export default function Blog() {
             <div key={index} className={s.blog__grid}>
               {blogs.length === 2 ? (
                 index === 0 ? (
-                  <BigCardBlogComponent info={data} locale={locale}/>
+                  <BigCardBlogComponent info={data} locale={locale} />
                 ) : (
-                  <SmallCardBlogComponent info={data} locale={locale}/>
+                  <SmallCardBlogComponent info={data} locale={locale} />
                 )
               ) : (
                 <>
                   {index === firstBigCardIndex ||
                   (index === lastBigCardIndex && visibleItems.length > 6) ? (
-                    <BigCardBlogComponent info={data} locale={locale}/>
+                    <BigCardBlogComponent info={data} locale={locale} />
                   ) : (
-                    <SmallCardBlogComponent info={data} locale={locale}/>
+                    <SmallCardBlogComponent info={data} locale={locale} />
                   )}
                 </>
               )}

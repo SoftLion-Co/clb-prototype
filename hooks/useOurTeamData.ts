@@ -9,15 +9,15 @@ interface TeamMember {
 }
 
 interface TeamMemberAcf {
-    fullname_en: string;
-    jobtitle_en: string;
-    image: string;
-    fullname_de: string;
-    jobtitle_de: string;
-    fullname_es: string;
-    jobtitle_es: string;
-    fullname_ua: string;
-    jobtitle_ua: string;
+  fullname_en: string;
+  jobtitle_en: string;
+  image: string;
+  fullname_de: string;
+  jobtitle_de: string;
+  fullname_es: string;
+  jobtitle_es: string;
+  fullname_ua: string;
+  jobtitle_ua: string;
 }
 
 const useOurTeamData = () => {

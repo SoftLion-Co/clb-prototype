@@ -47,7 +47,10 @@ interface RootLayoutProps {
   };
 }
 
-export default async function RootLayout({ children, params: { locale } }: RootLayoutProps) {
+export default async function RootLayout({
+  children,
+  params: { locale },
+}: RootLayoutProps) {
   let messages;
   try {
     messages = (await import(`@/messages/${locale}.json`)).default;

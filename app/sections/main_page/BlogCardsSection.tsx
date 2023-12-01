@@ -11,8 +11,8 @@ import { useTranslations } from "next-intl";
 import useLocale from "@/hooks/useLocale";
 
 const BlogCardsSection = () => {
-  const t = useTranslations("homePage")
-  const t1 = useTranslations("components")
+  const t = useTranslations("homePage");
+  const t1 = useTranslations("components");
   const { latestBlogs } = useBlogsData();
   const locale = useLocale();
 
@@ -23,7 +23,7 @@ const BlogCardsSection = () => {
       <div className={s.blog__cards}>
         {latestBlogs.map((blog, index) => (
           <div className={classNames(s.blog__cards)} key={index}>
-            <SmallCardBlogComponent info={blog} locale={locale}/>
+            <SmallCardBlogComponent info={blog} locale={locale} />
           </div>
         ))}
       </div>

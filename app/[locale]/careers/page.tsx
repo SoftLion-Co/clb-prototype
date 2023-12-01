@@ -20,9 +20,9 @@ const Careers = () => {
           className={s.careers__title}
         />
         <CardsSection />
-        <VacanciesSection/>
+        <VacanciesSection />
       </div>
-      <ContactUsSection cv locale={locale}/>
+      <ContactUsSection cv locale={locale} />
     </div>
   );
 };
