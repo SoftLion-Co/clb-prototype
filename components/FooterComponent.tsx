@@ -2,7 +2,6 @@ import s from "./FooterComponent.module.scss";
 import Link from "next/link";
 import Image from "next/image";
 import classNames from "classnames";
-
 import telegram from "@/images/footer/icon-telegram.svg";
 import linkedin from "@/images/footer/icon-linkedin.svg";
 import tiktok from "@/images/footer/icon-tiktok.svg";
@@ -10,6 +9,7 @@ import instagram from "@/images/footer/icon-instagram.svg";
 import facebook from "@/images/footer/icon-facebook.svg";
 import youtube from "@/images/footer/icon-youtube.svg";
 import whatsapp from "@/images/footer/icon-whatsapp.svg";
+import { useTranslations } from "next-intl";
 
 const socialMediaIcons: { [key: string]: any } = {
   telegram,
@@ -32,6 +32,8 @@ const socialMediaLinks = [
 ];
 
 const FooterComponent = () => {
+  const t = useTranslations("footer");
+
   return (
     <footer className={s.footer}>
       <div className={classNames(s.container, s.footer__container)}>
@@ -43,12 +45,12 @@ const FooterComponent = () => {
           <ul className={s.footer__info}>
             <li>
               <Link className={s.aDefault} href="">
-                About Us
+                {t("aboutUs")}
               </Link>
             </li>
             <li>
               <Link className={s.aDefault} href="">
-                Privacy policy
+              {t("privacyPolicy")}
               </Link>
             </li>
           </ul>
@@ -78,16 +80,16 @@ const FooterComponent = () => {
             </p>
             <ul className={s.footer__list_services}>
               <li className={s.pDefault}>
-                <Link href="">Commodities Brokerage</Link>
+                <Link href="">{t("commoditiesBrokerage")}</Link>
               </li>
               <li className={s.pDefault}>
-                <Link href="">Freight Brokerage</Link>
+                <Link href="">{t("freightBrokerage")}</Link>
               </li>
               <li className={s.pDefault}>
-                <Link href="">Execution</Link>
+                <Link href="">{t("execution")}</Link>
               </li>
               <li className={s.pDefault}>
-                <Link href="">Export Consulting</Link>
+                <Link href="">{t("exportConsulting")}</Link>
               </li>
             </ul>
           </div>
@@ -95,7 +97,7 @@ const FooterComponent = () => {
             <p className={classNames(s.pDefault, s.footer__title)}>Careers</p>
             <ul className={s.footer__list_services}>
               <li className={s.pDefault}>
-                <Link href="">Our Vacancies</Link>
+                <Link href="">{t("ourVacancies")}</Link>
               </li>
             </ul>
           </div>
@@ -103,7 +105,7 @@ const FooterComponent = () => {
             <p className={classNames(s.pDefault, s.footer__title)}>Media</p>
             <ul className={s.footer__list_services}>
               <li className={s.pDefault}>
-                <Link href="">Our News</Link>
+                <Link href="">{t("ourNews")}</Link>
               </li>
             </ul>
           </div>

@@ -9,9 +9,12 @@ import Image from "next/image";
 import MainTitleComponent from "@/components/MainTitleComponent";
 import OurTeamComponent from "@/components/about_us/OurTeamComponent";
 import Arrow from "@/images/vectors/arrow.svg";
+import { useTranslations } from "next-intl";
 import useOurTeamData from "@/hooks/useOurTeamData";
 
 const OurTeamSection = () => {
+  const t = useTranslations("aboutUs.ourTeam");
+
   const [currentPage, setCurrentPage] = useState(0);
   const itemsPerPage = 4;
   const { team, loading, error } = useOurTeamData();
@@ -48,7 +51,7 @@ const OurTeamSection = () => {
 
   return (
     <section className={classNames(s.container, s.team)}>
-      <MainTitleComponent className={s.team__title} title="our team" />
+      <MainTitleComponent className={s.team__title} title={t("heading")} />
       <OurTeamComponent teamMembers={displayedData} />
 
       <ReactPaginate
