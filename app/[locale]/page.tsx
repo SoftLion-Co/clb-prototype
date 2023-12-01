@@ -1,3 +1,4 @@
+"use client"
 import s from "./page.module.scss";
 import HeroSection from "../sections/main_page/HeroSection";
 import OurServicesSection from "../sections/main_page/OurServicesSection";

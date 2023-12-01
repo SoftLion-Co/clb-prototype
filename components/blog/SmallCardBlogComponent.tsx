@@ -25,9 +25,13 @@ interface Acf {
   subheading1_ua: string;
 }
 
-
 const SmallCardBlogComponent = (data: Info) => {
-  const articleLink = `blog/${data.info.id}`;
+
+  // Отримуємо частину URL, що вказує на сторінку блогу
+  const blogPagePath = window.location.pathname.includes('blog/') ? '' : 'blog/';
+
+  const articleLink = `${blogPagePath}${data.info.id}`;
+
   return (
     <div className={classNames(s.blog__container)}>
       <div className={s.blog}>
@@ -39,8 +43,12 @@ const SmallCardBlogComponent = (data: Info) => {
           height={250}
         />
         <div className={s.blog__content}>
-        <h3 className={s.blog__title}>{data.info.acf[`heading_${data.locale}` as keyof Acf]}</h3>
-          <p className={s.blog__text}>{data.info.acf[`subheading1_${data.locale}` as keyof Acf]}</p>
+          <h3 className={s.blog__title}>
+            {data.info.acf[`heading_${data.locale}` as keyof Acf]}
+          </h3>
+          <p className={s.blog__text}>
+            {data.info.acf[`subheading1_${data.locale}` as keyof Acf]}
+          </p>
           <ReadMoreComponent href={articleLink} />
         </div>
       </div>
