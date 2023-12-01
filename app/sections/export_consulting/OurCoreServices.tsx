@@ -5,13 +5,13 @@ import OurCoreServicesComponent from "@/components/OurCoreServicesComponent";
 import { useTranslations } from "next-intl";
 
 function OurCoreServices() {
-  const t = useTranslations("commodityBrokerage");
+  const t = useTranslations("exportConsulting");
 
   return (
     <div className={s.services}>
       <MainTitleComponent
         title={t("coreServicesTitle")}
-        className={s.services__title}
+        left
       />
       <OurCoreServicesComponent />
     </div>

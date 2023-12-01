@@ -51,8 +51,9 @@ const OurTeamSection = () => {
 
   return (
     <section className={classNames(s.container, s.team)}>
-      <MainTitleComponent className={s.team__title} title={t("heading")} />
-      <OurTeamComponent teamMembers={displayedData} />
+      <MainTitleComponent className={s.team__title} title={t("heading")} color="black"/>
+      <div className={s.team__cards}><OurTeamComponent teamMembers={displayedData} /></div>
+      
 
       <ReactPaginate
         previousLabel={

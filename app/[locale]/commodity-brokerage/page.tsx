@@ -14,7 +14,7 @@ const Commodity = () => {
       <div className={s.container}>
         <PageTitleComponent
           title={t("commodityBrokerageTitle")}
-          text={t("commodityBrokerageSubtitle")}
+          
           className={s.commodity__title}
         />
         <HeroSection />

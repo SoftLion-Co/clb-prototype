@@ -1,14 +1,26 @@
+@import "@/style/colors";
+
 .hero {
   display: grid;
   gap: 9.5rem;
   grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
   margin-bottom: 140px;
 
+  &__heading{
+    font-size: 47px;
+    font-weight: 600;
+    line-height: 150%;
+    color: $blackTextColor;
+    margin-bottom: 78px;
+  }
+
   &__text {
     display: flex;
     align-items: center;
     font-size: 28px;
     line-height: 150%;
+    color: $blackTextColor;
+    margin-bottom: 60px;
   }
 
   &__image {

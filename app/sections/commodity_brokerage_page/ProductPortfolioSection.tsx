@@ -13,7 +13,7 @@ const data = {
     "Potassium Fertilizers",
     "Various combinations thereof",
   ],
-  "Processed Products": [
+  ProcessedProducts: [
     "Sunflower meal",
     "Rape meal",
     "Soybean meal",
@@ -30,7 +30,6 @@ function ProductPortfolioSection() {
     <div>
       <MainTitleComponent
         title={t("productPortfolioTitle")}
-        className={s.subtitle}
       />
       <ListCardsComponent data={data} />
     </div>

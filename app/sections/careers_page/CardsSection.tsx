@@ -18,6 +18,7 @@ const CardsSection = () => {
         text={t("cardsSmallText")}
         image={Image.src}
         alt={"Image"}
+        border
       />
     </section>
   );
