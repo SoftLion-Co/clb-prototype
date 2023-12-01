@@ -1,10 +1,8 @@
-"use client";
+
 import s from "./page.module.scss";
-import useBlogsData from "@/hooks/useBlogsData";
 import MainArticleSection from "@/app/sections/article_page/MainArticleSection";
 import SocialLinksSection from "@/app/sections/article_page/SocialLinksSection";
 import MoreArticlesSection from "@/app/sections/article_page/MoreArticlesSection";
-import useLocale from "@/hooks/useLocale";
 import useBlogData from "@/hooks/useBlogData";
 
 interface BlogArticleParams {
@@ -14,7 +12,7 @@ interface BlogArticleParams {
 const BlogArticle: React.FC<{ params: BlogArticleParams }> = ({ params }) => {
   const blogId = params.blogId;
   const { blog, loading, error } = useBlogData(blogId);
-  const locale = useLocale(); // Move this hook call to the top level
+ 
 
   if (loading) {
     return <p>Loading...</p>;
@@ -30,9 +28,9 @@ const BlogArticle: React.FC<{ params: BlogArticleParams }> = ({ params }) => {
 
   return (
     <div className={s.container}>
-      <MainArticleSection data={blog} locale={locale} />
+      <MainArticleSection data={blog}/>
       <SocialLinksSection />
-      <MoreArticlesSection blogId={blogId} locale={locale} />
+      <MoreArticlesSection blogId={blogId}/>
     </div>
   );
 };
