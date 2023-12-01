@@ -1,3 +1,5 @@
+@import "@/style/colors";
+
 .page {
   display: flex;
   flex-direction: column;
@@ -7,14 +9,14 @@
   &__title {
     text-align: center;
     text-transform: capitalize;
-    color: #000;
+    color: $pageTitleColor;
     font-size: 70px;
     font-weight: 700;
     line-height: 150%;
   }
 
   &__text {
-    color: #000;
+    color: $blackTextColor;
     text-align: center;
     font-size: 24px;
     font-weight: 400;
