@@ -7,15 +7,14 @@ import useBlogsData from "@/hooks/useBlogsData";
 import ReactPaginate from "react-paginate";
 import Image from "next/image";
 import Arrow from "@/images/vectors/arrow.svg";
+import useLocale from "@/hooks/useLocale";
 
 interface MoreArticlesSectionProps {
   blogId: string;
-  locale: string;
 }
 
 const MoreArticlesSection: React.FC<MoreArticlesSectionProps> = ({
   blogId,
-  locale,
 }) => {
   const { blogs, loading, error } = useBlogsData();
   const itemsPerPage = 3;
@@ -38,6 +37,8 @@ const MoreArticlesSection: React.FC<MoreArticlesSectionProps> = ({
   const handlePageChange = ({ selected }: { selected: number }) => {
     setCurrentPage(selected);
   };
+
+  const locale = useLocale();
 
   return (
     <div className={s.articles}>

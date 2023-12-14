@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 
 const useLocale = () => {
-  const [locale, setLocale] = useState<string>(""); // Assuming the locale is a string
+  const [locale, setLocale] = useState<string>("");
 
   useEffect(() => {
     const updateLocale = () => {
@@ -11,7 +11,6 @@ const useLocale = () => {
       setLocale(initialLocale);
     };
 
-    // Call the updateLocale function initially
     updateLocale();
   });
 
