@@ -16,6 +16,7 @@ interface MoreArticlesSectionProps {
 const MoreArticlesSection: React.FC<MoreArticlesSectionProps> = ({
   blogId,
 }) => {
+  const locale = useLocale();
   const { blogs, loading, error } = useBlogsData();
   const itemsPerPage = 3;
   const [currentPage, setCurrentPage] = useState(0);
@@ -37,8 +38,6 @@ const MoreArticlesSection: React.FC<MoreArticlesSectionProps> = ({
   const handlePageChange = ({ selected }: { selected: number }) => {
     setCurrentPage(selected);
   };
-
-  const locale = useLocale();
 
   return (
     <div className={s.articles}>
