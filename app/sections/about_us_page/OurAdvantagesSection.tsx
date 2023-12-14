@@ -3,33 +3,24 @@ import s from "./OurAdvantagesSection.module.scss";
 import classNames from "classnames";
 import MainTitleComponent from "@/components/MainTitleComponent";
 import OurAdvantagesCardComponent from "@/components/about_us/OurAdvantagesCardComponent";
+import { useTranslations } from "next-intl";
 
 const OurAdvantagesSection = () => {
-  const advantagesProps = [
-    {
-      text: "A vast global network of brokers, allowing us to find the optimal conditions for a deal",
-    },
-    {
-      text: "In-depth knowledge in logistics: be it rail transport, road transport, or sea shipment - we have the best solutions for you",
-    },
-    {
-      text: "Strong partnerships with numerous international companies, keeping us updated with the latest market trends",
-    },
-    {
-      text: "A vast global network of brokers, allowing us to find the optimal conditions for a deal",
-    },
-    {
-      text: "In-depth knowledge in logistics: be it rail transport, road transport, or sea shipment - we have the best solutions for you",
-    },
-    {
-      text: "Strong partnerships with numerous international companies, keeping us updated with the latest market trends",
-    },
-  ];
+  const t = useTranslations("aboutUs.ourAdvantages");
+  const t1 = useTranslations("aboutUs.ourAdvantages.cards");
+
+  const advantagesProps = Array.from({ length: 6 }, (_, index) => ({
+    text: t1(`card${index + 1}`),
+  }));
 
   return (
     <section className={classNames(s.container, s.advantages)}>
-      <MainTitleComponent title="Our Advantages" />
-      <OurAdvantagesCardComponent advantages={advantagesProps} />
+      <MainTitleComponent title={t("ourAdvantagesTitle")} />
+      <div className={s.advantages__cards}>
+        {advantagesProps.map((advantage, index) => (
+          <OurAdvantagesCardComponent advantages={advantage} key={index} />
+        ))}
+      </div>
     </section>
   );
 };

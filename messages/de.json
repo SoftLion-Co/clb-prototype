@@ -1,0 +1,159 @@
+{
+  "header": {
+    "aboutUs": "Über uns",
+    "services": "Dienstleistungen",
+    "blog": "Blog",
+    "careers": "Karriere",
+    "getInTouch": "Kontakt aufnehmen"
+  },
+  "footer": {
+    "commoditiesBrokerage": "Warenmakler",
+    "freightBrokerage": "Frachtvermittlung",
+    "execution": "Durchführung",
+    "exportConsulting": "Exportberatung",
+    "aboutUs": "Über uns",
+    "ourVacancies": "Unsere Stellenangebote",
+    "ourNews": "Unsere Nachrichten",
+    "privacyPolicy": "Datenschutzbestimmungen"
+  },
+  "servicesMenu": {
+    "partners": "Partner",
+    "onlineTrading": "Online-Handel",
+    "ourBlog": "Unser Blog",
+    "contactUs": "Kontaktiere uns"
+  },
+  "aboutUsMenu": {
+    "aboutUs": "Über uns",
+    "partners": "Partner",
+    "ourBlog": "Unser Blog",
+    "contactUs": "Kontaktiere uns"
+  },
+  "homePage": {
+    "hero": "Commodities & Logistics Brokers",
+    "heroText": "Die Sonne geht hinter dem Horizont unter und taucht den Himmel in zauberhafte Farbtöne. Ein sanfter Wind berührt zärtlich das Gesicht. Im Park genießen die Menschen den Abend.",
+    "servicesHeading": "Unsere Dienstleistungen",
+    "partnersHeading": "Partner",
+    "blogHeading": "Unser Blog",
+    "contactUs": {
+      "contactUsHeading": "Kontaktiere uns",
+      "firstname": "Vorname",
+      "phone": "Telefonnummer",
+      "lastname": "Nachname",
+      "company": "Firmenname",
+      "email": "E-Mail",
+      "topicOfEnquiry": "Anfrage-Thema",
+      "yourMessage": "Ihre Nachricht (optional)",
+      "time": "Wann sind Sie bereit zu arbeiten?",
+      "appliedVacancy": "Die Stelle, auf die Sie sich bewerben",
+      "chooseFile": "Datei auswählen",
+      "submitButton": "Absenden",
+      "contactUsButton": "Kontaktiere uns",
+      "topics": {
+        "selectTopic": "Wählen Sie ein Thema",
+        "": "",
+        "generalInquiry": "Allgemeine Anfrage",
+        "productInformation": "Produktinformation",
+        "supportRequest": "Support-Anfrage",
+        "other": "Sonstiges"
+      }
+    },
+    "servicesCards": [
+      {
+        "title": "Warenmakler",
+        "text": "Lorem ipsum dolor sit amet consectetur. In ac vitae dignissim placerat. Feugiat sed amet ac massa arcu tristique adipiscing pellentesque elementum."
+      },
+      {
+        "title": "Frachtvermittlung",
+        "text": "Lorem ipsum dolor sit amet consectetur. In ac vitae dignissim placerat. Feugiat sed amet ac massa arcu tristique adipiscing pellentesque elementum."
+      },
+      {
+        "title": "Durchführung",
+        "text": "Lorem ipsum dolor sit amet consectetur. In ac vitae dignissim placerat. Feugiat sed amet ac massa arcu tristique adipiscing pellentesque elementum."
+      },
+      {
+        "title": "Exportberatung",
+        "text": "Lorem ipsum dolor sit amet consectetur. In ac vitae dignissim placerat. Feugiat sed amet ac massa arcu tristique adipiscing pellentesque elementum."
+      }
+    ]
+  },
+  "components": {
+    "ourSercvicesButton": "Unsere Dienstleistungen",
+    "readMoreButton": "Mehr lesen",
+    "moreInBlog": "Mehr im Blog",
+    "share": "Teilen:"
+  },
+  "aboutUs": {
+    "aboutUsTitle": "Über uns",
+    "aboutUsText": "Commodities & Logistics Brokers ist Ihr zuverlässiger Partner in der Welt des Frachttransports. Wir sind vertrauenswürdig, weil wir bewährte Lösungen und einen professionellen Ansatz für jeden Kunden bieten.",
+    "ourStory": {
+      "heading": "Unsere Geschichte",
+      "bigCard": "Unsere Mission besteht nicht nur darin, Produzenten mit Endkunden zu verbinden, sondern diesen Prozess so effizient und komfortabel wie möglich für beide Seiten zu gestalten.",
+      "smallCard": "Wir sind CL Broker, Ihr unverzichtbarer Assistent im Agrarhandel, spezialisiert auf Getreide und Ölsaaten. Unsere Mission besteht nicht nur darin, Produzenten mit Endkunden zu verbinden, sondern diesen Prozess so effizient und komfortabel wie möglich für beide Seiten zu gestalten. Seit über acht Jahren sind wir tief in die Beratung eingebunden und helfen sogar Anfängern, die Feinheiten des internationalen Exports zu verstehen."
+    },
+    "ourTeam": {
+      "heading": "Unser Team"
+    },
+    "ourAdvantages": {
+      "ourAdvantagesTitle": "Unsere Vorteile",
+      "cards": {
+        "card1": "Ein umfangreiches globales Netzwerk von Brokern, das es uns ermöglicht, optimale Bedingungen für einen Deal zu finden",
+        "card2": "Tiefgreifendes Wissen in der Logistik: sei es Schienenverkehr, Straßentransport oder Seefracht - wir haben die besten Lösungen für Sie",
+        "card3": "Starke Partnerschaften mit zahlreichen internationalen Unternehmen, die uns mit den neuesten Markttrends auf dem Laufenden halten",
+        "card4": "Ein umfangreiches globales Netzwerk von Brokern, das es uns ermöglicht, optimale Bedingungen für einen Deal zu finden",
+        "card5": "Tiefgreifendes Wissen in der Logistik: sei es Schienenverkehr, Straßentransport oder Seefracht - wir haben die besten Lösungen für Sie",
+        "card6": "Starke Partnerschaften mit zahlreichen internationalen Unternehmen, die uns mit den neuesten Markttrends auf dem Laufenden halten"
+      }
+    }
+  },
+  "blog": {
+    "blogTitle": "Unsere Nachrichten",
+    "blogSubtitle": "Lorem ipsum dolor sit amet consectetur."
+  },
+  "careers": {
+    "careersTitle": "Karriere",
+    "careersSubtitle": "Den Weg zu Innovation und neuen Horizonten ebnen",
+    "cardsBigText": "Wir expandieren rasant und sind auf der Suche nach neuen Talenten, um unser Team zu erweitern und unsere Mission weiter zu verbreiten.",
+    "cardsSmallText": "Wir veröffentlichen häufig spezifische Stellenangebote, aber wenn Sie glauben, dass Sie über ein einzigartiges Fähigkeitenprofil verfügen und einen Beitrag leisten können, freuen wir uns auf Ihre Bewerbung. Wir suchen Broker mit herausragender Erfahrung im Handel, insbesondere im Bereich Getreide, Ölsaaten und mineralischer Dünger. Unsere Ausführungsmanager verfügen über ein tiefes Verständnis für internationale wirtschaftliche Verträge. Wir suchen Kandidaten mit fließenden Englischkenntnissen sowie Kenntnissen in anderen Fremdsprachen. Schließen Sie sich uns an und werden Sie Teil des Teams von Commodities Logistics Brokers - Führungskräfte in unserer Branche.",
+    "openVacanciesTitle": "Offene Stellen"
+  },
+  "commodityBrokerage": {
+    "commodityBrokerageTitle": "Warenmakler",
+    "commodityBrokerageSubtitle": "Ihre Verbindung zwischen Käufer und Verkäufer",
+    "heroText": "In der Welt des landwirtschaftlichen Handels zählt jede Einzelheit. Commodities Logistics Brokers, als Ihr Warenmakler, tut mehr als nur Käufer und Verkäufer verbinden. Wir agieren als Ihr strategischer Partner, bieten tiefgehende Marktanalysen an und schaffen optimale Bedingungen für beide Parteien.",
+    "productPortfolioTitle": "Produktportfolio",
+    "coreServicesTitle": "Unsere Kernleistungen"
+  },
+  "execution": {
+    "executionTitle": "Durchführung",
+    "executionSubtitle": "Lorem ipsum dolor sit amet consectetur.",
+    "heroBigText": "Mit professionellem Einblick in die GAFTA- und FOSFA-Vorschriften unterziehen sich unsere Experten regelmäßig Schulungen, um auf dem neuesten Stand der neuesten Empfehlungen und Verschiebungen im globalen Handelsumfeld zu bleiben.",
+    "heroSmallText": "Erfahren in verschiedenen Vertragsbedingungen wie EXW, FCA, CPT, DAP, FOB, CNF und CIF gewährleisten wir reibungslose Ausführung und Einhaltung aller Bestimmungen in jeder Phase des Vertragsprozesses. Da wir die entscheidende Rolle der rechtlichen Expertise im Vertragsmanagement anerkennen, haben wir ein externes Team erfahrener Anwälte bereit, bei Bedarf zu helfen. Dieses juristische Team, ausgestattet mit einem tiefen Verständnis des internationalen Handelsrechts, garantiert den Schutz der Rechte unserer Kunden und die Erfüllung der Verpflichtungen."
+  },
+  "exportConsulting": {
+    "exportConsultingTitle": "Exportberatung",
+    "exportConsultingSubtitle": "Lorem ipsum dolor sit amet consectetur.",
+    "heroBigText": "Mit professionellen Einblicken in die GAFTA- und FOSFA-Vorschriften unterziehen sich unsere Experten regelmäßig Schulungen, um auf dem neuesten Stand der neuesten Empfehlungen und Verschiebungen im globalen Handelsumfeld zu bleiben.",
+    "heroSmallText": "Erfahren in verschiedenen Vertragsbedingungen wie EXW, FCA, CPT, DAP, FOB, CNF und CIF gewährleisten wir reibungslose Ausführung und Einhaltung aller Bestimmungen in jeder Phase des Vertragsprozesses. Da wir die entscheidende Rolle der rechtlichen Expertise im Vertragsmanagement anerkennen, haben wir ein externes Team erfahrener Anwälte bereit, bei Bedarf zu helfen. Dieses juristische Team, ausgestattet mit einem tiefen Verständnis des internationalen Handelsrechts, garantiert den Schutz der Rechte unserer Kunden und die Erfüllung der Verpflichtungen.",
+    "productPortfolioTitle": "Produktportfolio",
+    "coreServicesTitle": "Unsere Kernleistungen",
+    "services": {
+      "title1": "Marktanalyse",
+      "text1": "Unser Team von Fachleuten untersucht aktuelle Trends, um Ihnen die relevantesten Informationen und Empfehlungen zu bieten",
+      "title2": "Persönlicher Ansatz",
+      "text2": "Wir berücksichtigen die Bedürfnisse und Erwartungen beider Parteien, um die besten Kollaborationsbedingungen festzulegen",
+      "title3": "Unterstützung bei der Vertragsabwicklung",
+      "text3": "Schritt für Schritt stehen wir Ihnen zur Seite und bieten Beratung sowie aktive Teilnahme an Verhandlungen, um die besten Vertragsbedingungen zu erreichen",
+      "title4": "Partnerschaftsgeografie",
+      "text4": "Wir schlagen verschiedene Optionen potenzieller Partner aus verschiedenen Regionen vor, basierend auf Ihrer Geschäftsstrategie",
+      "title5": "Optimierung der Preispolitik",
+      "text5": "Unser Ziel ist es, Ihnen die besten Preise und Bedingungen zu bieten und sicherzustellen, dass Ihre Zusammenarbeit nicht nur profitabel, sondern auch stabil ist"
+    }
+  },
+  "freightBrokerage": {
+    "freightBrokerageTitle": "Frachtvermittlung",
+    "freightBrokerageSubtitle": "Lorem ipsum dolor sit amet consectetur.",
+    "heroBigText": "Commodities & Logistics Brokers ist Ihr zuverlässiger Partner in der Welt des Frachttransports. Wir sind vertrauenswürdig, weil wir bewährte Lösungen und einen professionellen Ansatz für jeden Kunden bieten.",
+    "heroSmallText": "Lorem ipsum dolor sit amet consectetur. Facilisi consectetur a volutpat odio sit. A senectus ut eget molestie ac commodo feugiat. Lorem viverra nibh suspendisse egestas lacus semper vulputate tincidunt tempus. Id tincidunt faucibus et et pretium tristique habitant eget consequat. Consectetur arcu lectus semper euismod. Blandit quam nulla accumsan ac amet feugiat consectetur mauris. Est sed in donec enim vel condimentum netus cursus pharetra.",
+    "productPortfolioTitle": "Produktportfolio"
+  }
+}

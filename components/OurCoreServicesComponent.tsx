@@ -2,34 +2,51 @@ import React from "react";
 import s from "./OurCoreServicesComponent.module.scss";
 import image from "@/images/home-hero-test.png";
 import Image from "next/image";
-
-const data = {
-  "Market Analysis":
-    "Our team of professionals studies current trends to provide you with the most relevant information and recommendations",
-  "Personalized Approach":
-    "We consider the needs and expectations of both parties to establish the best collaboration conditions",
-  "Contract Execution Support":
-    "At every step, we stand by your side, offering advice and active participation in negotiations to achieve the best deal terms",
-  "Partnership Geography":
-    "We propose diverse options of potential partners from various regions, based on your business strategy",
-  "Price Policy Optimization":
-    "Our goal is to provide you with the best prices and terms, ensuring your collaboration is not only profitable but also stable",
-};
+import { useTranslations } from "next-intl";
 
 function OurCoreServicesComponent() {
-  const serviceCards = Object.entries(data).map(([title, text]) => (
-    <div className={s.card} key={title}>
-      <h3 className={s.card__title}>{title}</h3>
-      <p className={s.card__text}>{text}</p>
-    </div>
-  ));
+  const t = useTranslations("exportConsulting.services");
+
+  const data: {
+    title1: string;
+    text1: string;
+    title2: string;
+    text2: string;
+    title3: string;
+    text3: string;
+    title4: string;
+    text4: string;
+    title5: string;
+    text5: string;
+  } = {
+    title1: t("title1"),
+    text1: t("text1"),
+    title2: t("title2"),
+    text2: t("text2"),
+    title3: t("title3"),
+    text3: t("text3"),
+    title4: t("title4"),
+    text4: t("text4"),
+    title5: t("title5"),
+    text5: t("text5"),
+  };
+
+  const serviceCards = Array.from({ length: 5 }, (_, index) => ({
+    title: data[`title${index + 1}` as keyof typeof data], 
+    text: data[`text${index + 1}` as keyof typeof data],   
+  }));
 
   const mainCards = serviceCards.slice(0, -1);
   const lastServiceCard = serviceCards.slice(-1)[0];
 
   return (
     <div className={s.services}>
-      {mainCards}
+      {mainCards.map(({ title, text }, index) => (
+        <div className={s.card} key={index}>
+          <h3 className={s.card__title}>{title}</h3>
+          <p className={s.card__text}>{text}</p>
+        </div>
+      ))}
       <div>
         <Image
           src={image}
@@ -39,7 +56,10 @@ function OurCoreServicesComponent() {
           height={800}
         />
       </div>
-      {lastServiceCard}
+      <div className={s.card} key={serviceCards.length - 1}>
+        <h3 className={s.card__title}>{lastServiceCard.title}</h3>
+        <p className={s.card__text}>{lastServiceCard.text}</p>
+      </div>
     </div>
   );
 }

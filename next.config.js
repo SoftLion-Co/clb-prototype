@@ -1,11 +1,14 @@
 /** @type {import('next').NextConfig} */
-module.exports = {
-    images: {
-      remotePatterns: [
-        {
-          protocol: 'https',
-          hostname: 'softlion.blog',
-        },
-      ],
-    },
-  }
+
+const withNextIntl = require("next-intl/plugin")();
+
+module.exports = withNextIntl({
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "softlion.blog",
+      },
+    ],
+  },
+});
