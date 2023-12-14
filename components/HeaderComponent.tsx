@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import Link from "next/link";
+import { Link } from "../navigation";
 import Image from "next/image";
 import Modal from "react-modal";
 import classNames from "classnames";
@@ -8,8 +8,10 @@ import s from "./HeaderComponent.module.scss";
 import Close from "@/images/vectors/close.svg";
 import Burger from "@/images/vectors/burger-menu.svg";
 import ArrowMenu from "@/images/vectors/arrow-menu.svg";
-
 import MainButtonComponent from "./MainButtonComponent";
+import { usePathname } from "next/navigation";
+import { useTranslations } from "next-intl";
+
 
 import UK from "@/images/flags/UK.svg";
 import ES from "@/images/flags/ES.svg";
@@ -17,40 +19,63 @@ import DE from "@/images/flags/DE.svg";
 import UA from "@/images/flags/UA.svg";
 import RU from "@/images/flags/RU.svg";
 
-const countriesMenu = [
-  { code: "UK", name: "United Kingdom", flag: UK },
-  { code: "ES", name: "Spain", flag: ES },
-  { code: "DE", name: "Germany", flag: DE },
-  { code: "UA", name: "Ukraine", flag: UA },
-  { code: "RU", name: "Russia", flag: RU },
+type Country = {
+  code: string;
+  name: string;
+  flag: string;
+  locale: "en" | "es" | "de" | "ua" | "ru" | undefined;
+};
+
+const countriesMenu: Country[] = [
+  { code: "UK", name: "United Kingdom", flag: UK, locale: "en" },
+  { code: "ES", name: "Spain", flag: ES, locale: "es" },
+  { code: "DE", name: "Germany", flag: DE, locale: "de" },
+  { code: "UA", name: "Ukraine", flag: UA, locale: "ua" },
+  { code: "RU", name: "Russia", flag: RU, locale: "ru" },
 ];
 
 const menuItems = [
-  { title: "About us", type: "aboutUs", link: "" },
-  { title: "Services", type: "services", link: "" },
-  { title: "Blog", type: "link", link: "/blog" },
-  { title: "Careers", type: "link", link: "/careers" },
+  { title: "aboutUs", type: "aboutUs", link: "/about-us" },
+  { title: "services", type: "services", link: "" },
+  { title: "blog", type: "link", link: "/blog" },
+  { title: "careers", type: "link", link: "/careers" },
 ];
 
 const servicesMenu = [
-  { title: "Partners", link: "/partners" },
-  { title: "Online trading", link: "/online_trading" },
-  { title: "Our Blog", link: "/our_blog" },
-  { title: "Contact Us", link: "/contact_us" },
-];
-
-const aboutUsMenu = [
-  { title: "About Us", link: "/about-us" },
-  { title: "Partners", link: "/about_us/partners" },
-  { title: "Our Blog", link: "/about_us/our_blog" },
-  { title: "Contact Us", link: "/about_us/contact_us" },
+  { title: "partners", link: "/partners" },
+  { title: "onlineTrading", link: "/online_trading" },
+  { title: "ourBlog", link: "/our_blog" },
+  { title: "contactUs", link: "/contact_us" },
 ];
 
 const HeaderComponent = () => {
+  const t = useTranslations("header")
+  const t1 = useTranslations("servicesMenu")
+
+  const pathname = usePathname();
+  const pathWithoutLanguage = pathname.replace(/^\/[a-zA-Z]{2}(\/)?/, '/');
+  const initialLocale = pathname.split('/')[1];
+
+  const defaultCountry = countriesMenu[4];
+  const initialCountry = countriesMenu.find(country => country.locale === initialLocale);
+
+  const [selectedCountry, setSelectedCountry] = useState(
+    initialCountry || defaultCountry
+  );
+
+  useEffect(() => {
+    const locale = pathname.split('/')[1];
+    const matchingCountry = countriesMenu.find(country => country.locale === locale);
+
+    if (matchingCountry) {
+      setSelectedCountry(matchingCountry);
+    } else {
+      setSelectedCountry(defaultCountry);
+    }
+  }, [pathname, defaultCountry]);
+
   const [isFlagDropdownOpen, setFlagDropdownOpen] = useState(false);
   const [isServicesMenuOpen, setServicesMenuOpen] = useState(false);
-  const [isAboutUsMenuOpen, setAboutUsMenuOpen] = useState(false);
-  const [selectedCountry, setSelectedCountry] = useState(countriesMenu[0]);
   const [isArrowRotated, setArrowRotated] = useState(false);
   const [isModalOpen, setModalOpen] = useState(false);
   const [windowWidth, setWindowWidth] = useState(
@@ -62,15 +87,12 @@ const HeaderComponent = () => {
       case "flag":
         setFlagDropdownOpen(true);
         setServicesMenuOpen(false);
-        setAboutUsMenuOpen(false);
         break;
       case "aboutUs":
-        setAboutUsMenuOpen(true);
         setServicesMenuOpen(false);
         break;
       case "services":
         setServicesMenuOpen(true);
-        setAboutUsMenuOpen(false);
         break;
       default:
         break;
@@ -81,7 +103,6 @@ const HeaderComponent = () => {
   const handleDropdownMouseLeave = () => {
     setFlagDropdownOpen(false);
     setServicesMenuOpen(false);
-    setAboutUsMenuOpen(false);
     setArrowRotated(false);
   };
 
@@ -131,38 +152,28 @@ const HeaderComponent = () => {
           onMouseLeave={handleDropdownMouseLeave}
         >
           {item.type === "link" ? (
-            <Link href={item.link}>{item.title}</Link>
+            <Link href={item.link}>{t(item.title)}</Link>
           ) : (
             <>
-              <Link href={item.link}>{item.title}</Link>
-              {item.type === "aboutUs" && isAboutUsMenuOpen && (
-                <ul className={s.header__dropdown}>
-                  {aboutUsMenu.map((subItem) => (
-                    <li key={subItem.title}>
-                      <Link href={subItem.link}>{subItem.title}</Link>
-                    </li>
-                  ))}
-                </ul>
-              )}
+              <Link href={item.link}>{t(item.title)}</Link>
               {item.type === "services" && isServicesMenuOpen && (
                 <ul className={s.header__dropdown}>
                   {servicesMenu.map((subItem) => (
                     <li key={subItem.title}>
-                      <Link href={subItem.link}>{subItem.title}</Link>
+                      <Link href={subItem.link}>{t1(subItem.title)}</Link>
                     </li>
                   ))}
                 </ul>
               )}
-              <span
-                className={classNames(s.arrow, {
-                  [s.arrow__rotated]:
-                    isArrowRotated &&
-                    ((item.type === "aboutUs" && isAboutUsMenuOpen) ||
-                      (item.type === "services" && isServicesMenuOpen)),
-                })}
-              >
-                <Image src={ArrowMenu} alt="⌵" />
-              </span>
+              {item.type === "services" && (
+                <span
+                  className={classNames(s.arrow, {
+                    [s.arrow__rotated]: isArrowRotated && isServicesMenuOpen,
+                  })}
+                >
+                  <Image src={ArrowMenu} alt="⌵" />
+                </span>
+              )}
             </>
           )}
         </li>
@@ -221,13 +232,15 @@ const HeaderComponent = () => {
                         key={country.code}
                         onClick={() => handleCountrySelection(country)}
                       >
-                        <Image
-                          className={s.flag__image}
-                          src={country.flag}
-                          alt={country.name}
-                          width={30}
-                          height={20}
-                        />
+                        <Link href={`/${pathWithoutLanguage}`} locale={country.locale}>
+                          <Image
+                            className={s.flag__image}
+                            src={country.flag}
+                            alt={country.name}
+                            width={30}
+                            height={20}
+                          />
+                        </Link>
                       </li>
                     );
                   }
@@ -239,7 +252,7 @@ const HeaderComponent = () => {
 
           <MainButtonComponent
             className={s.header__touch}
-            text="Get in touch"
+            text={t("getInTouch")}
           />
 
           <button

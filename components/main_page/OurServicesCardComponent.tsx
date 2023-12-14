@@ -1,36 +1,36 @@
 import s from "./OurServicesCardComponent.module.scss";
-import Image from "next/image";
-import Arrow from "@/images/vectors/arrow.svg";
 import ReadMoreComponent from "@/components/ReadMoreComponent";
+import { useTranslations } from "next-intl";
 
 const OurServicesCardComponent = () => {
-  // В serviceData потрібно буде додати ще один параметр, Read more повинен вести нас на сторінку відповідної карточки
-  const serviceData = [
+  const  t  = useTranslations("homePage");
+
+  const servicesCards = [
     {
-      title: "Commodity brokerage",
-      text: "Lorem ipsum dolor sit amet consectetur. In ac vitae dignissim placerat. Feugiat sed amet ac massa arcu tristique adipiscing pellentesque elementum.",
+      title: t("servicesCards.0.title"),
+      text: t("servicesCards.0.text"),
     },
     {
-      title: "Freight brokerage",
-      text: "Lorem ipsum dolor sit amet consectetur. In ac vitae dignissim placerat. Feugiat sed amet ac massa arcu tristique adipiscing pellentesque elementum.",
+      title: t("servicesCards.1.title"),
+      text: t("servicesCards.1.text"),
     },
     {
-      title: "Execution",
-      text: "Lorem ipsum dolor sit amet consectetur. In ac vitae dignissim placerat. Feugiat sed amet ac massa arcu tristique adipiscing pellentesque elementum.",
+      title: t("servicesCards.2.title"),
+      text: t("servicesCards.2.text"),
     },
     {
-      title: "Export consulting",
-      text: "Lorem ipsum dolor sit amet consectetur. In ac vitae dignissim placerat. Feugiat sed amet ac massa arcu tristique adipiscing pellentesque elementum.",
+      title: t("servicesCards.3.title"),
+      text: t("servicesCards.3.text"),
     },
   ];
 
   return (
     <div className={s.card}>
-      {serviceData.map((testObject, index) => (
+      {servicesCards.map((service, index) => (
         <div className={s.card__container} key={index}>
-          <h3 className={s.card__title}>{testObject.title}</h3>
+          <h3 className={s.card__title}>{service.title}</h3>
           <div className={s.card__content}>
-            <p className={s.card__text}>{testObject.text}</p>
+            <p className={s.card__text}>{service.text}</p>
             <div className={s.card__box}>
               <ReadMoreComponent href="/" />
             </div>

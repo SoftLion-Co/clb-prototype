@@ -11,9 +11,12 @@ import MainTitleComponent from "@/components/MainTitleComponent";
 import OurTeamComponent from "@/components/about_us/OurTeamComponent";
 import Arrow from "@/images/vectors/arrow.svg";
 import SectionVector from "@/images/vectors/section-vector.svg";
+import { useTranslations } from "next-intl";
 import useOurTeamData from "@/hooks/useOurTeamData";
 
 const OurTeamSection = () => {
+  const t = useTranslations("aboutUs.ourTeam");
+
   const [currentPage, setCurrentPage] = useState(0);
   const itemsPerPage = 1;
   const { team, loading, error } = useOurTeamData();

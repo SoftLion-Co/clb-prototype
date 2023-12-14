@@ -1,8 +1,8 @@
 import s from "./ProductPortfolioSection.module.scss";
-
 import React from "react";
 import MainTitleComponent from "@/components/MainTitleComponent";
 import ListCardsComponent from "@/components/ListCardsComponent";
+import { useTranslations } from "next-intl";
 
 const data = {
   "By Car": [
@@ -18,9 +18,13 @@ const data = {
 };
 
 function ProductPortfolioSection() {
+  const t = useTranslations("freightBrokerage");
   return (
     <div>
-      <MainTitleComponent title={"Product portfolio"} className={s.subtitle} />
+      <MainTitleComponent
+        title={t("productPortfolioTitle")}
+        className={s.subtitle}
+      />
       <ListCardsComponent data={data} />
     </div>
   );

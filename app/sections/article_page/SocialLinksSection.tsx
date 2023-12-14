@@ -1,10 +1,10 @@
 "use client";
 import s from "./SocialLinksSection.module.scss";
 import Image from "next/image";
-
 import telegram from "@/images/footer/icon-telegram.svg";
 import facebook from "@/images/footer/icon-facebook.svg";
 import whatsapp from "@/images/footer/icon-whatsapp.svg";
+import { useTranslations } from "next-intl";
 
 import {
   TelegramShareButton,
@@ -13,11 +13,13 @@ import {
 } from "react-share";
 
 const SocialLinksSection = () => {
+  const t = useTranslations("components");
+
   const currentPath = "clb.com" + window.location.pathname;
 
   return (
     <section className={s.links}>
-      <p className={s.pDefault}>Share:</p>
+      <p className={s.pDefault}>{t("share")}</p>
       <div className={s.links__list}>
         <TelegramShareButton
           url={currentPath}

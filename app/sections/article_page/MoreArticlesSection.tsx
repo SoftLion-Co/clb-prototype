@@ -7,6 +7,7 @@ import useBlogsData from "@/hooks/useBlogsData";
 import ReactPaginate from "react-paginate";
 import Image from "next/image";
 import Arrow from "@/images/vectors/arrow.svg";
+import useLocale from "@/hooks/useLocale";
 
 interface MoreArticlesSectionProps {
   blogId: string;
@@ -15,6 +16,7 @@ interface MoreArticlesSectionProps {
 const MoreArticlesSection: React.FC<MoreArticlesSectionProps> = ({
   blogId,
 }) => {
+  const locale = useLocale();
   const { blogs, loading, error } = useBlogsData();
   const itemsPerPage = 3;
   const [currentPage, setCurrentPage] = useState(0);
@@ -42,7 +44,7 @@ const MoreArticlesSection: React.FC<MoreArticlesSectionProps> = ({
       <div className={s.articles__cards}>
         {visibleItems.map((blog, index) => (
           <div key={index}>
-            <SmallCardBlogComponent info={blog} />
+            <SmallCardBlogComponent info={blog} locale={locale} />
           </div>
         ))}
       </div>
