@@ -21,7 +21,7 @@ const Commodity = () => {
         <ProductPortfolioSection />
         <OurCoreServices />
       </div>
-      <ContactUsSection/>
+      <ContactUsSection />
     </div>
   );
 };

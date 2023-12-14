@@ -8,7 +8,7 @@ import { useTranslations } from "next-intl";
 
 const Export = () => {
   const t = useTranslations("exportConsulting");
-
+  
   return (
     <div className={s.export}>
       <div className={s.container}>

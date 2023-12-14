@@ -7,7 +7,7 @@ import BlogCardsSection from "../sections/main_page/BlogCardsSection";
 import PartnersSection from "../sections/main_page/PartnersSection";
 
 export default function Home() {
-  
+
   return (
     <div className={s.home}>
       <HeroSection />
