@@ -8,7 +8,7 @@ import useLocale from "@/hooks/useLocale";
 const Execution = () => {
   const t = useTranslations("execution");
 
-  const locale = useLocale()
+  const locale = useLocale();
 
   return (
     <div className={s.execution}>
@@ -18,9 +18,13 @@ const Execution = () => {
           text={t("executionSubtitle")}
           className={s.execution__title}
         />
-        <ThreeCardsComponent imagePosition={2} smallText={t("heroSmallText")} bigText={t("heroBigText")} />
+        <ThreeCardsComponent
+          imagePosition={2}
+          smallText={t("heroSmallText")}
+          bigText={t("heroBigText")}
+        />
       </div>
-      <ContactUsSection locale={locale}/>
+      <ContactUsSection locale={locale} />
     </div>
   );
 };

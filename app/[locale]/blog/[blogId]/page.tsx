@@ -16,7 +16,6 @@ const BlogArticle: React.FC<{ params: BlogArticleParams }> = ({ params }) => {
   const { blog, loading, error } = useBlogData(blogId);
   const locale = useLocale(); // Move this hook call to the top level
 
-
   if (loading) {
     return <p>Loading...</p>;
   }
@@ -33,7 +32,7 @@ const BlogArticle: React.FC<{ params: BlogArticleParams }> = ({ params }) => {
     <div className={s.container}>
       <MainArticleSection data={blog} locale={locale} />
       <SocialLinksSection />
-      <MoreArticlesSection blogId={blogId} locale={locale}/>
+      <MoreArticlesSection blogId={blogId} locale={locale} />
     </div>
   );
 };

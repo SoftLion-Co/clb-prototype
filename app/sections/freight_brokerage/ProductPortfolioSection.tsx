@@ -21,7 +21,10 @@ function ProductPortfolioSection() {
   const t = useTranslations("freightBrokerage");
   return (
     <div>
-      <MainTitleComponent title={t("productPortfolioTitle")} className={s.subtitle} />
+      <MainTitleComponent
+        title={t("productPortfolioTitle")}
+        className={s.subtitle}
+      />
       <ListCardsComponent data={data} />
     </div>
   );

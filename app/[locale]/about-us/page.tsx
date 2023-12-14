@@ -8,7 +8,7 @@ import { useTranslations } from "next-intl";
 import useLocale from "@/hooks/useLocale";
 
 export default function AboutUs() {
-  const t = useTranslations("aboutUs")
+  const t = useTranslations("aboutUs");
 
   const locale = useLocale();
 
@@ -22,7 +22,7 @@ export default function AboutUs() {
       <OurStorySection />
       <OurTeamSection />
       <OurAdvantagesSection />
-      <ContactUsSection locale={locale}/>
+      <ContactUsSection locale={locale} />
     </div>
   );
 }

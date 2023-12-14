@@ -1,5 +1,4 @@
-
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 
 const reqUrl =
   "https://softlion.blog/wp-json/wp/v2/vacancies?acf_format=standard&_fields=acf,id";
@@ -28,7 +27,7 @@ const useVacancies = () => {
         fetchedVacancies.sort((a, b) => a.acf.position - b.acf.position);
         setVacancies(fetchedVacancies);
       } catch (error) {
-        console.error('Error fetching vacancies:', error);
+        console.error("Error fetching vacancies:", error);
       }
     };
 

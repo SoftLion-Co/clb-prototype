@@ -8,9 +8,7 @@ function HeroSection() {
   const t = useTranslations("commodityBrokerage");
   return (
     <div className={s.hero}>
-      <div className={s.hero__text}>
-        {t("heroText")}
-      </div>
+      <div className={s.hero__text}>{t("heroText")}</div>
       <Image
         className={s.hero__image}
         src={image}

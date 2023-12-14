@@ -44,7 +44,7 @@ const MoreArticlesSection: React.FC<MoreArticlesSectionProps> = ({
       <div className={s.articles__cards}>
         {visibleItems.map((blog, index) => (
           <div key={index}>
-            <SmallCardBlogComponent info={blog} locale={locale}/>
+            <SmallCardBlogComponent info={blog} locale={locale} />
           </div>
         ))}
       </div>

@@ -6,11 +6,14 @@ import classNames from "classnames";
 import { useTranslations } from "next-intl";
 
 const PartnersSection = () => {
-  const t = useTranslations("homePage")
+  const t = useTranslations("homePage");
 
   return (
     <section className={classNames(s.container, s.partners)}>
-      <MainTitleComponent title={t("partnersHeading")} className={s.partners__title} />
+      <MainTitleComponent
+        title={t("partnersHeading")}
+        className={s.partners__title}
+      />
       <GetPartnersComponent />
     </section>
   );

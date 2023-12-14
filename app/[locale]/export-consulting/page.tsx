@@ -9,7 +9,7 @@ import useLocale from "@/hooks/useLocale";
 
 const Export = () => {
   const t = useTranslations("exportConsulting");
-  const locale = useLocale()
+  const locale = useLocale();
   return (
     <div className={s.export}>
       <div className={s.container}>
@@ -27,7 +27,7 @@ const Export = () => {
         <ProductPortfolioSection />
         <OurCoreServices />
       </div>
-      <ContactUsSection locale={locale}/>
+      <ContactUsSection locale={locale} />
     </div>
   );
 };

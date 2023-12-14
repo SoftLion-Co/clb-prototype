@@ -10,7 +10,7 @@ import useLocale from "@/hooks/useLocale";
 const Commodity = () => {
   const t = useTranslations("commodityBrokerage");
 
-  const locale = useLocale()
+  const locale = useLocale();
 
   return (
     <div className={s.commodity}>
@@ -24,7 +24,7 @@ const Commodity = () => {
         <ProductPortfolioSection />
         <OurCoreServices />
       </div>
-      <ContactUsSection locale={locale}/>
+      <ContactUsSection locale={locale} />
     </div>
   );
 };
