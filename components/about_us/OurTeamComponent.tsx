@@ -9,17 +9,12 @@ interface TeamMember {
 }
 
 interface TeamMemberAcf {
-    fullname: string;
-    jobtitle: string;
-    image: string;
+  fullname: string;
+  jobtitle: string;
+  image: string;
 }
 
-
-const OurTeamComponent = ({
-  teamMembers,
-}: {
-  teamMembers: TeamMember[];
-}) => {
+const OurTeamComponent = ({ teamMembers }: { teamMembers: TeamMember[] }) => {
   return (
     <div className={s.team}>
       {teamMembers.map((teamMember, index) => (
