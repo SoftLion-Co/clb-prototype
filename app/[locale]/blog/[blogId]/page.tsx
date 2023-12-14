@@ -1,4 +1,4 @@
-
+"use client"
 import s from "./page.module.scss";
 import MainArticleSection from "@/app/sections/article_page/MainArticleSection";
 import SocialLinksSection from "@/app/sections/article_page/SocialLinksSection";
