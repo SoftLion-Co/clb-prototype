@@ -131,8 +131,6 @@ const ContactUsSection = ({ cv }: { cv?: boolean}) => {
 
   const fields = cv ? fieldsCV : fieldsWithoutCV;
 
-  const locale = useLocale();
-
   return (
     <section className={s.container}>
       <MainTitleComponent
