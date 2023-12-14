@@ -5,12 +5,9 @@ import ProductPortfolioSection from "../../sections/commodity_brokerage_page/Pro
 import OurCoreServices from "../../sections/export_consulting/OurCoreServices";
 import HeroSection from "../../sections/commodity_brokerage_page/HeroSection";
 import { useTranslations } from "next-intl";
-import useLocale from "@/hooks/useLocale";
 
 const Commodity = () => {
   const t = useTranslations("commodityBrokerage");
-
-  const locale = useLocale();
 
   return (
     <div className={s.commodity}>
@@ -24,7 +21,7 @@ const Commodity = () => {
         <ProductPortfolioSection />
         <OurCoreServices />
       </div>
-      <ContactUsSection locale={locale} />
+      <ContactUsSection />
     </div>
   );
 };
