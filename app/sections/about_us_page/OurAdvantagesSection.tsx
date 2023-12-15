@@ -15,7 +15,7 @@ const OurAdvantagesSection = () => {
 
   return (
     <section className={classNames(s.container, s.advantages)}>
-      <MainTitleComponent title={t("ourAdvantagesTitle")} />
+      <MainTitleComponent title={t("ourAdvantagesTitle")} color="blue"/>
       <div className={s.advantages__cards}>
         {advantagesProps.map((advantage, index) => (
           <OurAdvantagesCardComponent advantages={advantage} key={index} />

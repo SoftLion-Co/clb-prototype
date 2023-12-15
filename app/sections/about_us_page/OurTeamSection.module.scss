@@ -2,8 +2,11 @@
 
 .team {
   display: grid;
-  gap: 68px;
-  margin-bottom: 140px;
+  margin-bottom: 180px;
+
+  &__cards{
+    margin-bottom: 80px;
+  }
 
   //   &__title {
   //     margin-bottom: 68px;

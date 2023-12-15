@@ -1,20 +1,21 @@
+@import "@/style/colors";
+
 .page {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 26px;
+  gap: 60px;
 
   &__title {
     text-align: center;
     text-transform: capitalize;
-    color: #000;
-    font-size: 70px;
+    color: $brandColorDarkGreen;
+    font-size: 58px;
     font-weight: 700;
-    line-height: 150%;
   }
 
   &__text {
-    color: #000;
+    color: $blackTextColor;
     text-align: center;
     font-size: 24px;
     font-weight: 400;

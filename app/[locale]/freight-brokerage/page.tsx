@@ -17,9 +17,10 @@ const Freight = () => {
           className={s.freight__title}
         />
         <ThreeCardsComponent
-          imagePosition={1}
+          imagePosition={3}
           smallText={t("heroSmallText")}
           bigText={t("heroBigText")}
+          color="blue"
         />
         <ProductPortfolioSection />
       </div>
