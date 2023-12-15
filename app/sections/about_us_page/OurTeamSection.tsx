@@ -44,7 +44,11 @@ const OurTeamSection = () => {
         <div className={s.container}>
           <MainTitleComponent className={s.team__title} title="our team" />
 
-          <OurTeamComponent teamMembers={displayedData} />
+          <OurTeamComponent
+            className={s.team__cards}
+            teamMembers={displayedData}
+          />
+
           <ReactPaginate
             previousLabel={
               <div
