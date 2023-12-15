@@ -3,7 +3,7 @@ import s from "./PageTitleComponent.module.scss";
 
 interface MainTitleProps {
   title: string;
-  text: string;
+  text?: string;
   className?: string;
 }
 

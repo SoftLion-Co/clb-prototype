@@ -11,25 +11,25 @@ import { useTranslations } from "next-intl";
 import useLocale from "@/hooks/useLocale";
 
 const BlogCardsSection = () => {
-  const t = useTranslations("homePage");
+  const t = useTranslations("blog");
   const t1 = useTranslations("components");
   const { latestBlogs } = useBlogsData();
   const locale = useLocale();
 
   return (
     <section className={classNames(s.container, s.blog)}>
-      <MainTitleComponent className={s.blog__title} title={t("blogHeading")} />
+      <MainTitleComponent className={s.blog__title} title={t("blogTitle")} />
 
       <div className={s.blog__cards}>
         {latestBlogs.map((blog, index) => (
-          <div className={classNames(s.blog__cards)} key={index}>
+          <div key={index}>
             <SmallCardBlogComponent info={blog} locale={locale} />
           </div>
         ))}
       </div>
 
       <MainButtonComponent
-        text={t1("moreInBlog")}
+        text={t1("moreOurNews")}
         arrowSrc={Arrow}
         href={"/blog"}
       />

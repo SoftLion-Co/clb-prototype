@@ -1,14 +1,15 @@
 import s from "./OurStorySection.module.scss";
 import MainTitleComponent from "@/components/MainTitleComponent";
 import ThreeCardsComponent from "@/components/ThreeCardsComponent";
+import classNames from "classnames";
 import { useTranslations } from "next-intl";
 
 const OurStorySection = () => {
   const t = useTranslations("aboutUs.ourStory");
-
+debugger
   return (
-    <section className={s.container}>
-      <MainTitleComponent title={t("heading")} className={s.story__title} />
+    <section className={classNames(s.story, s.container)}>
+      <MainTitleComponent title={t("heading")} color="black" left/>
       <ThreeCardsComponent
         imagePosition={3}
         imageSrc="ourStory"

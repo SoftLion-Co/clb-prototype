@@ -32,10 +32,10 @@
     "hero": "Commodities & Logistics Brokers",
     "heroText": "The sun sets behind the horizon, painting the sky in magical hues. A gentle breeze tenderly touches the face. In the park, people enjoy the evening.",
     "servicesHeading": "Our Services",
-    "partnersHeading": "Partners",
-    "blogHeading": "Our Blog",
+    "partnersHeading": "Our Partners",
     "contactUs": {
       "contactUsHeading": "Contact Us",
+      "letsWorkWithUS": "Lets Work With Us",
       "firstname": "First Name",
       "phone": "Phone Number",
       "lastname": "Last Name",
@@ -60,27 +60,28 @@
     "servicesCards": [
       {
         "title": "Commodity brokerage",
-        "text": "Lorem ipsum dolor sit amet consectetur. In ac vitae dignissim placerat. Feugiat sed amet ac massa arcu tristique adipiscing pellentesque elementum."
+        "text": "In the world of agricultural trade, every detail matters. Commodities Logistics Brokers, as your commodity broker, does more than just connect buyers and sellers."
       },
       {
         "title": "Freight brokerage",
-        "text": "Lorem ipsum dolor sit amet consectetur. In ac vitae dignissim placerat. Feugiat sed amet ac massa arcu tristique adipiscing pellentesque elementum."
+        "text": "In the world of agricultural trade, every detail matters. Commodities Logistics Brokers, as your commodity broker, does more than just connect buyers and sellers."
       },
       {
         "title": "Execution",
-        "text": "Lorem ipsum dolor sit amet consectetur. In ac vitae dignissim placerat. Feugiat sed amet ac massa arcu tristique adipiscing pellentesque elementum."
+        "text": "In the world of agricultural trade, every detail matters. Commodities Logistics Brokers, as your commodity broker, does more than just connect buyers and sellers."
       },
       {
         "title": "Export consulting",
-        "text": "Lorem ipsum dolor sit amet consectetur. In ac vitae dignissim placerat. Feugiat sed amet ac massa arcu tristique adipiscing pellentesque elementum."
+        "text": "In the world of agricultural trade, every detail matters. Commodities Logistics Brokers, as your commodity broker, does more than just connect buyers and sellers."
       }
     ]
   },
   "components": {
     "ourSercvicesButton": "Our Services",
     "readMoreButton": "Read More",
-    "moreInBlog": "More in Blog",
-    "share": "Share:"
+    "moreOurNews": "More Our News",
+    "share": "Share:",
+    "moreArticles": "More Articles"
   },
   "aboutUs": {
     "aboutUsTitle": "About Us",
@@ -120,21 +121,40 @@
     "commodityBrokerageTitle": "Commodity Brokerage",
     "commodityBrokerageSubtitle": "Your link between buyer and seller",
     "heroText": "In the world of agricultural trade, every detail matters. Commodities Logistics Brokers, as your commodity broker, does more than just connect buyers and sellers. We act as your strategic partner, offering in-depth market analysis and providing optimal conditions for both parties.",
-    "productPortfolioTitle": "Product portfolio"
-  },
-  "execution": {
-    "executionTitle": "Execution",
-    "executionSubtitle": "Lorem ipsum dolor sit amet consectetur.",
-    "heroBigText": "With professional insights into GAFTA and FOSFA regulations, our experts regularly undergo training to stay abreast of the latest recommendations and shifts in the global trade landscape.",
-    "heroSmallText": "Experienced in various contract terms like EXW, FCA, CPT, DAP, FOB, CNF, and CIF, we ensure seamless execution and adherence to all stipulations at every stage of the contractual process. Recognizing the pivotal role of legal expertise in contract management, we have an outsourced team of seasoned attorneys ready to assist when needed. This legal squad, armed with a deep understanding of international trade laws, guarantees the protection of our clients' rights and obligations fulfillment."
-  },
-  "exportConsulting": {
-    "exportConsultingTitle": "Export Сonsulting",
-    "exportConsultingSubtitle": "Lorem ipsum dolor sit amet consectetur.",
-    "heroBigText": "With professional insights into GAFTA and FOSFA regulations, our experts regularly undergo training to stay abreast of the latest recommendations and shifts in the global trade landscape.",
-    "heroSmallText": "Experienced in various contract terms like EXW, FCA, CPT, DAP, FOB, CNF, and CIF, we ensure seamless execution and adherence to all stipulations at every stage of the contractual process. Recognizing the pivotal role of legal expertise in contract management, we have an outsourced team of seasoned attorneys ready to assist when needed. This legal squad, armed with a deep understanding of international trade laws, guarantees the protection of our clients' rights and obligations fulfillment.",
-    "productPortfolioTitle": "Product portfolio",
-    "coreServicesTitle": "Our Core Services",
+    "productPortfolioTitle": "Products portfolio",
+    "grains": "Grains",
+    "grainsList": {
+      "wheat": "Wheat",
+      "barley": "Barley",
+      "corn": "Corn",
+      "sorghum": "Sorghum",
+      "rye": "Rye",
+      "oats": "Oats"
+    },
+    "oils": "Oils",
+    "oilsList": {
+      "sunflower": "Sunflower",
+      "soybean": "Soybean",
+      "rapeseed": "Rapeseed",
+      "linseed": "Linseed"
+    },
+    "fertilizers": "Fertilizers",
+    "fertilizersList": {
+      "nitrogen": "Nitrogen Fertilizers",
+      "phosphorus": "Phosphorus Fertilizersn",
+      "potassium": "Potassium Fertilizers",
+      "various": "Various combinations thereof"
+    },
+    "processedProducts": "Processed Products",
+    "processedProductsList": {
+      "sunflowerMeal": "Sunflower Meal",
+      "rapeMeal": "Rape Meal",
+      "soybeanMeal": "Soybean Meal",
+      "sunflowerAndSoybeanBran": "Sunflower and Soybean Bran",
+      "wheatBran": "Wheat Bran",
+      "SunflowerSoybeanAndRapeOil": "Sunflower, Soybean, and Rape Oil"
+    },
+    "ourCoreServicesTitle": "Our Core Services",
     "services": {
       "title1": "Market Analysis",
       "text1": "Our team of professionals studies current trends to provide you with the most relevant information and recommendations",
@@ -148,11 +168,70 @@
       "text5": "Our goal is to provide you with the best prices and terms, ensuring your collaboration is not only profitable but also stable"
     }
   },
+  "execution": {
+    "executionTitle": "Execution",
+    "executionSubtitle": "Lorem ipsum dolor sit amet consectetur.",
+    "heroBigText": "With professional insights into GAFTA and FOSFA regulations, our experts regularly undergo training to stay abreast of the latest recommendations and shifts in the global trade landscape.",
+    "heroSmallText": "Experienced in various contract terms like EXW, FCA, CPT, DAP, FOB, CNF, and CIF, we ensure seamless execution and adherence to all stipulations at every stage of the contractual process. Recognizing the pivotal role of legal expertise in contract management, we have an outsourced team of seasoned attorneys ready to assist when needed. This legal squad, armed with a deep understanding of international trade laws, guarantees the protection of our clients' rights and obligations fulfillment."
+  },
+  "exportConsulting": {
+    "exportConsultingTitle": "Agriculture Consulting Services",
+    "exportConsultingSubtitle": "Simplifying Export Procedures from Producers to Buyers",
+    "heroBigText": "We specialize in providing comprehensive consulting services tailored to meet the specific needs of farmers, growers, and agribusinesses. Our experienced specialists are focused on finding the best solution for Customer goods",
+    "heroSmallText": "At Commodity & Logistics Brokers  we understand that the agricultural industry is not just about growing crops; it's also about successfully navigating the complex world of international trade. Exporting agricultural products can be a challenging endeavor, but with our expertise and guidance, we make it easier for producers to reach global markets and connect with buyers worldwide.",
+    "productPortfolioTitle": "Product portfolio",
+    "keyServicesTitle": "Key Services",
+    "services": {
+      "title1": "Market Analysis:",
+      "text1": "We conduct in-depth market research to identify high-demand international markets for your agricultural products",
+      "text1_1": "Assess market trends and consumer preferences to help you tailor your products accordingly", 
+      "title2": "Regulatory Compliance:",
+      "text2": "Navigate the complex of international trade regulations, import restrictions, and quality standards",
+      "text2_1": "Ensure that your products meet all the necessary requirements for export",
+      "title3": "Supply Chain Optimization:",
+      "text3": "Optimize your supply chain to minimize costs and maximize efficiency",
+      "text3_1": "Recommend logistics solutions to ensure safe and timely delivery of your products to buyers on different delivery basis",
+      "title4": "Export Documentation:",
+      "text4": "Assist in the preparation of all necessary export documents, including customs declarations, quality, phytosanitary and origin certificates, etc",
+      "text4_1": "Ensure compliance with all international trade documentation requirements",
+      "title5": "Buyer Relations:",
+      "text5": "Identify and connect you with potential buyers in target markets",
+      "text5_1": "Provide guidance on negotiation, contracts, and payment terms to secure profitable deals",
+      "title6": "Quality Assurance:",
+      "text6": "Implement quality control measures to maintain the quality and freshness of your products during transportation",
+      "text6_1": "Minimize product losses and ensure customer satisfaction"
+    },
+    "whyChoose": {
+      "whyChooseTitle": "Why Choose Commodity & Logistics Brokers?",
+      "text1": "Our team of experienced agricultural consultants has a deep understanding of the industry and global trade dynamics.",
+      "text2": "We offer personalized solutions that address your unique challenges and goals.",
+      "text3": "Our commitment to transparency and integrity ensures that you have a trustworthy partner in the trading and delivery process."
+    }
+  },
   "freightBrokerage": {
     "freightBrokerageTitle": "Freight Brokerage",
     "freightBrokerageSubtitle": "Lorem ipsum dolor sit amet consectetur.",
     "heroBigText": "Commodities & Logistics Brokers is your reliable partner in the world of freight transport. We're trusted because we offer time-tested solutions and a professional approach to each client.",
     "heroSmallText": "Lorem ipsum dolor sit amet consectetur. Facilisi consectetur a volutpat odio sit. A senectus ut eget molestie ac commodo feugiat. Lorem viverra nibh suspendisse egestas lacus semper vulputate tincidunt tempus. Id tincidunt faucibus et et pretium tristique habitant eget consequat. Consectetur arcu lectus semper euismod. Blandit quam nulla accumsan ac amet feugiat consectetur mauris. Est sed in donec enim vel condimentum netus cursus pharetra.",
-    "productPortfolioTitle": "Product portfolio"
+    "productPortfolioTitle": "Product portfolio",
+    "byCar": "By Car",
+    "byCarList": {
+      "hoppers": "Self-unloading hoppers",
+      "semiTrailers": "Tent-covered semi-trailers with bogie containers"
+    },
+    "byRail": "By Rail",
+    "byRailList": {
+      "hopperCars": "Hopper cars",
+      "closedTypeCars": "Closed type cars"
+    },
+    "byRiver": "By River",
+    "byRiverList": {
+      "vesselsFromTheDanubePorts": "Vessels from the Danube ports",
+      "mixedTypeRiverSeaVessels": "Mixed type “river-sea” vessels"
+    },
+    "bySea": "By Sea",
+    "bySeaList": {
+      "vesselsForBulkCargo": "Vessels for bulk cargo for one or more trips"
+    }
   }
 }
