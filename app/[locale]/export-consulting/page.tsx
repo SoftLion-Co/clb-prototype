@@ -9,7 +9,6 @@ import WhyChoose from "@/app/sections/export_consulting/WhyChoose";
 const Export = () => {
   const t = useTranslations("exportConsulting");
   const t1 = useTranslations("exportConsulting.whyChoose");
-
   return (
     <div className={s.export}>
       <div className={s.container}>

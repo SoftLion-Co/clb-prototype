@@ -19,7 +19,7 @@ export default function AboutUs() {
       <OurStorySection />
       <OurTeamSection />
       <OurAdvantagesSection />
-      <ContactUsSection/>
+      <ContactUsSection />
     </div>
   );
 }

@@ -25,7 +25,10 @@ interface FormData {
   cvFile: File | null;
 }
 
-const ContactUsSection = ({ cv, }: { cv?: boolean;}) => {
+
+const ContactUsSection = ({ cv }: { cv?: boolean}) => {
+  const locale = useLocale()
+
   const t = useTranslations("homePage.contactUs");
 
   const topics = [
@@ -127,8 +130,6 @@ const ContactUsSection = ({ cv, }: { cv?: boolean;}) => {
   };
 
   const fields = cv ? fieldsCV : fieldsWithoutCV;
-
-  const locale = useLocale();
 
   return (
     <section className={s.container}>
