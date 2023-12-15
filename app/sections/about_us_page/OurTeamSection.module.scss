@@ -1,14 +1,34 @@
 @import "./../../../style/container";
 
-.team {
-  display: grid;
-  margin-bottom: 180px;
+.box {
+  width: 100%;
+  padding: 90px 20px;
+}
 
-  &__cards{
-    margin-bottom: 80px;
+.team {
+  position: relative;
+  z-index: 0;
+
+  padding-top: 117px;
+  padding-bottom: 90px;
+
+  background-color: #f6f6f6;
+  border-radius: 24px;
+
+  &__title {
+    margin-bottom: 100px;
   }
 
-  //   &__title {
-  //     margin-bottom: 68px;
-  //   }
+  &__cards {
+    padding-bottom: 80px;
+  }
+
+  &__vector {
+    width: 100%;
+
+    position: absolute;
+    top: -4%;
+
+    z-index: -1;
+  }
 }
