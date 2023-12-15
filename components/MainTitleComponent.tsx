@@ -25,7 +25,7 @@ const MainTitleComponent: React.FC<MainTitleProps> = ({
 
   return (
     <div className={classNames(s.main, className, { [s.left]: left })}>
-      <Image src={image} alt="" width={40} height={66} />
+      <Image src={image} alt="" width={44} height={67} />
       <h2 className={s.main__title} style={{ color: titleColor }}>
         {title}
       </h2>

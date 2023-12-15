@@ -11,7 +11,6 @@ const OurServicesSection = () => {
     <section className={classNames(s.container, s.services)}>
       <MainTitleComponent
         title={t("servicesHeading")}
-        className={s.services__title}
       />
       <OurServicesCardComponent />
     </section>

@@ -12,7 +12,8 @@ const PartnersSection = () => {
     <section className={classNames(s.container, s.partners)}>
       <MainTitleComponent
         title={t("partnersHeading")}
-        className={s.partners__title}
+        color="black"
+        left
       />
       <GetPartnersComponent />
     </section>

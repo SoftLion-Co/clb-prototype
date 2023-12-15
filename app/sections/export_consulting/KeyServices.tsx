@@ -1,21 +1,21 @@
 import React from "react";
-import s from "./OurCoreServices.module.scss";
+import s from "./KeyServices.module.scss";
 import MainTitleComponent from "@/components/MainTitleComponent";
-import OurCoreServicesComponent from "@/components/OurCoreServicesComponent";
+import KeyServicesComponent from "@/components/export_consulting_page/KeyServicesComponent";
 import { useTranslations } from "next-intl";
 
-function OurCoreServices() {
+function KeyServices() {
   const t = useTranslations("exportConsulting");
 
   return (
     <div className={s.services}>
       <MainTitleComponent
-        title={t("coreServicesTitle")}
+        title={t("keyServicesTitle")}
         left
       />
-      <OurCoreServicesComponent />
+      <KeyServicesComponent />
     </div>
   );
 }
 
-export default OurCoreServices;
+export default KeyServices;

@@ -7,11 +7,13 @@ import MainButtonComponent from "@/components/MainButtonComponent";
 
 function HeroSection() {
   const t = useTranslations("commodityBrokerage");
+  const t1 = useTranslations("header");
   return (
     <div className={s.hero}>
-      <div>
+      <div className={s.hero__texts}>
         <h2 className={s.hero__heading}>{t("commodityBrokerageSubtitle")}</h2>
-        <div className={s.hero__text}>{t("heroText")}</div><MainButtonComponent text="Get in touch"/>
+        <div className={s.hero__text}>{t("heroText")}</div>
+        <MainButtonComponent text={t1("getInTouch")} />
       </div>
       <Image
         className={s.hero__image}
@@ -20,7 +22,6 @@ function HeroSection() {
         width={1000}
         height={1000}
       />
-      
     </div>
   );
 }

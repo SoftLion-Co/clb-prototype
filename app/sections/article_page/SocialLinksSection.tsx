@@ -11,6 +11,7 @@ import {
   FacebookShareButton,
   WhatsappShareButton,
 } from "react-share";
+import classNames from "classnames";
 
 const SocialLinksSection = () => {
   const t = useTranslations("components");
@@ -19,7 +20,7 @@ const SocialLinksSection = () => {
 
   return (
     <section className={s.links}>
-      <p className={s.pDefault}>{t("share")}</p>
+      <p className={classNames(s.links__share, s.pDefault)}>{t("share")}</p>
       <div className={s.links__list}>
         <TelegramShareButton
           url={currentPath}

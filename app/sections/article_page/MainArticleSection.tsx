@@ -91,6 +91,7 @@ const MainArticleSection = (data: Data) => {
           text={data.data.acf[`quote_${locale}` as keyof Acf]}
           image={data.data.acf.secondimage}
           alt={data.data.acf[`heading_${locale}` as keyof Acf]}
+          color="blue"
         />
         <h2 className={s.article__subheading}>
           {data.data.acf[`subheadings_${locale}` as keyof Acf]}

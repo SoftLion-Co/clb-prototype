@@ -8,6 +8,9 @@ interface ImageAndTextCardsProps {
   alt: string;
   rotate?: boolean;
   border?: boolean;
+  color?: "blue" | "white" | "green";
+  fontSize?: number;
+  fontWeight?: number;
 }
 
 function ImageAndTextCardsComponent({
@@ -16,11 +19,38 @@ function ImageAndTextCardsComponent({
   alt,
   rotate,
   border = false,
+  color = "green",
+  fontSize = 24,
+  fontWeight = 500
 }: ImageAndTextCardsProps) {
-  const containerStyle = {
-    border: border ? "2px solid #565F51" : "none",
-    backgroundColor: border ? "#ffffff" : "#EBECE6",
-    color: border ? "#171717" : "#565F51",
+  const getContainerStyles = () => {
+    const defaultStyle = {
+      border: border ? "2px solid #565F51" : "none",
+      fontSize,
+      fontWeight,
+    };
+
+    switch (color) {
+      case "blue":
+        return {
+          ...defaultStyle,
+          backgroundColor: "#ECF1F6",
+          color: "#2A4563",
+        };
+      case "white":
+        return {
+          ...defaultStyle,
+          backgroundColor: "#fff",
+          color: "#565F51",
+        };
+      case "green":
+      default:
+        return {
+          ...defaultStyle,
+          backgroundColor: "#EBECE6",
+          color: "#565F51",
+        };
+    }
   };
 
   return (
@@ -36,7 +66,7 @@ function ImageAndTextCardsComponent({
           />
         </div>
       ) : null}
-      <div className={s.quote__container} style={containerStyle}>
+      <div className={s.quote__container} style={getContainerStyles()}>
         <h3 className={rotate ? s.quote__rotated : s.quote}>{text}</h3>
       </div>
       {!rotate ? (

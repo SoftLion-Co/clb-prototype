@@ -4,11 +4,11 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 68px;
   margin-bottom: 160px;
 
   &__cards {
     display: flex;
     gap: 24px;
+    margin-bottom: 100px;
   }
 }

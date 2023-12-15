@@ -8,6 +8,8 @@ import ReactPaginate from "react-paginate";
 import Image from "next/image";
 import Arrow from "@/images/vectors/arrow.svg";
 import useLocale from "@/hooks/useLocale";
+import MainTitleComponent from "@/components/MainTitleComponent";
+import { useTranslations } from "next-intl";
 
 interface MoreArticlesSectionProps {
   blogId: string;
@@ -16,7 +18,9 @@ interface MoreArticlesSectionProps {
 const MoreArticlesSection: React.FC<MoreArticlesSectionProps> = ({
   blogId,
 }) => {
+  const locale = useLocale();
   const { blogs, loading, error } = useBlogsData();
+  const t = useTranslations("components");
   const itemsPerPage = 3;
   const [currentPage, setCurrentPage] = useState(0);
 
@@ -38,10 +42,9 @@ const MoreArticlesSection: React.FC<MoreArticlesSectionProps> = ({
     setCurrentPage(selected);
   };
 
-  const locale = useLocale();
-
   return (
     <div className={s.articles}>
+      <MainTitleComponent title={t("moreArticles")} left color="green" />
       <div className={s.articles__cards}>
         {visibleItems.map((blog, index) => (
           <div key={index}>

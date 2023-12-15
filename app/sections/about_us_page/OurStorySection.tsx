@@ -6,7 +6,7 @@ import { useTranslations } from "next-intl";
 
 const OurStorySection = () => {
   const t = useTranslations("aboutUs.ourStory");
-
+debugger
   return (
     <section className={classNames(s.story, s.container)}>
       <MainTitleComponent title={t("heading")} color="black" left/>

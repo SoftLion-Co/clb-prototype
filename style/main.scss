@@ -15,7 +15,7 @@ html {
 body {
   margin: 0;
   font-family: "Manrope";
-  color: #171717;
+  color: $blackTextColor;
 }
 
 code {
@@ -38,6 +38,7 @@ h5,
 h6,
 p {
   margin: 0;
+  color: $blackTextColor;
 }
 
 ul,

@@ -33,9 +33,9 @@
     "heroText": "Die Sonne geht hinter dem Horizont unter und taucht den Himmel in zauberhafte Farbtöne. Ein sanfter Wind berührt zärtlich das Gesicht. Im Park genießen die Menschen den Abend.",
     "servicesHeading": "Unsere Dienstleistungen",
     "partnersHeading": "Partner",
-    "blogHeading": "Unser Blog",
     "contactUs": {
       "contactUsHeading": "Kontaktiere uns",
+      "letsWorkWithUS": "Lass uns zusammenarbeiten",
       "firstname": "Vorname",
       "phone": "Telefonnummer",
       "lastname": "Nachname",
@@ -60,27 +60,28 @@
     "servicesCards": [
       {
         "title": "Warenmakler",
-        "text": "Lorem ipsum dolor sit amet consectetur. In ac vitae dignissim placerat. Feugiat sed amet ac massa arcu tristique adipiscing pellentesque elementum."
+        "text": "In der Welt des landwirtschaftlichen Handels spielt jedes Detail eine Rolle. Als Ihr Handelsmakler für Agrarrohstoffe tun Commodities Logistics Brokers mehr als nur Käufer und Verkäufer miteinander zu verbinden."
       },
       {
         "title": "Frachtvermittlung",
-        "text": "Lorem ipsum dolor sit amet consectetur. In ac vitae dignissim placerat. Feugiat sed amet ac massa arcu tristique adipiscing pellentesque elementum."
+        "text": "In der Welt des landwirtschaftlichen Handels spielt jedes Detail eine Rolle. Als Ihr Handelsmakler für Agrarrohstoffe tun Commodities Logistics Brokers mehr als nur Käufer und Verkäufer miteinander zu verbinden."
       },
       {
         "title": "Durchführung",
-        "text": "Lorem ipsum dolor sit amet consectetur. In ac vitae dignissim placerat. Feugiat sed amet ac massa arcu tristique adipiscing pellentesque elementum."
+        "text": "In der Welt des landwirtschaftlichen Handels spielt jedes Detail eine Rolle. Als Ihr Handelsmakler für Agrarrohstoffe tun Commodities Logistics Brokers mehr als nur Käufer und Verkäufer miteinander zu verbinden."
       },
       {
         "title": "Exportberatung",
-        "text": "Lorem ipsum dolor sit amet consectetur. In ac vitae dignissim placerat. Feugiat sed amet ac massa arcu tristique adipiscing pellentesque elementum."
+        "text": "In der Welt des landwirtschaftlichen Handels spielt jedes Detail eine Rolle. Als Ihr Handelsmakler für Agrarrohstoffe tun Commodities Logistics Brokers mehr als nur Käufer und Verkäufer miteinander zu verbinden."
       }
     ]
   },
   "components": {
     "ourSercvicesButton": "Unsere Dienstleistungen",
     "readMoreButton": "Mehr lesen",
-    "moreInBlog": "Mehr im Blog",
-    "share": "Teilen:"
+    "moreOurNews": "Mehr von unseren Nachrichten",
+    "share": "Teilen:",
+    "moreArticles": "Weitere Artikel"
   },
   "aboutUs": {
     "aboutUsTitle": "Über uns",
@@ -117,43 +118,120 @@
     "openVacanciesTitle": "Offene Stellen"
   },
   "commodityBrokerage": {
-    "commodityBrokerageTitle": "Warenmakler",
-    "commodityBrokerageSubtitle": "Ihre Verbindung zwischen Käufer und Verkäufer",
-    "heroText": "In der Welt des landwirtschaftlichen Handels zählt jede Einzelheit. Commodities Logistics Brokers, als Ihr Warenmakler, tut mehr als nur Käufer und Verkäufer verbinden. Wir agieren als Ihr strategischer Partner, bieten tiefgehende Marktanalysen an und schaffen optimale Bedingungen für beide Parteien.",
+    "commodityBrokerageTitle": "Rohstoffmakler",
+    "commodityBrokerageSubtitle": "Ihr Bindeglied zwischen Käufer und Verkäufer",
+    "heroText": "In der Welt des landwirtschaftlichen Handels zählt jeder Detail. Commodities Logistics Brokers, als Ihr Rohstoffmakler, tut mehr als nur Käufer und Verkäufer verbinden. Wir agieren als Ihr strategischer Partner, bieten eingehende Marktanalysen und optimale Bedingungen für beide Parteien.",
     "productPortfolioTitle": "Produktportfolio",
-    "coreServicesTitle": "Unsere Kernleistungen"
-  },
-  "execution": {
-    "executionTitle": "Durchführung",
-    "executionSubtitle": "Lorem ipsum dolor sit amet consectetur.",
-    "heroBigText": "Mit professionellem Einblick in die GAFTA- und FOSFA-Vorschriften unterziehen sich unsere Experten regelmäßig Schulungen, um auf dem neuesten Stand der neuesten Empfehlungen und Verschiebungen im globalen Handelsumfeld zu bleiben.",
-    "heroSmallText": "Erfahren in verschiedenen Vertragsbedingungen wie EXW, FCA, CPT, DAP, FOB, CNF und CIF gewährleisten wir reibungslose Ausführung und Einhaltung aller Bestimmungen in jeder Phase des Vertragsprozesses. Da wir die entscheidende Rolle der rechtlichen Expertise im Vertragsmanagement anerkennen, haben wir ein externes Team erfahrener Anwälte bereit, bei Bedarf zu helfen. Dieses juristische Team, ausgestattet mit einem tiefen Verständnis des internationalen Handelsrechts, garantiert den Schutz der Rechte unserer Kunden und die Erfüllung der Verpflichtungen."
-  },
-  "exportConsulting": {
-    "exportConsultingTitle": "Exportberatung",
-    "exportConsultingSubtitle": "Lorem ipsum dolor sit amet consectetur.",
-    "heroBigText": "Mit professionellen Einblicken in die GAFTA- und FOSFA-Vorschriften unterziehen sich unsere Experten regelmäßig Schulungen, um auf dem neuesten Stand der neuesten Empfehlungen und Verschiebungen im globalen Handelsumfeld zu bleiben.",
-    "heroSmallText": "Erfahren in verschiedenen Vertragsbedingungen wie EXW, FCA, CPT, DAP, FOB, CNF und CIF gewährleisten wir reibungslose Ausführung und Einhaltung aller Bestimmungen in jeder Phase des Vertragsprozesses. Da wir die entscheidende Rolle der rechtlichen Expertise im Vertragsmanagement anerkennen, haben wir ein externes Team erfahrener Anwälte bereit, bei Bedarf zu helfen. Dieses juristische Team, ausgestattet mit einem tiefen Verständnis des internationalen Handelsrechts, garantiert den Schutz der Rechte unserer Kunden und die Erfüllung der Verpflichtungen.",
-    "productPortfolioTitle": "Produktportfolio",
-    "coreServicesTitle": "Unsere Kernleistungen",
+    "grains": "Getreide",
+    "grainsList": {
+      "wheat": "Weizen",
+      "barley": "Gerste",
+      "corn": "Mais",
+      "sorghum": "Sorghum",
+      "rye": "Roggen",
+      "oats": "Hafer"
+    },
+    "oils": "Öle",
+    "oilsList": {
+      "sunflower": "Sonnenblume",
+      "soybean": "Sojabohne",
+      "rapeseed": "Raps",
+      "linseed": "Leinsamen"
+    },
+    "fertilizers": "Düngemittel",
+    "fertilizersList": {
+      "nitrogen": "Stickstoffdünger",
+      "phosphorus": "Phosphordünger",
+      "potassium": "Kaliumdünger",
+      "various": "Verschiedene Kombinationen davon"
+    },
+    "processedProducts": "Verarbeitete Produkte",
+    "processedProductsList": {
+      "sunflowerMeal": "Sonnenblumenmehl",
+      "rapeMeal": "Rapsmehl",
+      "soybeanMeal": "Sojabohnenmehl",
+      "sunflowerAndSoybeanBran": "Sonnenblumen- und Sojaproduktkleie",
+      "wheatBran": "Weizenkleie",
+      "SunflowerSoybeanAndRapeOil": "Sonnenblumen-, Soja- und Rapsöl"
+    },
+    "ourCoreServicesTitle": "Unsere Kernleistungen",
     "services": {
       "title1": "Marktanalyse",
       "text1": "Unser Team von Fachleuten untersucht aktuelle Trends, um Ihnen die relevantesten Informationen und Empfehlungen zu bieten",
       "title2": "Persönlicher Ansatz",
       "text2": "Wir berücksichtigen die Bedürfnisse und Erwartungen beider Parteien, um die besten Kollaborationsbedingungen festzulegen",
       "title3": "Unterstützung bei der Vertragsabwicklung",
-      "text3": "Schritt für Schritt stehen wir Ihnen zur Seite und bieten Beratung sowie aktive Teilnahme an Verhandlungen, um die besten Vertragsbedingungen zu erreichen",
+      "text3": "Bei jedem Schritt stehen wir Ihnen zur Seite und bieten Beratung und aktive Beteiligung an Verhandlungen, um die besten Vertragsbedingungen zu erreichen",
       "title4": "Partnerschaftsgeografie",
       "text4": "Wir schlagen verschiedene Optionen potenzieller Partner aus verschiedenen Regionen vor, basierend auf Ihrer Geschäftsstrategie",
       "title5": "Optimierung der Preispolitik",
-      "text5": "Unser Ziel ist es, Ihnen die besten Preise und Bedingungen zu bieten und sicherzustellen, dass Ihre Zusammenarbeit nicht nur profitabel, sondern auch stabil ist"
+      "text5": "Unser Ziel ist es, Ihnen die besten Preise und Konditionen zu bieten, um sicherzustellen, dass Ihre Zusammenarbeit nicht nur profitabel, sondern auch stabil ist"
+    }
+  },
+  "execution": {
+    "executionTitle": "Ausführung",
+    "executionSubtitle": "Lorem ipsum dolor sit amet consectetur.",
+    "heroBigText": "Mit professionellem Einblick in die GAFTA- und FOSFA-Vorschriften unterziehen sich unsere Experten regelmäßig Schulungen, um auf dem neuesten Stand der neuesten Empfehlungen und Verschiebungen in der globalen Handelslandschaft zu bleiben.",
+    "heroSmallText": "Erfahren in verschiedenen Vertragsbedingungen wie EXW, FCA, CPT, DAP, FOB, CNF und CIF gewährleisten wir eine reibungslose Durchführung und Einhaltung aller Bestimmungen in jeder Phase des Vertragsprozesses. Da wir die entscheidende Rolle der rechtlichen Expertise in der Vertragsverwaltung erkennen, haben wir ein externes Team erfahrener Anwälte bereit, bei Bedarf zu unterstützen. Dieses rechtliche Team, ausgestattet mit einem tiefen Verständnis für internationale Handelsgesetze, garantiert den Schutz der Rechte unserer Kunden und die Erfüllung von Verpflichtungen."
+  },
+  "exportConsulting": {
+    "exportConsultingTitle": "Agrarberatungsdienste",
+    "exportConsultingSubtitle": "Vereinfachung der Exportverfahren vom Produzenten zum Käufer",
+    "heroBigText": "Wir haben uns darauf spezialisiert, umfassende Beratungsdienstleistungen anzubieten, die auf die spezifischen Bedürfnisse von Landwirten, Produzenten und Agro-Unternehmen zugeschnitten sind. Unsere erfahrenen Spezialisten konzentrieren sich darauf, die beste Lösung für die Waren des Kunden zu finden",
+    "heroSmallText": "Bei Commodity & Logistics Brokers verstehen wir, dass die Agrarindustrie nicht nur darin besteht, Pflanzen anzubauen. Es geht auch darum, sich erfolgreich in der komplexen Welt des internationalen Handels zu bewegen. Die Ausfuhr landwirtschaftlicher Produkte kann eine herausfordernde Unternehmung sein, aber mit unserer Expertise und Anleitung erleichtern wir es Produzenten, globale Märkte zu erreichen und weltweit mit Käufern in Kontakt zu treten.",
+    "productPortfolioTitle": "Produktportfolio",
+    "keyServicesTitle": "Hauptsächliche Dienstleistungen",
+    "services": {
+      "title1": "Marktanalyse:",
+      "text1": "Wir führen eingehende Marktforschung durch, um international hoch nachgefragte Märkte für Ihre landwirtschaftlichen Produkte zu identifizieren",
+      "text1_1": "Bewerten Sie Markttrends und Verbraucherpräferenzen, um Ihnen zu helfen, Ihre Produkte entsprechend anzupassen",
+      "title2": "Regulatorische Compliance:",
+      "text2": "Navigieren Sie durch das komplexe Netzwerk internationaler Handelsvorschriften, Importbeschränkungen und Qualitätsstandards",
+      "text2_1": "Stellen Sie sicher, dass Ihre Produkte alle notwendigen Anforderungen für den Export erfüllen",
+      "title3": "Optimierung der Lieferkette:",
+      "text3": "Optimieren Sie Ihre Lieferkette, um Kosten zu minimieren und die Effizienz zu maximieren",
+      "text3_1": "Empfehlen Sie Logistiklösungen, um eine sichere und pünktliche Lieferung Ihrer Produkte an Käufer auf verschiedenen Liefergrundlagen zu gewährleisten",
+      "title4": "Exportdokumentation:",
+      "text4": "Unterstützen Sie bei der Erstellung aller erforderlichen Exportdokumente, einschließlich Zollanmeldungen, Qualitäts-, phytosanitären und Ursprungszertifikate usw.",
+      "text4_1": "Gewährleisten Sie die Einhaltung aller Anforderungen an die Dokumentation im internationalen Handel",
+      "title5": "Käuferbeziehungen:",
+      "text5": "Identifizieren und verbinden Sie sich mit potenziellen Käufern in Zielmärkten",
+      "text5_1": "Bieten Sie Unterstützung bei Verhandlungen, Verträgen und Zahlungsbedingungen, um rentable Geschäftsabschlüsse zu sichern",
+      "title6": "Qualitätssicherung:",
+      "text6": "Umsetzung von Qualitätskontrollmaßnahmen zur Aufrechterhaltung von Qualität und Frische Ihrer Produkte während des Transports",
+      "text6_1": "Minimierung von Produktverlusten und Sicherstellung der Kundenzufriedenheit"
+    },
+    "whyChoose": {
+      "whyChooseTitle": "Warum Commodity & Logistics Brokers wählen?",
+      "text1": "Unser Team erfahrener landwirtschaftlicher Berater versteht die Branche und die Dynamik des globalen Handels tiefgreifend.",
+      "text2": "Wir bieten personalisierte Lösungen, die Ihre einzigartigen Herausforderungen und Ziele ansprechen.",
+      "text3": "Unsere Verpflichtung zu Transparenz und Integrität stellt sicher, dass Sie einen vertrauenswürdigen Partner im Handels- und Lieferprozess haben."
     }
   },
   "freightBrokerage": {
-    "freightBrokerageTitle": "Frachtvermittlung",
+    "freightBrokerageTitle": "Frachtmakler",
     "freightBrokerageSubtitle": "Lorem ipsum dolor sit amet consectetur.",
     "heroBigText": "Commodities & Logistics Brokers ist Ihr zuverlässiger Partner in der Welt des Frachttransports. Wir sind vertrauenswürdig, weil wir bewährte Lösungen und einen professionellen Ansatz für jeden Kunden bieten.",
     "heroSmallText": "Lorem ipsum dolor sit amet consectetur. Facilisi consectetur a volutpat odio sit. A senectus ut eget molestie ac commodo feugiat. Lorem viverra nibh suspendisse egestas lacus semper vulputate tincidunt tempus. Id tincidunt faucibus et et pretium tristique habitant eget consequat. Consectetur arcu lectus semper euismod. Blandit quam nulla accumsan ac amet feugiat consectetur mauris. Est sed in donec enim vel condimentum netus cursus pharetra.",
-    "productPortfolioTitle": "Produktportfolio"
+    "productPortfolioTitle": "Produktportfolio",
+    "byCar": "Mit dem Auto",
+    "byCarList": {
+      "hoppers": "Selbstentladewagen",
+      "semiTrailers": "Sattelauflieger mit Plane und Drehgestellcontainer"
+    },
+    "byRail": "Mit der Bahn",
+    "byRailList": {
+      "hopperCars": "Kippwagen",
+      "closedTypeCars": "Geschlossene Wagen"
+    },
+    "byRiver": "Auf dem Fluss",
+    "byRiverList": {
+      "vesselsFromTheDanubePorts": "Schiffe aus den Donauhäfen",
+      "mixedTypeRiverSeaVessels": "Mischtyp 'Fluss-Meer'-Schiffe"
+    },
+    "bySea": "Auf dem Meer",
+    "bySeaList": {
+      "vesselsForBulkCargo": "Schiffe für Massengutfracht für eine oder mehrere Reisen"
+    }
   }
 }
