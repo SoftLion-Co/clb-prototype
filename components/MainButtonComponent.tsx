@@ -4,37 +4,55 @@ import Image from "next/image";
 import s from "./MainButtonComponent.module.scss";
 import classNames from "classnames";
 import { Url } from "next/dist/shared/lib/router/router";
+import Arrow from "@/images/vectors/arrow.svg";
 
 interface MainButtonProps {
   text: string;
-  className?: string;
-  arrowSrc?: string;
+  rotatedArrow?: boolean;
   href?: Url;
+  padding?: string;
+  customGap?: string;
+  className?: string;
 }
 
 const MainButtonComponent: React.FC<MainButtonProps> = ({
   text,
-  className,
-  arrowSrc,
+  rotatedArrow,
   href,
+  padding,
+  customGap,
+  className,
 }) => {
+  const linkProps = {
+    href: href || "",
+  };
+
+  const buttonStyle = {
+    padding: padding || "8px 16px",
+  };
+
+  const imageStyle = {
+    marginRight: "0",
+  };
+
   return (
-    <div className={classNames(s.main__button, className)}>
-      {href ? (
-        <Link href={href} >
-          {text}
-          {arrowSrc && (
-            <Image className={s.main__arrow} src={arrowSrc} alt="arrow" />
-          )}
-        </Link>
-      ) : (
-        <Link href={""}>
-          {text}
-          {arrowSrc && (
-            <Image className={s.main__arrow} src={arrowSrc} alt="arrow" />
-          )}
-        </Link>
-      )}
+    <div className={classNames(s.main__button, className)} style={buttonStyle}>
+      <Link className={s.main__link} {...linkProps}>
+        <p style={{ marginRight: customGap }}>{text}</p>
+
+        {rotatedArrow ? (
+          <div className={s.main__background}>
+            <Image src={Arrow} alt="arrow" />
+          </div>
+        ) : (
+          <Image
+            className={s.main__arrow}
+            src={Arrow}
+            alt="arrow"
+            style={imageStyle}
+          />
+        )}
+      </Link>
     </div>
   );
 };
