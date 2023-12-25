@@ -41,18 +41,21 @@ const MainButtonComponent: React.FC<MainButtonProps> = ({
       <Link className={s.main__link} {...linkProps}>
         <p style={{ marginRight: customGap }}>{text}</p>
 
-        {rotatedArrow ? (
+        {rotatedArrow && (
           <div className={s.main__background}>
             <Image src={Arrow} alt="arrow" />
           </div>
-        ) : (
-          <Image
-            className={s.main__arrow}
-            src={ArrowWhite}
-            alt="arrow"
-            style={imageStyle}
-          />
         )}
+
+        {!rotatedArrow &&
+          rotatedArrow !== undefined && (
+            <Image
+              className={s.main__arrow}
+              src={ArrowWhite}
+              alt="arrow"
+              style={imageStyle}
+            />
+          )}
       </Link>
     </div>
   );
