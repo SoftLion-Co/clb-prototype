@@ -30,7 +30,8 @@ const BlogCardsSection = () => {
 
       <MainButtonComponent
         text={t1("moreOurNews")}
-        arrowSrc={Arrow}
+        padding="8px 16px"
+        customGap="8px"
         href={"/blog"}
       />
     </section>

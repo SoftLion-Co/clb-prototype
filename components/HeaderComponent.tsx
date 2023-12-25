@@ -12,7 +12,8 @@ import MainButtonComponent from "./MainButtonComponent";
 import { usePathname } from "next/navigation";
 import { useTranslations } from "next-intl";
 
-
+import LogoMobile from "@/images/Logo-brokers-mobile.svg";
+import Logo from "@/images/Logo-header-brokers.svg";
 import UK from "@/images/flags/UK.svg";
 import ES from "@/images/flags/ES.svg";
 import DE from "@/images/flags/DE.svg";
@@ -27,11 +28,11 @@ type Country = {
 };
 
 const countriesMenu: Country[] = [
-  { code: "UK", name: "United Kingdom", flag: UK, locale: "en" },
-  { code: "ES", name: "Spain", flag: ES, locale: "es" },
-  { code: "DE", name: "Germany", flag: DE, locale: "de" },
-  { code: "UA", name: "Ukraine", flag: UA, locale: "ua" },
-  { code: "RU", name: "Russia", flag: RU, locale: "ru" },
+  { code: "UK", name: "Eng", flag: UK, locale: "en" },
+  { code: "ES", name: "Spa", flag: ES, locale: "es" },
+  { code: "DE", name: "Ger", flag: DE, locale: "de" },
+  { code: "UA", name: "Ukr", flag: UA, locale: "ua" },
+  { code: "RU", name: "Rus", flag: RU, locale: "ru" },
 ];
 
 const menuItems = [
@@ -49,23 +50,27 @@ const servicesMenu = [
 ];
 
 const HeaderComponent = () => {
-  const t = useTranslations("header")
-  const t1 = useTranslations("servicesMenu")
+  const t = useTranslations("header");
+  const t1 = useTranslations("servicesMenu");
 
   const pathname = usePathname();
-  const pathWithoutLanguage = pathname.replace(/^\/[a-zA-Z]{2}(\/)?/, '/');
-  const initialLocale = pathname.split('/')[1];
+  const pathWithoutLanguage = pathname.replace(/^\/[a-zA-Z]{2}(\/)?/, "/");
+  const initialLocale = pathname.split("/")[1];
 
   const defaultCountry = countriesMenu[4];
-  const initialCountry = countriesMenu.find(country => country.locale === initialLocale);
+  const initialCountry = countriesMenu.find(
+    (country) => country.locale === initialLocale
+  );
 
   const [selectedCountry, setSelectedCountry] = useState(
     initialCountry || defaultCountry
   );
 
   useEffect(() => {
-    const locale = pathname.split('/')[1];
-    const matchingCountry = countriesMenu.find(country => country.locale === locale);
+    const locale = pathname.split("/")[1];
+    const matchingCountry = countriesMenu.find(
+      (country) => country.locale === locale
+    );
 
     if (matchingCountry) {
       setSelectedCountry(matchingCountry);
@@ -184,18 +189,35 @@ const HeaderComponent = () => {
   const ModalContent = (
     <>
       {NavigationContent}
-      <MainButtonComponent className={s.header__touch} text="Get in touch" />
+      <MainButtonComponent
+        text={t("getInTouch")}
+        padding="9px 8px 9px 16px"
+        rotatedArrow={true}
+        customGap="12px"
+      />
     </>
   );
 
   return (
     <header className={s.header}>
       <div className={s.header__box}>
-        <div className={s.header__logo}>
-          <Link href={"/"}>
-            <p>LOGO</p>
-          </Link>
-        </div>
+        <Link className={s.header__link} href={"/"}>
+          <Image
+            className={s.header__logo}
+            src={Logo}
+            alt="Logo"
+            width={180}
+            height={60}
+          />
+
+          <Image
+            className={s.header__logo_mobile}
+            src={LogoMobile}
+            alt="Logo"
+            width={50}
+            height={36}
+          />
+        </Link>
 
         <nav className={s.header__navigation}>{NavigationContent}</nav>
 
@@ -215,6 +237,8 @@ const HeaderComponent = () => {
                   height={20}
                 />
               </Link>
+              <p>{selectedCountry.name}</p>
+
               <span
                 className={classNames(s.arrow, {
                   [s.arrow__rotated]: isFlagDropdownOpen,
@@ -232,7 +256,10 @@ const HeaderComponent = () => {
                         key={country.code}
                         onClick={() => handleCountrySelection(country)}
                       >
-                        <Link href={`/${pathWithoutLanguage}`} locale={country.locale}>
+                        <Link
+                          href={`/${pathWithoutLanguage}`}
+                          locale={country.locale}
+                        >
                           <Image
                             className={s.flag__image}
                             src={country.flag}
@@ -253,6 +280,9 @@ const HeaderComponent = () => {
           <MainButtonComponent
             className={s.header__touch}
             text={t("getInTouch")}
+            padding="9px 8px 9px 16px"
+            rotatedArrow={true}
+            customGap="12px"
           />
 
           <button
