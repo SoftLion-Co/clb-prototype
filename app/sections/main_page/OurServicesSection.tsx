@@ -8,11 +8,13 @@ const OurServicesSection = () => {
   const t = useTranslations("homePage");
 
   return (
-    <section className={classNames(s.container, s.services)}>
-      <MainTitleComponent
-        title={t("servicesHeading")}
-      />
-      <OurServicesCardComponent />
+    <section className={s.box}>
+      <div className={s.services}>
+        <div className={classNames(s.container, s.services__cards)}>
+          <MainTitleComponent title={t("servicesHeading")} />
+          <OurServicesCardComponent />
+        </div>
+      </div>
     </section>
   );
 };
