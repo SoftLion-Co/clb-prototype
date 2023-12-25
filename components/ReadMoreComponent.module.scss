@@ -3,6 +3,7 @@
 .read {
   &__link {
     display: flex;
+    align-items: center;
     gap: 16px;
     color: $backgroundColorDarkBlue;
     font-size: 12px;
