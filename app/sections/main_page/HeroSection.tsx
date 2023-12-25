@@ -11,20 +11,20 @@ function HeroSection() {
   const t1 = useTranslations("components");
 
   return (
-    <div className={classNames(s.hero, s.container)}>
-      <div className={s.hero__text}>
-        <h1 className={s.hero__heading}>{t("hero")}</h1>
-        <p className={s.hero__paragraph}>{t("heroText")}</p>
-        <MainButtonComponent
-          text={t1("ourSercvicesButton")}
-          padding="8px 16px"
-          customGap="8px"
-        />
+    <section className={s.box}>
+      <div className={s.hero}>
+        <div className={classNames(s.container, s.hero__container)}>
+          <div className={s.hero__text}>
+            <h1 className={s.hero__heading}>{t("hero")}</h1>
+            <p className={s.hero__paragraph}>{t("heroText")}</p>
+            <MainButtonComponent text={t1("ourSercvicesButton")} />
+          </div>
+          <div className={s.hero__image}>
+            <Image src={HeroTestImage} alt="Hero Image" />
+          </div>
+        </div>
       </div>
-      <div className={s.hero__image}>
-        <Image src={HeroTestImage} alt="Hero Image" />
-      </div>
-    </div>
+    </section>
   );
 }
 export default HeroSection;
