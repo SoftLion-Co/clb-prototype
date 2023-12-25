@@ -41,7 +41,7 @@ const OurTeamSection = () => {
 
   return (
     <section className={s.box}>
-      <div className={classNames(s.team)}>
+      <div className={s.team}>
         <div className={s.container}>
           <MainTitleComponent className={s.team__title} title="our team" />
 
