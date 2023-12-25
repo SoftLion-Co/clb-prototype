@@ -5,7 +5,7 @@ import Image from "next/image";
 import { useTranslations } from "next-intl";
 
 function OurCoreServicesComponent() {
-  const t = useTranslations("exportConsulting.services");
+  const t = useTranslations("commodityBrokerage.services");
 
   const data: {
     title1: string;
@@ -39,10 +39,12 @@ function OurCoreServicesComponent() {
   const mainCards = serviceCards.slice(0, -1);
   const lastServiceCard = serviceCards.slice(-1)[0];
 
+  const cardsWithBorders = [0, 1, 4];
+
   return (
     <div className={s.services}>
       {mainCards.map(({ title, text }, index) => (
-        <div className={s.card} key={index}>
+        <div className={`${s.card} ${cardsWithBorders.includes(index) ? s.cardWithBorder : ''}`} key={index}>
           <h3 className={s.card__title}>{title}</h3>
           <p className={s.card__text}>{text}</p>
         </div>
@@ -56,7 +58,7 @@ function OurCoreServicesComponent() {
           height={800}
         />
       </div>
-      <div className={s.card} key={serviceCards.length - 1}>
+      <div className={`${s.card} ${cardsWithBorders.includes(serviceCards.length - 1) ? s.cardWithBorder : ''}`} key={serviceCards.length - 1}>
         <h3 className={s.card__title}>{lastServiceCard.title}</h3>
         <p className={s.card__text}>{lastServiceCard.text}</p>
       </div>

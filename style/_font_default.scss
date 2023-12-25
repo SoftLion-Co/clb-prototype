@@ -1,19 +1,21 @@
+@import "@/style/colors";
+
 .h1Default {
-  color: #000;
+  color: $blackTextColor;
   font-size: 76px;
   font-weight: 700;
   line-height: 150%;
 }
 
 .h2Default {
-  color: #000;
+  color: $blackTextColor;
   font-size: 45px;
   font-weight: 700;
   line-height: 150%;
 }
 
 .h3Default {
-  color: #000;
+  color: $blackTextColor;
   font-size: 28px;
   font-weight: 600;
   line-height: 150%;
@@ -21,7 +23,7 @@
 
 .pDefault,
 .aDefault {
-  color: #000;
+  color: $blackTextColor;
   font-size: 18px;
   font-weight: 400;
   line-height: 150%;

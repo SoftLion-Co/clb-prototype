@@ -11,14 +11,24 @@
     align-items: center;
     justify-content: space-between;
     padding: 20px 89px;
-    background: #e7e7e7;
+    background: #ffffff;
     border-radius: 24px;
   }
 
   &__logo {
     font-size: 40px;
+
+    @media screen and (max-width: 767.98px) {
+      display: none;
+    }
   }
 
+  &__logo_mobile {
+    @media screen and (min-width: 768px) {
+      display: none;
+    }
+  }
+  
   &__navigation {
     @media screen and (max-width: 1280px) {
       display: none;
@@ -33,7 +43,7 @@
     }
 
     display: flex;
-    gap: 32px;
+    gap: 40px;
   }
 
   &__item {
@@ -89,7 +99,7 @@
 
     display: flex;
     align-items: center;
-    gap: 80px;
+    gap: 32px;
   }
 
   .header__touch {
@@ -118,7 +128,7 @@
   position: relative;
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
   padding: 6px 0;
   user-select: none;
 
@@ -131,13 +141,14 @@
   &__list {
     background-color: #ffffff;
     display: flex;
+    align-items: center;
     flex-direction: column;
     gap: 10px;
     position: absolute;
     padding: 10px 14px;
     border: 1px solid #f3f3f3;
     border-radius: 14px;
-    width: 60px;
+    width: 70px;
     z-index: 100;
   }
 }

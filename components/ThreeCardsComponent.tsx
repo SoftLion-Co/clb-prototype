@@ -19,6 +19,7 @@ interface ThreeCardsProps {
   smallText: string;
   imageSrc?: "execution" | "exportConsulting" | "freightBrokerage" | "ourStory";
   imagePosition?: 1 | 2 | 3;
+  color?: "blue" | "green"; 
 }
 
 const ThreeCardsComponent: FC<ThreeCardsProps> = ({
@@ -26,11 +27,17 @@ const ThreeCardsComponent: FC<ThreeCardsProps> = ({
   smallText,
   imageSrc = "execution",
   imagePosition = 1,
+  color = "green",
 }) => {
   const selectedImage = images[imageSrc];
 
+  const cardStyle = {
+    backgroundColor: color === "blue" ? "#ECF1F6" : "#EBECE6",
+    color: color === "blue" ? "#2A4563" : "#565F51",
+  };
+
   return (
-    <div className={s.cards}>
+    <div className={s.cards} >
       {imagePosition === 1 ? (
         <>
           <div className={s.cards__card_image}>
@@ -42,16 +49,16 @@ const ThreeCardsComponent: FC<ThreeCardsProps> = ({
               height={1400}
             />
           </div>
-          <div className={s.cards__card}>
+          <div className={s.cards__card} style={cardStyle}>
             <h2 className={s.cards__large_text}>{bigText}</h2>
           </div>
-          <div className={s.cards__card}>
+          <div className={s.cards__card} style={cardStyle}>
             <p className={s.cards__small_text}>{smallText}</p>
           </div>
         </>
       ) : imagePosition === 2 ? (
         <>
-          <div className={s.cards__card}>
+          <div className={s.cards__card} style={cardStyle}>
             <h2 className={s.cards__large_text}>{bigText}</h2>
           </div>
           <div className={s.cards__card_image}>
@@ -63,16 +70,16 @@ const ThreeCardsComponent: FC<ThreeCardsProps> = ({
               height={1400}
             />
           </div>
-          <div className={s.cards__card}>
+          <div className={s.cards__card} style={cardStyle}>
             <p className={s.cards__small_text}>{smallText}</p>
           </div>
         </>
       ) : (
         <>
-          <div className={s.cards__card}>
+          <div className={s.cards__card} style={cardStyle}>
             <h2 className={s.cards__large_text}>{bigText}</h2>
           </div>
-          <div className={s.cards__card}>
+          <div className={s.cards__card} style={cardStyle}>
             <p className={s.cards__small_text}>{smallText}</p>
           </div>
           <div className={s.cards__card_image}>

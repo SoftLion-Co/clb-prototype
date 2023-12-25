@@ -1,20 +1,40 @@
+@import "@/style/colors";
+
 .hero {
   display: grid;
-  gap: 9.5rem;
-  grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+  gap: 8.938em;
+  grid-template-columns: 1fr 1.2fr;
   margin-bottom: 140px;
+
+
+  &__texts{
+    max-width: 586px;
+  }
+
+  &__heading{
+    font-size: 47px;
+    font-weight: 600;
+    line-height: 150%;
+    color: $blackTextColor;
+    margin-bottom: 78px;
+    margin-top: 25px;
+    
+  }
 
   &__text {
     display: flex;
     align-items: center;
-    font-size: 28px;
+    font-size: 24px;
+    font-weight: 500;
     line-height: 150%;
+    color: $blackTextColor;
+    margin-bottom: 60px;
   }
 
   &__image {
     height: 100%;
     width: 100%;
     object-fit: cover;
-    border-radius: 24px;
+    border-radius: 32px;
   }
 }
