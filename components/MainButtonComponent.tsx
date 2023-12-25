@@ -5,6 +5,7 @@ import s from "./MainButtonComponent.module.scss";
 import classNames from "classnames";
 import { Url } from "next/dist/shared/lib/router/router";
 import Arrow from "@/images/vectors/arrow.svg";
+import ArrowWhite from "@/images/vectors/arrowWhite.svg";
 
 interface MainButtonProps {
   text: string;
@@ -47,7 +48,7 @@ const MainButtonComponent: React.FC<MainButtonProps> = ({
         ) : (
           <Image
             className={s.main__arrow}
-            src={Arrow}
+            src={ArrowWhite}
             alt="arrow"
             style={imageStyle}
           />
