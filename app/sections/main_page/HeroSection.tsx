@@ -15,7 +15,11 @@ function HeroSection() {
       <div className={s.hero__text}>
         <h1 className={s.hero__heading}>{t("hero")}</h1>
         <p className={s.hero__paragraph}>{t("heroText")}</p>
-        <MainButtonComponent text={t1("ourSercvicesButton")} />
+        <MainButtonComponent
+          text={t1("ourSercvicesButton")}
+          padding="8px 16px"
+          customGap="8px"
+        />
       </div>
       <div className={s.hero__image}>
         <Image src={HeroTestImage} alt="Hero Image" />

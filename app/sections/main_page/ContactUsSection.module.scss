@@ -3,10 +3,6 @@
 .form {
   --columns: 2;
 
-  &__title {
-    margin-bottom: 68px;
-  }
-
   &__group {
     display: flex;
     flex-direction: column;

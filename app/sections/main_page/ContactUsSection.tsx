@@ -134,8 +134,7 @@ const ContactUsSection = ({ cv }: { cv?: boolean}) => {
   return (
     <section className={s.container}>
       <MainTitleComponent
-        className={s.form__title}
-        title={t("contactUsHeading")}
+        title={cv ? t("letsWorkWithUS") :t("contactUsHeading")}
       />
       <form className={s.form} onSubmit={handleSubmit}>
         <div className={s.form__content}>

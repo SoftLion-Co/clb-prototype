@@ -5,8 +5,15 @@
   gap: 27px;
   flex-direction: column;
   margin-bottom: 131px;
+  
   &__list {
     display: flex;
     gap: 24px;
+  }
+
+  &__share{
+    color: $backgroundColorDarkBlue;
+    font-weight: 500;
+    text-transform: uppercase;
   }
 }
