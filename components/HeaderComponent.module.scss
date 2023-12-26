@@ -71,11 +71,11 @@
       color: #8d8d8d;
     }
     @media screen and (min-width: 1280px) {
+      position: absolute;
       background-color: #ffffff;
       display: flex;
       gap: 10px;
       flex-direction: column;
-      position: absolute;
       top: 88px;
       border: 1px solid #f3f3f3;
       border-radius: 24px;
