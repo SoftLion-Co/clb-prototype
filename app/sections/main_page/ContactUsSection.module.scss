@@ -1,5 +1,18 @@
 @import "./../../../style/container";
 
+.box {
+  width: 100%;
+  padding: 0 20px;
+}
+
+.contact {
+  padding-top: 117px;
+  padding-bottom: 90px;
+
+  background-color: #f6f6f6;
+  border-radius: 24px;
+}
+
 .form {
   --columns: 2;
 

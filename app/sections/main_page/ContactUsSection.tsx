@@ -25,9 +25,8 @@ interface FormData {
   cvFile: File | null;
 }
 
-
-const ContactUsSection = ({ cv }: { cv?: boolean}) => {
-  const locale = useLocale()
+const ContactUsSection = ({ cv }: { cv?: boolean }) => {
+  const locale = useLocale();
 
   const t = useTranslations("homePage.contactUs");
 
@@ -132,101 +131,116 @@ const ContactUsSection = ({ cv }: { cv?: boolean}) => {
   const fields = cv ? fieldsCV : fieldsWithoutCV;
 
   return (
-    <section className={s.container}>
-      <MainTitleComponent
-        title={cv ? t("letsWorkWithUS") :t("contactUsHeading")}
-      />
-      <form className={s.form} onSubmit={handleSubmit}>
-        <div className={s.form__content}>
-          <div className={s.form__box}>
-            <div className={s.form__inputs}>
-              {fields.map((field) => (
-                <InputField
-                  key={field.name}
-                  type={field.type}
-                  name={field.name}
-                  label={field.name}
-                  value={(formData as any)[field.name]}
-                  onChange={handleInputChange}
-                />
-              ))}
-              {!cv ? (
-                <div className={s.form__group}>
-                  <label className={s.form__label}>{t("topicOfEnquiry")}</label>
-                  <select
-                    name="subject"
-                    value={formData.subject}
-                    onChange={handleInputChange}
-                    className={s.form__input}
-                  >
-                    {translatedTopics.map((topic) => (
-                      <option key={topic} value={topic}>
-                        {topic || t(`topics.selectTopic`)}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-              ) : (
-                <div className={s.form__group}>
-                  <label className={s.form__label}>{t("appliedVacancy")}</label>
-                  <select
-                    name="vacancy"
-                    value={formData.vacancy}
-                    onChange={handleInputChange}
-                    className={s.form__input}
-                  >
-                    {vacancies.map((vacancy) => (
-                      <option
-                        key={vacancy.id}
-                        value={(vacancy.acf as any)[`vacancies_${locale}`]}
+    <section className={s.box}>
+      <div className={s.contact}>
+        <div className={s.container}>
+          <MainTitleComponent
+            title={cv ? t("letsWorkWithUS") : t("contactUsHeading")}
+          />
+          <form className={s.form} onSubmit={handleSubmit}>
+            <div className={s.form__content}>
+              <div className={s.form__box}>
+                <div className={s.form__inputs}>
+                  {fields.map((field) => (
+                    <InputField
+                      key={field.name}
+                      type={field.type}
+                      name={field.name}
+                      label={field.name}
+                      value={(formData as any)[field.name]}
+                      onChange={handleInputChange}
+                    />
+                  ))}
+                  {!cv ? (
+                    <div className={s.form__group}>
+                      <label className={s.form__label}>
+                        {t("topicOfEnquiry")}
+                      </label>
+                      <select
+                        name="subject"
+                        value={formData.subject}
+                        onChange={handleInputChange}
+                        className={s.form__input}
                       >
-                        {(vacancy.acf as any)[`vacancies_${locale}`]}
-                      </option>
-                    ))}
-                  </select>
+                        {translatedTopics.map((topic) => (
+                          <option key={topic} value={topic}>
+                            {topic || t(`topics.selectTopic`)}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                  ) : (
+                    <div className={s.form__group}>
+                      <label className={s.form__label}>
+                        {t("appliedVacancy")}
+                      </label>
+                      <select
+                        name="vacancy"
+                        value={formData.vacancy}
+                        onChange={handleInputChange}
+                        className={s.form__input}
+                      >
+                        {vacancies.map((vacancy) => (
+                          <option
+                            key={vacancy.id}
+                            value={(vacancy.acf as any)[`vacancies_${locale}`]}
+                          >
+                            {(vacancy.acf as any)[`vacancies_${locale}`]}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                  )}
                 </div>
-              )}
-            </div>
-            {!cv ? (
-              <div className={s.form__textarea}>
-                <div
-                  className={classNames(s.form__textarea_box, s.form__label)}
-                >
-                  <label htmlFor="message">{t("yourMessage")}</label>
-                  <Image
-                    src={Question}
-                    alt="Question"
-                    title="Enter a short description of your offers"
-                  />
-                </div>
-                <textarea
-                  className={s.form__message}
-                  id="message"
-                  name="message"
-                  value={formData.message}
-                  onChange={handleInputChange}
-                ></textarea>
+                {!cv ? (
+                  <div className={s.form__textarea}>
+                    <div
+                      className={classNames(
+                        s.form__textarea_box,
+                        s.form__label
+                      )}
+                    >
+                      <label htmlFor="message">{t("yourMessage")}</label>
+                      <Image
+                        src={Question}
+                        alt="Question"
+                        title="Enter a short description of your offers"
+                      />
+                    </div>
+                    <textarea
+                      className={s.form__message}
+                      id="message"
+                      name="message"
+                      value={formData.message}
+                      onChange={handleInputChange}
+                    ></textarea>
+                  </div>
+                ) : (
+                  <div className={s.form__attach}>
+                    <InputField
+                      type="file"
+                      name="cvFile"
+                      label={null}
+                      value={formData.cvFile ? formData.cvFile.name : ""}
+                      onChange={handleInputChange}
+                    />
+                  </div>
+                )}
               </div>
-            ) : (
-              <div className={s.form__attach}>
-                <InputField
-                  type="file"
-                  name="cvFile"
-                  label={null}
-                  value={formData.cvFile ? formData.cvFile.name : ""}
-                  onChange={handleInputChange}
+              <div>
+                <Image
+                  className={s.form__picture}
+                  src={Picture}
+                  alt="Picture"
                 />
               </div>
-            )}
-          </div>
-          <div>
-            <Image className={s.form__picture} src={Picture} alt="Picture" />
-          </div>
+            </div>
+            <button type="submit" className={s.form__button}>
+              {cv ? t("submitButton") : t("contactUsButton")}
+            </button>
+          </form>
         </div>
-        <button type="submit" className={s.form__button}>
-          {cv ? t("submitButton") : t("contactUsButton")}
-        </button>
-      </form>
+      </div>
     </section>
   );
 };

@@ -35,85 +35,87 @@ const FooterComponent = () => {
   const t = useTranslations("footer");
 
   return (
-    <footer className={s.footer}>
-      <div className={classNames(s.container, s.footer__container)}>
-        <div className={s.footer__content}>
-          <div className={s.footer__logo}>
-            <Link href="/">LOGO</Link>
-          </div>
+    <footer className={s.box}>
+      <div className={s.footer}>
+        <div className={classNames(s.container, s.footer__container)}>
+          <div className={s.footer__content}>
+            <div className={s.footer__logo}>
+              <Link href="/">LOGO</Link>
+            </div>
 
-          <ul className={s.footer__info}>
-            <li>
-              <Link className={s.aDefault} href="">
-                {t("aboutUs")}
-              </Link>
-            </li>
-            <li>
-              <Link className={s.aDefault} href="">
-              {t("privacyPolicy")}
-              </Link>
-            </li>
-          </ul>
-
-          <ul className={s.footer__list}>
-            {socialMediaLinks.map((socialMedia, index) => (
-              <li key={index}>
-                <Link
-                  className={s.aDefault}
-                  href={socialMedia.href}
-                  target="_blank"
-                >
-                  <Image
-                    src={socialMediaIcons[socialMedia.name.toLowerCase()]}
-                    alt={socialMedia.name}
-                  />
+            <ul className={s.footer__info}>
+              <li>
+                <Link className={s.aDefault} href="">
+                  {t("aboutUs")}
                 </Link>
               </li>
-            ))}
-          </ul>
-        </div>
+              <li>
+                <Link className={s.aDefault} href="">
+                  {t("privacyPolicy")}
+                </Link>
+              </li>
+            </ul>
 
-        <div className={s.footer__box}>
-          <div>
-            <p className={classNames(s.pDefault, s.footer__title)}>
-              Our Services
-            </p>
-            <ul className={s.footer__list_services}>
-              <li className={s.pDefault}>
-                <Link href="">{t("commoditiesBrokerage")}</Link>
-              </li>
-              <li className={s.pDefault}>
-                <Link href="">{t("freightBrokerage")}</Link>
-              </li>
-              <li className={s.pDefault}>
-                <Link href="">{t("execution")}</Link>
-              </li>
-              <li className={s.pDefault}>
-                <Link href="">{t("exportConsulting")}</Link>
-              </li>
+            <ul className={s.footer__list}>
+              {socialMediaLinks.map((socialMedia, index) => (
+                <li key={index}>
+                  <Link
+                    className={s.aDefault}
+                    href={socialMedia.href}
+                    target="_blank"
+                  >
+                    <Image
+                      src={socialMediaIcons[socialMedia.name.toLowerCase()]}
+                      alt={socialMedia.name}
+                    />
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
-          <div>
-            <p className={classNames(s.pDefault, s.footer__title)}>Careers</p>
-            <ul className={s.footer__list_services}>
-              <li className={s.pDefault}>
-                <Link href="">{t("ourVacancies")}</Link>
-              </li>
-            </ul>
-          </div>
-          <div>
-            <p className={classNames(s.pDefault, s.footer__title)}>Media</p>
-            <ul className={s.footer__list_services}>
-              <li className={s.pDefault}>
-                <Link href="">{t("ourNews")}</Link>
-              </li>
-            </ul>
-          </div>
-        </div>
 
-        <p className={s.footer__copyright}>
-          © 2023 Commodities & Logistics Brokers
-        </p>
+          <div className={s.footer__box}>
+            <div>
+              <p className={classNames(s.pDefault, s.footer__title)}>
+                Our Services
+              </p>
+              <ul className={s.footer__list_services}>
+                <li className={s.pDefault}>
+                  <Link href="">{t("commoditiesBrokerage")}</Link>
+                </li>
+                <li className={s.pDefault}>
+                  <Link href="">{t("freightBrokerage")}</Link>
+                </li>
+                <li className={s.pDefault}>
+                  <Link href="">{t("execution")}</Link>
+                </li>
+                <li className={s.pDefault}>
+                  <Link href="">{t("exportConsulting")}</Link>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <p className={classNames(s.pDefault, s.footer__title)}>Careers</p>
+              <ul className={s.footer__list_services}>
+                <li className={s.pDefault}>
+                  <Link href="">{t("ourVacancies")}</Link>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <p className={classNames(s.pDefault, s.footer__title)}>Media</p>
+              <ul className={s.footer__list_services}>
+                <li className={s.pDefault}>
+                  <Link href="">{t("ourNews")}</Link>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <p className={s.footer__copyright}>
+            © 2023 Commodities & Logistics Brokers
+          </p>
+        </div>
       </div>
     </footer>
   );

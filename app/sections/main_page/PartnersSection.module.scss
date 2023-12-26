@@ -1,7 +1,16 @@
 @import "@/style/container";
 
+.box {
+  width: 100%;
+  padding: 0 20px;
+}
+
 .partners {
-  margin-bottom: 180px;
+  padding-top: 117px;
+  padding-bottom: 90px;
+
+  background-color: #f6f6f6;
+  border-radius: 24px;
 
   &__wrapper {
     display: grid;
