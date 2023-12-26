@@ -3,6 +3,7 @@ import Image from "next/image";
 import classNames from "classnames";
 import ReadMoreComponent from "@/components/ReadMoreComponent";
 
+// Потрібно в вордпресі додати дату додавання статті
 interface Info {
   info: Blog;
   locale: string;
@@ -26,9 +27,10 @@ interface Acf {
 }
 
 const SmallCardBlogComponent = (data: Info) => {
-
   // Отримуємо частину URL, що вказує на сторінку блогу
-  const blogPagePath = window.location.pathname.includes('blog/') ? '' : 'blog/';
+  const blogPagePath = window.location.pathname.includes("blog/")
+    ? ""
+    : "blog/";
 
   const articleLink = `${blogPagePath}${data.info.id}`;
 
@@ -49,7 +51,10 @@ const SmallCardBlogComponent = (data: Info) => {
           <p className={s.blog__text}>
             {data.info.acf[`subheading1_${data.locale}` as keyof Acf]}
           </p>
-          <ReadMoreComponent href={articleLink} />
+          <div className={s.blog__box}>
+            <ReadMoreComponent href={articleLink} />
+            <p className={s.blog__data}>01.12.2024</p>
+          </div>
         </div>
       </div>
     </div>

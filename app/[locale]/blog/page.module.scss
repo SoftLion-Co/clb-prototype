@@ -1,18 +1,29 @@
 @import "@/style/container";
 @import "@/style/font_default";
 
+.box {
+  width: 100%;
+  padding: 0 20px;
+}
+
 .blog {
-  margin-top: 100px;
-  margin-bottom: 146px;
+  position: relative;
+  z-index: 0;
+
+  padding-top: 117px;
+  padding-bottom: 90px;
+
+  background-color: #f6f6f6;
+  border-radius: 24px;
 
   &__title {
-    margin-bottom: 214px;
+    margin-bottom: 100px;
   }
 
   &__cards {
     display: flex;
     flex-wrap: wrap;
-    gap: 24px;
+    justify-content: space-between;
     row-gap: 48px;
     margin-bottom: 148px;
   }

@@ -1,7 +1,6 @@
 "use client";
 import s from "./BlogCardSection.module.scss";
 import classNames from "classnames";
-import Arrow from "@/images/vectors/arrow.svg";
 
 import MainTitleComponent from "@/components/MainTitleComponent";
 import SmallCardBlogComponent from "@/components/blog/SmallCardBlogComponent";
@@ -35,6 +34,7 @@ const BlogCardsSection = () => {
 
           <MainButtonComponent
             text={t1("moreOurNews")}
+            rotatedArrow={false}
             padding="8px 16px"
             customGap="8px"
             href={"/blog"}
