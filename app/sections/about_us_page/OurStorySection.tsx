@@ -6,16 +6,21 @@ import { useTranslations } from "next-intl";
 
 const OurStorySection = () => {
   const t = useTranslations("aboutUs.ourStory");
-debugger
+  debugger;
+
   return (
-    <section className={classNames(s.story, s.container)}>
-      <MainTitleComponent title={t("heading")} color="black" left/>
-      <ThreeCardsComponent
-        imagePosition={3}
-        imageSrc="ourStory"
-        smallText={t("smallCard")}
-        bigText={t("bigCard")}
-      />
+    <section className={s.box}>
+      <div className={s.story}>
+        <div className={s.container}>
+          <MainTitleComponent title={t("heading")} color="black" left />
+          <ThreeCardsComponent
+            imagePosition={3}
+            imageSrc="ourStory"
+            smallText={t("smallCard")}
+            bigText={t("bigCard")}
+          />
+        </div>
+      </div>
     </section>
   );
 };

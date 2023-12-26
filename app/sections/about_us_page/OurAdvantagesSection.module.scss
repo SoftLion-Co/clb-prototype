@@ -1,8 +1,14 @@
 @import "./../../../style/container";
 
+.box {
+  width: 100%;
+  padding: 0 24px;
+}
+
 .advantages {
-  display: grid;
-  margin-bottom: 180px;
+  padding: 100px 0;
+  background-color: #f6f6f6;
+  border-radius: 24px;
 
   &__cards {
     display: flex;
