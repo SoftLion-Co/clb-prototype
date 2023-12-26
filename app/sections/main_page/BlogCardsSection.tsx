@@ -17,23 +17,30 @@ const BlogCardsSection = () => {
   const locale = useLocale();
 
   return (
-    <section className={classNames(s.container, s.blog)}>
-      <MainTitleComponent className={s.blog__title} title={t("blogTitle")} />
+    <section className={s.box}>
+      <div className={s.blog}>
+        <div className={classNames(s.container, s.blog__container)}>
+          <MainTitleComponent
+            className={s.blog__title}
+            title={t("blogTitle")}
+          />
 
-      <div className={s.blog__cards}>
-        {latestBlogs.map((blog, index) => (
-          <div key={index}>
-            <SmallCardBlogComponent info={blog} locale={locale} />
+          <div className={s.blog__cards}>
+            {latestBlogs.map((blog, index) => (
+              <div key={index}>
+                <SmallCardBlogComponent info={blog} locale={locale} />
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
 
-      <MainButtonComponent
-        text={t1("moreOurNews")}
-        padding="8px 16px"
-        customGap="8px"
-        href={"/blog"}
-      />
+          <MainButtonComponent
+            text={t1("moreOurNews")}
+            padding="8px 16px"
+            customGap="8px"
+            href={"/blog"}
+          />
+        </div>
+      </div>
     </section>
   );
 };

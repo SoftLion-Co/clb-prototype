@@ -1,8 +1,18 @@
 @import "./../style/container";
 @import "./../style//font_default";
 
+.box {
+  width: 100%;
+  padding: 0 20px;
+}
+
 .footer {
-  padding: 37px 0;
+  padding-top: 50px;
+  padding-bottom: 50px;
+
+  background-color: #ffffff;
+  border-radius: 24px;
+
   &__container {
     display: flex;
     justify-content: space-between;
