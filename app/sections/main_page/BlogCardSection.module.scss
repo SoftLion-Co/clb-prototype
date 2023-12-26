@@ -20,7 +20,17 @@
 
   &__cards {
     display: flex;
+    flex-wrap: wrap;
     gap: 24px;
     margin-bottom: 100px;
+
+    @media (max-width: 1279.98px) {
+      flex-direction: column;
+      align-items: center;
+
+      & > div:not(:last-child) {
+        display: none;
+      }
+    }
   }
 }

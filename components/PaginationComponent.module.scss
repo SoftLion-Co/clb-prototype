@@ -21,8 +21,8 @@
     cursor: pointer;
 
     &.active {
-      color: #000000;
-      border: 1px solid #000000;
+      color: #565f51;
+      border: 1px solid #565f51;
       border-radius: 24px;
       padding: 8.5px 32px;
     }
@@ -44,7 +44,7 @@
 
   &__arrow_previous,
   &__arrow_next {
-    border: 1px solid #000000;
+    border: 1px solid #565f51;
     border-radius: 24px;
     padding: 8.5px 32px;
     max-width: max-content;
