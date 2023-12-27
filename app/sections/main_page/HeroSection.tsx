@@ -12,7 +12,7 @@ function HeroSection() {
 
   return (
     <section className={s.box}>
-      <div className={s.hero}>
+      <div className={s.background}>
         <div className={classNames(s.container, s.hero__container)}>
           <div className={s.hero__text}>
             <h1 className={s.hero__heading}>{t("hero")}</h1>

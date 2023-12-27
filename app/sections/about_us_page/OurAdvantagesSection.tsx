@@ -15,7 +15,7 @@ const OurAdvantagesSection = () => {
 
   return (
     <section className={s.box}>
-      <div className={s.advantages}>
+      <div className={s.background}>
         <div className={s.container}>
           <MainTitleComponent title={t("ourAdvantagesTitle")} color="blue" />
           <div className={s.advantages__cards}>

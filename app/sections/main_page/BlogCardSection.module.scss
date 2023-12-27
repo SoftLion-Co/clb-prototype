@@ -1,16 +1,6 @@
 @import "./../../../style/container";
 
-.box {
-  width: 100%;
-  padding: 0 24px;
-}
-
 .blog {
-  padding: 90px 0;
-
-  background-color: #f6f6f6;
-  border-radius: 24px;
-
   &__container {
     display: flex;
     flex-direction: column;

@@ -9,6 +9,7 @@ import Arrow from "@/images/vectors/arrow.svg";
 import PageTitleComponent from "@/components/PageTitleComponent";
 import BigCardBlogComponent from "@/components/blog/BigCardBlogComponent";
 import SmallCardBlogComponent from "@/components/blog/SmallCardBlogComponent";
+import BlogCardsSection from "@/app/sections/main_page/BlogCardsSection";
 import useScrollToTop from "@/hooks/useScrollToTop";
 import useBlogsData from "@/hooks/useBlogsData";
 import { useTranslations } from "next-intl";
@@ -38,77 +39,81 @@ export default function Blog() {
   const locale = useLocale();
 
   return (
-    <section className={s.box}>
-      <div className={s.blog}>
-        <div className={classNames(s.container, s.blog__container)}>
-          <PageTitleComponent
-            className={s.blog__title}
-            title={t("blogTitle")}
-            text={t("blogSubtitle")}
-          />
+    <section>
+      <div className={s.box}>
+        <div className={s.background}>
+          <div className={classNames(s.container, s.blog__container)}>
+            <PageTitleComponent
+              className={s.blog__title}
+              title={t("blogTitle")}
+              text={t("blogSubtitle")}
+            />
 
-          {blogs.length === 0 && <BlogSkeleton />}
-          {error && <p>Error: {error}</p>}
+            {blogs.length === 0 && <BlogSkeleton />}
+            {error && <p>Error: {error}</p>}
 
-          {blogs.length > 0 && (
-            <div className={s.blog__cards}>
-              {visibleItems.map((data, index) => (
-                <div key={index} className={s.blog__grid}>
-                  {blogs.length === 2 ? (
-                    index === 0 ? (
-                      <BigCardBlogComponent info={data} locale={locale} />
-                    ) : (
-                      <SmallCardBlogComponent info={data} locale={locale} />
-                    )
-                  ) : (
-                    <>
-                      {index === firstBigCardIndex ||
-                      (index === lastBigCardIndex &&
-                        visibleItems.length > 6) ? (
+            {blogs.length > 0 && (
+              <div className={s.blog__cards}>
+                {visibleItems.map((data, index) => (
+                  <div key={index} className={s.blog__grid}>
+                    {blogs.length === 2 ? (
+                      index === 0 ? (
                         <BigCardBlogComponent info={data} locale={locale} />
                       ) : (
                         <SmallCardBlogComponent info={data} locale={locale} />
-                      )}
-                    </>
-                  )}
-                </div>
-              ))}
-            </div>
-          )}
+                      )
+                    ) : (
+                      <>
+                        {index === firstBigCardIndex ||
+                        (index === lastBigCardIndex &&
+                          visibleItems.length > 6) ? (
+                          <BigCardBlogComponent info={data} locale={locale} />
+                        ) : (
+                          <SmallCardBlogComponent info={data} locale={locale} />
+                        )}
+                      </>
+                    )}
+                  </div>
+                ))}
+              </div>
+            )}
 
-          {blogs.length > 0 && (
-            <ReactPaginate
-              previousLabel={
-                <div className={pagination.pagination__arrow_previous}>
-                  <Image
-                    className={pagination.pagination__arrow_image}
-                    src={Arrow}
-                    alt="arrow"
-                  />
-                </div>
-              }
-              nextLabel={
-                <div className={pagination.pagination__arrow_next}>
-                  <Image
-                    className={pagination.pagination__arrow_image}
-                    src={Arrow}
-                    alt="arrow"
-                  />
-                </div>
-              }
-              breakLabel={"..."}
-              breakClassName={pagination.pagination__break}
-              pageCount={Math.ceil(blogs.length / itemsPerPage)}
-              marginPagesDisplayed={2}
-              pageRangeDisplayed={3}
-              onPageChange={handlePageChange}
-              containerClassName={pagination.pagination}
-              pageClassName={pagination.pagination__pages}
-              activeClassName={pagination.active}
-            />
-          )}
+            {blogs.length > 0 && (
+              <ReactPaginate
+                previousLabel={
+                  <div className={pagination.pagination__arrow_previous}>
+                    <Image
+                      className={pagination.pagination__arrow_image}
+                      src={Arrow}
+                      alt="arrow"
+                    />
+                  </div>
+                }
+                nextLabel={
+                  <div className={pagination.pagination__arrow_next}>
+                    <Image
+                      className={pagination.pagination__arrow_image}
+                      src={Arrow}
+                      alt="arrow"
+                    />
+                  </div>
+                }
+                breakLabel={"..."}
+                breakClassName={pagination.pagination__break}
+                pageCount={Math.ceil(blogs.length / itemsPerPage)}
+                marginPagesDisplayed={2}
+                pageRangeDisplayed={3}
+                onPageChange={handlePageChange}
+                containerClassName={pagination.pagination}
+                pageClassName={pagination.pagination__pages}
+                activeClassName={pagination.active}
+              />
+            )}
+          </div>
         </div>
       </div>
+
+      <BlogCardsSection />
     </section>
   );
 }
