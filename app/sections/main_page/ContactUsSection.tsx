@@ -132,7 +132,7 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
 
   return (
     <section className={s.box}>
-      <div className={s.contact}>
+      <div className={s.background}>
         <MainTitleComponent
           title={cv ? t("letsWorkWithUS") : t("contactUsHeading")}
         />

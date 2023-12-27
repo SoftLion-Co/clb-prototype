@@ -1,6 +1,16 @@
-.container {
-    max-width: 1488px;
-    margin: 0 auto;
-    padding: 0 24px;
+.box {
+  width: 100%;
+  padding: 0 24px;
 }
-  
+
+.background {
+  padding: 90px 0;
+  background-color: #f6f6f6;
+  border-radius: 24px;
+}
+
+.container {
+  max-width: 1488px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
