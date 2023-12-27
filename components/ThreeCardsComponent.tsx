@@ -19,7 +19,7 @@ interface ThreeCardsProps {
   smallText: string;
   imageSrc?: "execution" | "exportConsulting" | "freightBrokerage" | "ourStory";
   imagePosition?: 1 | 2 | 3;
-  color?: "blue" | "green"; 
+  color?: "blue" | "green";
 }
 
 const ThreeCardsComponent: FC<ThreeCardsProps> = ({
@@ -37,10 +37,10 @@ const ThreeCardsComponent: FC<ThreeCardsProps> = ({
   };
 
   return (
-    <div className={s.cards} >
+    <div className={s.cards}>
       {imagePosition === 1 ? (
         <>
-          <div className={s.cards__card_image}>
+          <div className={s.cards__image}>
             <Image
               src={selectedImage}
               alt="Card Image"
@@ -61,7 +61,7 @@ const ThreeCardsComponent: FC<ThreeCardsProps> = ({
           <div className={s.cards__card} style={cardStyle}>
             <h2 className={s.cards__large_text}>{bigText}</h2>
           </div>
-          <div className={s.cards__card_image}>
+          <div className={s.cards__image}>
             <Image
               src={selectedImage}
               alt="Card Image"
@@ -82,7 +82,7 @@ const ThreeCardsComponent: FC<ThreeCardsProps> = ({
           <div className={s.cards__card} style={cardStyle}>
             <p className={s.cards__small_text}>{smallText}</p>
           </div>
-          <div className={s.cards__card_image}>
+          <div className={s.cards__image}>
             <Image
               src={selectedImage}
               alt="Card Image"
