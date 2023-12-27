@@ -3,10 +3,10 @@
 import React, { ChangeEvent, useState } from "react";
 import s from "./ContactUsSection.module.scss";
 import MainTitleComponent from "@/components/MainTitleComponent";
+import MainButtonComponent from "@/components/MainButtonComponent";
 import Image from "next/image";
 import Picture from "@/images/home-hero-test.png";
 import classNames from "classnames";
-import Question from "@/images/vectors/question.svg";
 import useVacancies from "@/hooks/useVacancies";
 import InputField from "@/components/form/InputField";
 import { useTranslations } from "next-intl";
@@ -132,11 +132,11 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
 
   return (
     <section className={s.box}>
-      <div className={s.contact}>
-        <div className={s.container}>
-          <MainTitleComponent
-            title={cv ? t("letsWorkWithUS") : t("contactUsHeading")}
-          />
+      <div className={s.background}>
+        <MainTitleComponent
+          title={cv ? t("letsWorkWithUS") : t("contactUsHeading")}
+        />
+        <div className={classNames(s.container, s.form__container)}>
           <form className={s.form} onSubmit={handleSubmit}>
             <div className={s.form__content}>
               <div className={s.form__box}>
@@ -153,17 +153,19 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
                   ))}
                   {!cv ? (
                     <div className={s.form__group}>
-                      <label className={s.form__label}>
-                        {t("topicOfEnquiry")}
-                      </label>
                       <select
                         name="subject"
                         value={formData.subject}
                         onChange={handleInputChange}
                         className={s.form__input}
+                        placeholder={t("topicOfEnquiry")}
                       >
                         {translatedTopics.map((topic) => (
-                          <option key={topic} value={topic}>
+                          <option
+                            className={s.form__option}
+                            key={topic}
+                            value={topic}
+                          >
                             {topic || t(`topics.selectTopic`)}
                           </option>
                         ))}
@@ -171,11 +173,9 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
                     </div>
                   ) : (
                     <div className={s.form__group}>
-                      <label className={s.form__label}>
-                        {t("appliedVacancy")}
-                      </label>
                       <select
                         name="vacancy"
+                        placeholder={t("appliedVacancy")}
                         value={formData.vacancy}
                         onChange={handleInputChange}
                         className={s.form__input}
@@ -194,23 +194,11 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
                 </div>
                 {!cv ? (
                   <div className={s.form__textarea}>
-                    <div
-                      className={classNames(
-                        s.form__textarea_box,
-                        s.form__label
-                      )}
-                    >
-                      <label htmlFor="message">{t("yourMessage")}</label>
-                      <Image
-                        src={Question}
-                        alt="Question"
-                        title="Enter a short description of your offers"
-                      />
-                    </div>
                     <textarea
                       className={s.form__message}
                       id="message"
                       name="message"
+                      placeholder={t("yourMessage")}
                       value={formData.message}
                       onChange={handleInputChange}
                     ></textarea>
@@ -227,18 +215,17 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
                   </div>
                 )}
               </div>
-              <div>
-                <Image
-                  className={s.form__picture}
-                  src={Picture}
-                  alt="Picture"
-                />
-              </div>
             </div>
-            <button type="submit" className={s.form__button}>
-              {cv ? t("submitButton") : t("contactUsButton")}
-            </button>
+
+            <MainButtonComponent
+              text={cv ? t("submitButton") : t("contactUsButton")}
+              padding="9.5px 8px 9.5px 16px"
+              customGap="16px"
+              rotatedArrow={true}
+            />
           </form>
+
+          <Image className={s.form__picture} src={Picture} alt="Picture" />
         </div>
       </div>
     </section>
