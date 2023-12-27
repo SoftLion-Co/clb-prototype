@@ -15,6 +15,18 @@
 
 .form {
   --columns: 2;
+  border: 2px solid #565f51;
+  border-radius: 32px;
+  background: #fff;
+  padding: 64px;
+  max-width: 952px;
+
+  &__container {
+    @media screen and (min-width: 768px) {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
 
   &__group {
     display: flex;
@@ -25,66 +37,40 @@
   &__content {
     display: flex;
     align-items: flex-end;
-    gap: 24px;
-    margin-bottom: 65px;
-  }
-
-  &__label {
-    color: #000;
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 150%;
-    text-transform: uppercase;
+    margin-bottom: 48px;
   }
 
   &__input {
-    border: 1px solid black;
-    border-radius: 24px;
-    width: 464px;
-    height: 44px;
-    padding: 10px 15px;
-  }
-
-  &__box {
-    gap: 24px;
+    text-transform: uppercase;
+    border-bottom: 1px solid #565f51;
+    width: 400px;
+    padding: 0 0 10px 0;
+    outline: none;
   }
 
   &__inputs {
     display: flex;
-
     flex-wrap: wrap;
     justify-content: space-between;
-    row-gap: 24px;
-    margin-bottom: 24px;
-    width: 952px;
-  }
-
-  &__textarea {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-
-    &_box {
-      display: flex;
-      gap: 10px;
-    }
+    row-gap: 48px;
+    margin-bottom: 48px;
   }
 
   &__message {
     display: flex;
-    gap: 16px;
+    text-transform: uppercase;
     flex-direction: column;
-    border: 1px solid black;
-    border-radius: 24px;
+    border-bottom: 1px solid #565f51;
     width: 100%;
-    height: 88px;
-    padding: 10px 15px;
+    padding: 0 0 10px 0;
     resize: none;
+    outline: none;
   }
 
   &__picture {
+    object-fit: cover;
     width: 463px;
-    height: 403px;
+    // height: 403px;
     border-radius: 24px;
   }
 
@@ -127,10 +113,16 @@
   align-items: center;
   border-radius: 24px;
   width: 464px;
-  height: 44px;
   padding: 10px 15px;
 }
 
 .inputfile + label * {
   pointer-events: none;
+}
+
+.form__textarea::placeholder,
+.form__input::placeholder,
+.form__message::placeholder,
+.form__option {
+  color: #565f51;
 }
