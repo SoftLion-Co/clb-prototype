@@ -6,6 +6,7 @@ import executionImage from "@/images/home-hero-test.png";
 import exportConsultingImage from "@/images/home-hero-test.png";
 import freightBrokerageImage from "@/images/home-hero-test.png";
 import ourStoryImage from "@/images/home-hero-test.png";
+import classNames from "classnames";
 
 const images = {
   execution: executionImage,
@@ -59,9 +60,9 @@ const ThreeCardsComponent: FC<ThreeCardsProps> = ({
       ) : imagePosition === 2 ? (
         <>
           <div className={s.cards__card} style={cardStyle}>
-            <h2 className={s.cards__large_text}>{bigText}</h2>
+            <h2 className={classNames(s.cards__large_text, s.tabletCard)}>{bigText}</h2>
           </div>
-          <div className={s.cards__image}>
+          <div className={classNames(s.cards__image, s.tabletImage)}>
             <Image
               src={selectedImage}
               alt="Card Image"
@@ -70,7 +71,7 @@ const ThreeCardsComponent: FC<ThreeCardsProps> = ({
               height={1400}
             />
           </div>
-          <div className={s.cards__card} style={cardStyle}>
+          <div className={classNames(s.cards__card, s.tabletCard)} style={cardStyle}>
             <p className={s.cards__small_text}>{smallText}</p>
           </div>
         </>

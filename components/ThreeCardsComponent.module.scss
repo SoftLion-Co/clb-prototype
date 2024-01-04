@@ -33,13 +33,31 @@
     min-height: 245px;
     max-height: 280px;
     @include for-size(tablet) {
-      grid-column: 1 / -1;
+      grid-column: span 2; /* Займати дві колонки на планшеті */
     }
     @include for-size(laptop) {
       border-radius: 32px;
-      grid-column: 3;
       height: 100%;
       max-height: none;
+      grid-column: auto;
+    }
+  }
+
+  .tabletCard {
+    @include for-size(tablet) {
+      grid-column: span 2; /* Займати дві колонки на планшеті */
+    }
+    @include for-size(laptop) {
+      grid-column: auto; 
+    }
+  }
+  
+  .tabletImage {
+    @include for-size(tablet) {
+      grid-column: span 1; /* Займати одну колонку на планшеті */
+    }
+    @include for-size(laptop) {
+      grid-column: auto; 
     }
   }
 
