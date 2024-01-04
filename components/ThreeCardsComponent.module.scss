@@ -1,33 +1,64 @@
 @import "@/style/colors";
+@import "@/style/viewports";
 
 .cards {
   display: grid;
-  gap: 1.5rem;
-  grid-template-columns: repeat(auto-fit, minmax(304px, 1fr));
-  grid-template-rows: repeat(auto-fit, max(464px, 1fr));
-  margin-bottom: 180px;
-
-  &__large_text {
-    font-size: 24px;
-    font-weight: 500;
-    line-height: 150%;
+  gap: 16px;
+  grid-template-columns: 1fr;
+  @include for-size(tablet) {
+    grid-template-columns: 1fr 1fr;
   }
 
-  &__small_text {
-    font-size: 18px;
-    line-height: 150%;
+  @include for-size(laptop) {
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 24px;
   }
 
   &__card {
-    padding: 30px 32.5px;
-    border-radius: 32px;
+    padding: 47px 20px;
+    border-radius: 24px;
     display: flex;
     align-items: center;
+    min-height: 245px;
+    @include for-size(laptop) {
+      padding: 30px 32.5px;
+      border-radius: 32px;
+    }
   }
 
   &__image {
     object-fit: cover;
-    height: 100%;
-    border-radius: 32px;
+    width: 100%;
+    border-radius: 24px;
+    min-height: 245px;
+    max-height: 280px;
+    @include for-size(tablet) {
+      grid-column: 1 / -1;
+    }
+    @include for-size(laptop) {
+      border-radius: 32px;
+      grid-column: 3;
+      height: 100%;
+      max-height: none;
+    }
+  }
+
+  &__large_text {
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 130%;
+    @include for-size(laptop) {
+      font-size: 24px;
+      line-height: 150%;
+    }
+  }
+
+  &__small_text {
+    font-size: 16px;
+    line-height: 130%;
+    @include for-size(laptop) {
+      font-size: 18px;
+      line-height: 150%;
+    }
   }
 }
