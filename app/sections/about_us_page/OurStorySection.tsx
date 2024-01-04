@@ -10,7 +10,7 @@ const OurStorySection = () => {
 
   return (
     <section className={s.box}>
-      <div className={s.story}>
+      <div className={s.background}>
         <div className={s.container}>
           <MainTitleComponent title={t("heading")} color="black" left />
           <ThreeCardsComponent

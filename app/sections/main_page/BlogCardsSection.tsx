@@ -17,7 +17,7 @@ const BlogCardsSection = () => {
 
   return (
     <section className={s.box}>
-      <div className={s.blog}>
+      <div className={s.background}>
         <div className={classNames(s.container, s.blog__container)}>
           <MainTitleComponent
             className={s.blog__title}

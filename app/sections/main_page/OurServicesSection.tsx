@@ -9,7 +9,7 @@ const OurServicesSection = () => {
 
   return (
     <section className={s.box}>
-      <div className={s.services}>
+      <div className={s.background}>
         <div className={classNames(s.container, s.services__cards)}>
           <MainTitleComponent title={t("servicesHeading")} />
           <OurServicesCardComponent />

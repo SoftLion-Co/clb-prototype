@@ -5,6 +5,7 @@ import OurAdvantagesSection from "@/app/sections/about_us_page/OurAdvantagesSect
 import ContactUsSection from "@/app/sections/main_page/ContactUsSection";
 import OurTeamSection from "@/app/sections/about_us_page/OurTeamSection";
 import { useTranslations } from "next-intl";
+import classNames from "classnames";
 
 export default function AboutUs() {
   const t = useTranslations("aboutUs");
@@ -14,7 +15,7 @@ export default function AboutUs() {
       <PageTitleComponent
         title={t("aboutUsTitle")}
         text={t("aboutUsText")}
-        className={s.about__title}
+        className={classNames(s.about__title, s.background)}
       />
       <OurStorySection />
       <OurTeamSection />
