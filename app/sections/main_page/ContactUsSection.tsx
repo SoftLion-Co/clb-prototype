@@ -219,7 +219,7 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
 
             <MainButtonComponent
               text={cv ? t("submitButton") : t("contactUsButton")}
-              padding="9.5px 8px 9.5px 16px"
+              padding="8px 8px 8px 16px"
               customGap="16px"
               rotatedArrow={true}
             />

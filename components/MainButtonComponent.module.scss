@@ -7,8 +7,6 @@
     max-width: fit-content;
     font-size: 20px;
 
-    // padding: 9px 8px 9px 16px; //Default padding
-
     & > a {
       display: flex;
       align-items: center;
@@ -26,14 +24,5 @@
     width: 30px;
     height: 30px;
     border-radius: 50%;
-  }
-}
-
-.main {
-  &__arrow {
-    // Змініть колір тут
-    svg {
-      fill: red;
-    }
   }
 }
