@@ -17,10 +17,10 @@
     "privacyPolicy": "Політика конфіденційності"
   },
   "servicesMenu": {
-    "partners": "Партнери",
-    "onlineTrading": "Онлайн-торгівля",
-    "ourBlog": "Наш блог",
-    "contactUs": "Зв'яжіться з нами"
+    "commodityBrokerage": "Товарне брокерство",
+    "freightBrokerage": "Посередництво у вантажних перевезеннях",
+    "execution": "Виконання",
+    "exportСonsulting": "Експортний консалтинг"
   },
   "aboutUsMenu": {
     "aboutUs": "Про нас",

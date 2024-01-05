@@ -17,10 +17,10 @@
     "privacyPolicy": "Privacy Policy"
   },
   "servicesMenu": {
-    "partners": "Partners",
-    "onlineTrading": "Online trading",
-    "ourBlog": "Our Blog",
-    "contactUs": "Contact Us"
+    "commodityBrokerage": "Commodity Brokerage",
+    "freightBrokerage": "Freight Brokerage",
+    "execution": "Execution",
+    "exportСonsulting": "Export Сonsulting"
   },
   "aboutUsMenu": {
     "aboutUs": "About Us",
