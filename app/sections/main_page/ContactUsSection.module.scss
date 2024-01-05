@@ -1,24 +1,36 @@
 @import "./../../../style/container";
 
 .form {
-  --columns: 2;
   border: 2px solid #565f51;
   border-radius: 32px;
   background: #fff;
-  padding: 64px;
+  padding: 24px 16px;
   max-width: 952px;
+  width: 100%;
+
+  @media screen and (min-width: 1280px) {
+    padding: 64px;
+  }
 
   &__container {
-    @media screen and (min-width: 768px) {
-      display: flex;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+
+    @media screen and (min-width: 1280px) {
+      flex-direction: row;
       justify-content: space-between;
+      align-items: stretch;
     }
   }
 
   &__group {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
+    @media screen and (min-width: 1280px) {
+      display: flex;
+      flex-direction: column;
+      width: calc((100% - 24px) / 2);
+    }
   }
 
   &__content {
@@ -27,20 +39,37 @@
     margin-bottom: 48px;
   }
 
+  &__box {
+    width: 100%;
+    display: grid;
+    gap: 48px;
+  }
+
   &__input {
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 150%;
+
+    width: 100%;
     text-transform: uppercase;
     border-bottom: 1px solid #565f51;
-    width: 400px;
-    padding: 0 0 10px 0;
+    padding: 0 0 9px 0;
     outline: none;
   }
 
   &__inputs {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    row-gap: 48px;
-    margin-bottom: 48px;
+    @media screen and (max-width: 1279.98px) {
+      display: flex;
+      gap: 40px;
+      flex-direction: column;
+    }
+    @media screen and (min-width: 1280px) {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      row-gap: 48px;
+      margin-bottom: 0;
+    }
   }
 
   &__message {
@@ -49,15 +78,14 @@
     flex-direction: column;
     border-bottom: 1px solid #565f51;
     width: 100%;
-    padding: 0 0 10px 0;
+    height: 37px;
+    padding: 0 0 9px 0;
     resize: none;
     outline: none;
   }
 
   &__picture {
     object-fit: cover;
-    width: 463px;
-    // height: 403px;
     border-radius: 24px;
   }
 
@@ -99,7 +127,6 @@
   justify-content: center;
   align-items: center;
   border-radius: 24px;
-  width: 464px;
   padding: 10px 15px;
 }
 
@@ -112,4 +139,7 @@
 .form__message::placeholder,
 .form__option {
   color: #565f51;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 150%;
 }
