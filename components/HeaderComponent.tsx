@@ -41,10 +41,10 @@ const menuItems = [
 ];
 
 const servicesMenu = [
-  { title: "commodityBrokerage", link: "/partners" },
-  { title: "freightBrokerage", link: "/online_trading" },
-  { title: "execution", link: "/our_blog" },
-  { title: "exportСonsulting", link: "/contact_us" },
+  { title: "commodityBrokerage", link: "/commodity-brokerage" },
+  { title: "freightBrokerage", link: "/freight-brokerage" },
+  { title: "execution", link: "/execution" },
+  { title: "exportСonsulting", link: "/export-consulting" },
 ];
 
 const HeaderComponent = () => {
