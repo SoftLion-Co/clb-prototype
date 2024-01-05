@@ -353,7 +353,7 @@ const HeaderComponent = () => {
             type="button"
             onClick={openModal}
           >
-            <Image src={Burger} alt="Burer" width={30} height={30} />
+            <Image src={Burger} alt="Burger" width={30} height={30} />
           </button>
         </div>
       </div>
