@@ -21,27 +21,29 @@ const InputField: React.FC<InputFieldProps> = ({
 }) => {
   const isFileInput = type === "file";
   const t = useTranslations("homePage.contactUs");
+
   return (
     <div className={s.form__group}>
-      {label !== null && <label className={s.form__label}>{t(label)}</label>}
       {isFileInput ? (
         <>
+          <label className={s.form__label} htmlFor={name}>
+            {t(label)}
+          </label>
           <input
             type={type}
             name={name}
-            id="file"
+            id={name}
             className={s.inputfile}
             onChange={onChange}
           />
-          <label htmlFor="file">
-            <span>{value || t("chooseFile")}</span>
-          </label>
         </>
       ) : (
         <input
           type={type}
           className={s.form__input}
           name={name}
+          id={name}
+          placeholder={label ? t(label) : ""}
           value={value || ""}
           onChange={onChange}
           ref={inputRef}

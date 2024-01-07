@@ -1,8 +1,6 @@
 @import "@/style/container";
 
 .partners {
-  margin-bottom: 180px;
-
   &__wrapper {
     display: grid;
     gap: 1.5rem;
@@ -10,7 +8,7 @@
   }
 
   &__image {
-    object-fit: contain;
+    height: 100%;
     width: 100%;
   }
 

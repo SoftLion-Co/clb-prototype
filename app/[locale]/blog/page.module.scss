@@ -2,17 +2,14 @@
 @import "@/style/font_default";
 
 .blog {
-  margin-top: 100px;
-  margin-bottom: 146px;
-
   &__title {
-    margin-bottom: 214px;
+    margin-bottom: 100px;
   }
 
   &__cards {
     display: flex;
     flex-wrap: wrap;
-    gap: 24px;
+    justify-content: space-between;
     row-gap: 48px;
     margin-bottom: 148px;
   }

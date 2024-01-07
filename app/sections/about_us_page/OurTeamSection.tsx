@@ -1,4 +1,3 @@
-
 "use client";
 import React, { useState } from "react";
 import classNames from "classnames";
@@ -41,7 +40,7 @@ const OurTeamSection = () => {
 
   return (
     <section className={s.box}>
-      <div className={classNames(s.team)}>
+      <div className={classNames(s.background, s.team)}>
         <div className={s.container}>
           <MainTitleComponent className={s.team__title} title="our team" />
 
@@ -86,6 +85,7 @@ const OurTeamSection = () => {
           />
         </div>
         <Image className={s.team__vector} src={SectionVector} alt="vector" />
+
       </div>
     </section>
   );

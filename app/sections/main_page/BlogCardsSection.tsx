@@ -1,7 +1,6 @@
 "use client";
 import s from "./BlogCardSection.module.scss";
 import classNames from "classnames";
-import Arrow from "@/images/vectors/arrow.svg";
 
 import MainTitleComponent from "@/components/MainTitleComponent";
 import SmallCardBlogComponent from "@/components/blog/SmallCardBlogComponent";
@@ -17,22 +16,31 @@ const BlogCardsSection = () => {
   const locale = useLocale();
 
   return (
-    <section className={classNames(s.container, s.blog)}>
-      <MainTitleComponent className={s.blog__title} title={t("blogTitle")} />
+    <section className={s.box}>
+      <div className={s.background}>
+        <div className={classNames(s.container, s.blog__container)}>
+          <MainTitleComponent
+            className={s.blog__title}
+            title={t("blogTitle")}
+          />
 
-      <div className={s.blog__cards}>
-        {latestBlogs.map((blog, index) => (
-          <div key={index}>
-            <SmallCardBlogComponent info={blog} locale={locale} />
+          <div className={s.blog__cards}>
+            {latestBlogs.map((blog, index) => (
+              <div key={index}>
+                <SmallCardBlogComponent info={blog} locale={locale} />
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
 
-      <MainButtonComponent
-        text={t1("moreOurNews")}
-        arrowSrc={Arrow}
-        href={"/blog"}
-      />
+          <MainButtonComponent
+            text={t1("moreOurNews")}
+            rotatedArrow={false}
+            padding="8px 16px"
+            customGap="8px"
+            href={"/blog"}
+          />
+        </div>
+      </div>
     </section>
   );
 };

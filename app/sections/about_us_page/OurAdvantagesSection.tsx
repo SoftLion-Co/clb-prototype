@@ -14,12 +14,16 @@ const OurAdvantagesSection = () => {
   }));
 
   return (
-    <section className={classNames(s.container, s.advantages)}>
-      <MainTitleComponent title={t("ourAdvantagesTitle")} color="blue"/>
-      <div className={s.advantages__cards}>
-        {advantagesProps.map((advantage, index) => (
-          <OurAdvantagesCardComponent advantages={advantage} key={index} />
-        ))}
+    <section className={s.box}>
+      <div className={s.background}>
+        <div className={s.container}>
+          <MainTitleComponent title={t("ourAdvantagesTitle")} color="blue" />
+          <div className={s.advantages__cards}>
+            {advantagesProps.map((advantage, index) => (
+              <OurAdvantagesCardComponent advantages={advantage} key={index} />
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );

@@ -1,9 +1,6 @@
 @import "./../../../style/container";
 
 .advantages {
-  display: grid;
-  margin-bottom: 180px;
-
   &__cards {
     display: flex;
     flex-wrap: wrap;

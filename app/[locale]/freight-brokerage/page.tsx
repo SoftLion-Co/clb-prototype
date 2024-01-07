@@ -4,26 +4,31 @@ import PageTitleComponent from "@/components/PageTitleComponent";
 import ThreeCardsComponent from "@/components/ThreeCardsComponent";
 import ProductPortfolioSection from "../../sections/freight_brokerage/ProductPortfolioSection";
 import { useTranslations } from "next-intl";
+import classNames from "classnames";
 
 const Freight = () => {
   const t = useTranslations("freightBrokerage");
 
   return (
-    <div className={s.freight}>
-      <div className={s.container}>
-        <PageTitleComponent
-          title={t("freightBrokerageTitle")}
-          text={t("freightBrokerageSubtitle")}
-          className={s.freight__title}
-        />
-        <ThreeCardsComponent
-          imagePosition={3}
-          smallText={t("heroSmallText")}
-          bigText={t("heroBigText")}
-          color="blue"
-        />
-        <ProductPortfolioSection />
+    <div>
+      <div className={s.box}>
+        <section className={classNames(s.background, s.freight)}>
+          <PageTitleComponent
+            title={t("freightBrokerageTitle")}
+            text={t("freightBrokerageSubtitle")}
+            className={s.freight__title}
+          />
+          <ThreeCardsComponent
+            className={s.freight__cards}
+            imagePosition={3}
+            smallText={t("heroSmallText")}
+            bigText={t("heroBigText")}
+            color="blue"
+          />
+          <ProductPortfolioSection />
+        </section>
       </div>
+
       <ContactUsSection />
     </div>
   );

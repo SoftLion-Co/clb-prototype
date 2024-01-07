@@ -1,11 +1,8 @@
 .main {
   &__button {
-    display: flex;
-    align-items: center;
     cursor: pointer;
-    color: #000;
-    background: #b3b3b3;
-    padding: 12px 30px;
+    color: #ffffff;
+    background: #565f51;
     border-radius: 40px;
     max-width: fit-content;
     font-size: 20px;
@@ -18,7 +15,14 @@
     }
   }
 
-  &__arrow {
-    margin-left: 10px;
+  &__background {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: rotate(180deg);
+    background-color: white;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
   }
 }

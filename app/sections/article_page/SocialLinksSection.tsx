@@ -3,6 +3,7 @@ import s from "./SocialLinksSection.module.scss";
 import Image from "next/image";
 import telegram from "@/images/footer/icon-telegram.svg";
 import facebook from "@/images/footer/icon-facebook.svg";
+import linkedin from "@/images/footer/icon-linkedin.svg";
 import whatsapp from "@/images/footer/icon-whatsapp.svg";
 import { useTranslations } from "next-intl";
 
@@ -10,6 +11,7 @@ import {
   TelegramShareButton,
   FacebookShareButton,
   WhatsappShareButton,
+  LinkedinShareButton,
 } from "react-share";
 import classNames from "classnames";
 
@@ -31,9 +33,16 @@ const SocialLinksSection = () => {
         <FacebookShareButton
           url={currentPath}
           title={"Hello, check this awesome article!"}
+          hashtag="ChechThisOut"
         >
           <Image src={facebook} alt={"facebook"} />
         </FacebookShareButton>
+        <LinkedinShareButton
+          url={currentPath}
+          title={"Hello, check this awesome article!"}
+        >
+          <Image src={linkedin} alt={"linkedin"} />
+        </LinkedinShareButton>
         <WhatsappShareButton
           url={currentPath}
           title={"Hello, check this awesome article!"}

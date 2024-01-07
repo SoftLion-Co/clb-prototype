@@ -1,55 +1,103 @@
 @import "./../style/container";
 @import "./../style//font_default";
 
+.box {
+  width: 100%;
+  padding: 0 16px 16px 16px;
+
+  @media screen and (min-width: 1280px) {
+    padding: 0 24px 24px 24px;
+  }
+}
+
 .footer {
-  padding: 37px 0;
+  padding: 20px 16px;
+
+  background-color: #ffffff;
+  border-radius: 24px;
+
+  @media screen and (min-width: 1280px) {
+    padding: 50px 76px;
+  }
+
   &__container {
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    gap: 40px;
+    @media screen and (min-width: 1280px) {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
   }
 
   &__content {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    @media screen and (min-width: 1280px) {
+      gap: 78px;
+    }
   }
 
-  &__logo {
-    color: #000;
-    font-size: 40px;
-    font-weight: 400;
-    line-height: 150%;
-    margin-bottom: 19px;
-  }
-
-  &__info {
-    display: grid;
-    gap: 13px;
-    margin-bottom: 140px;
-  }
-
-  &__list {
+  &__social {
     display: flex;
     gap: 24px;
   }
 
   &__box {
     display: flex;
-    gap: 49px;
-  }
-
-  &__title {
-    margin-bottom: 11px;
-  }
-
-  &__list_services {
-    display: flex;
     flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    @media screen and (min-width: 1280px) {
+      align-items: flex-end;
+      gap: 78px;
+    }
+  }
+
+  &__lists {
+    text-align: center;
+    display: grid;
     gap: 8px;
+
+    @media screen and (min-width: 1280px) {
+      display: flex;
+      justify-content: flex-start;
+      gap: 5rem;
+      grid-template-columns: repeat(auto-fit, minmax(304px, 1fr));
+      grid-template-rows: repeat(auto-fit, max(464px, 1fr));
+    }
+  }
+
+  &__list {
+    display: grid;
+    gap: 8px;
+    @media screen and (min-width: 1280px) {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      text-align: left;
+    }
+  }
+
+  &__link {
+    color: #2a4563;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 150%;
+    @media screen and (min-width: 1280px) {
+      font-size: 18px;
+    }
+    @media screen and (min-width: 1920px) {
+      font-size: 24px;
+    }
   }
 
   &__copyright {
-    display: flex;
-    align-items: flex-end;
-    font-size: 20px;
+    color: #2a4563;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 150%;
   }
 }

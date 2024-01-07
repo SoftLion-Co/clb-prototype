@@ -9,13 +9,13 @@ const PartnersSection = () => {
   const t = useTranslations("homePage");
 
   return (
-    <section className={classNames(s.container, s.partners)}>
-      <MainTitleComponent
-        title={t("partnersHeading")}
-        color="black"
-        left
-      />
-      <GetPartnersComponent />
+    <section className={s.box}>
+      <div className={s.background}>
+        <div className={s.container}>
+          <MainTitleComponent title={t("partnersHeading")} color="black" left />
+          <GetPartnersComponent />
+        </div>
+      </div>
     </section>
   );
 };

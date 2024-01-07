@@ -1,26 +1,29 @@
 @import "./../../style//container";
 
 .blog__container {
-  display: flex;
-  gap: 24px;
+  justify-content: space-between;
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(304px, 1fr));
+  grid-template-rows: repeat(auto-fit, max(464px, 1fr));
+  height: 100%;
 }
 
 .blog {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  background-color: #ffffff;
+  border: 2px solid #a7b896;
   gap: 36px;
-  border: 1px solid #000;
   border-radius: 24px;
-  width: 464px;
   padding: 24px;
-  min-height: 515px;
+  max-width: 464px;
 
   &__picture {
     border-radius: 24px;
     object-fit: cover;
     user-select: none;
-    width: 416px;
     height: 250px;
   }
 
@@ -30,16 +33,29 @@
   }
 
   &__title {
-    color: #000;
+    color: #2a4563;
     font-size: 24px;
     font-weight: 700;
     line-height: 150%;
   }
 
   &__text {
-    color: #000;
-    font-size: 16px;
+    color: #171717;
+    font-size: 18px;
     font-weight: 400;
+    line-height: 150%;
+  }
+
+  &__box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__data {
+    color: #a7b896;
+    font-size: 12px;
+    font-weight: 500;
     line-height: 150%;
   }
 }

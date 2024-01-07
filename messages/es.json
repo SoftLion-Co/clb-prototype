@@ -17,10 +17,10 @@
     "privacyPolicy": "Política de Privacidad"
   },
   "servicesMenu": {
-    "partners": "Socios",
-    "onlineTrading": "Comercio en línea",
-    "ourBlog": "Nuestro Blog",
-    "contactUs": "Contáctanos"
+    "commodityBrokerage": "Corretaje de productos básicos",
+    "freightBrokerage": "Corretaje de carga",
+    "execution": "Ejecución",
+    "exportСonsulting": "Consultoría de exportación"
   },
   "aboutUsMenu": {
     "aboutUs": "Sobre nosotros",
@@ -47,7 +47,7 @@
       "appliedVacancy": "La vacante para la que estás aplicando",
       "chooseFile": "Elegir un archivo",
       "submitButton": "Enviar",
-      "contactUsButton": "Contáctenos",
+      "contactUsButton": "Ponerse en contacto",
       "topics": {
         "selectTopic": "Seleccionar un tema",
         "": "",
