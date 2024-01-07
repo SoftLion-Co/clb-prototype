@@ -1,4 +1,6 @@
 @import "./../../../style/container";
+@import "./../../../style/viewports";
+
 
 .team {
   position: relative;
@@ -10,6 +12,22 @@
 
   &__cards {
     padding-bottom: 80px;
+    display: flex;
+    // flex-wrap: wrap;
+    // justify-content: space-between;
+    // gap: 1.5rem;
+
+    // @include for-size(tablet) {
+    //   display: grid;
+    //   gap: 5rem;
+    // }
+
+    // @include for-size(laptop) {
+    //   grid-template-columns: repeat(2, 1fr);
+    //   display: flex;
+    //   flex-wrap: nowrap;
+    //   gap: 1.5rem;
+    // }
   }
 
   &__vector {
