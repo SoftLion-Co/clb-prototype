@@ -8,13 +8,14 @@ function KeyServices() {
   const t = useTranslations("exportConsulting");
 
   return (
-    <div className={s.services}>
-      <MainTitleComponent
-        title={t("keyServicesTitle")}
-        left
-      />
-      <KeyServicesComponent />
-    </div>
+    <section className={s.box}>
+      <div className={s.background}>
+        <div className={s.container}>
+          <MainTitleComponent title={t("keyServicesTitle")} left />
+          <KeyServicesComponent />
+        </div>
+      </div>
+    </section>
   );
 }
 

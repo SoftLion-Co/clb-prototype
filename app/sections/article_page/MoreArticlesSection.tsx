@@ -10,6 +10,7 @@ import Arrow from "@/images/vectors/arrow.svg";
 import useLocale from "@/hooks/useLocale";
 import MainTitleComponent from "@/components/MainTitleComponent";
 import { useTranslations } from "next-intl";
+import classNames from "classnames";
 
 interface MoreArticlesSectionProps {
   blogId: string;
@@ -43,49 +44,53 @@ const MoreArticlesSection: React.FC<MoreArticlesSectionProps> = ({
   };
 
   return (
-    <div className={s.articles}>
-      <MainTitleComponent title={t("moreArticles")} left color="green" />
-      <div className={s.articles__cards}>
-        {visibleItems.map((blog, index) => (
-          <div key={index}>
-            <SmallCardBlogComponent info={blog} locale={locale} />
+    <section className={s.box}>
+      <div className={s.background}>
+        <div className={classNames(s.container, s.articles)}>
+          <MainTitleComponent title={t("moreArticles")} left color="green" />
+          <div className={s.articles__cards}>
+            {visibleItems.map((blog, index) => (
+              <div key={index}>
+                <SmallCardBlogComponent info={blog} locale={locale} />
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
 
-      {/* ReactPaginate */}
-      {blogs.length > itemsPerPage && (
-        <ReactPaginate
-          previousLabel={
-            <div className={pagination.pagination__arrow_previous}>
-              <Image
-                className={pagination.pagination__arrow_image}
-                src={Arrow}
-                alt="arrow"
-              />
-            </div>
-          }
-          nextLabel={
-            <div className={pagination.pagination__arrow_next}>
-              <Image
-                className={pagination.pagination__arrow_image}
-                src={Arrow}
-                alt="arrow"
-              />
-            </div>
-          }
-          breakLabel={"..."}
-          breakClassName={pagination.pagination__break}
-          pageCount={Math.ceil(blogs.length / itemsPerPage)}
-          marginPagesDisplayed={2}
-          pageRangeDisplayed={3}
-          onPageChange={handlePageChange}
-          containerClassName={pagination.pagination}
-          pageClassName={pagination.pagination__pages}
-          activeClassName={pagination.active}
-        />
-      )}
-    </div>
+          {/* ReactPaginate */}
+          {blogs.length > itemsPerPage && (
+            <ReactPaginate
+              previousLabel={
+                <div className={pagination.pagination__arrow_previous}>
+                  <Image
+                    className={pagination.pagination__arrow_image}
+                    src={Arrow}
+                    alt="arrow"
+                  />
+                </div>
+              }
+              nextLabel={
+                <div className={pagination.pagination__arrow_next}>
+                  <Image
+                    className={pagination.pagination__arrow_image}
+                    src={Arrow}
+                    alt="arrow"
+                  />
+                </div>
+              }
+              breakLabel={"..."}
+              breakClassName={pagination.pagination__break}
+              pageCount={Math.ceil(blogs.length / itemsPerPage)}
+              marginPagesDisplayed={2}
+              pageRangeDisplayed={3}
+              onPageChange={handlePageChange}
+              containerClassName={pagination.pagination}
+              pageClassName={pagination.pagination__pages}
+              activeClassName={pagination.active}
+            />
+          )}
+        </div>
+      </div>
+    </section>
   );
 };
 

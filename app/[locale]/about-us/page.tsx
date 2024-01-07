@@ -12,11 +12,14 @@ export default function AboutUs() {
 
   return (
     <div className={s.about}>
-      <PageTitleComponent
-        title={t("aboutUsTitle")}
-        text={t("aboutUsText")}
-        className={classNames(s.about__title, s.background)}
-      />
+      <div className={s.box}>
+        <PageTitleComponent
+          title={t("aboutUsTitle")}
+          text={t("aboutUsText")}
+          className={s.background}
+        />
+      </div>
+
       <OurStorySection />
       <OurTeamSection />
       <OurAdvantagesSection />
