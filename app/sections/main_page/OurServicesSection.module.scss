@@ -1,1 +1,20 @@
 @import "./../../../style/container";
+@import "./../../../style/viewports";
+
+.services__cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1.5rem;
+
+  @include for-size(tablet) {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  @include for-size(laptop) {
+    display: flex;
+    flex-wrap: nowrap;
+  }
+}
