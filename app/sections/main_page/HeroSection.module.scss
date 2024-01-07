@@ -1,27 +1,26 @@
 @import "@/style/container";
+@import "@/style/viewports";
 
 .hero {
-  &__container {
-    display: flex;
-    gap: 100px;
+  @include for-size(laptop) {
+    background-color: #f6f6f6;
+    border-radius: 24px;
+    padding: 24px 82px;
   }
 
-  &__text {
-    max-width: 632px;
+  &__loading{
+    height: calc(100vh - 70px);
+    border-radius: 24px;
   }
+  &__video {
+    
+    height: calc(100vh - 70px);
 
-  &__heading {
-    font-size: 76px;
-    font-weight: 700;
-    line-height: 150%;
-    margin-bottom: 79px;
-  }
-
-  &__paragraph {
-    font-size: 24px;
-    font-weight: 400;
-    line-height: 150%;
-    margin-bottom: 97px;
-    max-width: 597px;
+    @include for-size(tablet){
+      min-height: 750px;
+    }
+    border-radius: 24px;
+    
+    object-fit: cover;
   }
 }
