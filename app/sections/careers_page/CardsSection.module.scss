@@ -1,6 +1,12 @@
+@import "/style/container";
+
 .cards {
   display: flex;
   flex-direction: column;
   gap: 24px;
-  margin-bottom: 142px;
+
+  &__container {
+    display: grid;
+    gap: 100px;
+  }
 }
