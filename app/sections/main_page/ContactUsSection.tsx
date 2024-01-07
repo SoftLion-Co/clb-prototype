@@ -1,6 +1,6 @@
 "use client";
 
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent, useState, useEffect } from "react";
 import s from "./ContactUsSection.module.scss";
 import MainTitleComponent from "@/components/MainTitleComponent";
 import MainButtonComponent from "@/components/MainButtonComponent";
@@ -27,6 +27,8 @@ interface FormData {
 
 const ContactUsSection = ({ cv }: { cv?: boolean }) => {
   const locale = useLocale();
+
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const t = useTranslations("homePage.contactUs");
 
@@ -72,18 +74,38 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
   });
 
   const handleInputChange = (
-    e: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLLIElement>
   ) => {
-    const { name, value, type } = e.target;
+    const { name, value } = e.target as HTMLInputElement | HTMLTextAreaElement;
 
     setFormData((prevData) => ({
       ...prevData,
-      [name]:
-        type === "file"
-          ? (e.target as HTMLInputElement).files?.[0] || null
-          : value,
+      [name]: value,
     }));
   };
+
+  const handleDropdownClick = (value: string) => {
+    setFormData((prevData) => ({
+      ...prevData,
+      vacancy: value,
+    }));
+    setIsDropdownOpen(false);
+  };
+
+  useEffect(() => {
+    const handleOutsideClick = (e: MouseEvent) => {
+      const dropdown = document.querySelector(`.${s.dropdown}`);
+      if (dropdown && !dropdown.contains(e.target as Node)) {
+        setIsDropdownOpen(false);
+      }
+    };
+
+    document.addEventListener("click", handleOutsideClick);
+
+    return () => {
+      document.removeEventListener("click", handleOutsideClick);
+    };
+  }, []);
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
@@ -151,46 +173,54 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
                       onChange={handleInputChange}
                     />
                   ))}
-                  {!cv ? (
-                    <div className={s.form__group}>
-                      <select
-                        name="subject"
-                        value={formData.subject}
-                        onChange={handleInputChange}
-                        className={s.form__input}
-                        placeholder={t("topicOfEnquiry")}
+                  <div className={s.form__group}>
+                    <div
+                      className={s.dropdown}
+                      onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                    >
+                      {cv ? (
+                        <p className={s.form__input}>
+                          {formData.vacancy || t("appliedVacancy")}
+                        </p>
+                      ) : (
+                        <p className={s.form__input}>
+                          {formData.subject || t("topicOfEnquiry")}
+                        </p>
+                      )}
+                      <ul
+                        className={s.dropdown__list}
+                        style={{ display: isDropdownOpen ? " " : "none" }}
                       >
-                        {translatedTopics.map((topic) => (
-                          <option
-                            className={s.form__option}
-                            key={topic}
-                            value={topic}
-                          >
-                            {topic || t(`topics.selectTopic`)}
-                          </option>
-                        ))}
-                      </select>
+                        {cv
+                          ? vacancies.map((vacancy) => (
+                              <li
+                                key={vacancy.id}
+                                onClick={() => {
+                                  handleDropdownClick(
+                                    (vacancy.acf as any)[`vacancies_${locale}`]
+                                  );
+                                  setIsDropdownOpen(false);
+                                }}
+                              >
+                                {(vacancy.acf as any)[`vacancies_${locale}`]}
+                              </li>
+                            ))
+                          : translatedTopics.map((topic) => (
+                              <li
+                                key={topic}
+                                onClick={(e) => {
+                                  handleInputChange({
+                                    target: { name: "subject", value: topic },
+                                  } as React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>);
+                                  setIsDropdownOpen(false);
+                                }}
+                              >
+                                {topic || t(`topics.selectTopic`)}
+                              </li>
+                            ))}
+                      </ul>
                     </div>
-                  ) : (
-                    <div className={s.form__group}>
-                      <select
-                        name="vacancy"
-                        placeholder={t("appliedVacancy")}
-                        value={formData.vacancy}
-                        onChange={handleInputChange}
-                        className={s.form__input}
-                      >
-                        {vacancies.map((vacancy) => (
-                          <option
-                            key={vacancy.id}
-                            value={(vacancy.acf as any)[`vacancies_${locale}`]}
-                          >
-                            {(vacancy.acf as any)[`vacancies_${locale}`]}
-                          </option>
-                        ))}
-                      </select>
-                    </div>
-                  )}
+                  </div>
                 </div>
                 {!cv ? (
                   <div className={s.form__textarea}>
