@@ -21,6 +21,7 @@ interface ThreeCardsProps {
   imageSrc?: "execution" | "exportConsulting" | "freightBrokerage" | "ourStory";
   imagePosition?: 1 | 2 | 3;
   color?: "blue" | "green";
+  className?: string;
 }
 
 const ThreeCardsComponent: FC<ThreeCardsProps> = ({
@@ -29,6 +30,7 @@ const ThreeCardsComponent: FC<ThreeCardsProps> = ({
   imageSrc = "execution",
   imagePosition = 1,
   color = "green",
+  className,
 }) => {
   const selectedImage = images[imageSrc];
 
@@ -38,7 +40,7 @@ const ThreeCardsComponent: FC<ThreeCardsProps> = ({
   };
 
   return (
-    <div className={s.cards}>
+    <div className={classNames(s.cards, s.container, className)}>
       {imagePosition === 1 ? (
         <>
           <div className={s.cards__image}>
@@ -60,7 +62,9 @@ const ThreeCardsComponent: FC<ThreeCardsProps> = ({
       ) : imagePosition === 2 ? (
         <>
           <div className={s.cards__card} style={cardStyle}>
-            <h2 className={classNames(s.cards__large_text, s.tabletCard)}>{bigText}</h2>
+            <h2 className={classNames(s.cards__large_text, s.tabletCard)}>
+              {bigText}
+            </h2>
           </div>
           <div className={classNames(s.cards__image, s.tabletImage)}>
             <Image
@@ -71,7 +75,10 @@ const ThreeCardsComponent: FC<ThreeCardsProps> = ({
               height={1400}
             />
           </div>
-          <div className={classNames(s.cards__card, s.tabletCard)} style={cardStyle}>
+          <div
+            className={classNames(s.cards__card, s.tabletCard)}
+            style={cardStyle}
+          >
             <p className={s.cards__small_text}>{smallText}</p>
           </div>
         </>

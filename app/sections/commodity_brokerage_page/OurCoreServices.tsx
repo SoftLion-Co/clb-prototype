@@ -8,15 +8,19 @@ function OurCoreServices() {
   const t = useTranslations("commodityBrokerage");
 
   return (
-    <div className={s.services}>
-      <MainTitleComponent
-        title={t("ourCoreServicesTitle")}
-        className={s.services__title}
-        left
-        color="blue"
-      />
-      <OurCoreServicesComponent />
-    </div>
+    <section className={s.box}>
+      <div className={s.background}>
+        <div className={s.container}>
+          <MainTitleComponent
+            title={t("ourCoreServicesTitle")}
+            className={s.services__title}
+            left
+            color="blue"
+          />
+          <OurCoreServicesComponent />
+        </div>
+      </div>
+    </section>
   );
 }
 
