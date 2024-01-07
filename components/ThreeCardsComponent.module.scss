@@ -1,4 +1,5 @@
 @import "@/style/colors";
+@import "/style/container";
 @import "@/style/viewports";
 
 .cards {
@@ -48,16 +49,16 @@
       grid-column: span 2; /* Займати дві колонки на планшеті */
     }
     @include for-size(laptop) {
-      grid-column: auto; 
+      grid-column: auto;
     }
   }
-  
+
   .tabletImage {
     @include for-size(tablet) {
       grid-column: span 1; /* Займати одну колонку на планшеті */
     }
     @include for-size(laptop) {
-      grid-column: auto; 
+      grid-column: auto;
     }
   }
 

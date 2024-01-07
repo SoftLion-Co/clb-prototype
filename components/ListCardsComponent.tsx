@@ -11,6 +11,7 @@ import ByCarImage from "@/images/icons/ByCar.svg";
 import ByRailImage from "@/images/icons/ByRail.svg";
 import ByRiverImage from "@/images/icons/ByRiver.svg";
 import BySeaImage from "@/images/icons/BySea.svg";
+import classNames from "classnames";
 
 interface ListCardsProps {
   data: { [key: string]: { [key: string]: string } };
@@ -32,7 +33,7 @@ const ListCardsComponent: FC<ListCardsProps> = ({ data }) => {
   };
 
   return (
-    <div className={s.cards}>
+    <div className={classNames(s.cards, s.container)}>
       {Object.entries(data).map(([title, items]) => (
         <div key={title} className={s.card}>
           {title && (

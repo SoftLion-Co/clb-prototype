@@ -55,10 +55,17 @@ function ProductPortfolioSection() {
   };
 
   return (
-    <div>
-      <MainTitleComponent title={t("productPortfolioTitle")} color="black"/>
-      <ListCardsComponent data={data} />
-    </div>
+    <section className={s.box}>
+      <div className={s.background}>
+        <div className={s.container}>
+          <MainTitleComponent
+            title={t("productPortfolioTitle")}
+            color="black"
+          />
+          <ListCardsComponent data={data} />
+        </div>
+      </div>
+    </section>
   );
 }
 export default ProductPortfolioSection;

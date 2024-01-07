@@ -345,7 +345,7 @@ const HeaderComponent = () => {
             text={t("getInTouch")}
             padding="9px 8px 9px 16px"
             rotatedArrow={true}
-            customGap="12px"
+            customGap="16px"
           />
 
           <button

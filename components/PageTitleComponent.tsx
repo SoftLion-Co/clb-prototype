@@ -13,12 +13,12 @@ const PageTitleComponent: React.FC<MainTitleProps> = ({
   className,
 }) => {
   return (
-    <section className={classNames(className)}>
+    <div className={classNames(className)}>
       <div className={classNames(s.page)}>
         <h1 className={s.page__title}>{title}</h1>
         <p className={s.page__text}>{text}</p>
       </div>
-    </section>
+    </div>
   );
 };
 
