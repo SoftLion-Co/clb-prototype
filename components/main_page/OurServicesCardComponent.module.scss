@@ -2,12 +2,7 @@
 @import "@/style/colors";
 
 .card {
-  display: flex;
-  justify-content: space-between;
-  display: grid;
-  gap: 1.5rem;
-  grid-template-columns: repeat(auto-fit, minmax(304px, 1fr));
-  grid-template-rows: repeat(auto-fit, max(464px, 1fr));
+  
 
   &__container {
     background: #e7e7e7;

@@ -14,10 +14,11 @@
   padding: 20px 16px;
 
   background-color: #ffffff;
-  border-radius: 24px;
+  border-radius: 16px;
 
   @media screen and (min-width: 1280px) {
     padding: 50px 76px;
+    border-radius: 24px;
   }
 
   &__container {
@@ -96,8 +97,14 @@
 
   &__copyright {
     color: #2a4563;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 400;
-    line-height: 150%;
+    line-height: 130%;
+    text-align: center;
+
+    @media screen and (min-width: 1280px) {
+      font-size: 18px;
+      line-height: 150%;
+    }
   }
 }
