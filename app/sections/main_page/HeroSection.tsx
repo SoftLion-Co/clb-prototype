@@ -6,29 +6,30 @@ import Image from "next/image";
 import HeroImage from "@/images/hero_video/photo1080.webp";
 import { useTranslations } from "next-intl";
 import { useNetwork, useOs } from "@mantine/hooks";
+import useHeroVideo from "@/hooks/useHeroVideo";
 
 function HeroSection() {
   const [shouldRenderPhoto, setShouldRenderPhoto] = useState(true);
   const { online, effectiveType } = useNetwork();
   const os = useOs();
+  const heroVideo = useHeroVideo();
 
   const t = useTranslations("homePage");
   const t1 = useTranslations("components");
 
-  // useEffect to handle logic for rendering photo or video based on network and OS conditions
   useEffect(() => {
     // Detect if the user agent is Safari
     const isSafari = navigator.userAgent.indexOf("Safari") > -1;
-
     // Determine whether to render the photo or video based on network speed, online status, OS, and Safari browser
     const shouldRender =
-      !online ||
+      !heroVideo.videoWEBM ||
+      !heroVideo.videoMP4 ||
       effectiveType === "slow-2g" ||
       effectiveType === "2g" ||
       (os === "macos" && isSafari);
 
     setShouldRenderPhoto(shouldRender);
-  }, [online, effectiveType, os]);
+  }, [online, effectiveType, os, heroVideo.videoWEBM, heroVideo.videoMP4]);
 
   return (
     <section className={s.box}>
@@ -52,15 +53,10 @@ function HeroSection() {
             playsInline
             loop
             muted
+            style={{ backgroundImage: `url(${HeroImage})` }}
           >
-            <source
-              src={require("@/images/hero_video/video1080.webm")}
-              type="video/webm"
-            />
-            <source
-              src={require("@/images/hero_video/video1080.mp4")}
-              type="video/mp4"
-            />
+            <source src={heroVideo.videoWEBM} type="video/webm" />
+            <source src={heroVideo.videoMP4} type="video/mp4" />
           </video>
         )}
         <div className={s.hero__content}>
