@@ -20,7 +20,7 @@ interface TeamMember {
 }
 
 interface OurTeamSectionProps {
-  teamMembers: TeamMember[];
+  teamMembers?: TeamMember[];
 }
 
 interface ArrowProps {
@@ -44,12 +44,11 @@ const OurTeamSection: React.FC<OurTeamSectionProps> = ({ teamMembers }) => {
   const { team, loading, error } = useOurTeamData();
   const reversedTeam = [...team].reverse();
 
-  const [scrollProgress, setScrollProgress] = useState(0);
-  const [embla, setEmbla] = useState<Embla | null>(null);
+  const [embla] = useState<Embla | null>(null);
 
   const handleScroll = useCallback(() => {
     if (!embla) return;
-  }, [embla, setScrollProgress]);
+  }, [embla]);
 
   useEffect(() => {
     if (embla) {
@@ -97,14 +96,29 @@ const OurTeamSection: React.FC<OurTeamSectionProps> = ({ teamMembers }) => {
                 control: s.team__control,
                 controls: s.team__controls,
               }}
-              height={400}
+              height="100%"
               slideSize="25%"
               slideGap="md"
               loop
               align="start"
               slidesToScroll={1}
-              previousControlIcon={<NextArrow className={s.arrow} />}
-              nextControlIcon={<PrevArrow className={s.arrow} />}
+              previousControlIcon={<NextArrow className={s.team__arrow} />}
+              nextControlIcon={<PrevArrow className={s.team__arrow} />}
+              breakpoints={[
+                {
+                  maxWidth: 767.98,
+                  slideSize: "100%",
+                },
+                {
+                  minWidth: 768,
+                  maxWidth: 1280,
+                  slideSize: "50%",
+                },
+                {
+                  minWidth: 1280,
+                  slideSize: "25%",
+                },
+              ]}
             >
               {reversedTeam.map((teamMember) => (
                 <Carousel.Slide key={teamMember.id}>
