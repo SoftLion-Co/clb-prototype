@@ -10,7 +10,11 @@
 .background {
   padding: 90px 0;
   background-color: #f6f6f6;
-  border-radius: 24px;
+  border-radius: 16px;
+
+  @media screen and (min-width: 1280px) {
+    border-radius: 24px;
+  }
 }
 
 .container {
