@@ -11,21 +11,24 @@ const Export = () => {
   const t1 = useTranslations("exportConsulting.whyChoose");
   return (
     <div className={s.export}>
-      <div className={s.container}>
-        <PageTitleComponent
-          title={t("exportConsultingTitle")}
-          text={t("exportConsultingSubtitle")}
-          className={s.export__title}
-        />
-        <ThreeCardsComponent
-          imagePosition={1}
-          smallText={t("heroSmallText")}
-          bigText={t("heroBigText")}
-          imageSrc="exportConsulting"
-        />
-        <KeyServices />
-        <WhyChoose text1={t1("text1")} text2={t1("text2")} text3={t1("text3")}/>
+      <div className={s.box}>
+        <div className={s.background}>
+          <PageTitleComponent
+            title={t("exportConsultingTitle")}
+            text={t("exportConsultingSubtitle")}
+            className={s.export__title}
+          />
+          <ThreeCardsComponent
+            imagePosition={1}
+            smallText={t("heroSmallText")}
+            bigText={t("heroBigText")}
+            imageSrc="exportConsulting"
+          />
+        </div>
       </div>
+
+      <KeyServices />
+      <WhyChoose text1={t1("text1")} text2={t1("text2")} text3={t1("text3")} />
       <ContactUsSection />
     </div>
   );

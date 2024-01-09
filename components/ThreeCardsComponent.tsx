@@ -6,6 +6,7 @@ import executionImage from "@/images/home-hero-test.png";
 import exportConsultingImage from "@/images/home-hero-test.png";
 import freightBrokerageImage from "@/images/home-hero-test.png";
 import ourStoryImage from "@/images/home-hero-test.png";
+import classNames from "classnames";
 
 const images = {
   execution: executionImage,
@@ -19,7 +20,8 @@ interface ThreeCardsProps {
   smallText: string;
   imageSrc?: "execution" | "exportConsulting" | "freightBrokerage" | "ourStory";
   imagePosition?: 1 | 2 | 3;
-  color?: "blue" | "green"; 
+  color?: "blue" | "green";
+  className?: string;
 }
 
 const ThreeCardsComponent: FC<ThreeCardsProps> = ({
@@ -28,6 +30,7 @@ const ThreeCardsComponent: FC<ThreeCardsProps> = ({
   imageSrc = "execution",
   imagePosition = 1,
   color = "green",
+  className,
 }) => {
   const selectedImage = images[imageSrc];
 
@@ -37,10 +40,10 @@ const ThreeCardsComponent: FC<ThreeCardsProps> = ({
   };
 
   return (
-    <div className={s.cards} >
+    <div className={classNames(s.cards, s.container, className)}>
       {imagePosition === 1 ? (
         <>
-          <div className={s.cards__card_image}>
+          <div className={s.cards__image}>
             <Image
               src={selectedImage}
               alt="Card Image"
@@ -59,9 +62,11 @@ const ThreeCardsComponent: FC<ThreeCardsProps> = ({
       ) : imagePosition === 2 ? (
         <>
           <div className={s.cards__card} style={cardStyle}>
-            <h2 className={s.cards__large_text}>{bigText}</h2>
+            <h2 className={classNames(s.cards__large_text, s.tabletCard)}>
+              {bigText}
+            </h2>
           </div>
-          <div className={s.cards__card_image}>
+          <div className={classNames(s.cards__image, s.tabletImage)}>
             <Image
               src={selectedImage}
               alt="Card Image"
@@ -70,7 +75,10 @@ const ThreeCardsComponent: FC<ThreeCardsProps> = ({
               height={1400}
             />
           </div>
-          <div className={s.cards__card} style={cardStyle}>
+          <div
+            className={classNames(s.cards__card, s.tabletCard)}
+            style={cardStyle}
+          >
             <p className={s.cards__small_text}>{smallText}</p>
           </div>
         </>
@@ -82,7 +90,7 @@ const ThreeCardsComponent: FC<ThreeCardsProps> = ({
           <div className={s.cards__card} style={cardStyle}>
             <p className={s.cards__small_text}>{smallText}</p>
           </div>
-          <div className={s.cards__card_image}>
+          <div className={s.cards__image}>
             <Image
               src={selectedImage}
               alt="Card Image"

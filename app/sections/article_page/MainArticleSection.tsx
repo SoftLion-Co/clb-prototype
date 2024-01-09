@@ -3,6 +3,7 @@ import classNames from "classnames";
 import s from "./MainArticleSection.module.scss";
 import Image from "next/image";
 import ImageAndTextCardsComponent from "@/components/ImageAndTextCardsComponent";
+import SocialLinksSection from "@/app/sections/article_page/SocialLinksSection";
 import useLocale from "@/hooks/useLocale";
 import useDateFormat from "@/hooks/useDateFormat";
 
@@ -60,45 +61,49 @@ const MainArticleSection = (data: Data) => {
   const formattedDate = useDateFormat(data.data.acf.date, locale);
 
   return (
-    <section className={s.article}>
-      <h1 className={classNames(s.h1Default, s.article__title)}>
-        {data.data.acf[`heading_${locale}` as keyof Acf]}
-      </h1>
-      <p className={classNames(s.pDefault, s.article__date)}>{formattedDate}</p>
-      <div className={s.article__content}>
-        <div className={s.image__container}>
-          <Image
-            src={data.data.acf.mainimage}
-            alt={data.data.acf[`heading_${locale}` as keyof Acf]}
-            className={s.image}
-            width={1440}
-            height={649}
-          />
+    <section className={s.box}>
+      <div className={s.background}>
+        <div className={classNames(s.container, s.article)}>
+          <h1 className={classNames(s.h1Default, s.article__title)}>
+            {data.data.acf[`heading_${locale}` as keyof Acf]}
+          </h1>
+          <p className={classNames(s.pDefault, s.article__date)}>
+            {formattedDate}
+          </p>
+          <div className={s.article__content}>
+            <div className={s.image__container}>
+              <Image
+                src={data.data.acf.mainimage}
+                alt={data.data.acf[`heading_${locale}` as keyof Acf]}
+                className={s.image}
+                width={1440}
+                height={649}
+              />
+            </div>
+            <p className={s.article__text}>
+              {data.data.acf[`text1_${locale}` as keyof Acf]}
+            </p>
+            <h2 className={s.article__subheading}>
+              {data.data.acf[`subheading1_${locale}` as keyof Acf]}
+            </h2>
+            <p className={s.article__text}>
+              {data.data.acf[`text2_${locale}` as keyof Acf]}
+            </p>
+            <ImageAndTextCardsComponent
+              text={data.data.acf[`quote_${locale}` as keyof Acf]}
+              image={data.data.acf.secondimage}
+              alt={data.data.acf[`heading_${locale}` as keyof Acf]}
+              color="blue"
+            />
+            <h2 className={s.article__subheading}>
+              {data.data.acf[`subheadings_${locale}` as keyof Acf]}
+            </h2>
+            <p className={s.article__text}>
+              {data.data.acf[`text3_${locale}` as keyof Acf]}
+            </p>
+          </div>
+          <SocialLinksSection />
         </div>
-        <p className={s.article__text}>
-          {" "}
-          {data.data.acf[`text1_${locale}` as keyof Acf]}
-        </p>
-        <h2 className={s.article__subheading}>
-          {" "}
-          {data.data.acf[`subheading1_${locale}` as keyof Acf]}
-        </h2>
-        <p className={s.article__text}>
-          {" "}
-          {data.data.acf[`text2_${locale}` as keyof Acf]}
-        </p>
-        <ImageAndTextCardsComponent
-          text={data.data.acf[`quote_${locale}` as keyof Acf]}
-          image={data.data.acf.secondimage}
-          alt={data.data.acf[`heading_${locale}` as keyof Acf]}
-          color="blue"
-        />
-        <h2 className={s.article__subheading}>
-          {data.data.acf[`subheadings_${locale}` as keyof Acf]}
-        </h2>
-        <p className={s.article__text}>
-          {data.data.acf[`text3_${locale}` as keyof Acf]}
-        </p>
       </div>
     </section>
   );

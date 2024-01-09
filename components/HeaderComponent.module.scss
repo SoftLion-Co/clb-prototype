@@ -3,19 +3,24 @@
 
 .header {
   width: 100%;
-  padding: 24px 20px 0 20px;
+  padding: 16px 16px 0 16px;
   position: relative;
+
+  @media screen and (min-width: 1280px) {
+    padding: 24px 24px 0 24px;
+  }
 
   &__box {
     display: flex;
     align-items: center;
     justify-content: space-between;
     background: #ffffff;
-    border-radius: 24px;
+    border-radius: 16px;
     padding: 9px 16px;
 
     @include for-size(laptop) {
       padding: 20px 76px;
+      border-radius: 24px;
     }
   }
 
@@ -245,13 +250,13 @@
   height: 100%;
   width: 100%;
   z-index: 100;
-  padding: 0 36px;
+  padding: 0 32px;
 
   &__contents {
     display: flex;
     justify-content: space-between;
     width: 100%;
-    margin-top: 34px;
+    margin-top: 25px;
   }
 
   &__container {

@@ -1,10 +1,12 @@
 @import "./../../style//container";
 
 .blog__container {
-  display: flex;
+  justify-content: space-between;
+  display: grid;
   gap: 1.5rem;
   grid-template-columns: repeat(auto-fit, minmax(304px, 1fr));
   grid-template-rows: repeat(auto-fit, max(464px, 1fr));
+  height: 100%;
 }
 
 .blog {
@@ -32,7 +34,6 @@
 
   &__title {
     color: #2a4563;
-    max-width: 412px;
     font-size: 24px;
     font-weight: 700;
     line-height: 150%;

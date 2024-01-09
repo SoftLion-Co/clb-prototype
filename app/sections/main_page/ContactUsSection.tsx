@@ -1,12 +1,12 @@
 "use client";
 
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent, useState, useEffect } from "react";
 import s from "./ContactUsSection.module.scss";
 import MainTitleComponent from "@/components/MainTitleComponent";
+import MainButtonComponent from "@/components/MainButtonComponent";
 import Image from "next/image";
 import Picture from "@/images/home-hero-test.png";
 import classNames from "classnames";
-import Question from "@/images/vectors/question.svg";
 import useVacancies from "@/hooks/useVacancies";
 import InputField from "@/components/form/InputField";
 import { useTranslations } from "next-intl";
@@ -27,6 +27,8 @@ interface FormData {
 
 const ContactUsSection = ({ cv }: { cv?: boolean }) => {
   const locale = useLocale();
+
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const t = useTranslations("homePage.contactUs");
 
@@ -72,18 +74,38 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
   });
 
   const handleInputChange = (
-    e: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLLIElement>
   ) => {
-    const { name, value, type } = e.target;
+    const { name, value } = e.target as HTMLInputElement | HTMLTextAreaElement;
 
     setFormData((prevData) => ({
       ...prevData,
-      [name]:
-        type === "file"
-          ? (e.target as HTMLInputElement).files?.[0] || null
-          : value,
+      [name]: value,
     }));
   };
+
+  const handleDropdownClick = (value: string) => {
+    setFormData((prevData) => ({
+      ...prevData,
+      vacancy: value,
+    }));
+    setIsDropdownOpen(false);
+  };
+
+  useEffect(() => {
+    const handleOutsideClick = (e: MouseEvent) => {
+      const dropdown = document.querySelector(`.${s.dropdown}`);
+      if (dropdown && !dropdown.contains(e.target as Node)) {
+        setIsDropdownOpen(false);
+      }
+    };
+
+    document.addEventListener("click", handleOutsideClick);
+
+    return () => {
+      document.removeEventListener("click", handleOutsideClick);
+    };
+  }, []);
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
@@ -132,11 +154,11 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
 
   return (
     <section className={s.box}>
-      <div className={s.contact}>
-        <div className={s.container}>
-          <MainTitleComponent
-            title={cv ? t("letsWorkWithUS") : t("contactUsHeading")}
-          />
+      <div className={s.background}>
+        <MainTitleComponent
+          title={cv ? t("letsWorkWithUS") : t("contactUsHeading")}
+        />
+        <div className={classNames(s.container, s.form__container)}>
           <form className={s.form} onSubmit={handleSubmit}>
             <div className={s.form__content}>
               <div className={s.form__box}>
@@ -151,66 +173,62 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
                       onChange={handleInputChange}
                     />
                   ))}
-                  {!cv ? (
-                    <div className={s.form__group}>
-                      <label className={s.form__label}>
-                        {t("topicOfEnquiry")}
-                      </label>
-                      <select
-                        name="subject"
-                        value={formData.subject}
-                        onChange={handleInputChange}
-                        className={s.form__input}
+                  <div className={s.form__group}>
+                    <div
+                      className={s.dropdown}
+                      onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                    >
+                      {cv ? (
+                        <p className={s.form__input}>
+                          {formData.vacancy || t("appliedVacancy")}
+                        </p>
+                      ) : (
+                        <p className={s.form__input}>
+                          {formData.subject || t("topicOfEnquiry")}
+                        </p>
+                      )}
+                      <ul
+                        className={s.dropdown__list}
+                        style={{ display: isDropdownOpen ? " " : "none" }}
                       >
-                        {translatedTopics.map((topic) => (
-                          <option key={topic} value={topic}>
-                            {topic || t(`topics.selectTopic`)}
-                          </option>
-                        ))}
-                      </select>
+                        {cv
+                          ? vacancies.map((vacancy) => (
+                              <li
+                                key={vacancy.id}
+                                onClick={() => {
+                                  handleDropdownClick(
+                                    (vacancy.acf as any)[`vacancies_${locale}`]
+                                  );
+                                  setIsDropdownOpen(false);
+                                }}
+                              >
+                                {(vacancy.acf as any)[`vacancies_${locale}`]}
+                              </li>
+                            ))
+                          : translatedTopics.map((topic) => (
+                              <li
+                                key={topic}
+                                onClick={(e) => {
+                                  handleInputChange({
+                                    target: { name: "subject", value: topic },
+                                  } as React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>);
+                                  setIsDropdownOpen(false);
+                                }}
+                              >
+                                {topic || t(`topics.selectTopic`)}
+                              </li>
+                            ))}
+                      </ul>
                     </div>
-                  ) : (
-                    <div className={s.form__group}>
-                      <label className={s.form__label}>
-                        {t("appliedVacancy")}
-                      </label>
-                      <select
-                        name="vacancy"
-                        value={formData.vacancy}
-                        onChange={handleInputChange}
-                        className={s.form__input}
-                      >
-                        {vacancies.map((vacancy) => (
-                          <option
-                            key={vacancy.id}
-                            value={(vacancy.acf as any)[`vacancies_${locale}`]}
-                          >
-                            {(vacancy.acf as any)[`vacancies_${locale}`]}
-                          </option>
-                        ))}
-                      </select>
-                    </div>
-                  )}
+                  </div>
                 </div>
                 {!cv ? (
                   <div className={s.form__textarea}>
-                    <div
-                      className={classNames(
-                        s.form__textarea_box,
-                        s.form__label
-                      )}
-                    >
-                      <label htmlFor="message">{t("yourMessage")}</label>
-                      <Image
-                        src={Question}
-                        alt="Question"
-                        title="Enter a short description of your offers"
-                      />
-                    </div>
                     <textarea
                       className={s.form__message}
                       id="message"
                       name="message"
+                      placeholder={t("yourMessage")}
                       value={formData.message}
                       onChange={handleInputChange}
                     ></textarea>
@@ -227,18 +245,17 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
                   </div>
                 )}
               </div>
-              <div>
-                <Image
-                  className={s.form__picture}
-                  src={Picture}
-                  alt="Picture"
-                />
-              </div>
             </div>
-            <button type="submit" className={s.form__button}>
-              {cv ? t("submitButton") : t("contactUsButton")}
-            </button>
+
+            <MainButtonComponent
+              text={cv ? t("submitButton") : t("contactUsButton")}
+              padding="8px 8px 8px 16px"
+              customGap="16px"
+              rotatedArrow={true}
+            />
           </form>
+
+          <Image className={s.form__picture} src={Picture} alt="Picture" />
         </div>
       </div>
     </section>

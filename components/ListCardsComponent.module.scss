@@ -1,21 +1,21 @@
 @import "@/style/colors";
+@import "/style/container";
 
 .cards {
   display: grid;
   gap: 1.5rem;
   grid-template-columns: repeat(auto-fit, minmax(304px, 1fr));
-  margin-bottom: 140px;
 }
 
 .card {
-    background-color: $backgroundColorGreen;
-    border-radius: 32px;
-    padding: 48px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    
+  background-color: $backgroundColorGreen;
+  border-radius: 32px;
+  padding: 48px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+
   &__title {
     font-size: 28px;
     font-weight: 500;
@@ -30,13 +30,13 @@
     color: $blackTextColor;
   }
 
-  &__list{
+  &__list {
     display: flex;
     flex-direction: column;
     gap: 16px;
   }
 
-  &__image{
+  &__image {
     width: 75px;
     height: 80px;
     object-fit: contain;

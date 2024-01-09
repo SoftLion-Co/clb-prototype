@@ -1,24 +1,26 @@
 @import "@/style/colors";
+@import "@/style/container";
 
 .hero {
   display: grid;
   gap: 8.938em;
   grid-template-columns: 1fr 1.2fr;
-  margin-bottom: 140px;
 
+  &__title {
+    margin-bottom: 140px;
+  }
 
-  &__texts{
+  &__texts {
     max-width: 586px;
   }
 
-  &__heading{
+  &__heading {
     font-size: 47px;
     font-weight: 600;
     line-height: 150%;
     color: $blackTextColor;
     margin-bottom: 78px;
     margin-top: 25px;
-    
   }
 
   &__text {
