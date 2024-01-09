@@ -111,8 +111,13 @@ const OurTeamSection: React.FC<OurTeamSectionProps> = ({ teamMembers }) => {
                 },
                 {
                   minWidth: 768,
-                  maxWidth: 1280,
+                  maxWidth: 990,
                   slideSize: "50%",
+                },
+                {
+                  minWidth: 990,
+                  maxWidth: 1280,
+                  slideSize: "33.333%",
                 },
                 {
                   minWidth: 1280,
