@@ -1,14 +1,35 @@
 @import "@/style/colors";
+@import "@/style/viewports";
 
 .services {
   display: grid;
   gap: 1.5rem;
-  grid-template-columns: repeat(auto-fit, minmax(404px, 1fr));
+  grid-template-columns: 1fr;
+  grid-auto-rows: 1fr;
+
+  @include for-size(tablet) {
+    grid-template-columns: 1fr 1fr;
+  }
+  @include for-size(laptop) {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  @include for-size(phone) {
+    & :nth-child(5) {
+      order: 4;
+    }
+    & :nth-child(4) {
+      order: 5;
+    }
+    & :nth-child(6) {
+      order: 6;
+    }
+  }
 }
 
 .card {
-  border-radius: 32px;
-  padding: 48px 52px;
+  border-radius: 24px;
+  padding: 32px 20.5px 40px 20.5px;
   background-color: $additionalBackgroundColor;
   display: flex;
   flex-direction: column;
@@ -16,27 +37,60 @@
   text-align: center;
   color: $backgroundColorDarkBlue;
 
+  @include for-size(tablet) {
+    padding: 40px 32px;
+  }
+
+  @include for-size(laptop) {
+    padding: 44px 44px;
+  }
+
+  @include for-size(desktop) {
+    border-radius: 32px;
+    padding: 48px 52px;
+  }
+
   &.cardWithBorder {
-    border: 2px solid #2A4563;
+    border: 2px solid #2a4563;
   }
 
   &__title {
     width: 100%;
-    font-size: 30px;
     font-weight: 600;
-    line-height: 150%;
-    margin-bottom: 28px;
+    font-size: 20px;
+    line-height: 130%;
+    margin-bottom: 32px;
+
+    @include for-size(tablet) {
+      font-size: 24px;
+    }
+
+    @include for-size(laptop) {
+      font-size: 28px;
+      line-height: 150%;
+      margin-bottom: 28px;
+    }
+
+    @include for-size(desktop) {
+      font-size: 30px;
+    }
   }
 
   &__text {
-    font-size: 24px;
-    line-height: 150%;
-  }
+    font-size: 18px;
+    line-height: 130%;
 
-  &__image {
-    height: 100%;
-    width: 100%;
-    object-fit: cover;
-    border-radius: 32px;
+    @include for-size(tablet) {
+      font-size: 20px;
+    }
+
+    @include for-size(laptop) {
+      font-size: 22px;
+      line-height: 150%;
+    }
+
+    @include for-size(desktop) {
+      font-size: 24px;
+    }
   }
 }
