@@ -19,17 +19,20 @@ function HeroSection() {
 
   useEffect(() => {
     // Detect if the user agent is Safari
-    const isSafari = navigator.userAgent.indexOf("Safari") > -1;
+    const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+
     // Determine whether to render the photo or video based on network speed, online status, OS, and Safari browser
     const shouldRender =
       !heroVideo.videoWEBM ||
       !heroVideo.videoMP4 ||
+      !heroVideo.heroPhoto ||
       effectiveType === "slow-2g" ||
       effectiveType === "2g" ||
       (os === "macos" && isSafari);
 
     setShouldRenderPhoto(shouldRender);
-  }, [online, effectiveType, os, heroVideo.videoWEBM, heroVideo.videoMP4]);
+  }, [online, effectiveType, os, heroVideo.heroPhoto, heroVideo.videoWEBM, heroVideo.videoMP4]);
+  console.log("heroVideo.heroPhoto:", heroVideo.heroPhoto);
 
   return (
     <section className={s.box}>
@@ -37,7 +40,7 @@ function HeroSection() {
         {shouldRenderPhoto ? (
           <Image
             className={s.hero__video}
-            src={HeroImage}
+            src={heroVideo.heroPhoto}
             alt="Hero Image"
             width={2000}
             height={2000}
@@ -53,7 +56,6 @@ function HeroSection() {
             playsInline
             loop
             muted
-            style={{ backgroundImage: `url(${HeroImage})` }}
           >
             <source src={heroVideo.videoWEBM} type="video/webm" />
             <source src={heroVideo.videoMP4} type="video/mp4" />
