@@ -258,7 +258,7 @@ const HeaderComponent = () => {
             height={20}
           />
         </Link>
-        <p>{selectedCountry.name}</p>
+        <p className={s.flag__name}>{selectedCountry.name}</p>
 
         <span
           className={classNames(s.arrow, {
