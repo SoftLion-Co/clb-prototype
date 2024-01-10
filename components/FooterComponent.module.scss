@@ -1,11 +1,12 @@
 @import "./../style/container";
 @import "./../style//font_default";
+@import "./../style/viewports";
 
 .box {
   width: 100%;
   padding: 0 16px 16px 16px;
 
-  @media screen and (min-width: 1280px) {
+  @include for-size(laptop) {
     padding: 0 24px 24px 24px;
   }
 }
@@ -16,15 +17,21 @@
   background-color: #ffffff;
   border-radius: 16px;
 
-  @media screen and (min-width: 1280px) {
+  @include for-size(laptop) {
+    padding: 50px 24px;
+    border-radius: 24px;
+  }
+
+  @include for-size(desktop) {
     padding: 50px 76px;
     border-radius: 24px;
   }
 
   &__container {
     display: grid;
-    gap: 40px;
-    @media screen and (min-width: 1280px) {
+    gap: 30px;
+
+    @include for-size(laptop) {
       display: flex;
       justify-content: space-between;
       align-items: flex-end;
@@ -36,8 +43,9 @@
     flex-direction: column;
     align-items: center;
     gap: 24px;
-    @media screen and (min-width: 1280px) {
-      gap: 78px;
+
+    @include for-size(laptop) {
+      gap: 72px;
     }
   }
 
@@ -46,12 +54,23 @@
     gap: 24px;
   }
 
+  &__icon {
+    width: 24px;
+    height: 24px;
+
+    @include for-size(laptop) {
+      width: 36px;
+      height: 36px;
+    }
+  }
+
   &__box {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 40px;
-    @media screen and (min-width: 1280px) {
+
+    @include for-size(laptop) {
       align-items: flex-end;
       gap: 78px;
     }
@@ -62,19 +81,32 @@
     display: grid;
     gap: 8px;
 
-    @media screen and (min-width: 1280px) {
+    @include for-size(laptop) {
       display: flex;
       justify-content: flex-start;
-      gap: 5rem;
-      grid-template-columns: repeat(auto-fit, minmax(304px, 1fr));
-      grid-template-rows: repeat(auto-fit, max(464px, 1fr));
+      gap: 30px;
+    }
+
+    @include for-size(desktop) {
+      display: flex;
+      justify-content: flex-start;
+      gap: 80px;
     }
   }
 
   &__list {
     display: grid;
     gap: 8px;
-    @media screen and (min-width: 1280px) {
+
+    &:nth-child(2) {
+      margin-bottom: 16px;
+
+      @include for-size(laptop) {
+        margin-bottom: 0;
+      }
+    }
+
+    @include for-size(laptop) {
       display: flex;
       flex-direction: column;
       align-items: flex-start;
@@ -87,10 +119,12 @@
     font-size: 18px;
     font-weight: 400;
     line-height: 150%;
-    @media screen and (min-width: 1280px) {
-      font-size: 18px;
+
+    @include for-size(laptop) {
+      font-size: 20px;
     }
-    @media screen and (min-width: 1920px) {
+
+    @include for-size(desktop) {
       font-size: 24px;
     }
   }
@@ -98,11 +132,10 @@
   &__copyright {
     color: #2a4563;
     font-size: 16px;
-    font-weight: 400;
     line-height: 130%;
     text-align: center;
 
-    @media screen and (min-width: 1280px) {
+    @include for-size(laptop) {
       font-size: 18px;
       line-height: 150%;
     }
