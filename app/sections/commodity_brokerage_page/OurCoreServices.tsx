@@ -16,6 +16,7 @@ function OurCoreServices() {
             className={s.services__title}
             left
             color="blue"
+            mobileLeft
           />
           <OurCoreServicesComponent />
         </div>

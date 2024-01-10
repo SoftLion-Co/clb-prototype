@@ -19,7 +19,7 @@ const Freight = () => {
             className={s.freight__title}
           />
           <ThreeCardsComponent
-            className={s.freight__cards}
+            className={classNames(s.container, s.freight__cards)}
             imagePosition={3}
             smallText={t("heroSmallText")}
             bigText={t("heroBigText")}
