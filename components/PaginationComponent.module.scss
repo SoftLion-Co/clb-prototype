@@ -9,7 +9,7 @@
   line-height: 150%;
   list-style: none;
   display: flex;
-  gap: 36px;
+  gap: 266px;
   justify-content: center;
   align-items: center;
 
@@ -29,12 +29,12 @@
   }
 
   &__arrow_previous {
-    margin-right: 136px;
+    // margin-right: 136px;
     transform: scaleX(-1);
   }
 
   &__arrow_next {
-    margin-left: 136px;
+    // margin-left: 136px;
   }
 
   &__arrow_image {

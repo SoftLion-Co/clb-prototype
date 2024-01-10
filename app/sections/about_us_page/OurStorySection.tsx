@@ -12,7 +12,7 @@ const OurStorySection = () => {
     <section className={s.box}>
       <div className={s.background}>
         <div className={s.container}>
-          <MainTitleComponent title={t("heading")} color="black" left />
+          <MainTitleComponent title={t("heading")} color="black" left  mobileLeft/>
           <ThreeCardsComponent
             imagePosition={3}
             imageSrc="ourStory"

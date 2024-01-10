@@ -9,6 +9,7 @@ interface MainTitleProps {
   className?: string;
   color?: "black" | "blue" | "green";
   left?: boolean;
+  mobileLeft?: boolean;
 }
 
 const MainTitleComponent: React.FC<MainTitleProps> = ({
@@ -16,6 +17,7 @@ const MainTitleComponent: React.FC<MainTitleProps> = ({
   className,
   color = "green",
   left = false,
+  mobileLeft = false,
 }) => {
   const titleColor = {
     black: "#171717",
@@ -24,8 +26,8 @@ const MainTitleComponent: React.FC<MainTitleProps> = ({
   }[color];
 
   return (
-    <div className={classNames(s.main, className, { [s.left]: left })}>
-      <Image src={image} alt="" width={44} height={67} />
+    <div className={classNames(s.main, className, { [s.left]: left, [s.mobileLeft]: mobileLeft })}>
+      <Image className={s.main__image} src={image} alt="" width={44} height={67} />
       <h2 className={s.main__title} style={{ color: titleColor }}>
         {title}
       </h2>

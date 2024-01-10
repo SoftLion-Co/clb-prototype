@@ -23,6 +23,7 @@ const Export = () => {
             smallText={t("heroSmallText")}
             bigText={t("heroBigText")}
             imageSrc="exportConsulting"
+            className={s.container}
           />
         </div>
       </div>

@@ -22,6 +22,7 @@ interface ThreeCardsProps {
   imagePosition?: 1 | 2 | 3;
   color?: "blue" | "green";
   className?: string;
+  container?: boolean;
 }
 
 const ThreeCardsComponent: FC<ThreeCardsProps> = ({
@@ -39,70 +40,40 @@ const ThreeCardsComponent: FC<ThreeCardsProps> = ({
     color: color === "blue" ? "#2A4563" : "#565F51",
   };
 
-  return (
-    <div className={classNames(s.cards, s.container, className)}>
-      {imagePosition === 1 ? (
-        <>
-          <div className={s.cards__image}>
-            <Image
-              src={selectedImage}
-              alt="Card Image"
-              className={s.cards__image}
-              width={1400}
-              height={1400}
-            />
-          </div>
-          <div className={s.cards__card} style={cardStyle}>
-            <h2 className={s.cards__large_text}>{bigText}</h2>
-          </div>
-          <div className={s.cards__card} style={cardStyle}>
-            <p className={s.cards__small_text}>{smallText}</p>
-          </div>
-        </>
-      ) : imagePosition === 2 ? (
-        <>
-          <div className={s.cards__card} style={cardStyle}>
-            <h2 className={classNames(s.cards__large_text, s.tabletCard)}>
-              {bigText}
-            </h2>
-          </div>
-          <div className={classNames(s.cards__image, s.tabletImage)}>
-            <Image
-              src={selectedImage}
-              alt="Card Image"
-              className={s.cards__image}
-              width={1400}
-              height={1400}
-            />
-          </div>
-          <div
-            className={classNames(s.cards__card, s.tabletCard)}
-            style={cardStyle}
-          >
-            <p className={s.cards__small_text}>{smallText}</p>
-          </div>
-        </>
-      ) : (
-        <>
-          <div className={s.cards__card} style={cardStyle}>
-            <h2 className={s.cards__large_text}>{bigText}</h2>
-          </div>
-          <div className={s.cards__card} style={cardStyle}>
-            <p className={s.cards__small_text}>{smallText}</p>
-          </div>
-          <div className={s.cards__image}>
-            <Image
-              src={selectedImage}
-              alt="Card Image"
-              className={s.cards__image}
-              width={1400}
-              height={1400}
-            />
-          </div>
-        </>
-      )}
+  const image = (
+    <div className={s.cards__image}>
+      <Image
+        src={selectedImage}
+        alt="Card Image"
+        className={s.cards__image}
+        width={1400}
+        height={1400}
+      />
     </div>
   );
+
+  return (
+    <div className={classNames(s.cards, className)}>
+      {imagePosition === 1 && image}
+      <div className={classNames(s.cards__card, {
+          [s.tabletCard]: imagePosition === 2,
+        })}
+        style={cardStyle}
+      >
+        <h2 className={s.cards__large_text}>{bigText}</h2>
+      </div>
+      {imagePosition === 2 && (
+        <div className={classNames(s.cards__image, s.tabletImage)}>
+          {image}
+        </div>
+      )}
+      <div className={s.cards__card} style={cardStyle}>
+        <p className={s.cards__small_text}>{smallText}</p>
+      </div>
+      {imagePosition === 3 && image}
+    </div>
+  );
+  
 };
 
 export default ThreeCardsComponent;
