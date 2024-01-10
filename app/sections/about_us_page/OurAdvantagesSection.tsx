@@ -41,7 +41,7 @@ const OurAdvantagesSection = () => {
           <MainTitleComponent title={t("ourAdvantagesTitle")} color="blue" />
           <div className={s.advantages__cards}>
             {advantagesProps.map((advantage, index) => (
-              <OurAdvantagesCardComponent advantages={advantage} key={index} />
+              <OurAdvantagesCardComponent advantages={advantage} key={index} backgroundColor=""/>
             ))}
           </div>
         </div>
