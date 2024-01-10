@@ -1,10 +1,20 @@
 @import "@/style/container";
+@import "@/style/viewports";
 
 .partners {
   &__wrapper {
     display: grid;
-    gap: 1.5rem;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 10px;
+    grid-template-columns: repeat(auto-fit, minmax(65px, 1fr));
+
+    @include for-size(tablet) {
+      gap: 18px;
+      grid-template-columns: repeat(auto-fit, minmax(145px, 1fr));
+    }
+    @include for-size(desktop) {
+      gap: 24px;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    }
   }
 
   &__image {
@@ -13,12 +23,25 @@
   }
 
   &__image_container {
-    padding: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
     transition: all 500ms;
-    height: 220px;
+    height: 70px;
+    width: 70px;
+    padding: 3px;
+
+    
+    @include for-size(tablet) {
+      padding: 7px;
+      height: 145px;
+      width: 145px;
+    }
+    @include for-size(desktop) {
+      padding: 10px;
+      height: 220px;
+      width: 220px;
+    }
   }
 }
