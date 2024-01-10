@@ -3,22 +3,72 @@
 .main {
   display: flex;
   justify-content: center;
-  gap: 24px;
   align-items: baseline;
   margin-bottom: 40px;
+  gap: 16px;
+
+  @include for-size(tablet) {
+    margin-bottom: 60px;
+    gap: 17px;
+  }
 
   @include for-size(laptop) {
+    margin-bottom: 80px;
+    gap: 21px;
+  }
+
+  @include for-size(desktop) {
     margin-bottom: 100px;
+    gap: 24px;
   }
 
   &.left {
+    @include for-size(tablet) {
+      justify-content: flex-start;
+    }
+  }
+
+  &.mobileLeft {
     justify-content: flex-start;
   }
 
   &__title {
     text-transform: capitalize;
-    font-size: 47px;
     font-weight: 600;
-    line-height: 150%;
+    font-size: 26px;
+    line-height: 130%;
+
+    @include for-size(tablet) {
+      font-size: 38px;
+    }
+
+    @include for-size(laptop) {
+      font-size: 40px;
+      line-height: 150%;
+    }
+
+    @include for-size(desktop) {
+      font-size: 47px;
+    }
+  }
+
+  &__image {
+    width: 27px;
+    height: 40px;
+
+    @include for-size(tablet) {
+      width: 32px;
+      height: 48px;
+    }
+
+    @include for-size(laptop) {
+      width: 40px;
+      height: 56px;
+    }
+
+    @include for-size(desktop) {
+      width: 44px;
+      height: 67px;
+    }
   }
 }

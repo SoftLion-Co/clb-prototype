@@ -22,6 +22,7 @@ interface ThreeCardsProps {
   imagePosition?: 1 | 2 | 3;
   color?: "blue" | "green";
   className?: string;
+  container?: boolean;
 }
 
 const ThreeCardsComponent: FC<ThreeCardsProps> = ({
@@ -40,7 +41,7 @@ const ThreeCardsComponent: FC<ThreeCardsProps> = ({
   };
 
   return (
-    <div className={classNames(s.cards, s.container, className)}>
+    <div className={classNames(s.cards, className)}>
       {imagePosition === 1 ? (
         <>
           <div className={s.cards__image}>

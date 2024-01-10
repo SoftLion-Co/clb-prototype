@@ -20,7 +20,7 @@ const Execution = () => {
             className={s.execution__title}
           />
           <ThreeCardsComponent
-            className={s.execution__cards}
+            className={classNames(s.container, s.execution__cards)}
             imagePosition={2}
             smallText={t("heroSmallText")}
             bigText={t("heroBigText")}

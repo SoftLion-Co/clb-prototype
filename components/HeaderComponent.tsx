@@ -222,7 +222,7 @@ const HeaderComponent = () => {
               {item.type === "services" && isServicesMenuOpen && (
                 <ul className={s.header__dropdown}>
                   {servicesMenu.map((subItem) => (
-                    <li key={subItem.title}>
+                    <li className={s.header__dropdown_item} key={subItem.title}>
                       <Link
                         className={s.header__dropdown_text}
                         href={subItem.link}
