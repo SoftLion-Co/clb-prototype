@@ -1,0 +1,22 @@
+@import "@/style/container";
+@import "@/style/font_default";
+
+.blog {
+  width: calc(100% - 24px);
+
+  &__title {
+    margin-bottom: 100px;
+  }
+
+  &__cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    row-gap: 48px;
+    margin-bottom: 148px;
+  }
+
+  &__grid {
+    display: grid;
+  }
+}

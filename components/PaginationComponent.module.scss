@@ -9,9 +9,9 @@
   line-height: 150%;
   list-style: none;
   display: flex;
-  gap: 266px;
   justify-content: center;
   align-items: center;
+  gap: 36px;
 
   &__break {
     cursor: pointer;
@@ -19,7 +19,6 @@
 
   &__pages {
     cursor: pointer;
-
     &.active {
       color: #565f51;
       border: 1px solid #565f51;
@@ -29,12 +28,12 @@
   }
 
   &__arrow_previous {
-    // margin-right: 136px;
     transform: scaleX(-1);
+    margin-right: 140px;
   }
 
   &__arrow_next {
-    // margin-left: 136px;
+    margin-left: 140px;
   }
 
   &__arrow_image {
