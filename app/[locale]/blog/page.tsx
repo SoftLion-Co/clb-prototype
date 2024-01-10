@@ -4,6 +4,7 @@ import s from "./page.module.scss";
 import React from "react";
 import BlogSection from "@/app/sections/blog_page/BlogSection";
 import BlogCardsSection from "@/app/sections/main_page/BlogCardsSection";
+import ContactUsSection from "@/app/sections/main_page/ContactUsSection";
 import useBlogsData from "@/hooks/useBlogsData";
 import useLocale from "@/hooks/useLocale";
 import BlogSkeleton from "@/components/skeleton/BlogSkeleton";
@@ -23,7 +24,7 @@ export default function Blog() {
         <BlogSection blogs={blogs} />
       </div>
 
-      <BlogCardsSection />
+      <ContactUsSection />
     </section>
   );
 }
