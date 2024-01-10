@@ -1,10 +1,61 @@
 @import "./../../../style/container";
-
+@import "./../../../style/viewports";
 .advantages {
-  &__cards {
+  &__content {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    row-gap: 68px;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    margin: 0 12px;
+    box-sizing: border-box;
+    width: calc(50% - 24px);
+  }
+
+  &__cards {
+    display: grid;
+    align-items: stretch;
+    grid-template-columns: 1fr;
+    gap: 16px;
+
+    @include for-size(tablet) {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+
+    @include for-size(laptop) {
+      grid-template-columns: repeat(3, 1fr);
+      align-items: stretch;
+    }
+  }
+
+  &__image {
+    width: 100%;
+    object-fit: cover;
+    border-radius: 32px;
+    height: 202px;
+
+    @include for-size(tablet) {
+      height: 280px;
+      transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+
+      &:hover {
+        box-shadow: 4px 5px 7.5px 0px rgba(0, 0, 0, 0.08);
+        transform: translateY(-0.5rem);
+      }
+    }
+
+    @include for-size(laptop) {
+      height: 300px;
+    }
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1280px) {
+  .advantages__cards :nth-child(3) {
+    order: 4;
+  }
+
+  .advantages__cards :nth-child(4) {
+    order: 3;
   }
 }

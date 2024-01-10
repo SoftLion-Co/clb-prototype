@@ -1,9 +1,16 @@
+@import "/style/viewports";
+
 .main {
   display: flex;
   justify-content: center;
   gap: 24px;
   align-items: baseline;
-  margin-bottom: 100px;
+  margin-bottom: 40px;
+
+  @include for-size(laptop) {
+    margin-bottom: 100px;
+  }
+
   &.left {
     justify-content: flex-start;
   }

@@ -5,17 +5,24 @@ type OurAdvantagesComponentProps = {
   advantages: {
     text: string;
   };
-  backgroundColor: "blue" | "white" | string;
+
+  colorVariant: "blue" | "white";
   imageSrc?: string;
+};
+
+const colorVariants = {
+  blue: "#ECF1F6",
+  white: "#FFFFFF",
 };
 
 const OurAdvantagesCardComponent: React.FC<OurAdvantagesComponentProps> = ({
   advantages,
-  backgroundColor,
+  colorVariant,
   imageSrc,
 }) => {
   const cardStyles = {
-    backgroundColor,
+    backgroundColor: colorVariants[colorVariant],
+    border: colorVariant === "white" ? "2px solid #2A4563" : "none",
   };
 
   return (
