@@ -23,7 +23,7 @@
   }
 
   &.left {
-    @include for-size(tablet) {
+    @include for-size(laptop) {
       justify-content: flex-start;
     }
   }

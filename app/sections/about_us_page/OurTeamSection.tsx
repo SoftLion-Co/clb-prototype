@@ -88,7 +88,7 @@ const OurTeamSection: React.FC<OurTeamSectionProps> = ({ teamMembers }) => {
     <section className={s.box}>
       <div className={classNames(s.background, s.team)}>
         <div className={s.container}>
-          <MainTitleComponent className={s.team__title} title="our team" />
+          <MainTitleComponent className={s.team__title} title="our team" color="black" />
 
           <div className={s.team__carousel}>
             <Carousel

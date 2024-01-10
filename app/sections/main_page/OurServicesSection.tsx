@@ -39,7 +39,7 @@ const OurServicesSection = () => {
     <section className={s.box}>
       <div className={s.background}>
         <div className={classNames(s.container, s.services)}>
-          <MainTitleComponent title={t("servicesHeading")} />
+          <MainTitleComponent title={t("servicesHeading")} color="black"/>
 
           <div className={s.services__cards}>
             {servicesCards.map((item, index) => (
