@@ -11,7 +11,7 @@ function KeyServices() {
     <section className={s.box}>
       <div className={s.background}>
         <div className={s.container}>
-          <MainTitleComponent title={t("keyServicesTitle")} left />
+          <MainTitleComponent title={t("keyServicesTitle")} left mobileLeft/>
           <KeyServicesComponent />
         </div>
       </div>
