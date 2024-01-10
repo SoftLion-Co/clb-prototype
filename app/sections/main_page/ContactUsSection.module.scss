@@ -1,4 +1,5 @@
 @import "./../../../style/container";
+@import "./../../../style/viewports";
 
 .form {
   border: 2px solid #565f51;
@@ -8,7 +9,7 @@
   max-width: 952px;
   width: 100%;
 
-  @media screen and (min-width: 1280px) {
+  @include for-size(laptop) {
     border-radius: 32px;
     padding: 64px;
   }
@@ -19,18 +20,23 @@
     align-items: center;
     gap: 16px;
 
-    @media screen and (min-width: 1280px) {
+    @include for-size(laptop) {
       flex-direction: row;
       align-items: stretch;
     }
   }
 
   &__group {
-    @media screen and (min-width: 1280px) {
+    @include for-size(tablet) {
       display: flex;
       flex-direction: column;
       width: calc((100% - 24px) / 2);
     }
+    // @media screen and (min-width: 1280px) {
+    //   display: flex;
+    //   flex-direction: column;
+    //   width: calc((100% - 24px) / 2);
+    // }
   }
 
   &__content {
@@ -60,12 +66,13 @@
   }
 
   &__inputs {
-    @media screen and (max-width: 1279.98px) {
+    @media screen and (max-width: 767.98px) {
       display: flex;
       gap: 40px;
       flex-direction: column;
     }
-    @media screen and (min-width: 1280px) {
+
+    @include for-size(tablet) {
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
@@ -90,7 +97,12 @@
     object-fit: cover;
     border-radius: 24px;
 
-    @media screen and (min-width: 1280px) {
+    @include for-size(tablet) {
+      display: none;
+    }
+
+    @include for-size(laptop) {
+      display: block;
       width: 464px;
     }
   }
@@ -177,7 +189,7 @@
   user-select: none;
   z-index: 10;
 
-  @media screen and (min-width: 1280px) {
+  @include for-size(laptop) {
     padding: 24px 150px 24px 36px;
     font-size: 18px;
     font-weight: 500;
