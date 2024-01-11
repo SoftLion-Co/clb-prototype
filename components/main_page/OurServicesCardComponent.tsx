@@ -26,9 +26,7 @@ const OurServicesCardComponent: React.FC<OurServicesCardProps> = ({
       <h3 className={s.card__title}>{title}</h3>
       <div className={s.card__content}>
         <p className={s.card__text}>{text}</p>
-        <div className={s.card__box}>
-          <ReadMoreComponent href="/" />
-        </div>
+        <ReadMoreComponent href="/" />
       </div>
     </div>
   );
