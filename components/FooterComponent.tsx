@@ -1,7 +1,8 @@
+"use client";
+
 import s from "./FooterComponent.module.scss";
 import Link from "next/link";
 import Image from "next/image";
-import classNames from "classnames";
 
 import Logo from "@/images/Logo-brokers.svg";
 
@@ -13,6 +14,8 @@ import facebook from "@/images/footer/icon-facebook.svg";
 import youtube from "@/images/footer/icon-youtube.svg";
 import whatsapp from "@/images/footer/icon-whatsapp.svg";
 import { useTranslations } from "next-intl";
+import useLocale from "@/hooks/useLocale";
+import classNames from "classnames";
 
 const socialMediaIcons: { [key: string]: any } = {
   telegram,
@@ -37,6 +40,8 @@ const socialMediaLinks = [
 const FooterComponent = () => {
   const t = useTranslations("footer");
 
+  const local = useLocale();
+
   return (
     <footer className={s.box}>
       <div className={s.footer}>
@@ -55,6 +60,7 @@ const FooterComponent = () => {
                     target="_blank"
                   >
                     <Image
+                      className={s.footer__icon}
                       src={socialMediaIcons[socialMedia.name.toLowerCase()]}
                       alt={socialMedia.name}
                     />
@@ -68,25 +74,34 @@ const FooterComponent = () => {
             <div className={s.footer__lists}>
               <ul className={s.footer__list}>
                 <li className={s.footer__item}>
-                  <Link className={s.footer__link} href="/">
+                  <Link
+                    className={s.footer__link}
+                    href={`${local}/commodity-brokerage`}
+                  >
                     Commodities Brokerage
                   </Link>
                 </li>
                 <li className={s.footer__item}>
-                  <Link className={s.footer__link} href="/">
+                  <Link
+                    className={s.footer__link}
+                    href={`${local}/freight-brokerage`}
+                  >
                     Freight Brokerage
                   </Link>
                 </li>
               </ul>
 
-              <ul className={s.footer__list}>
+              <ul className={classNames(s.footer__list, s.footer__list_gap)}>
                 <li className={s.footer__item}>
-                  <Link className={s.footer__link} href="/">
+                  <Link className={s.footer__link} href={`${local}/execution`}>
                     Execution
                   </Link>
                 </li>
                 <li className={s.footer__item}>
-                  <Link className={s.footer__link} href="/">
+                  <Link
+                    className={s.footer__link}
+                    href={`${local}/export-consulting`}
+                  >
                     Export Consulting
                   </Link>
                 </li>
@@ -94,7 +109,7 @@ const FooterComponent = () => {
 
               <ul className={s.footer__list}>
                 <li className={s.footer__item}>
-                  <Link className={s.footer__link} href="/">
+                  <Link className={s.footer__link} href={`${local}/about-us`}>
                     About Us
                   </Link>
                 </li>
@@ -107,7 +122,7 @@ const FooterComponent = () => {
 
               <ul className={s.footer__list}>
                 <li className={s.footer__item}>
-                  <Link className={s.footer__link} href="/">
+                  <Link className={s.footer__link} href={`${local}/blog`}>
                     Our News
                   </Link>
                 </li>
