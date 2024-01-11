@@ -22,32 +22,32 @@ const SocialLinksSection = () => {
 
   return (
     <section className={s.links}>
-      <p className={classNames(s.links__share, s.pDefault)}>{t("share")}</p>
+      <p className={s.links__share}>{t("share")}</p>
       <div className={s.links__list}>
         <TelegramShareButton
           url={currentPath}
           title={"Hello, check this awesome article!"}
         >
-          <Image src={telegram} alt={"telegram"} />
+          <Image src={telegram} alt={"telegram"} className={s.links__icon} />
         </TelegramShareButton>
         <FacebookShareButton
           url={currentPath}
           title={"Hello, check this awesome article!"}
           hashtag="ChechThisOut"
         >
-          <Image src={facebook} alt={"facebook"} />
+          <Image src={facebook} alt={"facebook"} className={s.links__icon} />
         </FacebookShareButton>
         <LinkedinShareButton
           url={currentPath}
           title={"Hello, check this awesome article!"}
         >
-          <Image src={linkedin} alt={"linkedin"} />
+          <Image src={linkedin} alt={"linkedin"} className={s.links__icon} />
         </LinkedinShareButton>
         <WhatsappShareButton
           url={currentPath}
           title={"Hello, check this awesome article!"}
         >
-          <Image src={whatsapp} alt={"whatsapp"} />
+          <Image src={whatsapp} alt={"whatsapp"} className={s.links__icon} />
         </WhatsappShareButton>{" "}
       </div>
     </section>
