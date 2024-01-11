@@ -9,6 +9,12 @@
   max-width: 952px;
   width: 100%;
 
+  @include for-size(tablet) {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+
   @include for-size(laptop) {
     border-radius: 32px;
     padding: 64px;
@@ -42,7 +48,7 @@
   &__content {
     display: flex;
     align-items: flex-end;
-    margin-bottom: 48px;
+    margin-bottom: 50px;
   }
 
   &__box {
@@ -52,6 +58,9 @@
   }
 
   &__input {
+    display: flex;
+    justify-content: space-between;
+
     font-size: 18px;
     font-weight: 500;
     line-height: 150%;
@@ -63,6 +72,10 @@
     border-bottom: 1px solid #565f51;
     padding: 0 0 9px 0;
     outline: none;
+  }
+
+  &__input.cv input {
+    border: 2px solid #2a4563;
   }
 
   &__inputs {
@@ -121,7 +134,11 @@
     display: flex;
     flex-direction: column;
     gap: 40px;
-    margin-top: 58px;
+  }
+
+  &__cv {
+    padding-bottom: 10px;
+    border-bottom: 1px solid #565f51;
   }
 }
 
@@ -198,3 +215,20 @@
     margin-top: 16px;
   }
 }
+
+.arrow {
+  transition: transform 0.3s ease;
+
+  &__open {
+    transform: rotate(180deg);
+  }
+}
+
+.cv {
+  border: 2px solid #2a4563;
+}
+
+// .form__input.cv,
+// .form__input.cv {
+//   border: 2px solid #2a4563;
+// }
