@@ -6,6 +6,7 @@ import MainTitleComponent from "@/components/MainTitleComponent";
 import MainButtonComponent from "@/components/MainButtonComponent";
 import Image from "next/image";
 import Picture from "@/images/home-hero-test.png";
+import Arrow from "@/images/vectors/arrow-menu.svg";
 import classNames from "classnames";
 import useVacancies from "@/hooks/useVacancies";
 import InputField from "@/components/form/InputField";
@@ -152,6 +153,108 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
 
   const fields = cv ? fieldsCV : fieldsWithoutCV;
 
+  const boxInputs = (
+    <div className={s.form__box}>
+      <div className={s.form__inputs}>
+        {fields.map((field) => (
+          <InputField
+            key={field.name}
+            type={field.type}
+            name={field.name}
+            label={field.name}
+            value={(formData as any)[field.name]}
+            onChange={handleInputChange}
+          />
+        ))}
+        <div className={s.form__group}>
+          <div
+            className={s.dropdown}
+            onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+          >
+            {cv ? (
+              <p className={s.form__input}>
+                {formData.vacancy || t("appliedVacancy")}
+                <Image
+                  className={classNames(s.arrow, {
+                    [s.arrowOpen]: isDropdownOpen,
+                  })}
+                  src={Arrow}
+                  alt="Arrow"
+                />
+              </p>
+            ) : (
+              <p className={classNames(s.form__input, { [s.cv]: cv })}>
+                {formData.subject || t("topicOfEnquiry")}
+                <Image
+                  className={classNames(s.arrow, {
+                    [s.arrow__open]: isDropdownOpen,
+                  })}
+                  src={Arrow}
+                  alt="Arrow"
+                />
+              </p>
+            )}
+            <ul
+              className={s.dropdown__list}
+              style={{ display: isDropdownOpen ? "" : "none" }}
+            >
+              {cv
+                ? vacancies.map((vacancy) => (
+                    <li
+                      key={vacancy.id}
+                      onClick={() => {
+                        handleDropdownClick(
+                          (vacancy.acf as any)[`vacancies_${locale}`]
+                        );
+                        setIsDropdownOpen(false);
+                      }}
+                    >
+                      {(vacancy.acf as any)[`vacancies_${locale}`]}
+                    </li>
+                  ))
+                : translatedTopics.map((topic) => (
+                    <li
+                      key={topic}
+                      onClick={(e) => {
+                        handleInputChange({
+                          target: { name: "subject", value: topic },
+                        } as React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>);
+                        setIsDropdownOpen(false);
+                      }}
+                    >
+                      {topic || t(`topics.selectTopic`)}
+                    </li>
+                  ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+      {!cv ? (
+        <div className={classNames(s.form__textarea, { [s.cv]: cv })}>
+          <textarea
+            className={s.form__message}
+            id="message"
+            name="message"
+            placeholder={t("yourMessage")}
+            value={formData.message}
+            onChange={handleInputChange}
+          ></textarea>
+        </div>
+      ) : (
+        <div className={s.form__attach}>
+          <InputField
+            className={s.form__cv}
+            type="file"
+            name="cvFile"
+            label={null}
+            value={formData.cvFile ? formData.cvFile.name : ""}
+            onChange={handleInputChange}
+          />
+        </div>
+      )}
+    </div>
+  );
+
   return (
     <section className={s.box}>
       <div className={s.background}>
@@ -159,99 +262,14 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
           title={cv ? t("letsWorkWithUS") : t("contactUsHeading")}
         />
         <div className={classNames(s.container, s.form__container)}>
-          <form className={s.form} onSubmit={handleSubmit}>
-            <div className={s.form__content}>
-              <div className={s.form__box}>
-                <div className={s.form__inputs}>
-                  {fields.map((field) => (
-                    <InputField
-                      key={field.name}
-                      type={field.type}
-                      name={field.name}
-                      label={field.name}
-                      value={(formData as any)[field.name]}
-                      onChange={handleInputChange}
-                    />
-                  ))}
-                  <div className={s.form__group}>
-                    <div
-                      className={s.dropdown}
-                      onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                    >
-                      {cv ? (
-                        <p className={s.form__input}>
-                          {formData.vacancy || t("appliedVacancy")}
-                        </p>
-                      ) : (
-                        <p className={s.form__input}>
-                          {formData.subject || t("topicOfEnquiry")}
-                        </p>
-                      )}
-                      <ul
-                        className={s.dropdown__list}
-                        style={{ display: isDropdownOpen ? " " : "none" }}
-                      >
-                        {cv
-                          ? vacancies.map((vacancy) => (
-                              <li
-                                key={vacancy.id}
-                                onClick={() => {
-                                  handleDropdownClick(
-                                    (vacancy.acf as any)[`vacancies_${locale}`]
-                                  );
-                                  setIsDropdownOpen(false);
-                                }}
-                              >
-                                {(vacancy.acf as any)[`vacancies_${locale}`]}
-                              </li>
-                            ))
-                          : translatedTopics.map((topic) => (
-                              <li
-                                key={topic}
-                                onClick={(e) => {
-                                  handleInputChange({
-                                    target: { name: "subject", value: topic },
-                                  } as React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>);
-                                  setIsDropdownOpen(false);
-                                }}
-                              >
-                                {topic || t(`topics.selectTopic`)}
-                              </li>
-                            ))}
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-                {!cv ? (
-                  <div className={s.form__textarea}>
-                    <textarea
-                      className={s.form__message}
-                      id="message"
-                      name="message"
-                      placeholder={t("yourMessage")}
-                      value={formData.message}
-                      onChange={handleInputChange}
-                    ></textarea>
-                  </div>
-                ) : (
-                  <div className={s.form__attach}>
-                    <InputField
-                      type="file"
-                      name="cvFile"
-                      label={null}
-                      value={formData.cvFile ? formData.cvFile.name : ""}
-                      onChange={handleInputChange}
-                    />
-                  </div>
-                )}
-              </div>
-            </div>
+          <form
+            className={classNames(s.form, { [s.cv]: cv })}
+            onSubmit={handleSubmit}
+          >
+            <div className={s.form__content}>{boxInputs}</div>
 
             <MainButtonComponent
               text={cv ? t("submitButton") : t("contactUsButton")}
-              padding="8px 8px 8px 16px"
-              customGap="16px"
-              rotatedArrow={true}
             />
           </form>
 
