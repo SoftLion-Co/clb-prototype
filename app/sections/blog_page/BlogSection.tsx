@@ -13,6 +13,7 @@ import useScrollToTop from "@/hooks/useScrollToTop";
 import ReactPaginate from "react-paginate";
 import Image from "next/image";
 import Arrow from "@/images/vectors/arrow.svg";
+import { useMediaQuery } from "@mantine/hooks";
 
 interface BlogSectionProps {
   blogs: Array<any>;
@@ -21,10 +22,14 @@ interface BlogSectionProps {
 const BlogSection: React.FC<BlogSectionProps> = ({ blogs }) => {
   const t = useTranslations("blog");
   const locale = useLocale();
+  const isMobile = useMediaQuery("(max-width: 767.98px)");
+  const isTablet = useMediaQuery(
+    "(min-width: 768px) and (max-width: 1279.98px)"
+  );
+  const { setScrollToTop } = useScrollToTop();
 
   const itemsPerPage = 6;
   const [currentPage, setCurrentPage] = useState(0);
-  const { setScrollToTop } = useScrollToTop();
 
   const handlePageChange = ({ selected }: { selected: number }) => {
     setCurrentPage(selected);
@@ -47,12 +52,10 @@ const BlogSection: React.FC<BlogSectionProps> = ({ blogs }) => {
         <div className={classNames(s.container, s.blog__cards)}>
           {visibleItems.map((data: any, index: number) => (
             <div key={index} className={s.blog__grid}>
-              {blogs.length === 2 ? (
-                index === 0 ? (
-                  <BigCardBlogComponent info={data} locale={locale} />
-                ) : (
-                  <SmallCardBlogComponent info={data} locale={locale} />
-                )
+              {isMobile ? (
+                <SmallCardBlogComponent info={data} locale={locale} />
+              ) : isTablet ? (
+                <SmallCardBlogComponent info={data} locale={locale} />
               ) : (
                 <>
                   {index === 0 || index === 3 || index === 4 ? (

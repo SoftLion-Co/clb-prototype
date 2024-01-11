@@ -1,8 +1,9 @@
 @import "@/style/container";
 @import "@/style/font_default";
+@import "@/style/viewports";
 
 .blog {
-  width: calc(100% - 24px);
+  display: flex;
 
   &__title {
     margin-bottom: 100px;
@@ -11,12 +12,24 @@
   &__cards {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: center;
     row-gap: 48px;
     margin-bottom: 148px;
+
+    @media screen and (max-width: 1280px) {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      row-gap: 28px;
+      margin-bottom: 148px;
+    }
+    @include for-size(laptop) {
+      justify-content: space-between;
+    }
   }
 
   &__grid {
-    display: grid;
+    display: flex;
+    justify-content: center;
   }
 }
