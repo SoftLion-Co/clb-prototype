@@ -5,16 +5,16 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  gap: 1.5rem;
+  gap: 16px;
 
   @include for-size(tablet) {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 1.5rem;
   }
 
   @include for-size(laptop) {
     display: flex;
     flex-wrap: nowrap;
+    gap: 24px;
   }
 }
