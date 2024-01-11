@@ -4,7 +4,8 @@
 .partners {
   &__wrapper {
     display: grid;
-    gap: 10px;
+    gap: 16px;
+    column-gap: 10px;
     grid-template-columns: repeat(auto-fit, minmax(65px, 1fr));
 
     @include for-size(tablet) {
