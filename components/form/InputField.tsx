@@ -11,17 +11,24 @@ interface InputFieldProps {
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   inputRef?: React.RefObject<HTMLInputElement>;
   className?: string;
+  cv?: boolean;
 }
 
-const InputField: React.FC<InputFieldProps> = (
-  { type, name, label, value, onChange, inputRef, className },
-  { cv }: { cv?: boolean }
-) => {
+const InputField: React.FC<InputFieldProps & { cv?: boolean }> = ({
+  type,
+  name,
+  label,
+  value,
+  onChange,
+  inputRef,
+  className,
+  cv,
+}) => {
   const isFileInput = type === "file";
   const t = useTranslations("homePage.contactUs");
 
   return (
-    <div className={classNames(s.form__group, className)}>
+    <div className={classNames(s.form__group, className, { [s.cv]: cv })}>
       {isFileInput ? (
         <>
           <label className={s.form__label} htmlFor={name}>
@@ -31,7 +38,7 @@ const InputField: React.FC<InputFieldProps> = (
             type={type}
             name={name}
             id={name}
-            className={s.inputfile}
+            className={classNames(s.form__inputfile, { [s.cv]: cv })}
             onChange={onChange}
           />
         </>
@@ -41,7 +48,7 @@ const InputField: React.FC<InputFieldProps> = (
           className={classNames(s.form__input, { [s.cv]: cv })}
           name={name}
           id={name}
-          placeholder={label ? t(label) : ""}
+          placeholder={label ? t(label) : cv ? t("cvPlaceholder") : ""}
           value={value || ""}
           onChange={onChange}
           ref={inputRef}
