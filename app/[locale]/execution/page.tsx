@@ -4,8 +4,7 @@ import ContactUsSection from "../../sections/main_page/ContactUsSection";
 import ThreeCardsComponent from "@/components/ThreeCardsComponent";
 import PageTitleComponent from "@/components/PageTitleComponent";
 import { useTranslations } from "next-intl";
-import Incoterms from "@/images/incoterms.svg";
-import Image from "next/image";
+import IncotermsSection from "@/app/sections/execution_page/IncotermsSection";
 
 const Execution = () => {
   const t = useTranslations("execution");
@@ -26,13 +25,7 @@ const Execution = () => {
             bigText={t("heroBigText")}
             color="blue"
           />
-          <Image
-            className={classNames(s.execution__incoterms, s.container)}
-            src={Incoterms}
-            alt="Incoterms"
-            width={2000}
-            height={2000}
-          />
+         <IncotermsSection />
         </div>
       </div>
       <ContactUsSection />
