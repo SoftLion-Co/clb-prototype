@@ -1,8 +1,9 @@
 @import "./../../../style/container";
 @import "./../../../style/viewports";
+@import "./../../../style/colors";
 
 .form {
-  border: 2px solid #565f51;
+  border: 2px solid $brandColorDarkGreen;
   border-radius: 24px;
   background: #fff;
   padding: 24px 16px;
@@ -12,7 +13,12 @@
   @include for-size(tablet) {
     display: flex;
     flex-direction: column;
-    align-items: flex-end;
+    align-items: flex-start;
+    padding: 32px;
+
+    &__custom {
+      align-items: flex-end;
+    }
   }
 
   @include for-size(laptop) {
@@ -38,16 +44,11 @@
       flex-direction: column;
       width: calc((100% - 24px) / 2);
     }
-    // @media screen and (min-width: 1280px) {
-    //   display: flex;
-    //   flex-direction: column;
-    //   width: calc((100% - 24px) / 2);
-    // }
   }
 
   &__content {
     display: flex;
-    align-items: flex-end;
+    // align-items: flex-end;
     margin-bottom: 50px;
   }
 
@@ -64,18 +65,23 @@
     font-size: 18px;
     font-weight: 500;
     line-height: 150%;
-    color: #565f51;
+    color: $brandColorDarkGreen;
     user-select: none;
 
     width: 100%;
     text-transform: uppercase;
-    border-bottom: 1px solid #565f51;
+    border-bottom: 1px solid $brandColorDarkGreen;
     padding: 0 0 9px 0;
     outline: none;
   }
 
-  &__input.cv input {
-    border: 2px solid #2a4563;
+  &__inputfile {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
   }
 
   &__inputs {
@@ -98,12 +104,16 @@
     display: flex;
     text-transform: uppercase;
     flex-direction: column;
-    border-bottom: 1px solid #565f51;
+    border-bottom: 1px solid $brandColorDarkGreen;
     width: 100%;
     height: 37px;
     padding: 0 0 9px 0;
     resize: none;
     outline: none;
+  }
+
+  &__attach {
+    cursor: pointer;
   }
 
   &__picture {
@@ -116,64 +126,33 @@
 
     @include for-size(laptop) {
       display: block;
-      width: 464px;
+      border-radius: 32px;
     }
   }
 
-  &__button {
-    cursor: pointer;
-    color: #000;
-    background: #b3b3b3;
-    padding: 12px 30px;
-    border-radius: 40px;
-    max-width: fit-content;
-    font-size: 20px;
-  }
-
-  &__attach {
-    display: flex;
-    flex-direction: column;
-    gap: 40px;
-  }
-
   &__cv {
-    padding-bottom: 10px;
-    border-bottom: 1px solid #565f51;
+    padding-bottom: 9px;
+    border-bottom: 1px solid $brandColorDarkGreen;
   }
 }
 
-.inputfile {
-  width: 0.1px;
-  height: 0.1px;
-  opacity: 0;
-  overflow: hidden;
-  position: absolute;
-  z-index: -1;
+.cv {
+  color: $backgroundColorDarkBlue;
+  border-color: $backgroundColorDarkBlue;
 }
 
-.inputfile + label {
-  cursor: pointer;
-  font-size: 20px;
-  font-weight: 400;
-  line-height: 150%;
-  color: #000;
-  background-color: #e7e7e7;
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 24px;
-  padding: 10px 15px;
+.cv .dropdown__list {
+  color: $backgroundColorDarkBlue;
+  background-color: #ecf1f6;
 }
 
-.inputfile + label * {
-  pointer-events: none;
+.form__input.cv::placeholder {
+  color: $backgroundColorDarkBlue;
 }
 
-.form__textarea::placeholder,
 .form__input::placeholder,
-.form__message::placeholder,
-.form__option {
-  color: #565f51;
+.form__message::placeholder {
+  color: $brandColorDarkGreen;
   font-size: 18px;
   font-weight: 500;
   line-height: 150%;
@@ -182,37 +161,37 @@
 .dropdown {
   position: relative;
   cursor: pointer;
-}
 
-.dropdown__list {
-  background-color: #ebece6;
+  &__list {
+    background-color: #ebece6;
 
-  display: grid;
-  gap: 16px;
+    display: grid;
+    gap: 16px;
 
-  position: absolute;
-  padding: 16px 96px 16px 16px;
-  width: 100%;
-  top: 100%;
-  left: 0;
-  border-radius: 32px;
-  margin-top: 8px;
+    position: absolute;
+    padding: 16px 96px 16px 16px;
+    width: 100%;
+    top: 100%;
+    left: 0;
+    border-radius: 32px;
+    margin-top: 8px;
 
-  font-size: 14px;
-  line-height: 130%;
-  color: #565f51;
-  text-transform: uppercase;
+    font-size: 14px;
+    line-height: 130%;
+    color: $brandColorDarkGreen;
+    text-transform: uppercase;
 
-  user-select: none;
-  z-index: 10;
+    user-select: none;
+    z-index: 10;
 
-  @include for-size(laptop) {
-    padding: 24px 150px 24px 36px;
-    font-size: 18px;
-    font-weight: 500;
-    line-height: 150%;
-    border-radius: 24px;
-    margin-top: 16px;
+    @include for-size(laptop) {
+      padding: 24px 150px 24px 36px;
+      font-size: 18px;
+      font-weight: 500;
+      line-height: 150%;
+      border-radius: 24px;
+      margin-top: 16px;
+    }
   }
 }
 
@@ -223,12 +202,3 @@
     transform: rotate(180deg);
   }
 }
-
-.cv {
-  border: 2px solid #2a4563;
-}
-
-// .form__input.cv,
-// .form__input.cv {
-//   border: 2px solid #2a4563;
-// }
