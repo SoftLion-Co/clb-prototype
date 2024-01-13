@@ -45,11 +45,11 @@
     color: $backgroundColorDarkBlue;
 
     @include for-size(tablet) {
+      text-align: center;
       font-size: 48px;
     }
 
     @include for-size(laptop) {
-      text-align: center;
       font-size: 56px;
       line-height: 150%;
     }
