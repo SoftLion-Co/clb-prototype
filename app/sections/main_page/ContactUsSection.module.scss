@@ -202,3 +202,17 @@
     transform: rotate(180deg);
   }
 }
+
+//=== Test Styles ===//
+.form__buttons {
+  display: flex;
+  gap: 60px;
+}
+
+.formMessage {
+  font-size: 28px;
+  font-weight: 500;
+  line-height: 150%;
+  color: $brandColorDarkGreen;
+}
+//=== Test Styles ===//

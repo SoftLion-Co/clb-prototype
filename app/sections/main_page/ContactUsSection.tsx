@@ -11,6 +11,11 @@ import useVacancies from "@/hooks/useVacancies";
 import InputField from "@/components/form/InputField";
 import { useTranslations } from "next-intl";
 import useLocale from "@/hooks/useLocale";
+import {
+  validateName,
+  validateEmail,
+  validatePhoneNumber,
+} from "@/hooks/useValidation";
 
 interface FormData {
   firstname: string;
@@ -40,6 +45,7 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
 
   const translatedTopics = topics.map((topic) => t(`topics.${topic}`));
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [formMessage, setFormMessage] = useState("");
 
   const [formData, setFormData] = useState<FormData>({
     firstname: "",
@@ -76,6 +82,28 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
     const { name, value } = e.target as HTMLInputElement | HTMLTextAreaElement;
 
     setFormData((prevData) => ({ ...prevData, [name]: value }));
+
+    let isValid = true;
+    switch (name) {
+      case "firstname":
+      case "lastname":
+        isValid = validateName(value);
+        break;
+      case "email":
+        isValid = validateEmail(value);
+        break;
+      case "phone":
+        isValid = validatePhoneNumber(value);
+        break;
+      default:
+        isValid = true;
+    }
+
+    console.log(`Validation for ${name}: ${isValid}`);
+
+    if (isValid) {
+      setFormData((prevData) => ({ ...prevData, [name]: value }));
+    }
   };
 
   const handleDropdownClick = (value: string) => {
@@ -101,9 +129,54 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
     };
   }, []);
 
-  const handleSubmit = async (e: any) => {
-    e.preventDefault();
-    const formData = new FormData(e.target);
+  const validateForm = () => {
+    return (
+      validateName(formData.firstname) &&
+      validateName(formData.lastname) &&
+      validateEmail(formData.email) &&
+      validatePhoneNumber(formData.phone)
+    );
+  };
+
+  const handleTestButtonClick = async () => {
+    if (validateForm()) {
+      await handleSubmit();
+      handleFormReset();
+      setFormMessage("Form submitted successfully!");
+    } else {
+      setFormMessage("Validation failed. Please check your inputs.");
+    }
+  };
+
+  const handleFormReset = () => {
+    setFormData({
+      firstname: "",
+      lastname: "",
+      email: "",
+      phone: "",
+      company: "",
+      subject: "",
+      message: "",
+      time: "",
+      vacancy: "",
+      cvFile: null,
+    });
+  };
+
+  const handleSubmit = async (e?: React.FormEvent<HTMLFormElement>) => {
+    if (e) {
+      e.preventDefault();
+    }
+
+    const formElement = e
+      ? e.currentTarget
+      : document.querySelector(".yourFormClass");
+    if (!(formElement instanceof HTMLFormElement)) {
+      console.error("Form element is not found or not a form!");
+      return;
+    }
+
+    const formData = new FormData(formElement);
 
     const url = `https://softlion.blog/wp-json/contact-form-7/v1/contact-forms/${
       cv ? 342 : 215
@@ -118,26 +191,14 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
       const response = await fetch(url, reqOptions);
       if (response.ok) {
         const jsonResponse = await response.json();
-        console.log(jsonResponse);
         if (jsonResponse.status === "mail_sent") {
-          setFormData({
-            firstname: "",
-            lastname: "",
-            email: "",
-            phone: "",
-            company: "",
-            subject: "",
-            message: "",
-            time: "",
-            vacancy: "",
-            cvFile: null,
-          });
           console.log("Form submitted successfully!");
+          formElement.reset();
         } else {
           console.error("Form submission failed. Status:", jsonResponse.status);
         }
       } else {
-        console.error("Form submission failed:", response.statusText);
+        console.error("Server response error:", response.statusText);
       }
     } catch (error) {
       console.error("An error occurred during form submission:", error);
@@ -287,7 +348,29 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
             onSubmit={handleSubmit}
           >
             <div className={s.form__content}>{boxInputs}</div>
-            {cv ? buttonComponentCV : buttonComponent}
+            {cv ? renderAttachFile() : ""}
+
+            <div className={s.form__buttons}>
+              {/* {cv ? buttonComponentCV : buttonComponent} */}
+              <button
+                type="button"
+                onClick={handleTestButtonClick}
+                className={s.testButton}
+              >
+                Test
+              </button>
+              <button
+                type="button"
+                onClick={handleFormReset}
+                className={s.resetButton}
+              >
+                Clear
+              </button>
+
+              {formMessage && (
+                <div className={s.formMessage}>{formMessage}</div>
+              )}
+            </div>
           </form>
           <Image className={s.form__picture} src={Picture} alt="Picture" />
         </div>

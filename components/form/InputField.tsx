@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ChangeEvent } from "react";
 import s from "@/app/sections/main_page/ContactUsSection.module.scss";
 import { useTranslations } from "next-intl";
 import classNames from "classnames";
@@ -8,7 +8,7 @@ interface InputFieldProps {
   name: string;
   label: string | null;
   value: string | null;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange: (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
   inputRef?: React.RefObject<HTMLInputElement>;
   className?: string;
   cv?: boolean;
