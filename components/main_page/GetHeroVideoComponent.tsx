@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import s from "@/app/sections/main_page/HeroSection.module.scss";
-import GetHeroImageComponent from "./GetHeroImageComponent";
 
 interface VideoData {
   acf: {
@@ -14,7 +13,6 @@ const videoReqUrl =
 
 const GetHeroVideoComponent = () => {
   const [video, setVideo] = useState<VideoData | null>(null);
-  const [isVideoLoaded, setIsVideoLoaded] = useState(false);
 
   useEffect(() => {
     fetch(videoReqUrl)
@@ -22,12 +20,6 @@ const GetHeroVideoComponent = () => {
       .then((data: VideoData) => setVideo(data))
       .catch((error) => console.error("Error fetching video:", error));
   }, []);
-
-  useEffect(() => {
-    if (video) {
-      setIsVideoLoaded(true);
-    }
-  }, [video]);
 
   if (!video) {
     // Video data is still being fetched

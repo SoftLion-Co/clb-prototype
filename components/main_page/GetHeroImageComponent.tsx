@@ -13,7 +13,6 @@ const photoReqUrl =
 
 const GetHeroImageComponent = () => {
   const [photo, setPhoto] = useState<PhotoData | null>(null);
-  const [isPhotoLoaded, setIsPhotoLoaded] = useState(false);
 
   useEffect(() => {
     fetch(photoReqUrl)
@@ -21,12 +20,6 @@ const GetHeroImageComponent = () => {
       .then((data: PhotoData) => setPhoto(data))
       .catch((error) => console.error("Error fetching photo:", error));
   }, []);
-
-  useEffect(() => {
-    if (photo) {
-      setIsPhotoLoaded(true);
-    }
-  }, [photo]);
 
   if (!photo) {
     // Photo data is still being fetched
