@@ -9,10 +9,10 @@ export default function Home() {
   return (
     <div className={s.home}>
       <HeroSection />
-      {/* <OurServicesSection />
+      <OurServicesSection />
       <PartnersSection />
       <BlogCardsSection />
-      <ContactUsSection /> */}
+      <ContactUsSection />
     </div>
   );
 }
