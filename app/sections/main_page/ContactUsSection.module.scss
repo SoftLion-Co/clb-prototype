@@ -204,15 +204,35 @@
 }
 
 //=== Test Styles ===//
-.form__buttons {
+.form__test {
   display: flex;
   gap: 60px;
+
+  @media screen and (max-width: 767.98px) {
+    display: flex;
+    gap: 24px;
+    flex-direction: column;
+  }
+}
+.form__buttons {
+  display: flex;
+  gap: 32px;
 }
 
 .formMessage {
-  font-size: 28px;
-  font-weight: 500;
+  font-size: 16px;
+  font-weight: 700;
   line-height: 150%;
   color: $brandColorDarkGreen;
+}
+
+.inputValid {
+  border-color: #a7b896;
+  color: #a7b896;
+}
+
+.inputInvalid {
+  border-color: #de7272;
+  color: #de7272;
 }
 //=== Test Styles ===//

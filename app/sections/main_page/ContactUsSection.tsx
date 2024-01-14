@@ -15,6 +15,7 @@ import {
   validateName,
   validateEmail,
   validatePhoneNumber,
+  validateCompanyName,
 } from "@/hooks/useValidation";
 
 interface FormData {
@@ -60,6 +61,34 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
     cvFile: null,
   });
 
+  interface ValidationErrors {
+    firstname: boolean;
+    lastname: boolean;
+    email: boolean;
+    phone: boolean;
+    company: boolean;
+    subject: boolean;
+    [key: string]: boolean | undefined;
+  }
+
+  const [validationErrors, setValidationErrors] = useState<ValidationErrors>({
+    firstname: false,
+    lastname: false,
+    email: false,
+    phone: false,
+    company: false,
+    subject: false,
+  });
+
+  const [touchedFields, setTouchedFields] = useState({
+    firstname: false,
+    lastname: false,
+    email: false,
+    phone: false,
+    company: false,
+    subject: false,
+  });
+
   const fieldsWithoutCV = [
     { type: "text", name: "firstname" },
     { type: "text", name: "lastname" },
@@ -80,36 +109,49 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLLIElement>
   ) => {
     const { name, value } = e.target as HTMLInputElement | HTMLTextAreaElement;
-
     setFormData((prevData) => ({ ...prevData, [name]: value }));
 
+    setTouchedFields((prevFields) => ({
+      ...prevFields,
+      [name]: !!value,
+    }));
+
     let isValid = true;
-    switch (name) {
-      case "firstname":
-      case "lastname":
-        isValid = validateName(value);
-        break;
-      case "email":
-        isValid = validateEmail(value);
-        break;
-      case "phone":
-        isValid = validatePhoneNumber(value);
-        break;
-      default:
-        isValid = true;
+    if (value) {
+      switch (name) {
+        case "firstname":
+        case "lastname":
+          isValid = validateName(value);
+          break;
+        case "email":
+          isValid = validateEmail(value);
+          break;
+        case "phone":
+          isValid = validatePhoneNumber(value);
+          break;
+        default:
+          isValid = true;
+      }
     }
 
-    console.log(`Validation for ${name}: ${isValid}`);
-
-    if (isValid) {
-      setFormData((prevData) => ({ ...prevData, [name]: value }));
-    }
+    setValidationErrors((prevErrors) => ({
+      ...prevErrors,
+      [name]: !isValid,
+    }));
   };
 
   const handleDropdownClick = (value: string) => {
     setFormData((prevData) => ({
       ...prevData,
       vacancy: value,
+    }));
+
+    setTouchedFields((prevFields) => ({ ...prevFields, subject: true }));
+
+    const isValid = value.trim() !== "";
+    setValidationErrors((prevErrors) => ({
+      ...prevErrors,
+      subject: !isValid,
     }));
     setIsDropdownOpen(false);
   };
@@ -130,12 +172,18 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
   }, []);
 
   const validateForm = () => {
-    return (
-      validateName(formData.firstname) &&
-      validateName(formData.lastname) &&
-      validateEmail(formData.email) &&
-      validatePhoneNumber(formData.phone)
-    );
+    const errors = {
+      firstname: !validateName(formData.firstname),
+      lastname: !validateName(formData.lastname),
+      email: !validateEmail(formData.email),
+      phone: !validatePhoneNumber(formData.phone),
+      company: !validateCompanyName(formData.company),
+      subject: formData.subject.trim() === "",
+    };
+
+    setValidationErrors(errors);
+
+    return Object.values(errors).every((error) => !error);
   };
 
   const handleTestButtonClick = async () => {
@@ -160,6 +208,24 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
       time: "",
       vacancy: "",
       cvFile: null,
+    });
+
+    setTouchedFields({
+      firstname: false,
+      lastname: false,
+      email: false,
+      phone: false,
+      company: false,
+      subject: false,
+    });
+
+    setValidationErrors({
+      firstname: false,
+      lastname: false,
+      email: false,
+      phone: false,
+      company: false,
+      subject: false,
     });
   };
 
@@ -193,7 +259,7 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
         const jsonResponse = await response.json();
         if (jsonResponse.status === "mail_sent") {
           console.log("Form submitted successfully!");
-          formElement.reset();
+          handleFormReset();
         } else {
           console.error("Form submission failed. Status:", jsonResponse.status);
         }
@@ -211,85 +277,104 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
     type: string;
     name: string;
     label?: string;
-  }) => (
-    <InputField
-      key={field.name}
-      type={field.type}
-      name={field.name}
-      label={field.label || field.name}
-      value={(formData as any)[field.name]}
-      onChange={handleInputChange}
-      className={field.name === "cvFile" ? s.form__cv : ""}
-      cv={cv}
-    />
-  );
+  }) => {
+    const isTouched = touchedFields[field.name as keyof typeof touchedFields];
+    const isValid =
+      !validationErrors[field.name as keyof typeof validationErrors];
+    const shouldShowValidation = isTouched;
 
-  const renderDropdown = () => (
-    <div className={s.form__group}>
-      <div
-        className={s.dropdown}
-        onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-      >
-        <p className={classNames(s.form__input, { [s.cv]: cv })}>
-          {cv ? (
-            <>
-              {formData.vacancy || t("appliedVacancy")}
-              <Image
-                className={classNames(s.arrow, {
-                  [s.arrow__open]: isDropdownOpen,
-                })}
-                src={Arrow}
-                alt="Arrow"
-              />
-            </>
-          ) : (
-            <>
-              {formData.subject || t("topicOfEnquiry")}
-              <Image
-                className={classNames(s.arrow, {
-                  [s.arrow__open]: isDropdownOpen,
-                })}
-                src={Arrow}
-                alt="Arrow"
-              />
-            </>
-          )}
-        </p>
-        <ul
-          className={s.dropdown__list}
-          style={{ display: isDropdownOpen ? "" : "none" }}
+    return (
+      <InputField
+        key={field.name}
+        type={field.type}
+        name={field.name}
+        label={field.label || field.name}
+        value={(formData as any)[field.name]}
+        onChange={handleInputChange}
+        isValid={shouldShowValidation && isValid}
+        isInvalid={shouldShowValidation && !isValid}
+        className={field.name === "cvFile" ? s.form__cv : ""}
+        cv={cv}
+      />
+    );
+  };
+
+  const renderDropdown = () => {
+    const isTouched = touchedFields.subject;
+    const isValid = !validationErrors.subject;
+    const inputClassNames = classNames(s.form__input, {
+      [s.inputValid]: isTouched && isValid,
+      [s.inputInvalid]: isTouched && !isValid,
+      [s.cv]: cv,
+    });
+
+    return (
+      <div className={s.form__group}>
+        <div
+          className={s.dropdown}
+          onClick={() => setIsDropdownOpen(!isDropdownOpen)}
         >
-          {cv
-            ? vacancies.map((vacancy) => (
-                <li
-                  key={vacancy.id}
-                  onClick={() => {
-                    handleDropdownClick(
-                      (vacancy.acf as any)[`vacancies_${locale}`]
-                    );
-                    setIsDropdownOpen(false);
-                  }}
-                >
-                  {(vacancy.acf as any)[`vacancies_${locale}`]}
-                </li>
-              ))
-            : translatedTopics.map((topic) => (
-                <li
-                  key={topic}
-                  onClick={(e) => {
-                    handleInputChange({
-                      target: { name: "subject", value: topic },
-                    } as React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>);
-                    setIsDropdownOpen(false);
-                  }}
-                >
-                  {topic || t(`topics.selectTopic`)}
-                </li>
-              ))}
-        </ul>
+          <p className={inputClassNames}>
+            {cv ? (
+              <>
+                {formData.vacancy || t("appliedVacancy")}
+                <Image
+                  className={classNames(s.arrow, {
+                    [s.arrow__open]: isDropdownOpen,
+                  })}
+                  src={Arrow}
+                  alt="Arrow"
+                />
+              </>
+            ) : (
+              <>
+                {formData.subject || t("topicOfEnquiry")}
+                <Image
+                  className={classNames(s.arrow, {
+                    [s.arrow__open]: isDropdownOpen,
+                  })}
+                  src={Arrow}
+                  alt="Arrow"
+                />
+              </>
+            )}
+          </p>
+          <ul
+            className={s.dropdown__list}
+            style={{ display: isDropdownOpen ? "" : "none" }}
+          >
+            {cv
+              ? vacancies.map((vacancy) => (
+                  <li
+                    key={vacancy.id}
+                    onClick={() => {
+                      handleDropdownClick(
+                        (vacancy.acf as any)[`vacancies_${locale}`]
+                      );
+                      setIsDropdownOpen(false);
+                    }}
+                  >
+                    {(vacancy.acf as any)[`vacancies_${locale}`]}
+                  </li>
+                ))
+              : translatedTopics.map((topic) => (
+                  <li
+                    key={topic}
+                    onClick={(e) => {
+                      handleInputChange({
+                        target: { name: "subject", value: topic },
+                      } as React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>);
+                      setIsDropdownOpen(false);
+                    }}
+                  >
+                    {topic || t(`topics.selectTopic`)}
+                  </li>
+                ))}
+          </ul>
+        </div>
       </div>
-    </div>
-  );
+    );
+  };
 
   const renderTextarea = () => (
     <div className={s.form__textarea}>
@@ -320,8 +405,9 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
       <div className={s.form__inputs}>
         {fields.map(renderInputField)}
         {renderDropdown()}
+        {cv && renderAttachFile()}
       </div>
-      {cv ? renderAttachFile() : renderTextarea()}
+      {!cv && renderTextarea()}
     </div>
   );
 
@@ -348,24 +434,26 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
             onSubmit={handleSubmit}
           >
             <div className={s.form__content}>{boxInputs}</div>
-            {cv ? renderAttachFile() : ""}
+            {cv}
 
-            <div className={s.form__buttons}>
+            <div className={s.form__test}>
               {/* {cv ? buttonComponentCV : buttonComponent} */}
-              <button
-                type="button"
-                onClick={handleTestButtonClick}
-                className={s.testButton}
-              >
-                Test
-              </button>
-              <button
-                type="button"
-                onClick={handleFormReset}
-                className={s.resetButton}
-              >
-                Clear
-              </button>
+              <div className={s.form__buttons}>
+                <button
+                  type="button"
+                  onClick={handleTestButtonClick}
+                  className={s.testButton}
+                >
+                  Test
+                </button>
+                <button
+                  type="button"
+                  onClick={handleFormReset}
+                  className={s.resetButton}
+                >
+                  Clear
+                </button>
+              </div>
 
               {formMessage && (
                 <div className={s.formMessage}>{formMessage}</div>

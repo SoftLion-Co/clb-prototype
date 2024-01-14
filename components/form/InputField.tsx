@@ -12,6 +12,8 @@ interface InputFieldProps {
   inputRef?: React.RefObject<HTMLInputElement>;
   className?: string;
   cv?: boolean;
+  isValid?: boolean;
+  isInvalid?: boolean;
 }
 
 const InputField: React.FC<InputFieldProps & { cv?: boolean }> = ({
@@ -23,9 +25,17 @@ const InputField: React.FC<InputFieldProps & { cv?: boolean }> = ({
   inputRef,
   className,
   cv,
+  isValid,
+  isInvalid,
 }) => {
   const isFileInput = type === "file";
   const t = useTranslations("homePage.contactUs");
+
+  const inputClassNames = classNames(s.form__input, {
+    [s.inputValid]: isValid,
+    [s.inputInvalid]: isInvalid,
+    [s.cv]: cv,
+  });
 
   return (
     <div className={classNames(s.form__group, className, { [s.cv]: cv })}>
@@ -38,14 +48,14 @@ const InputField: React.FC<InputFieldProps & { cv?: boolean }> = ({
             type={type}
             name={name}
             id={name}
-            className={classNames(s.form__inputfile, { [s.cv]: cv })}
+            className={inputClassNames}
             onChange={onChange}
           />
         </>
       ) : (
         <input
           type={type}
-          className={classNames(s.form__input, { [s.cv]: cv })}
+          className={inputClassNames}
           name={name}
           id={name}
           placeholder={label ? t(label) : cv ? t("cvPlaceholder") : ""}

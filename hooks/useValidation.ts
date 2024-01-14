@@ -12,3 +12,12 @@ export function validatePhoneNumber(phoneNumber: string): boolean {
   const phoneRegex = /^\d+$/;
   return phoneRegex.test(phoneNumber);
 }
+
+export function validateCompanyName(name: string): boolean {
+  if (!name.trim()) {
+    return false;
+  }
+
+  const companyNameRegex = /^[a-zA-Z0-9-,'.\s]{2,}$/;
+  return companyNameRegex.test(name.trim());
+}
