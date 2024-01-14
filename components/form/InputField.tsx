@@ -18,7 +18,7 @@ interface InputFieldProps {
   isInvalid?: boolean;
 }
 
-const InputField: React.FC<InputFieldProps & { cv?: boolean }> = ({
+const InputField: React.FC<InputFieldProps & { isCV?: boolean }> = ({
   type,
   name,
   label,

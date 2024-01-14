@@ -272,7 +272,7 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
         const jsonResponse = await response.json();
         if (jsonResponse.status === "mail_sent") {
           console.log("Form submitted successfully!");
-          handleFormReset();
+          handleFormReset(); 
         } else {
           console.error("Form submission failed. Status:", jsonResponse.status);
         }
@@ -461,7 +461,7 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
               <div className={s.form__buttons}>
                 <button
                   type="button"
-                  onClick={handleTestButtonClick}
+                  onClick={() => handleTestButtonClick()}
                   className={s.testButton}
                 >
                   Test
