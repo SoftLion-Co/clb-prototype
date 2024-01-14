@@ -1,4 +1,6 @@
-import React, { ChangeEvent } from "react";
+"use client";
+
+import React, { ChangeEvent, useRef, useState } from "react";
 import s from "@/app/sections/main_page/ContactUsSection.module.scss";
 import { useTranslations } from "next-intl";
 import classNames from "classnames";
@@ -20,7 +22,6 @@ const InputField: React.FC<InputFieldProps & { cv?: boolean }> = ({
   type,
   name,
   label,
-  value,
   onChange,
   inputRef,
   className,
@@ -28,38 +29,66 @@ const InputField: React.FC<InputFieldProps & { cv?: boolean }> = ({
   isValid,
   isInvalid,
 }) => {
-  const isFileInput = type === "file";
   const t = useTranslations("homePage.contactUs");
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  const [fileName, setFileName] = useState("");
 
-  const inputClassNames = classNames(s.form__input, {
-    [s.inputValid]: isValid,
-    [s.inputInvalid]: isInvalid,
-    [s.cv]: cv,
-  });
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    if (type === "file" && e.target.files) {
+      setFileName(e.target.files[0].name);
+    }
+    onChange(e);
+  };
+
+  const handleFileButtonClick = () => {
+    if (fileInputRef.current) {
+      fileInputRef.current.click();
+    }
+  };
+
+  const inputClassNames = classNames(
+    s.form__input,
+    {
+      [s.inputValid]: isValid,
+      [s.inputInvalid]: isInvalid,
+      [s.cv]: cv,
+    },
+    className
+  );
 
   return (
     <div className={classNames(s.form__group, className, { [s.cv]: cv })}>
-      {isFileInput ? (
-        <>
-          <label className={s.form__label} htmlFor={name}>
-            {t(label)}
-          </label>
+      {type === "file" ? (
+        <div className={s.form__attach}>
           <input
-            type={type}
+            ref={fileInputRef}
+            type="file"
             name={name}
             id={name}
-            className={inputClassNames}
-            onChange={onChange}
+            className={classNames(s.form__inputfile, inputClassNames)}
+            onChange={handleChange}
           />
-        </>
+          <label htmlFor={name} className={s.form__label}>
+            {label}
+          </label>
+          <button
+            type="button"
+            className={s.form__fileButton}
+            onClick={handleFileButtonClick}
+          >
+            {t("chooseFile")}
+          </button>
+        </div>
       ) : (
         <input
           type={type}
-          className={inputClassNames}
           name={name}
           id={name}
-          placeholder={label ? t(label) : cv ? t("cvPlaceholder") : ""}
-          value={value || ""}
+          placeholder={t(label)}
+          className={classNames(s.form__input, inputClassNames, {
+            [s.inputValid]: isValid,
+            [s.inputInvalid]: isInvalid,
+          })}
           onChange={onChange}
           ref={inputRef}
         />

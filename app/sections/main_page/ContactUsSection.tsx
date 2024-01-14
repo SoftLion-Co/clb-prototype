@@ -67,6 +67,7 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
     email: boolean;
     phone: boolean;
     company: boolean;
+    message: boolean;
     subject: boolean;
     [key: string]: boolean | undefined;
   }
@@ -77,6 +78,7 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
     email: false,
     phone: false,
     company: false,
+    message: false,
     subject: false,
   });
 
@@ -86,6 +88,7 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
     email: false,
     phone: false,
     company: false,
+    message: false,
     subject: false,
   });
 
@@ -105,10 +108,13 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
     { type: "text", name: "time" },
   ];
 
+  const fields = cv ? fieldsCV : fieldsWithoutCV;
+
   const handleInputChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLLIElement>
   ) => {
-    const { name, value } = e.target as HTMLInputElement | HTMLTextAreaElement;
+    let { name, value } = e.target as HTMLInputElement | HTMLTextAreaElement;
+
     setFormData((prevData) => ({ ...prevData, [name]: value }));
 
     setTouchedFields((prevFields) => ({
@@ -128,6 +134,9 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
           break;
         case "phone":
           isValid = validatePhoneNumber(value);
+          break;
+        case "company":
+          isValid = validateCompanyName(value);
           break;
         default:
           isValid = true;
@@ -179,6 +188,7 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
       phone: !validatePhoneNumber(formData.phone),
       company: !validateCompanyName(formData.company),
       subject: formData.subject.trim() === "",
+      message: false,
     };
 
     setValidationErrors(errors);
@@ -216,6 +226,7 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
       email: false,
       phone: false,
       company: false,
+      message: false,
       subject: false,
     });
 
@@ -225,6 +236,7 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
       email: false,
       phone: false,
       company: false,
+      message: false,
       subject: false,
     });
   };
@@ -237,6 +249,7 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
     const formElement = e
       ? e.currentTarget
       : document.querySelector(".yourFormClass");
+
     if (!(formElement instanceof HTMLFormElement)) {
       console.error("Form element is not found or not a form!");
       return;
@@ -270,8 +283,6 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
       console.error("An error occurred during form submission:", error);
     }
   };
-
-  const fields = cv ? fieldsCV : fieldsWithoutCV;
 
   const renderInputField = (field: {
     type: string;
@@ -376,18 +387,27 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
     );
   };
 
-  const renderTextarea = () => (
-    <div className={s.form__textarea}>
-      <textarea
-        className={s.form__message}
-        id="message"
-        name="message"
-        placeholder={t("yourMessage")}
-        value={formData.message}
-        onChange={handleInputChange}
-      ></textarea>
-    </div>
-  );
+  const renderTextarea = () => {
+    const isTouched = touchedFields.message;
+    const isValid = !validationErrors.message;
+    const textareaClassNames = classNames(s.form__message, {
+      [s.inputValid]: isTouched && isValid,
+      [s.inputInvalid]: isTouched && !isValid,
+    });
+
+    return (
+      <div className={s.form__textarea}>
+        <textarea
+          className={textareaClassNames}
+          id="message"
+          name="message"
+          placeholder={t("yourMessage")}
+          value={formData.message}
+          onChange={handleInputChange}
+        ></textarea>
+      </div>
+    );
+  };
 
   const renderAttachFile = () => (
     <InputField
@@ -445,13 +465,6 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
                   className={s.testButton}
                 >
                   Test
-                </button>
-                <button
-                  type="button"
-                  onClick={handleFormReset}
-                  className={s.resetButton}
-                >
-                  Clear
                 </button>
               </div>
 
