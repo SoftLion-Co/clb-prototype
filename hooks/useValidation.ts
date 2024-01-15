@@ -1,5 +1,5 @@
 export function validateName(name: string): boolean {
-  const nameRegex = /^[a-zA-Z]{2,}$/;
+  const nameRegex = /^\p{L}{2,}$/u;
   return nameRegex.test(name);
 }
 
@@ -18,6 +18,6 @@ export function validateCompanyName(name: string): boolean {
     return false;
   }
 
-  const companyNameRegex = /^[a-zA-Z0-9-,'.\s]{2,}$/;
+  const companyNameRegex = /^[\p{L}0-9-,'.\s]{2,}$/u;
   return companyNameRegex.test(name.trim());
 }

@@ -232,6 +232,13 @@
   color: $brandColorDarkGreen;
 }
 
+.form__fileMessage {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
 .inputValid {
   border-color: #a7b896;
   color: #a7b896;
@@ -241,4 +248,5 @@
   border-color: #de7272;
   color: #de7272;
 }
+
 //=== Test Styles ===//

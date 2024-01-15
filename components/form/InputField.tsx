@@ -16,6 +16,7 @@ interface InputFieldProps {
   cv?: boolean;
   isValid?: boolean;
   isInvalid?: boolean;
+  isFileValid?: boolean;
 }
 
 const InputField: React.FC<InputFieldProps & { isCV?: boolean }> = ({
@@ -28,14 +29,23 @@ const InputField: React.FC<InputFieldProps & { isCV?: boolean }> = ({
   cv,
   isValid,
   isInvalid,
+  isFileValid,
 }) => {
   const t = useTranslations("homePage.contactUs");
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [fileName, setFileName] = useState("");
+  const [fileSizeError, setFileSizeError] = useState(false);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (type === "file" && e.target.files) {
-      setFileName(e.target.files[0].name);
+      const file = e.target.files[0];
+      if (file.size > 5242880) {
+        setFileSizeError(true);
+        setFileName("");
+      } else {
+        setFileSizeError(false);
+        setFileName(file.name);
+      }
     }
     onChange(e);
   };
@@ -49,8 +59,8 @@ const InputField: React.FC<InputFieldProps & { isCV?: boolean }> = ({
   const inputClassNames = classNames(
     s.form__input,
     {
-      [s.inputValid]: isValid,
-      [s.inputInvalid]: isInvalid,
+      [s.inputValid]: (isValid && !fileSizeError) || (isValid && !isInvalid),
+      [s.inputInvalid]: isInvalid || fileSizeError,
       [s.cv]: cv,
     },
     className
@@ -59,25 +69,48 @@ const InputField: React.FC<InputFieldProps & { isCV?: boolean }> = ({
   return (
     <div className={classNames(s.form__group, className, { [s.cv]: cv })}>
       {type === "file" ? (
-        <div className={s.form__attach}>
+        <div className={s.form__attach} style={{ width: "100%" }}>
           <input
             ref={fileInputRef}
             type="file"
             name={name}
             id={name}
-            className={classNames(s.form__inputfile, inputClassNames)}
+            className={classNames(s.form__inputfile, {
+              [s.inputValid]: isValid && isFileValid, 
+              [s.inputInvalid]: isInvalid || fileSizeError,
+            })}
             onChange={handleChange}
           />
+
           <label htmlFor={name} className={s.form__label}>
             {label}
           </label>
-          <button
-            type="button"
-            className={s.form__fileButton}
-            onClick={handleFileButtonClick}
-          >
-            {t("chooseFile")}
-          </button>
+
+          <div className={s.form__fileMessage}>
+            <button
+              type="button"
+              className={classNames(s.form__fileButton, {
+                [s.inputValid]:
+                  (isValid && !fileSizeError) || (isValid && fileSizeError),
+                [s.inputInvalid]: isInvalid || fileSizeError,
+              })}
+              onClick={handleFileButtonClick}
+            >
+              {t("chooseFile")}
+            </button>
+            <div>
+              {fileSizeError && (
+                <span
+                  className={classNames(s.errorText, {
+                    [s.inputInvalid]: fileSizeError,
+                  })}
+                >
+                  Виберіть файл до 5МБ
+                </span>
+              )}
+              {fileName && <span className={s.fileName}>Файл: {fileName}</span>}
+            </div>
+          </div>
         </div>
       ) : (
         <input

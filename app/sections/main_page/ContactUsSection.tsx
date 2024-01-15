@@ -24,7 +24,7 @@ interface FormData {
   email: string;
   phone: string;
   company: string;
-  subject: string;
+  subject?: string;
   message: string;
   time: string;
   vacancy: string;
@@ -47,6 +47,7 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
   const translatedTopics = topics.map((topic) => t(`topics.${topic}`));
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [formMessage, setFormMessage] = useState("");
+  const [isCvFileValid, setIsCvFileValid] = useState(true);
 
   const [formData, setFormData] = useState<FormData>({
     firstname: "",
@@ -67,8 +68,9 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
     email: boolean;
     phone: boolean;
     company: boolean;
-    message: boolean;
     subject: boolean;
+    message: boolean;
+    cvFile: boolean;
     [key: string]: boolean | undefined;
   }
 
@@ -80,6 +82,7 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
     company: false,
     message: false,
     subject: false,
+    cvFile: false,
   });
 
   const [touchedFields, setTouchedFields] = useState({
@@ -107,8 +110,6 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
     { type: "tel", name: "phone" },
     { type: "text", name: "time" },
   ];
-
-  const fields = cv ? fieldsCV : fieldsWithoutCV;
 
   const handleInputChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLLIElement>
@@ -186,10 +187,18 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
       lastname: !validateName(formData.lastname),
       email: !validateEmail(formData.email),
       phone: !validatePhoneNumber(formData.phone),
-      company: !validateCompanyName(formData.company),
-      subject: formData.subject.trim() === "",
+      company: false,
+      subject: false,
       message: false,
+      cvFile: false,
     };
+
+    if (cv) {
+      errors.cvFile = !formData.cvFile;
+    } else {
+      errors.company = !validateCompanyName(formData.company);
+      errors.subject = !formData.subject || formData.subject.trim() === "";
+    }
 
     setValidationErrors(errors);
 
@@ -198,9 +207,20 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
 
   const handleTestButtonClick = async () => {
     if (validateForm()) {
-      await handleSubmit();
-      handleFormReset();
-      setFormMessage("Form submitted successfully!");
+      if (cv && !formData.cvFile) {
+        setFormMessage("Please select a CV file.");
+      } else if (!isCvFileValid) {
+        setFormMessage("File is not valid. Please choose a valid file.");
+      } else {
+        if (formData.cvFile && formData.cvFile.size > 5242880) {
+          setFormMessage(
+            "File size exceeds 5MB. Please choose a smaller file."
+          );
+        } else {
+          handleFormReset();
+          setFormMessage("Form submitted successfully!");
+        }
+      }
     } else {
       setFormMessage("Validation failed. Please check your inputs.");
     }
@@ -238,24 +258,13 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
       company: false,
       message: false,
       subject: false,
+      cvFile: false,
     });
   };
 
-  const handleSubmit = async (e?: React.FormEvent<HTMLFormElement>) => {
-    if (e) {
-      e.preventDefault();
-    }
-
-    const formElement = e
-      ? e.currentTarget
-      : document.querySelector(".yourFormClass");
-
-    if (!(formElement instanceof HTMLFormElement)) {
-      console.error("Form element is not found or not a form!");
-      return;
-    }
-
-    const formData = new FormData(formElement);
+  const handleSubmit = async (e: any) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
 
     const url = `https://softlion.blog/wp-json/contact-form-7/v1/contact-forms/${
       cv ? 342 : 215
@@ -270,19 +279,34 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
       const response = await fetch(url, reqOptions);
       if (response.ok) {
         const jsonResponse = await response.json();
+        console.log(jsonResponse);
         if (jsonResponse.status === "mail_sent") {
+          setFormData({
+            firstname: "",
+            lastname: "",
+            email: "",
+            phone: "",
+            company: "",
+            subject: "",
+            message: "",
+            time: "",
+            vacancy: "",
+            cvFile: null,
+          });
           console.log("Form submitted successfully!");
-          handleFormReset(); 
         } else {
           console.error("Form submission failed. Status:", jsonResponse.status);
         }
       } else {
-        console.error("Server response error:", response.statusText);
+        console.error("Form submission failed:", response.statusText);
       }
     } catch (error) {
       console.error("An error occurred during form submission:", error);
     }
   };
+
+  const fields = cv ? fieldsCV : fieldsWithoutCV;
+
 
   const renderInputField = (field: {
     type: string;
@@ -460,7 +484,7 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
               {/* {cv ? buttonComponentCV : buttonComponent} */}
               <div className={s.form__buttons}>
                 <button
-                  type="button"
+                  type="submit"
                   onClick={() => handleTestButtonClick()}
                   className={s.testButton}
                 >
