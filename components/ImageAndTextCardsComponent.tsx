@@ -70,7 +70,7 @@ function ImageAndTextCardsComponent({
         <h3 className={rotate ? s.quote__rotated : s.quote}>{text}</h3>
       </div>
       {!rotate ? (
-        <div className={s.quote__image_container}>
+        <div className={s.quote__image__container}>
           <Image
             src={image}
             alt={alt}
