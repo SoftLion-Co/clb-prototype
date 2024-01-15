@@ -33,7 +33,7 @@ const ListCardsComponent: FC<ListCardsProps> = ({ data }) => {
   };
 
   return (
-    <div className={classNames(s.cards, s.container)}>
+    <div className={s.cards}>
       {Object.entries(data).map(([title, items]) => (
         <div key={title} className={s.card}>
           {title && (
