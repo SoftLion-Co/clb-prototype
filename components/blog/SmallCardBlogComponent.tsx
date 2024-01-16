@@ -56,7 +56,7 @@ const SmallCardBlogComponent = (data: Info) => {
             <ReadMoreComponent href={articleLink} />
             <p className={s.blog__data}>01.12.2024</p>
           </div>
-          </div>
+        </div>
       </div>
     </div>
   );
