@@ -85,6 +85,37 @@ const HeaderComponent = () => {
     typeof window !== "undefined" ? window.innerWidth : 0
   );
 
+  const [showHeader, setShowHeader] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+
+  const controlHeaderVisibility = () => {
+    if (typeof window !== "undefined") {
+      const scrolledDistance = window.scrollY;
+
+      const scrollingUp = scrolledDistance < lastScrollY;
+
+      if (scrollingUp || scrolledDistance <= 28) {
+        setShowHeader(true);
+      } else {
+        setShowHeader(false);
+      }
+
+      setLastScrollY(scrolledDistance);
+    }
+  };
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      window.addEventListener("scroll", controlHeaderVisibility);
+    }
+
+    return () => {
+      if (typeof window !== "undefined") {
+        window.removeEventListener("scroll", controlHeaderVisibility);
+      }
+    };
+  }, [lastScrollY]);
+
   const handleDropdownClick = (dropdownType: any) => {
     switch (dropdownType) {
       case "flag":
@@ -258,7 +289,7 @@ const HeaderComponent = () => {
             height={20}
           />
         </Link>
-        <p>{selectedCountry.name}</p>
+        <p className={s.flag__name}>{selectedCountry.name}</p>
 
         <span
           className={classNames(s.arrow, {
@@ -307,15 +338,15 @@ const HeaderComponent = () => {
       {FlagContent}
       <MainButtonComponent
         text={t("getInTouch")}
-        padding="9px 8px 9px 16px"
-        rotatedArrow={true}
-        customGap="12px"
       />
     </>
   );
 
   return (
-    <header className={s.header}>
+    <header
+      className={classNames(s.header, { [s.hidden]: !showHeader })}
+      style={{ zIndex: isModalOpen ? -1 : 10 }}
+    >
       <div className={s.header__box}>
         <Link className={s.header__link} href={"/"}>
           <Image
@@ -343,9 +374,7 @@ const HeaderComponent = () => {
           <MainButtonComponent
             className={s.header__touch}
             text={t("getInTouch")}
-            padding="9px 8px 9px 16px"
-            rotatedArrow={true}
-            customGap="16px"
+            type="MainButton"
           />
 
           <button
@@ -357,7 +386,6 @@ const HeaderComponent = () => {
           </button>
         </div>
       </div>
-
       <Modal
         className={classNames(s.modal, s.container)}
         isOpen={isModalOpen}

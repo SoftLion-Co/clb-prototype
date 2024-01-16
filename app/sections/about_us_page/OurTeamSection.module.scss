@@ -16,6 +16,10 @@
     }
   }
 
+  &__control {
+    box-shadow: none;
+  }
+
   &__controls {
     position: relative;
     display: flex;
@@ -26,11 +30,12 @@
 
     @include for-size(tablet) {
       justify-content: center;
-      gap: 260px;
+      gap: 170px;
       margin-top: 80px;
     }
+
     @include for-size(laptop) {
-      gap: 340px;
+      gap: 270px;
       margin-top: 100px;
     }
   }

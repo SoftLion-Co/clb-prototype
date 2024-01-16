@@ -3,18 +3,25 @@
 .box {
   width: 100%;
   padding: 0 16px;
+  &:first-child {
+    margin-top: 70px;
+  }
 
   @include for-size(laptop) {
     padding: 0 24px;
+    &:first-child {
+      margin-top: 124px;
+    }
   }
 }
 
 .background {
-  padding: 90px 0;
+  padding: 40px 0;
   background-color: #f6f6f6;
   border-radius: 16px;
 
   @include for-size(laptop) {
+    padding: 90px 0;
     border-radius: 24px;
   }
 }

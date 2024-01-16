@@ -1,8 +1,9 @@
 import React from "react";
 import s from "./OurCoreServicesComponent.module.scss";
 import image from "@/images/home-hero-test.png";
-import Image from "next/image";
 import { useTranslations } from "next-intl";
+import classNames from "classnames";
+import { useTwoLinesTitle } from "@/hooks/useTwoLinesTitle";
 
 function OurCoreServicesComponent() {
   const t = useTranslations("commodityBrokerage.services");
@@ -31,37 +32,41 @@ function OurCoreServicesComponent() {
     text5: t("text5"),
   };
 
-  const serviceCards = Array.from({ length: 5 }, (_, index) => ({
-    title: data[`title${index + 1}` as keyof typeof data], 
-    text: data[`text${index + 1}` as keyof typeof data],   
-  }));
-
-  const mainCards = serviceCards.slice(0, -1);
-  const lastServiceCard = serviceCards.slice(-1)[0];
+  const serviceCards = [
+    { title: data.title1, text: data.text1, imageSrc: undefined },
+    { title: data.title2, text: data.text2, imageSrc: undefined },
+    { title: data.title3, text: data.text3, imageSrc: undefined },
+    { title: data.title4, text: data.text4, imageSrc: undefined },
+    { title: undefined, text: undefined, imageSrc: image },
+    { title: data.title5, text: data.text5, imageSrc: undefined },
+  ];
 
   const cardsWithBorders = [0, 1, 4];
 
+  const imgaeStyling = {
+    backgroundImage: `url(${image.src})`,
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+  };
+
   return (
     <div className={s.services}>
-      {mainCards.map(({ title, text }, index) => (
-        <div className={`${s.card} ${cardsWithBorders.includes(index) ? s.cardWithBorder : ''}`} key={index}>
-          <h3 className={s.card__title}>{title}</h3>
-          <p className={s.card__text}>{text}</p>
-        </div>
+      {serviceCards.map(({ title, text, imageSrc }, index) => (
+        <React.Fragment key={index}>
+          {imageSrc !== undefined ? (
+            <div className={s.card} style={imgaeStyling}></div>
+          ) : (
+            <div
+              className={classNames(s.card, {
+                [s.cardWithBorder]: cardsWithBorders.includes(index),
+              })}
+            >
+              <h3 className={s.card__title}>{useTwoLinesTitle(title)}</h3>
+              <p className={s.card__text}>{text}</p>
+            </div>
+          )}
+        </React.Fragment>
       ))}
-      <div>
-        <Image
-          src={image}
-          alt="Hero"
-          className={s.card__image}
-          width={800}
-          height={800}
-        />
-      </div>
-      <div className={`${s.card} ${cardsWithBorders.includes(serviceCards.length - 1) ? s.cardWithBorder : ''}`} key={serviceCards.length - 1}>
-        <h3 className={s.card__title}>{lastServiceCard.title}</h3>
-        <p className={s.card__text}>{lastServiceCard.text}</p>
-      </div>
     </div>
   );
 }

@@ -1,57 +1,70 @@
 import React, { FC } from "react";
-import s from "./ListCardsComponent.module.scss";
 import Image from "next/image";
-import { useTranslations } from "next-intl";
-
-import GrainsImage from "@/images/icons/Grains.svg";
-import FertilizersImage from "@/images/icons/Fertilizers.svg";
-import OilsImage from "@/images/icons/Oils.svg";
-import ProcessedProductsImage from "@/images/icons/ProcessedProducts.svg";
-import ByCarImage from "@/images/icons/ByCar.svg";
-import ByRailImage from "@/images/icons/ByRail.svg";
-import ByRiverImage from "@/images/icons/ByRiver.svg";
-import BySeaImage from "@/images/icons/BySea.svg";
+import s from "./ListCardsComponent.module.scss";
 import classNames from "classnames";
 
 interface ListCardsProps {
-  data: { [key: string]: { [key: string]: string } };
+  data: Portfolio[] | null;
+  loading?: boolean;
+  container?: boolean;
 }
 
-const ListCardsComponent: FC<ListCardsProps> = ({ data }) => {
-  const t = useTranslations("commodityBrokerage");
-  const t1 = useTranslations("freightBrokerage");
+interface Portfolio {
+  title: Title;
+  acf: Acf | null;
+}
 
-  const imageMap: { [key: string]: any } = {
-    [t("grains")]: GrainsImage,
-    [t("fertilizers")]: FertilizersImage,
-    [t("oils")]: OilsImage,
-    [t("processedProducts")]: ProcessedProductsImage,
-    [t1("byCar")]: ByCarImage,
-    [t1("byRail")]: ByRailImage,
-    [t1("byRiver")]: ByRiverImage,
-    [t1("bySea")]: BySeaImage,
-  };
+interface Title {
+  rendered: string;
+}
+
+interface Acf {
+  icon: string;
+  title: string;
+  option1: string;
+  option2: string;
+  option3: string;
+  option4: string;
+  option5: string;
+  option6: string;
+  option7: string;
+  option8: string;
+  option9: string;
+  option10: string;
+}
+
+const ListCardsComponent: FC<ListCardsProps> = ({
+  data,
+  loading,
+  container,
+}) => {
+  const cardsClass = classNames(s.cards, { [s.container]: container });
 
   return (
-    <div className={classNames(s.cards, s.container)}>
-      {Object.entries(data).map(([title, items]) => (
-        <div key={title} className={s.card}>
-          {title && (
+    <div className={cardsClass}>
+      {data?.map((item: Portfolio, index: number) => (
+        <div key={index} className={s.card}>
+          {item.acf && item.acf.icon && (
             <Image
-              src={imageMap[title]}
-              alt={title}
+              src={item.acf.icon}
+              alt={item.title.rendered}
               className={s.card__image}
               width={75}
               height={80}
             />
           )}
-          <h3 className={s.card__title}>{title}</h3>
+          <h3 className={s.card__title}>{item.acf?.title}</h3>
           <ul className={s.card__list}>
-            {Object.entries(items).map(([key, item]) => (
-              <li key={key} className={s.card__item}>
-                {item}
-              </li>
-            ))}
+            {Object.entries(item.acf || {}).map(([key, value]) => {
+              if (key.startsWith("option") && value !== "") {
+                return (
+                  <li key={key} className={s.card__item}>
+                    {value}
+                  </li>
+                );
+              }
+              return null;
+            })}
           </ul>
         </div>
       ))}

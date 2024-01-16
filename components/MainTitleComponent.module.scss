@@ -1,4 +1,4 @@
-@import "/style/viewports";
+@import "@/style/viewports";
 
 .main {
   display: flex;
@@ -23,7 +23,7 @@
   }
 
   &.left {
-    @include for-size(tablet) {
+    @include for-size(laptop) {
       justify-content: flex-start;
     }
   }

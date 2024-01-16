@@ -1,5 +1,3 @@
-// OurTeamCardComponent.jsx
-
 import s from "./OurTeamCardComponent.module.scss";
 import Image from "next/image";
 import classNames from "classnames";
@@ -44,7 +42,7 @@ const OurTeamCardComponent = ({
         <h3 className={s.team__name}>
           {teamMember.acf[`fullname_${locale}` as keyof TeamMemberAcf]}
         </h3>
-        <p className={classNames(s.team__position, s.pDefault)}>
+        <p className={s.team__position}>
           {teamMember.acf[`jobtitle_${locale}` as keyof TeamMemberAcf]}
         </p>
       </div>

@@ -22,6 +22,8 @@ const BlogCardsSection = () => {
           <MainTitleComponent
             className={s.blog__title}
             title={t("blogTitle")}
+            color="black"
+            left
           />
 
           <div className={s.blog__cards}>
@@ -34,10 +36,9 @@ const BlogCardsSection = () => {
 
           <MainButtonComponent
             text={t1("moreOurNews")}
-            rotatedArrow={false}
-            padding="8px 16px"
-            customGap="8px"
             href={"/blog"}
+            type="MainArrowButton"
+            className={s.blog__button}
           />
         </div>
       </div>
