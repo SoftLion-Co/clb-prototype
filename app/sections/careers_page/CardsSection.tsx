@@ -23,14 +23,13 @@ const CardsSection = () => {
             alt={"Image"}
           />
           <ImageAndTextCardsComponent
-            rotate={true}
+            rotate
             text={t("cardsSmallText")}
             image={Image.src}
             alt={"Image"}
             color="white"
             border
-            fontSize={18}
-            fontWeight={400}
+            smallFont
           />
         </div>
       </div>

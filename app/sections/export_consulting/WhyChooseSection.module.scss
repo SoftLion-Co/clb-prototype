@@ -1,7 +1,11 @@
 @import "/style/container";
+@import "/style/viewports";
 
 .choose {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 16px;
+  @include for-size(laptop) {
+    gap: 24px;
+  }
 }

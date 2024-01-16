@@ -1,10 +1,12 @@
 import React from "react";
 import s from "./WhyChooseSection.module.scss";
 import ImageAndTextCardsComponent from "@/components/ImageAndTextCardsComponent";
-import image from "@/images/home-hero-test.png";
 import MainTitleComponent from "@/components/MainTitleComponent";
 import { useTranslations } from "next-intl";
-import classNames from "classnames";
+
+import image1 from "@/images/export_consulting/1.png";
+import image2 from "@/images/export_consulting/2.jpg";
+import image3 from "@/images/export_consulting/3.png";
 
 interface WhyChooseProps {
   text1: string;
@@ -18,30 +20,35 @@ function WhyChoose({ text1, text2, text3 }: WhyChooseProps) {
   return (
     <section className={s.box}>
       <div className={s.background}>
-        <div className={classNames(s.container, s.choose)}>
+        <div className={s.container}>
           <MainTitleComponent title={t("whyChooseTitle")} color="blue" />
-          <ImageAndTextCardsComponent
-            text={text1}
-            image={image.src}
-            alt="image"
-            color="blue"
-            border
-          />
-          <ImageAndTextCardsComponent
-            text={text2}
-            image={image.src}
-            alt="image"
-            rotate
-            color="white"
-            border
-          />
-          <ImageAndTextCardsComponent
-            text={text3}
-            image={image.src}
-            alt="image"
-            color="white"
-            border
-          />
+          <div className={s.choose}>
+            <ImageAndTextCardsComponent
+              text={text1}
+              image={image1.src}
+              alt="image"
+              color="blue"
+              border
+              rotateMobile
+            />
+            <ImageAndTextCardsComponent
+              text={text2}
+              image={image2.src}
+              alt="image"
+              color="white"
+              border
+              rotate
+              rotateMobile
+            />
+            <ImageAndTextCardsComponent
+              text={text3}
+              image={image3.src}
+              alt="image"
+              color="white"
+              border
+              rotateMobile
+            />
+          </div>
         </div>
       </div>
     </section>
