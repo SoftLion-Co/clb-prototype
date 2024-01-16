@@ -85,17 +85,20 @@ const HeaderComponent = () => {
     typeof window !== "undefined" ? window.innerWidth : 0
   );
 
+  const [scrollY, setScrollY] = useState(0);
   const [showHeader, setShowHeader] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
+
+  const HEADER_SCROLL_THRESHOLD = 28;
 
   const controlHeaderVisibility = () => {
     if (typeof window !== "undefined") {
-      if (window.scrollY > lastScrollY) {
+      const currentScrollY = window.scrollY;
+      if (currentScrollY > HEADER_SCROLL_THRESHOLD) {
         setShowHeader(false);
       } else {
         setShowHeader(true);
       }
-      setLastScrollY(window.scrollY);
+      setScrollY(currentScrollY);
     }
   };
 
@@ -109,7 +112,13 @@ const HeaderComponent = () => {
         window.removeEventListener("scroll", controlHeaderVisibility);
       }
     };
-  }, [lastScrollY]);
+  }, []);
+
+  const headerClassName = classNames(
+    s.header,
+    { [s.hidden]: !showHeader },
+    { [s.headerFixed]: scrollY >= HEADER_SCROLL_THRESHOLD }
+  );
 
   const handleDropdownClick = (dropdownType: any) => {
     switch (dropdownType) {
