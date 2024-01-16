@@ -76,7 +76,7 @@ const InputField: React.FC<InputFieldProps & { isCV?: boolean }> = ({
             name={name}
             id={name}
             className={classNames(s.form__inputfile, {
-              [s.inputValid]: isValid && isFileValid, 
+              [s.inputValid]: isValid && isFileValid,
               [s.inputInvalid]: isInvalid || fileSizeError,
             })}
             onChange={handleChange}
@@ -99,16 +99,8 @@ const InputField: React.FC<InputFieldProps & { isCV?: boolean }> = ({
               {t("chooseFile")}
             </button>
             <div>
-              {fileSizeError && (
-                <span
-                  className={classNames(s.errorText, {
-                    [s.inputInvalid]: fileSizeError,
-                  })}
-                >
-                  Виберіть файл до 5МБ
-                </span>
-              )}
-              {fileName && <span className={s.fileName}>Файл: {fileName}</span>}
+              {fileSizeError && <span>Виберіть файл до 5МБ</span>}
+              {fileName && <span>Файл: {fileName}</span>}
             </div>
           </div>
         </div>

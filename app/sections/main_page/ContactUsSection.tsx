@@ -63,27 +63,12 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
   });
 
   interface ValidationErrors {
-    firstname: boolean;
-    lastname: boolean;
-    email: boolean;
-    phone: boolean;
-    company: boolean;
-    subject: boolean;
-    message: boolean;
-    cvFile: boolean;
     [key: string]: boolean | undefined;
   }
 
-  const [validationErrors, setValidationErrors] = useState<ValidationErrors>({
-    firstname: false,
-    lastname: false,
-    email: false,
-    phone: false,
-    company: false,
-    message: false,
-    subject: false,
-    cvFile: false,
-  });
+  const [validationErrors, setValidationErrors] = useState<ValidationErrors>(
+    {}
+  );
 
   const [touchedFields, setTouchedFields] = useState({
     firstname: false,
@@ -153,7 +138,7 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
   const handleDropdownClick = (value: string) => {
     setFormData((prevData) => ({
       ...prevData,
-      vacancy: value,
+      subject: value,
     }));
 
     setTouchedFields((prevFields) => ({ ...prevFields, subject: true }));
@@ -182,7 +167,7 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
   }, []);
 
   const validateForm = () => {
-    const errors = {
+    const errors: ValidationErrors = {
       firstname: !validateName(formData.firstname),
       lastname: !validateName(formData.lastname),
       email: !validateEmail(formData.email),
@@ -250,16 +235,7 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
       subject: false,
     });
 
-    setValidationErrors({
-      firstname: false,
-      lastname: false,
-      email: false,
-      phone: false,
-      company: false,
-      message: false,
-      subject: false,
-      cvFile: false,
-    });
+    setValidationErrors({});
   };
 
   const handleSubmit = async (e: any) => {
@@ -281,18 +257,7 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
         const jsonResponse = await response.json();
         console.log(jsonResponse);
         if (jsonResponse.status === "mail_sent") {
-          setFormData({
-            firstname: "",
-            lastname: "",
-            email: "",
-            phone: "",
-            company: "",
-            subject: "",
-            message: "",
-            time: "",
-            vacancy: "",
-            cvFile: null,
-          });
+          handleFormReset();
           console.log("Form submitted successfully!");
         } else {
           console.error("Form submission failed. Status:", jsonResponse.status);
@@ -306,7 +271,6 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
   };
 
   const fields = cv ? fieldsCV : fieldsWithoutCV;
-
 
   const renderInputField = (field: {
     type: string;
@@ -455,17 +419,6 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
     </div>
   );
 
-  const buttonComponent = (
-    <MainButtonComponent
-      text={cv ? t("submitButton") : t("contactUsButton")}
-      padding="9px 8px 9px 16px"
-      rotatedArrow={true}
-      customGap="12px"
-    />
-  );
-
-  const buttonComponentCV = <MainButtonComponent text={t("submitButton")} />;
-
   return (
     <section className={s.box}>
       <div className={s.background}>
@@ -481,7 +434,6 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
             {cv}
 
             <div className={s.form__test}>
-              {/* {cv ? buttonComponentCV : buttonComponent} */}
               <div className={s.form__buttons}>
                 <button
                   type="submit"
