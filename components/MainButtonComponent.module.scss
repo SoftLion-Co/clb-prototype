@@ -1,31 +1,39 @@
+@import "./../style/colors";
+
 .main {
   &__button {
     cursor: pointer;
-    color: #ffffff;
-    background: #565f51;
+    color: $classicWhiteBackgroundColor;
+    background: $brandColorDarkGreen;
     border-radius: 40px;
     max-width: fit-content;
     font-size: 20px;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    transition: background-color 0.6s ease, color 0.6s ease;
 
     &:hover {
-      background-color: #a7b896;
-
-      & .main__link {
+      background-color: $backgroundColorLightGreen;
+      & .main__container {
         display: flex;
-        flex-direction: row-reverse;
         gap: 16px;
+        flex-direction: row-reverse;
+        transition: transform 0.6s ease;
+        padding: 9px 16px 9px 8px;
+      }
+
+      & .main__link > * {
+        transform: translateX(0);
       }
 
       & .main__arrow {
-        fill: #ffffff;
-        transition: fill 0.3s ease;
+        color: $classicWhiteBackgroundColor;
+        transition: fill 0.6s ease;
+        transform: rotate(0deg);
+        transition: transform 0.3s ease;
       }
 
       & .main__background {
         background-color: transparent;
-        border: 1px solid white;
-        transition: background-color 0.6s ease;
+        border: 1px solid $classicWhiteBackgroundColor;
       }
     }
 
@@ -37,19 +45,31 @@
     }
   }
 
-  &__link {
+  &__container {
     display: flex;
     gap: 16px;
+    padding: 9px 8px 9px 16px;
+  }
+
+  &__link {
+    display: flex;
+    gap: 8px;
   }
 
   &__background {
     display: flex;
     justify-content: center;
     align-items: center;
-    transform: rotate(180deg);
-    background-color: white;
+    transform-origin: center;
+    background-color: $classicWhiteBackgroundColor;
     width: 30px;
     height: 30px;
     border-radius: 50%;
+  }
+
+  &__arrow {
+    color: white;
+    transition: transform 0.3s ease;
+    transform: rotate(180deg);
   }
 }
