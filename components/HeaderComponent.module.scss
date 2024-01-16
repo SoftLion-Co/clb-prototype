@@ -25,7 +25,8 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: #ffffff;
+    background: $classicWhiteBackgroundColor;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
     border-radius: 16px;
     padding: 9px 16px;
 
@@ -284,7 +285,7 @@
 }
 
 .modal {
-  background-color: #ffffff;
+  background-color: $classicWhiteBackgroundColor;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
