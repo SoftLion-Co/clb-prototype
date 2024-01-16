@@ -67,9 +67,7 @@ const MainArticleSection = (data: Data) => {
           <h1 className={classNames(s.h1Default, s.article__title)}>
             {data.data.acf[`heading_${locale}` as keyof Acf]}
           </h1>
-          <p className={classNames(s.pDefault, s.article__date)}>
-            {formattedDate}
-          </p>
+          <p className={classNames(s.article__date)}>{formattedDate}</p>
           <div className={s.article__content}>
             <div className={s.image__container}>
               <Image
@@ -96,7 +94,7 @@ const MainArticleSection = (data: Data) => {
               color="blue"
             />
             <h2 className={s.article__subheading}>
-              {data.data.acf[`subheadings_${locale}` as keyof Acf]}
+              {data.data.acf[`subheading2_${locale}` as keyof Acf]}
             </h2>
             <p className={s.article__text}>
               {data.data.acf[`text3_${locale}` as keyof Acf]}

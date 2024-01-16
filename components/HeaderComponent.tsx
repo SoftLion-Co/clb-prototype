@@ -85,6 +85,32 @@ const HeaderComponent = () => {
     typeof window !== "undefined" ? window.innerWidth : 0
   );
 
+  const [showHeader, setShowHeader] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+
+  const controlHeaderVisibility = () => {
+    if (typeof window !== "undefined") {
+      if (window.scrollY > lastScrollY) {
+        setShowHeader(false);
+      } else {
+        setShowHeader(true);
+      }
+      setLastScrollY(window.scrollY);
+    }
+  };
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      window.addEventListener("scroll", controlHeaderVisibility);
+    }
+
+    return () => {
+      if (typeof window !== "undefined") {
+        window.removeEventListener("scroll", controlHeaderVisibility);
+      }
+    };
+  }, [lastScrollY]);
+
   const handleDropdownClick = (dropdownType: any) => {
     switch (dropdownType) {
       case "flag":
@@ -315,7 +341,10 @@ const HeaderComponent = () => {
   );
 
   return (
-    <header className={s.header}>
+    <header
+      className={classNames(s.header, { [s.hidden]: !showHeader })}
+      style={{ zIndex: isModalOpen ? -1 : 10 }}
+    >
       <div className={s.header__box}>
         <Link className={s.header__link} href={"/"}>
           <Image
@@ -357,7 +386,6 @@ const HeaderComponent = () => {
           </button>
         </div>
       </div>
-
       <Modal
         className={classNames(s.modal, s.container)}
         isOpen={isModalOpen}
