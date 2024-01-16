@@ -92,14 +92,11 @@ const HeaderComponent = () => {
     if (typeof window !== "undefined") {
       const scrolledDistance = window.scrollY;
 
-      // Визначаємо, чи прокручується сторінка вгору або вниз.
       const scrollingUp = scrolledDistance < lastScrollY;
 
       if (scrollingUp || scrolledDistance <= 28) {
-        // Показуємо хедер, якщо прокручуємо вгору або якщо прокручено не більше ніж на 28px.
         setShowHeader(true);
       } else {
-        // Ховаємо хедер при прокручуванні вниз, якщо прокручено більше ніж на 28px.
         setShowHeader(false);
       }
 
