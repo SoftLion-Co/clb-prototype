@@ -25,9 +25,6 @@ function HeroSection() {
             <div className={s.hero__text}>{t("heroText")}</div>
             <MainButtonComponent
               text={t1("getInTouch")}
-              padding="9px 8px 9px 16px"
-              customGap="16px"
-              rotatedArrow={true}
             />
           </div>
           <Image
