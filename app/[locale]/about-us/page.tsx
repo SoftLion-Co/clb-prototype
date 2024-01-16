@@ -16,7 +16,7 @@ export default function AboutUs() {
         <PageTitleComponent
           title={t("aboutUsTitle")}
           text={t("aboutUsText")}
-          className={s.background}
+          className={classNames(s.background, s.about__container)}
         />
       </div>
 
