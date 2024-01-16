@@ -1,29 +1,53 @@
+@import "/style/viewports";
+@import "/style/colors";
+
 .blog__card {
   display: flex;
   gap: 24px;
+  width: 100%;
 }
 
 .blog {
   display: flex;
   padding: 24px;
-  background-color: #ffffff;
-  border: 2px solid #a7b896;
-  border-radius: 24px;
-  gap: 62px;
+  background-color: $classicWhiteBackgroundColor;
+  border: 2px solid $backgroundColorLightGreen;
+  border-radius: 32px;
+  gap: 36px;
 
+  @include for-size(laptop) {
+    min-height: 400px;
+  }
+
+  @include for-size(desktop) {
+    min-height: 600px;
+    width: 952px;
+  }
   &__content {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    width: 341px;
+    align-items: stretch;
+    min-width: 360px;
+
+    @include for-size(laptop) {
+    }
+
+    @include for-size(desktop) {
+    }
   }
 
   &__title {
     margin-top: 14px;
-    color: #2a4563;
+    color: $backgroundColorDarkBlue;
     font-size: 28px;
-    font-weight: 700;
+    font-weight: 600;
     line-height: 150%;
+
+    @include for-size(laptop) {
+      font-size: 28px;
+      line-height: 150%;
+    }
   }
 
   &__container {
@@ -32,10 +56,14 @@
   }
 
   &__text {
-    color: #171717;
-    font-size: 18px;
-    font-weight: 400;
-    line-height: 150%;
+    color: $blackTextColor;
+    font-size: 16px;
+    line-height: 130%;
+
+    @include for-size(laptop) {
+      font-size: 18px;
+      line-height: 150%;
+    }
   }
 
   &__box {
@@ -45,17 +73,27 @@
   }
 
   &__data {
-    color: #a7b896;
+    color: $backgroundColorLightGreen;
     font-size: 12px;
     font-weight: 500;
     line-height: 150%;
+    text-transform: uppercase;
   }
 
   &__picture {
-    border-radius: 24px;
+    border-radius: 20px;
     object-fit: cover;
     user-select: none;
-    width: 499px;
-    height: 468px;
+    max-width: 452px;
+    min-height: 551px;
+    // @include for-size(tablet) {
+    //   width: 252px;
+    //   height: 352px;
+    // }
+
+    // @include for-size(laptop) {
+    //   width: 100%;
+    //   height: auto;
+    // }
   }
 }

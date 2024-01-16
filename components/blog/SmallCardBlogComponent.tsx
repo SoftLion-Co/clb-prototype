@@ -48,6 +48,7 @@ const SmallCardBlogComponent = (data: Info) => {
           <h3 className={s.blog__title}>
             {data.info.acf[`heading_${data.locale}` as keyof Acf]}
           </h3>
+
           <p className={s.blog__text}>
             {data.info.acf[`subheading1_${data.locale}` as keyof Acf]}
           </p>
@@ -55,7 +56,7 @@ const SmallCardBlogComponent = (data: Info) => {
             <ReadMoreComponent href={articleLink} />
             <p className={s.blog__data}>01.12.2024</p>
           </div>
-        </div>
+          </div>
       </div>
     </div>
   );
