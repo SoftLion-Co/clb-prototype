@@ -1,60 +1,68 @@
 import React, { FC } from "react";
-import s from "./ListCardsComponent.module.scss";
 import Image from "next/image";
-import { useTranslations } from "next-intl";
-
-import GrainsImage from "@/images/icons/Grains.svg";
-import FertilizersImage from "@/images/icons/Fertilizers.svg";
-import OilsImage from "@/images/icons/Oils.svg";
-import ProcessedProductsImage from "@/images/icons/ProcessedProducts.svg";
-import ByCarImage from "@/images/icons/ByCar.svg";
-import ByRailImage from "@/images/icons/ByRail.svg";
-import ByRiverImage from "@/images/icons/ByRiver.svg";
-import BySeaImage from "@/images/icons/BySea.svg";
-import classNames from "classnames";
+import s from "./ListCardsComponent.module.scss";
 
 interface ListCardsProps {
-  data: { [key: string]: { [key: string]: string } };
+  data: { portfolio: Portfolio[] | null };
+}
+
+interface Portfolio {
+  title: Title;
+  acf: Acf | null;
+}
+
+interface Title {
+  rendered: string;
+}
+
+interface Acf {
+  icon: string;
+  title_en: string;
+  option1_en: string;
+  option2_en: string;
+  option3_en: string;
+  option4_en: string;
+  option5_en: string;
+  option6_en: string;
+  option7_en: string;
+  option8_en: string;
+  option9_en: string;
+  option10_en: string;
 }
 
 const ListCardsComponent: FC<ListCardsProps> = ({ data }) => {
-  const t = useTranslations("commodityBrokerage");
-  const t1 = useTranslations("freightBrokerage");
-
-  const imageMap: { [key: string]: any } = {
-    [t("grains")]: GrainsImage,
-    [t("fertilizers")]: FertilizersImage,
-    [t("oils")]: OilsImage,
-    [t("processedProducts")]: ProcessedProductsImage,
-    [t1("byCar")]: ByCarImage,
-    [t1("byRail")]: ByRailImage,
-    [t1("byRiver")]: ByRiverImage,
-    [t1("bySea")]: BySeaImage,
-  };
-
   return (
     <div className={s.cards}>
-      {Object.entries(data).map(([title, items]) => (
-        <div key={title} className={s.card}>
-          {title && (
-            <Image
-              src={imageMap[title]}
-              alt={title}
-              className={s.card__image}
-              width={75}
-              height={80}
-            />
-          )}
-          <h3 className={s.card__title}>{title}</h3>
-          <ul className={s.card__list}>
-            {Object.entries(items).map(([key, item]) => (
-              <li key={key} className={s.card__item}>
-                {item}
-              </li>
-            ))}
-          </ul>
-        </div>
-      ))}
+      {data.portfolio &&
+        data.portfolio
+          .slice()
+          .reverse() // Створюємо копію масиву та здійснюємо обернення портфоліо
+          .map((item: Portfolio, index: number) => (
+            <div key={index} className={s.card}>
+              {item.acf && item.acf.icon && (
+                <Image
+                  src={item.acf.icon}
+                  alt={item.title.rendered}
+                  className={s.card__image}
+                  width={75}
+                  height={80}
+                />
+              )}
+              <h3 className={s.card__title}>{item.title.rendered}</h3>
+              <ul className={s.card__list}>
+                {Object.entries(item.acf || {}).map(([key, value]) => {
+                  if (key.startsWith("option") && value !== "") {
+                    return (
+                      <li key={key} className={s.card__item}>
+                        {value}
+                      </li>
+                    );
+                  }
+                  return null;
+                })}
+              </ul>
+            </div>
+          ))}
     </div>
   );
 };
