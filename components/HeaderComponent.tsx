@@ -378,10 +378,7 @@ const HeaderComponent = () => {
           <MainButtonComponent
             className={s.header__touch}
             text={t("getInTouch")}
-            type="MainArrowButton"
-            // padding="9px 8px 9px 16px"
-            // customGap="16px"
-            // rotatedArrow={true}
+            type="MainButton"
           />
 
           <button
