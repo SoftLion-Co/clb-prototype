@@ -1,11 +1,66 @@
+@import "./../style/colors";
+
 .main {
   &__button {
     cursor: pointer;
-    color: #ffffff;
-    background: #565f51;
+    color: $classicWhiteBackgroundColor;
+    background: $brandColorDarkGreen;
     border-radius: 40px;
     max-width: fit-content;
     font-size: 20px;
+    transition: background-color 0.3s ease-in-out, color 0.5s ease-in-out;
+    position: relative;
+
+    &:hover {
+      background-color: $backgroundColorLightGreen;
+
+      & .main__container {
+        display: flex;
+        gap: 16px;
+        transition: transform 0.3s ease;
+      }
+
+      & .main__text {
+        transform: translateX(40px); /* Зсув тексту вправо на 40px */
+      }
+
+      & .main__link > * {
+        transform: translateX(0);
+      }
+
+      & .main__background {
+        transform: translateX(-8.5rem); /* Зсув фону вліво на 140px */
+        background-color: transparent;
+        border: 1px solid $classicWhiteBackgroundColor;
+      }
+
+      & .main__arrow {
+        color: $classicWhiteBackgroundColor;
+        transform: rotate(0deg);
+        filter: invert(100%) sepia(0%) saturate(7476%) hue-rotate(46deg)
+          brightness(107%) contrast(104%);
+      }
+    }
+
+    &:not(:hover) {
+      & .main__container {
+        transform: translateX(0);
+      }
+
+      & .main__text {
+        transform: translateX(0);
+      }
+
+      & .main__background {
+        transform: translateX(0);
+        background-color: $classicWhiteBackgroundColor;
+        border: none;
+      }
+
+      & .main__arrow {
+        transform: rotate(180deg);
+      }
+    }
 
     & > a {
       display: flex;
@@ -15,14 +70,42 @@
     }
   }
 
+  &__container {
+    position: relative;
+    display: flex;
+    gap: 16px;
+    padding: 9px 8px 9px 16px;
+    transition: transform 0.3s ease;
+  }
+
+  &__link {
+    display: flex;
+    gap: 8px;
+  }
+
+  &__text {
+    transition: transform 0.3s ease;
+  }
+
   &__background {
     display: flex;
     justify-content: center;
     align-items: center;
-    transform: rotate(180deg);
-    background-color: white;
+    transform-origin: center;
+
+    top: 50%;
+    left: 50%;
+    background-color: $classicWhiteBackgroundColor;
     width: 30px;
     height: 30px;
     border-radius: 50%;
+    transition: transform 0.5s ease-in-out;
+  }
+
+  &__arrow {
+    filter: invert(35%) sepia(9%) saturate(695%) hue-rotate(55deg)
+      brightness(91%) contrast(79%);
+    transform: rotate(180deg);
+    transition: transform 0.5s ease;
   }
 }

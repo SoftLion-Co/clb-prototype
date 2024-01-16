@@ -36,10 +36,8 @@ const BlogCardsSection = () => {
 
           <MainButtonComponent
             text={t1("moreOurNews")}
-            rotatedArrow={false}
-            padding="8px 16px"
-            customGap="8px"
             href={"/blog"}
+            type="MainArrowButton"
             className={s.blog__button}
           />
         </div>

@@ -342,9 +342,6 @@ const HeaderComponent = () => {
       {FlagContent}
       <MainButtonComponent
         text={t("getInTouch")}
-        padding="9px 8px 9px 16px"
-        rotatedArrow={true}
-        customGap="12px"
       />
     </>
   );
@@ -381,9 +378,7 @@ const HeaderComponent = () => {
           <MainButtonComponent
             className={s.header__touch}
             text={t("getInTouch")}
-            padding="9px 8px 9px 16px"
-            rotatedArrow={true}
-            customGap="16px"
+            type="MainButton"
           />
 
           <button
