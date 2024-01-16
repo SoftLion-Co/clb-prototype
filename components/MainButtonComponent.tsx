@@ -36,7 +36,7 @@ const MainButtonComponent: React.FC<MainButtonProps> = ({
   if (type === "MainButton") {
     buttonContent = (
       <div className={s.main__container}>
-        <p>{text}</p>
+        <p className={s.main__text}>{text}</p>
         <div className={s.main__background}>
           <Image className={s.main__arrow} src={Arrow} alt="arrow" />
         </div>
