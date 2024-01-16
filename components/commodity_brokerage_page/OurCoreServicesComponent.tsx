@@ -3,6 +3,7 @@ import s from "./OurCoreServicesComponent.module.scss";
 import image from "@/images/home-hero-test.png";
 import { useTranslations } from "next-intl";
 import classNames from "classnames";
+import { useTwoLinesTitle } from "@/hooks/useTwoLinesTitle";
 
 function OurCoreServicesComponent() {
   const t = useTranslations("commodityBrokerage.services");
@@ -48,20 +49,6 @@ function OurCoreServicesComponent() {
     backgroundPosition: "center",
   };
 
-  const insertLineBreak = (title: string) => {
-    const s = title.split(' ');
-  
-    if (s.length > 1) {
-      // Add '<br>' into the center:
-      s.splice(Math.floor(s.length / 2), 0, '<br>');
-  
-      // Here is your result. Update HTML tag:
-      return <span dangerouslySetInnerHTML={{ __html: s.join(' ') }} />;
-    } else {
-      return <span dangerouslySetInnerHTML={{ __html: s + '<br>&nbsp;' }} />;
-    }
-  };
-
   return (
     <div className={s.services}>
       {serviceCards.map(({ title, text, imageSrc }, index) => (
@@ -74,7 +61,7 @@ function OurCoreServicesComponent() {
                 [s.cardWithBorder]: cardsWithBorders.includes(index),
               })}
             >
-              <h3 className={s.card__title}>{insertLineBreak(title)}</h3>
+              <h3 className={s.card__title}>{useTwoLinesTitle(title)}</h3>
               <p className={s.card__text}>{text}</p>
             </div>
           )}
