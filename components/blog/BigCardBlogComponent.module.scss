@@ -5,6 +5,7 @@
   display: flex;
   gap: 24px;
   width: 100%;
+  grid-column: span 2;  
 }
 
 .blog {
@@ -21,14 +22,13 @@
 
   @include for-size(desktop) {
     min-height: 600px;
-    width: 952px;
   }
   &__content {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: stretch;
-    min-width: 360px;
+    width: 50%;
 
     @include for-size(laptop) {
     }
@@ -84,8 +84,7 @@
     border-radius: 20px;
     object-fit: cover;
     user-select: none;
-    max-width: 452px;
-    min-height: 551px;
+    width: 50%;
     // @include for-size(tablet) {
     //   width: 252px;
     //   height: 352px;

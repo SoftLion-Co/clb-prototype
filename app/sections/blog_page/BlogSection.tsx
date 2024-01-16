@@ -51,11 +51,17 @@ const BlogSection: React.FC<BlogSectionProps> = ({ blogs }) => {
 
         <div className={classNames(s.container, s.blog__cards)}>
           {visibleItems.map((data: any, index: number) => (
-            <div key={index} className={s.blog__grid}>
+            <>
               {isMobile ? (
                 <SmallCardBlogComponent info={data} locale={locale} />
               ) : isTablet ? (
-                <SmallCardBlogComponent info={data} locale={locale} />
+                <>
+                  {index === 0 || index === 3 || index === 4 ? (
+                    <BigCardBlogComponent info={data} locale={locale} />
+                  ) : (
+                    <SmallCardBlogComponent info={data} locale={locale} />
+                  )}
+                </>
               ) : (
                 <>
                   {index === 0 || index === 3 || index === 4 ? (
@@ -65,7 +71,7 @@ const BlogSection: React.FC<BlogSectionProps> = ({ blogs }) => {
                   )}
                 </>
               )}
-            </div>
+            </>
           ))}
         </div>
 
