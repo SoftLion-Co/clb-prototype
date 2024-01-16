@@ -3,12 +3,13 @@ import s from "./ProductPortfolioSection.module.scss";
 import React from "react";
 import MainTitleComponent from "@/components/MainTitleComponent";
 import ListCardsComponent from "@/components/ListCardsComponent";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import useProductPortfolio from "@/hooks/useProductPortfolio";
 
 function ProductPortfolioSection() {
+  const locale = useLocale();
   const t = useTranslations("commodityBrokerage");
-  const product = useProductPortfolio("en");
+  const { portfolio } = useProductPortfolio(locale);
 
   return (
     <section className={s.box}>
@@ -18,7 +19,7 @@ function ProductPortfolioSection() {
             title={t("productPortfolioTitle")}
             color="black"
           />
-          <ListCardsComponent data={product} />
+          <ListCardsComponent data={portfolio} />
         </div>
       </div>
     </section>

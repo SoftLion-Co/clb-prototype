@@ -24,7 +24,7 @@ interface Acf {
   option10: string;
 }
 
-const useProductPortfolio = (lang: string) => {
+const useBrokeragePortfolio = (lang: string) => {
   const [portfolio, setPortfolio] = useState<Portfolio[] | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -32,7 +32,7 @@ const useProductPortfolio = (lang: string) => {
   const fetchPortfolio = async () => {
     try {
       setLoading(true);
-      const reqUrl = `https://softlion.blog/wp-json/wp/v2/product-portfolio?acf_format=standard&_fields=acf,title.rendered`;
+      const reqUrl = `https://softlion.blog/wp-json/wp/v2/brokerage-portfolio?acf_format=standard&_fields=acf,title.rendered`;
       const req = await fetch(reqUrl);
       const fetchedPortfolio = await req.json();
 
@@ -68,4 +68,4 @@ const useProductPortfolio = (lang: string) => {
   return { portfolio: portfolio ?? [], loading, error } as const;
 };
 
-export default useProductPortfolio;
+export default useBrokeragePortfolio;
