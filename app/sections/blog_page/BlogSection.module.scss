@@ -1,0 +1,30 @@
+@import "@/style/container";
+@import "@/style/font_default";
+@import "@/style/viewports";
+
+.blog {
+  display: flex;
+
+  &__title {
+    margin-bottom: 100px;
+  }
+
+  &__cards {
+    display: grid;
+    grid-gap: 24px;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(6, 1fr);
+    margin-bottom: 148px;
+
+    @include for-size(tablet) {
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(3, 3fr);
+    }
+
+    @include for-size(laptop) {
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: repeat(3, 3fr);
+    }
+
+  }
+}

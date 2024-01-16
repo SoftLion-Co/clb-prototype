@@ -1,5 +1,5 @@
 import React from "react";
-import s from "./KeyServices.module.scss";
+import s from "./KeyServicesSection.module.scss";
 import MainTitleComponent from "@/components/MainTitleComponent";
 import KeyServicesComponent from "@/components/export_consulting_page/KeyServicesComponent";
 import { useTranslations } from "next-intl";

@@ -1,5 +1,5 @@
 import React from "react";
-import s from "./WhyChoose.module.scss";
+import s from "./WhyChooseSection.module.scss";
 import ImageAndTextCardsComponent from "@/components/ImageAndTextCardsComponent";
 import image from "@/images/home-hero-test.png";
 import MainTitleComponent from "@/components/MainTitleComponent";
