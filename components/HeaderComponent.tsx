@@ -85,20 +85,25 @@ const HeaderComponent = () => {
     typeof window !== "undefined" ? window.innerWidth : 0
   );
 
-  const [scrollY, setScrollY] = useState(0);
   const [showHeader, setShowHeader] = useState(true);
-
-  const HEADER_SCROLL_THRESHOLD = 28;
+  const [lastScrollY, setLastScrollY] = useState(0);
 
   const controlHeaderVisibility = () => {
     if (typeof window !== "undefined") {
-      const currentScrollY = window.scrollY;
-      if (currentScrollY > HEADER_SCROLL_THRESHOLD) {
-        setShowHeader(false);
-      } else {
+      const scrolledDistance = window.scrollY;
+
+      // Визначаємо, чи прокручується сторінка вгору або вниз.
+      const scrollingUp = scrolledDistance < lastScrollY;
+
+      if (scrollingUp || scrolledDistance <= 28) {
+        // Показуємо хедер, якщо прокручуємо вгору або якщо прокручено не більше ніж на 28px.
         setShowHeader(true);
+      } else {
+        // Ховаємо хедер при прокручуванні вниз, якщо прокручено більше ніж на 28px.
+        setShowHeader(false);
       }
-      setScrollY(currentScrollY);
+
+      setLastScrollY(scrolledDistance);
     }
   };
 
@@ -112,13 +117,7 @@ const HeaderComponent = () => {
         window.removeEventListener("scroll", controlHeaderVisibility);
       }
     };
-  }, []);
-
-  const headerClassName = classNames(
-    s.header,
-    { [s.hidden]: !showHeader },
-    { [s.headerFixed]: scrollY >= HEADER_SCROLL_THRESHOLD }
-  );
+  }, [lastScrollY]);
 
   const handleDropdownClick = (dropdownType: any) => {
     switch (dropdownType) {
