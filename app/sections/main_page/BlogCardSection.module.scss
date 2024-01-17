@@ -17,6 +17,7 @@
       margin-bottom: 60px;
     }
     @include for-size(laptop) {
+      
       gap: 24px;
       margin-bottom: 100px;
     }
