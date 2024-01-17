@@ -13,6 +13,7 @@ interface ImageAndTextCardsProps {
   color?: "blue" | "white" | "green";
   smallFont?: boolean;
   articlePadding?: boolean;
+  mobileTextCenter?:boolean;
 }
 
 function ImageAndTextCardsComponent(props: ImageAndTextCardsProps) {
@@ -26,6 +27,7 @@ function ImageAndTextCardsComponent(props: ImageAndTextCardsProps) {
     color = "green",
     smallFont = false,
     articlePadding = false,
+    mobileTextCenter = false,
   } = props;
 
   // Function which handles different colors and borders from props
@@ -72,7 +74,7 @@ function ImageAndTextCardsComponent(props: ImageAndTextCardsProps) {
 
   const containerStyles = getContainerStyles();
 
-  const quoteClasses = classNames(s.quote, { [s.quote__smallFont]: smallFont });
+  const quoteClasses = classNames(s.quote, { [s.quote__smallFont]: smallFont }, { [s.quote__mobileCenter]: mobileTextCenter });
 
   return (
     <div className={articleClasses}>
@@ -84,8 +86,8 @@ function ImageAndTextCardsComponent(props: ImageAndTextCardsProps) {
         <Image
           src={image}
           alt={alt}
-          width={400}
-          height={300}
+          width={1000}
+          height={1000}
           className={s.quote__image}
         />
       </div>
