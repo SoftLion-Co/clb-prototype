@@ -1,7 +1,7 @@
 import React from "react";
 import s from "./HeroSection.module.scss";
 import Image from "next/image";
-import image from "@/images/home-hero-test.png";
+import image from "@/images/commodity_brokerage/1.jpg";
 import { useTranslations } from "next-intl";
 import PageTitleComponent from "@/components/PageTitleComponent";
 import MainButtonComponent from "@/components/MainButtonComponent";
@@ -23,9 +23,7 @@ function HeroSection() {
               {t("commodityBrokerageSubtitle")}
             </h2>
             <div className={s.hero__text}>{t("heroText")}</div>
-            <MainButtonComponent
-              text={t1("getInTouch")}
-            />
+            <MainButtonComponent text={t1("getInTouch")} />
           </div>
           <Image
             className={s.hero__image}
