@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import s from "./BlogSection.module.scss";
 import classNames from "classnames";
 import PageTitleComponent from "@/components/PageTitleComponent";
@@ -76,6 +76,31 @@ const BlogSection: React.FC<BlogSectionProps> = ({ blogs }) => {
   const endIndex = startIndex + itemsPerPage;
   const visibleItems = blogs.slice(startIndex, endIndex);
 
+  const [gridRows, setGridRows] = useState(0);
+
+  useEffect(() => {
+    const rowsForMobile = Math.ceil(visibleItems.length / 1);
+    const rowsForTablet = Math.ceil(visibleItems.length / 2);
+    const rowsForDesktop = Math.ceil(visibleItems.length / 3);
+
+    if (isMobile) {
+      setGridRows(rowsForMobile);
+    } else if (isTablet) {
+      setGridRows(rowsForTablet);
+    } else {
+      setGridRows(rowsForDesktop);
+    }
+  }, [visibleItems.length, isMobile, isTablet]);
+
+  const renderTabletCard = (data: any, index: number) => {
+    const tabletOrder = [0, 3, 6]; // Indexes for BigCardBlogComponent
+    if (tabletOrder.includes(index % 7)) {
+      return <BigCardBlogComponent info={data} locale={locale} />;
+    } else {
+      return <SmallCardBlogComponent info={data} locale={locale} />;
+    }
+  };
+
   return (
     <div className={s.box}>
       <div className={s.background}>
@@ -85,19 +110,16 @@ const BlogSection: React.FC<BlogSectionProps> = ({ blogs }) => {
           text={t("blogSubtitle")}
         />
 
-        <div className={classNames(s.container, s.blog__cards)}>
+        <div
+          className={classNames(s.container, s.blog__cards)}
+          style={{ gridTemplateRows: `repeat(${gridRows}, 1fr)` }}
+        >
           {visibleItems.map((data: any, index: number) => (
             <>
               {isMobile ? (
                 <SmallCardBlogComponent info={data} locale={locale} />
               ) : isTablet ? (
-                <>
-                  {index === 0 || index === 3 || index === 4 ? (
-                    <BigCardBlogComponent info={data} locale={locale} />
-                  ) : (
-                    <SmallCardBlogComponent info={data} locale={locale} />
-                  )}
-                </>
+                renderTabletCard(data, index) // Using the new function for tablet
               ) : (
                 <>
                   {index === 0 || index === 3 || index === 4 ? (
@@ -138,6 +160,7 @@ const BlogSection: React.FC<BlogSectionProps> = ({ blogs }) => {
             activeClassName={pagination.active}
             previousLabel={""}
             nextLabel={""}
+            forcePage={currentPage}
           />
 
           <PaginationButton

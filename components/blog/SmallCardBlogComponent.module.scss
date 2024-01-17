@@ -45,11 +45,19 @@
     border-radius: 16px;
     object-fit: cover;
     user-select: none;
-    height: 250px;
+    height: 170px;
     width: 100%;
 
+    @include for-size(tablet) {
+      gap: 22px;
+      height: 190px;
+    }
     @include for-size(laptop) {
       border-radius: 20px;
+      height: 220px;
+    }
+    @include for-size(desktop) {
+      height: 250px;
     }
   }
 
