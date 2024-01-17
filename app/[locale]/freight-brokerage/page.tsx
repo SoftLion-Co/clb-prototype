@@ -24,6 +24,7 @@ const Freight = () => {
             smallText={t("heroSmallText")}
             bigText={t("heroBigText")}
             color="blue"
+            imageSrc="freightBrokerage"
           />
           <ProductPortfolioSection />
         </section>

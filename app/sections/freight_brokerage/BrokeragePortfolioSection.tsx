@@ -7,11 +7,12 @@ import { useLocale } from "next-intl";
 function ProductPortfolioSection() {
   const locale = useLocale();
   const { portfolio } = useBrokeragePortfolio(locale);
+  const reversed = portfolio.reverse()
 
   return (
-    <>
-      <ListCardsComponent data={portfolio} container />
-    </>
+    <div>
+      <ListCardsComponent data={reversed} container />
+    </div>
   );
 }
 export default ProductPortfolioSection;

@@ -10,6 +10,7 @@ function ProductPortfolioSection() {
   const locale = useLocale();
   const t = useTranslations("commodityBrokerage");
   const { portfolio } = useProductPortfolio(locale);
+  const reversed = portfolio.reverse();
 
   return (
     <section className={s.box}>
@@ -19,7 +20,7 @@ function ProductPortfolioSection() {
             title={t("productPortfolioTitle")}
             color="black"
           />
-          <ListCardsComponent data={portfolio} />
+          <ListCardsComponent data={reversed} />
         </div>
       </div>
     </section>

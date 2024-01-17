@@ -4,7 +4,7 @@ import Image from "next/image";
 
 import executionImage from "@/images/home-hero-test.png";
 import exportConsultingImage from "@/images/home-hero-test.png";
-import freightBrokerageImage from "@/images/home-hero-test.png";
+import freightBrokerageImage from "@/images/freight_brokerage/1.png";
 import ourStoryImage from "@/images/home-hero-test.png";
 import classNames from "classnames";
 
