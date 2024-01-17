@@ -1,4 +1,5 @@
 @import "./../style/colors";
+@import "./../style/viewports";
 
 .main {
   &__button {
@@ -7,9 +8,15 @@
     background: $brandColorDarkGreen;
     border-radius: 40px;
     max-width: fit-content;
-    font-size: 20px;
+    font-size: 16px;
+    line-height: 130%;
     transition: background-color 0.3s ease-in-out, color 0.5s ease-in-out;
     position: relative;
+
+    @include for-size(laptop) {
+      font-size: 18px;
+      line-height: 150%;
+    }
 
     &:hover {
       background-color: $backgroundColorLightGreen;
@@ -21,7 +28,11 @@
       }
 
       & .main__text {
-        transform: translateX(40px); /* Зсув тексту вправо на 40px */
+        transform: translateX(36px); /* Зсув тексту вправо на 36px */
+
+        @include for-size(laptop) {
+          transform: translateX(40px); /* Зсув тексту вправо на 40px */
+        }
       }
 
       & .main__link > * {
@@ -29,9 +40,13 @@
       }
 
       & .main__background {
-        transform: translateX(-8.5rem); /* Зсув фону вліво на 140px */
-        background-color: transparent;
         border: 1px solid $classicWhiteBackgroundColor;
+        background-color: transparent;
+        transform: translateX(-7.2rem); /* Зсув фону вліво на -7.2rem */
+
+        @include for-size(laptop) {
+          transform: translateX(-7.8rem); /* Зсув фону вліво на -7.8rem */
+        }
       }
 
       & .main__arrow {
@@ -73,9 +88,17 @@
   &__container {
     position: relative;
     display: flex;
+    align-items: center;
     gap: 16px;
-    padding: 9px 8px 9px 16px;
+    line-height: 130%;
     transition: transform 0.3s ease;
+    padding: 6px 6px 6px 16px;
+
+    @include for-size(laptop) {
+      font-size: 18px;
+      line-height: 150%;
+      padding: 8px 8px 8px 16px;
+    }
   }
 
   &__link {
