@@ -8,17 +8,24 @@
   }
 
   &__cards {
-    display: flex;
-    flex-wrap: nowrap;
     margin-bottom: 40px;
+    display: grid;
+    gap: 16px;
+    grid-template-rows: repeat(1, 1fr);
+    grid-template-columns: repeat(1, 1fr);
 
     @include for-size(tablet) {
+      display: grid;
       gap: 16px;
+      grid-template-rows: repeat(1, 1fr);
+      grid-template-columns: repeat(2, 1fr);
       margin-bottom: 60px;
+      align-items: stretch;
     }
     @include for-size(laptop) {
-      
       gap: 24px;
+      grid-template-rows: repeat(1, 1fr);
+      grid-template-columns: repeat(3, 1fr);
       margin-bottom: 100px;
     }
   }

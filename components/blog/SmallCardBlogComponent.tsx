@@ -35,27 +35,27 @@ const SmallCardBlogComponent = (data: Info) => {
   const articleLink = `${blogPagePath}${data.info.id}`;
 
   return (
-    <div className={classNames(s.blog__container)}>
-      <div className={s.blog}>
-        <Image
-          className={s.blog__picture}
-          src={data.info.acf.mainimage}
-          alt="Picture"
-          width={416}
-          height={250}
-        />
+    <div className={s.blog}>
+      <div className={s.blog__container}>
         <div className={s.blog__content}>
+          <Image
+            className={s.blog__picture}
+            src={data.info.acf.mainimage}
+            alt="Picture"
+            width={416}
+            height={250}
+          />
           <h3 className={s.blog__title}>
             {data.info.acf[`heading_${data.locale}` as keyof Acf]}
           </h3>
-
           <p className={s.blog__text}>
             {data.info.acf[`subheading1_${data.locale}` as keyof Acf]}
           </p>
-          <div className={s.blog__box}>
-            <ReadMoreComponent href={articleLink} />
-            <p className={s.blog__data}>01.12.2024</p>
-          </div>
+        </div>
+
+        <div className={s.blog__box}>
+          <ReadMoreComponent href={articleLink} />
+          <p className={s.blog__data}>01.12.2024</p>
         </div>
       </div>
     </div>
