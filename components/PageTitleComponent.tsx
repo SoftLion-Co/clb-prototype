@@ -16,7 +16,7 @@ const PageTitleComponent: React.FC<MainTitleProps> = ({
     <div className={classNames(className)}>
       <div className={classNames(s.page)}>
         <h1 className={s.page__title}>{title}</h1>
-        <p className={s.page__text}>{text}</p>
+        {text && <p className={s.page__text}>{text}</p>}
       </div>
     </div>
   );
