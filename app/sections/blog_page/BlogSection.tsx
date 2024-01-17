@@ -93,7 +93,7 @@ const BlogSection: React.FC<BlogSectionProps> = ({ blogs }) => {
   }, [visibleItems.length, isMobile, isTablet]);
 
   const renderTabletCard = (data: any, index: number) => {
-    const tabletOrder = [0, 3, 6]; // Indexes for BigCardBlogComponent
+    const tabletOrder = [0, 3, 6];
     if (tabletOrder.includes(index % 7)) {
       return <BigCardBlogComponent info={data} locale={locale} />;
     } else {
@@ -119,7 +119,7 @@ const BlogSection: React.FC<BlogSectionProps> = ({ blogs }) => {
               {isMobile ? (
                 <SmallCardBlogComponent info={data} locale={locale} />
               ) : isTablet ? (
-                renderTabletCard(data, index) // Using the new function for tablet
+                renderTabletCard(data, index)
               ) : (
                 <>
                   {index === 0 || index === 3 || index === 4 ? (
