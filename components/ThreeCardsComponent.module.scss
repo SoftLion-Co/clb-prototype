@@ -16,7 +16,7 @@
   }
 
   &__card {
-    padding: 47px 20px;
+    padding: 42px 20px;
     border-radius: 24px;
     display: flex;
     align-items: center;
@@ -25,6 +25,10 @@
       padding: 30px 32.5px;
       border-radius: 32px;
     }
+  }
+
+  &__small_card {
+    padding: 25px 20px;
   }
 
   &__image {

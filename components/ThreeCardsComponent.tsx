@@ -67,7 +67,7 @@ const ThreeCardsComponent: FC<ThreeCardsProps> = ({
           {image}
         </div>
       )}
-      <div className={s.cards__card} style={cardStyle}>
+      <div className={classNames(s.cards__card, {[s.cards__small_card]: smallText})} style={cardStyle}>
         <p className={s.cards__small_text}>{smallText}</p>
       </div>
       {imagePosition === 3 && image}
