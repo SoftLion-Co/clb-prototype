@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import s from "./BlogSection.module.scss";
 import classNames from "classnames";
 import PageTitleComponent from "@/components/PageTitleComponent";
@@ -77,7 +77,11 @@ const BlogSection: React.FC<BlogSectionProps> = ({ blogs }) => {
 
         <ReactPaginate
           previousLabel={
-            <div className={pagination.pagination__arrow_previous}>
+            <div
+              className={classNames(pagination.pagination__arrow_previous, {
+                [pagination.pagination__arrow_disabled]: currentPage === 0,
+              })}
+            >
               <Image
                 className={pagination.pagination__arrow_image}
                 src={Arrow}
@@ -86,7 +90,12 @@ const BlogSection: React.FC<BlogSectionProps> = ({ blogs }) => {
             </div>
           }
           nextLabel={
-            <div className={pagination.pagination__arrow_next}>
+            <div
+              className={classNames(pagination.pagination__arrow_next, {
+                [pagination.pagination__arrow_disabled]:
+                  currentPage === Math.ceil(blogs.length / itemsPerPage) - 1,
+              })}
+            >
               <Image
                 className={pagination.pagination__arrow_image}
                 src={Arrow}
