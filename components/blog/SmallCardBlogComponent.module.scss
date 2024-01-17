@@ -2,15 +2,6 @@
 @import "./../../style/viewports";
 @import "./../../style/colors";
 
-.blog__container {
-  justify-content: space-between;
-  display: grid;
-  gap: 1.5rem;
-  grid-template-columns: repeat(auto-fit, minmax(304px, 1fr));
-  grid-template-rows: repeat(auto-fit, max(464px, 1fr));
-  height: 100%;
-}
-
 .blog {
   display: flex;
   flex-direction: column;
@@ -19,6 +10,7 @@
   gap: 16px;
   padding: 20px;
   border-radius: 24px;
+  height: 100%;
 
   @include for-size(tablet) {
     gap: 22px;
@@ -30,6 +22,23 @@
   }
   @include for-size(desktop) {
     gap: 32px;
+  }
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 16px;
+    height: 100%;
+  }
+
+  &__content {
+    display: grid;
+    gap: 16px;
+
+    @include for-size(laptop) {
+      gap: 32px;
+    }
   }
 
   &__picture {
@@ -44,7 +53,7 @@
     }
   }
 
-  &__content {
+  &__info {
     display: grid;
     gap: 16px;
   }
@@ -57,16 +66,16 @@
 
     @include for-size(tablet) {
       font-size: 22px;
-      min-height: 86px;
+      // min-height: 86px;
     }
     @include for-size(laptop) {
       font-size: 24px;
       line-height: 150%;
-      min-height: 108px;
+      // min-height: 108px;
     }
     @include for-size(desktop) {
       font-size: 28px;
-      min-height: 126px;
+      // min-height: 126px;
     }
   }
 
