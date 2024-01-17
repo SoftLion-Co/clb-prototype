@@ -29,7 +29,7 @@ const BlogCardsSection = () => {
     window.addEventListener("resize", updateCardCount);
 
     return () => {
-      window.removeEventListener("resize", updateCardCount); 
+      window.removeEventListener("resize", updateCardCount);
     };
   }, []);
 

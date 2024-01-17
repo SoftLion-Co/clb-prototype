@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import s from "./BlogSection.module.scss";
 import classNames from "classnames";
 import PageTitleComponent from "@/components/PageTitleComponent";
@@ -14,6 +14,28 @@ import ReactPaginate from "react-paginate";
 import Image from "next/image";
 import Arrow from "@/images/vectors/arrow.svg";
 import { useMediaQuery } from "@mantine/hooks";
+
+interface PaginationButtonProps {
+  onClick: () => void;
+  disabled: boolean;
+  children: React.ReactNode;
+  className?: string;
+}
+
+const PaginationButton: React.FC<PaginationButtonProps> = ({
+  onClick,
+  disabled,
+  children,
+  className,
+}) => (
+  <button
+    onClick={onClick}
+    disabled={disabled}
+    className={classNames(s.paginationButton, className)}
+  >
+    {children}
+  </button>
+);
 
 interface BlogSectionProps {
   blogs: Array<any>;
@@ -34,6 +56,20 @@ const BlogSection: React.FC<BlogSectionProps> = ({ blogs }) => {
   const handlePageChange = ({ selected }: { selected: number }) => {
     setCurrentPage(selected);
     setScrollToTop();
+  };
+
+  const handlePrevious = () => {
+    if (currentPage > 0) {
+      setCurrentPage(currentPage - 1);
+      setScrollToTop();
+    }
+  };
+
+  const handleNext = () => {
+    if (currentPage < Math.ceil(blogs.length / itemsPerPage) - 1) {
+      setCurrentPage(currentPage + 1);
+      setScrollToTop();
+    }
   };
 
   const startIndex = currentPage * itemsPerPage;
@@ -75,44 +111,52 @@ const BlogSection: React.FC<BlogSectionProps> = ({ blogs }) => {
           ))}
         </div>
 
-        <ReactPaginate
-          previousLabel={
-            <div
-              className={classNames(pagination.pagination__arrow_previous, {
-                [pagination.pagination__arrow_disabled]: currentPage === 0,
-              })}
-            >
-              <Image
-                className={pagination.pagination__arrow_image}
-                src={Arrow}
-                alt="arrow"
-              />
-            </div>
-          }
-          nextLabel={
-            <div
-              className={classNames(pagination.pagination__arrow_next, {
-                [pagination.pagination__arrow_disabled]:
-                  currentPage === Math.ceil(blogs.length / itemsPerPage) - 1,
-              })}
-            >
-              <Image
-                className={pagination.pagination__arrow_image}
-                src={Arrow}
-                alt="arrow"
-              />
-            </div>
-          }
-          breakLabel={"..."}
-          breakClassName={pagination.pagination__break}
-          pageCount={Math.ceil(blogs.length / itemsPerPage)}
-          marginPagesDisplayed={2}
-          pageRangeDisplayed={3}
-          onPageChange={handlePageChange}
-          containerClassName={pagination.pagination}
-          pageClassName={pagination.pagination__pages}
-          activeClassName={pagination.active}
-        />
+        <div className={pagination.pagination}>
+          <PaginationButton
+            onClick={handlePrevious}
+            disabled={currentPage === 0}
+            className={classNames(pagination.pagination__button, {
+              [pagination.pagination__arrow_disabled]: currentPage === 0,
+            })}
+          >
+            <Image
+              className={pagination.pagination__arrow_image}
+              src={Arrow}
+              alt="Previous"
+            />
+          </PaginationButton>
+
+          <ReactPaginate
+            breakLabel={"..."}
+            breakClassName={pagination.pagination__break}
+            pageCount={Math.ceil(blogs.length / itemsPerPage)}
+            marginPagesDisplayed={2}
+            pageRangeDisplayed={3}
+            onPageChange={handlePageChange}
+            containerClassName={pagination.pagination__content}
+            pageClassName={pagination.pagination__pages}
+            activeClassName={pagination.active}
+            previousLabel={""}
+            nextLabel={""}
+          />
+
+          <PaginationButton
+            className={classNames(pagination.pagination__button, {
+              [pagination.pagination__arrow_disabled]:
+                currentPage === Math.ceil(blogs.length / itemsPerPage) - 1,
+            })}
+            onClick={handleNext}
+            disabled={
+              currentPage === Math.ceil(blogs.length / itemsPerPage) - 1
+            }
+          >
+            <Image
+              className={pagination.pagination__arrow_image}
+              src={Arrow}
+              alt="Next"
+            />
+          </PaginationButton>
+        </div>
       </div>
     </div>
   );
