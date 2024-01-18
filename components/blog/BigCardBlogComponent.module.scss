@@ -2,7 +2,6 @@
 @import "/style/colors";
 
 .blog__card {
-  display: flex;
   gap: 24px;
   width: 100%;
   grid-column: span 2;
@@ -15,13 +14,10 @@
   border: 2px solid $backgroundColorLightGreen;
   border-radius: 32px;
   gap: 36px;
+  height: 100%;
 
   @include for-size(laptop) {
-    min-height: 400px;
     padding: 24px;
-  }
-  @include for-size(desktop) {
-    min-height: 600px;
   }
 
   &__content {
@@ -80,6 +76,7 @@
     object-fit: cover;
     user-select: none;
     width: 50%;
+    height: 100%;
 
     @include for-size(laptop) {
       border-radius: 20px;
