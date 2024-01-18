@@ -37,7 +37,6 @@
   align-items: center;
   text-align: center;
   color: $backgroundColorDarkBlue;
-  word-break: break-word;
 
   @include for-size(tablet) {
     padding: 34px 24.5px 42px 24.5px;
