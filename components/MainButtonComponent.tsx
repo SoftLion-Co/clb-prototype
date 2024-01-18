@@ -11,45 +11,54 @@ interface MainButtonProps {
   text: string;
   href?: Url;
   className?: string;
-  type?: "MainButton" | "MainArrowButton" | "MainUsualButton";
+  typeButton?:
+    | "MainButton"
+    | "MainArrowButton"
+    | "MainUsualButton"
+    | "MainContactUsButton";
+  onClick?: () => void;
 }
 
 const MainButtonComponent: FC<MainButtonProps> = ({
   text,
   href,
   className,
-  type = "MainButton",
+  typeButton = "MainButton",
+  onClick,
 }) => {
   const linkProps = {
     href: href || "",
   };
 
   let buttonPadding = "";
-  if (type === "MainButton") {
+  if (typeButton === "MainButton" || typeButton === "MainContactUsButton") {
     buttonPadding = "0";
-  } else if (type === "MainArrowButton" || type === "MainUsualButton") {
+  } else if (
+    typeButton === "MainArrowButton" ||
+    typeButton === "MainUsualButton"
+  ) {
     buttonPadding = "8px 16px";
   }
 
   let buttonContent;
 
-  if (type === "MainButton") {
+  if (typeButton === "MainButton" || typeButton === "MainContactUsButton") {
     buttonContent = (
-      <div className={s.main__container}>
+      <button type="submit" className={s.main__container} onClick={onClick}>
         <p className={s.main__text}>{text}</p>
         <div className={s.main__background}>
           <Image className={s.main__arrow} src={Arrow} alt="arrow" />
         </div>
-      </div>
+      </button>
     );
-  } else if (type === "MainArrowButton") {
+  } else if (typeButton === "MainArrowButton") {
     buttonContent = (
       <div className={s.main__link} style={{ padding: buttonPadding }}>
         <p>{text}</p>
         <Image src={ArrowWhite} alt="arrow" />
       </div>
     );
-  } else if (type === "MainUsualButton") {
+  } else if (typeButton === "MainUsualButton") {
     buttonContent = (
       <div style={{ padding: buttonPadding }}>
         <p>{text}</p>
@@ -57,13 +66,21 @@ const MainButtonComponent: FC<MainButtonProps> = ({
     );
   }
 
-  return (
-    <div className={classNames(s.main__button, className)}>
-      <Link className={s.main__link} {...linkProps}>
+  if (typeButton === "MainContactUsButton") {
+    return (
+      <div className={classNames(s.main__button, className)}>
         {buttonContent}
-      </Link>
-    </div>
-  );
+      </div>
+    );
+  } else {
+    return (
+      <div className={classNames(s.main__button, className)}>
+        <Link className={s.main__link} {...linkProps}>
+          {buttonContent}
+        </Link>
+      </div>
+    );
+  }
 };
 
 export default MainButtonComponent;

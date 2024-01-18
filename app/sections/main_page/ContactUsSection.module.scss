@@ -126,11 +126,12 @@
   &__picture {
     object-fit: cover;
     border-radius: 24px;
-
+    @include for-size(phone) {
+      width: 100%;
+    }
     @include for-size(tablet) {
       display: none;
     }
-
     @include for-size(laptop) {
       display: block;
       border-radius: 32px;
@@ -219,10 +220,10 @@
     gap: 24px;
     flex-direction: column;
   }
-}
-.form__buttons {
-  display: flex;
-  gap: 32px;
+
+  @include for-size(tablet) {
+    align-items: center;
+  }
 }
 
 .formMessage {

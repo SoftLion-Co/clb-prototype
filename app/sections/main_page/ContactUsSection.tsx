@@ -5,7 +5,8 @@ import MainTitleComponent from "@/components/MainTitleComponent";
 import MainButtonComponent from "@/components/MainButtonComponent";
 import Image from "next/image";
 import Picture from "@/images/our_advantages_test/advantages-image-1.png";
-import Arrow from "@/images/vectors/arrow-menu.svg";
+
+import ArrowMenu from "@/images/vectors/arrow-menu.svg";
 import classNames from "classnames";
 import useVacancies from "@/hooks/useVacancies";
 import InputField from "@/components/form/InputField";
@@ -43,8 +44,8 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
     "supportRequest",
     "other",
   ];
-
   const translatedTopics = topics.map((topic) => t(`topics.${topic}`));
+
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [formMessage, setFormMessage] = useState("");
   const [isCvFileValid, setIsCvFileValid] = useState(true);
@@ -69,7 +70,6 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
   const [validationErrors, setValidationErrors] = useState<ValidationErrors>(
     {}
   );
-
   const [touchedFields, setTouchedFields] = useState({
     firstname: false,
     lastname: false,
@@ -99,14 +99,10 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
   const handleInputChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLLIElement>
   ) => {
-    let { name, value } = e.target as HTMLInputElement | HTMLTextAreaElement;
+    const { name, value } = e.target as HTMLInputElement | HTMLTextAreaElement;
 
     setFormData((prevData) => ({ ...prevData, [name]: value }));
-
-    setTouchedFields((prevFields) => ({
-      ...prevFields,
-      [name]: !!value,
-    }));
+    setTouchedFields((prevFields) => ({ ...prevFields, [name]: !!value }));
 
     let isValid = true;
     if (value) {
@@ -129,10 +125,7 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
       }
     }
 
-    setValidationErrors((prevErrors) => ({
-      ...prevErrors,
-      [name]: !isValid,
-    }));
+    setValidationErrors((prevErrors) => ({ ...prevErrors, [name]: !isValid }));
   };
 
   const handleDropdownClick = (value: string) => {
@@ -144,10 +137,7 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
     setTouchedFields((prevFields) => ({ ...prevFields, subject: true }));
 
     const isValid = value.trim() !== "";
-    setValidationErrors((prevErrors) => ({
-      ...prevErrors,
-      subject: !isValid,
-    }));
+    setValidationErrors((prevErrors) => ({ ...prevErrors, subject: !isValid }));
     setIsDropdownOpen(false);
   };
 
@@ -190,7 +180,7 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
     return Object.values(errors).every((error) => !error);
   };
 
-  const handleTestButtonClick = async () => {
+  const handleSubmitButtonClick = async () => {
     if (validateForm()) {
       if (cv && !formData.cvFile) {
         setFormMessage("Please select a CV file.");
@@ -313,31 +303,27 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
           className={s.dropdown}
           onClick={() => setIsDropdownOpen(!isDropdownOpen)}
         >
-          <p className={inputClassNames}>
-            {cv ? (
-              <>
-                {formData.vacancy || t("appliedVacancy")}
-                <Image
-                  className={classNames(s.arrow, {
-                    [s.arrow__open]: isDropdownOpen,
-                  })}
-                  src={Arrow}
-                  alt="Arrow"
-                />
-              </>
-            ) : (
-              <>
-                {formData.subject || t("topicOfEnquiry")}
-                <Image
-                  className={classNames(s.arrow, {
-                    [s.arrow__open]: isDropdownOpen,
-                  })}
-                  src={Arrow}
-                  alt="Arrow"
-                />
-              </>
-            )}
-          </p>
+          <input
+            type="subject"
+            name="subject"
+            value={
+              formData.subject ||
+              (cv ? t("appliedVacancy") : t("topicOfEnquiry"))
+            }
+            className={inputClassNames}
+            onChange={(e) => handleInputChange(e)}
+            onClick={(e) => {
+              e.stopPropagation(); // Зупиняємо розповсюдження кліку, щоб не викликати згортання списку
+              setIsDropdownOpen(!isDropdownOpen);
+            }}
+          />
+          <Image
+            className={classNames(s.arrow, {
+              [s.arrow__open]: isDropdownOpen,
+            })}
+            src={ArrowMenu}
+            alt="Arrow"
+          />
           <ul
             className={s.dropdown__list}
             style={{ display: isDropdownOpen ? "" : "none" }}
@@ -346,11 +332,11 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
               ? vacancies.map((vacancy) => (
                   <li
                     key={vacancy.id}
-                    onClick={() => {
+                    onClick={(e) => {
                       handleDropdownClick(
                         (vacancy.acf as any)[`vacancies_${locale}`]
                       );
-                      setIsDropdownOpen(false);
+                      e.stopPropagation(); // Зупиняємо розповсюдження кліку
                     }}
                   >
                     {(vacancy.acf as any)[`vacancies_${locale}`]}
@@ -360,10 +346,8 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
                   <li
                     key={topic}
                     onClick={(e) => {
-                      handleInputChange({
-                        target: { name: "subject", value: topic },
-                      } as React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>);
-                      setIsDropdownOpen(false);
+                      handleDropdownClick(topic);
+                      e.stopPropagation(); // Зупиняємо розповсюдження кліку
                     }}
                   >
                     {topic || t(`topics.selectTopic`)}
@@ -385,14 +369,15 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
 
     return (
       <div className={s.form__textarea}>
-        <textarea
+        <input
           className={textareaClassNames}
+          type="message"
           id="message"
           name="message"
           placeholder={t("yourMessage")}
           value={formData.message}
           onChange={handleInputChange}
-        ></textarea>
+        />
       </div>
     );
   };
@@ -431,25 +416,23 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
             onSubmit={handleSubmit}
           >
             <div className={s.form__content}>{boxInputs}</div>
-            {cv}
-
             <div className={s.form__test}>
-              <div className={s.form__buttons}>
-                <button
-                  type="submit"
-                  onClick={() => handleTestButtonClick()}
-                  className={s.testButton}
-                >
-                  Test
-                </button>
-              </div>
+              <MainButtonComponent
+                text="Get in touch"
+                typeButton="MainContactUsButton"
+                onClick={handleSubmitButtonClick}
+              />
 
-              {formMessage && (
-                <div className={s.formMessage}>{formMessage}</div>
-              )}
+              {formMessage && <p className={s.formMessage}>{formMessage}</p>}
             </div>
           </form>
-          <Image className={s.form__picture} src={Picture} alt="Picture" />
+          <Image
+            className={s.form__picture}
+            src={Picture}
+            alt="Picture"
+            width={1000}
+            height={1000}
+          />
         </div>
       </div>
     </section>
