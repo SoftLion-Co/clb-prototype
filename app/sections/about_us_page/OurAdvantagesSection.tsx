@@ -6,6 +6,7 @@ import OurAdvantagesCardComponent from "@/components/about_us/OurAdvantagesCardC
 import AdvantagesImage1 from "@/images/our_advantages_test/advantages-image-1.png";
 import AdvantagesImage2 from "@/images/our_advantages_test/advantages-image-2.png";
 import { useTranslations } from "next-intl";
+import Image from "next/image";
 
 interface AdvantagesItem {
   text: string;
@@ -62,10 +63,12 @@ const OurAdvantagesSection = () => {
                   />
                 )}
                 {item.type === "image" && (
-                  <img
+                  <Image
                     src={(item.data as StaticImageData).src}
                     alt={`Advantages Image ${index}`}
                     className={s.advantages__image}
+                    width={1000}
+                    height={1000}
                   />
                 )}
               </React.Fragment>
