@@ -2,6 +2,7 @@
 
 .main {
   &__button {
+    user-select: none;
     cursor: pointer;
     color: $classicWhiteBackgroundColor;
     background: $brandColorDarkGreen;
