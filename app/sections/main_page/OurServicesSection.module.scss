@@ -18,3 +18,20 @@
     gap: 24px;
   }
 }
+
+@media (perfers-reduced-motion: no-preference) {
+  .services {
+    scale: 0.8;
+    opacity: 0;
+    animation: fade-in linear forwards;
+    animation-timeline: view();
+    animation-range: entry;
+  }
+
+  @keyframes fade-in {
+    to {
+      scale: 1;
+      opacity: 1;
+    }
+  }
+}
