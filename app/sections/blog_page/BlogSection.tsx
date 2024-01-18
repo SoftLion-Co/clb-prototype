@@ -133,7 +133,7 @@ const BlogSection: React.FC<BlogSectionProps> = ({ blogs }) => {
           ))}
         </div>
 
-        <div className={pagination.pagination}>
+        <div className={classNames(s.container, pagination.pagination)}>
           <PaginationButton
             onClick={handlePrevious}
             disabled={currentPage === 0}
@@ -149,13 +149,14 @@ const BlogSection: React.FC<BlogSectionProps> = ({ blogs }) => {
           </PaginationButton>
 
           <ReactPaginate
-            breakLabel={"..."}
+            breakLabel={"•••"}
             breakClassName={pagination.pagination__break}
             pageCount={Math.ceil(blogs.length / itemsPerPage)}
-            marginPagesDisplayed={2}
-            pageRangeDisplayed={3}
+            marginPagesDisplayed={1}
+            pageRangeDisplayed={2}
             onPageChange={handlePageChange}
             containerClassName={pagination.pagination__content}
+            activeLinkClassName={pagination.pagination__page}
             pageClassName={pagination.pagination__pages}
             activeClassName={pagination.active}
             previousLabel={""}
