@@ -1,19 +1,22 @@
 "use client";
-import React, { useState } from "react";
-import pagination from "@/components/PaginationComponent.module.scss";
+import React, { useCallback, useEffect, useState } from "react";
 import s from "./MoreArticlesSection.module.scss";
 import SmallCardBlogComponent from "@/components/blog/SmallCardBlogComponent";
 import useBlogsData from "@/hooks/useBlogsData";
-import ReactPaginate from "react-paginate";
 import Image from "next/image";
 import Arrow from "@/images/vectors/arrow.svg";
 import useLocale from "@/hooks/useLocale";
 import MainTitleComponent from "@/components/MainTitleComponent";
 import { useTranslations } from "next-intl";
 import classNames from "classnames";
+import { Carousel, Embla } from "@mantine/carousel";
 
 interface MoreArticlesSectionProps {
   blogId: string;
+}
+
+interface ArrowProps {
+  className: string;
 }
 
 const MoreArticlesSection: React.FC<MoreArticlesSectionProps> = ({
@@ -22,8 +25,44 @@ const MoreArticlesSection: React.FC<MoreArticlesSectionProps> = ({
   const locale = useLocale();
   const { blogs, loading, error } = useBlogsData();
   const t = useTranslations("components");
-  const itemsPerPage = 3;
-  const [currentPage, setCurrentPage] = useState(0);
+
+  const [embla] = useState<Embla | null>(null);
+
+  const handleScroll = useCallback(() => {
+    if (!embla) return;
+  }, [embla]);
+
+  useEffect(() => {
+    if (embla) {
+      embla.on("scroll", handleScroll);
+      handleScroll();
+    }
+  }, [embla]);
+
+  const NextArrow: React.FC<ArrowProps> = ({ className }) => {
+    return (
+      <div className={className}>
+        <Image
+          style={{ transform: "rotate(180deg)" }}
+          src={Arrow}
+          alt="Next slide"
+          width={28}
+        />
+      </div>
+    );
+  };
+
+  const PrevArrow: React.FC<ArrowProps> = ({ className }) => {
+    return (
+      <div className={className}>
+        <Image
+          src={Arrow}
+          alt="Previous slide"
+          width={28}
+        />
+      </div>
+    );
+  };
 
   if (loading) {
     return <p>Loading...</p>;
@@ -35,59 +74,55 @@ const MoreArticlesSection: React.FC<MoreArticlesSectionProps> = ({
   const filteredBlogs = blogs.filter(
     (blog) => blog.id !== parseInt(blogId, 10)
   );
-  const startIndex = currentPage * itemsPerPage;
-  const endIndex = startIndex + itemsPerPage;
-  const visibleItems = filteredBlogs.slice(startIndex, endIndex);
-
-  const handlePageChange = ({ selected }: { selected: number }) => {
-    setCurrentPage(selected);
-  };
+  
 
   return (
     <section className={s.box}>
       <div className={s.background}>
         <div className={classNames(s.container, s.articles)}>
           <MainTitleComponent title={t("moreArticles")} left color="green" />
-          <div className={s.articles__cards}>
-            {visibleItems.map((blog, index) => (
-              <div key={index}>
-                <SmallCardBlogComponent info={blog} locale={locale} />
-              </div>
-            ))}
+          <div className={s.carousel}>
+            <Carousel
+              classNames={{
+                control: s.control,
+                controls: s.controls,
+              }}
+              height="100%"
+              slideSize="25%"
+              slideGap="md"
+              loop
+              align="start"
+              slidesToScroll={1}
+              previousControlIcon={<NextArrow className={s.arrow} />}
+              nextControlIcon={<PrevArrow className={s.arrow} />}
+              breakpoints={[
+                {
+                  maxWidth: 767.98,
+                  slideSize: "100%",
+                },
+                {
+                  minWidth: 768,
+                  maxWidth: 998,
+                  slideSize: "50%",
+                },
+                {
+                  minWidth: 998,
+                  maxWidth: 1280,
+                  slideSize: "33.333333%",
+                },
+                {
+                  minWidth: 1280,
+                  slideSize: "33.333333%",
+                },
+              ]}
+            >
+              {filteredBlogs.map((blog, index) => (
+                <Carousel.Slide key={index}>
+                  <SmallCardBlogComponent info={blog} locale={locale} />
+                </Carousel.Slide>
+              ))}
+            </Carousel>
           </div>
-
-          {/* ReactPaginate */}
-          {blogs.length > itemsPerPage && (
-            <ReactPaginate
-              previousLabel={
-                <div className={pagination.pagination__arrow_previous}>
-                  <Image
-                    className={pagination.pagination__arrow_image}
-                    src={Arrow}
-                    alt="arrow"
-                  />
-                </div>
-              }
-              nextLabel={
-                <div className={pagination.pagination__arrow_next}>
-                  <Image
-                    className={pagination.pagination__arrow_image}
-                    src={Arrow}
-                    alt="arrow"
-                  />
-                </div>
-              }
-              breakLabel={"..."}
-              breakClassName={pagination.pagination__break}
-              pageCount={Math.ceil(blogs.length / itemsPerPage)}
-              marginPagesDisplayed={2}
-              pageRangeDisplayed={3}
-              onPageChange={handlePageChange}
-              containerClassName={pagination.pagination}
-              pageClassName={pagination.pagination__pages}
-              activeClassName={pagination.active}
-            />
-          )}
         </div>
       </div>
     </section>
