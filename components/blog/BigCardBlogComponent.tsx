@@ -15,6 +15,7 @@ interface Blog {
 }
 
 interface Acf {
+  date: string;
   heading_en: string;
   mainimage: string;
   subheading1_en: string;
@@ -44,7 +45,7 @@ const BigCardBlogComponent = (data: Info) => {
             </p>
             <div className={s.blog__box}>
               <ReadMoreComponent href={articleLink} />
-              <p className={s.blog__data}>01.12.2024</p>
+              <p className={s.blog__data}>{data.info.acf.date}</p>
             </div>
           </div>
         </div>
