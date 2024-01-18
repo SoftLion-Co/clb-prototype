@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FC } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import s from "./MainButtonComponent.module.scss";
@@ -14,7 +14,7 @@ interface MainButtonProps {
   type?: "MainButton" | "MainArrowButton" | "MainUsualButton";
 }
 
-const MainButtonComponent: React.FC<MainButtonProps> = ({
+const MainButtonComponent: FC<MainButtonProps> = ({
   text,
   href,
   className,

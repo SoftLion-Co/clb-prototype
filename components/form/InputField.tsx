@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FC } from "react";
 import s from "@/app/sections/main_page/ContactUsSection.module.scss";
 import { useTranslations } from "next-intl";
 import classNames from "classnames";
@@ -14,7 +14,7 @@ interface InputFieldProps {
   cv?: boolean;
 }
 
-const InputField: React.FC<InputFieldProps & { cv?: boolean }> = ({
+const InputField: FC<InputFieldProps & { cv?: boolean }> = ({
   type,
   name,
   label,

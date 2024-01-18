@@ -1,5 +1,5 @@
 "use client";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState, FC } from "react";
 import s from "./MoreArticlesSection.module.scss";
 import SmallCardBlogComponent from "@/components/blog/SmallCardBlogComponent";
 import useBlogsData from "@/hooks/useBlogsData";
@@ -19,7 +19,7 @@ interface ArrowProps {
   className: string;
 }
 
-const MoreArticlesSection: React.FC<MoreArticlesSectionProps> = ({
+const MoreArticlesSection: FC<MoreArticlesSectionProps> = ({
   blogId,
 }) => {
   const locale = useLocale();
@@ -39,7 +39,7 @@ const MoreArticlesSection: React.FC<MoreArticlesSectionProps> = ({
     }
   }, [embla]);
 
-  const NextArrow: React.FC<ArrowProps> = ({ className }) => {
+  const NextArrow: FC<ArrowProps> = ({ className }) => {
     return (
       <div className={className}>
         <Image
@@ -52,7 +52,7 @@ const MoreArticlesSection: React.FC<MoreArticlesSectionProps> = ({
     );
   };
 
-  const PrevArrow: React.FC<ArrowProps> = ({ className }) => {
+  const PrevArrow: FC<ArrowProps> = ({ className }) => {
     return (
       <div className={className}>
         <Image

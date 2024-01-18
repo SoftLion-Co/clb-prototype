@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FC } from "react";
 import s from "./OurAdvantagesCardComponent.module.scss";
 
 type OurAdvantagesComponentProps = {
@@ -15,7 +15,7 @@ const colorVariants = {
   white: "#FFFFFF",
 };
 
-const OurAdvantagesCardComponent: React.FC<OurAdvantagesComponentProps> = ({
+const OurAdvantagesCardComponent: FC<OurAdvantagesComponentProps> = ({
   advantages,
   colorVariant,
   imageSrc,

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, FC } from "react";
 import s from "./BlogSection.module.scss";
 import classNames from "classnames";
 import PageTitleComponent from "@/components/PageTitleComponent";
@@ -22,7 +22,7 @@ interface PaginationButtonProps {
   className?: string;
 }
 
-const PaginationButton: React.FC<PaginationButtonProps> = ({
+const PaginationButton: FC<PaginationButtonProps> = ({
   onClick,
   disabled,
   children,
@@ -41,7 +41,7 @@ interface BlogSectionProps {
   blogs: Array<any>;
 }
 
-const BlogSection: React.FC<BlogSectionProps> = ({ blogs }) => {
+const BlogSection: FC<BlogSectionProps> = ({ blogs }) => {
   const t = useTranslations("blog");
   const locale = useLocale();
   const isMobile = useMediaQuery("(max-width: 767.98px)");

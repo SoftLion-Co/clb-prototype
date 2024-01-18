@@ -2,7 +2,7 @@
 import Image from "next/image";
 import classNames from "classnames";
 import s from "./OurTeamSection.module.scss";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState, FC } from "react";
 import { Carousel, Embla } from "@mantine/carousel";
 
 import MainTitleComponent from "@/components/MainTitleComponent";
@@ -39,7 +39,7 @@ interface TeamMemberAcf {
   jobtitle_ua: string;
 }
 
-const OurTeamSection: React.FC<OurTeamSectionProps> = ({ teamMembers }) => {
+const OurTeamSection: FC<OurTeamSectionProps> = ({ teamMembers }) => {
   const t = useTranslations("aboutUs.ourTeam");
   const { team, loading, error } = useOurTeamData();
   const reversedTeam = [...team].reverse();
@@ -57,7 +57,7 @@ const OurTeamSection: React.FC<OurTeamSectionProps> = ({ teamMembers }) => {
     }
   }, [embla]);
 
-  const NextArrow: React.FC<ArrowProps> = ({ className }) => {
+  const NextArrow: FC<ArrowProps> = ({ className }) => {
     return (
       <div className={className}>
         <Image
@@ -71,7 +71,7 @@ const OurTeamSection: React.FC<OurTeamSectionProps> = ({ teamMembers }) => {
     );
   };
 
-  const PrevArrow: React.FC<ArrowProps> = ({ className }) => {
+  const PrevArrow: FC<ArrowProps> = ({ className }) => {
     return (
       <div className={className}>
         <Image
