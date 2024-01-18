@@ -1,4 +1,5 @@
 "use client";
+import React, { useState, useEffect } from "react";
 import s from "./BlogCardSection.module.scss";
 import classNames from "classnames";
 
@@ -12,8 +13,25 @@ import useLocale from "@/hooks/useLocale";
 const BlogCardsSection = () => {
   const t = useTranslations("blog");
   const t1 = useTranslations("components");
+  const [cardsToRender, setCardsToRender] = useState(3);
   const { latestBlogs } = useBlogsData();
   const locale = useLocale();
+
+  useEffect(() => {
+    const updateCardCount = () => {
+      const width = window.innerWidth;
+      if (width <= 767.98) setCardsToRender(1);
+      else if (width >= 768 && width < 1280) setCardsToRender(2);
+      else setCardsToRender(3);
+    };
+
+    updateCardCount();
+    window.addEventListener("resize", updateCardCount);
+
+    return () => {
+      window.removeEventListener("resize", updateCardCount);
+    };
+  }, []);
 
   return (
     <section className={s.box}>
@@ -27,7 +45,7 @@ const BlogCardsSection = () => {
           />
 
           <div className={s.blog__cards}>
-            {latestBlogs.map((blog, index) => (
+            {latestBlogs.slice(0, cardsToRender).map((blog, index) => (
               <div key={index}>
                 <SmallCardBlogComponent info={blog} locale={locale} />
               </div>
@@ -36,10 +54,8 @@ const BlogCardsSection = () => {
 
           <MainButtonComponent
             text={t1("moreOurNews")}
-            rotatedArrow={false}
-            padding="8px 16px"
-            customGap="8px"
             href={"/blog"}
+            type="MainArrowButton"
             className={s.blog__button}
           />
         </div>

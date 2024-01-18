@@ -1,10 +1,21 @@
 @import "./../style/viewports";
 @import "./../style/container";
+@import "./../style/colors";
+
+.header.hidden {
+  transform: translateY(-100%);
+}
 
 .header {
   width: 100%;
   padding: 16px 16px 0 16px;
-  position: relative;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  transition: transform 0.3s ease-in-out;
+  transform: translateY(0);
 
   @media screen and (min-width: 1280px) {
     padding: 24px 24px 0 24px;
@@ -14,7 +25,8 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: #ffffff;
+    background: $classicWhiteBackgroundColor;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
     border-radius: 16px;
     padding: 9px 16px;
 
@@ -84,14 +96,14 @@
     flex-direction: column;
     margin-left: 16px;
     gap: 4px;
-    color: #000000;
+    color: $blackTextColor;
 
     @include for-size(tablet) {
       gap: 10px;
     }
 
     @include for-size(laptop) {
-      background-color: #ebece6;
+      background-color: $backgroundColorGreen;
       position: absolute;
       display: flex;
       flex-direction: column;
@@ -111,7 +123,7 @@
       font-size: 16px;
       font-weight: 400;
       line-height: 130%;
-      color: #171717;
+      color: $blackTextColor;
 
       @include for-size(tablet) {
         font-size: 20px;
@@ -230,7 +242,7 @@
     margin-left: 16px;
 
     @include for-size(laptop) {
-      background-color: #ebece6;
+      background-color: $backgroundColorGreen;
       display: flex;
       align-items: flex-start;
       flex-direction: column;
@@ -273,7 +285,7 @@
 }
 
 .modal {
-  background-color: #ffffff;
+  background-color: $classicWhiteBackgroundColor;
   display: flex;
   flex-direction: column;
   align-items: flex-start;

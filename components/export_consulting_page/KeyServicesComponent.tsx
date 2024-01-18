@@ -2,6 +2,7 @@ import React from "react";
 import s from "./KeyServicesComponent.module.scss";
 import { useTranslations } from "next-intl";
 import classNames from "classnames";
+import { useTwoLinesTitle } from "@/hooks/useTwoLinesTitle";
 
 function KeyServicesComponent() {
   const t = useTranslations("exportConsulting.services");
@@ -26,7 +27,7 @@ function KeyServicesComponent() {
           })}
           key={index}
         >
-          <h3 className={s.card__title}>{title}</h3>
+          <h3 className={s.card__title}>{useTwoLinesTitle(title)}</h3>
           <ul className={s.card__list}>
             <li className={s.card__item}>{text}</li>
             {text_1 && <li className={s.card__item}>{text_1}</li>}
