@@ -81,15 +81,12 @@ const BlogSection: FC<BlogSectionProps> = ({ blogs }) => {
   useEffect(() => {
     const rowsForMobile = Math.ceil(visibleItems.length / 1);
     const rowsForTablet = Math.ceil(visibleItems.length / 2);
-    const rowsForDesktop = Math.ceil(visibleItems.length / 3);
 
     if (isMobile) {
       setGridRows(rowsForMobile);
-    } else if (isTablet) {
-      setGridRows(rowsForTablet);
     } else {
-      setGridRows(rowsForDesktop);
-    }
+      setGridRows(rowsForTablet);
+    } 
   }, [visibleItems.length, isMobile, isTablet]);
 
   const renderTabletCard = (data: any, index: number) => {
