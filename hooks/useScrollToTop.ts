@@ -11,7 +11,7 @@ const useScrollToTop = () => {
     };
 
     const scrollToTopAnimation = () => {
-      const scrollStep = window.scrollY / (window.scrollY > 500 ? 35 : 50);
+      const scrollStep = window.scrollY / (window.scrollY > 500 ? 20 : 15);
 
       if (userInterrupted || window.scrollY === 0) {
         setScrollToTop(false);

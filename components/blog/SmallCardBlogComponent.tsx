@@ -1,6 +1,5 @@
 import s from "./SmallCardBlogComponent.module.scss";
 import Image from "next/image";
-import classNames from "classnames";
 import ReadMoreComponent from "@/components/ReadMoreComponent";
 
 // Потрібно в вордпресі додати дату додавання статті

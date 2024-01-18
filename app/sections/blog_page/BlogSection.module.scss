@@ -11,20 +11,22 @@
 
   &__cards {
     display: grid;
-    grid-gap: 24px;
+    grid-gap: 16px;
     grid-template-columns: 1fr;
     grid-template-rows: repeat(6, 1fr);
-    margin-bottom: 148px;
+    margin-bottom: 40px;
 
     @include for-size(tablet) {
       grid-template-columns: repeat(2, 1fr);
       grid-template-rows: repeat(3, 3fr);
+      margin-bottom: 80px;
     }
 
     @include for-size(laptop) {
+      grid-gap: 24px;
       grid-template-columns: repeat(3, 1fr);
       grid-template-rows: repeat(3, 3fr);
+      margin-bottom: 100px;
     }
-
   }
 }

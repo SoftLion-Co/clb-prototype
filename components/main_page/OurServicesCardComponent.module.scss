@@ -20,10 +20,14 @@
   }
 
   &__image {
-    height: 78px;
+    height: 68px;
     display: flex;
     align-items: flex-start;
     justify-content: end;
+
+    @include for-size(laptop) {
+      height: 78px;
+    }
   }
 
   &__title {
@@ -32,12 +36,13 @@
     font-size: 20px;
     font-weight: 600;
     line-height: 130%;
-    max-width: 70%;
+    max-width: 60%;
     text-align: center;
 
     @include for-size(tablet) {
-      min-height: 58px;
+      min-height: 0;
       font-size: 22px;
+      max-width: 80%;
     }
 
     @include for-size(laptop) {

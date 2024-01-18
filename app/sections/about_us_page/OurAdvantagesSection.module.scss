@@ -34,6 +34,10 @@
     width: 100%;
     object-fit: cover;
     border-radius: 32px;
+
+    @include for-size(phone) {
+      height: 202px;
+    }
   }
 }
 

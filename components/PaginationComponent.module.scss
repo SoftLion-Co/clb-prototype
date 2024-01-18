@@ -73,6 +73,7 @@
   &__arrow_image {
     width: 22px;
     height: 22px;
+    user-select: none;
     transition: filter 0.2s ease-in-out;
     filter: invert(34%) sepia(7%) saturate(777%) hue-rotate(55deg)
       brightness(95%) contrast(84%);

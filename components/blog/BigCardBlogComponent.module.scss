@@ -5,12 +5,12 @@
   display: flex;
   gap: 24px;
   width: 100%;
-  grid-column: span 2;  
+  grid-column: span 2;
 }
 
 .blog {
   display: flex;
-  padding: 24px;
+  padding: 20px;
   background-color: $classicWhiteBackgroundColor;
   border: 2px solid $backgroundColorLightGreen;
   border-radius: 32px;
@@ -18,31 +18,26 @@
 
   @include for-size(laptop) {
     min-height: 400px;
+    padding: 24px;
   }
-
   @include for-size(desktop) {
     min-height: 600px;
   }
+
   &__content {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: stretch;
     width: 50%;
-
-    @include for-size(laptop) {
-    }
-
-    @include for-size(desktop) {
-    }
   }
 
   &__title {
     margin-top: 14px;
     color: $backgroundColorDarkBlue;
-    font-size: 28px;
+    font-size: 22px;
     font-weight: 600;
-    line-height: 150%;
+    line-height: 130%;
 
     @include for-size(laptop) {
       font-size: 28px;
@@ -81,18 +76,13 @@
   }
 
   &__picture {
-    border-radius: 20px;
+    border-radius: 16px;
     object-fit: cover;
     user-select: none;
     width: 50%;
-    // @include for-size(tablet) {
-    //   width: 252px;
-    //   height: 352px;
-    // }
 
-    // @include for-size(laptop) {
-    //   width: 100%;
-    //   height: auto;
-    // }
+    @include for-size(laptop) {
+      border-radius: 20px;
+    }
   }
 }
