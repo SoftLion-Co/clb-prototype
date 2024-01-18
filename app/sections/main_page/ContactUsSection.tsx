@@ -45,8 +45,15 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
   ];
 
   const translatedTopics = topics.map((topic) => t(`topics.${topic}`));
+
+  const [cvFileInputKey, setCvFileInputKey] = useState(0);
+
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [formMessage, setFormMessage] = useState("");
+  const [selectedDropdownValue, setSelectedDropdownValue] = useState("");
+  const [validationErrors, setValidationErrors] = useState<ValidationErrors>(
+    {}
+  );
 
   const [formData, setFormData] = useState<FormData>({
     firstname: "",
@@ -61,14 +68,6 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
     cvFile: null,
   });
 
-  interface ValidationErrors {
-    [key: string]: boolean | undefined;
-  }
-
-  const [validationErrors, setValidationErrors] = useState<ValidationErrors>(
-    {}
-  );
-
   const [touchedFields, setTouchedFields] = useState({
     firstname: false,
     lastname: false,
@@ -77,28 +76,44 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
     company: false,
     message: false,
     subject: false,
+    vacancy: false,
   });
 
-  const fieldsWithoutCV = [
-    { type: "text", name: "firstname" },
-    { type: "text", name: "lastname" },
-    { type: "email", name: "email" },
-    { type: "tel", name: "phone" },
-    { type: "text", name: "company" },
-  ];
+  const resetForm = () => {
+    setFormData({
+      firstname: "",
+      lastname: "",
+      email: "",
+      phone: "",
+      company: "",
+      subject: "",
+      message: "",
+      time: "",
+      vacancy: "",
+      cvFile: null,
+    });
 
-  const fieldsCV = [
-    { type: "text", name: "firstname" },
-    { type: "text", name: "lastname" },
-    { type: "email", name: "email" },
-    { type: "tel", name: "phone" },
-    { type: "text", name: "time" },
-  ];
+    setTouchedFields({
+      firstname: false,
+      lastname: false,
+      email: false,
+      phone: false,
+      company: false,
+      message: false,
+      subject: false,
+      vacancy: false,
+    });
+    setValidationErrors({});
+  };
+
+  interface ValidationErrors {
+    [key: string]: boolean | undefined;
+  }
 
   const handleInputChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLLIElement>
   ) => {
-    let { name, value } = e.target as HTMLInputElement | HTMLTextAreaElement;
+    const { name, value } = e.target as HTMLInputElement | HTMLTextAreaElement;
 
     setFormData((prevData) => ({ ...prevData, [name]: value }));
 
@@ -134,22 +149,6 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
     }));
   };
 
-  const handleDropdownClick = (value: string) => {
-    setSelectedDropdownValue(value);
-    setFormData((prevData) => ({
-      ...prevData,
-      subject: value,
-    }));
-
-    setTouchedFields((prevFields) => ({ ...prevFields, subject: true }));
-    const isValid = value.trim() !== "";
-    setValidationErrors((prevErrors) => ({
-      ...prevErrors,
-      subject: !isValid,
-    }));
-    setIsDropdownOpen(false);
-  };
-
   useEffect(() => {
     const handleOutsideClick = (e: MouseEvent) => {
       const dropdown = document.querySelector(`.${s.dropdown}`);
@@ -171,10 +170,6 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
       lastname: !validateName(formData.lastname),
       email: !validateEmail(formData.email),
       phone: !validatePhoneNumber(formData.phone),
-      company: false,
-      subject: false,
-      message: false,
-      cvFile: false,
     };
 
     if (cv) {
@@ -192,39 +187,14 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
   const handleTestButtonClick = () => {
     if (validateForm()) {
       setFormMessage("Form is valid. Ready to submit!");
+
+      setTimeout(() => {
+        setFormMessage("");
+      }, 10000);
     } else {
       setFormMessage("Validation failed. Please check your inputs.");
     }
   };
-
-  const handleFormReset = () => {
-    setFormData({
-      firstname: "",
-      lastname: "",
-      email: "",
-      phone: "",
-      company: "",
-      subject: "",
-      message: "",
-      time: "",
-      vacancy: "",
-      cvFile: null,
-    });
-
-    setTouchedFields({
-      firstname: false,
-      lastname: false,
-      email: false,
-      phone: false,
-      company: false,
-      message: false,
-      subject: false,
-    });
-
-    setValidationErrors({});
-  };
-
-  const [selectedDropdownValue, setSelectedDropdownValue] = useState("");
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
@@ -249,7 +219,9 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
         const jsonResponse = await response.json();
         console.log(jsonResponse);
         if (jsonResponse.status === "mail_sent") {
-          handleFormReset();
+          resetForm();
+          setCvFileInputKey(cvFileInputKey + 1);
+
           console.log("Form submitted successfully!");
         } else {
           console.error("Form submission failed. Status:", jsonResponse.status);
@@ -262,7 +234,21 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
     }
   };
 
-  const fields = cv ? fieldsCV : fieldsWithoutCV;
+  const fieldsWithoutCV = [
+    { type: "text", name: "firstname" },
+    { type: "text", name: "lastname" },
+    { type: "email", name: "email" },
+    { type: "tel", name: "phone" },
+    { type: "text", name: "company" },
+  ];
+
+  const fieldsCV = [
+    { type: "text", name: "firstname" },
+    { type: "text", name: "lastname" },
+    { type: "email", name: "email" },
+    { type: "tel", name: "phone" },
+    { type: "text", name: "time" },
+  ];
 
   const renderInputField = (field: {
     type: string;
@@ -274,13 +260,16 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
       !validationErrors[field.name as keyof typeof validationErrors];
     const shouldShowValidation = isTouched;
 
+    const fieldValue = formData[field.name as keyof typeof formData];
+    const valueToPass = typeof fieldValue === "string" ? fieldValue : "";
+
     return (
       <InputField
         key={field.name}
         type={field.type}
         name={field.name}
         label={field.label || field.name}
-        value={(formData as any)[field.name]}
+        value={valueToPass}
         onChange={handleInputChange}
         isValid={shouldShowValidation && isValid}
         isInvalid={shouldShowValidation && !isValid}
@@ -315,6 +304,7 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
 
   const renderAttachFile = () => (
     <InputField
+      key={cvFileInputKey}
       className={classNames(s.form__cv, { [s.cv]: cv }, s.form__attach)}
       type="file"
       name="cvFile"
@@ -325,15 +315,35 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
   );
 
   const renderDropdown = () => {
-    const isTouched = touchedFields.subject;
-    const isValid = !validationErrors.subject;
+    const dropdownValue = cv ? formData.vacancy : formData.subject;
+    const isTouched = cv ? touchedFields.vacancy : touchedFields.subject;
+    const isValid = cv ? !validationErrors.vacancy : !validationErrors.subject;
+
     const inputClassNames = classNames(s.form__input, {
       [s.inputValid]: isTouched && isValid,
       [s.inputInvalid]: isTouched && !isValid,
       [s.cv]: cv,
     });
 
-    const dropdownValue = cv ? formData.vacancy : formData.subject;
+    const handleDropdownClick = (value: string) => {
+      setSelectedDropdownValue(value);
+      setFormData((prevData) => ({
+        ...prevData,
+        [cv ? "vacancy" : "subject"]: value,
+      }));
+
+      setTouchedFields((prevFields) => ({
+        ...prevFields,
+        [cv ? "vacancy" : "subject"]: true,
+      }));
+
+      setValidationErrors((prevErrors) => ({
+        ...prevErrors,
+        [cv ? "vacancy" : "subject"]: value.trim() === "",
+      }));
+
+      setIsDropdownOpen(false);
+    };
 
     return (
       <div className={s.form__group}>
@@ -404,6 +414,8 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
       </div>
     );
   };
+
+  const fields = cv ? fieldsCV : fieldsWithoutCV;
 
   const boxInputs = (
     <div className={s.form__box}>

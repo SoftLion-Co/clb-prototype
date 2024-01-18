@@ -1,6 +1,6 @@
 "use client";
 
-import React, { ChangeEvent, useRef, useState } from "react";
+import React, { FC, ChangeEvent, useRef, useState } from "react";
 import s from "@/app/sections/main_page/ContactUsSection.module.scss";
 import { useTranslations } from "next-intl";
 import classNames from "classnames";
@@ -9,7 +9,7 @@ interface InputFieldProps {
   type: string;
   name: string;
   label: string | null;
-  value: string | null;
+  value: string | undefined;
   onChange: (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
   inputRef?: React.RefObject<HTMLInputElement>;
   className?: string;
@@ -19,10 +19,11 @@ interface InputFieldProps {
   isFileValid?: boolean;
 }
 
-const InputField: React.FC<InputFieldProps & { isCV?: boolean }> = ({
+const InputField: FC<InputFieldProps & { isCV?: boolean }> = ({
   type,
   name,
   label,
+  value,
   onChange,
   inputRef,
   className,
@@ -110,6 +111,7 @@ const InputField: React.FC<InputFieldProps & { isCV?: boolean }> = ({
           name={name}
           id={name}
           placeholder={t(label)}
+          value={value || ""}
           className={classNames(s.form__input, inputClassNames, {
             [s.inputValid]: isValid,
             [s.inputInvalid]: isInvalid,

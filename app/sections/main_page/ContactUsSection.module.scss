@@ -241,13 +241,17 @@
 }
 
 .inputValid {
-  border-color: #a7b896;
-  color: #a7b896;
+  border-color: $backgroundColorLightGreen;
+  color: $backgroundColorLightGreen;
+  filter: invert(7%) sepia(5%) saturate(18%) hue-rotate(326deg) brightness(93%)
+    contrast(94%);
 }
 
 .inputInvalid {
-  border-color: #de7272;
-  color: #de7272;
+  border-color: $backgroundColorLightRed;
+  color: $backgroundColorLightRed;
+  filter: invert(58%) sepia(5%) saturate(3642%) hue-rotate(314deg)
+    brightness(92%) contrast(111%);
 }
 
 //=== Test Styles ===//
