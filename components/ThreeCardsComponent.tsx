@@ -4,7 +4,7 @@ import Image from "next/image";
 
 import executionImage from "@/images/home-hero-test.png";
 import exportConsultingImage from "@/images/home-hero-test.png";
-import freightBrokerageImage from "@/images/home-hero-test.png";
+import freightBrokerageImage from "@/images/freight_brokerage/1.png";
 import ourStoryImage from "@/images/home-hero-test.png";
 import classNames from "classnames";
 
@@ -67,7 +67,7 @@ const ThreeCardsComponent: FC<ThreeCardsProps> = ({
           {image}
         </div>
       )}
-      <div className={s.cards__card} style={cardStyle}>
+      <div className={classNames(s.cards__card, {[s.cards__small_card]: smallText})} style={cardStyle}>
         <p className={s.cards__small_text}>{smallText}</p>
       </div>
       {imagePosition === 3 && image}

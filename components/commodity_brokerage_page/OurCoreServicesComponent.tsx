@@ -3,6 +3,7 @@ import s from "./OurCoreServicesComponent.module.scss";
 import image from "@/images/home-hero-test.png";
 import { useTranslations } from "next-intl";
 import classNames from "classnames";
+import { useTwoLinesTitle } from "@/hooks/useTwoLinesTitle";
 
 function OurCoreServicesComponent() {
   const t = useTranslations("commodityBrokerage.services");
@@ -51,7 +52,7 @@ function OurCoreServicesComponent() {
   return (
     <div className={s.services}>
       {serviceCards.map(({ title, text, imageSrc }, index) => (
-        <>
+        <React.Fragment key={index}>
           {imageSrc !== undefined ? (
             <div className={s.card} style={imgaeStyling}></div>
           ) : (
@@ -60,11 +61,11 @@ function OurCoreServicesComponent() {
                 [s.cardWithBorder]: cardsWithBorders.includes(index),
               })}
             >
-              <h3 className={s.card__title}>{title}</h3>
+              <h3 className={s.card__title}>{useTwoLinesTitle(title)}</h3>
               <p className={s.card__text}>{text}</p>
             </div>
           )}
-        </>
+        </React.Fragment>
       ))}
     </div>
   );

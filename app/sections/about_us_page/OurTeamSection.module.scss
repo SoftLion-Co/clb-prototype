@@ -9,6 +9,7 @@
     border-color: #565f51;
     border-radius: 20px;
     padding: 11px 27px;
+    transition: background-color 0.2s ease-in-out;
 
     @include for-size(laptop) {
       border-radius: 24px;
@@ -18,6 +19,15 @@
 
   &__control {
     box-shadow: none;
+
+    &:hover {
+      background-color: #565f51;
+
+      .team__arrow {
+        filter: invert(97%) sepia(10%) saturate(6%) hue-rotate(103deg)
+          brightness(105%) contrast(100%);
+      }
+    }
   }
 
   &__controls {
@@ -48,6 +58,9 @@
   &__arrow {
     width: 22px;
     height: 12px;
+    transition: filter 0.2s ease-in-out;
+    filter: invert(36%) sepia(7%) saturate(790%) hue-rotate(55deg)
+      brightness(93%) contrast(88%);
 
     @include for-size(laptop) {
       width: 28px;

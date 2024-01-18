@@ -4,12 +4,13 @@ import MainArticleSection from "@/app/sections/article_page/MainArticleSection";
 import MoreArticlesSection from "@/app/sections/article_page/MoreArticlesSection";
 import useBlogData from "@/hooks/useBlogData";
 import ContactUsSection from "@/app/sections/main_page/ContactUsSection";
+import React, { FC } from 'react'
 
 interface BlogArticleParams {
   blogId: string;
 }
 
-const BlogArticle: React.FC<{ params: BlogArticleParams }> = ({ params }) => {
+const BlogArticle: FC<{ params: BlogArticleParams }> = ({ params }) => {
   const blogId = params.blogId;
   const { blog, loading, error } = useBlogData(blogId);
 

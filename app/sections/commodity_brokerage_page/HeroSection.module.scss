@@ -3,40 +3,121 @@
 
 .hero {
   display: grid;
-  gap: 8.938em;
-  grid-template-columns: 1fr 1.2fr;
+  gap: 60px;
+  grid-template-columns: 1fr;
+
+  @include for-size(tablet) {
+    grid-template-columns: 1fr 1.25fr;
+  }
+
+  @include for-size(laptop) {
+    gap: 80px;
+  }
+
+  @include for-size(desktop) {
+    gap: 143px;
+  }
 
   &__title {
-    margin-bottom: 140px;
+    display: none;
+
+    @include for-size(tablet) {
+      display: block;
+      margin-bottom: 70px;
+    }
+
+    @include for-size(laptop) {
+      margin-bottom: 100px;
+    }
+
+    @include for-size(desktop) {
+      margin-bottom: 140px;
+    }
   }
 
   &__texts {
-    max-width: 586px;
+    display: flex;
+    gap: 40px;
+    flex-direction: column;
+
+    @include for-size(tablet) {
+      gap: 46px;
+    }
+
+    @include for-size(laptop) {
+      gap: 52px;
+    }
+
+    @include for-size(desktop) {
+      gap: 60px;
+    }
   }
 
   &__heading {
-    font-size: 47px;
+    font-size: 26px;
     font-weight: 600;
-    line-height: 150%;
-    color: $blackTextColor;
-    margin-bottom: 78px;
-    margin-top: 25px;
+    line-height: 130%;
+    color: $backgroundColorDarkBlue;
+    text-align: center;
+    width: 80%;
+    margin: 0 auto;
+
+    @include for-size(tablet) {
+      width: 100%;
+      margin: 0;
+      text-align: left;
+      color: $blackTextColor;
+      font-size: 32px;
+    }
+
+    @include for-size(laptop) {
+      font-size: 38px;
+      line-height: 150%;
+      margin-bottom: 12px;
+      margin-top: 16px;
+    }
+
+    @include for-size(desktop) {
+      font-size: 47px;
+      margin-bottom: 18px;
+      margin-top: 24px;
+    }
   }
 
   &__text {
-    display: flex;
-    align-items: center;
-    font-size: 24px;
+    font-size: 18px;
     font-weight: 500;
-    line-height: 150%;
+    line-height: 130%;
     color: $blackTextColor;
-    margin-bottom: 60px;
+
+    @include for-size(tablet) {
+      font-size: 20px;
+    }
+
+    @include for-size(laptop) {
+      font-size: 22px;
+      line-height: 150%;
+    }
+
+    @include for-size(desktop) {
+      font-size: 24px;
+    }
   }
 
   &__image {
-    height: 100%;
+    min-height: 250px;
+    max-height: 300px;
     width: 100%;
     object-fit: cover;
-    border-radius: 32px;
+    border-radius: 24px;
+
+    @include for-size(tablet) {
+      height: 100%;
+      max-height: none;
+    }
+
+    @include for-size(desktop) {
+      border-radius: 32px;
+    }
   }
 }

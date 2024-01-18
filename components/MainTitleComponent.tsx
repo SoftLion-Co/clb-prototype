@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FC } from "react";
 import s from "./MainTitleComponent.module.scss";
 import classNames from "classnames";
 import image from "@/images/vectors/graph.svg";
@@ -12,7 +12,7 @@ interface MainTitleProps {
   mobileLeft?: boolean;
 }
 
-const MainTitleComponent: React.FC<MainTitleProps> = ({
+const MainTitleComponent: FC<MainTitleProps> = ({
   title,
   className,
   color = "green",
@@ -26,8 +26,19 @@ const MainTitleComponent: React.FC<MainTitleProps> = ({
   }[color];
 
   return (
-    <div className={classNames(s.main, className, { [s.left]: left, [s.mobileLeft]: mobileLeft })}>
-      <Image className={s.main__image} src={image} alt="Title" width={44} height={67} />
+    <div
+      className={classNames(s.main, className, {
+        [s.left]: left,
+        [s.mobileLeft]: mobileLeft,
+      })}
+    >
+      <Image
+        className={s.main__image}
+        src={image}
+        alt="Title"
+        width={44}
+        height={67}
+      />
       <h2 className={s.main__title} style={{ color: titleColor }}>
         {title}
       </h2>

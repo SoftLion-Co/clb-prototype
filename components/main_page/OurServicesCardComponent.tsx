@@ -2,6 +2,7 @@ import classNames from "classnames";
 import s from "./OurServicesCardComponent.module.scss";
 import ReadMoreComponent from "@/components/ReadMoreComponent";
 import { useTranslations } from "next-intl";
+import React, { FC } from "react";
 
 import Image from "next/image";
 
@@ -12,7 +13,7 @@ interface OurServicesCardProps {
   className?: string;
 }
 
-const OurServicesCardComponent: React.FC<OurServicesCardProps> = ({
+const OurServicesCardComponent: FC<OurServicesCardProps> = ({
   title,
   text,
   image,

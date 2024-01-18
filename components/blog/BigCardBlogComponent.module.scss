@@ -1,29 +1,48 @@
+@import "/style/viewports";
+@import "/style/colors";
+
 .blog__card {
   display: flex;
   gap: 24px;
+  width: 100%;
+  grid-column: span 2;
 }
 
 .blog {
   display: flex;
-  padding: 24px;
-  background-color: #ffffff;
-  border: 2px solid #a7b896;
-  border-radius: 24px;
-  gap: 62px;
+  padding: 20px;
+  background-color: $classicWhiteBackgroundColor;
+  border: 2px solid $backgroundColorLightGreen;
+  border-radius: 32px;
+  gap: 36px;
+
+  @include for-size(laptop) {
+    min-height: 400px;
+    padding: 24px;
+  }
+  @include for-size(desktop) {
+    min-height: 600px;
+  }
 
   &__content {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    width: 341px;
+    align-items: stretch;
+    width: 50%;
   }
 
   &__title {
     margin-top: 14px;
-    color: #2a4563;
-    font-size: 28px;
-    font-weight: 700;
-    line-height: 150%;
+    color: $backgroundColorDarkBlue;
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 130%;
+
+    @include for-size(laptop) {
+      font-size: 28px;
+      line-height: 150%;
+    }
   }
 
   &__container {
@@ -32,10 +51,14 @@
   }
 
   &__text {
-    color: #171717;
-    font-size: 18px;
-    font-weight: 400;
-    line-height: 150%;
+    color: $blackTextColor;
+    font-size: 16px;
+    line-height: 130%;
+
+    @include for-size(laptop) {
+      font-size: 18px;
+      line-height: 150%;
+    }
   }
 
   &__box {
@@ -45,17 +68,21 @@
   }
 
   &__data {
-    color: #a7b896;
+    color: $backgroundColorLightGreen;
     font-size: 12px;
     font-weight: 500;
     line-height: 150%;
+    text-transform: uppercase;
   }
 
   &__picture {
-    border-radius: 24px;
+    border-radius: 16px;
     object-fit: cover;
     user-select: none;
-    width: 499px;
-    height: 468px;
+    width: 50%;
+
+    @include for-size(laptop) {
+      border-radius: 20px;
+    }
   }
 }

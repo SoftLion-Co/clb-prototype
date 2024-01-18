@@ -1,5 +1,6 @@
 import classNames from "classnames";
 import s from "./PageTitleComponent.module.scss";
+import React, { FC } from "react";
 
 interface MainTitleProps {
   title: string;
@@ -7,16 +8,12 @@ interface MainTitleProps {
   className?: string;
 }
 
-const PageTitleComponent: React.FC<MainTitleProps> = ({
-  title,
-  text,
-  className,
-}) => {
+const PageTitleComponent: FC<MainTitleProps> = ({ title, text, className }) => {
   return (
     <div className={classNames(className)}>
       <div className={classNames(s.page)}>
         <h1 className={s.page__title}>{title}</h1>
-        <p className={s.page__text}>{text}</p>
+        {text && <p className={s.page__text}>{text}</p>}
       </div>
     </div>
   );

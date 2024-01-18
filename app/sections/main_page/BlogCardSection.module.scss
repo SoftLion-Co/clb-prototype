@@ -1,4 +1,5 @@
 @import "./../../../style/container";
+@import "./../../../style/viewports";
 
 .blog {
   &__container {
@@ -7,18 +8,25 @@
   }
 
   &__cards {
-    display: flex;
-    flex-wrap: nowrap;
-    gap: 24px;
-    margin-bottom: 100px;
+    margin-bottom: 40px;
+    display: grid;
+    gap: 16px;
+    grid-template-rows: repeat(1, 1fr);
+    grid-template-columns: repeat(1, 1fr);
 
-    @media (max-width: 1279.98px) {
-      flex-direction: column;
-      align-items: center;
-
-      & > div:not(:last-child) {
-        display: none;
-      }
+    @include for-size(tablet) {
+      display: grid;
+      gap: 16px;
+      grid-template-rows: repeat(1, 1fr);
+      grid-template-columns: repeat(2, 1fr);
+      margin-bottom: 60px;
+      align-items: stretch;
+    }
+    @include for-size(laptop) {
+      gap: 24px;
+      grid-template-rows: repeat(1, 1fr);
+      grid-template-columns: repeat(3, 1fr);
+      margin-bottom: 100px;
     }
   }
 
