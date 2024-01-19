@@ -1,5 +1,5 @@
 "use client";
-import React, { ChangeEvent, useState, useEffect } from "react";
+import React, { ChangeEvent, useState, useEffect, useRef } from "react";
 import s from "./ContactUsSection.module.scss";
 import MainTitleComponent from "@/components/MainTitleComponent";
 import MainButtonComponent from "@/components/MainButtonComponent";
@@ -17,7 +17,7 @@ import {
   validatePhoneNumber,
   validateCompanyName,
 } from "@/hooks/useValidation";
-
+import { DatePickerInput } from "@mantine/dates";
 interface FormData {
   firstname: string;
   lastname: string;
@@ -26,7 +26,7 @@ interface FormData {
   company: string;
   subject?: string;
   message: string;
-  time: string;
+  time: Date | null;
   vacancy: string;
   cvFile: File | null;
 }
@@ -47,6 +47,7 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
   const translatedTopics = topics.map((topic) => t(`topics.${topic}`));
 
   const [cvFileInputKey, setCvFileInputKey] = useState(0);
+  const [value, setValue] = useState<Date | null>(null);
 
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [formMessage, setFormMessage] = useState("");
@@ -63,7 +64,7 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
     company: "",
     subject: "",
     message: "",
-    time: "",
+    time: null,
     vacancy: "",
     cvFile: null,
   });
@@ -75,8 +76,10 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
     phone: false,
     company: false,
     message: false,
+    time: false,
     subject: false,
     vacancy: false,
+    cvFile: false,
   });
 
   const resetForm = () => {
@@ -88,7 +91,7 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
       company: "",
       subject: "",
       message: "",
-      time: "",
+      time: null,
       vacancy: "",
       cvFile: null,
     });
@@ -100,8 +103,10 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
       phone: false,
       company: false,
       message: false,
+      time: false,
       subject: false,
       vacancy: false,
+      cvFile: false,
     });
     setValidationErrors({});
   };
@@ -266,11 +271,47 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
     { type: "text", name: "time" },
   ];
 
+  const handleTimeChange = (date: Date | null) => {
+    const formattedDate = date ? date.toISOString() : "";
+    setFormData({ ...formData, time: date });
+
+    if (formDataRef.current) {
+      (formDataRef.current as any).set("time", formattedDate);
+    }
+  };
+
+  const formDataRef = useRef(formData);
+  useEffect(() => {
+    formDataRef.current = formData;
+  }, [formData]);
+
   const renderInputField = (field: {
     type: string;
     name: string;
     label?: string;
   }) => {
+    let isValidField = false;
+
+    if (field.name === "time") {
+      isValidField =
+        !validationErrors[field.name as keyof typeof validationErrors];
+      return (
+        <DatePickerInput
+          name="time"
+          variant="unstyled"
+          placeholder="WHEN YOU ARE READY TO START WORKING?"
+          value={formData.time}
+          onChange={handleTimeChange}
+          defaultValue={new Date()}
+          error={touchedFields.time && !isValidField}
+          className={classNames(s.timePicker, {
+            [s.inputValid]: touchedFields.time && isValidField,
+            [s.inputInvalid]: touchedFields.time && !isValidField,
+          })}
+        />
+      );
+    }
+
     const isTouched = touchedFields[field.name as keyof typeof touchedFields];
     const isValid =
       !validationErrors[field.name as keyof typeof validationErrors];
@@ -298,7 +339,7 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
   const renderTextarea = () => {
     const isTouched = touchedFields.message;
     const isValid = !validationErrors.message;
-    const textareaClassNames = classNames(s.form__message, {
+    const textareaClassNames = classNames(s.form__message, s.text, {
       [s.inputValid]: isTouched && isValid,
       [s.inputInvalid]: isTouched && !isValid,
     });
@@ -327,6 +368,8 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
       label={null}
       value={formData.cvFile ? formData.cvFile.name : ""}
       onChange={handleInputChange}
+      isValid={touchedFields.cvFile && !validationErrors.cvFile}
+      isInvalid={touchedFields.cvFile && validationErrors.cvFile}
     />
   );
 
@@ -335,7 +378,7 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
     const isTouched = cv ? touchedFields.vacancy : touchedFields.subject;
     const isValid = cv ? !validationErrors.vacancy : !validationErrors.subject;
 
-    const inputClassNames = classNames(s.form__input, {
+    const inputClassNames = classNames(s.form__input, s.text, {
       [s.inputValid]: isTouched && isValid,
       [s.inputInvalid]: isTouched && !isValid,
       [s.cv]: cv,
@@ -376,24 +419,32 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
             {cv ? (
               <>
                 {formData.vacancy || t("appliedVacancy")}
-                <Image
+                <span
+                  className={classNames(s.arrow, {
+                    [s.arrow__open]: isDropdownOpen,
+                  })}
+                >
+                  ⌵
+                </span>
+                {/* <Image
                   className={classNames(s.arrow, {
                     [s.arrow__open]: isDropdownOpen,
                   })}
                   src={Arrow}
                   alt="Arrow"
-                />
+                /> */}
               </>
             ) : (
               <>
                 {formData.subject || t("topicOfEnquiry")}
-                <Image
+
+                {/* <Image
                   className={classNames(s.arrow, {
                     [s.arrow__open]: isDropdownOpen,
                   })}
                   src={Arrow}
                   alt="Arrow"
-                />
+                /> */}
               </>
             )}
           </p>
@@ -404,6 +455,7 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
             {cv
               ? vacancies.map((vacancy) => (
                   <li
+                    className={s.text}
                     key={vacancy.id}
                     onClick={() => {
                       handleDropdownClick(
@@ -417,6 +469,7 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
                 ))
               : translatedTopics.map((topic) => (
                   <li
+                    className={s.text}
                     key={topic}
                     onClick={() => {
                       handleDropdownClick(topic);

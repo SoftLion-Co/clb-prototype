@@ -78,13 +78,16 @@ const InputField: FC<InputFieldProps & { isCV?: boolean }> = ({
   return (
     <div className={classNames(s.form__group, className, { [s.cv]: cv })}>
       {type === "file" ? (
-        <div className={classNames(attachClassNames, inputClassNames)} style={{ width: "100%" }}>
+        <div
+          className={classNames(attachClassNames, inputClassNames)}
+          style={{ width: "100%" }}
+        >
           <input
             ref={fileInputRef}
             type="file"
             name={name}
             id={name}
-            className={classNames(s.form__inputfile)}
+            className={classNames(s.form__inputfile, s.text, { [s.cv]: cv })}
             onChange={handleChange}
           />
 
@@ -95,7 +98,7 @@ const InputField: FC<InputFieldProps & { isCV?: boolean }> = ({
           <div className={fileMessageClassNames}>
             <button
               type="button"
-              className={classNames(s.form__fileButton, {
+              className={classNames(s.form__fileButton, s.text, {
                 [s.inputValid]: isValid && isFileValid,
                 [s.inputInvalid]: isInvalid || fileSizeError,
               })}
@@ -104,8 +107,10 @@ const InputField: FC<InputFieldProps & { isCV?: boolean }> = ({
               {t("chooseFile")}
             </button>
             <div>
-              {fileSizeError && <span>Виберіть файл до 5МБ</span>}
-              {fileName && <span>Файл: {fileName}</span>}
+              {fileSizeError && (
+                <span className={s.text}>Виберіть файл до 5МБ</span>
+              )}
+              {fileName && <span className={s.text}>FILE: {fileName}</span>}
             </div>
           </div>
         </div>
@@ -116,7 +121,7 @@ const InputField: FC<InputFieldProps & { isCV?: boolean }> = ({
           id={name}
           placeholder={t(label)}
           value={value || ""}
-          className={classNames(s.form__input, inputClassNames)}
+          className={classNames(s.form__input, s.text, inputClassNames)}
           onChange={onChange}
           ref={inputRef}
         />
