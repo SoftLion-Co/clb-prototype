@@ -23,7 +23,10 @@ function HeroSection() {
               {t("commodityBrokerageSubtitle")}
             </h2>
             <div className={s.hero__text}>{t("heroText")}</div>
-            <MainButtonComponent text={t1("getInTouch")} />
+            <MainButtonComponent
+              text={t1("getInTouch")}
+              typeButton="MainUsualButton"
+            />
           </div>
           <Image
             className={s.hero__image}

@@ -45,7 +45,7 @@ function HeroSection() {
           <MainButtonComponent
             text={t1("ourSercvicesButton")}
             className={s.hero__button}
-            type="MainUsualButton"
+            typeButton="MainUsualButton"
           />
         </div>
       </div>

@@ -374,7 +374,7 @@ const HeaderComponent = () => {
           <MainButtonComponent
             className={s.header__touch}
             text={t("getInTouch")}
-            type="MainButton"
+            typeButton="MainButton"
           />
 
           <button
