@@ -7,20 +7,38 @@
 
 .pagination {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   font-size: 16px;
   line-height: 130%;
 
+  @include for-size(tablet) {
+    justify-content: space-evenly;
+    font-size: 18px;
+    line-height: 150%;
+  }
   @include for-size(laptop) {
+    justify-content: center;
     gap: 100px;
     font-size: 18px;
     line-height: 150%;
   }
 
+  &__break {
+    color: $brandColorDarkGreen;
+    display: flex;
+    align-items: center;
+    line-height: 100%;
+    font-size: 8px;
+
+    @include for-size(laptop) {
+      font-size: 16px;
+    }
+  }
+
   &__content {
     display: flex;
     align-items: stretch;
-    gap: 20px;
+    gap: 14px;
 
     @include for-size(tablet) {
       gap: 44px;
@@ -30,7 +48,16 @@
     }
   }
 
+  &__page {
+    min-width: 10px;
+
+    @include for-size(laptop) {
+      min-width: 14px;
+    }
+  }
+
   &__pages {
+    user-select: none;
     color: $brandColorDarkGreen;
     display: flex;
     align-items: center;
@@ -58,11 +85,16 @@
       color: $brandColorDarkGreen;
       border: 1px solid $brandColorDarkGreen;
       border-radius: 24px;
-      padding: 6px 24px;
+      padding: 4px 14px;
+      min-width: 10px;
+      text-align: center;
 
       &::after {
         transform: translateX(-50%) scaleX(0);
         background: transparent;
+      }
+      @include for-size(tablet) {
+        padding: 6px 26px;
       }
       @include for-size(laptop) {
         padding: 7.5px 30px;
@@ -87,14 +119,16 @@
   &__button {
     border: 1px solid $brandColorDarkGreen;
     border-radius: 24px;
-    padding: 6px 27px;
-
+    padding: 4px 14px;
     max-width: max-content;
     transition: background-color 0.2s ease-in-out, filter 0.2s ease-in-out;
     cursor: pointer;
 
     &:first-child {
       transform: scaleX(-1);
+    }
+    @include for-size(tablet) {
+      padding: 6px 26px;
     }
     @include for-size(laptop) {
       padding: 7.5px 32px;

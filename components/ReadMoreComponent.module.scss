@@ -11,10 +11,19 @@
     line-height: 150%;
     max-width: max-content;
     text-transform: uppercase;
+    transition: transform 0.3s ease-in-out;
+
+    &:hover {
+      .read__arrow {
+        transition: transform 0.3s ease-in-out;
+        transform: translateX(50%);
+      }
+    }
   }
 
   &__arrow {
     filter: invert(21%) sepia(95%) saturate(334%) hue-rotate(172deg)
       brightness(91%) contrast(89%);
+    transition: transform 0.3s ease-in-out;
   }
 }
