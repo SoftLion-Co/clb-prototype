@@ -115,28 +115,35 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
   ) => {
     const { name, value } = e.target as HTMLInputElement | HTMLTextAreaElement;
 
-    setFormData((prevData) => ({ ...prevData, [name]: value }));
+    let formattedValue = value;
+
+    if (name === "phone") {
+      const cleanedValue = value.replace(/[^\d+]/g, "");
+      formattedValue = cleanedValue.replace(/^(\d)(\d+)/, "+$1$2");
+    }
+
+    setFormData((prevData) => ({ ...prevData, [name]: formattedValue }));
 
     setTouchedFields((prevFields) => ({
       ...prevFields,
-      [name]: !!value,
+      [name]: !!formattedValue,
     }));
 
     let isValid = true;
-    if (value) {
+    if (formattedValue) {
       switch (name) {
         case "firstname":
         case "lastname":
-          isValid = validateName(value);
+          isValid = validateName(formattedValue);
           break;
         case "email":
-          isValid = validateEmail(value);
+          isValid = validateEmail(formattedValue);
           break;
         case "phone":
-          isValid = validatePhoneNumber(value);
+          isValid = validatePhoneNumber(formattedValue.slice(1));
           break;
         case "company":
-          isValid = validateCompanyName(value);
+          isValid = validateCompanyName(formattedValue);
           break;
         default:
           isValid = true;
@@ -147,6 +154,13 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
       ...prevErrors,
       [name]: !isValid,
     }));
+  };
+
+  const validatePhoneNumber = (phoneNumber: any) => {
+    const cleanedPhoneNumber = phoneNumber.startsWith("+")
+      ? phoneNumber.slice(1)
+      : phoneNumber;
+    return /^[0-9]+$/.test(cleanedPhoneNumber);
   };
 
   useEffect(() => {
@@ -184,8 +198,10 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
     return Object.values(errors).every((error) => !error);
   };
 
-  const handleTestButtonClick = () => {
-    if (validateForm()) {
+  const handleFormSubmission = async () => {
+    const isFormValid = await validateForm();
+
+    if (isFormValid) {
       setFormMessage("Form is valid. Ready to submit!");
 
       setTimeout(() => {
@@ -305,7 +321,7 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
   const renderAttachFile = () => (
     <InputField
       key={cvFileInputKey}
-      className={classNames(s.form__cv, { [s.cv]: cv }, s.form__attach)}
+      className={classNames({ [s.cv]: cv })}
       type="file"
       name="cvFile"
       label={null}
@@ -442,16 +458,14 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
             <div className={s.form__content}>{boxInputs}</div>
             {cv}
 
-            <div className={s.form__test}>
+            <div className={classNames(s.form__test, [cv ? s.cv : ""])}>
               <MainButtonComponent
                 text="Get in touch"
                 typeButton="MainContactUsButton"
-                onClick={handleTestButtonClick}
+                onClick={handleFormSubmission}
               />
 
-              {formMessage && (
-                <div className={s.formMessage}>{formMessage}</div>
-              )}
+              {formMessage && <p className={s.formMessage}>{formMessage}</p>}
             </div>
           </form>
           <Image className={s.form__picture} src={Picture} alt="Picture" />

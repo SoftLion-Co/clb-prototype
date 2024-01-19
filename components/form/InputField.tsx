@@ -1,5 +1,3 @@
-"use client";
-
 import React, { FC, ChangeEvent, useRef, useState } from "react";
 import s from "@/app/sections/main_page/ContactUsSection.module.scss";
 import { useTranslations } from "next-intl";
@@ -10,7 +8,7 @@ interface InputFieldProps {
   name: string;
   label: string | null;
   value: string | undefined;
-  onChange: (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
+  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
   inputRef?: React.RefObject<HTMLInputElement>;
   className?: string;
   cv?: boolean;
@@ -67,19 +65,26 @@ const InputField: FC<InputFieldProps & { isCV?: boolean }> = ({
     className
   );
 
+  const fileMessageClassNames = classNames(s.form__fileMessage, {
+    [s.inputValid]: isValid && isFileValid,
+    [s.inputInvalid]: isInvalid || fileSizeError,
+  });
+
+  const attachClassNames = classNames(s.form__attach, {
+    [s.inputValid]: isValid,
+    [s.inputInvalid]: isInvalid || fileSizeError,
+  });
+
   return (
     <div className={classNames(s.form__group, className, { [s.cv]: cv })}>
       {type === "file" ? (
-        <div className={s.form__attach} style={{ width: "100%" }}>
+        <div className={classNames(attachClassNames, inputClassNames)} style={{ width: "100%" }}>
           <input
             ref={fileInputRef}
             type="file"
             name={name}
             id={name}
-            className={classNames(s.form__inputfile, {
-              [s.inputValid]: isValid && isFileValid,
-              [s.inputInvalid]: isInvalid || fileSizeError,
-            })}
+            className={classNames(s.form__inputfile)}
             onChange={handleChange}
           />
 
@@ -87,12 +92,11 @@ const InputField: FC<InputFieldProps & { isCV?: boolean }> = ({
             {label}
           </label>
 
-          <div className={s.form__fileMessage}>
+          <div className={fileMessageClassNames}>
             <button
               type="button"
               className={classNames(s.form__fileButton, {
-                [s.inputValid]:
-                  (isValid && !fileSizeError) || (isValid && fileSizeError),
+                [s.inputValid]: isValid && isFileValid,
                 [s.inputInvalid]: isInvalid || fileSizeError,
               })}
               onClick={handleFileButtonClick}
@@ -112,10 +116,7 @@ const InputField: FC<InputFieldProps & { isCV?: boolean }> = ({
           id={name}
           placeholder={t(label)}
           value={value || ""}
-          className={classNames(s.form__input, inputClassNames, {
-            [s.inputValid]: isValid,
-            [s.inputInvalid]: isInvalid,
-          })}
+          className={classNames(s.form__input, inputClassNames)}
           onChange={onChange}
           ref={inputRef}
         />
