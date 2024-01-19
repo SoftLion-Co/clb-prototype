@@ -1,37 +1,24 @@
-@import "./../../../style/container";
-@import "./../../../style/viewports";
+@import "@/style/container";
+@import "@/style/viewports";
+@import "@/style/animations";
+.services {
+  @include animate-fade-in;
 
-.services__cards {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  gap: 16px;
-
-  @include for-size(tablet) {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  @include for-size(laptop) {
+  &__cards {
     display: flex;
-    flex-wrap: nowrap;
-    gap: 24px;
-  }
-}
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 16px;
 
-@media (perfers-reduced-motion: no-preference) {
-  .services {
-    scale: 0.8;
-    opacity: 0;
-    animation: fade-in linear forwards;
-    animation-timeline: view();
-    animation-range: entry;
-  }
+    @include for-size(tablet) {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+    }
 
-  @keyframes fade-in {
-    to {
-      scale: 1;
-      opacity: 1;
+    @include for-size(laptop) {
+      display: flex;
+      flex-wrap: nowrap;
+      gap: 24px;
     }
   }
 }
