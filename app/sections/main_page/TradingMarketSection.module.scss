@@ -1,0 +1,70 @@
+@import "./../../../style/colors";
+@import "./../../../style/container";
+@import "./../../../style/viewports";
+
+.map {
+  display: grid;
+  gap: 16px;
+
+  @include for-size(laptop) {
+    display: flex;
+    gap: 24px;
+  }
+//   &__container {
+//   }
+
+  &__content {
+    background-color: $backgroundColorGreen;
+    border-radius: 24px;
+    padding: 32px 40px;
+    display: grid;
+    gap: 24px;
+
+    @include for-size(laptop) {
+      border-radius: 32px;
+    }
+  }
+
+  &__title {
+    color: $brandColorDarkGreen;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 130%;
+
+    @include for-size(tablet) {
+      font-size: 22px;
+    }
+    @include for-size(laptop) {
+      font-size: 28px;
+      line-height: 150%;
+    }
+  }
+
+  &__subtitle {
+    color: $blackTextColor;
+    text-transform: uppercase;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 130%;
+    margin-bottom: 10px;
+
+    @include for-size(laptop) {
+      font-size: 18px;
+      line-height: 150%;
+    }
+  }
+
+  &__item {
+    list-style-type: disc;
+    color: $blackTextColor;
+    font-size: 16px;
+    line-height: 130%;
+    margin-left: 20px;
+
+    @include for-size(laptop) {
+      font-size: 18px;
+      line-height: 150%;
+      margin-left: 22px;
+    }
+  }
+}
