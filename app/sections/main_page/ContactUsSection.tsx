@@ -124,6 +124,10 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
     if (name === "phone") {
       const cleanedValue = value.replace(/[^\d+]/g, "");
       formattedValue = cleanedValue.replace(/^(?=\d)/, "+");
+
+      if (value.endsWith("+") && formattedValue.endsWith("+")) {
+        formattedValue = formattedValue.slice(0, -1);
+      }
     }
 
     setFormData((prevData) => ({ ...prevData, [name]: formattedValue }));
@@ -180,36 +184,28 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
       firstname: !validateName(formData.firstname),
       lastname: !validateName(formData.lastname),
       email: !validateEmail(formData.email),
-      phone: !validatePhoneNumber(formData.phone),
     };
-
-    if (cv) {
-      errors.cvFile = !formData.cvFile;
-    } else {
-      errors.company = !validateCompanyName(formData.company);
-      errors.subject = !formData.subject || formData.subject.trim() === "";
-    }
-
-    if (!cv) {
-      errors.time = false;
-    }
 
     setValidationErrors(errors);
 
     return Object.values(errors).every((error) => !error);
   };
 
+  const [isFormValid, setIsFormValid] = useState(false);
   const handleFormSubmission = async () => {
     const isFormValid = await validateForm();
 
     if (isFormValid) {
-      setFormMessage("Form is valid. Ready to submit!");
+      setFormMessage("The form has been sent successfully!😉");
+      setIsFormValid(true);
 
       setTimeout(() => {
         setFormMessage("");
+        setIsFormValid(false);
       }, 10000);
     } else {
-      setFormMessage("Validation failed. Please check your inputs.");
+      setFormMessage("Validation failed. Please check your inputs!🤮");
+      setIsFormValid(false);
     }
   };
 
@@ -289,24 +285,30 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
   }) => {
     let isValidField = false;
 
-    const timePickerClassNames = classNames({
-      [s.timePicker]: !isDateSelected, // Використовуйте timePicker, якщо дата не вибрана
-      [s.timePickerValid]: isDateSelected, // Замініть на timePickerValid, якщо дата вибрана
-    });
+    const isDateSelected = formData.time != null;
 
     if (field.name === "time") {
       isValidField =
         !validationErrors[field.name as keyof typeof validationErrors];
+
       return (
         <DatePickerInput
           name="time"
           variant="unstyled"
-          placeholder="WHEN YOU ARE READY TO START WORKING?"
+          placeholder={t("time")}
           value={formData.time}
           onChange={handleTimeChange}
           defaultValue={new Date()}
           error={touchedFields.time && !isValidField}
-          className={timePickerClassNames}
+          className={s.timePicker}
+          valueFormat="YYYY-MM-DD"
+          classNames={{
+            wrapper: `${s.date__wrapper} ${
+              isDateSelected ? s.date__wrapper_selected : ""
+            }`,
+            input: s.date__input,
+            placeholder: s.date__placeholder,
+          }}
         />
       );
     }
@@ -502,14 +504,22 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
             <div className={s.form__content}>{boxInputs}</div>
             {cv}
 
-            <div className={classNames(s.form__test, [cv ? s.cv : ""])}>
+            <div className={classNames(s.form__output, [cv ? s.cv : ""])}>
               <MainButtonComponent
                 text="Get in touch"
                 typeButton="MainContactUsButton"
                 onClick={handleFormSubmission}
               />
 
-              {formMessage && <p className={s.formMessage}>{formMessage}</p>}
+              {formMessage && (
+                <p
+                  className={
+                    isFormValid ? " " + s.inputValid : " " + s.inputInvalid
+                  }
+                >
+                  {formMessage}
+                </p>
+              )}
             </div>
           </form>
           <Image className={s.form__picture} src={Picture} alt="Picture" />

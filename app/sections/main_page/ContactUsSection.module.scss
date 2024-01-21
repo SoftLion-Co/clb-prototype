@@ -55,13 +55,13 @@
     @include for-size(tablet) {
       display: flex;
       flex-direction: column;
-      width: calc((100% - 24px) / 2);
     }
   }
 
   &__content {
     display: flex;
     margin-bottom: 50px;
+    width: 100%;
   }
 
   &__box {
@@ -99,19 +99,24 @@
   }
 
   &__inputs {
-    @media screen and (max-width: 767.98px) {
+    @include for-size(phone) {
       display: flex;
       gap: 40px;
       flex-direction: column;
     }
-
     @include for-size(tablet) {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      row-gap: 48px;
-      align-items: flex-end;
+      display: grid;
+      grid-template-rows: repeat(3, 1fr);
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      row-gap: 34px;
       margin-bottom: 0;
+    }
+    @include for-size(laptop) {
+      row-gap: 40px;
+    }
+    @include for-size(desktop) {
+      row-gap: 48px;
     }
   }
 
@@ -145,6 +150,42 @@
     @include for-size(laptop) {
       display: block;
       border-radius: 32px;
+    }
+  }
+
+  &__output {
+    display: flex;
+    gap: 60px;
+
+    @media screen and (max-width: 767.98px) {
+      display: flex;
+      gap: 24px;
+      flex-direction: column;
+    }
+
+    @include for-size(tablet) {
+      align-items: center;
+    }
+  }
+
+  &__output.cv {
+    @include for-size(tablet) {
+      display: flex;
+      flex-direction: row-reverse;
+    }
+  }
+
+  &__fileMessage {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    width: 100%;
+    gap: 4px;
+
+    @include for-size(tablet) {
+      justify-content: space-between;
+      align-items: center;
+      flex-direction: row;
     }
   }
 }
@@ -205,47 +246,6 @@
   }
 }
 
-//=== Test Styles ===//
-.form__test {
-  display: flex;
-  gap: 60px;
-
-  @media screen and (max-width: 767.98px) {
-    display: flex;
-    gap: 24px;
-    flex-direction: column;
-  }
-
-  @include for-size(tablet) {
-    align-items: center;
-  }
-}
-
-.form__test.cv {
-  @include for-size(tablet) {
-    display: flex;
-    flex-direction: row-reverse;
-  }
-}
-
-.formMessage {
-  color: $brandColorDarkGreen;
-}
-
-.form__fileMessage {
-  display: flex;
-  align-items: flex-start;
-  flex-direction: column;
-  width: 100%;
-  gap: 4px;
-
-  @include for-size(tablet) {
-    justify-content: space-between;
-    align-items: center;
-    flex-direction: row;
-  }
-}
-
 .inputValid {
   border-color: $backgroundColorLightGreen;
   color: $backgroundColorLightGreen;
@@ -257,12 +257,6 @@
 }
 
 .timePicker {
-  border-bottom: 1px solid $backgroundColorDarkBlue;
-
-  @include for-size(tablet) {
-    width: calc((100% - 24px) / 2);
-  }
-
   div {
     &:nth-child(2) {
       border-radius: 24px;
@@ -271,98 +265,39 @@
       @include for-size(tablet) {
         border-radius: 32px;
       }
-    }
-  }
-
-  button {
-    font-family: Roboto;
-    color: $backgroundColorDarkBlue;
-    text-transform: uppercase;
-    font-size: 14px;
-    line-height: 130%;
-
-    &:first-child {
-      padding: 0 0 9px 0;
-    }
-
-    @include for-size(tablet) {
-      font-size: 16px;
-    }
-    @include for-size(laptop) {
-      font-size: 18px;
-      line-height: 150%;
-    }
-  }
-
-  span {
-    color: $backgroundColorDarkBlue;
-    text-transform: uppercase;
-    font-size: 14px;
-    line-height: 130%;
-    @include for-size(tablet) {
-      font-size: 16px;
-    }
-    @include for-size(laptop) {
-      font-size: 18px;
-      line-height: 150%;
     }
   }
 }
 
-.timePickerValid {
-  border-bottom: 1px solid $backgroundColorLightGreen;
-
-  @include for-size(tablet) {
-    width: calc((100% - 24px) / 2);
+.date {
+  &__wrapper {
+    border-bottom: 1px solid $backgroundColorDarkBlue;
   }
 
-  div {
-    &:nth-child(2) {
-      border-radius: 24px;
-      background-color: $additionalBackgroundColor;
-      border: none;
-      @include for-size(tablet) {
-        border-radius: 32px;
-      }
-    }
+  &__wrapper_selected {
+    border-color: $backgroundColorLightGreen;
   }
 
-  button {
-    font-family: Roboto;
-    text-transform: uppercase;
-    font-size: 14px;
-    line-height: 130%;
+  &__input {
     color: $backgroundColorLightGreen;
+    padding: 0 0 6.5px 0;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 130%;
 
-    &:first-child {
-      padding: 0 0 9px 0;
-    }
-
-    @include for-size(tablet) {
-      font-size: 16px;
-    }
     @include for-size(laptop) {
+      padding: 0 0 9px 0;
       font-size: 18px;
       line-height: 150%;
     }
   }
 
-  td * button {
-    color: #ebece6;
-  }
-
-  span {
-    color: $backgroundColorLightGreen;
-    text-transform: uppercase;
-    font-size: 14px;
+  &__placeholder {
+    color: $backgroundColorDarkBlue;
+    font-size: 16px;
     line-height: 130%;
+    font-weight: 400;
 
-    &:nth-child(1) {
-      color: $backgroundColorLightGreen;
-    }
-    @include for-size(tablet) {
-      font-size: 16px;
-    }
     @include for-size(laptop) {
       font-size: 18px;
       line-height: 150%;
