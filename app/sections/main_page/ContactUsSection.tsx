@@ -5,7 +5,6 @@ import MainTitleComponent from "@/components/MainTitleComponent";
 import MainButtonComponent from "@/components/MainButtonComponent";
 import Image from "next/image";
 import Picture from "@/images/our_advantages_test/advantages-image-1.png";
-import Arrow from "@/images/vectors/arrow-menu.svg";
 import classNames from "classnames";
 import useVacancies from "@/hooks/useVacancies";
 import InputField from "@/components/form/InputField";
@@ -47,7 +46,7 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
   const translatedTopics = topics.map((topic) => t(`topics.${topic}`));
 
   const [cvFileInputKey, setCvFileInputKey] = useState(0);
-  const [value, setValue] = useState<Date | null>(null);
+  const [isDateSelected, setIsDateSelected] = useState(false);
 
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [formMessage, setFormMessage] = useState("");
@@ -124,7 +123,7 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
 
     if (name === "phone") {
       const cleanedValue = value.replace(/[^\d+]/g, "");
-      formattedValue = cleanedValue.replace(/^(\d)(\d+)/, "+$1$2");
+      formattedValue = cleanedValue.replace(/^(?=\d)/, "+");
     }
 
     setFormData((prevData) => ({ ...prevData, [name]: formattedValue }));
@@ -161,13 +160,6 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
     }));
   };
 
-  const validatePhoneNumber = (phoneNumber: any) => {
-    const cleanedPhoneNumber = phoneNumber.startsWith("+")
-      ? phoneNumber.slice(1)
-      : phoneNumber;
-    return /^[0-9]+$/.test(cleanedPhoneNumber);
-  };
-
   useEffect(() => {
     const handleOutsideClick = (e: MouseEvent) => {
       const dropdown = document.querySelector(`.${s.dropdown}`);
@@ -196,6 +188,10 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
     } else {
       errors.company = !validateCompanyName(formData.company);
       errors.subject = !formData.subject || formData.subject.trim() === "";
+    }
+
+    if (!cv) {
+      errors.time = false;
     }
 
     setValidationErrors(errors);
@@ -274,6 +270,7 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
   const handleTimeChange = (date: Date | null) => {
     const formattedDate = date ? date.toISOString() : "";
     setFormData({ ...formData, time: date });
+    setIsDateSelected(!!date);
 
     if (formDataRef.current) {
       (formDataRef.current as any).set("time", formattedDate);
@@ -292,6 +289,11 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
   }) => {
     let isValidField = false;
 
+    const timePickerClassNames = classNames({
+      [s.timePicker]: !isDateSelected, // Використовуйте timePicker, якщо дата не вибрана
+      [s.timePickerValid]: isDateSelected, // Замініть на timePickerValid, якщо дата вибрана
+    });
+
     if (field.name === "time") {
       isValidField =
         !validationErrors[field.name as keyof typeof validationErrors];
@@ -304,10 +306,7 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
           onChange={handleTimeChange}
           defaultValue={new Date()}
           error={touchedFields.time && !isValidField}
-          className={classNames(s.timePicker, {
-            [s.inputValid]: touchedFields.time && isValidField,
-            [s.inputInvalid]: touchedFields.time && !isValidField,
-          })}
+          className={timePickerClassNames}
         />
       );
     }
@@ -426,25 +425,17 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
                 >
                   ⌵
                 </span>
-                {/* <Image
-                  className={classNames(s.arrow, {
-                    [s.arrow__open]: isDropdownOpen,
-                  })}
-                  src={Arrow}
-                  alt="Arrow"
-                /> */}
               </>
             ) : (
               <>
                 {formData.subject || t("topicOfEnquiry")}
-
-                {/* <Image
+                <span
                   className={classNames(s.arrow, {
                     [s.arrow__open]: isDropdownOpen,
                   })}
-                  src={Arrow}
-                  alt="Arrow"
-                /> */}
+                >
+                  ⌵
+                </span>
               </>
             )}
           </p>

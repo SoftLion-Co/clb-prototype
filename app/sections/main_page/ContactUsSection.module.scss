@@ -156,7 +156,7 @@
 
 .cv .dropdown__list {
   color: $backgroundColorDarkBlue;
-  background-color: #ecf1f6;
+  background-color: $additionalBackgroundColor;
 }
 
 .form__input.cv::placeholder {
@@ -257,7 +257,6 @@
 }
 
 .timePicker {
-  // width: 100%;
   border-bottom: 1px solid $backgroundColorDarkBlue;
 
   @include for-size(tablet) {
@@ -267,7 +266,7 @@
   div {
     &:nth-child(2) {
       border-radius: 24px;
-      background-color: #ecf1f6;
+      background-color: $additionalBackgroundColor;
       border: none;
       @include for-size(tablet) {
         border-radius: 32px;
@@ -278,10 +277,14 @@
   button {
     font-family: Roboto;
     color: $backgroundColorDarkBlue;
-    padding: 0 0 9px 0;
     text-transform: uppercase;
     font-size: 14px;
     line-height: 130%;
+
+    &:first-child {
+      padding: 0 0 9px 0;
+    }
+
     @include for-size(tablet) {
       font-size: 16px;
     }
@@ -296,6 +299,67 @@
     text-transform: uppercase;
     font-size: 14px;
     line-height: 130%;
+    @include for-size(tablet) {
+      font-size: 16px;
+    }
+    @include for-size(laptop) {
+      font-size: 18px;
+      line-height: 150%;
+    }
+  }
+}
+
+.timePickerValid {
+  border-bottom: 1px solid $backgroundColorLightGreen;
+
+  @include for-size(tablet) {
+    width: calc((100% - 24px) / 2);
+  }
+
+  div {
+    &:nth-child(2) {
+      border-radius: 24px;
+      background-color: $additionalBackgroundColor;
+      border: none;
+      @include for-size(tablet) {
+        border-radius: 32px;
+      }
+    }
+  }
+
+  button {
+    font-family: Roboto;
+    text-transform: uppercase;
+    font-size: 14px;
+    line-height: 130%;
+    color: $backgroundColorLightGreen;
+
+    &:first-child {
+      padding: 0 0 9px 0;
+    }
+
+    @include for-size(tablet) {
+      font-size: 16px;
+    }
+    @include for-size(laptop) {
+      font-size: 18px;
+      line-height: 150%;
+    }
+  }
+
+  td * button {
+    color: #ebece6;
+  }
+
+  span {
+    color: $backgroundColorLightGreen;
+    text-transform: uppercase;
+    font-size: 14px;
+    line-height: 130%;
+
+    &:nth-child(1) {
+      color: $backgroundColorLightGreen;
+    }
     @include for-size(tablet) {
       font-size: 16px;
     }

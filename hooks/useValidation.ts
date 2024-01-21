@@ -9,8 +9,10 @@ export function validateEmail(email: string): boolean {
 }
 
 export function validatePhoneNumber(phoneNumber: string): boolean {
-  const phoneRegex = /^\d+$/;
-  return phoneRegex.test(phoneNumber);
+  const cleanedPhoneNumber = phoneNumber.startsWith("+")
+    ? phoneNumber.slice(1)
+    : phoneNumber;
+  return /^[0-9]+$/.test(cleanedPhoneNumber);
 }
 
 export function validateCompanyName(name: string): boolean {
