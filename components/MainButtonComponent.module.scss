@@ -35,9 +35,13 @@
 
   &__text {
     color: $classicWhiteBackgroundColor;
-    font-size: 18px;
-    font-weight: 400;
-    line-height: 150%;
+    font-size: 16px;
+    line-height: 130%;
+
+    @include for-size(laptop) {
+      font-size: 18px;
+      line-height: 150%;
+    }
   }
 
   &__background {
@@ -45,15 +49,28 @@
     align-items: center;
     justify-content: center;
     background-color: $classicWhiteBackgroundColor;
-    width: 30px;
-    height: 30px;
+    width: 24px;
+    height: 24px;
     border-radius: 50%;
     transition: background-color 0.3s ease-in-out;
+
+    @include for-size(laptop) {
+      width: 30px;
+      height: 30px;
+    }
   }
 
   &__arrow {
+    display: flex;
     filter: invert(35%) sepia(9%) saturate(695%) hue-rotate(55deg)
       brightness(91%) contrast(79%);
     transition: filter 0.3s ease-in-out;
+    width: 14px;
+    height: 14px;
+
+    @include for-size(laptop) {
+      width: 20px;
+      height: 20px;
+    }
   }
 }

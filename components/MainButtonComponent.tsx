@@ -33,23 +33,27 @@ const MainButtonComponent: FC<MainButtonProps> = ({
 
   const [isHovered, setIsHovered] = useState(false);
   const [textWidth, setTextWidth] = useState(0);
+  const [buttonPadding, setButtonPadding] = useState("8px 16px");
 
   useEffect(() => {
     const textElement = document.querySelector(`.${s.main__text}`);
     if (textElement) {
       setTextWidth(textElement.clientWidth);
     }
-  });
 
-  let buttonPadding = "";
-  if (typeButton === "MainButton" || typeButton === "MainContactUsButton") {
-    buttonPadding = "0";
-  } else if (
-    typeButton === "MainArrowButton" ||
-    typeButton === "MainUsualButton"
-  ) {
-    buttonPadding = "8px 16px";
-  }
+    const updatePadding = () => {
+      if (window.innerWidth <= 1280) {
+        setButtonPadding("6px 12px");
+      } else {
+        setButtonPadding("8px 16px");
+      }
+    };
+    updatePadding();
+    window.addEventListener("resize", updatePadding);
+    return () => {
+      window.removeEventListener("resize", updatePadding);
+    };
+  }, []);
 
   let buttonContent;
 
@@ -101,7 +105,11 @@ const MainButtonComponent: FC<MainButtonProps> = ({
 
   if (typeButton === "MainContactUsButton") {
     return (
-      <div className={classNames(s.main__button, className)}>
+      <div
+        className={classNames(s.main__button, className)}
+        onClick={onClick}
+        style={{ padding: buttonPadding }}
+      >
         {buttonContent}
       </div>
     );
