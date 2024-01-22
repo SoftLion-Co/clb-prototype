@@ -55,6 +55,16 @@ const MainButtonComponent: FC<MainButtonProps> = ({
     };
   }, []);
 
+  const handleButtonClick = () => {
+    if (onClick) {
+      onClick();
+    }
+    setIsHovered(true);
+    setTimeout(() => {
+      setIsHovered(false);
+    }, 2000);
+  };
+
   let buttonContent;
 
   if (typeButton === "MainButton" || typeButton === "MainContactUsButton") {
@@ -62,8 +72,7 @@ const MainButtonComponent: FC<MainButtonProps> = ({
       <motion.button
         type="submit"
         className={s.main__container}
-        onHoverStart={() => setIsHovered(true)}
-        onHoverEnd={() => setIsHovered(false)}
+        onClick={handleButtonClick}
       >
         <motion.p
           className={s.main__text}
@@ -107,8 +116,7 @@ const MainButtonComponent: FC<MainButtonProps> = ({
     return (
       <div
         className={classNames(s.main__button, className)}
-        onClick={onClick}
-        style={{ padding: buttonPadding }}
+        onClick={handleButtonClick}
       >
         {buttonContent}
       </div>
