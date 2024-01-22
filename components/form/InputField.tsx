@@ -107,7 +107,10 @@ const InputField: FC<InputFieldProps & { isCV?: boolean }> = ({
             {label}
           </label>
 
-          <div className={fileMessageClassNames}>
+          <div
+            className={fileMessageClassNames}
+            onClick={handleFileButtonClick}
+          >
             <button
               type="button"
               className={classNames(s.form__fileButton, s.text, {
@@ -115,7 +118,6 @@ const InputField: FC<InputFieldProps & { isCV?: boolean }> = ({
                 [s.inputInvalid]:
                   isInvalid || fileSizeError || fileTypeUnsupportedError,
               })}
-              onClick={handleFileButtonClick}
             >
               {t("chooseFile")}
             </button>
