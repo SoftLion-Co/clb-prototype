@@ -17,6 +17,7 @@ import {
   validatePhoneNumber,
   validateCompanyName,
 } from "@/hooks/useValidation";
+
 interface FormData {
   firstname: string;
   lastname: string;
@@ -346,15 +347,14 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
 
     return (
       <div className={s.form__textarea}>
-        <input
+        <textarea
           className={textareaClassNames}
-          type="text"
           id="message"
           name="message"
           placeholder={t("yourMessage")}
           value={formData.message}
           onChange={handleInputChange}
-        />
+        ></textarea>
       </div>
     );
   };
@@ -505,7 +505,7 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
 
             <div className={classNames(s.form__output, [cv ? s.cv : ""])}>
               <MainButtonComponent
-                text="Get in touch"
+                text={t("contactUsHeading")}
                 typeButton="MainContactUsButton"
                 onClick={handleFormSubmission}
               />
