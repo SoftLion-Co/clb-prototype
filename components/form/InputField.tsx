@@ -108,9 +108,13 @@ const InputField: FC<InputFieldProps & { isCV?: boolean }> = ({
             </button>
             <div>
               {fileSizeError && (
-                <span className={s.text}>Виберіть файл до 5МБ</span>
+                <span className={s.text}>{t("selectingFile")}</span>
               )}
-              {fileName && <span className={s.text}>FILE: {fileName}</span>}
+              {fileName && (
+                <span className={s.text}>
+                  {t("fileSize")} {fileName}
+                </span>
+              )}
             </div>
           </div>
         </div>

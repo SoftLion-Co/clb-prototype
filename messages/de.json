@@ -56,7 +56,11 @@
         "productInformation": "Produktinformation",
         "supportRequest": "Support-Anfrage",
         "other": "Sonstiges"
-      }
+      },
+      "fileSize": "File:",
+      "selectingFile": "Wählen Sie eine Datei mit bis zu 5 MB aus",
+      "validMessage": "Das Formular wurde erfolgreich versendet!😉",
+      "invalidMessage": "Überprüfung fehlgeschlagen. Bitte überprüfen Sie Ihre Eingaben!🤮"
     },
     "servicesCards": [
       {
