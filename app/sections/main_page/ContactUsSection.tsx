@@ -8,6 +8,7 @@ import Picture from "@/images/our_advantages_test/advantages-image-1.png";
 import classNames from "classnames";
 import useVacancies from "@/hooks/useVacancies";
 import InputField from "@/components/form/InputField";
+import { DatePickerInput } from "@mantine/dates";
 import { useTranslations } from "next-intl";
 import useLocale from "@/hooks/useLocale";
 import {
@@ -16,7 +17,6 @@ import {
   validatePhoneNumber,
   validateCompanyName,
 } from "@/hooks/useValidation";
-import { DatePickerInput } from "@mantine/dates";
 interface FormData {
   firstname: string;
   lastname: string;
@@ -36,7 +36,6 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
   const vacancies = useVacancies();
 
   const topics = [
-    "",
     "generalInquiry",
     "productInformation",
     "supportRequest",
@@ -196,7 +195,7 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
     const isFormValid = await validateForm();
 
     if (isFormValid) {
-      setFormMessage("The form has been sent successfully!😉");
+      setFormMessage(t("validMessage"));
       setIsFormValid(true);
 
       setTimeout(() => {
@@ -204,7 +203,7 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
         setIsFormValid(false);
       }, 10000);
     } else {
-      setFormMessage("Validation failed. Please check your inputs!🤮");
+      setFormMessage(t("invalidMessage"));
       setIsFormValid(false);
     }
   };

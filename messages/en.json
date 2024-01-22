@@ -51,12 +51,16 @@
       "contactUsButton": "Get in Touch",
       "topics": {
         "selectTopic": "Select a topic",
-        "": "",
+        "file": "File",
         "generalInquiry": "General Inquiry",
         "productInformation": "Product Information",
         "supportRequest": "Support Request",
         "other": "Other"
-      }
+      },
+      "fileSize": "File:",
+      "selectingFile": "Select a file up to 5MB",
+      "validMessage": "The form has been sent successfully!😉",
+      "invalidMessage": "Validation failed. Please check your inputs!🤮"
     },
     "servicesCards": [
       {

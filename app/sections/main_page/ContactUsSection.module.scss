@@ -249,11 +249,13 @@
 .inputValid {
   border-color: $backgroundColorLightGreen;
   color: $backgroundColorLightGreen;
+  text-align: left;
 }
 
 .inputInvalid {
   border-color: $backgroundColorLightRed;
   color: $backgroundColorLightRed;
+  text-align: left;
 }
 
 .timePicker {
