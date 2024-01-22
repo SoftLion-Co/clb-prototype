@@ -23,6 +23,8 @@
     min-height: 245px;
     @include for-size(laptop) {
       padding: 30px 32.5px;
+    }
+    @include for-size(desktop) {
       border-radius: 32px;
     }
   }
@@ -41,10 +43,12 @@
       grid-column: span 2; /* Займати дві колонки на планшеті */
     }
     @include for-size(laptop) {
-      border-radius: 32px;
       height: 100%;
       max-height: none;
       grid-column: auto;
+    }
+    @include for-size(desktop) {
+      border-radius: 32px;
     }
   }
 

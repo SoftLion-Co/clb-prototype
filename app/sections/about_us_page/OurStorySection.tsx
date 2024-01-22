@@ -1,7 +1,6 @@
 import s from "./OurStorySection.module.scss";
 import MainTitleComponent from "@/components/MainTitleComponent";
 import ThreeCardsComponent from "@/components/ThreeCardsComponent";
-import classNames from "classnames";
 import { useTranslations } from "next-intl";
 
 const OurStorySection = () => {
