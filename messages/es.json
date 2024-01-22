@@ -37,30 +37,30 @@
     "contactUs": {
       "contactUsHeading": "Contáctenos",
       "letsWorkWithUS": "Trabajemos juntos",
-      "firstname": "Nombre",
-      "phone": "Número de teléfono",
-      "lastname": "Apellido",
-      "company": "Nombre de la empresa",
-      "email": "Correo electrónico",
-      "topicOfEnquiry": "Tema de la consulta",
-      "yourMessage": "Su mensaje (opcional)",
-      "time": "Cuándo estás listo para empezar a trabajar",
-      "appliedVacancy": "La vacante para la que estás aplicando",
-      "chooseFile": "Elegir un archivo",
-      "submitButton": "Enviar formulario",
+      "firstname": "NOMBRE*",
+      "phone": "NÚMERO DE TELÉFONO",
+      "lastname": "APELLIDO*",
+      "company": "NOMBRE DE LA EMPRESA",
+      "email": "CORREO ELECTRÓNICO*",
+      "topicOfEnquiry": "TEMA DE LA CONSULTA",
+      "yourMessage": "SU MENSAJE (OPCIONAL)",
+      "time": "¿CUÁNDO ESTÁS LISTO PARA TRABAJAR?",
+      "appliedVacancy": "LA VACANTE PARA LA QUE ESTÁS APLICANDO",
+      "chooseFile": "ELEGIR UN ARCHIVO",
+      "submitButton": "ENVIAR FORMULARIO",
       "contactUsButton": "Ponerse en contacto",
       "topics": {
-        "selectTopic": "Seleccionar un tema",
+        "selectTopic": "SELECCIONAR UN TEMA",
         "": "",
-        "generalInquiry": "Consulta general",
-        "productInformation": "Información del producto",
-        "supportRequest": "Solicitud de soporte",
-        "other": "Otro"
+        "generalInquiry": "CONSULTA GENERAL",
+        "productInformation": "INFORMACIÓN DEL PRODUCTO",
+        "supportRequest": "SOLICITUD DE SOPORTE",
+        "other": "OTRO"
       },
-      "fileSize": "File:",
+      "fileSize": "ARCHIVO:",
       "selectingFile": "Seleccione un archivo de hasta 5 MB",
       "validMessage": "¡El formulario ha sido enviado exitosamente!😉",
-      "invalidMessage": "Validación fallida. ¡Por favor revise sus entradas!🤮"
+      "invalidMessage": "¡Por favor revise sus entradas!😰"
     },
     "servicesCards": [
       {
