@@ -2,7 +2,7 @@
 @import "@/style/viewports";
 @import "@/style/animations";
 .services {
-  @include animate-fade-in;
+  // @include animate-fade-in;
 
   &__cards {
     display: flex;

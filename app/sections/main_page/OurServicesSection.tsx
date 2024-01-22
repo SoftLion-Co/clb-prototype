@@ -1,16 +1,21 @@
+"use client";
 import s from "./OurServicesSection.module.scss";
+import React from "react";
 import MainTitleComponent from "@/components/MainTitleComponent";
 import OurServicesCardComponent from "@/components/main_page/OurServicesCardComponent";
 import classNames from "classnames";
 import { useTranslations } from "next-intl";
+import { motion } from "framer-motion";
 
 import GrainsImage from "@/images/icons/Grains.svg";
 import BySeaImage from "@/images/icons/BySea.svg";
 import Execution from "@/images/icons/Execution.svg";
 import ExportConsulting from "@/images/icons/ExportConsulting.svg";
+import useScrollAnimation from "@/hooks/useScrollAnimation";
 
 const OurServicesSection = () => {
   const t = useTranslations("homePage");
+  const { animationProps } = useScrollAnimation();
 
   const servicesCards = [
     {
@@ -38,8 +43,11 @@ const OurServicesSection = () => {
   return (
     <section className={s.box}>
       <div className={s.background}>
-        <div className={classNames(s.container, s.services)}>
-          <MainTitleComponent title={t("servicesHeading")} color="black"/>
+        <motion.div
+          {...animationProps}
+          className={classNames(s.container, s.services)}
+        >
+          <MainTitleComponent title={t("servicesHeading")} color="black" />
 
           <div className={s.services__cards}>
             {servicesCards.map((item, index) => (
@@ -51,7 +59,7 @@ const OurServicesSection = () => {
               />
             ))}
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
