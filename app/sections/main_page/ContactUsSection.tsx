@@ -5,10 +5,10 @@ import MainTitleComponent from "@/components/MainTitleComponent";
 import MainButtonComponent from "@/components/MainButtonComponent";
 import Image from "next/image";
 import Picture from "@/images/our_advantages_test/advantages-image-1.png";
-import Arrow from "@/images/vectors/arrow-menu.svg";
 import classNames from "classnames";
 import useVacancies from "@/hooks/useVacancies";
 import InputField from "@/components/form/InputField";
+import { DatePickerInput } from "@mantine/dates";
 import { useTranslations } from "next-intl";
 import useLocale from "@/hooks/useLocale";
 import {
@@ -17,7 +17,7 @@ import {
   validatePhoneNumber,
   validateCompanyName,
 } from "@/hooks/useValidation";
-import { DatePickerInput } from "@mantine/dates";
+
 interface FormData {
   firstname: string;
   lastname: string;
@@ -37,7 +37,6 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
   const vacancies = useVacancies();
 
   const topics = [
-    "",
     "generalInquiry",
     "productInformation",
     "supportRequest",
@@ -47,7 +46,7 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
   const translatedTopics = topics.map((topic) => t(`topics.${topic}`));
 
   const [cvFileInputKey, setCvFileInputKey] = useState(0);
-  const [value, setValue] = useState<Date | null>(null);
+  const [isDateSelected, setIsDateSelected] = useState(false);
 
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [formMessage, setFormMessage] = useState("");
@@ -124,7 +123,11 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
 
     if (name === "phone") {
       const cleanedValue = value.replace(/[^\d+]/g, "");
-      formattedValue = cleanedValue.replace(/^(\d)(\d+)/, "+$1$2");
+      formattedValue = cleanedValue.replace(/^(?=\d)/, "+");
+
+      if (value.endsWith("+") && formattedValue.endsWith("+")) {
+        formattedValue = formattedValue.slice(0, -1);
+      }
     }
 
     setFormData((prevData) => ({ ...prevData, [name]: formattedValue }));
@@ -161,13 +164,6 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
     }));
   };
 
-  const validatePhoneNumber = (phoneNumber: any) => {
-    const cleanedPhoneNumber = phoneNumber.startsWith("+")
-      ? phoneNumber.slice(1)
-      : phoneNumber;
-    return /^[0-9]+$/.test(cleanedPhoneNumber);
-  };
-
   useEffect(() => {
     const handleOutsideClick = (e: MouseEvent) => {
       const dropdown = document.querySelector(`.${s.dropdown}`);
@@ -188,32 +184,28 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
       firstname: !validateName(formData.firstname),
       lastname: !validateName(formData.lastname),
       email: !validateEmail(formData.email),
-      phone: !validatePhoneNumber(formData.phone),
     };
-
-    if (cv) {
-      errors.cvFile = !formData.cvFile;
-    } else {
-      errors.company = !validateCompanyName(formData.company);
-      errors.subject = !formData.subject || formData.subject.trim() === "";
-    }
 
     setValidationErrors(errors);
 
     return Object.values(errors).every((error) => !error);
   };
 
+  const [isFormValid, setIsFormValid] = useState(false);
   const handleFormSubmission = async () => {
     const isFormValid = await validateForm();
 
     if (isFormValid) {
-      setFormMessage("Form is valid. Ready to submit!");
+      setFormMessage(t("validMessage"));
+      setIsFormValid(true);
 
       setTimeout(() => {
         setFormMessage("");
+        setIsFormValid(false);
       }, 10000);
     } else {
-      setFormMessage("Validation failed. Please check your inputs.");
+      setFormMessage(t("invalidMessage"));
+      setIsFormValid(false);
     }
   };
 
@@ -274,6 +266,7 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
   const handleTimeChange = (date: Date | null) => {
     const formattedDate = date ? date.toISOString() : "";
     setFormData({ ...formData, time: date });
+    setIsDateSelected(!!date);
 
     if (formDataRef.current) {
       (formDataRef.current as any).set("time", formattedDate);
@@ -292,22 +285,30 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
   }) => {
     let isValidField = false;
 
+    const isDateSelected = formData.time != null;
+
     if (field.name === "time") {
       isValidField =
         !validationErrors[field.name as keyof typeof validationErrors];
+
       return (
         <DatePickerInput
           name="time"
           variant="unstyled"
-          placeholder="WHEN YOU ARE READY TO START WORKING?"
+          placeholder={t("time")}
           value={formData.time}
           onChange={handleTimeChange}
           defaultValue={new Date()}
           error={touchedFields.time && !isValidField}
-          className={classNames(s.timePicker, {
-            [s.inputValid]: touchedFields.time && isValidField,
-            [s.inputInvalid]: touchedFields.time && !isValidField,
-          })}
+          className={s.timePicker}
+          valueFormat="YYYY-MM-DD"
+          classNames={{
+            wrapper: `${s.date__wrapper} ${
+              isDateSelected ? s.date__wrapper_selected : ""
+            }`,
+            input: s.date__input,
+            placeholder: s.date__placeholder,
+          }}
         />
       );
     }
@@ -346,15 +347,14 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
 
     return (
       <div className={s.form__textarea}>
-        <input
+        <textarea
           className={textareaClassNames}
-          type="text"
           id="message"
           name="message"
           placeholder={t("yourMessage")}
           value={formData.message}
           onChange={handleInputChange}
-        />
+        ></textarea>
       </div>
     );
   };
@@ -426,25 +426,17 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
                 >
                   ⌵
                 </span>
-                {/* <Image
-                  className={classNames(s.arrow, {
-                    [s.arrow__open]: isDropdownOpen,
-                  })}
-                  src={Arrow}
-                  alt="Arrow"
-                /> */}
               </>
             ) : (
               <>
                 {formData.subject || t("topicOfEnquiry")}
-
-                {/* <Image
+                <span
                   className={classNames(s.arrow, {
                     [s.arrow__open]: isDropdownOpen,
                   })}
-                  src={Arrow}
-                  alt="Arrow"
-                /> */}
+                >
+                  ⌵
+                </span>
               </>
             )}
           </p>
@@ -511,14 +503,22 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
             <div className={s.form__content}>{boxInputs}</div>
             {cv}
 
-            <div className={classNames(s.form__test, [cv ? s.cv : ""])}>
+            <div className={classNames(s.form__output, [cv ? s.cv : ""])}>
               <MainButtonComponent
-                text="Get in touch"
+                text={t("contactUsHeading")}
                 typeButton="MainContactUsButton"
                 onClick={handleFormSubmission}
               />
 
-              {formMessage && <p className={s.formMessage}>{formMessage}</p>}
+              {formMessage && (
+                <p
+                  className={
+                    isFormValid ? " " + s.inputValid : " " + s.inputInvalid
+                  }
+                >
+                  {formMessage}
+                </p>
+              )}
             </div>
           </form>
           <Image className={s.form__picture} src={Picture} alt="Picture" />

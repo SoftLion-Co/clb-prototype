@@ -34,6 +34,8 @@ const InputField: FC<InputFieldProps & { isCV?: boolean }> = ({
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [fileName, setFileName] = useState("");
   const [fileSizeError, setFileSizeError] = useState(false);
+  const [fileTypeUnsupportedError, setFileTypeUnsupportedError] =
+    useState(false);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (type === "file" && e.target.files) {
@@ -41,9 +43,18 @@ const InputField: FC<InputFieldProps & { isCV?: boolean }> = ({
       if (file.size > 5242880) {
         setFileSizeError(true);
         setFileName("");
+        setFileTypeUnsupportedError(false);
       } else {
         setFileSizeError(false);
         setFileName(file.name);
+
+        const allowedFileTypes = ["pdf", "svg", "jpg", "png"];
+        const fileType = file.name.split(".").pop()?.toLowerCase();
+        if (fileType && !allowedFileTypes.includes(fileType)) {
+          setFileTypeUnsupportedError(true);
+        } else {
+          setFileTypeUnsupportedError(false);
+        }
       }
     }
     onChange(e);
@@ -67,7 +78,7 @@ const InputField: FC<InputFieldProps & { isCV?: boolean }> = ({
 
   const fileMessageClassNames = classNames(s.form__fileMessage, {
     [s.inputValid]: isValid && isFileValid,
-    [s.inputInvalid]: isInvalid || fileSizeError,
+    [s.inputInvalid]: isInvalid || fileSizeError || fileTypeUnsupportedError,
   });
 
   const attachClassNames = classNames(s.form__attach, {
@@ -87,6 +98,7 @@ const InputField: FC<InputFieldProps & { isCV?: boolean }> = ({
             type="file"
             name={name}
             id={name}
+            accept=".pdf,.svg,.jpg,.png"
             className={classNames(s.form__inputfile, s.text, { [s.cv]: cv })}
             onChange={handleChange}
           />
@@ -95,22 +107,33 @@ const InputField: FC<InputFieldProps & { isCV?: boolean }> = ({
             {label}
           </label>
 
-          <div className={fileMessageClassNames}>
+          <div
+            className={fileMessageClassNames}
+            onClick={handleFileButtonClick}
+          >
             <button
               type="button"
               className={classNames(s.form__fileButton, s.text, {
                 [s.inputValid]: isValid && isFileValid,
-                [s.inputInvalid]: isInvalid || fileSizeError,
+                [s.inputInvalid]:
+                  isInvalid || fileSizeError || fileTypeUnsupportedError,
               })}
-              onClick={handleFileButtonClick}
             >
               {t("chooseFile")}
             </button>
             <div>
               {fileSizeError && (
-                <span className={s.text}>Виберіть файл до 5МБ</span>
+                <span className={s.text}>{t("selectingFile")}</span>
               )}
-              {fileName && <span className={s.text}>FILE: {fileName}</span>}
+              {fileTypeUnsupportedError && (
+                <span className={s.text}>{t("unsupportedFileType")}</span>
+                //це повідомлення не знадобиться, але можливо якщо захочеми, додамо
+              )}
+              {fileName && (
+                <span className={s.text}>
+                  {t("fileSize")} {fileName}
+                </span>
+              )}
             </div>
           </div>
         </div>
