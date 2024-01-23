@@ -1,6 +1,6 @@
-@import "./../style/viewports";
-@import "./../style/container";
-@import "./../style/colors";
+@import "@/style/viewports";
+@import "@/style/container";
+@import "@/style/colors";
 
 .header.hidden {
   transform: translateY(-100%);

@@ -1,12 +1,12 @@
 "use client";
 
-import s from "./page.module.scss";
 import React from "react";
+import s from "./page.module.scss";
+import classNames from "classnames";
 import BlogSection from "@/app/sections/blog_page/BlogSection";
 import ContactUsSection from "@/app/sections/main_page/ContactUsSection";
 import useBlogsData from "@/hooks/useBlogsData";
 import BlogSkeleton from "@/components/skeleton/BlogSkeleton";
-import classNames from "classnames";
 
 export default function Blog() {
   const { blogs, loading, error } = useBlogsData();
