@@ -247,6 +247,7 @@
     gap: 16px;
     margin-left: 16px;
     border-radius: 24px;
+    user-select: none;
 
     @include for-size(laptop) {
       background-color: $backgroundColorGreen;
