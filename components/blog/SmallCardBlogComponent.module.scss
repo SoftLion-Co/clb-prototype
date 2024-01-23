@@ -18,10 +18,10 @@
   @include for-size(laptop) {
     gap: 28px;
     padding: 24px;
-    border-radius: 32px;
   }
   @include for-size(desktop) {
     gap: 32px;
+    border-radius: 32px;
   }
 
   &__container {

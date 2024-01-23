@@ -336,9 +336,7 @@ const HeaderComponent = () => {
     <>
       {NavigationContent}
       {FlagContent}
-      <MainButtonComponent
-        text={t("getInTouch")}
-      />
+      <MainButtonComponent text={t("getInTouch")} />
     </>
   );
 

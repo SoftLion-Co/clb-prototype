@@ -12,8 +12,10 @@
       height: 212px;
     }
     @include for-size(laptop) {
-      border-radius: 32px;
       padding: 48px 52px;
+    }
+    @include for-size(desktop) {
+      border-radius: 32px;
     }
   }
 
