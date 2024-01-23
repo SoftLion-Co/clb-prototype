@@ -5,13 +5,17 @@
 .map {
   display: grid;
   gap: 16px;
+  grid-column: span 2;
 
   @include for-size(laptop) {
-    display: flex;
-    gap: 24px;
+    display: grid;
+    // justify-content: space-between;
+    // gap: 24px;
+    grid-gap: 24px;
+    grid-template-columns: repeat(2, 1fr);
   }
-//   &__container {
-//   }
+  //   &__container {
+  //   }
 
   &__content {
     background-color: $backgroundColorGreen;
@@ -66,5 +70,14 @@
       line-height: 150%;
       margin-left: 22px;
     }
+  }
+
+  &__options {
+    display: flex;
+    gap: 4px;
+  }
+
+  &__items {
+    text-decoration: none;
   }
 }

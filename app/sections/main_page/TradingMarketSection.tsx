@@ -4,6 +4,7 @@ import MapChart from "@/components/MapChart";
 import s from "./TradingMarketSection.module.scss";
 import MainTitleComponent from "@/components/MainTitleComponent";
 import { useTranslations } from "next-intl";
+import MapBoxComponent from "@/components/MapBoxComponent";
 
 const TradingMarketSection = () => {
   const t = useTranslations("homePage");
@@ -34,8 +35,8 @@ const TradingMarketSection = () => {
         <div className={s.container}>
           <MainTitleComponent title={t("tradingMarkets")} color="black" />
           <div className={s.map}>
-              <MapChart />
             <div className={s.map__container}>
+              <MapBoxComponent />
             </div>
 
             <div className={s.map__content}>
@@ -50,14 +51,18 @@ const TradingMarketSection = () => {
                 ))}
               </ul>
 
-              <ul className={s.map__list}>
+              <div className={s.map__delivery}>
                 <p className={s.map__subtitle}>Delivery options:</p>
-                {deliveryOptions.map((item, index) => (
-                  <li className={s.map__item} key={index}>
-                    {item.option}
-                  </li>
-                ))}
-              </ul>
+
+                <ul className={s.map__options}>
+                  {deliveryOptions.map((item, index) => (
+                    <li className={s.map__items} key={index}>
+                      {item.option}
+                      {","}
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
           </div>
         </div>
