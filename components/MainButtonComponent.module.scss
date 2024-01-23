@@ -11,6 +11,7 @@
     gap: 16px;
     border-radius: 24px;
     transition: background-color 0.3s ease-in-out;
+    max-width: max-content;
 
     @include for-size(laptop) {
       padding: 8px 8px 8px 16px;
