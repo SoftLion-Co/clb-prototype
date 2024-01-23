@@ -19,6 +19,7 @@
   }
 
   &__image {
+    user-select: none;
     height: 100%;
     width: 100%;
   }
@@ -33,7 +34,6 @@
     width: 70px;
     padding: 3px;
 
-    
     @include for-size(tablet) {
       padding: 7px;
       height: 145px;
