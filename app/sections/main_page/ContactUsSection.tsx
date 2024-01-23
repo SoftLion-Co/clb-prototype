@@ -11,6 +11,7 @@ import useVacancies from "@/hooks/useVacancies";
 import InputField from "@/components/form/InputField";
 import { useTranslations } from "next-intl";
 import useLocale from "@/hooks/useLocale";
+import ScrollAnimationWrapper from "@/hooks/ScrollAnimationWrapper";
 
 interface FormData {
   firstname: string;
@@ -265,9 +266,7 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
   );
 
   const buttonComponent = (
-    <MainButtonComponent
-      text={cv ? t("submitButton") : t("contactUsButton")}
-    />
+    <MainButtonComponent text={cv ? t("submitButton") : t("contactUsButton")} />
   );
 
   const buttonComponentCV = <MainButtonComponent text={t("submitButton")} />;
@@ -275,19 +274,24 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
   return (
     <section className={s.box}>
       <div className={s.background}>
-        <MainTitleComponent
-          title={cv ? t("letsWorkWithUS") : t("contactUsHeading")}
-        />
-        <div className={classNames(s.container, s.form__container)}>
-          <form
-            className={classNames(s.form, { [s.cv]: cv, [s.form__custom]: cv })}
-            onSubmit={handleSubmit}
-          >
-            <div className={s.form__content}>{boxInputs}</div>
-            {cv ? buttonComponentCV : buttonComponent}
-          </form>
-          <Image className={s.form__picture} src={Picture} alt="Picture" />
-        </div>
+        <ScrollAnimationWrapper animationType="high">
+          <MainTitleComponent
+            title={cv ? t("letsWorkWithUS") : t("contactUsHeading")}
+          />
+          <div className={classNames(s.container, s.form__container)}>
+            <form
+              className={classNames(s.form, {
+                [s.cv]: cv,
+                [s.form__custom]: cv,
+              })}
+              onSubmit={handleSubmit}
+            >
+              <div className={s.form__content}>{boxInputs}</div>
+              {cv ? buttonComponentCV : buttonComponent}
+            </form>
+            <Image className={s.form__picture} src={Picture} alt="Picture" />
+          </div>
+        </ScrollAnimationWrapper>
       </div>
     </section>
   );

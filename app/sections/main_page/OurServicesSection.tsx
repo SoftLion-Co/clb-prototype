@@ -1,21 +1,18 @@
-"use client";
 import s from "./OurServicesSection.module.scss";
 import React from "react";
 import MainTitleComponent from "@/components/MainTitleComponent";
 import OurServicesCardComponent from "@/components/main_page/OurServicesCardComponent";
 import classNames from "classnames";
 import { useTranslations } from "next-intl";
-import { motion } from "framer-motion";
 
 import GrainsImage from "@/images/icons/Grains.svg";
 import BySeaImage from "@/images/icons/BySea.svg";
 import Execution from "@/images/icons/Execution.svg";
 import ExportConsulting from "@/images/icons/ExportConsulting.svg";
-import useScrollAnimation from "@/hooks/useScrollAnimation";
+import ScrollAnimationWrapper from "@/hooks/ScrollAnimationWrapper";
 
 const OurServicesSection = () => {
   const t = useTranslations("homePage");
-  const { animationProps } = useScrollAnimation();
 
   const servicesCards = [
     {
@@ -43,23 +40,22 @@ const OurServicesSection = () => {
   return (
     <section className={s.box}>
       <div className={s.background}>
-        <motion.div
-          {...animationProps}
-          className={classNames(s.container, s.services)}
-        >
-          <MainTitleComponent title={t("servicesHeading")} color="black" />
-
-          <div className={s.services__cards}>
-            {servicesCards.map((item, index) => (
-              <OurServicesCardComponent
-                key={index}
-                title={item.title}
-                text={item.text}
-                image={item.image}
-              />
-            ))}
+          <div className={classNames(s.container, s.services)}>
+          <ScrollAnimationWrapper>
+            <MainTitleComponent title={t("servicesHeading")} color="black" />
+            </ScrollAnimationWrapper>
+            <div className={s.services__cards}>
+              {servicesCards.map((item, index) => (
+                <ScrollAnimationWrapper animationType="high">
+                <OurServicesCardComponent
+                  key={index}
+                  title={item.title}
+                  text={item.text}
+                  image={item.image}
+                /></ScrollAnimationWrapper>
+              ))}
+            </div>
           </div>
-        </motion.div>
       </div>
     </section>
   );

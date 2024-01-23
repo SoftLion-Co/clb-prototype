@@ -9,6 +9,7 @@ import MainButtonComponent from "@/components/MainButtonComponent";
 import useBlogsData from "@/hooks/useBlogsData";
 import { useTranslations } from "next-intl";
 import useLocale from "@/hooks/useLocale";
+import ScrollAnimationWrapper from "@/hooks/ScrollAnimationWrapper";
 
 const BlogCardsSection = () => {
   const t = useTranslations("blog");
@@ -36,29 +37,31 @@ const BlogCardsSection = () => {
   return (
     <section className={s.box}>
       <div className={s.background}>
-        <div className={classNames(s.container, s.blog__container)}>
-          <MainTitleComponent
-            className={s.blog__title}
-            title={t("blogTitle")}
-            color="black"
-            left
-          />
+        <ScrollAnimationWrapper animationType="high">
+          <div className={classNames(s.container, s.blog__container)}>
+            <MainTitleComponent
+              className={s.blog__title}
+              title={t("blogTitle")}
+              color="black"
+              left
+            />
 
-          <div className={s.blog__cards}>
-            {latestBlogs.slice(0, cardsToRender).map((blog, index) => (
-              <div key={index}>
-                <SmallCardBlogComponent info={blog} locale={locale} />
-              </div>
-            ))}
-          </div>
+            <div className={s.blog__cards}>
+              {latestBlogs.slice(0, cardsToRender).map((blog, index) => (
+                <div key={index}>
+                  <SmallCardBlogComponent info={blog} locale={locale} />
+                </div>
+              ))}
+            </div>
 
-          <MainButtonComponent
-            text={t1("moreOurNews")}
-            href={"/blog"}
-            type="MainArrowButton"
-            className={s.blog__button}
-          />
-        </div>
+            <MainButtonComponent
+              text={t1("moreOurNews")}
+              href={"/blog"}
+              type="MainArrowButton"
+              className={s.blog__button}
+            />
+          </div>{" "}
+        </ScrollAnimationWrapper>
       </div>
     </section>
   );

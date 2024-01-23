@@ -8,6 +8,7 @@ import GetHeroImageComponent from "@/components/main_page/GetHeroImageComponent"
 import { useNetwork } from "@mantine/hooks"; // Import the useNetwork hook
 import useHeroTextColor from "@/hooks/useHeroTextColor";
 import classNames from "classnames";
+import { motion } from "framer-motion"
 
 function HeroSection() {
   const t = useTranslations("homePage");
@@ -25,6 +26,17 @@ function HeroSection() {
     { [s.lightText]: color === "light" } // New class if color is light
   );
 
+  const textAnimation = {
+    hidden: {
+      y: -100,
+      opacity: 0,
+    },
+    visible: {
+      y: 0, 
+      opacity: 1,
+    }
+  }
+
   return (
     <section className={s.box}>
       <div className={s.hero}>
@@ -36,8 +48,11 @@ function HeroSection() {
           // Render video if the connection is good
           <GetHeroVideoComponent />
         )}
-        <div className={s.hero__content}>
-          <h1 className={titleClass}>{t("hero")}</h1>
+        <motion.div
+        initial={"hidden"}
+        whileInView={"visible"}
+        className={s.hero__content}>
+          <motion.h1 variants={textAnimation} className={titleClass}>{t("hero")}</motion.h1>
           <div className={s.hero__text_wrapper}>
             <p className={textClass}>{t("heroText1")}</p>
             <p className={textClass}>{t("heroText2")}</p>
@@ -47,7 +62,7 @@ function HeroSection() {
             className={s.hero__button}
             type="MainUsualButton"
           />
-        </div>
+        </motion.div>
       </div>
     </section>
   );
