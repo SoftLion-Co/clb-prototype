@@ -17,6 +17,7 @@ import { useTranslations } from "next-intl";
 import useLocale from "@/hooks/useLocale";
 import classNames from "classnames";
 import { motion } from "framer-motion";
+import useFramerAnimations from "@/hooks/useFramerAnimations";
 
 const socialMediaIcons: { [key: string]: any } = {
   telegram,
@@ -41,20 +42,7 @@ const socialMediaLinks = [
 const FooterComponent = () => {
   const t = useTranslations("footer");
   const local = useLocale();
-
-  const textAnimation = {
-    hidden: {
-      y: 50,
-      opacity: 0,
-      delay: 1,
-    },
-    visible: (custom: number) => ({
-      y: 0,
-      opacity: 1,
-      delay: 1,
-      transition: { delay: custom * 0.1 },
-    }),
-  };
+  const defaultAnimation = useFramerAnimations("lowYMove")
 
   return (
     <footer className={s.box}>
@@ -63,7 +51,7 @@ const FooterComponent = () => {
           className={s.footer__container}
           initial={"hidden"}
           whileInView={"visible"}
-          variants={textAnimation}
+          variants={defaultAnimation}
           viewport={{ margin: "20% 0% -20% 0%" }}
         >
           <div className={s.footer__content}>
@@ -95,7 +83,7 @@ const FooterComponent = () => {
               <ul className={s.footer__list}>
                 <motion.li
                   className={s.footer__item}
-                  variants={textAnimation}
+                  variants={defaultAnimation}
                   custom={1}
                 >
                   <Link
@@ -107,7 +95,7 @@ const FooterComponent = () => {
                 </motion.li>
                 <motion.li
                   className={s.footer__item}
-                  variants={textAnimation}
+                  variants={defaultAnimation}
                   custom={2}
                 >
                   <Link
@@ -122,7 +110,7 @@ const FooterComponent = () => {
               <ul className={classNames(s.footer__list, s.footer__list_gap)}>
                 <motion.li
                   className={s.footer__item}
-                  variants={textAnimation}
+                  variants={defaultAnimation}
                   custom={3}
                 >
                   <Link className={s.footer__link} href={`${local}/execution`}>
@@ -131,7 +119,7 @@ const FooterComponent = () => {
                 </motion.li>
                 <motion.li
                   className={s.footer__item}
-                  variants={textAnimation}
+                  variants={defaultAnimation}
                   custom={4}
                 >
                   <Link
@@ -146,7 +134,7 @@ const FooterComponent = () => {
               <ul className={s.footer__list}>
                 <motion.li
                   className={s.footer__item}
-                  variants={textAnimation}
+                  variants={defaultAnimation}
                   custom={5}
                 >
                   <Link className={s.footer__link} href={`${local}/about-us`}>
@@ -155,7 +143,7 @@ const FooterComponent = () => {
                 </motion.li>
                 <motion.li
                   className={s.footer__item}
-                  variants={textAnimation}
+                  variants={defaultAnimation}
                   custom={6}
                 >
                   <Link className={s.footer__link} href="/">
@@ -167,7 +155,7 @@ const FooterComponent = () => {
               <ul className={s.footer__list}>
                 <motion.li
                   className={s.footer__item}
-                  variants={textAnimation}
+                  variants={defaultAnimation}
                   custom={7}
                 >
                   <Link className={s.footer__link} href={`${local}/blog`}>
@@ -176,7 +164,7 @@ const FooterComponent = () => {
                 </motion.li>
                 <motion.li
                   className={s.footer__item}
-                  variants={textAnimation}
+                  variants={defaultAnimation}
                   custom={8}
                 >
                   <Link className={s.footer__link} href="/">
@@ -188,7 +176,7 @@ const FooterComponent = () => {
 
             <motion.p
               className={s.footer__copyright}
-              variants={textAnimation}
+              variants={defaultAnimation}
               custom={9}
             >
               © 2023 Commodities & Logistics Brokers

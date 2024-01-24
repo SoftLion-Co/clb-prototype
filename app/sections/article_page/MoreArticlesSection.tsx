@@ -10,6 +10,7 @@ import { useTranslations } from "next-intl";
 import classNames from "classnames";
 import { Carousel, Embla } from "@mantine/carousel";
 import { motion } from "framer-motion";
+import useFramerAnimations from "@/hooks/useFramerAnimations";
 
 interface MoreArticlesSectionProps {
   blogId: string;
@@ -21,6 +22,7 @@ interface ArrowProps {
 
 const MoreArticlesSection: FC<MoreArticlesSectionProps> = ({ blogId }) => {
   const locale = useLocale();
+  const defaultAnimation = useFramerAnimations()
   const { blogs, loading, error } = useBlogsData();
   const t = useTranslations("components");
 
@@ -36,21 +38,7 @@ const MoreArticlesSection: FC<MoreArticlesSectionProps> = ({ blogId }) => {
       handleScroll();
     }
   }, [embla]);
-
-  const textAnimation = {
-    hidden: {
-      y: 100,
-      opacity: 0,
-      delay: 1,
-    },
-    visible: (custom: number) => ({
-      y: 0,
-      opacity: 1,
-      delay: 1,
-      transition: { delay: custom * 0.2 },
-    }),
-  };
-
+  
   const NextArrow: FC<ArrowProps> = ({ className }) => {
     return (
       <div className={className}>
@@ -127,7 +115,7 @@ const MoreArticlesSection: FC<MoreArticlesSectionProps> = ({ blogId }) => {
                 <Carousel.Slide key={index}>
                   <motion.div
                     key={index}
-                    variants={textAnimation}
+                    variants={defaultAnimation}
                     custom={index}
                     initial={"hidden"}
                     whileInView={"visible"}

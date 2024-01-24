@@ -9,12 +9,14 @@ import { useNetwork } from "@mantine/hooks"; // Import the useNetwork hook
 import useHeroTextColor from "@/hooks/useHeroTextColor";
 import classNames from "classnames";
 import { motion } from "framer-motion"
+import useFramerAnimations from "@/hooks/useFramerAnimations";
 
 function HeroSection() {
   const t = useTranslations("homePage");
   const t1 = useTranslations("components");
+  const defaultAnimation = useFramerAnimations()
   const { effectiveType } = useNetwork(); // Get the user's connection type
-  const color = useHeroTextColor();
+  const color = useHeroTextColor()
 
   const titleClass = classNames(
     s.hero__title, // Existing title class
@@ -25,20 +27,6 @@ function HeroSection() {
     s.hero__text, // Existing text class
     { [s.lightText]: color === "light" } // New class if color is light
   );
-
-  const textAnimation = {
-    hidden: {
-      y: 100,
-      opacity: 0,
-      delay: 1,
-    },
-    visible: (custom: number) => ({
-      y: 0, 
-      opacity: 1,
-      delay: 1,
-      transition: {delay: custom * 0.2},
-    })
-  }
 
   return (
     <section className={s.box}>
@@ -55,12 +43,12 @@ function HeroSection() {
         initial={"hidden"}
         whileInView={"visible"}
         className={s.hero__content}>
-          <motion.h1 variants={textAnimation} className={titleClass}>{t("hero")}</motion.h1>
+          <motion.h1 variants={defaultAnimation} className={titleClass}>{t("hero")}</motion.h1>
           <div className={s.hero__text_wrapper}>
-            <motion.p custom={1} variants={textAnimation} className={textClass}>{t("heroText1")}</motion.p>
-            <motion.p custom={1.5} variants={textAnimation} className={textClass}>{t("heroText2")}</motion.p>
+            <motion.p custom={1} variants={defaultAnimation} className={textClass}>{t("heroText1")}</motion.p>
+            <motion.p custom={1.5} variants={defaultAnimation} className={textClass}>{t("heroText2")}</motion.p>
           </div>
-          <MMainButtonComponent  custom={2} variants={textAnimation}
+          <MMainButtonComponent  custom={2} variants={defaultAnimation}
             text={t1("ourSercvicesButton")}
             className={s.hero__button}
             type="MainUsualButton"

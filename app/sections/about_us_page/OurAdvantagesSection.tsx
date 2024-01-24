@@ -9,6 +9,7 @@ import AdvantagesImage2 from "@/images/our_advantages_test/advantages-image-2.pn
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import useFramerAnimations from "@/hooks/useFramerAnimations";
 
 interface AdvantagesItem {
   text: string;
@@ -18,20 +19,7 @@ type AdvantagesContentItem = AdvantagesItem | StaticImageData;
 
 const OurAdvantagesSection = () => {
   const t = useTranslations("aboutUs.ourAdvantages");
-
-  const textAnimation = {
-    hidden: {
-      y: 100,
-      opacity: 0,
-      delay: 1,
-    },
-    visible: (custom: number) => ({
-      y: 0,
-      opacity: 1,
-      delay: 1,
-      transition: { delay: custom * 0.2 },
-    }),
-  };
+  const defaultAnimation = useFramerAnimations();
 
   const advantagesContent: AdvantagesContentItem[] = [
     {
@@ -69,7 +57,7 @@ const OurAdvantagesSection = () => {
                 initial={"hidden"}
                 whileInView={"visible"}
                 viewport={{ margin: "20% 0% -20% 0%" }}
-                variants={textAnimation}
+                variants={defaultAnimation}
               >
                 {item.type === "blue" && (
                   <OurAdvantagesCardComponent

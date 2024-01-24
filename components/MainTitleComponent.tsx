@@ -4,6 +4,7 @@ import classNames from "classnames";
 import image from "@/images/vectors/graph.svg";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import useFramerAnimations from "@/hooks/useFramerAnimations";
 
 interface MainTitleProps {
   title: string;
@@ -20,31 +21,20 @@ const MainTitleComponent: FC<MainTitleProps> = ({
   left = false,
   mobileLeft = false,
 }) => {
+  const defaultAnimation = useFramerAnimations()
+
+
   const titleColor = {
     black: "#171717",
     blue: "#2A4563",
     green: "#565F51",
   }[color];
 
-  const textAnimation = {
-    hidden: {
-      y: 100,
-      opacity: 0,
-      delay: 1,
-    },
-    visible: (custom: number) => ({
-      y: 0,
-      opacity: 1,
-      delay: 1,
-      transition: { delay: custom * 0.2 },
-    }),
-  };
-
   return (
     <motion.div
       initial={"hidden"}
       whileInView={"visible"}
-      variants={textAnimation}
+      variants={defaultAnimation}
       className={classNames(s.main, className, {
         [s.left]: left,
         [s.mobileLeft]: mobileLeft,

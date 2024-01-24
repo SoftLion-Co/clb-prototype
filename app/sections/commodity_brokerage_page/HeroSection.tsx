@@ -11,24 +11,12 @@ import MainButtonComponent, {
 import classNames from "classnames";
 import { motion } from "framer-motion";
 import { MCommodityHeroImage } from "@/components/commodity_brokerage_page/CommodityHeroImage";
+import useFramerAnimations from "@/hooks/useFramerAnimations";
 
 function HeroSection() {
   const t = useTranslations("commodityBrokerage");
   const t1 = useTranslations("header");
-
-  const textAnimation = {
-    hidden: {
-      y: 100,
-      opacity: 0,
-      delay: 1,
-    },
-    visible: (custom: number) => ({
-      y: 0,
-      opacity: 1,
-      delay: 1,
-      transition: { delay: custom * 0.2 },
-    }),
-  };
+  const defaultAnimation = useFramerAnimations()
 
   return (
     <div className={classNames(s.box)}>
@@ -46,21 +34,21 @@ function HeroSection() {
           <div className={s.hero__texts}>
             <motion.h2
               className={s.hero__heading}
-              variants={textAnimation}
+              variants={defaultAnimation}
               custom={1}
             >
               {t("commodityBrokerageSubtitle")}
             </motion.h2>
             <motion.p
               className={s.hero__text}
-              variants={textAnimation}
+              variants={defaultAnimation}
               custom={2}
             >
               {t("heroText")}
             </motion.p>
             <MMainButtonComponent
               text={t1("getInTouch")}
-              variants={textAnimation}
+              variants={defaultAnimation}
               custom={3}
             />
           </div>
@@ -70,7 +58,7 @@ function HeroSection() {
             alt="Hero image"
             width={1000}
             height={1000}
-            variants={textAnimation}
+            variants={defaultAnimation}
             custom={1.5}
           />
         </motion.div>

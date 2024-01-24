@@ -14,6 +14,7 @@ import SectionVector from "@/images/vectors/section-vector.svg";
 import { useTranslations } from "next-intl";
 import useOurTeamData from "@/hooks/useOurTeamData";
 import { motion } from "framer-motion";
+import useFramerAnimations from "@/hooks/useFramerAnimations";
 
 interface TeamMember {
   id: number;
@@ -42,6 +43,7 @@ interface TeamMemberAcf {
 
 const OurTeamSection: FC<OurTeamSectionProps> = ({ teamMembers }) => {
   const t = useTranslations("aboutUs.ourTeam");
+  const defaultAnimation = useFramerAnimations()
   const { team, loading, error } = useOurTeamData();
   const reversedTeam = [...team].reverse();
 
@@ -57,20 +59,6 @@ const OurTeamSection: FC<OurTeamSectionProps> = ({ teamMembers }) => {
       handleScroll();
     }
   }, [embla]);
-
-  const textAnimation = {
-    hidden: {
-      y: 100,
-      opacity: 0,
-      delay: 1,
-    },
-    visible: (custom: number) => ({
-      y: 0,
-      opacity: 1,
-      delay: 1,
-      transition: { delay: custom * 0.2 },
-    }),
-  };
 
   const NextArrow: FC<ArrowProps> = ({ className }) => {
     return (
@@ -114,7 +102,7 @@ const OurTeamSection: FC<OurTeamSectionProps> = ({ teamMembers }) => {
             initial={"hidden"}
             whileInView={"visible"}
             viewport={{ margin: "20% 0% -20% 0%" }}
-            variants={textAnimation}
+            variants={defaultAnimation}
           >
             <Carousel
               classNames={{

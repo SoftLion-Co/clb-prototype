@@ -7,6 +7,7 @@ import SocialLinksSection from "@/app/sections/article_page/SocialLinksSection";
 import useLocale from "@/hooks/useLocale";
 import useDateFormat from "@/hooks/useDateFormat";
 import { motion } from "framer-motion";
+import useFramerAnimations from "@/hooks/useFramerAnimations";
 
 interface Data {
   data: Blog;
@@ -58,22 +59,8 @@ interface Acf {
 
 const MainArticleSection = (data: Data) => {
   const locale = useLocale();
-
   const formattedDate = useDateFormat(data.data.acf.date, locale);
-
-  const textAnimation = {
-    hidden: {
-      y: 100,
-      opacity: 0,
-      delay: 1,
-    },
-    visible: (custom: number) => ({
-      y: 0,
-      opacity: 1,
-      delay: 1,
-      transition: { delay: custom * 0.1 },
-    }),
-  };
+  const defaultAnimation = useFramerAnimations("lowDelay")
 
   return (
     <section className={s.box}>
@@ -86,7 +73,7 @@ const MainArticleSection = (data: Data) => {
             initial={"hidden"}
             whileInView={"visible"}
             viewport={{ margin: "1000% 0% 10% 0%" }}
-            variants={textAnimation}
+            variants={defaultAnimation}
             custom={1}
           >
             {data.data.acf[`heading_${locale}` as keyof Acf]}
@@ -96,7 +83,7 @@ const MainArticleSection = (data: Data) => {
             initial={"hidden"}
             whileInView={"visible"}
             viewport={{ margin: "1000% 0% 10% 0%" }}
-            variants={textAnimation}
+            variants={defaultAnimation}
             custom={2}
           >
             {formattedDate}
@@ -107,7 +94,7 @@ const MainArticleSection = (data: Data) => {
               initial={"hidden"}
               whileInView={"visible"}
               viewport={{ margin: "1000% 0% 10% 0%" }}
-              variants={textAnimation}
+              variants={defaultAnimation}
               custom={3}
             >
               <Image
@@ -123,7 +110,7 @@ const MainArticleSection = (data: Data) => {
               initial={"hidden"}
               whileInView={"visible"}
               viewport={{ margin: "1000% 0% 10% 0%" }}
-              variants={textAnimation}
+              variants={defaultAnimation}
               custom={4}
             >
               {data.data.acf[`text1_${locale}` as keyof Acf]}
@@ -133,7 +120,7 @@ const MainArticleSection = (data: Data) => {
               initial={"hidden"}
               whileInView={"visible"}
               viewport={{ margin: "1000% 0% 10% 0%" }}
-              variants={textAnimation}
+              variants={defaultAnimation}
               custom={5}
             >
               {data.data.acf[`subheading1_${locale}` as keyof Acf]}
@@ -143,7 +130,7 @@ const MainArticleSection = (data: Data) => {
               initial={"hidden"}
               whileInView={"visible"}
               viewport={{ margin: "1000% 0% 10% 0%" }}
-              variants={textAnimation}
+              variants={defaultAnimation}
               custom={6}
             >
               {data.data.acf[`text2_${locale}` as keyof Acf]}
@@ -160,7 +147,7 @@ const MainArticleSection = (data: Data) => {
               initial={"hidden"}
               whileInView={"visible"}
               viewport={{ margin: "1000% 0% 10% 0%" }}
-              variants={textAnimation}
+              variants={defaultAnimation}
               custom={7}
             >
               {data.data.acf[`subheading2_${locale}` as keyof Acf]}
@@ -170,7 +157,7 @@ const MainArticleSection = (data: Data) => {
               initial={"hidden"}
               whileInView={"visible"}
               viewport={{ margin: "1000% 0% 10% 0%" }}
-              variants={textAnimation}
+              variants={defaultAnimation}
               custom={8}
             >
               {data.data.acf[`text3_${locale}` as keyof Acf]}

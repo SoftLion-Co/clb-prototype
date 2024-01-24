@@ -12,10 +12,12 @@ import useBlogsData from "@/hooks/useBlogsData";
 import { useTranslations } from "next-intl";
 import useLocale from "@/hooks/useLocale";
 import { motion } from "framer-motion";
+import useFramerAnimations from "@/hooks/useFramerAnimations";
 
 const BlogCardsSection = () => {
   const t = useTranslations("blog");
   const t1 = useTranslations("components");
+  const defaultAnimation = useFramerAnimations()
   const [cardsToRender, setCardsToRender] = useState(3);
   const { latestBlogs } = useBlogsData();
   const locale = useLocale();
@@ -36,20 +38,6 @@ const BlogCardsSection = () => {
     };
   }, []);
 
-  const textAnimation = {
-    hidden: {
-      y: 100,
-      opacity: 0,
-      delay: 1,
-    },
-    visible: (custom: number) => ({
-      y: 0,
-      opacity: 1,
-      delay: 1,
-      transition: { delay: custom * 0.2 },
-    }),
-  };
-
   return (
     <section className={s.box}>
       <div className={s.background}>
@@ -68,7 +56,7 @@ const BlogCardsSection = () => {
             viewport={{ margin: "20% 0% -20% 0%" }}
           >
             {latestBlogs.slice(0, cardsToRender).map((blog, index) => (
-              <motion.div key={index} variants={textAnimation} custom={index}>
+              <motion.div key={index} variants={defaultAnimation} custom={index}>
                 <SmallCardBlogComponent info={blog} locale={locale} />
               </motion.div>
             ))}
@@ -79,7 +67,7 @@ const BlogCardsSection = () => {
             viewport={{ margin: "20% 0% -20% 0%" }}
           >
             <MMainButtonComponent
-              variants={textAnimation}
+              variants={defaultAnimation}
               text={t1("moreOurNews")}
               href={"/blog"}
               type="MainArrowButton"

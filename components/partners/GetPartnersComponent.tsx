@@ -1,6 +1,7 @@
 import s from "@/app/sections/main_page/PartnersSection.module.scss";
 import { motion } from "framer-motion";
 import { MPartnerImage } from "./PartnerImageComponent";
+import useFramerAnimations from "@/hooks/useFramerAnimations";
 
 const reqUrl =
   "https://softlion.blog/wp-json/wp/v2/partners?per_page=100&acf_format=standard&_fields=id,acf,title";
@@ -21,25 +22,11 @@ interface Rendered {
 }
 
 const GetPartnersComponent = async () => {
+  const defaultAnimation = useFramerAnimations("partnersDelay");
+
   const req = await fetch(reqUrl, { cache: "no-cache" });
   const partners: Partners[] = await req.json();
   partners.sort((a, b) => a.acf.position - b.acf.position);
-
-  
-  const textAnimation = {
-    hidden: {
-      y: 100,
-      opacity: 0,
-      delay: 1,
-      transition: { delay: 1 },
-    },
-    visible: (custom: number) => ({
-      y: 0,
-      opacity: 1,
-      delay: 1,
-      transition: { delay: custom * 0.05 },
-    }),
-  };
 
   return (
     <div className={s.partners__wrapper}>
@@ -57,7 +44,7 @@ const GetPartnersComponent = async () => {
             width={200}
             height={100}
             className={s.partners__image}
-            variants={textAnimation}
+            variants={defaultAnimation}
             custom={index}
           />
         </motion.div>

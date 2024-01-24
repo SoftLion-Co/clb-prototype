@@ -4,6 +4,7 @@ import Image from "next/image";
 import s from "./ListCardsComponent.module.scss";
 import classNames from "classnames";
 import { motion } from "framer-motion";
+import useFramerAnimations from "@/hooks/useFramerAnimations";
 
 interface ListCardsProps {
   data: Portfolio[] | null;
@@ -40,21 +41,9 @@ const ListCardsComponent: FC<ListCardsProps> = ({
   loading,
   container,
 }) => {
-  const cardsClass = classNames(s.cards, { [s.container]: container });
+  const defaultAnimation = useFramerAnimations()
 
-  const textAnimation = {
-    hidden: {
-      y: 100,
-      opacity: 0,
-      delay: 1,
-    },
-    visible: (custom: number) => ({
-      y: 0,
-      opacity: 1,
-      delay: 1,
-      transition: { delay: custom * 0.2 },
-    }),
-  };
+  const cardsClass = classNames(s.cards, { [s.container]: container });
 
   return (
     <motion.div
@@ -69,7 +58,7 @@ const ListCardsComponent: FC<ListCardsProps> = ({
           className={s.card}
           initial={"hidden"}
           whileInView={"visible"}
-          variants={textAnimation}
+          variants={defaultAnimation}
           custom={index}
           viewport={{ margin: "20% 0% -20% 0%" }}
         >

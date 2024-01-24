@@ -2,6 +2,7 @@ import useVacancies from "@/hooks/useVacancies";
 import s from "./VacanciesCards.module.scss";
 import useLocale from "@/hooks/useLocale";
 import { motion } from "framer-motion";
+import useFramerAnimations from "@/hooks/useFramerAnimations";
 
 interface Acf {
   vacancies_en: string;
@@ -14,27 +15,19 @@ interface Acf {
 const VacanciesCards = () => {
   const vacancies = useVacancies();
   const locale = useLocale();
-
-  const textAnimation = {
-    hidden: {
-      y: 100,
-      opacity: 0,
-      delay: 1,
-    },
-    visible: (custom: number) => ({
-      y: 0,
-      opacity: 1,
-      delay: 1,
-      transition: { delay: custom * 0.2 },
-    }),
-  };
+  const defaultAnimation = useFramerAnimations();
 
   return (
-    <motion.div initial={"hidden"} whileInView={"visible"} className={s.cards}>
+    <motion.div
+      initial={"hidden"}
+      whileInView={"visible"}
+      viewport={{ margin: "20% 0% -20% 0%" }}
+      className={s.cards}
+    >
       {vacancies.map((vacancy, index) => (
         <motion.div
           className={s.cards__card}
-          variants={textAnimation}
+          variants={defaultAnimation}
           custom={index}
           key={vacancy.id}
         >

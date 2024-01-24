@@ -4,9 +4,11 @@ import { useTranslations } from "next-intl";
 import classNames from "classnames";
 import { useTwoLinesTitle } from "@/hooks/useTwoLinesTitle";
 import { motion } from "framer-motion";
+import useFramerAnimations from "@/hooks/useFramerAnimations";
 
 function KeyServicesComponent() {
   const t = useTranslations("exportConsulting.services");
+  const defaultAnimation = useFramerAnimations()
 
   const serviceCards = Array.from({ length: 6 }, (_, index) => {
     const title = t(`title${index + 1}`);
@@ -18,20 +20,6 @@ function KeyServicesComponent() {
   const cardsWithBorder = [0, 2, 4];
   const whiteCards = [4];
 
-  const textAnimation = {
-    hidden: {
-      y: 100,
-      opacity: 0,
-      delay: 1,
-    },
-    visible: (custom: number) => ({
-      y: 0,
-      opacity: 1,
-      delay: 1,
-      transition: { delay: custom * 0.2 },
-    }),
-  };
-
   return (
     <div className={s.services}>
       {serviceCards.map(({ title, text, text_1 }, index) => (
@@ -39,7 +27,7 @@ function KeyServicesComponent() {
           initial={"hidden"}
           whileInView={"visible"}
           viewport={{ margin: "20% 0% -10% 0%" }}
-          variants={textAnimation}
+          variants={defaultAnimation}
           custom={index}
           className={classNames(s.card, {
             [s.cardWithBorder]: cardsWithBorder.includes(index),

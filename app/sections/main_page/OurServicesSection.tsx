@@ -11,9 +11,11 @@ import BySeaImage from "@/images/icons/BySea.svg";
 import Execution from "@/images/icons/Execution.svg";
 import ExportConsulting from "@/images/icons/ExportConsulting.svg";
 import { motion } from "framer-motion";
+import useFramerAnimations from "@/hooks/useFramerAnimations";
 
 const OurServicesSection = () => {
   const t = useTranslations("homePage");
+  const defaultAnimation = useFramerAnimations()
 
   const servicesCards = [
     {
@@ -38,20 +40,6 @@ const OurServicesSection = () => {
     },
   ];
 
-  const textAnimation = {
-    hidden: {
-      y: 100,
-      opacity: 0,
-      delay: 1,
-    },
-    visible: (custom: number) => ({
-      y: 0,
-      opacity: 1,
-      delay: 1,
-      transition: { delay: custom * 0.2 },
-    }),
-  };
-
   return (
     <section className={s.box}>
       <div className={s.background}>
@@ -70,7 +58,7 @@ const OurServicesSection = () => {
                     title={item.title}
                     text={item.text}
                     image={item.image}
-                    variants={textAnimation}
+                    variants={defaultAnimation}
                     custom={index}
                   />
                 </motion.div>

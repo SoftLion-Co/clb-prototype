@@ -3,6 +3,7 @@ import classNames from "classnames";
 import s from "./PageTitleComponent.module.scss";
 import React, { FC } from "react";
 import { motion } from "framer-motion";
+import useFramerAnimations from "@/hooks/useFramerAnimations";
 
 interface MainTitleProps {
   title: string;
@@ -11,19 +12,7 @@ interface MainTitleProps {
 }
 
 const PageTitleComponent: FC<MainTitleProps> = ({ title, text, className }) => {
-  const textAnimation = {
-    hidden: {
-      y: 100,
-      opacity: 0,
-      delay: 1,
-    },
-    visible: (custom: number) => ({
-      y: 0,
-      opacity: 1,
-      delay: 1,
-      transition: { delay: custom * 0.2 },
-    }),
-  };
+  const defaultAnimation = useFramerAnimations()
 
   return (
     <motion.div
@@ -35,7 +24,7 @@ const PageTitleComponent: FC<MainTitleProps> = ({ title, text, className }) => {
       <div className={classNames(s.page)}>
         <motion.h1
           className={s.page__title}
-          variants={textAnimation}
+          variants={defaultAnimation}
           custom={0.2}
         >
           {title}
@@ -43,7 +32,7 @@ const PageTitleComponent: FC<MainTitleProps> = ({ title, text, className }) => {
         {text && (
           <motion.p
             className={s.page__text}
-            variants={textAnimation}
+            variants={defaultAnimation}
             custom={1}
           >
             {text}

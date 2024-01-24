@@ -3,6 +3,7 @@ import s from "./ImageAndTextCardsComponent.module.scss";
 import Image from "next/image";
 import classNames from "classnames";
 import { motion } from "framer-motion";
+import useFramerAnimations from "@/hooks/useFramerAnimations";
 
 interface ImageAndTextCardsProps {
   text: string;
@@ -30,20 +31,9 @@ function ImageAndTextCardsComponent(props: ImageAndTextCardsProps) {
     articlePadding = false,
     mobileTextCenter = false,
   } = props;
+  const defaultAnimation = useFramerAnimations()
 
-  const textAnimation = {
-    hidden: {
-      y: 100,
-      opacity: 0,
-      delay: 1,
-    },
-    visible: (custom: number) => ({
-      y: 0,
-      opacity: 1,
-      delay: 1,
-      transition: { delay: custom * 0.2 },
-    }),
-  };
+  
   // Function which handles different colors and borders from props
 
   const getContainerStyles = () => {
@@ -107,7 +97,7 @@ function ImageAndTextCardsComponent(props: ImageAndTextCardsProps) {
         initial={"hidden"}
         whileInView={"visible"}
         viewport={{ margin: "20% 0% -20% 0%" }}
-        variants={textAnimation}
+        variants={defaultAnimation}
         custom={rotate ? 2 : 1}
       >
         <h3 className={quoteClasses}>{text}</h3>
@@ -118,7 +108,7 @@ function ImageAndTextCardsComponent(props: ImageAndTextCardsProps) {
         initial={"hidden"}
         whileInView={"visible"}
         viewport={{ margin: "20% 0% -20% 0%" }}
-        variants={textAnimation}
+        variants={defaultAnimation}
         custom={rotate ? 1 : 2}
       >
         <Image
