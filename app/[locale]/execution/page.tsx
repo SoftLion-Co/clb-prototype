@@ -1,11 +1,11 @@
+import Image from "next/image";
 import s from "./page.module.scss";
 import classNames from "classnames";
-import ContactUsSection from "../../sections/main_page/ContactUsSection";
+import ContactUsSection from "@/app/sections/main_page/ContactUsSection";
 import ThreeCardsComponent from "@/components/ThreeCardsComponent";
 import PageTitleComponent from "@/components/PageTitleComponent";
 import { useTranslations } from "next-intl";
 import Incoterms from "@/images/incoterms.svg";
-import Image from "next/image";
 
 const Execution = () => {
   const t = useTranslations("execution");

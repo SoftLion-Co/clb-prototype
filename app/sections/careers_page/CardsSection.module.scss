@@ -8,24 +8,24 @@
   &__container {
     display: grid;
     gap: 16px;
+    user-select: none;
 
     @include for-size(tablet) {
       grid-auto-rows: 1fr;
     }
 
     @include for-size(laptop) {
-      gap: 24px
+      gap: 24px;
     }
   }
 
   &__title {
     margin: 0 16px 40px 16px;
-    
 
     @include for-size(tablet) {
       margin: 0 16px 60px 16px;
     }
-    
+
     @include for-size(laptop) {
       margin: 0 24px 80px 24px;
     }

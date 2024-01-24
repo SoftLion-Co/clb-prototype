@@ -1,6 +1,6 @@
-@import "./../style/container";
-@import "./../style//font_default";
-@import "./../style/viewports";
+@import "@/style/container";
+@import "@/style//font_default";
+@import "@/style/viewports";
 
 .box {
   width: 100%;
@@ -43,6 +43,7 @@
     flex-direction: column;
     align-items: center;
     gap: 24px;
+    user-select: none;
 
     @include for-size(laptop) {
       gap: 72px;
