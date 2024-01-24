@@ -34,7 +34,10 @@
     "heroText2": "Your Key to the World of Modern Brokerage.",
     "servicesHeading": "Our Services",
     "partnersHeading": "Our Partners",
-    "tradingMarkets": "Trading Markets",
+    "tradingMarkets": {
+      "tradingMarketsTitle": "Trading Markets",
+      "tradingMarketsMessage": "Please select a country"
+    },
     "contactUs": {
       "contactUsHeading": "Contact Us",
       "letsWorkWithUS": "Lets Work With Us",
