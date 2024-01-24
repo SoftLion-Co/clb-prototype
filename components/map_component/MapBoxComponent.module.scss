@@ -7,17 +7,17 @@
   border: 2px solid $brandColorDarkGreen;
   border-radius: 24px;
   position: relative;
-  
-  @include for-size(phone) {
-    width: 365px;
-    border-radius: 24px;
+  height: 494px;
+
+  @include for-size(tablet) {
+    height: 524px;
+  }
+  @include for-size(laptop) {
+    height: 584px;
   }
   @include for-size(desktop) {
     border-radius: 32px;
   }
-
-  // &__container {
-  // }
 
   &__buttons {
     position: absolute;

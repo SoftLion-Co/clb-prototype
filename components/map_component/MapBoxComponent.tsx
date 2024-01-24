@@ -17,7 +17,10 @@ interface MapBoxComponentProps {
 
 const MapBoxComponent = ({ onCountrySelect }: MapBoxComponentProps) => {
   const [hoverPath, setHoverPath] = useState<{ [key: string]: boolean }>({});
-  const [currentScale, setCurrentScale] = useState(1);
+  const [currentScale, setCurrentScale] = useState(
+    window.innerWidth <= 768 ? 2.7 : 1
+  );
+
   const [startPos, setStartPos] = useState({ x: 0, y: 0 });
   const [translate, setTranslate] = useState({ x: 0, y: 0 });
   const containerRef = useRef<HTMLDivElement | null>(null);
@@ -27,22 +30,50 @@ const MapBoxComponent = ({ onCountrySelect }: MapBoxComponentProps) => {
     null
   );
   const [scale, setScale] = useState(1);
+  const [isDragging, setIsDragging] = useState(false);
+  const [touchStartPosition, setTouchStartPosition] = useState({ x: 0, y: 0 });
 
-  const handleWheel = (e: React.WheelEvent<HTMLDivElement>) => {
-    e.preventDefault();
-
-    const scaleFactor = e.deltaY > 0 ? 1.1 : 0.9;
-    setCurrentScale((prevScale) => {
-      const newScale = prevScale * scaleFactor;
-      return Math.min(Math.max(newScale, 0.9), 2);
-    });
+  const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
+    setIsDragging(true);
+    setTouchStartPosition({ x: e.touches[0].clientX, y: e.touches[0].clientY });
   };
 
-  const handleScroll = (e: React.WheelEvent<HTMLDivElement>) => {
-    if (containerRef.current) {
-      containerRef.current.scrollTop += e.deltaY;
+  const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
+    if (isDragging) {
+      e.preventDefault();
+
+      const touch = e.touches[0];
+      const deltaX = touch.clientX - touchStartPosition.x;
+      const deltaY = touch.clientY - touchStartPosition.y;
+
+      setTranslate((prevTranslate) => ({
+        x: prevTranslate.x + deltaX,
+        y: prevTranslate.y + deltaY,
+      }));
+
+      setTouchStartPosition({ x: touch.clientX, y: touch.clientY });
     }
   };
+
+  const handleTouchEnd = () => {
+    setIsDragging(false);
+  };
+
+  useEffect(() => {
+    const handleDocumentTouchMove = (e: TouchEvent) => {
+      if (isDragging) {
+        e.preventDefault();
+      }
+    };
+
+    document.body.addEventListener("touchmove", handleDocumentTouchMove, {
+      passive: false,
+    });
+
+    return () => {
+      document.body.removeEventListener("touchmove", handleDocumentTouchMove);
+    };
+  }, [isDragging]);
 
   const handleMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
     setStartPos({ x: e.clientX - translate.x, y: e.clientY - translate.y });
@@ -72,7 +103,7 @@ const MapBoxComponent = ({ onCountrySelect }: MapBoxComponentProps) => {
     setHoverPath((prev) => ({ ...prev, [pathId]: false }));
   };
 
-  const handleCountrySelect = (countryId: string) => {
+  const handleCountrySelect = (countryId: any) => {
     if (selectedCountryId === countryId) {
       setSelectedCountryId(null);
       onCountrySelect(null);
@@ -102,18 +133,43 @@ const MapBoxComponent = ({ onCountrySelect }: MapBoxComponentProps) => {
     }
   }, [currentScale, elementPositions]);
 
-  function zoomIn() {
-    setCurrentScale((prevScale) => Math.min(prevScale + 0.1, 2));
-  }
+  const MAX_SCALE = 5; // Максимальний масштаб
+
+  const zoomIn = () => {
+    setCurrentScale((prevScale) => {
+      const newScale = prevScale + 0.1;
+      if (window.innerWidth < 767.98) {
+        const mobileScale = newScale + 0.1;
+        return mobileScale > MAX_SCALE ? MAX_SCALE : mobileScale;
+      }
+      return newScale > MAX_SCALE ? MAX_SCALE : newScale;
+    });
+  };
 
   function zoomOut() {
     setCurrentScale((prevScale) => Math.max(prevScale - 0.1, 0.9));
   }
 
   const resetScaleAndPosition = () => {
-    setCurrentScale(1);
+    const defaultScale = window.innerWidth <= 768 ? 2.7 : 1;
+
+    setCurrentScale(defaultScale);
+
     setTranslate({ x: 0, y: 0 });
   };
+
+  useEffect(() => {
+    const handleResize = () => {
+      const newScale = window.innerWidth <= 768 ? 2 : 1;
+      setCurrentScale(newScale);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   const defaultStyle: CSSProperties = {
     cursor: "pointer",
@@ -124,7 +180,6 @@ const MapBoxComponent = ({ onCountrySelect }: MapBoxComponentProps) => {
     strokeLinejoin: "round",
     transition: "fill 0.3s",
   };
-
   const hoverStyle: CSSProperties = {
     ...defaultStyle,
     fill: "#A7B896",
@@ -135,48 +190,40 @@ const MapBoxComponent = ({ onCountrySelect }: MapBoxComponentProps) => {
     fill: "#A7B896",
   };
 
-  const handleMapMouseEnter = () => {
-    document.body.style.overflow = "hidden";
-  };
-
-  const handleMapMouseLeave = () => {
-    document.body.style.overflow = "auto";
-  };
+  const buttonsData = [
+    { onClick: zoomIn, text: "+" },
+    { onClick: zoomOut, text: "-" },
+    { onClick: resetScaleAndPosition, text: "↩︎" },
+  ];
 
   return (
     <div
       className={s.map}
-      onWheel={handleWheel}
       onMouseDown={handleMouseDown}
       onMouseMove={handleMouseMove}
       onMouseUp={handleMouseUp}
-      onMouseEnter={handleMapMouseEnter}
-      onMouseLeave={handleMapMouseLeave}
       style={{
         width: "100%",
-        height: "100%",
         overflow: "hidden",
       }}
       ref={containerRef}
     >
       <div className={s.map__buttons}>
-        <button onClick={zoomIn} className={s.map__button}>
-          <p className={s.map__buttonText}>+</p>
-        </button>
-        <button onClick={zoomOut} className={s.map__button}>
-          <p className={s.map__buttonText}>-</p>
-        </button>
-        <button onClick={resetScaleAndPosition} className={s.map__button}>
-          <p className={s.map__buttonText}>↩︎</p>
-        </button>
+        {buttonsData.map((button, index) => (
+          <button
+            onClick={button.onClick}
+            className={s.map__button}
+            key={index}
+          >
+            <p className={s.map__buttonText}>{button.text}</p>
+          </button>
+        ))}
       </div>
       <div
         className={s.map__container}
-        onWheel={handleWheel}
-        onMouseDown={handleMouseDown}
-        onMouseMove={handleMouseMove}
-        onMouseUp={handleMouseUp}
-        onScroll={handleScroll}
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
         style={{
           width: "100%",
           height: "100%",

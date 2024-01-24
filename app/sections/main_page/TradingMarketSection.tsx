@@ -6,7 +6,6 @@ import MainTitleComponent from "@/components/MainTitleComponent";
 import MapBoxComponent from "@/components/map_component/MapBoxComponent";
 import { useTranslations } from "next-intl";
 import useLocale from "@/hooks/useLocale";
-import Picture from "@/images/vectors/brand-element.svg";
 interface CountryInfo {
   country: string;
   agriculturalCrops: string[];
@@ -53,7 +52,7 @@ const TradingMarketSection = () => {
                     <ul className={s.map__options}>
                       {selectedCountry?.deliveryOptions.map((option) => (
                         <li className={s.map__items} key={option}>
-                          {option}
+                         {option}
                         </li>
                       ))}
                     </ul>
