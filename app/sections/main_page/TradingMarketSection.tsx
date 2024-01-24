@@ -6,12 +6,20 @@ import MapBoxComponent from "@/components/map_component/MapBoxComponent";
 import { useTranslations } from "next-intl";
 import countriesData from "@/components/map_component/countriesData";
 
+interface CountryInfo {
+  country: string;
+  agriculturalCrops: string[];
+  deliveryOptions: string[];
+}
+
 const TradingMarketSection = () => {
   const t = useTranslations("homePage");
 
-  const [selectedCountry, setSelectedCountry] = useState(null);
+  const [selectedCountry, setSelectedCountry] = useState<CountryInfo | null>(
+    null
+  );
 
-  const handleCountrySelect = (countryData: any) => {
+  const handleCountrySelect = (countryData: CountryInfo) => {
     setSelectedCountry(countryData);
   };
 
@@ -26,29 +34,26 @@ const TradingMarketSection = () => {
             </div>
 
             <div className={s.map__content}>
-              {selectedCountry && (
-                <>
-                  <h2 className={s.map__title}>{selectedCountry.country}</h2>
-                  <ul className={s.map__list}>
-                    <p className={s.map__subtitle}>Cultures:</p>
-                    {selectedCountry.agriculturalCrops.map((crop, index) => (
-                      <li key={index} className={s.map__item}>
-                        {crop}
-                      </li>
-                    ))}
-                  </ul>
-                  <div className={s.map__delivery}>
-                    <p className={s.map__subtitle}>Delivery options:</p>
-                    <ul className={s.map__options}>
-                      {selectedCountry.deliveryOptions.map((option, index) => (
-                        <li key={index} className={s.map__items}>
-                          {option}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </>
-              )}
+              <h2 className={s.map__title}>{selectedCountry?.country}</h2>
+              <ul className={s.map__list}>
+                <p className={s.map__subtitle}>Cultures:</p>
+                {selectedCountry?.agriculturalCrops.map((crop) => (
+                  <li className={s.map__item} key={crop}>
+                    {crop}
+                  </li>
+                ))}
+              </ul>
+
+              <div className={s.map__delivery}>
+                <p className={s.map__subtitle}>Delivery options:</p>
+                <ul className={s.map__options}>
+                  {selectedCountry?.deliveryOptions.map((option) => (
+                    <li className={s.map__items} key={option}>
+                      {option}
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
           </div>
         </div>

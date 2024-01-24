@@ -37,6 +37,22 @@ const countries: CountryInfo[] = [
     ],
     deliveryOptions: ["CIF", "FAC", "FCA", "CFR"],
   },
+  {
+    country: "France",
+    agriculturalCrops: [
+      "Wheat",
+      "Barley",
+      "Corn",
+      "Sorghum",
+      "Rye",
+      "Oats",
+      "Sunflower",
+      "Soybean",
+      "Rapeseed",
+      "Linseed",
+    ],
+    deliveryOptions: ["CIF", "FAC", "FCA", "CFR"],
+  },
 ];
 
 export default countries;
