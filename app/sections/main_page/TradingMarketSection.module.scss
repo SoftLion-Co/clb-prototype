@@ -1,0 +1,113 @@
+@import "@/style/colors";
+@import "@/style/container";
+@import "@/style/viewports";
+
+.map {
+  display: grid;
+  gap: 16px;
+
+  @include for-size(laptop) {
+    display: grid;
+    gap: 24px;
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  &__container {
+    
+    @include for-size(laptop) {
+      grid-column: span 2;
+    }
+  }
+
+  &__content {
+    background-color: $backgroundColorGreen;
+    border-radius: 24px;
+    padding: 32px 40px;
+    display: grid;
+    gap: 24px;
+    user-select: none;
+
+    @include for-size(desktop) {
+      border-radius: 32px;
+    }
+  }
+
+  &__title {
+    color: $brandColorDarkGreen;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 130%;
+
+    &::first-letter {
+      text-transform: uppercase;
+    }
+
+    @include for-size(tablet) {
+      font-size: 22px;
+    }
+    @include for-size(laptop) {
+      font-size: 28px;
+      line-height: 150%;
+    }
+  }
+
+  &__subtitle {
+    color: $blackTextColor;
+    text-transform: uppercase;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 130%;
+    margin-bottom: 10px;
+
+    @include for-size(laptop) {
+      font-size: 18px;
+      line-height: 150%;
+    }
+  }
+
+  &__item {
+    list-style-type: disc;
+    color: $blackTextColor;
+    font-size: 16px;
+    line-height: 130%;
+    margin-left: 20px;
+
+    @include for-size(laptop) {
+      font-size: 18px;
+      line-height: 150%;
+      margin-left: 22px;
+    }
+  }
+
+  &__options {
+    display: flex;
+    gap: 4px;
+  }
+
+  &__items {
+    text-decoration: none;
+  }
+
+  &__box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  }
+
+  &__message {
+    color: $blackTextColor;
+    font-size: 16px;
+    line-height: 130%;
+    font-weight: 500;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+    text-align: center;
+    @include for-size(laptop) {
+      font-size: 28px;
+      line-height: 150%;
+    }
+  }
+}

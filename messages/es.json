@@ -34,6 +34,10 @@
     "heroText2": "Su clave para el mundo de la intermediación moderna.",
     "servicesHeading": "Nuestros Servicios",
     "partnersHeading": "Socios",
+    "tradingMarkets": {
+      "tradingMarketsTitle": "Mercados comerciales",
+      "tradingMarketsMessage": "Por favor seleccione un país"
+    },
     "contactUs": {
       "contactUsHeading": "Contáctenos",
       "letsWorkWithUS": "Trabajemos juntos",

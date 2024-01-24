@@ -34,6 +34,10 @@
     "heroText2": "Ihr Schlüssel zur Welt der modernen Maklerdienste.",
     "servicesHeading": "Unsere Dienstleistungen",
     "partnersHeading": "Partner",
+    "tradingMarkets": {
+      "tradingMarketsTitle": "Handelsmärkte",
+      "tradingMarketsMessage": "Bitte wähle ein Land"
+    },
     "contactUs": {
       "contactUsHeading": "Kontaktiere uns",
       "letsWorkWithUS": "Lass uns zusammenarbeiten",

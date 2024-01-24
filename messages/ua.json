@@ -34,6 +34,10 @@
     "heroText2": "Ваш ключ до світу сучасного брокерства.",
     "servicesHeading": "Наші послуги",
     "partnersHeading": "Партнери",
+    "tradingMarkets": {
+      "tradingMarketsTitle": "Торгові ринки",
+      "tradingMarketsMessage": "Виберіть будь ласка країну"
+    },
     "contactUs": {
       "contactUsHeading": "Зв'яжіться з нами",
       "letsWorkWithUS": "Працюймо разом",
