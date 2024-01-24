@@ -36,7 +36,9 @@ const TradingMarketSection = () => {
                 <>
                   <h2 className={s.map__title}>{selectedCountry?.country}</h2>
                   <ul className={s.map__list}>
-                    <p className={s.map__subtitle}>Cultures:</p>
+                    <p className={s.map__subtitle}>
+                      {t("agriculturalCropsTitle")}:
+                    </p>
                     {selectedCountry?.agriculturalCrops.map((crop) => (
                       <li className={s.map__item} key={crop}>
                         {crop}
@@ -45,11 +47,15 @@ const TradingMarketSection = () => {
                   </ul>
 
                   <div className={s.map__delivery}>
-                    <p className={s.map__subtitle}>Delivery options:</p>
+                    <p className={s.map__subtitle}>
+                      {t("deliveryOptionsTitle")}:
+                    </p>
                     <ul className={s.map__options}>
-                      {selectedCountry?.deliveryOptions.map((option) => (
+                      {selectedCountry?.deliveryOptions.map((option, index) => (
                         <li className={s.map__items} key={option}>
-                         {option}
+                          {index === selectedCountry.deliveryOptions.length - 1
+                            ? `${option}.`
+                            : `${option},`}
                         </li>
                       ))}
                     </ul>

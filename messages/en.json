@@ -36,7 +36,9 @@
     "partnersHeading": "Our Partners",
     "tradingMarkets": {
       "tradingMarketsTitle": "Trading Markets",
-      "tradingMarketsMessage": "Please select a country"
+      "tradingMarketsMessage": "Please select a country",
+      "agriculturalCropsTitle": "Cultures",
+      "deliveryOptionsTitle": "Delivery options"
     },
     "contactUs": {
       "contactUsHeading": "Contact Us",
