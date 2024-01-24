@@ -1,8 +1,9 @@
-@import "./../style/colors";
-@import "./../style/viewports";
+@import "@/style/colors";
+@import "@/style/viewports";
 
 .main {
   &__container {
+    transition: background-color 0.3s ease-in-out;
     background-color: $brandColorDarkGreen;
     padding: 6px 6px 6px 12px;
     display: flex;
@@ -10,8 +11,8 @@
     justify-content: space-between;
     gap: 16px;
     border-radius: 24px;
-    transition: background-color 0.3s ease-in-out;
     max-width: max-content;
+    user-select: none;
 
     @include for-size(laptop) {
       padding: 8px 8px 8px 16px;
@@ -20,6 +21,7 @@
     &:hover {
       transition: background-color 0.3s ease-in-out;
       background-color: $backgroundColorLightGreen;
+
       .main__background {
         background-color: transparent;
         border: 1px solid $classicWhiteBackgroundColor;

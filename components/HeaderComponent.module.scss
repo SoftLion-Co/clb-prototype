@@ -1,6 +1,6 @@
-@import "./../style/viewports";
-@import "./../style/container";
-@import "./../style/colors";
+@import "@/style/viewports";
+@import "@/style/container";
+@import "@/style/colors";
 
 .header.hidden {
   transform: translateY(-100%);
@@ -40,6 +40,7 @@
   }
 
   &__logo {
+    user-select: none;
     display: none;
 
     @include for-size(laptop) {
@@ -48,6 +49,8 @@
   }
 
   &__logo_mobile {
+    user-select: none;
+
     @include for-size(laptop) {
       display: none;
     }
@@ -192,6 +195,8 @@
   }
 
   .header__button {
+    user-select: none;
+
     @include for-size(laptop) {
       display: none;
     }
@@ -247,6 +252,7 @@
     gap: 16px;
     margin-left: 16px;
     border-radius: 24px;
+    user-select: none;
 
     @include for-size(laptop) {
       background-color: $backgroundColorGreen;
@@ -319,10 +325,12 @@
 
   &__close {
     margin-right: 5px;
+    user-select: none;
   }
 }
 
 .modal-open {
+  user-select: none;
   overflow: hidden;
   position: fixed;
   width: 100%;
