@@ -1,4 +1,3 @@
-"use client";
 import React, { CSSProperties } from "react";
 
 interface CountryMapSVGProps {
@@ -576,7 +575,6 @@ const CountryMapSVG = ({
             onMouseEnter={() => handleMouseEnter("path44")}
             onMouseLeave={() => handleMouseLeave("path44")}
             onClick={() => handleCountrySelect("france")}
-            onTouchEnd={() => handleCountryTouch("france")}
             style={
               selectedCountryId === "france"
                 ? activeStyle

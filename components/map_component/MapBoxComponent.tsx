@@ -1,4 +1,3 @@
-"use client";
 import s from "@/components/map_component/MapBoxComponent.module.scss";
 import React, { useState, useEffect, useCallback, useRef } from "react";
 import { CSSProperties } from "react";

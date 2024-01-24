@@ -1,11 +1,9 @@
 "use client";
 import React, { useState } from "react";
-import Image from "next/image";
 import s from "./TradingMarketSection.module.scss";
 import MainTitleComponent from "@/components/MainTitleComponent";
 import MapBoxComponent from "@/components/map_component/MapBoxComponent";
 import { useTranslations } from "next-intl";
-import useLocale from "@/hooks/useLocale";
 interface CountryInfo {
   country: string;
   agriculturalCrops: string[];
@@ -14,7 +12,6 @@ interface CountryInfo {
 
 const TradingMarketSection = () => {
   const t = useTranslations("homePage.tradingMarkets");
-  const locale = useLocale();
 
   const [selectedCountry, setSelectedCountry] = useState<CountryInfo | null>(
     null

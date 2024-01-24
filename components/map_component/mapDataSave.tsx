@@ -1,3 +1,4 @@
+"use client";
 import React, { CSSProperties } from "react";
 
 interface CountryMapSVGProps {
@@ -22,20 +23,23 @@ const CountryMapSVG = ({
   hoverStyle,
   activeStyle,
   defaultStyle,
-  scale,
   currentScale,
   translate,
   svgContentRef,
   handleMouseEnter,
   handleMouseLeave,
 }: CountryMapSVGProps) => {
+  const originalWidth = 952;
+  const originalHeight = 584;
+
   return (
     <svg
-      width={952 * scale}
-      height={584 * scale}
+      width="100%"
+      height="auto"
+      viewBox={`0 0 ${originalWidth} ${originalHeight}`}
       style={{
+        maxWidth: "100%",
         transform: `scale(${currentScale}) translate(${translate.x}px, ${translate.y}px)`,
-        transformOrigin: "0 0",
         transition: "transform 0.3s",
         cursor: "pointer",
       }}
