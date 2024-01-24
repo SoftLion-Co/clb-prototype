@@ -14,21 +14,22 @@
 
   &__buttons {
     position: absolute;
-    z-index: 10;
-    margin: 24px 0 0 24px;
+    z-index: 1;
+    margin: 10px 0 0 10px;
     padding: 14px 8px;
     background-color: $backgroundColorGreen;
-    opacity: 0.5;
     border-radius: 24px;
     width: max-content;
     display: flex;
     flex-direction: column;
     gap: 14px;
+    opacity: 0.9;
   }
 
   &__button {
     background-color: $classicWhiteBackgroundColor;
     transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+    opacity: 1;
 
     cursor: pointer;
     user-select: none;
@@ -53,6 +54,6 @@
     font-weight: 900;
     min-width: 14px;
     height: 22px;
+    opacity: 1;
   }
 }
-

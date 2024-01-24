@@ -1,33 +1,13 @@
 "use client";
-import React, { useState } from "react";
-import MapChart from "@/components/MapChart";
+import React from "react";
 import s from "./TradingMarketSection.module.scss";
 import MainTitleComponent from "@/components/MainTitleComponent";
+import MapBoxComponent from "@/components/map_component/MapBoxComponent";
 import { useTranslations } from "next-intl";
-import MapBoxComponent from "@/components/MapBoxComponent";
+import countriesData from "@/components/map_component/countriesData";
 
 const TradingMarketSection = () => {
   const t = useTranslations("homePage");
-
-  const culturesData = [
-    { name: "Wheat" },
-    { name: "Barley" },
-    { name: "Corn" },
-    { name: "Sorghum" },
-    { name: "Rye" },
-    { name: "Oats" },
-    { name: "Sunflower" },
-    { name: "Soybean" },
-    { name: "Rapeseed" },
-    { name: "Linseed" },
-  ];
-
-  const deliveryOptions = [
-    { option: "CIF" },
-    { option: "FAC" },
-    { option: "FCA" },
-    { option: "CFR" },
-  ];
 
   return (
     <section className={s.box}>
@@ -40,27 +20,18 @@ const TradingMarketSection = () => {
             </div>
 
             <div className={s.map__content}>
-              <h2 className={s.map__title}>Germany</h2>
+              <h2 className={s.map__title}>{/* here country name */}</h2>
 
               <ul className={s.map__list}>
                 <p className={s.map__subtitle}>Cultures:</p>
-                {culturesData.map((item, index) => (
-                  <li className={s.map__item} key={index}>
-                    {item.name}
-                  </li>
-                ))}
+                <li className={s.map__item}>{/* here agriculturalCrops */}</li>
               </ul>
 
               <div className={s.map__delivery}>
                 <p className={s.map__subtitle}>Delivery options:</p>
 
                 <ul className={s.map__options}>
-                  {deliveryOptions.map((item, index) => (
-                    <li className={s.map__items} key={index}>
-                      {item.option}
-                      {","}
-                    </li>
-                  ))}
+                  <li className={s.map__items}>{/* here deliveryOptions */}</li>
                 </ul>
               </div>
             </div>
