@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import s from "./HeroSection.module.scss";
-import MainButtonComponent from "@/components/MainButtonComponent";
+import { MMainButtonComponent } from "@/components/MainButtonComponent";
 import { useTranslations } from "next-intl";
 import GetHeroVideoComponent from "@/components/main_page/GetHeroVideoComponent";
 import GetHeroImageComponent from "@/components/main_page/GetHeroImageComponent";
@@ -28,13 +28,16 @@ function HeroSection() {
 
   const textAnimation = {
     hidden: {
-      y: -100,
+      y: 100,
       opacity: 0,
+      delay: 1,
     },
-    visible: {
+    visible: (custom: number) => ({
       y: 0, 
       opacity: 1,
-    }
+      delay: 1,
+      transition: {delay: custom * 0.2},
+    })
   }
 
   return (
@@ -54,10 +57,10 @@ function HeroSection() {
         className={s.hero__content}>
           <motion.h1 variants={textAnimation} className={titleClass}>{t("hero")}</motion.h1>
           <div className={s.hero__text_wrapper}>
-            <p className={textClass}>{t("heroText1")}</p>
-            <p className={textClass}>{t("heroText2")}</p>
+            <motion.p custom={1} variants={textAnimation} className={textClass}>{t("heroText1")}</motion.p>
+            <motion.p custom={1.5} variants={textAnimation} className={textClass}>{t("heroText2")}</motion.p>
           </div>
-          <MainButtonComponent
+          <MMainButtonComponent  custom={2} variants={textAnimation}
             text={t1("ourSercvicesButton")}
             className={s.hero__button}
             type="MainUsualButton"

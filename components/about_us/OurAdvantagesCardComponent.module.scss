@@ -7,7 +7,7 @@
     justify-content: center;
     border-radius: 24px;
     padding: 50px 20px;
-
+    height: 100%;
     @include for-size(phone) {
       height: 212px;
     }

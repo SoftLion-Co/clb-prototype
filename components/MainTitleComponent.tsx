@@ -3,6 +3,7 @@ import s from "./MainTitleComponent.module.scss";
 import classNames from "classnames";
 import image from "@/images/vectors/graph.svg";
 import Image from "next/image";
+import { motion } from "framer-motion";
 
 interface MainTitleProps {
   title: string;
@@ -25,8 +26,25 @@ const MainTitleComponent: FC<MainTitleProps> = ({
     green: "#565F51",
   }[color];
 
+  const textAnimation = {
+    hidden: {
+      y: 100,
+      opacity: 0,
+      delay: 1,
+    },
+    visible: (custom: number) => ({
+      y: 0,
+      opacity: 1,
+      delay: 1,
+      transition: { delay: custom * 0.2 },
+    }),
+  };
+
   return (
-    <div
+    <motion.div
+      initial={"hidden"}
+      whileInView={"visible"}
+      variants={textAnimation}
       className={classNames(s.main, className, {
         [s.left]: left,
         [s.mobileLeft]: mobileLeft,
@@ -42,7 +60,7 @@ const MainTitleComponent: FC<MainTitleProps> = ({
       <h2 className={s.main__title} style={{ color: titleColor }}>
         {title}
       </h2>
-    </div>
+    </motion.div>
   );
 };
 

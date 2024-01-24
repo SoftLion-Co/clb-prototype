@@ -1,3 +1,4 @@
+"use client"
 import s from "./CardsSection.module.scss";
 import PageTitleComponent from "@/components/PageTitleComponent";
 import ImageAndTextCardsComponent from "@/components/ImageAndTextCardsComponent";

@@ -1,3 +1,4 @@
+"use client"
 import React from "react";
 import s from "./OurCoreServices.module.scss";
 import MainTitleComponent from "@/components/MainTitleComponent";

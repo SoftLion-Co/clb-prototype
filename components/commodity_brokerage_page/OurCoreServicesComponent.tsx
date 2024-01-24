@@ -4,6 +4,7 @@ import image from "@/images/home-hero-test.png";
 import { useTranslations } from "next-intl";
 import classNames from "classnames";
 import { useTwoLinesTitle } from "@/hooks/useTwoLinesTitle";
+import { motion } from "framer-motion";
 
 function OurCoreServicesComponent() {
   const t = useTranslations("commodityBrokerage.services");
@@ -43,18 +44,39 @@ function OurCoreServicesComponent() {
 
   const cardsWithBorders = [0, 1, 4];
 
-  const imgaeStyling = {
+  const imageStyling = {
     backgroundImage: `url(${image.src})`,
     backgroundSize: "cover",
     backgroundPosition: "center",
+    height: "100%"
+  };
+
+  const textAnimation = {
+    hidden: {
+      y: 100,
+      opacity: 0,
+      delay: 1,
+    },
+    visible: (custom: number) => ({
+      y: 0,
+      opacity: 1,
+      delay: 1,
+      transition: { delay: custom * 0.2 },
+    }),
   };
 
   return (
     <div className={s.services}>
       {serviceCards.map(({ title, text, imageSrc }, index) => (
-        <React.Fragment key={index}>
+        <motion.div
+          key={index}
+          initial={"hidden"}
+          whileInView={"visible"}
+          viewport={{ margin: "20% 0% -20% 0%" }}
+          variants={textAnimation}
+        >
           {imageSrc !== undefined ? (
-            <div className={s.card} style={imgaeStyling}></div>
+            <div className={s.card} style={imageStyling}></div>
           ) : (
             <div
               className={classNames(s.card, {
@@ -65,7 +87,7 @@ function OurCoreServicesComponent() {
               <p className={s.card__text}>{text}</p>
             </div>
           )}
-        </React.Fragment>
+        </motion.div>
       ))}
     </div>
   );

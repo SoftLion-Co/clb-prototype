@@ -1,4 +1,3 @@
-"use client";
 import s from "./SocialLinksSection.module.scss";
 import Image from "next/image";
 import telegram from "@/images/footer/icon-telegram.svg";
@@ -14,14 +13,35 @@ import {
   LinkedinShareButton,
 } from "react-share";
 import classNames from "classnames";
+import { motion } from "framer-motion";
 
 const SocialLinksSection = () => {
   const t = useTranslations("components");
 
   const currentPath = "clb.com" + window.location.pathname;
 
+  const textAnimation = {
+    hidden: {
+      y: 100,
+      opacity: 0,
+      delay: 1,
+    },
+    visible: (custom: number) => ({
+      y: 0,
+      opacity: 1,
+      delay: 1,
+      transition: { delay: custom * 0.2 },
+    }),
+  };
+
   return (
-    <section className={s.links}>
+    <motion.section
+      className={s.links}
+      initial={"hidden"}
+      whileInView={"visible"}
+      viewport={{ margin: "20% 0% -10% 0%" }}
+      variants={textAnimation}
+    >
       <p className={s.links__share}>{t("share")}</p>
       <div className={s.links__list}>
         <TelegramShareButton
@@ -50,7 +70,7 @@ const SocialLinksSection = () => {
           <Image src={whatsapp} alt={"whatsapp"} className={s.links__icon} />
         </WhatsappShareButton>{" "}
       </div>
-    </section>
+    </motion.section>
   );
 };
 

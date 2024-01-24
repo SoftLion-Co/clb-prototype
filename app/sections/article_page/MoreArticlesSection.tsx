@@ -1,4 +1,3 @@
-"use client";
 import React, { useCallback, useEffect, useState, FC } from "react";
 import s from "./MoreArticlesSection.module.scss";
 import SmallCardBlogComponent from "@/components/blog/SmallCardBlogComponent";
@@ -10,6 +9,7 @@ import MainTitleComponent from "@/components/MainTitleComponent";
 import { useTranslations } from "next-intl";
 import classNames from "classnames";
 import { Carousel, Embla } from "@mantine/carousel";
+import { motion } from "framer-motion";
 
 interface MoreArticlesSectionProps {
   blogId: string;
@@ -19,9 +19,7 @@ interface ArrowProps {
   className: string;
 }
 
-const MoreArticlesSection: FC<MoreArticlesSectionProps> = ({
-  blogId,
-}) => {
+const MoreArticlesSection: FC<MoreArticlesSectionProps> = ({ blogId }) => {
   const locale = useLocale();
   const { blogs, loading, error } = useBlogsData();
   const t = useTranslations("components");
@@ -39,6 +37,20 @@ const MoreArticlesSection: FC<MoreArticlesSectionProps> = ({
     }
   }, [embla]);
 
+  const textAnimation = {
+    hidden: {
+      y: 100,
+      opacity: 0,
+      delay: 1,
+    },
+    visible: (custom: number) => ({
+      y: 0,
+      opacity: 1,
+      delay: 1,
+      transition: { delay: custom * 0.2 },
+    }),
+  };
+
   const NextArrow: FC<ArrowProps> = ({ className }) => {
     return (
       <div className={className}>
@@ -55,11 +67,7 @@ const MoreArticlesSection: FC<MoreArticlesSectionProps> = ({
   const PrevArrow: FC<ArrowProps> = ({ className }) => {
     return (
       <div className={className}>
-        <Image
-          src={Arrow}
-          alt="Previous slide"
-          width={28}
-        />
+        <Image src={Arrow} alt="Previous slide" width={28} />
       </div>
     );
   };
@@ -74,7 +82,6 @@ const MoreArticlesSection: FC<MoreArticlesSectionProps> = ({
   const filteredBlogs = blogs.filter(
     (blog) => blog.id !== parseInt(blogId, 10)
   );
-  
 
   return (
     <section className={s.box}>
@@ -118,7 +125,16 @@ const MoreArticlesSection: FC<MoreArticlesSectionProps> = ({
             >
               {filteredBlogs.map((blog, index) => (
                 <Carousel.Slide key={index}>
-                  <SmallCardBlogComponent info={blog} locale={locale} />
+                  <motion.div
+                    key={index}
+                    variants={textAnimation}
+                    custom={index}
+                    initial={"hidden"}
+                    whileInView={"visible"}
+                    viewport={{ margin: "20% 0% -20% 0%" }}
+                  >
+                    <SmallCardBlogComponent info={blog} locale={locale} />
+                  </motion.div>
                 </Carousel.Slide>
               ))}
             </Carousel>

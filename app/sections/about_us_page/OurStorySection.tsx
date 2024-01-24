@@ -1,3 +1,4 @@
+"use client"
 import s from "./OurStorySection.module.scss";
 import MainTitleComponent from "@/components/MainTitleComponent";
 import ThreeCardsComponent from "@/components/ThreeCardsComponent";
@@ -6,7 +7,6 @@ import { useTranslations } from "next-intl";
 
 const OurStorySection = () => {
   const t = useTranslations("aboutUs.ourStory");
-  debugger;
 
   return (
     <section className={s.box}>

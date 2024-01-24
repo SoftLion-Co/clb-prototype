@@ -13,6 +13,7 @@ import SectionVector from "@/images/vectors/section-vector.svg";
 
 import { useTranslations } from "next-intl";
 import useOurTeamData from "@/hooks/useOurTeamData";
+import { motion } from "framer-motion";
 
 interface TeamMember {
   id: number;
@@ -57,6 +58,20 @@ const OurTeamSection: FC<OurTeamSectionProps> = ({ teamMembers }) => {
     }
   }, [embla]);
 
+  const textAnimation = {
+    hidden: {
+      y: 100,
+      opacity: 0,
+      delay: 1,
+    },
+    visible: (custom: number) => ({
+      y: 0,
+      opacity: 1,
+      delay: 1,
+      transition: { delay: custom * 0.2 },
+    }),
+  };
+
   const NextArrow: FC<ArrowProps> = ({ className }) => {
     return (
       <div className={className}>
@@ -88,9 +103,19 @@ const OurTeamSection: FC<OurTeamSectionProps> = ({ teamMembers }) => {
     <section className={s.box}>
       <div className={classNames(s.background, s.team)}>
         <div className={s.container}>
-          <MainTitleComponent className={s.team__title} title="our team" color="black" />
+          <MainTitleComponent
+            className={s.team__title}
+            title="our team"
+            color="black"
+          />
 
-          <div className={s.team__carousel}>
+          <motion.div
+            className={s.team__carousel}
+            initial={"hidden"}
+            whileInView={"visible"}
+            viewport={{ margin: "20% 0% -20% 0%" }}
+            variants={textAnimation}
+          >
             <Carousel
               classNames={{
                 control: s.team__control,
@@ -134,7 +159,7 @@ const OurTeamSection: FC<OurTeamSectionProps> = ({ teamMembers }) => {
                 </Carousel.Slide>
               ))}
             </Carousel>
-          </div>
+          </motion.div>
         </div>
         <Image className={s.team__vector} src={SectionVector} alt="vector" />
       </div>

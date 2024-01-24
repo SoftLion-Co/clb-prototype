@@ -16,6 +16,7 @@ import whatsapp from "@/images/footer/icon-whatsapp.svg";
 import { useTranslations } from "next-intl";
 import useLocale from "@/hooks/useLocale";
 import classNames from "classnames";
+import { motion } from "framer-motion";
 
 const socialMediaIcons: { [key: string]: any } = {
   telegram,
@@ -39,13 +40,32 @@ const socialMediaLinks = [
 
 const FooterComponent = () => {
   const t = useTranslations("footer");
-
   const local = useLocale();
+
+  const textAnimation = {
+    hidden: {
+      y: 50,
+      opacity: 0,
+      delay: 1,
+    },
+    visible: (custom: number) => ({
+      y: 0,
+      opacity: 1,
+      delay: 1,
+      transition: { delay: custom * 0.1 },
+    }),
+  };
 
   return (
     <footer className={s.box}>
       <div className={s.footer}>
-        <div className={s.footer__container}>
+        <motion.div
+          className={s.footer__container}
+          initial={"hidden"}
+          whileInView={"visible"}
+          variants={textAnimation}
+          viewport={{ margin: "20% 0% -20% 0%" }}
+        >
           <div className={s.footer__content}>
             <Link href="/">
               <Image src={Logo} alt="Logo" />
@@ -73,72 +93,108 @@ const FooterComponent = () => {
           <div className={s.footer__box}>
             <div className={s.footer__lists}>
               <ul className={s.footer__list}>
-                <li className={s.footer__item}>
+                <motion.li
+                  className={s.footer__item}
+                  variants={textAnimation}
+                  custom={1}
+                >
                   <Link
                     className={s.footer__link}
                     href={`${local}/commodity-brokerage`}
                   >
                     Commodities Brokerage
                   </Link>
-                </li>
-                <li className={s.footer__item}>
+                </motion.li>
+                <motion.li
+                  className={s.footer__item}
+                  variants={textAnimation}
+                  custom={2}
+                >
                   <Link
                     className={s.footer__link}
                     href={`${local}/freight-brokerage`}
                   >
                     Freight Brokerage
                   </Link>
-                </li>
+                </motion.li>
               </ul>
 
               <ul className={classNames(s.footer__list, s.footer__list_gap)}>
-                <li className={s.footer__item}>
+                <motion.li
+                  className={s.footer__item}
+                  variants={textAnimation}
+                  custom={3}
+                >
                   <Link className={s.footer__link} href={`${local}/execution`}>
                     Execution
                   </Link>
-                </li>
-                <li className={s.footer__item}>
+                </motion.li>
+                <motion.li
+                  className={s.footer__item}
+                  variants={textAnimation}
+                  custom={4}
+                >
                   <Link
                     className={s.footer__link}
                     href={`${local}/export-consulting`}
                   >
                     Export Consulting
                   </Link>
-                </li>
+                </motion.li>
               </ul>
 
               <ul className={s.footer__list}>
-                <li className={s.footer__item}>
+                <motion.li
+                  className={s.footer__item}
+                  variants={textAnimation}
+                  custom={5}
+                >
                   <Link className={s.footer__link} href={`${local}/about-us`}>
                     About Us
                   </Link>
-                </li>
-                <li className={s.footer__item}>
+                </motion.li>
+                <motion.li
+                  className={s.footer__item}
+                  variants={textAnimation}
+                  custom={6}
+                >
                   <Link className={s.footer__link} href="/">
                     Our Vacancies
                   </Link>
-                </li>
+                </motion.li>
               </ul>
 
               <ul className={s.footer__list}>
-                <li className={s.footer__item}>
+                <motion.li
+                  className={s.footer__item}
+                  variants={textAnimation}
+                  custom={7}
+                >
                   <Link className={s.footer__link} href={`${local}/blog`}>
                     Our News
                   </Link>
-                </li>
-                <li className={s.footer__item}>
+                </motion.li>
+                <motion.li
+                  className={s.footer__item}
+                  variants={textAnimation}
+                  custom={8}
+                >
                   <Link className={s.footer__link} href="/">
                     Privacy Policy
                   </Link>
-                </li>
+                </motion.li>
               </ul>
             </div>
 
-            <p className={s.footer__copyright}>
+            <motion.p
+              className={s.footer__copyright}
+              variants={textAnimation}
+              custom={9}
+            >
               © 2023 Commodities & Logistics Brokers
-            </p>
+            </motion.p>
           </div>
-        </div>
+        </motion.div>
       </div>
     </footer>
   );

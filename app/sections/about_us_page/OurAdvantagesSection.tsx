@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import type { StaticImageData } from "next/image";
 import s from "./OurAdvantagesSection.module.scss";
@@ -7,6 +8,7 @@ import AdvantagesImage1 from "@/images/our_advantages_test/advantages-image-1.pn
 import AdvantagesImage2 from "@/images/our_advantages_test/advantages-image-2.png";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
+import { motion } from "framer-motion";
 
 interface AdvantagesItem {
   text: string;
@@ -16,7 +18,20 @@ type AdvantagesContentItem = AdvantagesItem | StaticImageData;
 
 const OurAdvantagesSection = () => {
   const t = useTranslations("aboutUs.ourAdvantages");
-  const t1 = useTranslations("aboutUs.ourAdvantages.cards");
+
+  const textAnimation = {
+    hidden: {
+      y: 100,
+      opacity: 0,
+      delay: 1,
+    },
+    visible: (custom: number) => ({
+      y: 0,
+      opacity: 1,
+      delay: 1,
+      transition: { delay: custom * 0.2 },
+    }),
+  };
 
   const advantagesContent: AdvantagesContentItem[] = [
     {
@@ -49,7 +64,13 @@ const OurAdvantagesSection = () => {
           <MainTitleComponent title={t("ourAdvantagesTitle")} color="blue" />
           <div className={s.advantages__cards}>
             {contentOrder.map((item, index) => (
-              <React.Fragment key={index}>
+              <motion.div
+                key={index}
+                initial={"hidden"}
+                whileInView={"visible"}
+                viewport={{ margin: "20% 0% -20% 0%" }}
+                variants={textAnimation}
+              >
                 {item.type === "blue" && (
                   <OurAdvantagesCardComponent
                     advantages={item.data as AdvantagesItem}
@@ -71,7 +92,7 @@ const OurAdvantagesSection = () => {
                     height={1000}
                   />
                 )}
-              </React.Fragment>
+              </motion.div>
             ))}
           </div>
         </div>

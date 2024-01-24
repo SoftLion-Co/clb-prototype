@@ -1,3 +1,4 @@
+"use client"
 import React from "react";
 import s from "./WhyChooseSection.module.scss";
 import ImageAndTextCardsComponent from "@/components/ImageAndTextCardsComponent";

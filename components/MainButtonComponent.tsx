@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, ForwardedRef, forwardRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import s from "./MainButtonComponent.module.scss";
@@ -6,6 +6,7 @@ import classNames from "classnames";
 import { Url } from "next/dist/shared/lib/router/router";
 import Arrow from "@/images/vectors/arrow.svg";
 import ArrowWhite from "@/images/vectors/arrow-white.svg";
+import { motion } from "framer-motion";
 
 interface MainButtonProps {
   text: string;
@@ -14,12 +15,12 @@ interface MainButtonProps {
   type?: "MainButton" | "MainArrowButton" | "MainUsualButton";
 }
 
-const MainButtonComponent: FC<MainButtonProps> = ({
+const MainButtonComponent: FC<MainButtonProps> = forwardRef(({
   text,
   href,
   className,
   type = "MainButton",
-}) => {
+}, ref: ForwardedRef<HTMLDivElement> | undefined) => {
   const linkProps = {
     href: href || "",
   };
@@ -58,12 +59,14 @@ const MainButtonComponent: FC<MainButtonProps> = ({
   }
 
   return (
-    <div className={classNames(s.main__button, className)}>
+    <div ref={ref} className={classNames(s.main__button, className)}>
       <Link className={s.main__link} {...linkProps}>
         {buttonContent}
       </Link>
     </div>
   );
-};
+});
+
+export const MMainButtonComponent = motion(MainButtonComponent);
 
 export default MainButtonComponent;

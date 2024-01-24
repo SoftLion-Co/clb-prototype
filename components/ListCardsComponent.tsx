@@ -1,7 +1,9 @@
+"use client";
 import React, { FC } from "react";
 import Image from "next/image";
 import s from "./ListCardsComponent.module.scss";
 import classNames from "classnames";
+import { motion } from "framer-motion";
 
 interface ListCardsProps {
   data: Portfolio[] | null;
@@ -40,10 +42,37 @@ const ListCardsComponent: FC<ListCardsProps> = ({
 }) => {
   const cardsClass = classNames(s.cards, { [s.container]: container });
 
+  const textAnimation = {
+    hidden: {
+      y: 100,
+      opacity: 0,
+      delay: 1,
+    },
+    visible: (custom: number) => ({
+      y: 0,
+      opacity: 1,
+      delay: 1,
+      transition: { delay: custom * 0.2 },
+    }),
+  };
+
   return (
-    <div className={cardsClass}>
+    <motion.div
+      className={cardsClass}
+      initial={"hidden"}
+      whileInView={"visible"}
+      viewport={{ margin: "20% 0% -20% 0%" }}
+    >
       {data?.map((item: Portfolio, index: number) => (
-        <div key={index} className={s.card}>
+        <motion.div
+          key={index}
+          className={s.card}
+          initial={"hidden"}
+          whileInView={"visible"}
+          variants={textAnimation}
+          custom={index}
+          viewport={{ margin: "20% 0% -20% 0%" }}
+        >
           {item.acf && item.acf.icon && (
             <Image
               src={item.acf.icon}
@@ -66,9 +95,9 @@ const ListCardsComponent: FC<ListCardsProps> = ({
               return null;
             })}
           </ul>
-        </div>
+        </motion.div>
       ))}
-    </div>
+    </motion.div>
   );
 };
 

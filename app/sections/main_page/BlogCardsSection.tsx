@@ -5,11 +5,13 @@ import classNames from "classnames";
 
 import MainTitleComponent from "@/components/MainTitleComponent";
 import SmallCardBlogComponent from "@/components/blog/SmallCardBlogComponent";
-import MainButtonComponent from "@/components/MainButtonComponent";
+import MainButtonComponent, {
+  MMainButtonComponent,
+} from "@/components/MainButtonComponent";
 import useBlogsData from "@/hooks/useBlogsData";
 import { useTranslations } from "next-intl";
 import useLocale from "@/hooks/useLocale";
-import ScrollAnimationWrapper from "@/hooks/ScrollAnimationWrapper";
+import { motion } from "framer-motion";
 
 const BlogCardsSection = () => {
   const t = useTranslations("blog");
@@ -34,34 +36,57 @@ const BlogCardsSection = () => {
     };
   }, []);
 
+  const textAnimation = {
+    hidden: {
+      y: 100,
+      opacity: 0,
+      delay: 1,
+    },
+    visible: (custom: number) => ({
+      y: 0,
+      opacity: 1,
+      delay: 1,
+      transition: { delay: custom * 0.2 },
+    }),
+  };
+
   return (
     <section className={s.box}>
       <div className={s.background}>
-        <ScrollAnimationWrapper animationType="high">
-          <div className={classNames(s.container, s.blog__container)}>
-            <MainTitleComponent
-              className={s.blog__title}
-              title={t("blogTitle")}
-              color="black"
-              left
-            />
+        <div className={classNames(s.container, s.blog__container)}>
+          <MainTitleComponent
+            className={s.blog__title}
+            title={t("blogTitle")}
+            color="black"
+            left
+          />
 
-            <div className={s.blog__cards}>
-              {latestBlogs.slice(0, cardsToRender).map((blog, index) => (
-                <div key={index}>
-                  <SmallCardBlogComponent info={blog} locale={locale} />
-                </div>
-              ))}
-            </div>
-
-            <MainButtonComponent
+          <motion.div
+            initial={"hidden"}
+            whileInView={"visible"}
+            className={s.blog__cards}
+            viewport={{ margin: "20% 0% -20% 0%" }}
+          >
+            {latestBlogs.slice(0, cardsToRender).map((blog, index) => (
+              <motion.div key={index} variants={textAnimation} custom={index}>
+                <SmallCardBlogComponent info={blog} locale={locale} />
+              </motion.div>
+            ))}
+          </motion.div>
+          <motion.div
+            initial={"hidden"}
+            whileInView={"visible"}
+            viewport={{ margin: "20% 0% -20% 0%" }}
+          >
+            <MMainButtonComponent
+              variants={textAnimation}
               text={t1("moreOurNews")}
               href={"/blog"}
               type="MainArrowButton"
               className={s.blog__button}
             />
-          </div>{" "}
-        </ScrollAnimationWrapper>
+          </motion.div>
+        </div>
       </div>
     </section>
   );

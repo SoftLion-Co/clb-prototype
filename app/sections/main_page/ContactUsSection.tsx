@@ -11,7 +11,7 @@ import useVacancies from "@/hooks/useVacancies";
 import InputField from "@/components/form/InputField";
 import { useTranslations } from "next-intl";
 import useLocale from "@/hooks/useLocale";
-import ScrollAnimationWrapper from "@/hooks/ScrollAnimationWrapper";
+import { motion } from "framer-motion";
 
 interface FormData {
   firstname: string;
@@ -147,6 +147,20 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
 
   const fields = cv ? fieldsCV : fieldsWithoutCV;
 
+  const textAnimation = {
+    hidden: {
+      y: 100,
+      opacity: 0,
+      delay: 1,
+    },
+    visible: (custom: number) => ({
+      y: 0,
+      opacity: 1,
+      delay: 1,
+      transition: { delay: custom * 0.2 },
+    }),
+  };
+
   const renderInputField = (field: {
     type: string;
     name: string;
@@ -274,24 +288,28 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
   return (
     <section className={s.box}>
       <div className={s.background}>
-        <ScrollAnimationWrapper animationType="high">
-          <MainTitleComponent
-            title={cv ? t("letsWorkWithUS") : t("contactUsHeading")}
-          />
-          <div className={classNames(s.container, s.form__container)}>
-            <form
-              className={classNames(s.form, {
-                [s.cv]: cv,
-                [s.form__custom]: cv,
-              })}
-              onSubmit={handleSubmit}
-            >
-              <div className={s.form__content}>{boxInputs}</div>
-              {cv ? buttonComponentCV : buttonComponent}
-            </form>
-            <Image className={s.form__picture} src={Picture} alt="Picture" />
-          </div>
-        </ScrollAnimationWrapper>
+        <MainTitleComponent
+          title={cv ? t("letsWorkWithUS") : t("contactUsHeading")}
+        />
+        <motion.div
+          initial={"hidden"}
+          whileInView={"visible"}
+          viewport={{ margin: "20% 0% -20% 0%" }}
+          variants={textAnimation}
+          className={classNames(s.container, s.form__container)}
+        >
+          <form
+            className={classNames(s.form, {
+              [s.cv]: cv,
+              [s.form__custom]: cv,
+            })}
+            onSubmit={handleSubmit}
+          >
+            <div className={s.form__content}>{boxInputs}</div>
+            {cv ? buttonComponentCV : buttonComponent}
+          </form>
+          <Image className={s.form__picture} src={Picture} alt="Picture" />
+        </motion.div>
       </div>
     </section>
   );

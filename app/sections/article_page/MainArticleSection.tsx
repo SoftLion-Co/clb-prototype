@@ -6,6 +6,7 @@ import ImageAndTextCardsComponent from "@/components/ImageAndTextCardsComponent"
 import SocialLinksSection from "@/app/sections/article_page/SocialLinksSection";
 import useLocale from "@/hooks/useLocale";
 import useDateFormat from "@/hooks/useDateFormat";
+import { motion } from "framer-motion";
 
 interface Data {
   data: Blog;
@@ -60,16 +61,55 @@ const MainArticleSection = (data: Data) => {
 
   const formattedDate = useDateFormat(data.data.acf.date, locale);
 
+  const textAnimation = {
+    hidden: {
+      y: 100,
+      opacity: 0,
+      delay: 1,
+    },
+    visible: (custom: number) => ({
+      y: 0,
+      opacity: 1,
+      delay: 1,
+      transition: { delay: custom * 0.1 },
+    }),
+  };
+
   return (
     <section className={s.box}>
       <div className={s.background}>
-        <div className={classNames(s.container, s.article)}>
-          <h1 className={classNames(s.h1Default, s.article__title)}>
+        <motion.div
+          className={classNames(s.container, s.article)}
+        >
+          <motion.h1
+            className={classNames(s.h1Default, s.article__title)}
+            initial={"hidden"}
+            whileInView={"visible"}
+            viewport={{ margin: "1000% 0% 10% 0%" }}
+            variants={textAnimation}
+            custom={1}
+          >
             {data.data.acf[`heading_${locale}` as keyof Acf]}
-          </h1>
-          <p className={classNames(s.article__date)}>{formattedDate}</p>
+          </motion.h1>
+          <motion.p
+            className={classNames(s.article__date)}
+            initial={"hidden"}
+            whileInView={"visible"}
+            viewport={{ margin: "1000% 0% 10% 0%" }}
+            variants={textAnimation}
+            custom={2}
+          >
+            {formattedDate}
+          </motion.p>
           <div className={s.article__content}>
-            <div className={s.image__container}>
+            <motion.div
+              className={s.image__container}
+              initial={"hidden"}
+              whileInView={"visible"}
+              viewport={{ margin: "1000% 0% 10% 0%" }}
+              variants={textAnimation}
+              custom={3}
+            >
               <Image
                 src={data.data.acf.mainimage}
                 alt={data.data.acf[`heading_${locale}` as keyof Acf]}
@@ -77,16 +117,37 @@ const MainArticleSection = (data: Data) => {
                 width={1440}
                 height={649}
               />
-            </div>
-            <p className={s.article__text}>
+            </motion.div>
+            <motion.p
+              className={s.article__text}
+              initial={"hidden"}
+              whileInView={"visible"}
+              viewport={{ margin: "1000% 0% 10% 0%" }}
+              variants={textAnimation}
+              custom={4}
+            >
               {data.data.acf[`text1_${locale}` as keyof Acf]}
-            </p>
-            <h2 className={s.article__subheading}>
+            </motion.p>
+            <motion.h2
+              className={s.article__subheading}
+              initial={"hidden"}
+              whileInView={"visible"}
+              viewport={{ margin: "1000% 0% 10% 0%" }}
+              variants={textAnimation}
+              custom={5}
+            >
               {data.data.acf[`subheading1_${locale}` as keyof Acf]}
-            </h2>
-            <p className={s.article__text}>
+            </motion.h2>
+            <motion.p
+              className={s.article__text}
+              initial={"hidden"}
+              whileInView={"visible"}
+              viewport={{ margin: "1000% 0% 10% 0%" }}
+              variants={textAnimation}
+              custom={6}
+            >
               {data.data.acf[`text2_${locale}` as keyof Acf]}
-            </p>
+            </motion.p>
             <ImageAndTextCardsComponent
               text={data.data.acf[`quote_${locale}` as keyof Acf]}
               image={data.data.acf.secondimage}
@@ -94,15 +155,29 @@ const MainArticleSection = (data: Data) => {
               color="blue"
               articlePadding
             />
-            <h2 className={s.article__subheading}>
+            <motion.h2
+              className={s.article__subheading}
+              initial={"hidden"}
+              whileInView={"visible"}
+              viewport={{ margin: "1000% 0% 10% 0%" }}
+              variants={textAnimation}
+              custom={7}
+            >
               {data.data.acf[`subheading2_${locale}` as keyof Acf]}
-            </h2>
-            <p className={s.article__text}>
+            </motion.h2>
+            <motion.p
+              className={s.article__text}
+              initial={"hidden"}
+              whileInView={"visible"}
+              viewport={{ margin: "1000% 0% 10% 0%" }}
+              variants={textAnimation}
+              custom={8}
+            >
               {data.data.acf[`text3_${locale}` as keyof Acf]}
-            </p>
+            </motion.p>
           </div>
           <SocialLinksSection />
-        </div>
+        </motion.div>
       </div>
     </section>
   );

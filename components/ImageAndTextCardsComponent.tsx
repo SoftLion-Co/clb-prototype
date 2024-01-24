@@ -2,6 +2,7 @@ import React from "react";
 import s from "./ImageAndTextCardsComponent.module.scss";
 import Image from "next/image";
 import classNames from "classnames";
+import { motion } from "framer-motion";
 
 interface ImageAndTextCardsProps {
   text: string;
@@ -13,7 +14,7 @@ interface ImageAndTextCardsProps {
   color?: "blue" | "white" | "green";
   smallFont?: boolean;
   articlePadding?: boolean;
-  mobileTextCenter?:boolean;
+  mobileTextCenter?: boolean;
 }
 
 function ImageAndTextCardsComponent(props: ImageAndTextCardsProps) {
@@ -30,6 +31,19 @@ function ImageAndTextCardsComponent(props: ImageAndTextCardsProps) {
     mobileTextCenter = false,
   } = props;
 
+  const textAnimation = {
+    hidden: {
+      y: 100,
+      opacity: 0,
+      delay: 1,
+    },
+    visible: (custom: number) => ({
+      y: 0,
+      opacity: 1,
+      delay: 1,
+      transition: { delay: custom * 0.2 },
+    }),
+  };
   // Function which handles different colors and borders from props
 
   const getContainerStyles = () => {
@@ -74,15 +88,39 @@ function ImageAndTextCardsComponent(props: ImageAndTextCardsProps) {
 
   const containerStyles = getContainerStyles();
 
-  const quoteClasses = classNames(s.quote, { [s.quote__smallFont]: smallFont }, { [s.quote__mobileCenter]: mobileTextCenter });
+  const quoteClasses = classNames(
+    s.quote,
+    { [s.quote__smallFont]: smallFont },
+    { [s.quote__mobileCenter]: mobileTextCenter }
+  );
 
   return (
-    <div className={articleClasses}>
-      <div className={quoteContainerClasses} style={containerStyles}>
+    <motion.div
+      className={articleClasses}
+      initial={"hidden"}
+      whileInView={"visible"}
+      viewport={{ margin: "20% 0% -20% 0%" }}
+    >
+      <motion.div
+        className={quoteContainerClasses}
+        style={containerStyles}
+        initial={"hidden"}
+        whileInView={"visible"}
+        viewport={{ margin: "20% 0% -20% 0%" }}
+        variants={textAnimation}
+        custom={rotate ? 2 : 1}
+      >
         <h3 className={quoteClasses}>{text}</h3>
-      </div>
+      </motion.div>
 
-      <div className={s.quote__image__container}>
+      <motion.div
+        className={s.quote__image__container}
+        initial={"hidden"}
+        whileInView={"visible"}
+        viewport={{ margin: "20% 0% -20% 0%" }}
+        variants={textAnimation}
+        custom={rotate ? 1 : 2}
+      >
         <Image
           src={image}
           alt={alt}
@@ -90,8 +128,8 @@ function ImageAndTextCardsComponent(props: ImageAndTextCardsProps) {
           height={1000}
           className={s.quote__image}
         />
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 }
 

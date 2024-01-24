@@ -34,6 +34,7 @@
     width: 100%;
     object-fit: cover;
     border-radius: 32px;
+    height: 100%;
 
     @include for-size(phone) {
       height: 212px;

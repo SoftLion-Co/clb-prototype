@@ -1,3 +1,4 @@
+"use client"
 import s from "./VacanciesSection.module.scss";
 import MainTitleComponent from "@/components/MainTitleComponent";
 import VacanciesCards from "@/components/careers_page/VacanciesCards";
