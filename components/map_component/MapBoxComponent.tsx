@@ -157,14 +157,16 @@ const MapBoxComponent = ({ onCountrySelect }: MapBoxComponentProps) => {
 
   useEffect(() => {
     const updateScale = () => {
-      if (typeof window !== "undefined") {
-        const newScale = window.innerWidth <= 768 ? 2.7 : 1;
+      if (typeof window) {
+        let newScale = 1;
+        if (window.innerWidth <= 768) {
+          newScale = 2.7;
+        }
         setCurrentScale(newScale);
       }
     };
 
     window.addEventListener("resize", updateScale);
-
     updateScale();
 
     return () => window.removeEventListener("resize", updateScale);
