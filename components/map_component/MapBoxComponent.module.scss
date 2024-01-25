@@ -13,7 +13,7 @@
     height: 524px;
   }
   @include for-size(laptop) {
-    height: 584px;
+    min-height: 584px;
   }
   @include for-size(desktop) {
     border-radius: 32px;

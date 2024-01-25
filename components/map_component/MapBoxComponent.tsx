@@ -6,10 +6,13 @@ import React, {
   useRef,
   useMemo,
 } from "react";
+
 import { CSSProperties } from "react";
+import { motion, useAnimation } from "framer-motion";
+import { useGesture } from "react-use-gesture";
+
 import CountryMapSVG from "@/components/map_component/CountryMapSVG";
 import countriesData from "@/components/map_component/countriesData";
-import { throttle } from "lodash";
 
 interface CountryInfo {
   country: string;
@@ -28,117 +31,70 @@ const MapBoxComponent = ({ onCountrySelect }: MapBoxComponentProps) => {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const svgContentRef = useRef<SVGSVGElement | null>(null);
   const [elementPositions, setElementPositions] = useState<any>({});
+  const [currentScale, setCurrentScale] = useState(1);
   const [selectedCountryId, setSelectedCountryId] = useState<string | null>(
     null
   );
+
   const [scale, setScale] = useState(1);
+  const [position, setPosition] = useState({ x: 0, y: 0 });
 
-  const [isDragging, setIsDragging] = useState(false);
-  const [touchStartPosition, setTouchStartPosition] = useState({ x: 0, y: 0 });
-  const [pinchStartDistance, setPinchStartDistance] = useState(0);
+  const MAX_SCALE = 5;
+  const MIN_SCALE = 1;
 
-  const [currentScale, setCurrentScale] = useState(1);
+  const controls = useAnimation();
+
+  const getDragConstraints = () => {
+    if (!containerRef.current || !svgContentRef.current)
+      return { top: 0, right: 0, bottom: 0, left: 0 };
+
+    const containerBounds = containerRef.current.getBoundingClientRect();
+    const svgBounds = svgContentRef.current.getBoundingClientRect();
+
+    return {
+      top: -(svgBounds.height * scale - containerBounds.height) / 2,
+      right: (svgBounds.width * scale - containerBounds.width) / 2,
+      bottom: (svgBounds.height * scale - containerBounds.height) / 2,
+      left: -(svgBounds.width * scale - containerBounds.width) / 2,
+    };
+  };
+
+  const bindGesture = useGesture({
+    onPinch: ({ offset: [d] }) => {
+      const newScale = Math.min(Math.max(1, scale + d / 100), 5);
+      setScale(newScale);
+    },
+    onDrag: ({ offset: [x, y] }) => {
+      setPosition({ x, y });
+    },
+  });
+
+  const resetScaleAndPosition = () => {
+    setScale(1);
+    controls.start({
+      scale: 1,
+      x: 0,
+      y: 0,
+    });
+  };
+
+  const zoomIn = () => {
+    const newScale = Math.min(MAX_SCALE, scale + 0.1);
+    setScale(newScale);
+    controls.start({ scale: newScale });
+  };
+
+  const zoomOut = () => {
+    const newScale = Math.max(MIN_SCALE, scale - 0.1);
+    setScale(newScale);
+    controls.start({ scale: newScale });
+  };
 
   useEffect(() => {
     if (typeof window !== "undefined") {
       setCurrentScale(window.innerWidth <= 768 ? 2.7 : 1);
     }
   }, []);
-
-  const handleTouchStart = useCallback(
-    (e: React.TouchEvent<HTMLDivElement>) => {
-      if (e.touches.length === 1) {
-        const touch = e.touches[0];
-        setTouchStartPosition({ x: touch.clientX, y: touch.clientY });
-        setIsDragging(true);
-      } else if (e.touches.length === 2) {
-        const distance = getDistanceBetweenTouches(e.touches);
-        setPinchStartDistance(distance);
-      }
-    },
-    []
-  );
-
-  const adjustScaleWithinBounds = useMemo(() => {
-    const MAX_SCALE = 5;
-    const MIN_SCALE = 1;
-    return (scale: any) => Math.min(Math.max(scale, MIN_SCALE), MAX_SCALE);
-  }, []);
-
-  const handleTouchMove = useCallback(
-    throttle((e: React.TouchEvent<HTMLDivElement>) => {
-      if (!e.defaultPrevented) {
-        e.preventDefault();
-      }
-
-      const touchCount = e.touches.length;
-
-      if (touchCount === 1 && isDragging) {
-        const touch = e.touches[0];
-        const deltaX = touch.clientX - touchStartPosition.x;
-        const deltaY = touch.clientY - touchStartPosition.y;
-
-        requestAnimationFrame(() => {
-          setTranslate((prevTranslate) => ({
-            x: prevTranslate.x + deltaX,
-            y: prevTranslate.y + deltaY,
-          }));
-        });
-
-        setTouchStartPosition({ x: touch.clientX, y: touch.clientY });
-      } else if (touchCount === 2) {
-        const distance = getDistanceBetweenTouches(e.touches);
-        const scaleChange = distance / pinchStartDistance;
-        const limitedScaleChange = Math.max(0.95, Math.min(scaleChange, 1.05));
-        const newScale = adjustScaleWithinBounds(
-          currentScale * limitedScaleChange
-        );
-
-        if (Math.abs(newScale - currentScale) > 0.01) {
-          setCurrentScale(newScale);
-        }
-      }
-    }, 10),
-    [
-      isDragging,
-      touchStartPosition,
-      currentScale,
-      pinchStartDistance,
-      adjustScaleWithinBounds,
-    ]
-  );
-
-  const getDistanceBetweenTouches = useCallback((touches: any) => {
-    const [touch1, touch2] = touches;
-    const xDiff = touch2.clientX - touch1.clientX;
-    const yDiff = touch2.clientY - touch1.clientY;
-    return Math.sqrt(xDiff * xDiff + yDiff * yDiff);
-  }, []);
-
-  const handleTouchEnd = useCallback(() => {
-    setIsDragging(false);
-    setTouchStartPosition({ x: 0, y: 0 });
-    setTranslate((prevTranslate) => ({
-      x: prevTranslate.x,
-      y: prevTranslate.y,
-    }));
-  }, []);
-
-  useEffect(() => {
-    const handleDocumentTouchMove = (e: TouchEvent) => {
-      if (isDragging) {
-        e.preventDefault();
-      }
-    };
-
-    document.body.addEventListener("touchmove", handleDocumentTouchMove, {
-      passive: false,
-    });
-
-    return () => {
-      document.body.removeEventListener("touchmove", handleDocumentTouchMove);
-    };
-  }, [isDragging]);
 
   const handleMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
     setStartPos({ x: e.clientX - translate.x, y: e.clientY - translate.y });
@@ -197,31 +153,6 @@ const MapBoxComponent = ({ onCountrySelect }: MapBoxComponentProps) => {
       });
     }
   }, [currentScale, elementPositions]);
-
-  const MAX_SCALE = 5; // Максимальний масштаб
-
-  const zoomIn = () => {
-    setCurrentScale((prevScale) => {
-      const newScale = prevScale + 0.1;
-      if (window.innerWidth < 767.98) {
-        const mobileScale = newScale + 0.1;
-        return mobileScale > MAX_SCALE ? MAX_SCALE : mobileScale;
-      }
-      return newScale > MAX_SCALE ? MAX_SCALE : newScale;
-    });
-  };
-
-  function zoomOut() {
-    setCurrentScale((prevScale) => Math.max(prevScale - 0.1, 1));
-  }
-
-  const resetScaleAndPosition = () => {
-    const defaultScale = window.innerWidth <= 768 ? 2.7 : 1;
-
-    setCurrentScale(defaultScale);
-
-    setTranslate({ x: 0, y: 0 });
-  };
 
   useEffect(() => {
     const updateScale = () => {
@@ -287,17 +218,14 @@ const MapBoxComponent = ({ onCountrySelect }: MapBoxComponentProps) => {
           </button>
         ))}
       </div>
-      <div
+      <motion.div
         className={s.map__container}
-        onTouchStart={handleTouchStart}
-        onTouchMove={handleTouchMove}
-        onTouchEnd={handleTouchEnd}
-        style={{
-          width: "100%",
-          height: "100%",
-          overflow: "hidden",
-        }}
-        ref={containerRef}
+        style={{ width: "100%", height: "100%", scale }}
+        drag
+        dragConstraints={getDragConstraints()}
+        animate={controls}
+        {...bindGesture()}
+        whileTap={{ cursor: "grabbing" }}
       >
         <CountryMapSVG
           handleCountrySelect={handleCountrySelect}
@@ -313,7 +241,7 @@ const MapBoxComponent = ({ onCountrySelect }: MapBoxComponentProps) => {
           handleMouseEnter={handleMouseEnter}
           handleMouseLeave={handleMouseLeave}
         />
-      </div>
+      </motion.div>
     </div>
   );
 };

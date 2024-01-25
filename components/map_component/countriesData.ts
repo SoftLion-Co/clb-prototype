@@ -6,7 +6,7 @@ type CountryInfo = {
 
 const countries: CountryInfo[] = [
   {
-    country: "Germany",
+    country: "germany",
     agriculturalCrops: [
       "Wheat",
       "Barley",
