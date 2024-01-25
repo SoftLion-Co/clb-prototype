@@ -9,6 +9,7 @@ import React, {
 import { CSSProperties } from "react";
 import CountryMapSVG from "@/components/map_component/CountryMapSVG";
 import countriesData from "@/components/map_component/countriesData";
+import { throttle } from "lodash";
 
 interface CountryInfo {
   country: string;
@@ -54,15 +55,17 @@ const MapBoxComponent = ({ onCountrySelect }: MapBoxComponentProps) => {
     []
   );
 
+  const smoothingFactor = 0.5;
+
   const handleTouchMove = useCallback(
-    (e: React.TouchEvent<HTMLDivElement>) => {
+    throttle((e: React.TouchEvent<HTMLDivElement>) => {
       const touchCount = e.touches.length;
 
       if (touchCount === 1 && isDragging) {
         e.preventDefault();
         const touch = e.touches[0];
-        const deltaX = touch.clientX - touchStartPosition.x;
-        const deltaY = touch.clientY - touchStartPosition.y;
+        const deltaX = (touch.clientX - touchStartPosition.x) * smoothingFactor;
+        const deltaY = (touch.clientY - touchStartPosition.y) * smoothingFactor;
 
         requestAnimationFrame(() => {
           setTranslate((prevTranslate) => ({
@@ -86,7 +89,7 @@ const MapBoxComponent = ({ onCountrySelect }: MapBoxComponentProps) => {
           setPinchStartDistance(distance);
         }
       }
-    },
+    }, 10),
     [isDragging, currentScale, pinchStartDistance, touchStartPosition]
   );
 
