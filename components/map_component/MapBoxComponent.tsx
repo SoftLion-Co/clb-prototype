@@ -60,9 +60,10 @@ const MapBoxComponent = ({ onCountrySelect }: MapBoxComponentProps) => {
   };
 
   const bindGesture = useGesture({
-    onPinch: ({ offset: [d] }) => {
-      const newScale = Math.min(Math.max(1, scale + d / 100), 5);
+    onPinch: ({ da: [d] }) => {
+      const newScale = Math.min(Math.max(1, scale + d / 200), MAX_SCALE);
       setScale(newScale);
+      controls.start({ scale: newScale });
     },
     onDrag: ({ offset: [x, y] }) => {
       setPosition({ x, y });
@@ -157,11 +158,13 @@ const MapBoxComponent = ({ onCountrySelect }: MapBoxComponentProps) => {
   useEffect(() => {
     const updateScale = () => {
       if (typeof window !== "undefined") {
-        setCurrentScale(window.innerWidth <= 768 ? 2.7 : 1);
+        const newScale = window.innerWidth <= 768 ? 2.7 : 1;
+        setCurrentScale(newScale);
       }
     };
 
     window.addEventListener("resize", updateScale);
+
     updateScale();
 
     return () => window.removeEventListener("resize", updateScale);
@@ -220,7 +223,7 @@ const MapBoxComponent = ({ onCountrySelect }: MapBoxComponentProps) => {
       </div>
       <motion.div
         className={s.map__container}
-        style={{ width: "100%", height: "100%", scale }}
+        style={{ width: "100%", height: "100%" }}
         drag
         dragConstraints={getDragConstraints()}
         animate={controls}
