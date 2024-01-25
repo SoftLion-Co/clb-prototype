@@ -31,16 +31,24 @@ const MapBoxComponent = ({ onCountrySelect }: MapBoxComponentProps) => {
   const [scale, setScale] = useState(1);
   const [isDragging, setIsDragging] = useState(false);
   const [touchStartPosition, setTouchStartPosition] = useState({ x: 0, y: 0 });
+  const [pinchStartDistance, setPinchStartDistance] = useState(0);
 
   const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
-    setIsDragging(true);
-    setTouchStartPosition({ x: e.touches[0].clientX, y: e.touches[0].clientY });
+    if (e.touches.length === 1) {
+      const touch = e.touches[0];
+      setTouchStartPosition({ x: touch.clientX, y: touch.clientY });
+      setIsDragging(true);
+    } else if (e.touches.length === 2) {
+      const distance = getDistanceBetweenTouches(e.touches);
+      setPinchStartDistance(distance);
+    }
   };
 
   const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
-    if (isDragging) {
-      e.preventDefault();
+    const touchCount = e.touches.length;
 
+    if (touchCount === 1 && isDragging) {
+      e.preventDefault();
       const touch = e.touches[0];
       const deltaX = touch.clientX - touchStartPosition.x;
       const deltaY = touch.clientY - touchStartPosition.y;
@@ -51,11 +59,29 @@ const MapBoxComponent = ({ onCountrySelect }: MapBoxComponentProps) => {
       }));
 
       setTouchStartPosition({ x: touch.clientX, y: touch.clientY });
+    } else if (touchCount === 2) {
+      const distance = getDistanceBetweenTouches(e.touches);
+      const scaleChange = distance / pinchStartDistance;
+      setCurrentScale((prevScale) =>
+        adjustScaleWithinBounds(prevScale * scaleChange)
+      );
+      setPinchStartDistance(distance);
     }
   };
 
   const handleTouchEnd = () => {
     setIsDragging(false);
+  };
+
+  const getDistanceBetweenTouches = (touches: any) => {
+    const [touch1, touch2] = touches;
+    const xDiff = touch2.clientX - touch1.clientX;
+    const yDiff = touch2.clientY - touch1.clientY;
+    return Math.sqrt(xDiff * xDiff + yDiff * yDiff);
+  };
+
+  const adjustScaleWithinBounds = (scale: any) => {
+    return Math.min(Math.max(scale, 1), MAX_SCALE);
   };
 
   useEffect(() => {
@@ -192,7 +218,7 @@ const MapBoxComponent = ({ onCountrySelect }: MapBoxComponentProps) => {
   const buttonsData = [
     { onClick: zoomIn, text: "+" },
     { onClick: zoomOut, text: "-" },
-    { onClick: resetScaleAndPosition, text: "↩︎" },
+    { onClick: resetScaleAndPosition, text: "𖣓" },
   ];
 
   return (
