@@ -35,16 +35,19 @@ const TradingMarketSection = () => {
               {selectedCountry ? (
                 <>
                   <h2 className={s.map__title}>{selectedCountry?.country}</h2>
-                  <ul className={s.map__list}>
+
+                  <div className={s.map__cultures}>
                     <p className={s.map__subtitle}>
                       {t("agriculturalCropsTitle")}:
                     </p>
-                    {selectedCountry?.agriculturalCrops.map((crop) => (
-                      <li className={s.map__item} key={crop}>
-                        {crop}
-                      </li>
-                    ))}
-                  </ul>
+                    <ul className={s.map__list}>
+                      {selectedCountry?.agriculturalCrops.map((crop) => (
+                        <li className={s.map__item} key={crop}>
+                          {crop}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
 
                   <div className={s.map__delivery}>
                     <p className={s.map__subtitle}>

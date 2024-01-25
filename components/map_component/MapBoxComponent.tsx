@@ -23,10 +23,6 @@ interface MapBoxComponentProps {
 
 const MapBoxComponent = ({ onCountrySelect }: MapBoxComponentProps) => {
   const [hoverPath, setHoverPath] = useState<{ [key: string]: boolean }>({});
-  const [currentScale, setCurrentScale] = useState(
-    window.innerWidth <= 768 ? 2.7 : 1
-  );
-
   const [startPos, setStartPos] = useState({ x: 0, y: 0 });
   const [translate, setTranslate] = useState({ x: 0, y: 0 });
   const containerRef = useRef<HTMLDivElement | null>(null);
@@ -40,6 +36,14 @@ const MapBoxComponent = ({ onCountrySelect }: MapBoxComponentProps) => {
   const [isDragging, setIsDragging] = useState(false);
   const [touchStartPosition, setTouchStartPosition] = useState({ x: 0, y: 0 });
   const [pinchStartDistance, setPinchStartDistance] = useState(0);
+
+  const [currentScale, setCurrentScale] = useState(1);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setCurrentScale(window.innerWidth <= 768 ? 2.7 : 1);
+    }
+  }, []);
 
   const handleTouchStart = useCallback(
     (e: React.TouchEvent<HTMLDivElement>) => {
@@ -55,17 +59,24 @@ const MapBoxComponent = ({ onCountrySelect }: MapBoxComponentProps) => {
     []
   );
 
-  const smoothingFactor = 0.5;
+  const adjustScaleWithinBounds = useMemo(() => {
+    const MAX_SCALE = 5;
+    const MIN_SCALE = 1;
+    return (scale: any) => Math.min(Math.max(scale, MIN_SCALE), MAX_SCALE);
+  }, []);
 
   const handleTouchMove = useCallback(
     throttle((e: React.TouchEvent<HTMLDivElement>) => {
+      if (!e.defaultPrevented) {
+        e.preventDefault();
+      }
+
       const touchCount = e.touches.length;
 
       if (touchCount === 1 && isDragging) {
-        e.preventDefault();
         const touch = e.touches[0];
-        const deltaX = (touch.clientX - touchStartPosition.x) * smoothingFactor;
-        const deltaY = (touch.clientY - touchStartPosition.y) * smoothingFactor;
+        const deltaX = touch.clientX - touchStartPosition.x;
+        const deltaY = touch.clientY - touchStartPosition.y;
 
         requestAnimationFrame(() => {
           setTranslate((prevTranslate) => ({
@@ -78,36 +89,39 @@ const MapBoxComponent = ({ onCountrySelect }: MapBoxComponentProps) => {
       } else if (touchCount === 2) {
         const distance = getDistanceBetweenTouches(e.touches);
         const scaleChange = distance / pinchStartDistance;
-
         const limitedScaleChange = Math.max(0.95, Math.min(scaleChange, 1.05));
-
         const newScale = adjustScaleWithinBounds(
           currentScale * limitedScaleChange
         );
+
         if (Math.abs(newScale - currentScale) > 0.01) {
           setCurrentScale(newScale);
-          setPinchStartDistance(distance);
         }
       }
     }, 10),
-    [isDragging, currentScale, pinchStartDistance, touchStartPosition]
+    [
+      isDragging,
+      touchStartPosition,
+      currentScale,
+      pinchStartDistance,
+      adjustScaleWithinBounds,
+    ]
   );
 
-  const getDistanceBetweenTouches = (touches: any) => {
+  const getDistanceBetweenTouches = useCallback((touches: any) => {
     const [touch1, touch2] = touches;
     const xDiff = touch2.clientX - touch1.clientX;
     const yDiff = touch2.clientY - touch1.clientY;
     return Math.sqrt(xDiff * xDiff + yDiff * yDiff);
-  };
-
-  const adjustScaleWithinBounds = useCallback((scale: any) => {
-    const MAX_SCALE = 5;
-    const MIN_SCALE = 1;
-    return Math.min(Math.max(scale, MIN_SCALE), MAX_SCALE);
   }, []);
 
   const handleTouchEnd = useCallback(() => {
     setIsDragging(false);
+    setTouchStartPosition({ x: 0, y: 0 });
+    setTranslate((prevTranslate) => ({
+      x: prevTranslate.x,
+      y: prevTranslate.y,
+    }));
   }, []);
 
   useEffect(() => {
@@ -210,16 +224,16 @@ const MapBoxComponent = ({ onCountrySelect }: MapBoxComponentProps) => {
   };
 
   useEffect(() => {
-    const handleResize = () => {
-      const newScale = window.innerWidth <= 768 ? 2 : 1;
-      setCurrentScale(newScale);
+    const updateScale = () => {
+      if (typeof window !== "undefined") {
+        setCurrentScale(window.innerWidth <= 768 ? 2.7 : 1);
+      }
     };
 
-    window.addEventListener("resize", handleResize);
+    window.addEventListener("resize", updateScale);
+    updateScale();
 
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
+    return () => window.removeEventListener("resize", updateScale);
   }, []);
 
   const defaultStyle: CSSProperties = useMemo(
