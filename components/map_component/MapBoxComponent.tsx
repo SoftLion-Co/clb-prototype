@@ -1,8 +1,15 @@
 import s from "@/components/map_component/MapBoxComponent.module.scss";
-import React, { useState, useEffect, useCallback, useRef } from "react";
+import React, {
+  useState,
+  useEffect,
+  useCallback,
+  useRef,
+  useMemo,
+} from "react";
 import { CSSProperties } from "react";
 import CountryMapSVG from "@/components/map_component/CountryMapSVG";
 import countriesData from "@/components/map_component/countriesData";
+import { throttle } from "lodash";
 
 interface CountryInfo {
   country: string;
@@ -29,34 +36,79 @@ const MapBoxComponent = ({ onCountrySelect }: MapBoxComponentProps) => {
     null
   );
   const [scale, setScale] = useState(1);
+
   const [isDragging, setIsDragging] = useState(false);
   const [touchStartPosition, setTouchStartPosition] = useState({ x: 0, y: 0 });
+  const [pinchStartDistance, setPinchStartDistance] = useState(0);
 
-  const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
-    setIsDragging(true);
-    setTouchStartPosition({ x: e.touches[0].clientX, y: e.touches[0].clientY });
+  const handleTouchStart = useCallback(
+    (e: React.TouchEvent<HTMLDivElement>) => {
+      if (e.touches.length === 1) {
+        const touch = e.touches[0];
+        setTouchStartPosition({ x: touch.clientX, y: touch.clientY });
+        setIsDragging(true);
+      } else if (e.touches.length === 2) {
+        const distance = getDistanceBetweenTouches(e.touches);
+        setPinchStartDistance(distance);
+      }
+    },
+    []
+  );
+
+  const smoothingFactor = 0.5;
+
+  const handleTouchMove = useCallback(
+    throttle((e: React.TouchEvent<HTMLDivElement>) => {
+      const touchCount = e.touches.length;
+
+      if (touchCount === 1 && isDragging) {
+        e.preventDefault();
+        const touch = e.touches[0];
+        const deltaX = (touch.clientX - touchStartPosition.x) * smoothingFactor;
+        const deltaY = (touch.clientY - touchStartPosition.y) * smoothingFactor;
+
+        requestAnimationFrame(() => {
+          setTranslate((prevTranslate) => ({
+            x: prevTranslate.x + deltaX,
+            y: prevTranslate.y + deltaY,
+          }));
+        });
+
+        setTouchStartPosition({ x: touch.clientX, y: touch.clientY });
+      } else if (touchCount === 2) {
+        const distance = getDistanceBetweenTouches(e.touches);
+        const scaleChange = distance / pinchStartDistance;
+
+        const limitedScaleChange = Math.max(0.95, Math.min(scaleChange, 1.05));
+
+        const newScale = adjustScaleWithinBounds(
+          currentScale * limitedScaleChange
+        );
+        if (Math.abs(newScale - currentScale) > 0.01) {
+          setCurrentScale(newScale);
+          setPinchStartDistance(distance);
+        }
+      }
+    }, 10),
+    [isDragging, currentScale, pinchStartDistance, touchStartPosition]
+  );
+
+  const getDistanceBetweenTouches = (touches: any) => {
+    const [touch1, touch2] = touches;
+    const xDiff = touch2.clientX - touch1.clientX;
+    const yDiff = touch2.clientY - touch1.clientY;
+    return Math.sqrt(xDiff * xDiff + yDiff * yDiff);
   };
 
-  const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
-    if (isDragging) {
-      e.preventDefault();
+  const adjustScaleWithinBounds = useCallback((scale: any) => {
+    const MAX_SCALE = 5;
+    const MIN_SCALE = 1;
+    return Math.min(Math.max(scale, MIN_SCALE), MAX_SCALE);
+  }, []);
 
-      const touch = e.touches[0];
-      const deltaX = touch.clientX - touchStartPosition.x;
-      const deltaY = touch.clientY - touchStartPosition.y;
-
-      setTranslate((prevTranslate) => ({
-        x: prevTranslate.x + deltaX,
-        y: prevTranslate.y + deltaY,
-      }));
-
-      setTouchStartPosition({ x: touch.clientX, y: touch.clientY });
-    }
-  };
-
-  const handleTouchEnd = () => {
+  const handleTouchEnd = useCallback(() => {
     setIsDragging(false);
-  };
+  }, []);
 
   useEffect(() => {
     const handleDocumentTouchMove = (e: TouchEvent) => {
@@ -146,7 +198,7 @@ const MapBoxComponent = ({ onCountrySelect }: MapBoxComponentProps) => {
   };
 
   function zoomOut() {
-    setCurrentScale((prevScale) => Math.max(prevScale - 0.1, 0.9));
+    setCurrentScale((prevScale) => Math.max(prevScale - 0.1, 1));
   }
 
   const resetScaleAndPosition = () => {
@@ -170,15 +222,18 @@ const MapBoxComponent = ({ onCountrySelect }: MapBoxComponentProps) => {
     };
   }, []);
 
-  const defaultStyle: CSSProperties = {
-    cursor: "pointer",
-    fill: "#EBECE6",
-    stroke: "#171717",
-    strokeWidth: "0.1",
-    strokeLinecap: "round",
-    strokeLinejoin: "round",
-    transition: "fill 0.3s",
-  };
+  const defaultStyle: CSSProperties = useMemo(
+    () => ({
+      cursor: "pointer",
+      fill: "#EBECE6",
+      stroke: "#171717",
+      strokeWidth: "0.1",
+      strokeLinecap: "round",
+      strokeLinejoin: "round",
+      transition: "fill 0.3s",
+    }),
+    []
+  );
   const hoverStyle: CSSProperties = {
     ...defaultStyle,
     fill: "#A7B896",
@@ -192,7 +247,7 @@ const MapBoxComponent = ({ onCountrySelect }: MapBoxComponentProps) => {
   const buttonsData = [
     { onClick: zoomIn, text: "+" },
     { onClick: zoomOut, text: "-" },
-    { onClick: resetScaleAndPosition, text: "↩︎" },
+    { onClick: resetScaleAndPosition, text: "𖣓" },
   ];
 
   return (

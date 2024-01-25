@@ -1,4 +1,3 @@
-"use client";
 import React, { CSSProperties } from "react";
 
 interface CountryMapSVGProps {
@@ -595,5 +594,3 @@ const CountryMapSVG = ({
     </svg>
   );
 };
-
-export default CountryMapSVG;

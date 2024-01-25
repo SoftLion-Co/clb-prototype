@@ -22,15 +22,21 @@
   &__buttons {
     position: absolute;
     z-index: 1;
-    margin: 10px 0 0 10px;
-    padding: 14px 8px;
+    margin: 8px 0 0 8px;
+    padding: 6px 4px;
     background-color: $backgroundColorGreen;
-    border-radius: 24px;
+    border-radius: 16px;
     width: max-content;
     display: flex;
     flex-direction: column;
     gap: 14px;
     opacity: 0.9;
+
+    @include for-size(laptop) {
+      padding: 14px 8px;
+      margin: 10px 0 0 10px;
+      border-radius: 24px;
+    }
   }
 
   &__button {
@@ -42,25 +48,41 @@
     user-select: none;
     border: 1px solid $brandColorDarkGreen;
     border-radius: 24px;
-    padding: 4px 14px;
+    padding: 4px 12px;
 
-    color: $brandColorDarkGreen;
+    @include for-size(tablet) {
+      padding: 4px 14px;
+    }
+    @include for-size(laptop) {
+      &:hover {
+        background-color: $brandColorDarkGreen;
 
-    &:hover {
-      background-color: $brandColorDarkGreen;
-      color: $classicWhiteBackgroundColor;
+        .map__buttonText {
+          color: $classicWhiteBackgroundColor;
+        }
+      }
     }
   }
 
   &__buttonText {
+    transition: color 0.3s ease-in-out;
     display: flex;
-    align-items: center;
     justify-content: center;
-    font-size: 18px;
-    line-height: 150%;
-    font-weight: 900;
-    min-width: 14px;
-    height: 22px;
+    align-items: center;
+
+    color: $blackTextColor;
+    font-size: 20px;
+    line-height: 130%;
+    font-weight: 700;
+    min-width: 12px;
+    height: 20px;
     opacity: 1;
+
+    @include for-size(laptop) {
+      font-size: 24px;
+      line-height: 150%;
+      min-width: 14px;
+      height: 22px;
+    }
   }
 }
