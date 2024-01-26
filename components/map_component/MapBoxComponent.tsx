@@ -32,7 +32,8 @@ const MapBoxComponent = ({ onCountrySelect }: MapBoxComponentProps) => {
   const [scale, setScale] = useState(1);
   const [position, setPosition] = useState({ x: 0, y: 0 });
 
-  const MAX_SCALE = 5;
+  const MAX_MOBILE_SCALE = 3.5;
+  const MAX_SCALE = 2;
   const MIN_SCALE = 1;
 
   const controls = useAnimation();
@@ -56,24 +57,37 @@ const MapBoxComponent = ({ onCountrySelect }: MapBoxComponentProps) => {
     onDrag: ({ offset: [x, y] }) => {
       setPosition({ x, y });
     },
+    onPinch: ({ offset: [scaleChange] }) => {
+      setScale((prevScale) =>
+        Math.min(MAX_SCALE, Math.max(MIN_SCALE, prevScale + scaleChange))
+      );
+    },
   });
 
   const zoomIn = () => {
-    const newScale = Math.min(MAX_SCALE, scale + 0.1);
+    const newScale = Math.min(MAX_MOBILE_SCALE, scale + 0.1);
     setScale(newScale);
     controls.start({ scale: newScale });
   };
 
   const zoomOut = () => {
+    if (window.innerWidth <= 768 && scale <= 2) {
+      return;
+    }
     const newScale = Math.max(MIN_SCALE, scale - 0.1);
     setScale(newScale);
     controls.start({ scale: newScale });
   };
 
   const resetScaleAndPosition = () => {
-    setScale(1);
+    let newScale = 1;
+    if (window.innerWidth <= 768) {
+      newScale = 2.5;
+    }
+    setScale(newScale);
+    setPosition({ x: 0, y: 0 });
     controls.start({
-      scale: 1,
+      scale: newScale,
       x: 0,
       y: 0,
     });
@@ -106,12 +120,14 @@ const MapBoxComponent = ({ onCountrySelect }: MapBoxComponentProps) => {
 
   useEffect(() => {
     const updateScale = () => {
-      if (typeof window) {
+      if (typeof window !== "undefined") {
         let newScale = 1;
-        if (window.innerWidth <= 768) {
-          newScale = 2.7;
+        if (window.innerWidth <= 1280) {
+          newScale = 2;
         }
-        setCurrentScale(newScale);
+        if (scale !== newScale) {
+          setScale(newScale);
+        }
       }
     };
 
@@ -119,7 +135,7 @@ const MapBoxComponent = ({ onCountrySelect }: MapBoxComponentProps) => {
     updateScale();
 
     return () => window.removeEventListener("resize", updateScale);
-  }, []);
+  }, [scale]);
 
   const defaultStyle: CSSProperties = useMemo(
     () => ({
