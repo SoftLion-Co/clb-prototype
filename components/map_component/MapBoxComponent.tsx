@@ -13,6 +13,7 @@ import { useGesture } from "react-use-gesture";
 
 import CountryMapSVG from "@/components/map_component/CountryMapSVG";
 import countriesData from "@/components/map_component/countriesData";
+import useExcelToJsonHook from "@/hooks/useExelToJson";
 
 interface CountryInfo {
   country: string;
@@ -43,6 +44,19 @@ const MapBoxComponent = ({ onCountrySelect }: MapBoxComponentProps) => {
   const MIN_SCALE = 1;
 
   const controls = useAnimation();
+
+  const { data, fetchDataAndReadFile } = useExcelToJsonHook();
+
+  useEffect(() => {
+    fetchDataAndReadFile(); // Викликаємо функцію при старті компонента, можливо використовуючи useEffect
+  }, []);
+
+  useEffect(() => {
+    // Виводимо результат у консоль при зміні даних
+    if (data) {
+      console.log('Результат:', data);
+    }
+  }, [data]);
 
   const getDragConstraints = () => {
     if (!containerRef.current || !svgContentRef.current)
@@ -130,7 +144,7 @@ const MapBoxComponent = ({ onCountrySelect }: MapBoxComponentProps) => {
       setSelectedCountryId(null);
       onCountrySelect(null);
     } else {
-      const countryData = countriesData.find((c) => c.country === countryId);
+      const countryData = data?.find((c) => c.country === countryId);
       if (countryData) {
         setSelectedCountryId(countryId);
         onCountrySelect(countryData);
