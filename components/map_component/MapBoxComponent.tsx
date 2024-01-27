@@ -2,8 +2,7 @@ import s from "@/components/map_component/MapBoxComponent.module.scss";
 import React, { useState, useEffect, useRef, useMemo } from "react";
 
 import { CSSProperties } from "react";
-import { motion, useAnimation } from "framer-motion";
-import { useGesture } from "react-use-gesture";
+import { motion, useAnimation, Transition } from "framer-motion";
 
 import CountryMapSVG from "@/components/map_component/CountryMapSVG";
 import countriesData from "@/components/map_component/countriesData";
@@ -19,6 +18,8 @@ interface MapBoxComponentProps {
 }
 
 const MapBoxComponent = ({ onCountrySelect }: MapBoxComponentProps) => {
+  const controls = useAnimation();
+  const [scale, setScale] = useState(1);
   const [hoverPath, setHoverPath] = useState<{ [key: string]: boolean }>({});
   const [startPos, setStartPos] = useState({ x: 0, y: 0 });
   const [translate, setTranslate] = useState({ x: 0, y: 0 });
@@ -29,14 +30,60 @@ const MapBoxComponent = ({ onCountrySelect }: MapBoxComponentProps) => {
     null
   );
 
-  const [scale, setScale] = useState(1);
-  const [position, setPosition] = useState({ x: 0, y: 0 });
-
-  const MAX_MOBILE_SCALE = 3.5;
-  const MAX_SCALE = 2;
+  const SCALE_STEP = 0.1;
+  const MAX_SCALE = 5;
   const MIN_SCALE = 1;
 
-  const controls = useAnimation();
+  const resetScaleAndPosition = () => {
+    const resetTransition: Transition = {
+      type: "spring",
+      stiffness: 100,
+      damping: 10,
+    };
+
+    let resetScale = 1;
+    if (typeof window !== "undefined") {
+      if (window.innerWidth <= 1280) {
+        resetScale = 2;
+      }
+    }
+
+    setCurrentScale(resetScale);
+    setTranslate({ x: 0, y: 0 });
+    controls.start({ scale: resetScale, x: 0, y: 0 }, resetTransition);
+  };
+
+  const zoomIn = () => {
+    const newScale = Math.min(currentScale + SCALE_STEP, MAX_SCALE);
+    setCurrentScale(newScale);
+    const newTranslate = {
+      x: translate.x * (newScale / currentScale),
+      y: translate.y * (newScale / currentScale),
+    };
+    setTranslate(newTranslate);
+  };
+
+  const zoomOut = () => {
+    const newScale = Math.max(currentScale - SCALE_STEP, MIN_SCALE);
+
+    if (typeof window !== "undefined" && window.innerWidth <= 1280) {
+      if (newScale >= 2) {
+        setCurrentScale(newScale);
+        const newTranslate = {
+          x: translate.x * (newScale / currentScale),
+          y: translate.y * (newScale / currentScale),
+        };
+        setTranslate(newTranslate);
+      }
+    } else {
+      setCurrentScale(newScale);
+      const newTranslate = {
+        x: translate.x * (newScale / currentScale),
+        y: translate.y * (newScale / currentScale),
+      };
+      setTranslate(newTranslate);
+    }
+  };
 
   const getDragConstraints = () => {
     if (!containerRef.current || !svgContentRef.current)
@@ -51,46 +98,6 @@ const MapBoxComponent = ({ onCountrySelect }: MapBoxComponentProps) => {
       bottom: (svgBounds.height * scale - containerBounds.height) / 2,
       left: -(svgBounds.width * scale - containerBounds.width) / 2,
     };
-  };
-
-  const bindGesture = useGesture({
-    onDrag: ({ offset: [x, y] }) => {
-      setPosition({ x, y });
-    },
-    onPinch: ({ offset: [scaleChange] }) => {
-      setScale((prevScale) =>
-        Math.min(MAX_SCALE, Math.max(MIN_SCALE, prevScale + scaleChange))
-      );
-    },
-  });
-
-  const zoomIn = () => {
-    const newScale = Math.min(MAX_MOBILE_SCALE, scale + 0.1);
-    setScale(newScale);
-    controls.start({ scale: newScale });
-  };
-
-  const zoomOut = () => {
-    if (window.innerWidth <= 768 && scale <= 2) {
-      return;
-    }
-    const newScale = Math.max(MIN_SCALE, scale - 0.1);
-    setScale(newScale);
-    controls.start({ scale: newScale });
-  };
-
-  const resetScaleAndPosition = () => {
-    let newScale = 1;
-    if (window.innerWidth <= 768) {
-      newScale = 2.5;
-    }
-    setScale(newScale);
-    setPosition({ x: 0, y: 0 });
-    controls.start({
-      scale: newScale,
-      x: 0,
-      y: 0,
-    });
   };
 
   const handleMouseUp = () => {
@@ -123,10 +130,11 @@ const MapBoxComponent = ({ onCountrySelect }: MapBoxComponentProps) => {
       if (typeof window !== "undefined") {
         let newScale = 1;
         if (window.innerWidth <= 1280) {
-          newScale = 2;
+          newScale = 1.6;
         }
         if (scale !== newScale) {
           setScale(newScale);
+          setCurrentScale(newScale);
         }
       }
     };
@@ -188,11 +196,10 @@ const MapBoxComponent = ({ onCountrySelect }: MapBoxComponentProps) => {
       </div>
       <motion.div
         className={s.map__container}
-        style={{ width: "100%", height: "100%", scale }}
+        style={{ width: "100%", height: "100%", transform: `scale(${scale})` }}
         drag
         dragConstraints={getDragConstraints()}
         animate={controls}
-        {...bindGesture()}
         whileTap={{ cursor: "grabbing" }}
       >
         <CountryMapSVG
