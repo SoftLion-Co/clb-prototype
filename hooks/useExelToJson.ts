@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import * as XLSX from 'xlsx';
+import { useState } from "react";
+import * as XLSX from "xlsx";
 
 const useExcelToJson = () => {
   const [loading, setLoading] = useState(false);
@@ -11,11 +11,38 @@ const useExcelToJson = () => {
     setError(null);
 
     try {
-      const response = await fetch('http://localhost:3001/wp-content/uploads/2024/01/Trading-Markets-TEST.xlsx');
+      const request = await fetch(
+        "https://softlion.blog/wp-json/wp/v2/trading-markets?acf_format=standard&_fields=acf.exel_document_input"
+      );
+      const result = await request.json();
+
+      if (
+        !result ||
+        !result[0] ||
+        !result[0].acf ||
+        !result[0].acf.exel_document_input
+      ) {
+        setError("Помилка при отриманні посилання на Excel файл");
+        return;
+      }
+
+      const excelFileUrl = result[0].acf.exel_document_input;
+
+      // Виділіть частину URL, яка йде після "https://softlion.blog/"
+      const relativePath = excelFileUrl.replace("https://softlion.blog/", "");
+
+      // Збережіть нову базову URL
+      const baseUrl = "http://localhost:3001/";
+
+      // Складіть повний URL для нового запиту
+      const newUrl = baseUrl + relativePath;
+
+      // Виконайте запит з новим URL
+      const response = await fetch(newUrl);
       const arrayBuffer = await response.arrayBuffer();
       const data = new Uint8Array(arrayBuffer);
 
-      const workbook = XLSX.read(data, { type: 'array' });
+      const workbook = XLSX.read(data, { type: "array" });
       const sheetName = workbook.SheetNames[0];
       const sheet = workbook.Sheets[sheetName];
 
@@ -36,7 +63,11 @@ const useExcelToJson = () => {
             if (currentCountry) {
               groupedData.push(currentCountry);
             }
-            currentCountry = { country: value.toLowerCase(), agriculturalCrops: [], deliveryOptions: [] };
+            currentCountry = {
+              country: value.toLowerCase(),
+              agriculturalCrops: [],
+              deliveryOptions: [],
+            };
           } else if (columnIndex % 2 === 1) {
             currentCountry.agriculturalCrops.push(value);
           } else if (columnIndex % 2 === 0) {
@@ -51,7 +82,7 @@ const useExcelToJson = () => {
 
       setData(groupedData);
     } catch (e) {
-      setError('Помилка при обробці Excel файлу');
+      setError("Помилка при обробці Excel файлу");
       console.error(e);
     } finally {
       setLoading(false);
