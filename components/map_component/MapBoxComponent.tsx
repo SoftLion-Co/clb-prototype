@@ -34,25 +34,6 @@ const MapBoxComponent = ({ onCountrySelect }: MapBoxComponentProps) => {
   const MAX_SCALE = 5;
   const MIN_SCALE = 1;
 
-  const resetScaleAndPosition = () => {
-    const resetTransition: Transition = {
-      type: "spring",
-      stiffness: 100,
-      damping: 10,
-    };
-
-    let resetScale = 1;
-    if (typeof window !== "undefined") {
-      if (window.innerWidth <= 1280) {
-        resetScale = 2;
-      }
-    }
-
-    setCurrentScale(resetScale);
-    setTranslate({ x: 0, y: 0 });
-    controls.start({ scale: resetScale, x: 0, y: 0 }, resetTransition);
-  };
-
   const zoomIn = () => {
     const newScale = Math.min(currentScale + SCALE_STEP, MAX_SCALE);
     setCurrentScale(newScale);
@@ -67,7 +48,7 @@ const MapBoxComponent = ({ onCountrySelect }: MapBoxComponentProps) => {
     const newScale = Math.max(currentScale - SCALE_STEP, MIN_SCALE);
 
     if (typeof window !== "undefined" && window.innerWidth <= 1280) {
-      if (newScale >= 2) {
+      if (newScale >= 1.7) {
         setCurrentScale(newScale);
         const newTranslate = {
           x: translate.x * (newScale / currentScale),
@@ -83,6 +64,25 @@ const MapBoxComponent = ({ onCountrySelect }: MapBoxComponentProps) => {
       };
       setTranslate(newTranslate);
     }
+  };
+
+  const resetScaleAndPosition = () => {
+    const resetTransition: Transition = {
+      type: "spring",
+      stiffness: 100,
+      damping: 10,
+    };
+
+    let resetScale = 1;
+    if (typeof window !== "undefined") {
+      if (window.innerWidth <= 1280) {
+        resetScale = 1.7;
+      }
+    }
+
+    setCurrentScale(resetScale);
+    setTranslate({ x: 0, y: 0 });
+    controls.start({ scale: resetScale, x: 0, y: 0 }, resetTransition);
   };
 
   const getDragConstraints = () => {
@@ -130,7 +130,7 @@ const MapBoxComponent = ({ onCountrySelect }: MapBoxComponentProps) => {
       if (typeof window !== "undefined") {
         let newScale = 1;
         if (window.innerWidth <= 1280) {
-          newScale = 1.6;
+          newScale = 1.7;
         }
         if (scale !== newScale) {
           setScale(newScale);
