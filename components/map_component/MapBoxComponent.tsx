@@ -47,7 +47,7 @@ const MapBoxComponent = ({ onCountrySelect }: MapBoxComponentProps) => {
   const zoomOut = () => {
     const newScale = Math.max(currentScale - SCALE_STEP, MIN_SCALE);
 
-    if (typeof window !== "undefined" && window.innerWidth <= 1280) {
+    if (typeof window !== "undefined" && window.innerWidth <= 1279.98) {
       if (newScale >= 1.7) {
         setCurrentScale(newScale);
         const newTranslate = {
@@ -75,7 +75,7 @@ const MapBoxComponent = ({ onCountrySelect }: MapBoxComponentProps) => {
 
     let resetScale = 1;
     if (typeof window !== "undefined") {
-      if (window.innerWidth <= 1280) {
+      if (window.innerWidth <= 1279.98) {
         resetScale = 1.7;
       }
     }
@@ -92,11 +92,14 @@ const MapBoxComponent = ({ onCountrySelect }: MapBoxComponentProps) => {
     const containerBounds = containerRef.current.getBoundingClientRect();
     const svgBounds = svgContentRef.current.getBoundingClientRect();
 
+    const maxX = (svgBounds.width * scale - containerBounds.width) / 2;
+    const maxY = (svgBounds.height * scale - containerBounds.height) / 2;
+
     return {
-      top: -(svgBounds.height * scale - containerBounds.height) / 2,
-      right: (svgBounds.width * scale - containerBounds.width) / 2,
-      bottom: (svgBounds.height * scale - containerBounds.height) / 2,
-      left: -(svgBounds.width * scale - containerBounds.width) / 2,
+      top: -maxY,
+      right: maxX,
+      bottom: maxY,
+      left: -maxX,
     };
   };
 
@@ -129,12 +132,22 @@ const MapBoxComponent = ({ onCountrySelect }: MapBoxComponentProps) => {
     const updateScale = () => {
       if (typeof window !== "undefined") {
         let newScale = 1;
-        if (window.innerWidth <= 1280) {
+        if (window.innerWidth <= 1279.98) {
           newScale = 1.7;
         }
         if (scale !== newScale) {
           setScale(newScale);
           setCurrentScale(newScale);
+          const newTranslate = {
+            x: translate.x * (newScale / currentScale),
+            y: translate.y * (newScale / currentScale),
+          };
+          setTranslate(newTranslate);
+          controls.start({
+            scale: newScale,
+            x: newTranslate.x,
+            y: newTranslate.y,
+          });
         }
       }
     };
@@ -143,7 +156,7 @@ const MapBoxComponent = ({ onCountrySelect }: MapBoxComponentProps) => {
     updateScale();
 
     return () => window.removeEventListener("resize", updateScale);
-  }, [scale]);
+  }, []);
 
   const defaultStyle: CSSProperties = useMemo(
     () => ({
