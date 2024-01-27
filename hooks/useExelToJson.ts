@@ -11,18 +11,8 @@ const useExcelToJson = () => {
     setError(null);
 
     try {
-      const response = await fetch('https://softlion.blog/wp-json/wp/v2/trading-markets?acf_format=standard&_fields=acf.exel_document_input');
-      const result = await response.json();
-
-      if (!result || !result[0] || !result[0].acf || !result[0].acf.exel_document_input) {
-        setError('Помилка при отриманні посилання на Excel файл');
-        return;
-      }
-
-      const excelFileUrl = result[0].acf.exel_document_input;
-      const excelResponse = await fetch(excelFileUrl);
-
-      const arrayBuffer = await excelResponse.arrayBuffer();
+      const response = await fetch('http://localhost:3001/wp-content/uploads/2024/01/Trading-Markets-TEST.xlsx');
+      const arrayBuffer = await response.arrayBuffer();
       const data = new Uint8Array(arrayBuffer);
 
       const workbook = XLSX.read(data, { type: 'array' });

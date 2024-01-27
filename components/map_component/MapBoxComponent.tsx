@@ -51,13 +51,6 @@ const MapBoxComponent = ({ onCountrySelect }: MapBoxComponentProps) => {
     fetchDataAndReadFile(); // Викликаємо функцію при старті компонента, можливо використовуючи useEffect
   }, []);
 
-  useEffect(() => {
-    // Виводимо результат у консоль при зміні даних
-    if (data) {
-      console.log('Результат:', data);
-    }
-  }, [data]);
-
   const getDragConstraints = () => {
     if (!containerRef.current || !svgContentRef.current)
       return { top: 0, right: 0, bottom: 0, left: 0 };
