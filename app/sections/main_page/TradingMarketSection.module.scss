@@ -6,14 +6,17 @@
   display: grid;
   gap: 16px;
 
-  @include for-size(laptop) {
+  @include for-size(tablet) {
     display: grid;
-    gap: 24px;
+    gap: 16px;
     grid-template-columns: repeat(3, 1fr);
+  }
+  @include for-size(laptop) {
+    gap: 24px;
   }
 
   &__container {
-    @include for-size(laptop) {
+    @include for-size(tablet) {
       grid-column: span 2;
     }
   }
