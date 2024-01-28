@@ -8,15 +8,17 @@ import GetHeroImageComponent from "@/components/main_page/GetHeroImageComponent"
 import { useNetwork } from "@mantine/hooks"; // Import the useNetwork hook
 import useHeroTextColor from "@/hooks/useHeroTextColor";
 import classNames from "classnames";
-import { motion } from "framer-motion"
+import { motion } from "framer-motion";
 import useFramerAnimations from "@/hooks/useFramerAnimations";
 
 function HeroSection() {
   const t = useTranslations("homePage");
   const t1 = useTranslations("components");
-  const defaultAnimation = useFramerAnimations()
+
   const { effectiveType } = useNetwork(); // Get the user's connection type
-  const color = useHeroTextColor()
+  const color = useHeroTextColor();
+
+  const defaultAnimation = useFramerAnimations();
 
   const titleClass = classNames(
     s.hero__title, // Existing title class
@@ -40,19 +42,41 @@ function HeroSection() {
           <GetHeroVideoComponent />
         )}
         <motion.div
-        initial={"hidden"}
-        whileInView={"visible"}
-        className={s.hero__content}>
-          <motion.h1 variants={defaultAnimation} className={titleClass}>{t("hero")}</motion.h1>
+          className={s.hero__content}
+          initial={"hidden"}
+          whileInView={"visible"}
+        >
+          <motion.h1
+            variants={defaultAnimation}
+            className={titleClass}
+            custom={3}
+          >
+            {t("hero")}
+          </motion.h1>
           <div className={s.hero__text_wrapper}>
-            <motion.p custom={1} variants={defaultAnimation} className={textClass}>{t("heroText1")}</motion.p>
-            <motion.p custom={1.5} variants={defaultAnimation} className={textClass}>{t("heroText2")}</motion.p>
+            <motion.p
+              custom={6}
+              variants={defaultAnimation}
+              className={textClass}
+            >
+              {t("heroText1")}
+            </motion.p>
+            <motion.p
+              custom={6.5}
+              variants={defaultAnimation}
+              className={textClass}
+            >
+              {t("heroText2")}
+            </motion.p>
           </div>
-          <MMainButtonComponent  custom={2} variants={defaultAnimation}
-            text={t1("ourSercvicesButton")}
-            className={s.hero__button}
-            type="MainUsualButton"
-          />
+          <div className={s.hero__button}>
+            <MMainButtonComponent
+              custom={8}
+              variants={defaultAnimation}
+              text={t1("ourSercvicesButton")}
+              type="MainUsualButton"
+            />
+          </div>
         </motion.div>
       </div>
     </section>

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import s from "@/app/sections/main_page/HeroSection.module.scss";
+import { motion } from "framer-motion";
 
 interface PhotoData {
   acf: {
@@ -21,12 +22,26 @@ const GetHeroImageComponent = () => {
       .catch((error) => console.error("Error fetching photo:", error));
   }, []);
 
+  const defaultAnimation = {
+    hidden: {
+      opacity: 0,
+    },
+    visible: {
+      opacity: 1,
+    },
+  };
+
   if (!photo) {
     // Photo data is still being fetched
     return <div className={s.hero__video}></div>; // or display a loading spinner/message
   }
 
   return (
+    <motion.div
+      initial={"hidden"}
+      whileInView={"visible"}
+      variants={defaultAnimation}
+    >
       <Image
         src={photo.acf.hero_photo}
         alt="Hero Photo"
@@ -34,6 +49,7 @@ const GetHeroImageComponent = () => {
         height={2000}
         className={s.hero__video}
       />
+    </motion.div>
   );
 };
 
