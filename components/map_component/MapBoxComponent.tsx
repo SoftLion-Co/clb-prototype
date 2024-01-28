@@ -3,6 +3,11 @@ import React, { useState, useEffect, useRef, useMemo } from "react";
 
 import { CSSProperties } from "react";
 import { motion, useAnimation, Transition } from "framer-motion";
+import {
+  TransformWrapper,
+  TransformComponent,
+  ReactZoomPanPinchRef,
+} from "react-zoom-pan-pinch";
 
 import CountryMapSVG from "@/components/map_component/CountryMapSVG";
 import countriesData from "@/components/map_component/countriesData";
@@ -29,9 +34,10 @@ const MapBoxComponent = ({ onCountrySelect }: MapBoxComponentProps) => {
   const [selectedCountryId, setSelectedCountryId] = useState<string | null>(
     null
   );
+  const transformWrapperRef = useRef<ReactZoomPanPinchRef>(null);
 
-  const SCALE_STEP = 0.1;
-  const MAX_SCALE = 5;
+  const SCALE_STEP = 0.25;
+  const MAX_SCALE = 4;
   const MIN_SCALE = 1;
 
   const zoomIn = () => {
@@ -47,7 +53,7 @@ const MapBoxComponent = ({ onCountrySelect }: MapBoxComponentProps) => {
   const zoomOut = () => {
     const newScale = Math.max(currentScale - SCALE_STEP, MIN_SCALE);
 
-    if (typeof window !== "undefined" && window.innerWidth <= 1280) {
+    if (typeof window !== "undefined" && window.innerWidth <= 1279.98) {
       if (newScale >= 1.7) {
         setCurrentScale(newScale);
         const newTranslate = {
@@ -75,9 +81,13 @@ const MapBoxComponent = ({ onCountrySelect }: MapBoxComponentProps) => {
 
     let resetScale = 1;
     if (typeof window !== "undefined") {
-      if (window.innerWidth <= 1280) {
+      if (window.innerWidth <= 1279.98) {
         resetScale = 1.7;
       }
+    }
+
+    if (transformWrapperRef.current) {
+      transformWrapperRef.current.resetTransform();
     }
 
     setCurrentScale(resetScale);
@@ -92,11 +102,14 @@ const MapBoxComponent = ({ onCountrySelect }: MapBoxComponentProps) => {
     const containerBounds = containerRef.current.getBoundingClientRect();
     const svgBounds = svgContentRef.current.getBoundingClientRect();
 
+    const maxX = (svgBounds.width * scale - containerBounds.width) / 2;
+    const maxY = (svgBounds.height * scale - containerBounds.height) / 2;
+
     return {
-      top: -(svgBounds.height * scale - containerBounds.height) / 2,
-      right: (svgBounds.width * scale - containerBounds.width) / 2,
-      bottom: (svgBounds.height * scale - containerBounds.height) / 2,
-      left: -(svgBounds.width * scale - containerBounds.width) / 2,
+      top: -maxY,
+      right: maxX,
+      bottom: maxY,
+      left: -maxX,
     };
   };
 
@@ -127,15 +140,22 @@ const MapBoxComponent = ({ onCountrySelect }: MapBoxComponentProps) => {
 
   useEffect(() => {
     const updateScale = () => {
-      if (typeof window !== "undefined") {
-        let newScale = 1;
-        if (window.innerWidth <= 1280) {
-          newScale = 1.7;
-        }
-        if (scale !== newScale) {
-          setScale(newScale);
-          setCurrentScale(newScale);
-        }
+      const isSmallScreen = window.matchMedia("(max-width: 1279.98px)").matches;
+      let newScale = isSmallScreen ? 1.7 : 1;
+
+      if (scale !== newScale) {
+        setScale(newScale);
+        setCurrentScale(newScale);
+        const newTranslate = {
+          x: translate.x * (newScale / currentScale),
+          y: translate.y * (newScale / currentScale),
+        };
+        setTranslate(newTranslate);
+        controls.start({
+          scale: newScale,
+          x: newTranslate.x,
+          y: newTranslate.y,
+        });
       }
     };
 
@@ -143,7 +163,7 @@ const MapBoxComponent = ({ onCountrySelect }: MapBoxComponentProps) => {
     updateScale();
 
     return () => window.removeEventListener("resize", updateScale);
-  }, [scale]);
+  }, [scale, currentScale, translate, controls]);
 
   const defaultStyle: CSSProperties = useMemo(
     () => ({
@@ -194,29 +214,46 @@ const MapBoxComponent = ({ onCountrySelect }: MapBoxComponentProps) => {
           </button>
         ))}
       </div>
-      <motion.div
-        className={s.map__container}
-        style={{ width: "100%", height: "100%", transform: `scale(${scale})` }}
-        drag
-        dragConstraints={getDragConstraints()}
-        animate={controls}
-        whileTap={{ cursor: "grabbing" }}
-      >
-        <CountryMapSVG
-          handleCountrySelect={handleCountrySelect}
-          selectedCountryId={selectedCountryId}
-          hoverPath={hoverPath}
-          hoverStyle={hoverStyle}
-          activeStyle={activeStyle}
-          defaultStyle={defaultStyle}
-          scale={scale}
-          currentScale={currentScale}
-          translate={translate}
-          svgContentRef={svgContentRef}
-          handleMouseEnter={handleMouseEnter}
-          handleMouseLeave={handleMouseLeave}
-        />
-      </motion.div>
+      <div className={s.wrapperClass}>
+        <TransformWrapper ref={transformWrapperRef}>
+          <TransformComponent
+            wrapperStyle={{
+              width: "100%",
+              height: "100%",
+            }}
+            contentStyle={{ width: "100%", height: "100%" }}
+          >
+            <motion.div
+              className={s.map__container}
+              style={{
+                width: "100%",
+                height: "100%",
+                transform: `scale(${currentScale})`,
+                transformOrigin: "center center",
+              }}
+              drag
+              dragConstraints={getDragConstraints()}
+              animate={controls}
+              whileTap={{ cursor: "grabbing" }}
+            >
+              <CountryMapSVG
+                handleCountrySelect={handleCountrySelect}
+                selectedCountryId={selectedCountryId}
+                hoverPath={hoverPath}
+                hoverStyle={hoverStyle}
+                activeStyle={activeStyle}
+                defaultStyle={defaultStyle}
+                scale={scale}
+                currentScale={currentScale}
+                translate={translate}
+                svgContentRef={svgContentRef}
+                handleMouseEnter={handleMouseEnter}
+                handleMouseLeave={handleMouseLeave}
+              />
+            </motion.div>
+          </TransformComponent>
+        </TransformWrapper>
+      </div>
     </div>
   );
 };

@@ -1,6 +1,10 @@
 @import "@/style/colors";
 @import "@/style/container";
 @import "@/style/viewports";
+.wrapperClass {
+  width: 100%;
+  height: 100%;
+}
 
 .map {
   background-color: $classicWhiteBackgroundColor;
@@ -17,6 +21,11 @@
   }
   @include for-size(desktop) {
     border-radius: 32px;
+  }
+
+  &__container {
+    display: flex;
+    transform-origin: center center;
   }
 
   &__buttons {
