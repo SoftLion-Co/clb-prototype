@@ -130,32 +130,31 @@ const MapBoxComponent = ({ onCountrySelect }: MapBoxComponentProps) => {
 
   useEffect(() => {
     const updateScale = () => {
-      if (typeof window !== "undefined") {
-        let newScale = 1;
-        if (window.innerWidth <= 1279.98) {
-          newScale = 1.7;
-        }
-        if (scale !== newScale) {
-          setScale(newScale);
-          setCurrentScale(newScale);
-          const newTranslate = {
-            x: translate.x * (newScale / currentScale),
-            y: translate.y * (newScale / currentScale),
-          };
-          setTranslate(newTranslate);
-          controls.start({
-            scale: newScale,
-            x: newTranslate.x,
-            y: newTranslate.y,
-          });
-        }
+      const mediaQuery = window.matchMedia("(max-width: 1279.98px)");
+      let newScale = mediaQuery.matches ? 1.7 : 1;
+
+      if (scale !== newScale) {
+        setScale(newScale);
+        setCurrentScale(newScale);
+        const newTranslate = {
+          x: translate.x * (newScale / currentScale),
+          y: translate.y * (newScale / currentScale),
+        };
+        setTranslate(newTranslate);
+        controls.start({
+          scale: newScale,
+          x: newTranslate.x,
+          y: newTranslate.y,
+        });
       }
     };
 
-    window.addEventListener("resize", updateScale);
+    const mediaQuery = window.matchMedia("(max-width: 1279.98px)");
+    mediaQuery.addListener(updateScale);
+
     updateScale();
 
-    return () => window.removeEventListener("resize", updateScale);
+    return () => mediaQuery.removeListener(updateScale);
   }, []);
 
   const defaultStyle: CSSProperties = useMemo(
