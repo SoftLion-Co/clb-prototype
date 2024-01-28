@@ -3,6 +3,11 @@ import React, { useState, useEffect, useRef, useMemo } from "react";
 
 import { CSSProperties } from "react";
 import { motion, useAnimation, Transition } from "framer-motion";
+import {
+  TransformWrapper,
+  TransformComponent,
+  ReactZoomPanPinchRef,
+} from "react-zoom-pan-pinch";
 
 import CountryMapSVG from "@/components/map_component/CountryMapSVG";
 import countriesData from "@/components/map_component/countriesData";
@@ -29,9 +34,10 @@ const MapBoxComponent = ({ onCountrySelect }: MapBoxComponentProps) => {
   const [selectedCountryId, setSelectedCountryId] = useState<string | null>(
     null
   );
+  const transformWrapperRef = useRef<ReactZoomPanPinchRef>(null);
 
-  const SCALE_STEP = 0.1;
-  const MAX_SCALE = 5;
+  const SCALE_STEP = 0.25;
+  const MAX_SCALE = 4;
   const MIN_SCALE = 1;
 
   const zoomIn = () => {
@@ -78,6 +84,10 @@ const MapBoxComponent = ({ onCountrySelect }: MapBoxComponentProps) => {
       if (window.innerWidth <= 1279.98) {
         resetScale = 1.7;
       }
+    }
+
+    if (transformWrapperRef.current) {
+      transformWrapperRef.current.resetTransform();
     }
 
     setCurrentScale(resetScale);
@@ -204,34 +214,46 @@ const MapBoxComponent = ({ onCountrySelect }: MapBoxComponentProps) => {
           </button>
         ))}
       </div>
-      <motion.div
-        className={s.map__container}
-        style={{
-          width: "100%",
-          height: "100%",
-          transform: `scale(${currentScale})`,
-          transformOrigin: "center center",
-        }}
-        drag
-        dragConstraints={getDragConstraints()}
-        animate={controls}
-        whileTap={{ cursor: "grabbing" }}
-      >
-        <CountryMapSVG
-          handleCountrySelect={handleCountrySelect}
-          selectedCountryId={selectedCountryId}
-          hoverPath={hoverPath}
-          hoverStyle={hoverStyle}
-          activeStyle={activeStyle}
-          defaultStyle={defaultStyle}
-          scale={scale}
-          currentScale={currentScale}
-          translate={translate}
-          svgContentRef={svgContentRef}
-          handleMouseEnter={handleMouseEnter}
-          handleMouseLeave={handleMouseLeave}
-        />
-      </motion.div>
+      <div className={s.wrapperClass}>
+        <TransformWrapper ref={transformWrapperRef}>
+          <TransformComponent
+            wrapperStyle={{
+              width: "100%",
+              height: "100%",
+            }}
+            contentStyle={{ width: "100%", height: "100%" }}
+          >
+            <motion.div
+              className={s.map__container}
+              style={{
+                width: "100%",
+                height: "100%",
+                transform: `scale(${currentScale})`,
+                transformOrigin: "center center",
+              }}
+              drag
+              dragConstraints={getDragConstraints()}
+              animate={controls}
+              whileTap={{ cursor: "grabbing" }}
+            >
+              <CountryMapSVG
+                handleCountrySelect={handleCountrySelect}
+                selectedCountryId={selectedCountryId}
+                hoverPath={hoverPath}
+                hoverStyle={hoverStyle}
+                activeStyle={activeStyle}
+                defaultStyle={defaultStyle}
+                scale={scale}
+                currentScale={currentScale}
+                translate={translate}
+                svgContentRef={svgContentRef}
+                handleMouseEnter={handleMouseEnter}
+                handleMouseLeave={handleMouseLeave}
+              />
+            </motion.div>
+          </TransformComponent>
+        </TransformWrapper>
+      </div>
     </div>
   );
 };

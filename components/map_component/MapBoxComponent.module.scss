@@ -1,6 +1,10 @@
 @import "@/style/colors";
 @import "@/style/container";
 @import "@/style/viewports";
+.wrapperClass {
+  width: 100%;
+  height: 100%;
+}
 
 .map {
   background-color: $classicWhiteBackgroundColor;
@@ -21,7 +25,6 @@
 
   &__container {
     display: flex;
-    transform: scale(5);
     transform-origin: center center;
   }
 
