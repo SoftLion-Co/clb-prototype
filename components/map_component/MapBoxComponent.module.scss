@@ -19,6 +19,12 @@
     border-radius: 32px;
   }
 
+  &__container {
+    display: flex;
+    transform: scale(5);
+    transform-origin: center center;
+  }
+
   &__buttons {
     position: absolute;
     z-index: 1;

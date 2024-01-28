@@ -130,8 +130,8 @@ const MapBoxComponent = ({ onCountrySelect }: MapBoxComponentProps) => {
 
   useEffect(() => {
     const updateScale = () => {
-      const mediaQuery = window.matchMedia("(max-width: 1279.98px)");
-      let newScale = mediaQuery.matches ? 1.7 : 1;
+      const isSmallScreen = window.matchMedia("(max-width: 1279.98px)").matches;
+      let newScale = isSmallScreen ? 1.7 : 1;
 
       if (scale !== newScale) {
         setScale(newScale);
@@ -149,13 +149,11 @@ const MapBoxComponent = ({ onCountrySelect }: MapBoxComponentProps) => {
       }
     };
 
-    const mediaQuery = window.matchMedia("(max-width: 1279.98px)");
-    mediaQuery.addListener(updateScale);
-
+    window.addEventListener("resize", updateScale);
     updateScale();
 
-    return () => mediaQuery.removeListener(updateScale);
-  }, []);
+    return () => window.removeEventListener("resize", updateScale);
+  }, [scale, currentScale, translate, controls]);
 
   const defaultStyle: CSSProperties = useMemo(
     () => ({
@@ -208,7 +206,12 @@ const MapBoxComponent = ({ onCountrySelect }: MapBoxComponentProps) => {
       </div>
       <motion.div
         className={s.map__container}
-        style={{ width: "100%", height: "100%", transform: `scale(${scale})` }}
+        style={{
+          width: "100%",
+          height: "100%",
+          transform: `scale(${currentScale})`,
+          transformOrigin: "center center",
+        }}
         drag
         dragConstraints={getDragConstraints()}
         animate={controls}
