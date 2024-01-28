@@ -214,46 +214,50 @@ const MapBoxComponent = ({ onCountrySelect }: MapBoxComponentProps) => {
           </button>
         ))}
       </div>
-      <div className={s.wrapperClass}>
-        <TransformWrapper ref={transformWrapperRef}>
-          <TransformComponent
-            wrapperStyle={{
+      <TransformWrapper
+        initialScale={1}
+        ref={transformWrapperRef}
+        panning={{
+          disabled: true,
+        }}
+      >
+        <TransformComponent
+          wrapperStyle={{
+            width: "100%",
+            height: "100%",
+          }}
+          contentStyle={{ width: "100%", height: "100%" }}
+        >
+          <motion.div
+            className={s.map__container}
+            style={{
               width: "100%",
               height: "100%",
+              transform: `scale(${currentScale})`,
+              transformOrigin: "center center",
             }}
-            contentStyle={{ width: "100%", height: "100%" }}
+            drag
+            dragConstraints={getDragConstraints()}
+            animate={controls}
+            whileTap={{ cursor: "grabbing" }}
           >
-            <motion.div
-              className={s.map__container}
-              style={{
-                width: "100%",
-                height: "100%",
-                transform: `scale(${currentScale})`,
-                transformOrigin: "center center",
-              }}
-              drag
-              dragConstraints={getDragConstraints()}
-              animate={controls}
-              whileTap={{ cursor: "grabbing" }}
-            >
-              <CountryMapSVG
-                handleCountrySelect={handleCountrySelect}
-                selectedCountryId={selectedCountryId}
-                hoverPath={hoverPath}
-                hoverStyle={hoverStyle}
-                activeStyle={activeStyle}
-                defaultStyle={defaultStyle}
-                scale={scale}
-                currentScale={currentScale}
-                translate={translate}
-                svgContentRef={svgContentRef}
-                handleMouseEnter={handleMouseEnter}
-                handleMouseLeave={handleMouseLeave}
-              />
-            </motion.div>
-          </TransformComponent>
-        </TransformWrapper>
-      </div>
+            <CountryMapSVG
+              handleCountrySelect={handleCountrySelect}
+              selectedCountryId={selectedCountryId}
+              hoverPath={hoverPath}
+              hoverStyle={hoverStyle}
+              activeStyle={activeStyle}
+              defaultStyle={defaultStyle}
+              scale={scale}
+              currentScale={currentScale}
+              translate={translate}
+              svgContentRef={svgContentRef}
+              handleMouseEnter={handleMouseEnter}
+              handleMouseLeave={handleMouseLeave}
+            />
+          </motion.div>
+        </TransformComponent>
+      </TransformWrapper>
     </div>
   );
 };
