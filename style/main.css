@@ -1,4 +1,3 @@
-
 @import-normalize;
 .container {
   max-width: 320px;
@@ -77,9 +76,15 @@ img {
   display: block;
   max-width: 100%;
   height: auto;
+  image-rendering: optimizeQuality;
+  -webkit-optimize-contrast: optimizeQuality;
+}
+
+svg {
+  image-rendering: optimizeQuality;
+  -webkit-optimize-contrast: optimizeQuality;
 }
 
 li {
   list-style: none;
-}/*# sourceMappingURL=main.css.map */
-
+} /*# sourceMappingURL=main.css.map */
