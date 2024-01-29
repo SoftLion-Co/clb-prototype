@@ -40,7 +40,7 @@ const socialMediaLinks = [
 const FooterComponent = () => {
   const t = useTranslations("footer");
 
-  const local = useLocale();
+  const locale = useLocale();
 
   return (
     <footer className={s.box}>
@@ -76,7 +76,7 @@ const FooterComponent = () => {
                 <li className={s.footer__item}>
                   <Link
                     className={s.footer__link}
-                    href={`${local}/commodity-brokerage`}
+                    href={`${locale}/commodity-brokerage`}
                   >
                     Commodities Brokerage
                   </Link>
@@ -84,7 +84,7 @@ const FooterComponent = () => {
                 <li className={s.footer__item}>
                   <Link
                     className={s.footer__link}
-                    href={`${local}/freight-brokerage`}
+                    href={`${locale}/freight-brokerage`}
                   >
                     Freight Brokerage
                   </Link>
@@ -93,14 +93,14 @@ const FooterComponent = () => {
 
               <ul className={classNames(s.footer__list, s.footer__list_gap)}>
                 <li className={s.footer__item}>
-                  <Link className={s.footer__link} href={`${local}/execution`}>
+                  <Link className={s.footer__link} href={`${locale}/execution`}>
                     Execution
                   </Link>
                 </li>
                 <li className={s.footer__item}>
                   <Link
                     className={s.footer__link}
-                    href={`${local}/export-consulting`}
+                    href={`${locale}/export-consulting`}
                   >
                     Export Consulting
                   </Link>
@@ -109,7 +109,7 @@ const FooterComponent = () => {
 
               <ul className={s.footer__list}>
                 <li className={s.footer__item}>
-                  <Link className={s.footer__link} href={`${local}/about-us`}>
+                  <Link className={s.footer__link} href={`${locale}/about-us`}>
                     About Us
                   </Link>
                 </li>
@@ -122,7 +122,7 @@ const FooterComponent = () => {
 
               <ul className={s.footer__list}>
                 <li className={s.footer__item}>
-                  <Link className={s.footer__link} href={`${local}/blog`}>
+                  <Link className={s.footer__link} href={`${locale}/blog`}>
                     Our News
                   </Link>
                 </li>
