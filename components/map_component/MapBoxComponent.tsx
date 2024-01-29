@@ -96,14 +96,14 @@ const MapBoxComponent = ({ onCountrySelect }: MapBoxComponentProps) => {
   };
 
   const getDragConstraints = () => {
-    if (!containerRef.current || !svgContentRef.current)
+    if (!containerRef.current || !svgContentRef.current) {
       return { top: 0, right: 0, bottom: 0, left: 0 };
+    }
 
-    const containerBounds = containerRef.current.getBoundingClientRect();
     const svgBounds = svgContentRef.current.getBoundingClientRect();
 
-    const maxX = (svgBounds.width * scale - containerBounds.width) / 2;
-    const maxY = (svgBounds.height * scale - containerBounds.height) / 2;
+    const maxX = Math.max(0, svgBounds.width * currentScale) / 2;
+    const maxY = Math.max(0, svgBounds.height * currentScale) / 2;
 
     return {
       top: -maxY,
@@ -139,31 +139,17 @@ const MapBoxComponent = ({ onCountrySelect }: MapBoxComponentProps) => {
   };
 
   useEffect(() => {
-    const updateScale = () => {
-      const isSmallScreen = window.matchMedia("(max-width: 1279.98px)").matches;
-      let newScale = isSmallScreen ? 1.7 : 1;
-
-      if (scale !== newScale) {
-        setScale(newScale);
-        setCurrentScale(newScale);
-        const newTranslate = {
-          x: translate.x * (newScale / currentScale),
-          y: translate.y * (newScale / currentScale),
-        };
-        setTranslate(newTranslate);
-        controls.start({
-          scale: newScale,
-          x: newTranslate.x,
-          y: newTranslate.y,
-        });
-      }
+    const handleResize = () => {
+      const newScale = window.innerWidth <= 1279.98 ? 2 : 1;
+      setCurrentScale(newScale);
+      resetScaleAndPosition();
     };
 
-    window.addEventListener("resize", updateScale);
-    updateScale();
+    handleResize();
+    window.addEventListener("resize", handleResize);
 
-    return () => window.removeEventListener("resize", updateScale);
-  }, [scale, currentScale, translate, controls]);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const defaultStyle: CSSProperties = useMemo(
     () => ({
@@ -177,10 +163,27 @@ const MapBoxComponent = ({ onCountrySelect }: MapBoxComponentProps) => {
     }),
     []
   );
-  const hoverStyle: CSSProperties = {
-    ...defaultStyle,
-    fill: "#A7B896",
-  };
+  const [isLargeScreen, setIsLargeScreen] = useState(false);
+
+  useEffect(() => {
+    const updateScreenSize = () => {
+      setIsLargeScreen(window.innerWidth > 1279.98);
+    };
+
+    updateScreenSize();
+    window.addEventListener("resize", updateScreenSize);
+    return () => window.removeEventListener("resize", updateScreenSize);
+  }, []);
+
+  const hoverStyle: CSSProperties = useMemo(() => {
+    if (isLargeScreen) {
+      return {
+        ...defaultStyle,
+        fill: "#A7B896",
+      };
+    }
+    return defaultStyle;
+  }, [isLargeScreen, defaultStyle]);
 
   const activeStyle: CSSProperties = {
     ...hoverStyle,
