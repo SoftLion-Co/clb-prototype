@@ -42,8 +42,7 @@ const MapBoxComponent = ({ onCountrySelect }: MapBoxComponentProps) => {
 
   const zoomIn = () => {
     if (transformWrapperRef.current) {
-      // Можна спробувати налаштувати швидкість масштабування
-      transformWrapperRef.current.zoomIn(SCALE_STEP, 200); // 200 мс для анімації
+      transformWrapperRef.current.zoomIn(SCALE_STEP, 200);
       const newScale = Math.min(currentScale + SCALE_STEP, MAX_SCALE);
       setCurrentScale(newScale);
     }
@@ -51,8 +50,7 @@ const MapBoxComponent = ({ onCountrySelect }: MapBoxComponentProps) => {
 
   const zoomOut = () => {
     if (transformWrapperRef.current) {
-      // Можна спробувати налаштувати швидкість масштабування
-      transformWrapperRef.current.zoomOut(SCALE_STEP, 200); // 200 мс для анімації
+      transformWrapperRef.current.zoomOut(SCALE_STEP, 200);
       const newScale = Math.max(currentScale - SCALE_STEP, MIN_SCALE);
       setCurrentScale(newScale);
     }
@@ -159,6 +157,14 @@ const MapBoxComponent = ({ onCountrySelect }: MapBoxComponentProps) => {
     updateScreenSize();
     window.addEventListener("resize", updateScreenSize);
     return () => window.removeEventListener("resize", updateScreenSize);
+  }, []);
+
+  useEffect(() => {
+    const isIphone = /iPhone/i.test(navigator.userAgent);
+    const newScale = isIphone ? 2 : 1;
+
+    setCurrentScale(newScale);
+    resetScaleAndPosition();
   }, []);
 
   const hoverStyle: CSSProperties = useMemo(() => {
