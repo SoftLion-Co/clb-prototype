@@ -81,8 +81,11 @@ img {
 }
 
 svg {
+  shape-rendering: crispEdges;
   image-rendering: optimizeQuality;
   -webkit-optimize-contrast: optimizeQuality;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 li {

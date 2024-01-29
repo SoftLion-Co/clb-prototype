@@ -159,6 +159,14 @@ const MapBoxComponent = ({ onCountrySelect }: MapBoxComponentProps) => {
     return () => window.removeEventListener("resize", updateScreenSize);
   }, []);
 
+  useEffect(() => {
+    const isIphone = /iPhone/i.test(navigator.userAgent);
+    const newScale = isIphone ? 2 : 1;
+
+    setCurrentScale(newScale);
+    resetScaleAndPosition();
+  }, []);
+
   const hoverStyle: CSSProperties = useMemo(() => {
     if (isLargeScreen) {
       return {

@@ -42,6 +42,7 @@ const CountryMapSVG = ({
       }}
       ref={svgContentRef}
       transform={`scale(${currentScale})`}
+      xmlns="http://www.w3.org/2000/svg"
     >
       <path
         d="M607.785 428.1L608.283 428.5 ... 926.679 472.4Z"
