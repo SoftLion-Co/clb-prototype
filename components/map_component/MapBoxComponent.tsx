@@ -35,6 +35,7 @@ const MapBoxComponent = ({ onCountrySelect }: MapBoxComponentProps) => {
     null
   );
   const transformWrapperRef = useRef<ReactZoomPanPinchRef>(null);
+  const [isLargeScreen, setIsLargeScreen] = useState(false);
 
   const SCALE_STEP = 0.25;
   const MAX_SCALE = 4;
@@ -147,7 +148,6 @@ const MapBoxComponent = ({ onCountrySelect }: MapBoxComponentProps) => {
     }),
     []
   );
-  const [isLargeScreen, setIsLargeScreen] = useState(false);
 
   useEffect(() => {
     const updateScreenSize = () => {

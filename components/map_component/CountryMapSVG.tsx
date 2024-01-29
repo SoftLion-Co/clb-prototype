@@ -27,16 +27,12 @@ const CountryMapSVG = ({
   handleMouseEnter,
   handleMouseLeave,
 }: CountryMapSVGProps) => {
-  const originalWidth = 952;
-  const originalHeight = 584;
-
   return (
     <svg
       width="100%"
       height="auto"
-      viewBox={`0 0 ${originalWidth} ${originalHeight}`}
+      viewBox="0 0 952 584"
       style={{
-        maxWidth: "100%",
         transition: "transform 0.3s",
         cursor: "pointer",
       }}
