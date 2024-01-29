@@ -76,7 +76,7 @@ const FooterComponent = () => {
                 <li className={s.footer__item}>
                   <Link
                     className={s.footer__link}
-                    href={`${local}/commodity-brokerage`}
+                    href={`/${local}/commodity-brokerage`}
                   >
                     Commodities Brokerage
                   </Link>
@@ -84,7 +84,7 @@ const FooterComponent = () => {
                 <li className={s.footer__item}>
                   <Link
                     className={s.footer__link}
-                    href={`${local}/freight-brokerage`}
+                    href={`/${local}/freight-brokerage`}
                   >
                     Freight Brokerage
                   </Link>
@@ -93,14 +93,14 @@ const FooterComponent = () => {
 
               <ul className={classNames(s.footer__list, s.footer__list_gap)}>
                 <li className={s.footer__item}>
-                  <Link className={s.footer__link} href={`${local}/execution`}>
+                  <Link className={s.footer__link} href={`/${local}/execution`}>
                     Execution
                   </Link>
                 </li>
                 <li className={s.footer__item}>
                   <Link
                     className={s.footer__link}
-                    href={`${local}/export-consulting`}
+                    href={`/${local}/export-consulting`}
                   >
                     Export Consulting
                   </Link>
@@ -109,12 +109,12 @@ const FooterComponent = () => {
 
               <ul className={s.footer__list}>
                 <li className={s.footer__item}>
-                  <Link className={s.footer__link} href={`${local}/about-us`}>
+                  <Link className={s.footer__link} href={`/${local}/about-us`}>
                     About Us
                   </Link>
                 </li>
-                <li className={s.footer__item}>
-                  <Link className={s.footer__link} href="/">
+                <li className={classNames(s.footer__item, s.anchor__link)}>
+                  <Link className={s.footer__link} href={`/${local}/careers#vacancies`}>
                     Our Vacancies
                   </Link>
                 </li>
@@ -122,7 +122,7 @@ const FooterComponent = () => {
 
               <ul className={s.footer__list}>
                 <li className={s.footer__item}>
-                  <Link className={s.footer__link} href={`${local}/blog`}>
+                  <Link className={s.footer__link} href={`/${local}/blog`}>
                     Our News
                   </Link>
                 </li>
