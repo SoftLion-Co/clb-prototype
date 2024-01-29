@@ -41,34 +41,20 @@ const MapBoxComponent = ({ onCountrySelect }: MapBoxComponentProps) => {
   const MIN_SCALE = 1;
 
   const zoomIn = () => {
-    const newScale = Math.min(currentScale + SCALE_STEP, MAX_SCALE);
-    setCurrentScale(newScale);
-    const newTranslate = {
-      x: translate.x * (newScale / currentScale),
-      y: translate.y * (newScale / currentScale),
-    };
-    setTranslate(newTranslate);
+    if (transformWrapperRef.current) {
+      // Можна спробувати налаштувати швидкість масштабування
+      transformWrapperRef.current.zoomIn(SCALE_STEP, 200); // 200 мс для анімації
+      const newScale = Math.min(currentScale + SCALE_STEP, MAX_SCALE);
+      setCurrentScale(newScale);
+    }
   };
 
   const zoomOut = () => {
-    const newScale = Math.max(currentScale - SCALE_STEP, MIN_SCALE);
-
-    if (typeof window !== "undefined" && window.innerWidth <= 1279.98) {
-      if (newScale >= 1.7) {
-        setCurrentScale(newScale);
-        const newTranslate = {
-          x: translate.x * (newScale / currentScale),
-          y: translate.y * (newScale / currentScale),
-        };
-        setTranslate(newTranslate);
-      }
-    } else {
+    if (transformWrapperRef.current) {
+      // Можна спробувати налаштувати швидкість масштабування
+      transformWrapperRef.current.zoomOut(SCALE_STEP, 200); // 200 мс для анімації
+      const newScale = Math.max(currentScale - SCALE_STEP, MIN_SCALE);
       setCurrentScale(newScale);
-      const newTranslate = {
-        x: translate.x * (newScale / currentScale),
-        y: translate.y * (newScale / currentScale),
-      };
-      setTranslate(newTranslate);
     }
   };
 
@@ -190,12 +176,6 @@ const MapBoxComponent = ({ onCountrySelect }: MapBoxComponentProps) => {
     fill: "#A7B896",
   };
 
-  const buttonsData = [
-    { onClick: zoomIn, text: "+" },
-    { onClick: zoomOut, text: "-" },
-    { onClick: resetScaleAndPosition, text: "𖣓" },
-  ];
-
   return (
     <div
       className={s.map}
@@ -207,15 +187,19 @@ const MapBoxComponent = ({ onCountrySelect }: MapBoxComponentProps) => {
       ref={containerRef}
     >
       <div className={s.map__buttons}>
-        {buttonsData.map((button, index) => (
-          <button
-            onClick={button.onClick}
-            className={s.map__button}
-            key={index}
-          >
-            <p className={s.map__buttonText}>{button.text}</p>
-          </button>
-        ))}
+        {isLargeScreen && (
+          <>
+            <button onClick={zoomIn} className={s.map__button}>
+              <p className={s.map__buttonText}>+</p>
+            </button>
+            <button onClick={zoomOut} className={s.map__button}>
+              <p className={s.map__buttonText}>-</p>
+            </button>
+          </>
+        )}
+        <button onClick={resetScaleAndPosition} className={s.map__button}>
+          <p className={s.map__buttonText}>𖣓</p>
+        </button>
       </div>
       <TransformWrapper
         initialScale={1}
