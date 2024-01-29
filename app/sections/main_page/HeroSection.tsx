@@ -14,11 +14,8 @@ import useFramerAnimations from "@/hooks/useFramerAnimations";
 function HeroSection() {
   const t = useTranslations("homePage");
   const t1 = useTranslations("components");
-
   const { effectiveType } = useNetwork(); // Get the user's connection type
   const color = useHeroTextColor();
-
-  const defaultAnimation = useFramerAnimations();
 
   const titleClass = classNames(
     s.hero__title, // Existing title class
@@ -30,8 +27,10 @@ function HeroSection() {
     { [s.lightText]: color === "light" } // New class if color is light
   );
 
+  const defaultAnimation = useFramerAnimations();
+
   return (
-    <section className={s.box}>
+    <motion.section className={s.box} initial="hidden" whileInView="visible">
       <div className={s.hero}>
         {effectiveType === "slow-2g" ||
         effectiveType === "2g" ||
@@ -41,45 +40,28 @@ function HeroSection() {
           // Render video if the connection is good
           <GetHeroVideoComponent />
         )}
-        <motion.div
-          className={s.hero__content}
-          initial={"hidden"}
-          whileInView={"visible"}
-        >
-          <motion.h1
-            variants={defaultAnimation}
-            className={titleClass}
-            custom={3}
-          >
+        <div className={s.hero__content}>
+          <motion.h1 className={titleClass} variants={defaultAnimation}>
             {t("hero")}
           </motion.h1>
           <div className={s.hero__text_wrapper}>
-            <motion.p
-              custom={6}
-              variants={defaultAnimation}
-              className={textClass}
-            >
+            <motion.p className={textClass} variants={defaultAnimation}>
               {t("heroText1")}
             </motion.p>
-            <motion.p
-              custom={6.5}
-              variants={defaultAnimation}
-              className={textClass}
-            >
+            <motion.p className={textClass} variants={defaultAnimation}>
               {t("heroText2")}
             </motion.p>
           </div>
           <div className={s.hero__button}>
             <MMainButtonComponent
-              custom={8}
               variants={defaultAnimation}
               text={t1("ourSercvicesButton")}
               type="MainUsualButton"
             />
           </div>
-        </motion.div>
+        </div>
       </div>
-    </section>
+    </motion.section>
   );
 }
 

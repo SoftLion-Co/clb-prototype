@@ -3,7 +3,9 @@ import React, { useState, useEffect } from "react";
 import s from "./BlogCardSection.module.scss";
 import classNames from "classnames";
 
-import MainTitleComponent from "@/components/MainTitleComponent";
+import {
+  MMainTitleComponent,
+} from "@/components/MainTitleComponent";
 import SmallCardBlogComponent from "@/components/blog/SmallCardBlogComponent";
 import MainButtonComponent, {
   MMainButtonComponent,
@@ -17,7 +19,7 @@ import useFramerAnimations from "@/hooks/useFramerAnimations";
 const BlogCardsSection = () => {
   const t = useTranslations("blog");
   const t1 = useTranslations("components");
-  const defaultAnimation = useFramerAnimations()
+  const defaultAnimation = useFramerAnimations();
   const [cardsToRender, setCardsToRender] = useState(3);
   const { latestBlogs } = useBlogsData();
   const locale = useLocale();
@@ -41,8 +43,14 @@ const BlogCardsSection = () => {
   return (
     <section className={s.box}>
       <div className={s.background}>
-        <div className={classNames(s.container, s.blog__container)}>
-          <MainTitleComponent
+        <motion.div
+          className={classNames(s.container, s.blog__container)}
+          initial={"hidden"}
+          whileInView={"visible"}
+          viewport={{ margin: "20% 0% -20% 0%" }}
+        >
+          <MMainTitleComponent
+            variants={defaultAnimation}
             className={s.blog__title}
             title={t("blogTitle")}
             color="black"
@@ -56,7 +64,11 @@ const BlogCardsSection = () => {
             viewport={{ margin: "20% 0% -20% 0%" }}
           >
             {latestBlogs.slice(0, cardsToRender).map((blog, index) => (
-              <motion.div key={index} variants={defaultAnimation} custom={index}>
+              <motion.div
+                key={index}
+                variants={defaultAnimation}
+                custom={index}
+              >
                 <SmallCardBlogComponent info={blog} locale={locale} />
               </motion.div>
             ))}
@@ -74,7 +86,7 @@ const BlogCardsSection = () => {
               className={s.blog__button}
             />
           </motion.div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

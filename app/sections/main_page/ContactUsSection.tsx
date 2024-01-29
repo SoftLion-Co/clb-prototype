@@ -1,7 +1,9 @@
 "use client";
 import React, { ChangeEvent, useState, useEffect } from "react";
 import s from "./ContactUsSection.module.scss";
-import MainTitleComponent from "@/components/MainTitleComponent";
+import {
+  MMainTitleComponent,
+} from "@/components/MainTitleComponent";
 import MainButtonComponent from "@/components/MainButtonComponent";
 import Image from "next/image";
 import Picture from "@/images/our_advantages_test/advantages-image-1.png";
@@ -30,7 +32,7 @@ interface FormData {
 const ContactUsSection = ({ cv }: { cv?: boolean }) => {
   const locale = useLocale();
   const t = useTranslations("homePage.contactUs");
-  const defaultAnimation = useFramerAnimations()
+  const defaultAnimation = useFramerAnimations();
   const vacancies = useVacancies();
 
   const topics = [
@@ -275,9 +277,15 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
 
   return (
     <section className={s.box}>
-      <div className={s.background}>
-        <MainTitleComponent
+      <motion.div
+        className={s.background}
+        initial={"hidden"}
+        whileInView={"visible"}
+        viewport={{ margin: "20% 0% -20% 0%" }}
+      >
+        <MMainTitleComponent
           title={cv ? t("letsWorkWithUS") : t("contactUsHeading")}
+          variants={defaultAnimation}
         />
         <motion.div
           initial={"hidden"}
@@ -298,7 +306,7 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
           </form>
           <Image className={s.form__picture} src={Picture} alt="Picture" />
         </motion.div>
-      </div>
+      </motion.div>
     </section>
   );
 };

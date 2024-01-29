@@ -2,7 +2,9 @@
 import React from "react";
 import type { StaticImageData } from "next/image";
 import s from "./OurAdvantagesSection.module.scss";
-import MainTitleComponent from "@/components/MainTitleComponent";
+import {
+  MMainTitleComponent,
+} from "@/components/MainTitleComponent";
 import OurAdvantagesCardComponent from "@/components/about_us/OurAdvantagesCardComponent";
 import AdvantagesImage1 from "@/images/our_advantages_test/advantages-image-1.png";
 import AdvantagesImage2 from "@/images/our_advantages_test/advantages-image-2.png";
@@ -48,8 +50,17 @@ const OurAdvantagesSection = () => {
   return (
     <section className={s.box}>
       <div className={s.background}>
-        <div className={s.container}>
-          <MainTitleComponent title={t("ourAdvantagesTitle")} color="blue" />
+        <motion.div
+          className={s.container}
+          initial={"hidden"}
+          whileInView={"visible"}
+          viewport={{ margin: "20% 0% -20% 0%" }}
+        >
+          <MMainTitleComponent
+            title={t("ourAdvantagesTitle")}
+            color="blue"
+            variants={defaultAnimation}
+          />
           <div className={s.advantages__cards}>
             {contentOrder.map((item, index) => (
               <motion.div
@@ -83,7 +94,7 @@ const OurAdvantagesSection = () => {
               </motion.div>
             ))}
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

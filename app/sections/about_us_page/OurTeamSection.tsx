@@ -5,7 +5,9 @@ import s from "./OurTeamSection.module.scss";
 import React, { useCallback, useEffect, useState, FC } from "react";
 import { Carousel, Embla } from "@mantine/carousel";
 
-import MainTitleComponent from "@/components/MainTitleComponent";
+import {
+  MMainTitleComponent,
+} from "@/components/MainTitleComponent";
 import OurTeamCardComponent from "@/components/about_us/OurTeamCardComponent";
 
 import Arrow from "@/images/vectors/arrow.svg";
@@ -42,8 +44,7 @@ interface TeamMemberAcf {
 }
 
 const OurTeamSection: FC<OurTeamSectionProps> = ({ teamMembers }) => {
-  const t = useTranslations("aboutUs.ourTeam");
-  const defaultAnimation = useFramerAnimations()
+  const defaultAnimation = useFramerAnimations();
   const { team, loading, error } = useOurTeamData();
   const reversedTeam = [...team].reverse();
 
@@ -90,11 +91,17 @@ const OurTeamSection: FC<OurTeamSectionProps> = ({ teamMembers }) => {
   return (
     <section className={s.box}>
       <div className={classNames(s.background, s.team)}>
-        <div className={s.container}>
-          <MainTitleComponent
+        <motion.div
+          className={s.container}
+          initial={"hidden"}
+          whileInView={"visible"}
+          viewport={{ margin: "20% 0% -20% 0%" }}
+        >
+          <MMainTitleComponent
             className={s.team__title}
             title="our team"
             color="black"
+            variants={defaultAnimation}
           />
 
           <motion.div
@@ -148,7 +155,7 @@ const OurTeamSection: FC<OurTeamSectionProps> = ({ teamMembers }) => {
               ))}
             </Carousel>
           </motion.div>
-        </div>
+        </motion.div>
         <Image className={s.team__vector} src={SectionVector} alt="vector" />
       </div>
     </section>

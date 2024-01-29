@@ -1,21 +1,31 @@
-"use client"
+"use client";
 import s from "./VacanciesSection.module.scss";
-import MainTitleComponent from "@/components/MainTitleComponent";
+import { MMainTitleComponent } from "@/components/MainTitleComponent";
 import VacanciesCards from "@/components/careers_page/VacanciesCards";
 import { useTranslations } from "next-intl";
+import useFramerAnimations from "@/hooks/useFramerAnimations";
+import { motion } from "framer-motion";
 
 const VacanciesSection = () => {
   const t = useTranslations("careers");
+  const defaultAnimation = useFramerAnimations();
+
   return (
     <section className={s.box}>
       <div className={s.background}>
-        <div className={s.container}>
-          <MainTitleComponent
+        <motion.div
+          className={s.container}
+          initial={"hidden"}
+          whileInView={"visible"}
+          viewport={{ margin: "20% 0% -20% 0%" }}
+        >
+          <MMainTitleComponent
             title={t("openVacanciesTitle")}
             className={s.vacancies__title}
+            variants={defaultAnimation}
           />
           <VacanciesCards />
-        </div>
+        </motion.div>
       </div>
     </section>
   );

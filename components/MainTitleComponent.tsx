@@ -1,10 +1,10 @@
-import React, { FC } from "react";
+"use client"
+import React, { FC, LegacyRef, forwardRef } from "react";
 import s from "./MainTitleComponent.module.scss";
 import classNames from "classnames";
 import image from "@/images/vectors/graph.svg";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import useFramerAnimations from "@/hooks/useFramerAnimations";
 
 interface MainTitleProps {
   title: string;
@@ -14,16 +14,13 @@ interface MainTitleProps {
   mobileLeft?: boolean;
 }
 
-const MainTitleComponent: FC<MainTitleProps> = ({
+const MainTitleComponent: FC<MainTitleProps> = forwardRef(({
   title,
   className,
   color = "green",
   left = false,
   mobileLeft = false,
-}) => {
-  const defaultAnimation = useFramerAnimations()
-
-
+}, ref: LegacyRef<HTMLDivElement> | undefined) => {
   const titleColor = {
     black: "#171717",
     blue: "#2A4563",
@@ -31,10 +28,8 @@ const MainTitleComponent: FC<MainTitleProps> = ({
   }[color];
 
   return (
-    <motion.div
-      initial={"hidden"}
-      whileInView={"visible"}
-      variants={defaultAnimation}
+    <div
+    ref={ref}
       className={classNames(s.main, className, {
         [s.left]: left,
         [s.mobileLeft]: mobileLeft,
@@ -50,8 +45,10 @@ const MainTitleComponent: FC<MainTitleProps> = ({
       <h2 className={s.main__title} style={{ color: titleColor }}>
         {title}
       </h2>
-    </motion.div>
+    </div>
   );
-};
+});
+
+export const MMainTitleComponent = motion(MainTitleComponent);
 
 export default MainTitleComponent;

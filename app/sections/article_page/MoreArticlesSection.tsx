@@ -5,7 +5,9 @@ import useBlogsData from "@/hooks/useBlogsData";
 import Image from "next/image";
 import Arrow from "@/images/vectors/arrow.svg";
 import useLocale from "@/hooks/useLocale";
-import MainTitleComponent from "@/components/MainTitleComponent";
+import {
+  MMainTitleComponent,
+} from "@/components/MainTitleComponent";
 import { useTranslations } from "next-intl";
 import classNames from "classnames";
 import { Carousel, Embla } from "@mantine/carousel";
@@ -22,7 +24,7 @@ interface ArrowProps {
 
 const MoreArticlesSection: FC<MoreArticlesSectionProps> = ({ blogId }) => {
   const locale = useLocale();
-  const defaultAnimation = useFramerAnimations()
+  const defaultAnimation = useFramerAnimations();
   const { blogs, loading, error } = useBlogsData();
   const t = useTranslations("components");
 
@@ -38,7 +40,7 @@ const MoreArticlesSection: FC<MoreArticlesSectionProps> = ({ blogId }) => {
       handleScroll();
     }
   }, [embla]);
-  
+
   const NextArrow: FC<ArrowProps> = ({ className }) => {
     return (
       <div className={className}>
@@ -74,8 +76,18 @@ const MoreArticlesSection: FC<MoreArticlesSectionProps> = ({ blogId }) => {
   return (
     <section className={s.box}>
       <div className={s.background}>
-        <div className={classNames(s.container, s.articles)}>
-          <MainTitleComponent title={t("moreArticles")} left color="green" />
+        <motion.div
+          className={classNames(s.container, s.articles)}
+          initial={"hidden"}
+          whileInView={"visible"}
+          viewport={{ margin: "20% 0% -20% 0%" }}
+        >
+          <MMainTitleComponent
+            title={t("moreArticles")}
+            left
+            color="green"
+            variants={defaultAnimation}
+          />
           <div className={s.carousel}>
             <Carousel
               classNames={{
@@ -127,7 +139,7 @@ const MoreArticlesSection: FC<MoreArticlesSectionProps> = ({ blogId }) => {
               ))}
             </Carousel>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
