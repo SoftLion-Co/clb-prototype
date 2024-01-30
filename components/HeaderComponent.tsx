@@ -11,6 +11,8 @@ import ArrowMenu from "@/images/vectors/arrow-menu.svg";
 import MainButtonComponent from "./MainButtonComponent";
 import { usePathname } from "next/navigation";
 import { useTranslations } from "next-intl";
+import { useLocale } from "next-intl";
+import { Link as ScrollLink, animateScroll as scroll } from "react-scroll";
 
 import LogoMobile from "@/images/Logo-brokers-mobile.svg";
 import Logo from "@/images/Logo-header-brokers.svg";
@@ -50,6 +52,7 @@ const servicesMenu = [
 const HeaderComponent = () => {
   const t = useTranslations("header");
   const t1 = useTranslations("servicesMenu");
+  const locale = useLocale();
 
   const pathname = usePathname();
   const pathWithoutLanguage = pathname.replace(/^\/[a-zA-Z]{2}(\/)?/, "/");
@@ -336,7 +339,20 @@ const HeaderComponent = () => {
     <>
       {NavigationContent}
       {FlagContent}
-      <MainButtonComponent text={t("getInTouch")} />
+      <ScrollLink
+        to="contactUsSection"
+        spy={true}
+        smooth={true}
+        offset={0}
+        duration={500}
+        onClick={closeModal}
+      >
+        <MainButtonComponent
+          className={s.header__touch}
+          text={t("getInTouch")}
+          typeButton="MainButton"
+        />
+      </ScrollLink>
     </>
   );
 
@@ -369,11 +385,19 @@ const HeaderComponent = () => {
         <div className={s.header__contents}>
           <div className={s.flag__content}>{FlagContent}</div>
 
-          <MainButtonComponent
-            className={s.header__touch}
-            text={t("getInTouch")}
-            typeButton="MainButton"
-          />
+          <ScrollLink
+            to="contactUsSection"
+            spy={true}
+            smooth={true}
+            offset={0}
+            duration={1000}
+          >
+            <MainButtonComponent
+              className={s.header__touch}
+              text={t("getInTouch")}
+              typeButton="MainButton"
+            />
+          </ScrollLink>
 
           <button
             className={s.header__button}

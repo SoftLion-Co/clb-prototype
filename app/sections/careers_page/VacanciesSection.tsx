@@ -6,7 +6,7 @@ import { useTranslations } from "next-intl";
 const VacanciesSection = () => {
   const t = useTranslations("careers");
   return (
-    <section id="vacancies" className={s.box}>
+    <section id="ourVacancies" className={s.box}>
       <div className={s.background}>
         <div className={s.container}>
           <MainTitleComponent
