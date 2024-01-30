@@ -4,7 +4,6 @@ import classNames from "classnames";
 import s from "./HeroSection.module.scss";
 import MainButtonComponent from "@/components/MainButtonComponent";
 import { useTranslations } from "next-intl";
-import { Link as ScrollLink, animateScroll as scroll } from "react-scroll";
 import GetHeroVideoComponent from "@/components/main_page/GetHeroVideoComponent";
 import GetHeroImageComponent from "@/components/main_page/GetHeroImageComponent";
 import { useNetwork } from "@mantine/hooks"; // Import the useNetwork hook
@@ -41,19 +40,13 @@ function HeroSection() {
             <p className={textClass}>{t("heroText1")}</p>
             <p className={textClass}>{t("heroText2")}</p>
           </div>
-          <ScrollLink
-            to="servicesSection"
-            spy={true}
-            smooth={true}
-            offset={0}
-            duration={500}
+
+          <MainButtonComponent
+            defaultTo="servicesSection"
+            text={t1("ourSercvicesButton")}
+            typeButton="MainUsualButton"
             className={s.hero__button}
-          >
-            <MainButtonComponent
-              text={t1("ourSercvicesButton")}
-              typeButton="MainUsualButton"
-            />
-          </ScrollLink>
+          />
         </div>
       </div>
     </section>

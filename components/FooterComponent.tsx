@@ -1,9 +1,8 @@
 "use client";
-
 import s from "./FooterComponent.module.scss";
 import Link from "next/link";
 import Image from "next/image";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
 import Logo from "@/images/Logo-brokers.svg";
 
@@ -15,7 +14,8 @@ import facebook from "@/images/footer/icon-facebook.svg";
 import youtube from "@/images/footer/icon-youtube.svg";
 import whatsapp from "@/images/footer/icon-whatsapp.svg";
 import { useTranslations } from "next-intl";
-import { Link as ScrollLink, animateScroll as scroll } from "react-scroll";
+import { animateScroll as scroll } from "react-scroll";
+
 import useLocale from "@/hooks/useLocale";
 import classNames from "classnames";
 
@@ -78,6 +78,30 @@ const FooterComponent = () => {
       };
     }
   }, []);
+
+  useEffect(() => {
+    setOffset(getOffset());
+  }, []);
+
+  const scrollToOurVacancies = () => {
+    const targetElement = document.getElementById("ourVacancies");
+    if (targetElement) {
+      const targetPosition = targetElement.offsetTop + offset;
+      scroll.scrollTo(targetPosition, {
+        duration: 500,
+        smooth: "easeInOutQuart",
+      });
+    }
+  };
+
+  const handleLinkClick = (e: any, href: any) => {
+    if (href.startsWith("#")) {
+      e.preventDefault();
+      scrollToOurVacancies();
+    } else {
+      scrollToOurVacancies();
+    }
+  };
 
   return (
     <footer className={s.box}>
@@ -153,19 +177,16 @@ const FooterComponent = () => {
                     {t("aboutUs")}
                   </Link>
                 </li>
-                <li className={classNames(s.footer__item, s.anchor__link)}>
-                  <ScrollLink
-                    to="ourVacancies"
-                    spy={true}
-                    smooth={true}
-                    offset={offset}
-                    duration={500}
+                <li className={s.footer__item}>
+                  <Link
                     className={s.footer__link}
+                    href={`/${locale}/careers#ourVacancies`}
+                    onClick={(e) =>
+                      handleLinkClick(e, `/${locale}/careers#ourVacancies`)
+                    }
                   >
-                    <Link href={`/${locale}/careers#ourVacancies`}>
-                      {t("ourVacancies")}
-                    </Link>
-                  </ScrollLink>
+                    {t("ourVacancies")}
+                  </Link>
                 </li>
               </ul>
 

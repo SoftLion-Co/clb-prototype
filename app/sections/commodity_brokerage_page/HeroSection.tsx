@@ -26,18 +26,11 @@ function HeroSection() {
             </h2>
             <div className={s.hero__text}>{t("heroText")}</div>
 
-            <ScrollLink
-              to="contactUsSection"
-              spy={true}
-              smooth={true}
-              offset={0}
-              duration={500}
-            >
-              <MainButtonComponent
-                text={t1("getInTouch")}
-                typeButton="MainUsualButton"
-              />
-            </ScrollLink>
+            <MainButtonComponent
+              defaultTo="contactUsSection"
+              text={t1("getInTouch")}
+              typeButton="MainUsualButton"
+            />
           </div>
           <Image
             className={s.hero__image}
