@@ -40,7 +40,7 @@ const socialMediaLinks = [
 const FooterComponent = () => {
   const t = useTranslations("footer");
 
-  const local = useLocale();
+  const locale = useLocale();
 
   return (
     <footer className={s.box}>

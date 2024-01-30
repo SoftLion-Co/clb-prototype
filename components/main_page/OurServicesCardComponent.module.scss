@@ -13,12 +13,19 @@
     padding: 32px 20px;
 
     @include for-size(laptop) {
+      justify-content: space-between;
       align-items: flex-start;
       padding: 32px;
     }
     @include for-size(desktop) {
       border-radius: 32px;
     }
+  }
+
+  &__info {
+    display: grid;
+    width: 100%;
+    gap: 24px;
   }
 
   &__image {
