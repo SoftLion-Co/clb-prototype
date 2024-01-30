@@ -1,9 +1,7 @@
 "use client";
 import React, { ChangeEvent, useState, useEffect } from "react";
 import s from "./ContactUsSection.module.scss";
-import {
-  MMainTitleComponent,
-} from "@/components/MainTitleComponent";
+import { MMainTitleComponent } from "@/components/MainTitleComponent";
 import MainButtonComponent from "@/components/MainButtonComponent";
 import Image from "next/image";
 import Picture from "@/images/our_advantages_test/advantages-image-1.png";
@@ -13,8 +11,8 @@ import useVacancies from "@/hooks/useVacancies";
 import InputField from "@/components/form/InputField";
 import { useTranslations } from "next-intl";
 import useLocale from "@/hooks/useLocale";
-import { motion } from "framer-motion";
 import useFramerAnimations from "@/hooks/useFramerAnimations";
+import MotionWrapper from "@/hooks/MotionWrapper";
 
 interface FormData {
   firstname: string;
@@ -277,21 +275,19 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
 
   return (
     <section className={s.box}>
-      <motion.div
+      <MotionWrapper
         className={s.background}
-        initial={"hidden"}
-        whileInView={"visible"}
+        initial
         viewport={{ margin: "20% 0% -20% 0%" }}
       >
         <MMainTitleComponent
           title={cv ? t("letsWorkWithUS") : t("contactUsHeading")}
           variants={defaultAnimation}
         />
-        <motion.div
-          initial={"hidden"}
-          whileInView={"visible"}
-          viewport={{ margin: "20% 0% -20% 0%" }}
-          variants={defaultAnimation}
+        <MotionWrapper
+          initial
+          viewport={{ margin: "20% 0% -10% 0%" }}
+          variants
           className={classNames(s.container, s.form__container)}
         >
           <form
@@ -305,8 +301,8 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
             {cv ? buttonComponentCV : buttonComponent}
           </form>
           <Image className={s.form__picture} src={Picture} alt="Picture" />
-        </motion.div>
-      </motion.div>
+        </MotionWrapper>
+      </MotionWrapper>
     </section>
   );
 };

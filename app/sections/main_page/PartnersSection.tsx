@@ -1,13 +1,11 @@
 "use client";
 import React from "react";
 import s from "./PartnersSection.module.scss";
-import {
-  MMainTitleComponent,
-} from "@/components/MainTitleComponent";
+import { MMainTitleComponent } from "@/components/MainTitleComponent";
 import GetPartnersComponent from "@/components/partners/GetPartnersComponent";
 import { useTranslations } from "next-intl";
-import { motion } from "framer-motion";
 import useFramerAnimations from "@/hooks/useFramerAnimations";
+import MotionWrapper from "@/hooks/MotionWrapper";
 
 const PartnersSection = () => {
   const t = useTranslations("homePage");
@@ -17,10 +15,9 @@ const PartnersSection = () => {
   return (
     <section className={s.box}>
       <div className={s.background}>
-        <motion.div
+        <MotionWrapper
           className={s.container}
-          initial="hidden"
-          whileInView="visible"
+          initial
           viewport={{ margin: "20% 0% -20% 0%" }}
         >
           <MMainTitleComponent
@@ -30,7 +27,7 @@ const PartnersSection = () => {
             variants={defaultAnimation}
           />
           <GetPartnersComponent />
-        </motion.div>
+        </MotionWrapper>
       </div>
     </section>
   );

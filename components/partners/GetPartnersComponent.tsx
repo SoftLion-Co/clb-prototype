@@ -1,7 +1,7 @@
 import s from "@/app/sections/main_page/PartnersSection.module.scss";
-import { motion } from "framer-motion";
 import { MPartnerImage } from "./PartnerImageComponent";
 import useFramerAnimations from "@/hooks/useFramerAnimations";
+import MotionWrapper from "@/hooks/MotionWrapper";
 
 const reqUrl =
   "https://softlion.blog/wp-json/wp/v2/partners?per_page=100&acf_format=standard&_fields=id,acf,title";
@@ -31,10 +31,9 @@ const GetPartnersComponent = async () => {
   return (
     <div className={s.partners__wrapper}>
       {partners.map((partner, index) => (
-        <motion.div
+        <MotionWrapper 
           className={s.partners__image_container}
-          initial={"hidden"}
-          whileInView={"visible"}
+          initial
           viewport={{ margin: "20% 0% -10% 0%" }}
         >
           <MPartnerImage
@@ -47,7 +46,7 @@ const GetPartnersComponent = async () => {
             variants={defaultAnimation}
             custom={index}
           />
-        </motion.div>
+        </MotionWrapper>
       ))}
     </div>
   );

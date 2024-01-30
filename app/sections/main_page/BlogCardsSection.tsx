@@ -3,18 +3,14 @@ import React, { useState, useEffect } from "react";
 import s from "./BlogCardSection.module.scss";
 import classNames from "classnames";
 
-import {
-  MMainTitleComponent,
-} from "@/components/MainTitleComponent";
+import { MMainTitleComponent } from "@/components/MainTitleComponent";
 import SmallCardBlogComponent from "@/components/blog/SmallCardBlogComponent";
-import MainButtonComponent, {
-  MMainButtonComponent,
-} from "@/components/MainButtonComponent";
+import { MMainButtonComponent } from "@/components/MainButtonComponent";
 import useBlogsData from "@/hooks/useBlogsData";
 import { useTranslations } from "next-intl";
 import useLocale from "@/hooks/useLocale";
-import { motion } from "framer-motion";
 import useFramerAnimations from "@/hooks/useFramerAnimations";
+import MotionWrapper from "@/hooks/MotionWrapper";
 
 const BlogCardsSection = () => {
   const t = useTranslations("blog");
@@ -43,10 +39,9 @@ const BlogCardsSection = () => {
   return (
     <section className={s.box}>
       <div className={s.background}>
-        <motion.div
+        <MotionWrapper
           className={classNames(s.container, s.blog__container)}
-          initial={"hidden"}
-          whileInView={"visible"}
+          initial
           viewport={{ margin: "20% 0% -20% 0%" }}
         >
           <MMainTitleComponent
@@ -56,28 +51,24 @@ const BlogCardsSection = () => {
             color="black"
             left
           />
+          {
+            //TODO: Skeleton when latestBlogs.length === 0}
+          }
 
-          <motion.div
-            initial={"hidden"}
-            whileInView={"visible"}
-            className={s.blog__cards}
-            viewport={{ margin: "20% 0% -20% 0%" }}
-          >
-            {latestBlogs.slice(0, cardsToRender).map((blog, index) => (
-              <motion.div
-                key={index}
-                variants={defaultAnimation}
-                custom={index}
-              >
-                <SmallCardBlogComponent info={blog} locale={locale} />
-              </motion.div>
-            ))}
-          </motion.div>
-          <motion.div
-            initial={"hidden"}
-            whileInView={"visible"}
-            viewport={{ margin: "20% 0% -20% 0%" }}
-          >
+          {latestBlogs.length !== 0 && (
+            <MotionWrapper
+              initial
+              className={s.blog__cards}
+              viewport={{ margin: "20% 0% -20% 0%" }}
+            >
+              {latestBlogs.slice(0, cardsToRender).map((blog, index) => (
+                <MotionWrapper key={index} variants custom={index}>
+                  <SmallCardBlogComponent info={blog} locale={locale} />
+                </MotionWrapper>
+              ))}
+            </MotionWrapper>
+          )}
+          <MotionWrapper initial viewport={{ margin: "20% 0% -20% 0%" }}>
             <MMainButtonComponent
               variants={defaultAnimation}
               text={t1("moreOurNews")}
@@ -85,8 +76,8 @@ const BlogCardsSection = () => {
               type="MainArrowButton"
               className={s.blog__button}
             />
-          </motion.div>
-        </motion.div>
+          </MotionWrapper>
+        </MotionWrapper>
       </div>
     </section>
   );
