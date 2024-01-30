@@ -4,11 +4,8 @@ import classNames from "classnames";
 import s from "./HeroSection.module.scss";
 import image from "@/images/commodity_brokerage/1.jpg";
 import { useTranslations } from "next-intl";
-import { Link as ScrollLink, animateScroll as scroll } from "react-scroll";
 import PageTitleComponent from "@/components/PageTitleComponent";
-import {
-  MMainButtonComponent,
-} from "@/components/MainButtonComponent";
+import { MMainButtonComponent } from "@/components/MainButtonComponent";
 import { motion } from "framer-motion";
 import { MCommodityHeroImage } from "@/components/commodity_brokerage_page/CommodityHeroImage";
 import useFramerAnimations from "@/hooks/useFramerAnimations";
@@ -16,7 +13,7 @@ import useFramerAnimations from "@/hooks/useFramerAnimations";
 function HeroSection() {
   const t = useTranslations("commodityBrokerage");
   const t1 = useTranslations("header");
-  const defaultAnimation = useFramerAnimations()
+  const defaultAnimation = useFramerAnimations();
 
   return (
     <div className={classNames(s.box)}>
@@ -39,22 +36,18 @@ function HeroSection() {
             >
               {t("commodityBrokerageSubtitle")}
             </motion.h2>
-            <motion.p variants={defaultAnimation}
-              custom={2} className={s.hero__text}>{t("heroText")}</motion.p>
-           
-
-            <ScrollLink
-              to="contactUsSection"
-              spy={true}
-              smooth={true}
-              offset={0}
-              duration={500}
+            <motion.p
+              variants={defaultAnimation}
+              custom={2}
+              className={s.hero__text}
             >
-              <MMainButtonComponent
+              {t("heroText")}
+            </motion.p>
+
+            <MMainButtonComponent
               text={t1("getInTouch")}
               typeButton="MainUsualButton"
             />
-            </ScrollLink>
           </div>
           <MCommodityHeroImage
             className={s.hero__image}

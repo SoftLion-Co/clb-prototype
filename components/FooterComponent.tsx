@@ -15,7 +15,6 @@ import facebook from "@/images/footer/icon-facebook.svg";
 import youtube from "@/images/footer/icon-youtube.svg";
 import whatsapp from "@/images/footer/icon-whatsapp.svg";
 import { useTranslations } from "next-intl";
-import { Link as ScrollLink, animateScroll as scroll } from "react-scroll";
 import useLocale from "@/hooks/useLocale";
 import classNames from "classnames";
 import { motion } from "framer-motion";
@@ -175,18 +174,11 @@ const FooterComponent = () => {
                   </Link>
                 </li>
                 <li className={classNames(s.footer__item, s.anchor__link)}>
-                  <ScrollLink
-                    to="ourVacancies"
-                    spy={true}
-                    smooth={true}
-                    offset={offset}
-                    duration={500}
-                    className={s.footer__link}
-                  >
+                 
                     <Link href={`/${locale}/careers#ourVacancies`}>
                       {t("ourVacancies")}
                     </Link>
-                  </ScrollLink>
+                 
                 </li>
               </ul>
 

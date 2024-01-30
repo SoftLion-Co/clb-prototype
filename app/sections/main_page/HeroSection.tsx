@@ -2,11 +2,8 @@
 import React from "react";
 import classNames from "classnames";
 import s from "./HeroSection.module.scss";
-import {
-  MMainButtonComponent
-} from "@/components/MainButtonComponent";
+import { MMainButtonComponent } from "@/components/MainButtonComponent";
 import { useTranslations } from "next-intl";
-import { Link as ScrollLink, animateScroll as scroll } from "react-scroll";
 import GetHeroVideoComponent from "@/components/main_page/GetHeroVideoComponent";
 import GetHeroImageComponent from "@/components/main_page/GetHeroImageComponent";
 import { useNetwork } from "@mantine/hooks"; // Import the useNetwork hook
@@ -57,22 +54,14 @@ function HeroSection() {
               {t("heroText2")}
             </MotionWrapper>
           </div>
-          <ScrollLink
-            to="servicesSection"
-            spy={true}
-            smooth={true}
-            offset={0}
-            duration={500}
-            className={s.hero__button}
-          >
-            <MMainButtonComponent
+
+          <MMainButtonComponent
             className={s.hero__button}
             text={t1("ourSercvicesButton")}
+            typeButton="MainUsualButton"
             variants={defaultAnimation}
             custom={3}
-            typeButton="MainUsualButton"
           />
-          </ScrollLink>
         </div>
       </div>
     </MotionWrapper>
