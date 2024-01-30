@@ -43,7 +43,7 @@ const OurServicesSection = () => {
   ];
 
   return (
-    <section className={s.box}>
+    <section id="servicesSection" className={s.box}>
       <div className={s.background}>
         <MotionWrapper
           className={classNames(s.container, s.services)}

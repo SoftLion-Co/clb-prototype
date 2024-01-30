@@ -1,15 +1,16 @@
 "use client";
 import React from "react";
+import classNames from "classnames";
 import s from "./HeroSection.module.scss";
-import MainButtonComponent, {
-  MMainButtonComponent,
+import {
+  MMainButtonComponent
 } from "@/components/MainButtonComponent";
 import { useTranslations } from "next-intl";
+import { Link as ScrollLink, animateScroll as scroll } from "react-scroll";
 import GetHeroVideoComponent from "@/components/main_page/GetHeroVideoComponent";
 import GetHeroImageComponent from "@/components/main_page/GetHeroImageComponent";
 import { useNetwork } from "@mantine/hooks"; // Import the useNetwork hook
 import useHeroTextColor from "@/hooks/useHeroTextColor";
-import classNames from "classnames";
 import MotionWrapper from "@/hooks/MotionWrapper";
 import useFramerAnimations from "@/hooks/useFramerAnimations";
 
@@ -20,15 +21,13 @@ function HeroSection() {
   const color = useHeroTextColor();
   const defaultAnimation = useFramerAnimations();
 
-  const titleClass = classNames(
-    s.hero__title, // Existing title class
-    { [s.lightTitle]: color === "light" } // New class if color is light
-  );
+  const titleClass = classNames(s.hero__title, {
+    [s.lightTitle]: color === "light",
+  });
 
-  const textClass = classNames(
-    s.hero__text, // Existing text class
-    { [s.lightText]: color === "light" } // New class if color is light
-  );
+  const textClass = classNames(s.hero__text, {
+    [s.lightText]: color === "light",
+  });
 
   return (
     <MotionWrapper tag={"section"} className={s.box} initial>
@@ -58,14 +57,22 @@ function HeroSection() {
               {t("heroText2")}
             </MotionWrapper>
           </div>
-
-          <MMainButtonComponent
+          <ScrollLink
+            to="servicesSection"
+            spy={true}
+            smooth={true}
+            offset={0}
+            duration={500}
+            className={s.hero__button}
+          >
+            <MMainButtonComponent
             className={s.hero__button}
             text={t1("ourSercvicesButton")}
             variants={defaultAnimation}
             custom={3}
             typeButton="MainUsualButton"
           />
+          </ScrollLink>
         </div>
       </div>
     </MotionWrapper>

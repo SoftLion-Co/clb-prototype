@@ -33,7 +33,7 @@ interface FormData {
   cvFile: File | null;
 }
 
-const ContactUsSection = ({ cv }: { cv?: boolean }) => {
+const ContactUsSection = ({ cv, id }: { cv?: boolean; id?: string }) => {
   const locale = useLocale();
   const t = useTranslations("homePage.contactUs");
   const defaultAnimation = useFramerAnimations();
@@ -493,7 +493,7 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
   );
 
   return (
-    <section className={s.box}>
+    <section id={"contactUsSection"} className={s.box}>
       <MotionWrapper
         className={s.background}
         initial

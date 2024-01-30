@@ -3,6 +3,7 @@
 import s from "./FooterComponent.module.scss";
 import Link from "next/link";
 import Image from "next/image";
+import { useState, useEffect } from "react";
 
 import Logo from "@/images/Logo-brokers.svg";
 
@@ -14,6 +15,7 @@ import facebook from "@/images/footer/icon-facebook.svg";
 import youtube from "@/images/footer/icon-youtube.svg";
 import whatsapp from "@/images/footer/icon-whatsapp.svg";
 import { useTranslations } from "next-intl";
+import { Link as ScrollLink, animateScroll as scroll } from "react-scroll";
 import useLocale from "@/hooks/useLocale";
 import classNames from "classnames";
 import { motion } from "framer-motion";
@@ -39,10 +41,46 @@ const socialMediaLinks = [
   { name: "WhatsApp", href: "https://wa.me/" },
 ];
 
+const getOffset = () => {
+  if (typeof window !== "undefined") {
+    const screenWidth = window.innerWidth;
+    let offset = -70;
+
+    if (screenWidth <= 767.98) {
+      offset = -70;
+    } else if (screenWidth >= 768 && screenWidth <= 1279.98) {
+      offset = -70;
+    } else if (screenWidth >= 1280 && screenWidth <= 1920) {
+      offset = -124;
+    } else if (screenWidth > 1920) {
+      offset = -124;
+    }
+
+    return offset;
+  }
+
+  return -70;
+};
+
 const FooterComponent = () => {
   const t = useTranslations("footer");
-  const local = useLocale();
   const defaultAnimation = useFramerAnimations("lowYMove")
+  const locale = useLocale();
+  const [offset, setOffset] = useState(getOffset());
+
+  useEffect(() => {
+    const handleResize = () => {
+      setOffset(getOffset());
+    };
+
+    if (typeof window !== "undefined") {
+      window.addEventListener("resize", handleResize);
+
+      return () => {
+        window.removeEventListener("resize", handleResize);
+      };
+    }
+  }, []);
 
   return (
     <footer className={s.box}>
@@ -88,7 +126,7 @@ const FooterComponent = () => {
                 >
                   <Link
                     className={s.footer__link}
-                    href={`/${local}/commodity-brokerage`}
+                    href={`/${locale}/commodity-brokerage`}
                   >
                     {t("commoditiesBrokerage")}
                   </Link>
@@ -100,7 +138,7 @@ const FooterComponent = () => {
                 >
                   <Link
                     className={s.footer__link}
-                    href={`/${local}/freight-brokerage`}
+                    href={`/${locale}/freight-brokerage`}
                   >
                     {t("freightBrokerage")}
                   </Link>
@@ -109,7 +147,10 @@ const FooterComponent = () => {
 
               <ul className={classNames(s.footer__list, s.footer__list_gap)}>
                 <li className={s.footer__item}>
-                  <Link className={s.footer__link} href={`/${local}/execution`}>
+                  <Link
+                    className={s.footer__link}
+                    href={`/${locale}/execution`}
+                  >
                     {t("execution")}
                   </Link>
                 </li>
@@ -120,7 +161,7 @@ const FooterComponent = () => {
                 >
                   <Link
                     className={s.footer__link}
-                    href={`/${local}/export-consulting`}
+                    href={`/${locale}/export-consulting`}
                   >
                     {t("exportConsulting")}
                   </Link>
@@ -129,23 +170,29 @@ const FooterComponent = () => {
 
               <ul className={s.footer__list}>
                 <li className={s.footer__item}>
-                  <Link className={s.footer__link} href={`/${local}/about-us`}>
+                  <Link className={s.footer__link} href={`/${locale}/about-us`}>
                     {t("aboutUs")}
                   </Link>
                 </li>
                 <li className={classNames(s.footer__item, s.anchor__link)}>
-                  <Link
+                  <ScrollLink
+                    to="ourVacancies"
+                    spy={true}
+                    smooth={true}
+                    offset={offset}
+                    duration={500}
                     className={s.footer__link}
-                    href={`/${local}/careers#vacancies`}
                   >
-                    {t("ourVacancies")}
-                  </Link>
+                    <Link href={`/${locale}/careers#ourVacancies`}>
+                      {t("ourVacancies")}
+                    </Link>
+                  </ScrollLink>
                 </li>
               </ul>
 
               <ul className={s.footer__list}>
                 <li className={s.footer__item}>
-                  <Link className={s.footer__link} href={`/${local}/blog`}>
+                  <Link className={s.footer__link} href={`/${locale}/blog`}>
                     {t("ourNews")}
                   </Link>
                 </li>

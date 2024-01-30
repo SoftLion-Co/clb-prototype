@@ -1,14 +1,14 @@
 "use client";
 import React from "react";
+import classNames from "classnames";
 import s from "./HeroSection.module.scss";
-import Image from "next/image";
 import image from "@/images/commodity_brokerage/1.jpg";
 import { useTranslations } from "next-intl";
+import { Link as ScrollLink, animateScroll as scroll } from "react-scroll";
 import PageTitleComponent from "@/components/PageTitleComponent";
-import MainButtonComponent, {
+import {
   MMainButtonComponent,
 } from "@/components/MainButtonComponent";
-import classNames from "classnames";
 import { motion } from "framer-motion";
 import { MCommodityHeroImage } from "@/components/commodity_brokerage_page/CommodityHeroImage";
 import useFramerAnimations from "@/hooks/useFramerAnimations";
@@ -41,10 +41,20 @@ function HeroSection() {
             </motion.h2>
             <motion.p variants={defaultAnimation}
               custom={2} className={s.hero__text}>{t("heroText")}</motion.p>
-            <MMainButtonComponent
+           
+
+            <ScrollLink
+              to="contactUsSection"
+              spy={true}
+              smooth={true}
+              offset={0}
+              duration={500}
+            >
+              <MMainButtonComponent
               text={t1("getInTouch")}
               typeButton="MainUsualButton"
             />
+            </ScrollLink>
           </div>
           <MCommodityHeroImage
             className={s.hero__image}
