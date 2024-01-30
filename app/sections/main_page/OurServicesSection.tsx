@@ -17,21 +17,25 @@ const OurServicesSection = () => {
       title: t("servicesCards.0.title"),
       text: t("servicesCards.0.text"),
       image: GrainsImage,
+      href: "commodity-brokerage",
     },
     {
       title: t("servicesCards.1.title"),
       text: t("servicesCards.1.text"),
       image: BySeaImage,
+      href: "freight-brokerage",
     },
     {
       title: t("servicesCards.2.title"),
       text: t("servicesCards.2.text"),
       image: Execution,
+      href: "execution",
     },
     {
       title: t("servicesCards.3.title"),
       text: t("servicesCards.3.text"),
       image: ExportConsulting,
+      href: "export-consulting",
     },
   ];
 
@@ -39,7 +43,7 @@ const OurServicesSection = () => {
     <section className={s.box}>
       <div className={s.background}>
         <div className={classNames(s.container, s.services)}>
-          <MainTitleComponent title={t("servicesHeading")} color="black"/>
+          <MainTitleComponent title={t("servicesHeading")} color="black" />
 
           <div className={s.services__cards}>
             {servicesCards.map((item, index) => (
@@ -48,6 +52,7 @@ const OurServicesSection = () => {
                 title={item.title}
                 text={item.text}
                 image={item.image}
+                href={item.href}
               />
             ))}
           </div>
