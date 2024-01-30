@@ -88,9 +88,9 @@ const FooterComponent = () => {
                 >
                   <Link
                     className={s.footer__link}
-                    href={`${local}/commodity-brokerage`}
+                    href={`/${local}/commodity-brokerage`}
                   >
-                    Commodities Brokerage
+                    {t("commoditiesBrokerage")}
                   </Link>
                 </motion.li>
                 <motion.li
@@ -100,23 +100,19 @@ const FooterComponent = () => {
                 >
                   <Link
                     className={s.footer__link}
-                    href={`${local}/freight-brokerage`}
+                    href={`/${local}/freight-brokerage`}
                   >
-                    Freight Brokerage
+                    {t("freightBrokerage")}
                   </Link>
                 </motion.li>
               </ul>
 
               <ul className={classNames(s.footer__list, s.footer__list_gap)}>
-                <motion.li
-                  className={s.footer__item}
-                  variants={defaultAnimation}
-                  custom={3}
-                >
-                  <Link className={s.footer__link} href={`${local}/execution`}>
-                    Execution
+                <li className={s.footer__item}>
+                  <Link className={s.footer__link} href={`/${local}/execution`}>
+                    {t("execution")}
                   </Link>
-                </motion.li>
+                </li>
                 <motion.li
                   className={s.footer__item}
                   variants={defaultAnimation}
@@ -124,51 +120,42 @@ const FooterComponent = () => {
                 >
                   <Link
                     className={s.footer__link}
-                    href={`${local}/export-consulting`}
+                    href={`/${local}/export-consulting`}
                   >
-                    Export Consulting
+                    {t("exportConsulting")}
                   </Link>
                 </motion.li>
               </ul>
 
               <ul className={s.footer__list}>
-                <motion.li
-                  className={s.footer__item}
-                  variants={defaultAnimation}
-                  custom={5}
-                >
-                  <Link className={s.footer__link} href={`${local}/about-us`}>
-                    About Us
+                <li className={s.footer__item}>
+                  <Link className={s.footer__link} href={`/${local}/about-us`}>
+                    {t("aboutUs")}
                   </Link>
-                </motion.li>
-                <motion.li
-                  className={s.footer__item}
-                  variants={defaultAnimation}
-                  custom={6}
-                >
-                  <Link className={s.footer__link} href="/">
-                    Our Vacancies
+                </li>
+                <li className={classNames(s.footer__item, s.anchor__link)}>
+                  <Link
+                    className={s.footer__link}
+                    href={`/${local}/careers#vacancies`}
+                  >
+                    {t("ourVacancies")}
                   </Link>
-                </motion.li>
+                </li>
               </ul>
 
               <ul className={s.footer__list}>
-                <motion.li
-                  className={s.footer__item}
-                  variants={defaultAnimation}
-                  custom={7}
-                >
-                  <Link className={s.footer__link} href={`${local}/blog`}>
-                    Our News
+                <li className={s.footer__item}>
+                  <Link className={s.footer__link} href={`/${local}/blog`}>
+                    {t("ourNews")}
                   </Link>
-                </motion.li>
+                </li>
                 <motion.li
                   className={s.footer__item}
                   variants={defaultAnimation}
                   custom={8}
                 >
                   <Link className={s.footer__link} href="/">
-                    Privacy Policy
+                    {t("privacyPolicy")}
                   </Link>
                 </motion.li>
               </ul>

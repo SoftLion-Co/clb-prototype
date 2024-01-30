@@ -336,9 +336,7 @@ const HeaderComponent = () => {
     <>
       {NavigationContent}
       {FlagContent}
-      <MainButtonComponent
-        text={t("getInTouch")}
-      />
+      <MainButtonComponent text={t("getInTouch")} />
     </>
   );
 
@@ -374,7 +372,7 @@ const HeaderComponent = () => {
           <MainButtonComponent
             className={s.header__touch}
             text={t("getInTouch")}
-            type="MainButton"
+            typeButton="MainButton"
           />
 
           <button

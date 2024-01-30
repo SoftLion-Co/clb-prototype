@@ -1,10 +1,11 @@
 import s from "./page.module.scss";
-import ContactUsSection from "../../sections/main_page/ContactUsSection";
 import PageTitleComponent from "@/components/PageTitleComponent";
 import ThreeCardsComponent from "@/components/ThreeCardsComponent";
-import KeyServices from "../../sections/export_consulting/KeyServicesSection";
-import { useTranslations } from "next-intl";
+import KeyServices from "@/app/sections/export_consulting/KeyServicesSection";
 import WhyChoose from "@/app/sections/export_consulting/WhyChooseSection";
+import ContactUsSection from "@/app/sections/main_page/ContactUsSection";
+
+import { useTranslations } from "next-intl";
 
 const Export = () => {
   const t = useTranslations("exportConsulting");

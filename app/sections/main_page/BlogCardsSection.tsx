@@ -73,7 +73,7 @@ const BlogCardsSection = () => {
               variants={defaultAnimation}
               text={t1("moreOurNews")}
               href={"/blog"}
-              type="MainArrowButton"
+              typeButton="MainArrowButton"
               className={s.blog__button}
             />
           </MotionWrapper>

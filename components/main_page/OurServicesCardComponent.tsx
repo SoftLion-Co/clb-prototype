@@ -1,9 +1,9 @@
+"use client";
+import React, { FC, ForwardedRef, forwardRef } from "react";
 import classNames from "classnames";
 import s from "./OurServicesCardComponent.module.scss";
 import ReadMoreComponent from "@/components/ReadMoreComponent";
-import { useTranslations } from "next-intl";
-import React, { FC, ForwardedRef, forwardRef } from "react";
-
+import { useLocale } from "next-intl";
 import Image from "next/image";
 import { motion } from "framer-motion";
 
@@ -12,6 +12,7 @@ interface OurServicesCardProps {
   text: string;
   image: string | undefined;
   className?: string;
+  href: string;
 }
 
 const OurServicesCardComponent: FC<OurServicesCardProps> = forwardRef(({
@@ -19,16 +20,21 @@ const OurServicesCardComponent: FC<OurServicesCardProps> = forwardRef(({
   text,
   image,
   className,
+  href
 }, ref: ForwardedRef<HTMLDivElement> | undefined) => {
-  const t = useTranslations("homePage");
+  const local = useLocale();
 
   return (
     <div className={classNames(s.card__container, className)} ref={ref}>
-      <Image className={s.card__image} src={image!} alt="Image" />
-      <h3 className={s.card__title}>{title}</h3>
+      <div className={s.card__info}>
+        <Image className={s.card__image} src={image!} alt="Image" />
+        <h3 className={s.card__title}>{title}</h3>
+      </div>
+
       <div className={s.card__content}>
         <p className={s.card__text}>{text}</p>
-        <ReadMoreComponent href="/" />
+
+        <ReadMoreComponent href={`/${local}/${href}`} />
       </div>
     </div>
   );

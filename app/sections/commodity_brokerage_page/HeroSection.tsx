@@ -39,17 +39,11 @@ function HeroSection() {
             >
               {t("commodityBrokerageSubtitle")}
             </motion.h2>
-            <motion.p
-              className={s.hero__text}
-              variants={defaultAnimation}
-              custom={2}
-            >
-              {t("heroText")}
-            </motion.p>
+            <motion.p variants={defaultAnimation}
+              custom={2} className={s.hero__text}>{t("heroText")}</motion.p>
             <MMainButtonComponent
               text={t1("getInTouch")}
-              variants={defaultAnimation}
-              custom={3}
+              typeButton="MainUsualButton"
             />
           </div>
           <MCommodityHeroImage

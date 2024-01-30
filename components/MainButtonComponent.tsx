@@ -1,71 +1,125 @@
-import React, { FC, ForwardedRef, forwardRef } from "react";
-import Link from "next/link";
+"use client";
+import React, { FC, useState, useEffect, forwardRef, ForwardedRef } from "react";
 import Image from "next/image";
-import s from "./MainButtonComponent.module.scss";
+import Link from "next/link";
 import classNames from "classnames";
-import { Url } from "next/dist/shared/lib/router/router";
+import s from "./MainButtonComponent.module.scss";
 import Arrow from "@/images/vectors/arrow.svg";
 import ArrowWhite from "@/images/vectors/arrow-white.svg";
 import { motion } from "framer-motion";
+import { useTranslations } from "next-intl";
+import { Url } from "next/dist/shared/lib/router/router";
 
 interface MainButtonProps {
   text: string;
   href?: Url;
   className?: string;
-  type?: "MainButton" | "MainArrowButton" | "MainUsualButton";
+  typeButton?:
+    | "MainButton"
+    | "MainArrowButton"
+    | "MainUsualButton"
+    | "MainContactUsButton";
+  onClick?: () => void;
 }
 
 const MainButtonComponent: FC<MainButtonProps> = forwardRef(({
   text,
   href,
   className,
-  type = "MainButton",
+  typeButton = "MainButton",
+  onClick,
 }, ref: ForwardedRef<HTMLDivElement> | undefined) => {
-  const linkProps = {
-    href: href || "",
-  };
+  const t = useTranslations("header");
+  const linkProps = { href: href || "" };
 
-  let buttonPadding = "";
-  if (type === "MainButton") {
-    buttonPadding = "0";
-  } else if (type === "MainArrowButton" || type === "MainUsualButton") {
-    buttonPadding = "8px 16px";
-  }
+  const [isHovered, setIsHovered] = useState(false);
+  const [textWidth, setTextWidth] = useState(0);
+  const [buttonPadding, setButtonPadding] = useState("8px 16px");
+
+  useEffect(() => {
+    const textElement = document.querySelector(`.${s.main__text}`);
+    if (textElement) {
+      setTextWidth(textElement.clientWidth);
+    }
+
+    const updatePadding = () => {
+      if (window.innerWidth <= 1280) {
+        setButtonPadding("6px 12px");
+      } else {
+        setButtonPadding("8px 16px");
+      }
+    };
+    updatePadding();
+    window.addEventListener("resize", updatePadding);
+    return () => {
+      window.removeEventListener("resize", updatePadding);
+    };
+  }, []);
 
   let buttonContent;
 
-  if (type === "MainButton") {
+  if (typeButton === "MainButton" || typeButton === "MainContactUsButton") {
     buttonContent = (
-      <div className={s.main__container}>
-        <p className={s.main__text}>{text}</p>
-        <div className={s.main__background}>
-          <Image className={s.main__arrow} src={Arrow} alt="arrow" />
-        </div>
-      </div>
+      <motion.button
+        type="submit"
+        className={s.main__container}
+        onHoverStart={() => setIsHovered(true)}
+        onHoverEnd={() => setIsHovered(false)}
+      >
+        <motion.p
+          className={s.main__text}
+          animate={{ x: isHovered ? 40 : 0 }}
+          transition={{ duration: 0.3, ease: "easeInOut" }}
+        >
+          {t("getInTouch")}
+        </motion.p>
+        <motion.div
+          className={s.main__background}
+          animate={{ x: isHovered ? -textWidth - 25 : 0 }}
+          transition={{ duration: 0.3, ease: "easeInOut" }}
+        >
+          <motion.div
+            className={s.main__arrow}
+            initial={{ rotate: 180 }}
+            animate={{ rotate: isHovered ? 360 : 180 }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+          >
+            <Image src={Arrow} alt="arrow" />
+          </motion.div>
+        </motion.div>
+      </motion.button>
     );
-  } else if (type === "MainArrowButton") {
+  } else if (typeButton === "MainArrowButton") {
     buttonContent = (
-      <div className={s.main__link} style={{ padding: buttonPadding }}>
-        <p>{text}</p>
+      <div className={s.main__container} style={{ padding: buttonPadding }}>
+        <p className={s.main__text}>{text}</p>
         <Image src={ArrowWhite} alt="arrow" />
       </div>
     );
-  } else if (type === "MainUsualButton") {
+  } else if (typeButton === "MainUsualButton") {
     buttonContent = (
-      <div style={{ padding: buttonPadding }}>
-        <p>{text}</p>
+      <div className={s.main__container} style={{ padding: buttonPadding }}>
+        <p className={s.main__text}>{text}</p>
       </div>
     );
   }
 
-  return (
-    <div ref={ref} className={classNames(s.main__button, className)}>
-      <Link className={s.main__link} {...linkProps}>
+  if (typeButton === "MainContactUsButton") {
+    return (
+      <div ref={ref} className={classNames(s.main__button, className)} onClick={onClick}>
         {buttonContent}
-      </Link>
-    </div>
-  );
-});
+      </div>
+    );
+  } else {
+    return (
+      <div ref={ref}  className={classNames(s.main__button, className)}>
+        <Link className={s.main__link} {...linkProps}>
+          {buttonContent}
+        </Link>
+      </div>
+    );
+  }
+};
 
 export const MMainButtonComponent = motion(MainButtonComponent);
 

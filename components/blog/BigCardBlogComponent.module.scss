@@ -12,12 +12,15 @@
   padding: 20px;
   background-color: $classicWhiteBackgroundColor;
   border: 2px solid $backgroundColorLightGreen;
-  border-radius: 32px;
+  border-radius: 24px;
   gap: 36px;
   height: 100%;
 
   @include for-size(laptop) {
     padding: 24px;
+  }
+  @include for-size(desktop) {
+    border-radius: 32px;
   }
 
   &__content {

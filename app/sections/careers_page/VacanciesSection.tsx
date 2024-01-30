@@ -11,7 +11,7 @@ const VacanciesSection = () => {
   const defaultAnimation = useFramerAnimations();
 
   return (
-    <section className={s.box}>
+    <section id="vacancies" className={s.box}>
       <div className={s.background}>
         <motion.div
           className={s.container}

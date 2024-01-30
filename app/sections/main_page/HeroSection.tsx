@@ -62,9 +62,9 @@ function HeroSection() {
           <MMainButtonComponent
             className={s.hero__button}
             text={t1("ourSercvicesButton")}
-            type="MainUsualButton"
             variants={defaultAnimation}
             custom={3}
+            typeButton="MainUsualButton"
           />
         </div>
       </div>

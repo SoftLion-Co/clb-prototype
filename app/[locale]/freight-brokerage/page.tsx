@@ -1,10 +1,10 @@
 import s from "./page.module.scss";
-import ContactUsSection from "../../sections/main_page/ContactUsSection";
+import classNames from "classnames";
 import PageTitleComponent from "@/components/PageTitleComponent";
 import ThreeCardsComponent from "@/components/ThreeCardsComponent";
-import ProductPortfolioSection from "../../sections/freight_brokerage/BrokeragePortfolioSection";
+import ProductPortfolioSection from "@/app/sections/freight_brokerage/BrokeragePortfolioSection";
+import ContactUsSection from "@/app/sections/main_page/ContactUsSection";
 import { useTranslations } from "next-intl";
-import classNames from "classnames";
 
 const Freight = () => {
   const t = useTranslations("freightBrokerage");
