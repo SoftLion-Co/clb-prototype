@@ -119,7 +119,7 @@ const MainButtonComponent: FC<MainButtonProps> = forwardRef(({
       </div>
     );
   }
-};
+})
 
 export const MMainButtonComponent = motion(MainButtonComponent);
 

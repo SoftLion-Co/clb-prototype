@@ -60,6 +60,7 @@ const OurServicesSection = () => {
               <MotionWrapper initial viewport={{ margin: "20% 0% -10% 0%" }}>
                 <MotionWrapper variants custom={index}>
                   <OurServicesCardComponent
+                    href={item.href}
                     key={index}
                     title={item.title}
                     text={item.text}

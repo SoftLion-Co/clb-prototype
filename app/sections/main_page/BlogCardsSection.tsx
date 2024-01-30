@@ -68,13 +68,13 @@ const BlogCardsSection = () => {
               ))}
             </MotionWrapper>
           )}
-          <MotionWrapper initial viewport={{ margin: "20% 0% -20% 0%" }}>
+          <MotionWrapper initial viewport={{ margin: "20% 0% -20% 0%" }}className={s.blog__button}>
             <MMainButtonComponent
               variants={defaultAnimation}
               text={t1("moreOurNews")}
               href={"/blog"}
               typeButton="MainArrowButton"
-              className={s.blog__button}
+              
             />
           </MotionWrapper>
         </MotionWrapper>
