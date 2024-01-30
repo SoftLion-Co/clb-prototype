@@ -54,7 +54,7 @@ const BlogCardsSection = () => {
 
           <MainButtonComponent
             text={t1("moreOurNews")}
-            href={"/blog"}
+            href={`/${locale}/blog`}
             typeButton="MainArrowButton"
             className={s.blog__button}
           />
