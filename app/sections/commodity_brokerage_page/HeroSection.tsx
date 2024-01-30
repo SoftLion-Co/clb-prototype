@@ -1,11 +1,13 @@
+"use client";
 import React from "react";
+import classNames from "classnames";
 import s from "./HeroSection.module.scss";
 import Image from "next/image";
 import image from "@/images/commodity_brokerage/1.jpg";
 import { useTranslations } from "next-intl";
+import { Link as ScrollLink, animateScroll as scroll } from "react-scroll";
 import PageTitleComponent from "@/components/PageTitleComponent";
 import MainButtonComponent from "@/components/MainButtonComponent";
-import classNames from "classnames";
 
 function HeroSection() {
   const t = useTranslations("commodityBrokerage");
@@ -23,10 +25,19 @@ function HeroSection() {
               {t("commodityBrokerageSubtitle")}
             </h2>
             <div className={s.hero__text}>{t("heroText")}</div>
-            <MainButtonComponent
-              text={t1("getInTouch")}
-              typeButton="MainUsualButton"
-            />
+
+            <ScrollLink
+              to="contactUsSection"
+              spy={true}
+              smooth={true}
+              offset={0}
+              duration={500}
+            >
+              <MainButtonComponent
+                text={t1("getInTouch")}
+                typeButton="MainUsualButton"
+              />
+            </ScrollLink>
           </div>
           <Image
             className={s.hero__image}

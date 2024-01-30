@@ -31,7 +31,7 @@ interface FormData {
   cvFile: File | null;
 }
 
-const ContactUsSection = ({ cv }: { cv?: boolean }) => {
+const ContactUsSection = ({ cv, id }: { cv?: boolean; id?: string }) => {
   const locale = useLocale();
   const t = useTranslations("homePage.contactUs");
   const vacancies = useVacancies();
@@ -490,7 +490,7 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
   );
 
   return (
-    <section className={s.box}>
+    <section id={"contactUsSection"} className={s.box}>
       <div className={s.background}>
         <MainTitleComponent
           title={cv ? t("letsWorkWithUS") : t("contactUsHeading")}
