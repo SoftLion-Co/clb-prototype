@@ -1,4 +1,5 @@
 import s from "@/app/sections/main_page/PartnersSection.module.scss";
+
 import { MPartnerImage } from "./PartnerImageComponent";
 import useFramerAnimations from "@/hooks/useFramerAnimations";
 import MotionWrapper from "@/hooks/MotionWrapper";
