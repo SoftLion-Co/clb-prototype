@@ -3,7 +3,6 @@ import React, { FC } from "react";
 import classNames from "classnames";
 import s from "./OurServicesCardComponent.module.scss";
 import ReadMoreComponent from "@/components/ReadMoreComponent";
-import { useTranslations } from "next-intl";
 import { useLocale } from "next-intl";
 import Image from "next/image";
 
@@ -22,7 +21,6 @@ const OurServicesCardComponent: FC<OurServicesCardProps> = ({
   className,
   href,
 }) => {
-  const t = useTranslations("homePage");
   const local = useLocale();
 
   return (
