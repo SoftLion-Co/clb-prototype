@@ -338,13 +338,13 @@ const HeaderComponent = () => {
     <>
       {NavigationContent}
       {FlagContent}
-      
-        <MainButtonComponent
-          className={s.header__touch}
-          text={t("getInTouch")}
-          typeButton="MainButton"
-        />
-      
+
+      <MainButtonComponent
+        // defaultTo="contactUsSection"
+        onClick={closeModal}
+        text={t("getInTouch")}
+        typeButton="MainButton"
+      />
     </>
   );
 
@@ -377,13 +377,12 @@ const HeaderComponent = () => {
         <div className={s.header__contents}>
           <div className={s.flag__content}>{FlagContent}</div>
 
-         
-            <MainButtonComponent
-              className={s.header__touch}
-              text={t("getInTouch")}
-              typeButton="MainButton"
-            />
-          
+          <MainButtonComponent
+            defaultTo="contactUsSection"
+            className={s.header__touch}
+            text={t("getInTouch")}
+            typeButton="MainButton"
+          />
 
           <button
             className={s.header__button}

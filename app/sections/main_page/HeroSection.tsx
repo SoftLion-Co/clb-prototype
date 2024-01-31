@@ -61,6 +61,7 @@ function HeroSection() {
             typeButton="MainUsualButton"
             variants={defaultAnimation}
             custom={3}
+            defaultTo="servicesSection"
           />
         </div>
       </div>
