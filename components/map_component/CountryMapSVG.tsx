@@ -23,22 +23,27 @@ const CountryMapSVG = ({
   activeStyle,
   defaultStyle,
   currentScale,
+  translate,
   svgContentRef,
   handleMouseEnter,
   handleMouseLeave,
 }: CountryMapSVGProps) => {
+  const originalWidth = 952;
+  const originalHeight = 584;
+
   return (
     <svg
       width="100%"
       height="auto"
-      viewBox="0 0 952 584"
+      viewBox={`0 0 ${originalWidth} ${originalHeight}`}
       style={{
+        maxWidth: "100%",
+        transform: `scale(${currentScale}) translate(${translate.x}px, ${translate.y}px)`,
         transition: "transform 0.3s",
         cursor: "pointer",
       }}
       ref={svgContentRef}
       transform={`scale(${currentScale})`}
-      xmlns="http://www.w3.org/2000/svg"
     >
       <path
         d="M607.785 428.1L608.283 428.5 ... 926.679 472.4Z"
