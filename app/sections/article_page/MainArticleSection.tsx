@@ -6,8 +6,6 @@ import ImageAndTextCardsComponent from "@/components/ImageAndTextCardsComponent"
 import SocialLinksSection from "@/app/sections/article_page/SocialLinksSection";
 import useLocale from "@/hooks/useLocale";
 import useDateFormat from "@/hooks/useDateFormat";
-import { motion } from "framer-motion";
-import useFramerAnimations from "@/hooks/useFramerAnimations";
 import MotionWrapper from "@/hooks/MotionWrapper";
 
 interface Data {
@@ -61,7 +59,6 @@ interface Acf {
 const MainArticleSection = (data: Data) => {
   const locale = useLocale();
   const formattedDate = useDateFormat(data.data.acf.date, locale);
-  const defaultAnimation = useFramerAnimations("lowDelay");
 
   return (
     <section className={s.box}>
