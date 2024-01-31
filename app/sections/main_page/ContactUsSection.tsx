@@ -1,7 +1,7 @@
 "use client";
 import React, { ChangeEvent, useState, useEffect, useRef } from "react";
 import s from "./ContactUsSection.module.scss";
-import MainTitleComponent from "@/components/MainTitleComponent";
+import { MMainTitleComponent } from "@/components/MainTitleComponent";
 import MainButtonComponent from "@/components/MainButtonComponent";
 import Image from "next/image";
 import Picture from "@/images/our_advantages_test/advantages-image-1.png";
@@ -11,6 +11,8 @@ import InputField from "@/components/form/InputField";
 import { DatePickerInput } from "@mantine/dates";
 import { useTranslations } from "next-intl";
 import useLocale from "@/hooks/useLocale";
+import useFramerAnimations from "@/hooks/useFramerAnimations";
+import MotionWrapper from "@/hooks/MotionWrapper";
 import {
   validateName,
   validateEmail,
@@ -34,6 +36,7 @@ interface FormData {
 const ContactUsSection = ({ cv, id }: { cv?: boolean; id?: string }) => {
   const locale = useLocale();
   const t = useTranslations("homePage.contactUs");
+  const defaultAnimation = useFramerAnimations();
   const vacancies = useVacancies();
 
   const topics = [
@@ -491,13 +494,26 @@ const ContactUsSection = ({ cv, id }: { cv?: boolean; id?: string }) => {
 
   return (
     <section id={"contactUsSection"} className={s.box}>
-      <div className={s.background}>
-        <MainTitleComponent
+      <MotionWrapper
+        className={s.background}
+        initial
+        viewport
+      >
+        <MMainTitleComponent
           title={cv ? t("letsWorkWithUS") : t("contactUsHeading")}
+          variants={defaultAnimation}
         />
-        <div className={classNames(s.container, s.form__container)}>
+        <MotionWrapper
+          initial
+          viewport
+          variants
+          className={classNames(s.container, s.form__container)}
+        >
           <form
-            className={classNames(s.form, { [s.cv]: cv, [s.form__custom]: cv })}
+            className={classNames(s.form, {
+              [s.cv]: cv,
+              [s.form__custom]: cv,
+            })}
             onSubmit={handleSubmit}
           >
             <div className={s.form__content}>{boxInputs}</div>
@@ -522,8 +538,8 @@ const ContactUsSection = ({ cv, id }: { cv?: boolean; id?: string }) => {
             </div>
           </form>
           <Image className={s.form__picture} src={Picture} alt="Picture" />
-        </div>
-      </div>
+        </MotionWrapper>
+      </MotionWrapper>
     </section>
   );
 };

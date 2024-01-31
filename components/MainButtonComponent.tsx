@@ -1,4 +1,5 @@
-import React, { FC, useState, useEffect } from "react";
+"use client";
+import React, { FC, useState, useEffect, forwardRef, ForwardedRef } from "react";
 import Image from "next/image";
 import classNames from "classnames";
 import s from "./MainButtonComponent.module.scss";
@@ -22,14 +23,14 @@ interface MainButtonProps {
   onClick?: () => void;
 }
 
-const MainButtonComponent: FC<MainButtonProps> = ({
+const MainButtonComponent: FC<MainButtonProps> = forwardRef(({
   text,
   href,
   className,
   typeButton = "MainButton",
   defaultTo = "",
   onClick,
-}) => {
+}, ref: ForwardedRef<HTMLDivElement> | undefined) => {
   const t = useTranslations("header");
   const linkProps = { href: href || "" };
 
@@ -110,7 +111,7 @@ const MainButtonComponent: FC<MainButtonProps> = ({
 
   if (typeButton === "MainContactUsButton") {
     return (
-      <div className={classNames(s.main__button, className)} onClick={onClick}>
+      <div ref={ref} className={classNames(s.main__button, className)} onClick={onClick}>
         {buttonContent}
       </div>
     );
@@ -128,6 +129,8 @@ const MainButtonComponent: FC<MainButtonProps> = ({
       </ScrollLink>
     );
   }
-};
+})
+
+export const MMainButtonComponent = motion(MainButtonComponent);
 
 export default MainButtonComponent;

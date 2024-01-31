@@ -1,5 +1,8 @@
-import Image from "next/image";
 import s from "@/app/sections/main_page/PartnersSection.module.scss";
+
+import { MPartnerImage } from "./PartnerImageComponent";
+import useFramerAnimations from "@/hooks/useFramerAnimations";
+import MotionWrapper from "@/hooks/MotionWrapper";
 
 const reqUrl =
   "https://softlion.blog/wp-json/wp/v2/partners?per_page=100&acf_format=standard&_fields=id,acf,title";
@@ -20,23 +23,31 @@ interface Rendered {
 }
 
 const GetPartnersComponent = async () => {
+  const defaultAnimation = useFramerAnimations("partnersDelay");
+
   const req = await fetch(reqUrl, { cache: "no-cache" });
   const partners: Partners[] = await req.json();
   partners.sort((a, b) => a.acf.position - b.acf.position);
 
   return (
     <div className={s.partners__wrapper}>
-      {partners.map((partner) => (
-        <div className={s.partners__image_container}>
-          <Image
+      {partners.map((partner, index) => (
+        <MotionWrapper 
+          className={s.partners__image_container}
+          initial
+          viewport
+        >
+          <MPartnerImage
             key={partner.id}
             src={partner.acf.partner_company_logo}
             alt={partner.title.rendered}
             width={200}
             height={100}
             className={s.partners__image}
+            variants={defaultAnimation}
+            custom={index}
           />
-        </div>
+        </MotionWrapper>
       ))}
     </div>
   );

@@ -15,9 +15,10 @@ import youtube from "@/images/footer/icon-youtube.svg";
 import whatsapp from "@/images/footer/icon-whatsapp.svg";
 import { useTranslations } from "next-intl";
 import { animateScroll as scroll } from "react-scroll";
-
 import useLocale from "@/hooks/useLocale";
 import classNames from "classnames";
+import useFramerAnimations from "@/hooks/useFramerAnimations";
+import MotionWrapper from "@/hooks/MotionWrapper";
 
 const socialMediaIcons: { [key: string]: any } = {
   telegram,
@@ -106,7 +107,13 @@ const FooterComponent = () => {
   return (
     <footer className={s.box}>
       <div className={s.footer}>
-        <div className={s.footer__container}>
+        <MotionWrapper
+          className={s.footer__container}
+          initial
+          variants
+          animation="footer"
+          viewport
+        >
           <div className={s.footer__content}>
             <Link href="/">
               <Image src={Logo} alt="Logo" />
@@ -134,50 +141,81 @@ const FooterComponent = () => {
           <div className={s.footer__box}>
             <div className={s.footer__lists}>
               <ul className={s.footer__list}>
-                <li className={s.footer__item}>
+                <MotionWrapper
+                  tag="li"
+                  className={s.footer__item}
+                  variants
+                  custom={1}
+                >
                   <Link
                     className={s.footer__link}
                     href={`/${locale}/commodity-brokerage`}
                   >
                     {t("commoditiesBrokerage")}
                   </Link>
-                </li>
-                <li className={s.footer__item}>
+                </MotionWrapper>
+                <MotionWrapper
+                  tag="li"
+                  className={s.footer__item}
+                  variants
+                  custom={2}
+                >
                   <Link
                     className={s.footer__link}
                     href={`/${locale}/freight-brokerage`}
                   >
                     {t("freightBrokerage")}
                   </Link>
-                </li>
+                </MotionWrapper>
               </ul>
 
               <ul className={classNames(s.footer__list, s.footer__list_gap)}>
-                <li className={s.footer__item}>
+                <MotionWrapper
+                  tag="li"
+                  variants
+                  custom={3}
+                  className={s.footer__item}
+                >
                   <Link
                     className={s.footer__link}
                     href={`/${locale}/execution`}
                   >
                     {t("execution")}
                   </Link>
-                </li>
-                <li className={s.footer__item}>
+                </MotionWrapper>
+                <MotionWrapper
+                  tag="li"
+                  className={s.footer__item}
+                  variants
+                  custom={4}
+                >
                   <Link
                     className={s.footer__link}
                     href={`/${locale}/export-consulting`}
                   >
                     {t("exportConsulting")}
                   </Link>
-                </li>
+                </MotionWrapper>
               </ul>
 
               <ul className={s.footer__list}>
-                <li className={s.footer__item}>
+                <MotionWrapper
+                  tag="li"
+                  className={s.footer__item}
+                  variants
+                  custom={5}
+                >
                   <Link className={s.footer__link} href={`/${locale}/about-us`}>
                     {t("aboutUs")}
                   </Link>
-                </li>
-                <li className={s.footer__item}>
+                </MotionWrapper>
+
+                <MotionWrapper
+                  tag="li"
+                  variants
+                  custom={6}
+                  className={s.footer__item}
+                >
                   <Link
                     className={s.footer__link}
                     href={`/${locale}/careers#ourVacancies`}
@@ -187,28 +225,44 @@ const FooterComponent = () => {
                   >
                     {t("ourVacancies")}
                   </Link>
-                </li>
+                </MotionWrapper>
               </ul>
 
               <ul className={s.footer__list}>
-                <li className={s.footer__item}>
+                <MotionWrapper
+                  tag="li"
+                  variants
+                  custom={7}
+                  className={s.footer__item}
+                >
                   <Link className={s.footer__link} href={`/${locale}/blog`}>
                     {t("ourNews")}
                   </Link>
-                </li>
-                <li className={s.footer__item}>
+                </MotionWrapper>
+                <MotionWrapper
+                  tag="li"
+                  variants
+                  custom={8}
+                  className={s.footer__item}
+                >
                   <Link className={s.footer__link} href="/">
                     {t("privacyPolicy")}
                   </Link>
-                </li>
+                </MotionWrapper>
               </ul>
             </div>
 
-            <p className={s.footer__copyright}>
+            <MotionWrapper
+              tag="p"
+              animation="footer"
+              className={s.footer__copyright}
+              variants
+              custom={9}
+            >
               © 2023 Commodities & Logistics Brokers
-            </p>
+            </MotionWrapper>
           </div>
-        </div>
+        </MotionWrapper>
       </div>
     </footer>
   );

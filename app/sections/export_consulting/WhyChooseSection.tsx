@@ -1,12 +1,16 @@
+"use client";
 import React from "react";
 import s from "./WhyChooseSection.module.scss";
 import ImageAndTextCardsComponent from "@/components/ImageAndTextCardsComponent";
-import MainTitleComponent from "@/components/MainTitleComponent";
+import { MMainTitleComponent } from "@/components/MainTitleComponent";
 import { useTranslations } from "next-intl";
 
 import image1 from "@/images/export_consulting/1.png";
 import image2 from "@/images/export_consulting/2.jpg";
 import image3 from "@/images/export_consulting/3.png";
+import useFramerAnimations from "@/hooks/useFramerAnimations";
+import { motion } from "framer-motion";
+import MotionWrapper from "@/hooks/MotionWrapper";
 
 interface WhyChooseProps {
   text1: string;
@@ -16,12 +20,21 @@ interface WhyChooseProps {
 
 function WhyChoose({ text1, text2, text3 }: WhyChooseProps) {
   const t = useTranslations("exportConsulting.whyChoose");
+  const defaultAnimation = useFramerAnimations();
 
   return (
     <section className={s.box}>
       <div className={s.background}>
-        <div className={s.container}>
-          <MainTitleComponent title={t("whyChooseTitle")} color="blue" />
+        <MotionWrapper
+          className={s.container}
+          initial
+          viewport
+        >
+          <MMainTitleComponent
+            title={t("whyChooseTitle")}
+            color="blue"
+            variants={defaultAnimation}
+          />
           <div className={s.choose}>
             <ImageAndTextCardsComponent
               text={text1}
@@ -49,7 +62,7 @@ function WhyChoose({ text1, text2, text3 }: WhyChooseProps) {
               rotateMobile
             />
           </div>
-        </div>
+        </MotionWrapper>
       </div>
     </section>
   );

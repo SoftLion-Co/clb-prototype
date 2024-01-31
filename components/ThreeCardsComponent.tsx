@@ -1,3 +1,4 @@
+"use client";
 import React, { FC } from "react";
 import s from "./ThreeCardsComponent.module.scss";
 import Image from "next/image";
@@ -7,6 +8,7 @@ import exportConsultingImage from "@/images/home-hero-test.png";
 import freightBrokerageImage from "@/images/freight_brokerage/1.png";
 import ourStoryImage from "@/images/home-hero-test.png";
 import classNames from "classnames";
+import MotionWrapper from "@/hooks/MotionWrapper";
 
 const images = {
   execution: executionImage,
@@ -41,7 +43,7 @@ const ThreeCardsComponent: FC<ThreeCardsProps> = ({
   };
 
   const image = (
-    <div className={s.cards__image}>
+    <MotionWrapper className={s.cards__image} variants custom={imagePosition}>
       <Image
         src={selectedImage}
         alt="Card Image"
@@ -49,31 +51,42 @@ const ThreeCardsComponent: FC<ThreeCardsProps> = ({
         width={1400}
         height={1400}
       />
-    </div>
+    </MotionWrapper>
   );
 
   return (
-    <div className={classNames(s.cards, className)}>
+    <MotionWrapper
+      className={classNames(s.cards, className)}
+      initial
+      viewport
+    >
       {imagePosition === 1 && image}
-      <div className={classNames(s.cards__card, {
+      <MotionWrapper
+        className={classNames(s.cards__card, {
           [s.tabletCard]: imagePosition === 2,
         })}
         style={cardStyle}
+        variants
+        custom={imagePosition === 1 ? 2 : 1}
       >
         <h2 className={s.cards__large_text}>{bigText}</h2>
-      </div>
+      </MotionWrapper>
       {imagePosition === 2 && (
-        <div className={classNames(s.cards__image, s.tabletImage)}>
-          {image}
-        </div>
+        <div className={classNames(s.cards__image, s.tabletImage)}>{image}</div>
       )}
-      <div className={classNames(s.cards__card, {[s.cards__small_card]: smallText})} style={cardStyle}>
+      <MotionWrapper
+        className={classNames(s.cards__card, {
+          [s.cards__small_card]: smallText,
+        })}
+        style={cardStyle}
+        variants
+        custom={imagePosition === 2 ? 3 : imagePosition === 1 ? 3 : 2}
+      >
         <p className={s.cards__small_text}>{smallText}</p>
-      </div>
+      </MotionWrapper>
       {imagePosition === 3 && image}
-    </div>
+    </MotionWrapper>
   );
-  
 };
 
 export default ThreeCardsComponent;

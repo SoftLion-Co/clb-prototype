@@ -1,16 +1,19 @@
+"use client";
 import s from "./OurServicesSection.module.scss";
-import MainTitleComponent from "@/components/MainTitleComponent";
+import { MMainTitleComponent } from "@/components/MainTitleComponent";
 import OurServicesCardComponent from "@/components/main_page/OurServicesCardComponent";
 import classNames from "classnames";
 import { useTranslations } from "next-intl";
-
+import MotionWrapper from "@/hooks/MotionWrapper";
 import GrainsImage from "@/images/icons/Grains.svg";
 import BySeaImage from "@/images/icons/BySea.svg";
 import Execution from "@/images/icons/Execution.svg";
 import ExportConsulting from "@/images/icons/ExportConsulting.svg";
+import useFramerAnimations from "@/hooks/useFramerAnimations";
 
 const OurServicesSection = () => {
   const t = useTranslations("homePage");
+  const defaultAnimation = useFramerAnimations();
 
   const servicesCards = [
     {
@@ -42,21 +45,32 @@ const OurServicesSection = () => {
   return (
     <section id="servicesSection" className={s.box}>
       <div className={s.background}>
-        <div className={classNames(s.container, s.services)}>
-          <MainTitleComponent title={t("servicesHeading")} color="black" />
-
+        <MotionWrapper
+          className={classNames(s.container, s.services)}
+          initial
+          viewport
+        >
+          <MMainTitleComponent
+            title={t("servicesHeading")}
+            color="black"
+            variants={defaultAnimation}
+          />
           <div className={s.services__cards}>
             {servicesCards.map((item, index) => (
-              <OurServicesCardComponent
-                key={index}
-                title={item.title}
-                text={item.text}
-                image={item.image}
-                href={item.href}
-              />
+              <MotionWrapper initial viewport>
+                <MotionWrapper variants custom={index}>
+                  <OurServicesCardComponent
+                    href={item.href}
+                    key={index}
+                    title={item.title}
+                    text={item.text}
+                    image={item.image}
+                  />
+                </MotionWrapper>
+              </MotionWrapper>
             ))}
           </div>
-        </div>
+        </MotionWrapper>
       </div>
     </section>
   );

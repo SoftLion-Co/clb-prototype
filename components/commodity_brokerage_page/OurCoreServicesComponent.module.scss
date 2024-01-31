@@ -37,6 +37,7 @@
   align-items: center;
   text-align: center;
   color: $backgroundColorDarkBlue;
+  height: 100%;
 
   @include for-size(tablet) {
     padding: 34px 24.5px 42px 24.5px;

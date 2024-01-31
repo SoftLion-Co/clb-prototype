@@ -2,16 +2,19 @@
 import React from "react";
 import classNames from "classnames";
 import s from "./HeroSection.module.scss";
-import Image from "next/image";
 import image from "@/images/commodity_brokerage/1.jpg";
 import { useTranslations } from "next-intl";
-import { Link as ScrollLink, animateScroll as scroll } from "react-scroll";
 import PageTitleComponent from "@/components/PageTitleComponent";
-import MainButtonComponent from "@/components/MainButtonComponent";
+import { MMainButtonComponent } from "@/components/MainButtonComponent";
+import { MCommodityHeroImage } from "@/components/commodity_brokerage_page/CommodityHeroImage";
+import useFramerAnimations from "@/hooks/useFramerAnimations";
+import MotionWrapper from "@/hooks/MotionWrapper";
 
 function HeroSection() {
   const t = useTranslations("commodityBrokerage");
   const t1 = useTranslations("header");
+  const defaultAnimation = useFramerAnimations();
+
   return (
     <div className={classNames(s.box)}>
       <div className={s.background}>
@@ -19,27 +22,43 @@ function HeroSection() {
           title={t("commodityBrokerageTitle")}
           className={s.hero__title}
         />
-        <div className={classNames(s.hero, s.container)}>
+        <MotionWrapper
+          className={classNames(s.hero, s.container)}
+          initial
+          viewport
+        >
           <div className={s.hero__texts}>
-            <h2 className={s.hero__heading}>
+            <MotionWrapper tag="h2"
+              className={s.hero__heading}
+              variants
+              custom={1}
+            >
               {t("commodityBrokerageSubtitle")}
-            </h2>
-            <div className={s.hero__text}>{t("heroText")}</div>
-
-            <MainButtonComponent
-              defaultTo="contactUsSection"
+            </MotionWrapper>
+            <MotionWrapper tag="p"
+              variants
+              custom={2}
+              className={s.hero__text}
+            >
+              {t("heroText")}
+            </MotionWrapper>
+            <MMainButtonComponent
               text={t1("getInTouch")}
               typeButton="MainUsualButton"
+              variants={defaultAnimation}
+              custom={3}
             />
           </div>
-          <Image
+          <MCommodityHeroImage
             className={s.hero__image}
             src={image}
             alt="Hero image"
             width={1000}
             height={1000}
+            variants={defaultAnimation}
+            custom={1.5}
           />
-        </div>
+        </MotionWrapper>
       </div>
     </div>
   );

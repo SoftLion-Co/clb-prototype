@@ -3,6 +3,7 @@ import s from "./KeyServicesComponent.module.scss";
 import { useTranslations } from "next-intl";
 import classNames from "classnames";
 import { useTwoLinesTitle } from "@/hooks/useTwoLinesTitle";
+import MotionWrapper from "@/hooks/MotionWrapper";
 
 function KeyServicesComponent() {
   const t = useTranslations("exportConsulting.services");
@@ -15,12 +16,16 @@ function KeyServicesComponent() {
   });
 
   const cardsWithBorder = [0, 2, 4];
-  const whiteCards = [4]
+  const whiteCards = [4];
 
   return (
     <div className={s.services}>
       {serviceCards.map(({ title, text, text_1 }, index) => (
-        <div
+        <MotionWrapper
+          initial
+          viewport
+          variants
+          custom={index}
           className={classNames(s.card, {
             [s.cardWithBorder]: cardsWithBorder.includes(index),
             [s.whiteCard]: whiteCards.includes(index),
@@ -32,7 +37,7 @@ function KeyServicesComponent() {
             <li className={s.card__item}>{text}</li>
             {text_1 && <li className={s.card__item}>{text_1}</li>}
           </ul>
-        </div>
+        </MotionWrapper>
       ))}
     </div>
   );

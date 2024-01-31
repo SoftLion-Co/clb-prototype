@@ -1,12 +1,15 @@
+"use client";
 import React from "react";
 import type { StaticImageData } from "next/image";
 import s from "./OurAdvantagesSection.module.scss";
-import MainTitleComponent from "@/components/MainTitleComponent";
+import { MMainTitleComponent } from "@/components/MainTitleComponent";
 import OurAdvantagesCardComponent from "@/components/about_us/OurAdvantagesCardComponent";
 import AdvantagesImage1 from "@/images/our_advantages_test/advantages-image-1.png";
 import AdvantagesImage2 from "@/images/our_advantages_test/advantages-image-2.png";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
+import useFramerAnimations from "@/hooks/useFramerAnimations";
+import MotionWrapper from "@/hooks/MotionWrapper";
 
 interface AdvantagesItem {
   text: string;
@@ -16,7 +19,7 @@ type AdvantagesContentItem = AdvantagesItem | StaticImageData;
 
 const OurAdvantagesSection = () => {
   const t = useTranslations("aboutUs.ourAdvantages");
-  const t1 = useTranslations("aboutUs.ourAdvantages.cards");
+  const defaultAnimation = useFramerAnimations();
 
   const advantagesContent: AdvantagesContentItem[] = [
     {
@@ -45,11 +48,24 @@ const OurAdvantagesSection = () => {
   return (
     <section className={s.box}>
       <div className={s.background}>
-        <div className={s.container}>
-          <MainTitleComponent title={t("ourAdvantagesTitle")} color="blue" />
+        <MotionWrapper
+          className={s.container}
+          initial
+          viewport
+        >
+          <MMainTitleComponent
+            title={t("ourAdvantagesTitle")}
+            color="blue"
+            variants={defaultAnimation}
+          />
           <div className={s.advantages__cards}>
             {contentOrder.map((item, index) => (
-              <React.Fragment key={index}>
+              <MotionWrapper
+                key={index}
+                initial
+                viewport
+                variants
+              >
                 {item.type === "blue" && (
                   <OurAdvantagesCardComponent
                     advantages={item.data as AdvantagesItem}
@@ -71,10 +87,10 @@ const OurAdvantagesSection = () => {
                     height={1000}
                   />
                 )}
-              </React.Fragment>
+              </MotionWrapper>
             ))}
           </div>
-        </div>
+        </MotionWrapper>
       </div>
     </section>
   );

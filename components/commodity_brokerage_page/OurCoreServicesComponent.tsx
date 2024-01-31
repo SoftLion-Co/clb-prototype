@@ -4,6 +4,7 @@ import image from "@/images/home-hero-test.png";
 import { useTranslations } from "next-intl";
 import classNames from "classnames";
 import { useTwoLinesTitle } from "@/hooks/useTwoLinesTitle";
+import MotionWrapper from "@/hooks/MotionWrapper";
 
 function OurCoreServicesComponent() {
   const t = useTranslations("commodityBrokerage.services");
@@ -43,18 +44,24 @@ function OurCoreServicesComponent() {
 
   const cardsWithBorders = [0, 1, 4];
 
-  const imgaeStyling = {
+  const imageStyling = {
     backgroundImage: `url(${image.src})`,
     backgroundSize: "cover",
     backgroundPosition: "center",
+    height: "100%"
   };
 
   return (
     <div className={s.services}>
       {serviceCards.map(({ title, text, imageSrc }, index) => (
-        <React.Fragment key={index}>
+        <MotionWrapper
+          key={index}
+          initial
+          viewport
+          variants
+        >
           {imageSrc !== undefined ? (
-            <div className={s.card} style={imgaeStyling}></div>
+            <div className={s.card} style={imageStyling}></div>
           ) : (
             <div
               className={classNames(s.card, {
@@ -65,7 +72,7 @@ function OurCoreServicesComponent() {
               <p className={s.card__text}>{text}</p>
             </div>
           )}
-        </React.Fragment>
+        </MotionWrapper>
       ))}
     </div>
   );

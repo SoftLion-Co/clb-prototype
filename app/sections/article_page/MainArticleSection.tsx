@@ -6,6 +6,7 @@ import ImageAndTextCardsComponent from "@/components/ImageAndTextCardsComponent"
 import SocialLinksSection from "@/app/sections/article_page/SocialLinksSection";
 import useLocale from "@/hooks/useLocale";
 import useDateFormat from "@/hooks/useDateFormat";
+import MotionWrapper from "@/hooks/MotionWrapper";
 
 interface Data {
   data: Blog;
@@ -57,19 +58,37 @@ interface Acf {
 
 const MainArticleSection = (data: Data) => {
   const locale = useLocale();
-
   const formattedDate = useDateFormat(data.data.acf.date, locale);
 
   return (
     <section className={s.box}>
       <div className={s.background}>
         <div className={classNames(s.container, s.article)}>
-          <h1 className={classNames(s.h1Default, s.article__title)}>
+          <MotionWrapper
+            tag="h1"
+            className={classNames(s.h1Default, s.article__title)}
+            initial
+            customViewport={"1000% 0% -10% 0%" }
+            variants
+          >
             {data.data.acf[`heading_${locale}` as keyof Acf]}
-          </h1>
-          <p className={classNames(s.article__date)}>{formattedDate}</p>
+          </MotionWrapper>
+          <MotionWrapper
+            tag="p"
+            className={classNames(s.article__date)}
+            initial
+            customViewport={"1000% 0% -10% 0%"}
+            variants
+          >
+            {formattedDate}
+          </MotionWrapper>
           <div className={s.article__content}>
-            <div className={s.image__container}>
+            <MotionWrapper
+              className={s.image__container}
+              initial
+              customViewport={"1000% 0% -10% 0%"}
+              variants
+            >
               <Image
                 src={data.data.acf.mainimage}
                 alt={data.data.acf[`heading_${locale}` as keyof Acf]}
@@ -77,16 +96,34 @@ const MainArticleSection = (data: Data) => {
                 width={1440}
                 height={649}
               />
-            </div>
-            <p className={s.article__text}>
+            </MotionWrapper>
+            <MotionWrapper
+              tag="p"
+              className={s.article__text}
+              initial
+              customViewport={"1000% 0% -10% 0%"}
+              variants
+            >
               {data.data.acf[`text1_${locale}` as keyof Acf]}
-            </p>
-            <h2 className={s.article__subheading}>
+            </MotionWrapper>
+            <MotionWrapper
+              tag="h2"
+              className={s.article__subheading}
+              initial
+              customViewport={"1000% 0% -10% 0%"}
+              variants
+            >
               {data.data.acf[`subheading1_${locale}` as keyof Acf]}
-            </h2>
-            <p className={s.article__text}>
+            </MotionWrapper>
+            <MotionWrapper
+              tag="p"
+              className={s.article__text}
+              initial
+              customViewport={"1000% 0% -10% 0%" }
+              variants
+            >
               {data.data.acf[`text2_${locale}` as keyof Acf]}
-            </p>
+            </MotionWrapper>
             <ImageAndTextCardsComponent
               text={data.data.acf[`quote_${locale}` as keyof Acf]}
               image={data.data.acf.secondimage}
@@ -94,12 +131,24 @@ const MainArticleSection = (data: Data) => {
               color="blue"
               articlePadding
             />
-            <h2 className={s.article__subheading}>
+            <MotionWrapper
+              tag="h2"
+              className={s.article__subheading}
+              initial
+              customViewport={"1000% 0% -10% 0%"}
+              variants
+            >
               {data.data.acf[`subheading2_${locale}` as keyof Acf]}
-            </h2>
-            <p className={s.article__text}>
+            </MotionWrapper>
+            <MotionWrapper
+              tag="p"
+              className={s.article__text}
+              initial
+              customViewport={"1000% 0% -10% 0%"}
+              variants
+            >
               {data.data.acf[`text3_${locale}` as keyof Acf]}
-            </p>
+            </MotionWrapper>
           </div>
           <SocialLinksSection />
         </div>

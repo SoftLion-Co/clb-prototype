@@ -2,6 +2,7 @@ import React, { FC } from "react";
 import Image from "next/image";
 import s from "./ListCardsComponent.module.scss";
 import classNames from "classnames";
+import MotionWrapper from "@/hooks/MotionWrapper";
 
 interface ListCardsProps {
   data: Portfolio[] | null;
@@ -38,12 +39,24 @@ const ListCardsComponent: FC<ListCardsProps> = ({
   loading,
   container,
 }) => {
+
   const cardsClass = classNames(s.cards, { [s.container]: container });
 
   return (
-    <div className={cardsClass}>
+    <MotionWrapper
+      className={cardsClass}
+      initial
+      viewport
+    >
       {data?.map((item: Portfolio, index: number) => (
-        <div key={index} className={s.card}>
+        <MotionWrapper
+          key={index}
+          className={s.card}
+          initial
+          variants
+          custom={index}
+          viewport
+        >
           {item.acf && item.acf.icon && (
             <Image
               src={item.acf.icon}
@@ -66,9 +79,9 @@ const ListCardsComponent: FC<ListCardsProps> = ({
               return null;
             })}
           </ul>
-        </div>
+        </MotionWrapper>
       ))}
-    </div>
+    </MotionWrapper>
   );
 };
 

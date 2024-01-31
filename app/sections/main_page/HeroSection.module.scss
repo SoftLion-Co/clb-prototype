@@ -43,6 +43,7 @@
     font-weight: 700;
     line-height: 130%;
     color: $backgroundColorDarkBlue;
+    transition: color 0.5s ease-in-out;
 
     @include for-size(tablet) {
       text-align: center;
@@ -73,6 +74,7 @@
     font-size: 18px;
     line-height: 130%;
     color: $blackTextColor;
+    transition: color 0.5s ease-in-out;
 
     @include for-size(tablet) {
       font-size: 20px;
@@ -94,10 +96,10 @@
   }
 }
 
-.lightTitle{
+.lightTitle {
   color: $backgroundColorGreen;
 }
 
-.lightText{
+.lightText {
   color: $backgroundColorGreen;
 }
