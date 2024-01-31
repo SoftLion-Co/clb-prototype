@@ -86,13 +86,13 @@ function ImageAndTextCardsComponent(props: ImageAndTextCardsProps) {
     <MotionWrapper
       className={articleClasses}
       initial
-      viewport={{ margin: "20% 0% -20% 0%" }}
+      viewport
     >
       <MotionWrapper
         className={quoteContainerClasses}
         style={containerStyles}
         initial
-        viewport={{ margin: "20% 0% -20% 0%" }}
+        viewport
         variants
         custom={rotate ? 2 : 1}
       >
@@ -102,7 +102,7 @@ function ImageAndTextCardsComponent(props: ImageAndTextCardsProps) {
       <MotionWrapper
         className={s.quote__image__container}
         initial
-        viewport={{ margin: "20% 0% -20% 0%" }}
+        viewport
         variants
         custom={rotate ? 1 : 2}
       >

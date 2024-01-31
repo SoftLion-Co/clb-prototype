@@ -88,7 +88,7 @@ const OurTeamSection: FC<OurTeamSectionProps> = ({ teamMembers }) => {
         <MotionWrapper
           className={s.container}
           initial
-          viewport={{ margin: "20% 0% -20% 0%" }}
+          viewport
         >
           <MMainTitleComponent
             className={s.team__title}
@@ -100,7 +100,7 @@ const OurTeamSection: FC<OurTeamSectionProps> = ({ teamMembers }) => {
           <MotionWrapper
             className={s.team__carousel}
             initial
-            viewport={{ margin: "20% 0% -20% 0%" }}
+            viewport
             variants
           >
             <Carousel

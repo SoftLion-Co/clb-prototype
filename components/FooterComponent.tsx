@@ -90,7 +90,7 @@ const FooterComponent = () => {
           initial
           variants
           animation="footer"
-          viewport={{ margin: "20% 0% -10% 0%" }}
+          viewport
         >
           <div className={s.footer__content}>
             <Link href="/">

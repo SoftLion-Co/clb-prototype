@@ -46,7 +46,7 @@ const ListCardsComponent: FC<ListCardsProps> = ({
     <MotionWrapper
       className={cardsClass}
       initial
-      viewport={{ margin: "20% 0% -20% 0%" }}
+      viewport
     >
       {data?.map((item: Portfolio, index: number) => (
         <MotionWrapper
@@ -55,7 +55,7 @@ const ListCardsComponent: FC<ListCardsProps> = ({
           initial
           variants
           custom={index}
-          viewport={{ margin: "20% 0% -20% 0%" }}
+          viewport
         >
           {item.acf && item.acf.icon && (
             <Image

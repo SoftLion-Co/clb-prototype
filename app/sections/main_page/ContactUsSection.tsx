@@ -497,7 +497,7 @@ const ContactUsSection = ({ cv, id }: { cv?: boolean; id?: string }) => {
       <MotionWrapper
         className={s.background}
         initial
-        viewport={{ margin: "20% 0% -20% 0%" }}
+        viewport
       >
         <MMainTitleComponent
           title={cv ? t("letsWorkWithUS") : t("contactUsHeading")}
@@ -505,7 +505,7 @@ const ContactUsSection = ({ cv, id }: { cv?: boolean; id?: string }) => {
         />
         <MotionWrapper
           initial
-          viewport={{ margin: "20% 0% -10% 0%" }}
+          viewport
           variants
           className={classNames(s.container, s.form__container)}
         >

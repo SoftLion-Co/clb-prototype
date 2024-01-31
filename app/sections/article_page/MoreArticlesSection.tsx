@@ -77,7 +77,7 @@ const MoreArticlesSection: FC<MoreArticlesSectionProps> = ({ blogId }) => {
         <MotionWrapper
           className={classNames(s.container, s.articles)}
           initial
-          viewport={{ margin: "20% 0% -20% 0%" }}
+          viewport
         >
           <MMainTitleComponent
             title={t("moreArticles")}
@@ -86,7 +86,7 @@ const MoreArticlesSection: FC<MoreArticlesSectionProps> = ({ blogId }) => {
             variants={defaultAnimation}
           />
           <MotionWrapper className={s.carousel} initial
-          viewport={{ margin: "20% 0% -20% 0%" }} variants>
+          viewport variants>
             <Carousel
               classNames={{
                 control: s.control,

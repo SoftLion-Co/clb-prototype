@@ -12,6 +12,7 @@ import {
   WhatsappShareButton,
   LinkedinShareButton,
 } from "react-share";
+import useFramerAnimations from "@/hooks/useFramerAnimations";
 import MotionWrapper from "@/hooks/MotionWrapper";
 
 const SocialLinksSection = () => {
@@ -23,7 +24,7 @@ const SocialLinksSection = () => {
     <MotionWrapper tag="section"
       className={s.links}
       initial
-      viewport={{ margin: "20% 0% -10% 0%" }}
+      viewport
       variants
     >
       <p className={s.links__share}>{t("share")}</p>

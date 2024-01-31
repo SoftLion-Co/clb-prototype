@@ -48,7 +48,7 @@ const OurServicesSection = () => {
         <MotionWrapper
           className={classNames(s.container, s.services)}
           initial
-          viewport={{ margin: "20% 0% -10% 0%" }}
+          viewport
         >
           <MMainTitleComponent
             title={t("servicesHeading")}
@@ -57,7 +57,7 @@ const OurServicesSection = () => {
           />
           <div className={s.services__cards}>
             {servicesCards.map((item, index) => (
-              <MotionWrapper initial viewport={{ margin: "20% 0% -10% 0%" }}>
+              <MotionWrapper initial viewport>
                 <MotionWrapper variants custom={index}>
                   <OurServicesCardComponent
                     href={item.href}

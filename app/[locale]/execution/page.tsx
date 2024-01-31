@@ -30,7 +30,7 @@ const Execution = () => {
           <MotionWrapper
             initial
             variants
-            viewport={{ margin: "20% 0% -20% 0%" }}
+            viewportLarge
           >
             <Image
               className={classNames(s.execution__incoterms, s.container)}

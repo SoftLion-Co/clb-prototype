@@ -25,7 +25,7 @@ function HeroSection() {
         <MotionWrapper
           className={classNames(s.hero, s.container)}
           initial
-          viewport={{ margin: "20% 0% -20% 0%" }}
+          viewport
         >
           <div className={s.hero__texts}>
             <MotionWrapper tag="h2"

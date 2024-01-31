@@ -3,7 +3,6 @@ import s from "./KeyServicesComponent.module.scss";
 import { useTranslations } from "next-intl";
 import classNames from "classnames";
 import { useTwoLinesTitle } from "@/hooks/useTwoLinesTitle";
-import useFramerAnimations from "@/hooks/useFramerAnimations";
 import MotionWrapper from "@/hooks/MotionWrapper";
 
 function KeyServicesComponent() {
@@ -24,7 +23,7 @@ function KeyServicesComponent() {
       {serviceCards.map(({ title, text, text_1 }, index) => (
         <MotionWrapper
           initial
-          viewport={{ margin: "20% 0% -10% 0%" }}
+          viewport
           variants
           custom={index}
           className={classNames(s.card, {

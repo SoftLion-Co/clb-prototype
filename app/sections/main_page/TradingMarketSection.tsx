@@ -27,9 +27,9 @@ const TradingMarketSection = () => {
   return (
     <section className={s.box}>
       <div className={s.background}>
-        <MotionWrapper className={s.container} initial viewport={{ margin: "20% 0% -20% 0%" }}>
+        <MotionWrapper className={s.container} initial viewport>
           <MMainTitleComponent title={t("tradingMarketsTitle")} color="black" variants={defaultAnimation}/>
-          <MotionWrapper className={s.map} initial viewport={{ margin: "20% 0% -20% 0%" }}>
+          <MotionWrapper className={s.map} initial viewport>
             <MotionWrapper className={s.map__container} variants>
               <MapBoxComponent onCountrySelect={handleCountrySelect} />
             </MotionWrapper>

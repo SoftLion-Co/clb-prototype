@@ -18,7 +18,7 @@ const PartnersSection = () => {
         <MotionWrapper
           className={s.container}
           initial
-          viewport={{ margin: "20% 0% -20% 0%" }}
+          viewport
         >
           <MMainTitleComponent
             title={t("partnersHeading")}

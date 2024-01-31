@@ -35,7 +35,7 @@ const GetPartnersComponent = async () => {
         <MotionWrapper 
           className={s.partners__image_container}
           initial
-          viewport={{ margin: "20% 0% -10% 0%" }}
+          viewport
         >
           <MPartnerImage
             key={partner.id}

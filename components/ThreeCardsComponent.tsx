@@ -58,7 +58,7 @@ const ThreeCardsComponent: FC<ThreeCardsProps> = ({
     <MotionWrapper
       className={classNames(s.cards, className)}
       initial
-      viewport={{ margin: "20% 0% -20% 0%" }}
+      viewport
     >
       {imagePosition === 1 && image}
       <MotionWrapper

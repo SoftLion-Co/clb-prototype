@@ -18,7 +18,7 @@ const VacanciesCards = () => {
   return (
     <MotionWrapper
       initial
-      viewport={{ margin: "20% 0% -20% 0%" }}
+      viewport
       className={s.cards}
     >
       {vacancies.map((vacancy, index) => (

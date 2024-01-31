@@ -51,7 +51,7 @@ const OurAdvantagesSection = () => {
         <MotionWrapper
           className={s.container}
           initial
-          viewport={{ margin: "20% 0% -20% 0%" }}
+          viewport
         >
           <MMainTitleComponent
             title={t("ourAdvantagesTitle")}
@@ -63,7 +63,7 @@ const OurAdvantagesSection = () => {
               <MotionWrapper
                 key={index}
                 initial
-                viewport={{ margin: "20% 0% -20% 0%" }}
+                viewport
                 variants
               >
                 {item.type === "blue" && (

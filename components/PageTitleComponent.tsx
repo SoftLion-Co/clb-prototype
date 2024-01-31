@@ -15,7 +15,7 @@ const PageTitleComponent: FC<MainTitleProps> = ({ title, text, className }) => {
     <MotionWrapper
       className={classNames(className)}
       initial
-      viewport={{ margin: "20% 0% -20% 0%" }}
+      viewport
     >
       <div className={classNames(s.page)}>
         <MotionWrapper tag="h1"

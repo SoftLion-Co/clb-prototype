@@ -57,7 +57,7 @@ function OurCoreServicesComponent() {
         <MotionWrapper
           key={index}
           initial
-          viewport={{ margin: "20% 0% -20% 0%" }}
+          viewport
           variants
         >
           {imageSrc !== undefined ? (

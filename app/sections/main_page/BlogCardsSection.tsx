@@ -42,7 +42,7 @@ const BlogCardsSection = () => {
         <MotionWrapper
           className={classNames(s.container, s.blog__container)}
           initial
-          viewport={{ margin: "20% 0% -20% 0%" }}
+          viewport
         >
           <MMainTitleComponent
             variants={defaultAnimation}
@@ -59,7 +59,7 @@ const BlogCardsSection = () => {
             <MotionWrapper
               initial
               className={s.blog__cards}
-              viewport={{ margin: "20% 0% -20% 0%" }}
+              viewport
             >
               {latestBlogs.slice(0, cardsToRender).map((blog, index) => (
                 <MotionWrapper key={index} variants custom={index}>
@@ -68,7 +68,7 @@ const BlogCardsSection = () => {
               ))}
             </MotionWrapper>
           )}
-          <MotionWrapper initial viewport={{ margin: "20% 0% -20% 0%" }}className={s.blog__button}>
+          <MotionWrapper initial viewport className={s.blog__button}>
             <MMainButtonComponent
               variants={defaultAnimation}
               text={t1("moreOurNews")}

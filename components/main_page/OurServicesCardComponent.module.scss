@@ -26,6 +26,11 @@
     display: grid;
     width: 100%;
     gap: 24px;
+    justify-items: center;
+
+    @include for-size(laptop) {
+      justify-items: left;
+    }
   }
 
   &__image {

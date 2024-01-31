@@ -28,7 +28,7 @@ function WhyChoose({ text1, text2, text3 }: WhyChooseProps) {
         <MotionWrapper
           className={s.container}
           initial
-          viewport={{ margin: "20% 0% -20% 0%" }}
+          viewport
         >
           <MMainTitleComponent
             title={t("whyChooseTitle")}
