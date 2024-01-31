@@ -63,7 +63,6 @@ const getOffset = () => {
 
 const FooterComponent = () => {
   const t = useTranslations("footer");
-  const defaultAnimation = useFramerAnimations("lowYMove");
   const locale = useLocale();
   const [offset, setOffset] = useState(getOffset());
 
