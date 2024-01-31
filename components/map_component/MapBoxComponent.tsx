@@ -1,15 +1,8 @@
 import s from "@/components/map_component/MapBoxComponent.module.scss";
-import React, {
-  useState,
-  useEffect,
-  useCallback,
-  useRef,
-  useMemo,
-} from "react";
+import React, { useState, useEffect, useRef, useMemo } from "react";
 
 import { CSSProperties } from "react";
 import { motion, useAnimation, Transition } from "framer-motion";
-import { useGesture } from "react-use-gesture";
 
 import CountryMapSVG from "@/components/map_component/CountryMapSVG";
 import countriesData from "@/components/map_component/countriesData";
@@ -46,7 +39,6 @@ const MapBoxComponent = ({ onCountrySelect }: MapBoxComponentProps) => {
   const [isLargeScreen, setIsLargeScreen] = useState(false);
 
   const [scale, setScale] = useState(1);
-  const [position, setPosition] = useState({ x: 0, y: 0 });
 
   const controls = useAnimation();
 
@@ -88,36 +80,26 @@ const MapBoxComponent = ({ onCountrySelect }: MapBoxComponentProps) => {
     }
   };
 
-  // const resetScaleAndPosition = () => {
-  //   const resetTransition: Transition = {
-  //     type: "spring",
-  //     stiffness: 100,
-  //     damping: 10,
-  //   };
-
-  //   let resetScale = 1;
-  //   if (typeof window !== "undefined") {
-  //     if (window.innerWidth <= 1279.98) {
-  //       resetScale = 1.7;
-  //     }
-  //   }
-
-  //   if (transformWrapperRef.current) {
-  //     transformWrapperRef.current.resetTransform();
-  //   }
-
-  //   setCurrentScale(resetScale);
-  //   setTranslate({ x: 0, y: 0 });
-  //   controls.start({ scale: resetScale, x: 0, y: 0 }, resetTransition);
-  // };
-
   const resetScaleAndPosition = () => {
-    setScale(1);
-    controls.start({
-      scale: 1,
-      x: 0,
-      y: 0,
-    });
+    const resetTransition: Transition = {
+      type: "spring",
+      stiffness: 100,
+      damping: 10,
+    };
+
+    let resetScale = 1;
+    if (typeof window !== "undefined") {
+      if (window.innerWidth <= 1279.98) {
+        resetScale = 1.2;
+      }
+    }
+
+    if (transformWrapperRef.current) {
+      transformWrapperRef.current.resetTransform();
+    }
+
+    setTranslate({ x: 0, y: 0 });
+    controls.start({ scale: resetScale, x: 0, y: 0 }, resetTransition);
   };
 
   const handleMouseUp = () => {
@@ -183,6 +165,16 @@ const MapBoxComponent = ({ onCountrySelect }: MapBoxComponentProps) => {
     handleResize();
   }, []);
 
+  useEffect(() => {
+    const updateScreenSize = () => {
+      setIsLargeScreen(window.innerWidth > 1279.98);
+    };
+
+    updateScreenSize();
+    window.addEventListener("resize", updateScreenSize);
+    return () => window.removeEventListener("resize", updateScreenSize);
+  }, []);
+
   const defaultStyle: CSSProperties = useMemo(
     () => ({
       cursor: "pointer",
@@ -210,12 +202,6 @@ const MapBoxComponent = ({ onCountrySelect }: MapBoxComponentProps) => {
     ...hoverStyle,
     fill: "#A7B896",
   };
-
-  const buttonsData = [
-    { onClick: zoomIn, text: "+" },
-    { onClick: zoomOut, text: "-" },
-    { onClick: resetScaleAndPosition, text: "𖣓" },
-  ];
 
   return (
     <div
