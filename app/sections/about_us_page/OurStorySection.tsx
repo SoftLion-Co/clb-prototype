@@ -1,10 +1,10 @@
-"use client";
+"use client"
 import s from "./OurStorySection.module.scss";
 import { MMainTitleComponent } from "@/components/MainTitleComponent";
 import ThreeCardsComponent from "@/components/ThreeCardsComponent";
 import { useTranslations } from "next-intl";
-import { motion } from "framer-motion";
 import useFramerAnimations from "@/hooks/useFramerAnimations";
+import MotionWrapper from "@/hooks/MotionWrapper";
 
 const OurStorySection = () => {
   const t = useTranslations("aboutUs.ourStory");
@@ -13,10 +13,9 @@ const OurStorySection = () => {
   return (
     <section className={s.box}>
       <div className={s.background}>
-        <motion.div
+        <MotionWrapper
           className={s.container}
-          initial={"hidden"}
-          whileInView={"visible"}
+          initial
           viewport={{ margin: "20% 0% -20% 0%" }}
         >
           <MMainTitleComponent
@@ -32,7 +31,7 @@ const OurStorySection = () => {
             smallText={t("smallCard")}
             bigText={t("bigCard")}
           />
-        </motion.div>
+        </MotionWrapper>
       </div>
     </section>
   );

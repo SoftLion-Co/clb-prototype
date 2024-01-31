@@ -19,6 +19,7 @@ import useLocale from "@/hooks/useLocale";
 import classNames from "classnames";
 import { motion } from "framer-motion";
 import useFramerAnimations from "@/hooks/useFramerAnimations";
+import MotionWrapper from "@/hooks/MotionWrapper";
 
 const socialMediaIcons: { [key: string]: any } = {
   telegram,
@@ -63,7 +64,7 @@ const getOffset = () => {
 
 const FooterComponent = () => {
   const t = useTranslations("footer");
-  const defaultAnimation = useFramerAnimations("lowYMove")
+  const defaultAnimation = useFramerAnimations("lowYMove");
   const locale = useLocale();
   const [offset, setOffset] = useState(getOffset());
 
@@ -84,12 +85,12 @@ const FooterComponent = () => {
   return (
     <footer className={s.box}>
       <div className={s.footer}>
-        <motion.div
+        <MotionWrapper
           className={s.footer__container}
-          initial={"hidden"}
-          whileInView={"visible"}
-          variants={defaultAnimation}
-          viewport={{ margin: "20% 0% -20% 0%" }}
+          initial
+          variants
+          animation="footer"
+          viewport={{ margin: "20% 0% -10% 0%" }}
         >
           <div className={s.footer__content}>
             <Link href="/">
@@ -118,9 +119,10 @@ const FooterComponent = () => {
           <div className={s.footer__box}>
             <div className={s.footer__lists}>
               <ul className={s.footer__list}>
-                <motion.li
+                <MotionWrapper
+                  tag="li"
                   className={s.footer__item}
-                  variants={defaultAnimation}
+                  variants
                   custom={1}
                 >
                   <Link
@@ -129,10 +131,11 @@ const FooterComponent = () => {
                   >
                     {t("commoditiesBrokerage")}
                   </Link>
-                </motion.li>
-                <motion.li
+                </MotionWrapper>
+                <MotionWrapper
+                  tag="li"
                   className={s.footer__item}
-                  variants={defaultAnimation}
+                  variants
                   custom={2}
                 >
                   <Link
@@ -141,21 +144,27 @@ const FooterComponent = () => {
                   >
                     {t("freightBrokerage")}
                   </Link>
-                </motion.li>
+                </MotionWrapper>
               </ul>
 
               <ul className={classNames(s.footer__list, s.footer__list_gap)}>
-                <li className={s.footer__item}>
+                <MotionWrapper
+                  tag="li"
+                  variants
+                  custom={3}
+                  className={s.footer__item}
+                >
                   <Link
                     className={s.footer__link}
                     href={`/${locale}/execution`}
                   >
                     {t("execution")}
                   </Link>
-                </li>
-                <motion.li
+                </MotionWrapper>
+                <MotionWrapper
+                  tag="li"
                   className={s.footer__item}
-                  variants={defaultAnimation}
+                  variants
                   custom={4}
                 >
                   <Link
@@ -164,51 +173,70 @@ const FooterComponent = () => {
                   >
                     {t("exportConsulting")}
                   </Link>
-                </motion.li>
+                </MotionWrapper>
               </ul>
 
               <ul className={s.footer__list}>
-                <li className={s.footer__item}>
+                <MotionWrapper
+                  tag="li"
+                  className={s.footer__item}
+                  variants
+                  custom={5}
+                >
                   <Link className={s.footer__link} href={`/${locale}/about-us`}>
                     {t("aboutUs")}
                   </Link>
-                </li>
-                <li className={classNames(s.footer__item, s.anchor__link)}>
-                 
-                    <Link href={`/${locale}/careers#ourVacancies`}>
-                      {t("ourVacancies")}
-                    </Link>
-                 
-                </li>
+                </MotionWrapper>
+                <MotionWrapper
+                  tag="li"
+                  variants
+                  custom={6}
+                  className={classNames(s.footer__item, s.anchor__link)}
+                >
+                  <Link
+                    className={s.footer__link}
+                    href={`/${locale}/careers#ourVacancies`}
+                  >
+                    {t("ourVacancies")}
+                  </Link>
+                </MotionWrapper>
               </ul>
 
               <ul className={s.footer__list}>
-                <li className={s.footer__item}>
+                <MotionWrapper
+                  tag="li"
+                  variants
+                  custom={7}
+                  className={s.footer__item}
+                >
                   <Link className={s.footer__link} href={`/${locale}/blog`}>
                     {t("ourNews")}
                   </Link>
-                </li>
-                <motion.li
-                  className={s.footer__item}
-                  variants={defaultAnimation}
+                </MotionWrapper>
+                <MotionWrapper
+                  tag="li"
+                  variants
                   custom={8}
+                  className={s.footer__item}
                 >
                   <Link className={s.footer__link} href="/">
                     {t("privacyPolicy")}
                   </Link>
-                </motion.li>
+                </MotionWrapper>
               </ul>
             </div>
 
-            <motion.p
+            <MotionWrapper
+              tag="p"
+              animation="footer"
               className={s.footer__copyright}
-              variants={defaultAnimation}
+              variants
               custom={9}
             >
               © 2023 Commodities & Logistics Brokers
-            </motion.p>
+            </MotionWrapper>
           </div>
-        </motion.div>
+        </MotionWrapper>
       </div>
     </footer>
   );

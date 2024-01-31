@@ -4,7 +4,7 @@ import { MMainTitleComponent } from "@/components/MainTitleComponent";
 import VacanciesCards from "@/components/careers_page/VacanciesCards";
 import { useTranslations } from "next-intl";
 import useFramerAnimations from "@/hooks/useFramerAnimations";
-import { motion } from "framer-motion";
+import MotionWrapper from "@/hooks/MotionWrapper";
 
 const VacanciesSection = () => {
   const t = useTranslations("careers");
@@ -13,10 +13,9 @@ const VacanciesSection = () => {
   return (
     <section id="ourVacancies" className={s.box}>
       <div className={s.background}>
-        <motion.div
+        <MotionWrapper
           className={s.container}
-          initial={"hidden"}
-          whileInView={"visible"}
+          initial
           viewport={{ margin: "20% 0% -20% 0%" }}
         >
           <MMainTitleComponent
@@ -25,7 +24,7 @@ const VacanciesSection = () => {
             variants={defaultAnimation}
           />
           <VacanciesCards />
-        </motion.div>
+        </MotionWrapper>
       </div>
     </section>
   );

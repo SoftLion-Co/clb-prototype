@@ -2,8 +2,7 @@ import React from "react";
 import s from "./ImageAndTextCardsComponent.module.scss";
 import Image from "next/image";
 import classNames from "classnames";
-import { motion } from "framer-motion";
-import useFramerAnimations from "@/hooks/useFramerAnimations";
+import MotionWrapper from "@/hooks/MotionWrapper";
 
 interface ImageAndTextCardsProps {
   text: string;
@@ -31,7 +30,6 @@ function ImageAndTextCardsComponent(props: ImageAndTextCardsProps) {
     articlePadding = false,
     mobileTextCenter = false,
   } = props;
-  const defaultAnimation = useFramerAnimations()
 
   
   // Function which handles different colors and borders from props
@@ -85,30 +83,27 @@ function ImageAndTextCardsComponent(props: ImageAndTextCardsProps) {
   );
 
   return (
-    <motion.div
+    <MotionWrapper
       className={articleClasses}
-      initial={"hidden"}
-      whileInView={"visible"}
+      initial
       viewport={{ margin: "20% 0% -20% 0%" }}
     >
-      <motion.div
+      <MotionWrapper
         className={quoteContainerClasses}
         style={containerStyles}
-        initial={"hidden"}
-        whileInView={"visible"}
+        initial
         viewport={{ margin: "20% 0% -20% 0%" }}
-        variants={defaultAnimation}
+        variants
         custom={rotate ? 2 : 1}
       >
         <h3 className={quoteClasses}>{text}</h3>
-      </motion.div>
+      </MotionWrapper>
 
-      <motion.div
+      <MotionWrapper
         className={s.quote__image__container}
-        initial={"hidden"}
-        whileInView={"visible"}
+        initial
         viewport={{ margin: "20% 0% -20% 0%" }}
-        variants={defaultAnimation}
+        variants
         custom={rotate ? 1 : 2}
       >
         <Image
@@ -118,8 +113,8 @@ function ImageAndTextCardsComponent(props: ImageAndTextCardsProps) {
           height={1000}
           className={s.quote__image}
         />
-      </motion.div>
-    </motion.div>
+      </MotionWrapper>
+    </MotionWrapper>
   );
 }
 

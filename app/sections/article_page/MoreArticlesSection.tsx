@@ -5,14 +5,12 @@ import useBlogsData from "@/hooks/useBlogsData";
 import Image from "next/image";
 import Arrow from "@/images/vectors/arrow.svg";
 import useLocale from "@/hooks/useLocale";
-import {
-  MMainTitleComponent,
-} from "@/components/MainTitleComponent";
+import { MMainTitleComponent } from "@/components/MainTitleComponent";
 import { useTranslations } from "next-intl";
 import classNames from "classnames";
 import { Carousel, Embla } from "@mantine/carousel";
-import { motion } from "framer-motion";
 import useFramerAnimations from "@/hooks/useFramerAnimations";
+import MotionWrapper from "@/hooks/MotionWrapper";
 
 interface MoreArticlesSectionProps {
   blogId: string;
@@ -76,10 +74,9 @@ const MoreArticlesSection: FC<MoreArticlesSectionProps> = ({ blogId }) => {
   return (
     <section className={s.box}>
       <div className={s.background}>
-        <motion.div
+        <MotionWrapper
           className={classNames(s.container, s.articles)}
-          initial={"hidden"}
-          whileInView={"visible"}
+          initial
           viewport={{ margin: "20% 0% -20% 0%" }}
         >
           <MMainTitleComponent
@@ -88,7 +85,8 @@ const MoreArticlesSection: FC<MoreArticlesSectionProps> = ({ blogId }) => {
             color="green"
             variants={defaultAnimation}
           />
-          <div className={s.carousel}>
+          <MotionWrapper className={s.carousel} initial
+          viewport={{ margin: "20% 0% -20% 0%" }} variants>
             <Carousel
               classNames={{
                 control: s.control,
@@ -125,21 +123,14 @@ const MoreArticlesSection: FC<MoreArticlesSectionProps> = ({ blogId }) => {
             >
               {filteredBlogs.map((blog, index) => (
                 <Carousel.Slide key={index}>
-                  <motion.div
-                    key={index}
-                    variants={defaultAnimation}
-                    custom={index}
-                    initial={"hidden"}
-                    whileInView={"visible"}
-                    viewport={{ margin: "20% 0% -20% 0%" }}
-                  >
+                  <div key={index}>
                     <SmallCardBlogComponent info={blog} locale={locale} />
-                  </motion.div>
+                  </div>
                 </Carousel.Slide>
               ))}
             </Carousel>
-          </div>
-        </motion.div>
+          </MotionWrapper>
+        </MotionWrapper>
       </div>
     </section>
   );

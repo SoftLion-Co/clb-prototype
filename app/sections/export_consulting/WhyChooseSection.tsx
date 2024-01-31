@@ -10,6 +10,7 @@ import image2 from "@/images/export_consulting/2.jpg";
 import image3 from "@/images/export_consulting/3.png";
 import useFramerAnimations from "@/hooks/useFramerAnimations";
 import { motion } from "framer-motion";
+import MotionWrapper from "@/hooks/MotionWrapper";
 
 interface WhyChooseProps {
   text1: string;
@@ -24,10 +25,9 @@ function WhyChoose({ text1, text2, text3 }: WhyChooseProps) {
   return (
     <section className={s.box}>
       <div className={s.background}>
-        <motion.div
+        <MotionWrapper
           className={s.container}
-          initial={"hidden"}
-          whileInView={"visible"}
+          initial
           viewport={{ margin: "20% 0% -20% 0%" }}
         >
           <MMainTitleComponent
@@ -62,7 +62,7 @@ function WhyChoose({ text1, text2, text3 }: WhyChooseProps) {
               rotateMobile
             />
           </div>
-        </motion.div>
+        </MotionWrapper>
       </div>
     </section>
   );

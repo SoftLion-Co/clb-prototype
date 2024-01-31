@@ -12,22 +12,19 @@ import {
   WhatsappShareButton,
   LinkedinShareButton,
 } from "react-share";
-import { motion } from "framer-motion";
-import useFramerAnimations from "@/hooks/useFramerAnimations";
+import MotionWrapper from "@/hooks/MotionWrapper";
 
 const SocialLinksSection = () => {
   const t = useTranslations("components");
-  const defaultAnimation = useFramerAnimations()
 
   const currentPath = "clb.com" + window.location.pathname;
   
   return (
-    <motion.section
+    <MotionWrapper tag="section"
       className={s.links}
-      initial={"hidden"}
-      whileInView={"visible"}
+      initial
       viewport={{ margin: "20% 0% -10% 0%" }}
-      variants={defaultAnimation}
+      variants
     >
       <p className={s.links__share}>{t("share")}</p>
       <div className={s.links__list}>
@@ -57,7 +54,7 @@ const SocialLinksSection = () => {
           <Image src={whatsapp} alt={"whatsapp"} className={s.links__icon} />
         </WhatsappShareButton>{" "}
       </div>
-    </motion.section>
+    </MotionWrapper>
   );
 };
 

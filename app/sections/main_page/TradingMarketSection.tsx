@@ -1,9 +1,11 @@
 "use client";
 import React, { useState } from "react";
 import s from "./TradingMarketSection.module.scss";
-import MainTitleComponent from "@/components/MainTitleComponent";
+import MainTitleComponent, { MMainTitleComponent } from "@/components/MainTitleComponent";
 import MapBoxComponent from "@/components/map_component/MapBoxComponent";
 import { useTranslations } from "next-intl";
+import MotionWrapper from "@/hooks/MotionWrapper";
+import useFramerAnimations from "@/hooks/useFramerAnimations";
 interface CountryInfo {
   country: string;
   agriculturalCrops: string[];
@@ -12,6 +14,7 @@ interface CountryInfo {
 
 const TradingMarketSection = () => {
   const t = useTranslations("homePage.tradingMarkets");
+  const defaultAnimation = useFramerAnimations();
 
   const [selectedCountry, setSelectedCountry] = useState<CountryInfo | null>(
     null
@@ -24,14 +27,14 @@ const TradingMarketSection = () => {
   return (
     <section className={s.box}>
       <div className={s.background}>
-        <div className={s.container}>
-          <MainTitleComponent title={t("tradingMarketsTitle")} color="black" />
-          <div className={s.map}>
-            <div className={s.map__container}>
+        <MotionWrapper className={s.container} initial viewport={{ margin: "20% 0% -20% 0%" }}>
+          <MMainTitleComponent title={t("tradingMarketsTitle")} color="black" variants={defaultAnimation}/>
+          <MotionWrapper className={s.map} initial viewport={{ margin: "20% 0% -20% 0%" }}>
+            <MotionWrapper className={s.map__container} variants>
               <MapBoxComponent onCountrySelect={handleCountrySelect} />
-            </div>
+            </MotionWrapper>
 
-            <div className={s.map__content}>
+            <MotionWrapper className={s.map__content} variants>
               {selectedCountry ? (
                 <>
                   <h2 className={s.map__title}>{selectedCountry?.country}</h2>
@@ -69,9 +72,9 @@ const TradingMarketSection = () => {
                   <p className={s.map__message}>{t("tradingMarketsMessage")}</p>
                 </div>
               )}
-            </div>
-          </div>
-        </div>
+            </MotionWrapper>
+          </MotionWrapper>
+        </MotionWrapper>
       </div>
     </section>
   );

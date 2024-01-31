@@ -1,10 +1,8 @@
-"use client";
 import React, { FC } from "react";
 import Image from "next/image";
 import s from "./ListCardsComponent.module.scss";
 import classNames from "classnames";
-import { motion } from "framer-motion";
-import useFramerAnimations from "@/hooks/useFramerAnimations";
+import MotionWrapper from "@/hooks/MotionWrapper";
 
 interface ListCardsProps {
   data: Portfolio[] | null;
@@ -41,24 +39,21 @@ const ListCardsComponent: FC<ListCardsProps> = ({
   loading,
   container,
 }) => {
-  const defaultAnimation = useFramerAnimations()
 
   const cardsClass = classNames(s.cards, { [s.container]: container });
 
   return (
-    <motion.div
+    <MotionWrapper
       className={cardsClass}
-      initial={"hidden"}
-      whileInView={"visible"}
+      initial
       viewport={{ margin: "20% 0% -20% 0%" }}
     >
       {data?.map((item: Portfolio, index: number) => (
-        <motion.div
+        <MotionWrapper
           key={index}
           className={s.card}
-          initial={"hidden"}
-          whileInView={"visible"}
-          variants={defaultAnimation}
+          initial
+          variants
           custom={index}
           viewport={{ margin: "20% 0% -20% 0%" }}
         >
@@ -84,9 +79,9 @@ const ListCardsComponent: FC<ListCardsProps> = ({
               return null;
             })}
           </ul>
-        </motion.div>
+        </MotionWrapper>
       ))}
-    </motion.div>
+    </MotionWrapper>
   );
 };
 

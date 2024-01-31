@@ -4,12 +4,10 @@ import image from "@/images/home-hero-test.png";
 import { useTranslations } from "next-intl";
 import classNames from "classnames";
 import { useTwoLinesTitle } from "@/hooks/useTwoLinesTitle";
-import { motion } from "framer-motion";
-import useFramerAnimations from "@/hooks/useFramerAnimations";
+import MotionWrapper from "@/hooks/MotionWrapper";
 
 function OurCoreServicesComponent() {
   const t = useTranslations("commodityBrokerage.services");
-  const defaultAnimation = useFramerAnimations()
 
   const data: {
     title1: string;
@@ -56,12 +54,11 @@ function OurCoreServicesComponent() {
   return (
     <div className={s.services}>
       {serviceCards.map(({ title, text, imageSrc }, index) => (
-        <motion.div
+        <MotionWrapper
           key={index}
-          initial={"hidden"}
-          whileInView={"visible"}
+          initial
           viewport={{ margin: "20% 0% -20% 0%" }}
-          variants={defaultAnimation}
+          variants
         >
           {imageSrc !== undefined ? (
             <div className={s.card} style={imageStyling}></div>
@@ -75,7 +72,7 @@ function OurCoreServicesComponent() {
               <p className={s.card__text}>{text}</p>
             </div>
           )}
-        </motion.div>
+        </MotionWrapper>
       ))}
     </div>
   );

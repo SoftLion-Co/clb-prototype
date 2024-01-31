@@ -8,6 +8,7 @@ import useLocale from "@/hooks/useLocale";
 import useDateFormat from "@/hooks/useDateFormat";
 import { motion } from "framer-motion";
 import useFramerAnimations from "@/hooks/useFramerAnimations";
+import MotionWrapper from "@/hooks/MotionWrapper";
 
 interface Data {
   data: Blog;
@@ -60,42 +61,36 @@ interface Acf {
 const MainArticleSection = (data: Data) => {
   const locale = useLocale();
   const formattedDate = useDateFormat(data.data.acf.date, locale);
-  const defaultAnimation = useFramerAnimations("lowDelay")
+  const defaultAnimation = useFramerAnimations("lowDelay");
 
   return (
     <section className={s.box}>
       <div className={s.background}>
-        <motion.div
-          className={classNames(s.container, s.article)}
-        >
-          <motion.h1
+        <div className={classNames(s.container, s.article)}>
+          <MotionWrapper
+            tag="h1"
             className={classNames(s.h1Default, s.article__title)}
-            initial={"hidden"}
-            whileInView={"visible"}
+            initial
             viewport={{ margin: "1000% 0% 10% 0%" }}
-            variants={defaultAnimation}
-            custom={1}
+            variants
           >
             {data.data.acf[`heading_${locale}` as keyof Acf]}
-          </motion.h1>
-          <motion.p
+          </MotionWrapper>
+          <MotionWrapper
+            tag="p"
             className={classNames(s.article__date)}
-            initial={"hidden"}
-            whileInView={"visible"}
+            initial
             viewport={{ margin: "1000% 0% 10% 0%" }}
-            variants={defaultAnimation}
-            custom={2}
+            variants
           >
             {formattedDate}
-          </motion.p>
+          </MotionWrapper>
           <div className={s.article__content}>
-            <motion.div
+            <MotionWrapper
               className={s.image__container}
-              initial={"hidden"}
-              whileInView={"visible"}
+              initial
               viewport={{ margin: "1000% 0% 10% 0%" }}
-              variants={defaultAnimation}
-              custom={3}
+              variants
             >
               <Image
                 src={data.data.acf.mainimage}
@@ -104,37 +99,34 @@ const MainArticleSection = (data: Data) => {
                 width={1440}
                 height={649}
               />
-            </motion.div>
-            <motion.p
+            </MotionWrapper>
+            <MotionWrapper
+              tag="p"
               className={s.article__text}
-              initial={"hidden"}
-              whileInView={"visible"}
+              initial
               viewport={{ margin: "1000% 0% 10% 0%" }}
-              variants={defaultAnimation}
-              custom={4}
+              variants
             >
               {data.data.acf[`text1_${locale}` as keyof Acf]}
-            </motion.p>
-            <motion.h2
+            </MotionWrapper>
+            <MotionWrapper
+              tag="h2"
               className={s.article__subheading}
-              initial={"hidden"}
-              whileInView={"visible"}
+              initial
               viewport={{ margin: "1000% 0% 10% 0%" }}
-              variants={defaultAnimation}
-              custom={5}
+              variants
             >
               {data.data.acf[`subheading1_${locale}` as keyof Acf]}
-            </motion.h2>
-            <motion.p
+            </MotionWrapper>
+            <MotionWrapper
+              tag="p"
               className={s.article__text}
-              initial={"hidden"}
-              whileInView={"visible"}
+              initial
               viewport={{ margin: "1000% 0% 10% 0%" }}
-              variants={defaultAnimation}
-              custom={6}
+              variants
             >
               {data.data.acf[`text2_${locale}` as keyof Acf]}
-            </motion.p>
+            </MotionWrapper>
             <ImageAndTextCardsComponent
               text={data.data.acf[`quote_${locale}` as keyof Acf]}
               image={data.data.acf.secondimage}
@@ -142,29 +134,27 @@ const MainArticleSection = (data: Data) => {
               color="blue"
               articlePadding
             />
-            <motion.h2
+            <MotionWrapper
+              tag="h2"
               className={s.article__subheading}
-              initial={"hidden"}
-              whileInView={"visible"}
+              initial
               viewport={{ margin: "1000% 0% 10% 0%" }}
-              variants={defaultAnimation}
-              custom={7}
+              variants
             >
               {data.data.acf[`subheading2_${locale}` as keyof Acf]}
-            </motion.h2>
-            <motion.p
+            </MotionWrapper>
+            <MotionWrapper
+              tag="p"
               className={s.article__text}
-              initial={"hidden"}
-              whileInView={"visible"}
+              initial
               viewport={{ margin: "1000% 0% 10% 0%" }}
-              variants={defaultAnimation}
-              custom={8}
+              variants
             >
               {data.data.acf[`text3_${locale}` as keyof Acf]}
-            </motion.p>
+            </MotionWrapper>
           </div>
           <SocialLinksSection />
-        </motion.div>
+        </div>
       </div>
     </section>
   );

@@ -4,19 +4,13 @@ import classNames from "classnames";
 import s from "./OurTeamSection.module.scss";
 import React, { useCallback, useEffect, useState, FC } from "react";
 import { Carousel, Embla } from "@mantine/carousel";
-
-import {
-  MMainTitleComponent,
-} from "@/components/MainTitleComponent";
+import { MMainTitleComponent } from "@/components/MainTitleComponent";
 import OurTeamCardComponent from "@/components/about_us/OurTeamCardComponent";
-
 import Arrow from "@/images/vectors/arrow.svg";
 import SectionVector from "@/images/vectors/section-vector.svg";
-
-import { useTranslations } from "next-intl";
 import useOurTeamData from "@/hooks/useOurTeamData";
-import { motion } from "framer-motion";
 import useFramerAnimations from "@/hooks/useFramerAnimations";
+import MotionWrapper from "@/hooks/MotionWrapper";
 
 interface TeamMember {
   id: number;
@@ -91,10 +85,9 @@ const OurTeamSection: FC<OurTeamSectionProps> = ({ teamMembers }) => {
   return (
     <section className={s.box}>
       <div className={classNames(s.background, s.team)}>
-        <motion.div
+        <MotionWrapper
           className={s.container}
-          initial={"hidden"}
-          whileInView={"visible"}
+          initial
           viewport={{ margin: "20% 0% -20% 0%" }}
         >
           <MMainTitleComponent
@@ -104,12 +97,11 @@ const OurTeamSection: FC<OurTeamSectionProps> = ({ teamMembers }) => {
             variants={defaultAnimation}
           />
 
-          <motion.div
+          <MotionWrapper
             className={s.team__carousel}
-            initial={"hidden"}
-            whileInView={"visible"}
+            initial
             viewport={{ margin: "20% 0% -20% 0%" }}
-            variants={defaultAnimation}
+            variants
           >
             <Carousel
               classNames={{
@@ -154,8 +146,8 @@ const OurTeamSection: FC<OurTeamSectionProps> = ({ teamMembers }) => {
                 </Carousel.Slide>
               ))}
             </Carousel>
-          </motion.div>
-        </motion.div>
+          </MotionWrapper>
+        </MotionWrapper>
         <Image className={s.team__vector} src={SectionVector} alt="vector" />
       </div>
     </section>

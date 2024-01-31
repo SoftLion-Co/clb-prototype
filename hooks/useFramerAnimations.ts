@@ -21,7 +21,7 @@ const useFramerAnimations = (
 
   const lowYMove = {
     hidden: {
-      y: 50,
+      y: 35,
       opacity: 0,
       delay: 1,
     },

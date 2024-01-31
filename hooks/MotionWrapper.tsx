@@ -1,36 +1,44 @@
 "use client";
-import React, { ComponentProps, PropsWithChildren } from "react";
-import { motion, Variants } from "framer-motion";
+import React, { CSSProperties, ComponentProps, PropsWithChildren } from "react";
+import { motion } from "framer-motion";
 import useFramerAnimations from "./useFramerAnimations";
 
 interface ScrollAnimationWrapperProps extends ComponentProps<"div"> {
   rest?: any;
   viewport?: { margin: string };
+  animation?: "default" | "footer";
   variants?: boolean;
   initial?: boolean;
   custom?: number;
   className?: string;
-  tag?: "h1" | "h2" | "h3" | "h4" | "p" | "section";
+  style?: CSSProperties | undefined
+  tag?: "h1" | "h2" | "h3" | "h4" | "p" | "li" | "ul" | "section";
 }
 
 const MotionWrapper = ({
   children,
   rest,
+  animation = "default",
   variants = false,
   initial = false,
   custom = 0,
   className,
   viewport,
+  style,
   tag,
 }: PropsWithChildren<ScrollAnimationWrapperProps>) => {
   const defaultAnimation = useFramerAnimations();
+  const footerAnimation = useFramerAnimations("lowYMove")
+
+  const resultAnimation = animation === "default" ? defaultAnimation : footerAnimation;
 
   const motionProps = {
     ...(initial && { initial: "hidden", whileInView: "visible" }),
-    ...(variants && { variants: defaultAnimation }),
+    ...(variants && { variants: resultAnimation }),
     ...(custom && { custom }),
     className,
     viewport,
+    style,
     ...rest,
   };
 
@@ -46,6 +54,10 @@ const MotionWrapper = ({
         return <motion.h4 {...motionProps}>{children}</motion.h4>;
       case "p":
         return <motion.p {...motionProps}>{children}</motion.p>;
+      case "li":
+        return <motion.li {...motionProps}>{children}</motion.li>;
+      case "ul":
+        return <motion.ul {...motionProps}>{children}</motion.ul>;
       case "section":
         return <motion.section {...motionProps}>{children}</motion.section>;
       default:

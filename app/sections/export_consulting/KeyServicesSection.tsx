@@ -4,8 +4,8 @@ import s from "./KeyServicesSection.module.scss";
 import { MMainTitleComponent } from "@/components/MainTitleComponent";
 import KeyServicesComponent from "@/components/export_consulting_page/KeyServicesComponent";
 import { useTranslations } from "next-intl";
-import { motion } from "framer-motion";
 import useFramerAnimations from "@/hooks/useFramerAnimations";
+import MotionWrapper from "@/hooks/MotionWrapper";
 
 function KeyServices() {
   const t = useTranslations("exportConsulting");
@@ -14,10 +14,9 @@ function KeyServices() {
   return (
     <section className={s.box}>
       <div className={s.background}>
-        <motion.div
+        <MotionWrapper
           className={s.container}
-          initial={"hidden"}
-          whileInView={"visible"}
+          initial
           viewport={{ margin: "20% 0% -20% 0%" }}
         >
           <MMainTitleComponent
@@ -27,7 +26,7 @@ function KeyServices() {
             variants={defaultAnimation}
           />
           <KeyServicesComponent />
-        </motion.div>
+        </MotionWrapper>
       </div>
     </section>
   );

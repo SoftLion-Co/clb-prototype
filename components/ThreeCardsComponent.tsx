@@ -8,8 +8,7 @@ import exportConsultingImage from "@/images/home-hero-test.png";
 import freightBrokerageImage from "@/images/freight_brokerage/1.png";
 import ourStoryImage from "@/images/home-hero-test.png";
 import classNames from "classnames";
-import { motion } from "framer-motion";
-import useFramerAnimations from "@/hooks/useFramerAnimations";
+import MotionWrapper from "@/hooks/MotionWrapper";
 
 const images = {
   execution: executionImage,
@@ -36,7 +35,6 @@ const ThreeCardsComponent: FC<ThreeCardsProps> = ({
   color = "green",
   className,
 }) => {
-  const defaultAnimation = useFramerAnimations()
   const selectedImage = images[imageSrc];
 
   const cardStyle = {
@@ -45,11 +43,7 @@ const ThreeCardsComponent: FC<ThreeCardsProps> = ({
   };
 
   const image = (
-    <motion.div
-      className={s.cards__image}
-      variants={defaultAnimation}
-      custom={imagePosition}
-    >
+    <MotionWrapper className={s.cards__image} variants custom={imagePosition}>
       <Image
         src={selectedImage}
         alt="Card Image"
@@ -57,42 +51,41 @@ const ThreeCardsComponent: FC<ThreeCardsProps> = ({
         width={1400}
         height={1400}
       />
-    </motion.div>
+    </MotionWrapper>
   );
 
   return (
-    <motion.div
+    <MotionWrapper
       className={classNames(s.cards, className)}
-      initial={"hidden"}
-      whileInView={"visible"}
+      initial
       viewport={{ margin: "20% 0% -20% 0%" }}
     >
       {imagePosition === 1 && image}
-      <motion.div
+      <MotionWrapper
         className={classNames(s.cards__card, {
           [s.tabletCard]: imagePosition === 2,
         })}
         style={cardStyle}
-        variants={defaultAnimation}
+        variants
         custom={imagePosition === 1 ? 2 : 1}
       >
         <h2 className={s.cards__large_text}>{bigText}</h2>
-      </motion.div>
+      </MotionWrapper>
       {imagePosition === 2 && (
         <div className={classNames(s.cards__image, s.tabletImage)}>{image}</div>
       )}
-      <motion.div
+      <MotionWrapper
         className={classNames(s.cards__card, {
           [s.cards__small_card]: smallText,
         })}
         style={cardStyle}
-        variants={defaultAnimation}
+        variants
         custom={imagePosition === 2 ? 3 : imagePosition === 1 ? 3 : 2}
       >
         <p className={s.cards__small_text}>{smallText}</p>
-      </motion.div>
+      </MotionWrapper>
       {imagePosition === 3 && image}
-    </motion.div>
+    </MotionWrapper>
   );
 };
 

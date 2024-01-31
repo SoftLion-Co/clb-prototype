@@ -4,8 +4,8 @@ import s from "./OurCoreServices.module.scss";
 import { MMainTitleComponent } from "@/components/MainTitleComponent";
 import OurCoreServicesComponent from "@/components/commodity_brokerage_page/OurCoreServicesComponent";
 import { useTranslations } from "next-intl";
-import { motion } from "framer-motion";
 import useFramerAnimations from "@/hooks/useFramerAnimations";
+import MotionWrapper from "@/hooks/MotionWrapper";
 
 function OurCoreServices() {
   const t = useTranslations("commodityBrokerage");
@@ -14,10 +14,9 @@ function OurCoreServices() {
   return (
     <section className={s.box}>
       <div className={s.background}>
-        <motion.div
+        <MotionWrapper
           className={s.container}
-          initial={"hidden"}
-          whileInView={"visible"}
+          initial
           viewport={{ margin: "20% 0% -20% 0%" }}
         >
           <MMainTitleComponent
@@ -29,7 +28,7 @@ function OurCoreServices() {
             variants={defaultAnimation}
           />
           <OurCoreServicesComponent />
-        </motion.div>
+        </MotionWrapper>
       </div>
     </section>
   );

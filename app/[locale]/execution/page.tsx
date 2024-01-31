@@ -6,6 +6,7 @@ import ThreeCardsComponent from "@/components/ThreeCardsComponent";
 import PageTitleComponent from "@/components/PageTitleComponent";
 import { useTranslations } from "next-intl";
 import Incoterms from "@/images/incoterms.svg";
+import MotionWrapper from "@/hooks/MotionWrapper";
 
 const Execution = () => {
   const t = useTranslations("execution");
@@ -26,13 +27,19 @@ const Execution = () => {
             bigText={t("heroBigText")}
             color="blue"
           />
-          <Image
-            className={classNames(s.execution__incoterms, s.container)}
-            src={Incoterms}
-            alt="Incoterms"
-            width={2000}
-            height={2000}
-          />
+          <MotionWrapper
+            initial
+            variants
+            viewport={{ margin: "20% 0% -20% 0%" }}
+          >
+            <Image
+              className={classNames(s.execution__incoterms, s.container)}
+              src={Incoterms}
+              alt="Incoterms"
+              width={2000}
+              height={2000}
+            />
+          </MotionWrapper>
         </div>
       </div>
       <ContactUsSection />

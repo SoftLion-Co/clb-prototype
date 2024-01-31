@@ -1,9 +1,7 @@
-"use client";
 import classNames from "classnames";
 import s from "./PageTitleComponent.module.scss";
 import React, { FC } from "react";
-import { motion } from "framer-motion";
-import useFramerAnimations from "@/hooks/useFramerAnimations";
+import MotionWrapper from "@/hooks/MotionWrapper";
 
 interface MainTitleProps {
   title: string;
@@ -12,34 +10,32 @@ interface MainTitleProps {
 }
 
 const PageTitleComponent: FC<MainTitleProps> = ({ title, text, className }) => {
-  const defaultAnimation = useFramerAnimations()
 
   return (
-    <motion.div
+    <MotionWrapper
       className={classNames(className)}
-      initial={"hidden"}
-      whileInView={"visible"}
+      initial
       viewport={{ margin: "20% 0% -20% 0%" }}
     >
       <div className={classNames(s.page)}>
-        <motion.h1
+        <MotionWrapper tag="h1"
           className={s.page__title}
-          variants={defaultAnimation}
+          variants
           custom={0.2}
         >
           {title}
-        </motion.h1>
+        </MotionWrapper>
         {text && (
-          <motion.p
+          <MotionWrapper tag="p"
             className={s.page__text}
-            variants={defaultAnimation}
+            variants
             custom={1}
           >
             {text}
-          </motion.p>
+          </MotionWrapper>
         )}
       </div>
-    </motion.div>
+    </MotionWrapper>
   );
 };
 

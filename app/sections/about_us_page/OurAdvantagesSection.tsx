@@ -2,16 +2,14 @@
 import React from "react";
 import type { StaticImageData } from "next/image";
 import s from "./OurAdvantagesSection.module.scss";
-import {
-  MMainTitleComponent,
-} from "@/components/MainTitleComponent";
+import { MMainTitleComponent } from "@/components/MainTitleComponent";
 import OurAdvantagesCardComponent from "@/components/about_us/OurAdvantagesCardComponent";
 import AdvantagesImage1 from "@/images/our_advantages_test/advantages-image-1.png";
 import AdvantagesImage2 from "@/images/our_advantages_test/advantages-image-2.png";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
-import { motion } from "framer-motion";
 import useFramerAnimations from "@/hooks/useFramerAnimations";
+import MotionWrapper from "@/hooks/MotionWrapper";
 
 interface AdvantagesItem {
   text: string;
@@ -50,10 +48,9 @@ const OurAdvantagesSection = () => {
   return (
     <section className={s.box}>
       <div className={s.background}>
-        <motion.div
+        <MotionWrapper
           className={s.container}
-          initial={"hidden"}
-          whileInView={"visible"}
+          initial
           viewport={{ margin: "20% 0% -20% 0%" }}
         >
           <MMainTitleComponent
@@ -63,12 +60,11 @@ const OurAdvantagesSection = () => {
           />
           <div className={s.advantages__cards}>
             {contentOrder.map((item, index) => (
-              <motion.div
+              <MotionWrapper
                 key={index}
-                initial={"hidden"}
-                whileInView={"visible"}
+                initial
                 viewport={{ margin: "20% 0% -20% 0%" }}
-                variants={defaultAnimation}
+                variants
               >
                 {item.type === "blue" && (
                   <OurAdvantagesCardComponent
@@ -91,10 +87,10 @@ const OurAdvantagesSection = () => {
                     height={1000}
                   />
                 )}
-              </motion.div>
+              </MotionWrapper>
             ))}
           </div>
-        </motion.div>
+        </MotionWrapper>
       </div>
     </section>
   );
