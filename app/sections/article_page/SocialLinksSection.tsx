@@ -12,7 +12,6 @@ import {
   WhatsappShareButton,
   LinkedinShareButton,
 } from "react-share";
-import useFramerAnimations from "@/hooks/useFramerAnimations";
 import MotionWrapper from "@/hooks/MotionWrapper";
 
 const SocialLinksSection = () => {
