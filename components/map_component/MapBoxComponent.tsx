@@ -31,35 +31,14 @@ const MapBoxComponent = ({ onCountrySelect }: MapBoxComponentProps) => {
   const svgContentRef = useRef<SVGSVGElement | null>(null);
   const [elementPositions, setElementPositions] = useState<any>({});
   const [currentScale, setCurrentScale] = useState(1);
+  const transformWrapperRef = useRef<ReactZoomPanPinchRef>(null);
+  const [isLargeScreen, setIsLargeScreen] = useState(false);
+  const [scale, setScale] = useState(1);
   const [selectedCountryId, setSelectedCountryId] = useState<string | null>(
     null
   );
 
-  const transformWrapperRef = useRef<ReactZoomPanPinchRef>(null);
-  const [isLargeScreen, setIsLargeScreen] = useState(false);
-
-  const [scale, setScale] = useState(1);
-
   const controls = useAnimation();
-
-  const getDragConstraints = () => {
-    if (!containerRef.current || !svgContentRef.current) {
-      return { top: 0, right: 0, bottom: 0, left: 0 };
-    }
-
-    const svgBounds = svgContentRef.current.getBoundingClientRect();
-
-    const maxX = Math.max(0, svgBounds.width * currentScale) / 2;
-    const maxY = Math.max(0, svgBounds.height * currentScale) / 2;
-
-    return {
-      top: -maxY,
-      right: maxX,
-      bottom: maxY,
-      left: -maxX,
-    };
-  };
-
   const SCALE_STEP = 0.25;
   const MAX_SCALE = 4;
   const MIN_SCALE = 1;
@@ -94,12 +73,52 @@ const MapBoxComponent = ({ onCountrySelect }: MapBoxComponentProps) => {
       }
     }
 
-    if (transformWrapperRef.current) {
-      transformWrapperRef.current.resetTransform();
+    if (typeof window !== "undefined") {
+      if (window.innerWidth > 1280) {
+        setCurrentScale(resetScale);
+      }
     }
 
-    setTranslate({ x: 0, y: 0 });
+    if (transformWrapperRef.current) {
+      transformWrapperRef.current.resetTransform();
+      setCurrentScale(1.7);
+      setTranslate({ x: 0, y: 0 });
+      controls.start({
+        scale: resetScale,
+        x: 0,
+        y: 0,
+        transition: { type: "spring", stiffness: 100, damping: 10 },
+      });
+
+      requestAnimationFrame(() => {
+        controls.start({
+          x: 0,
+          y: 0,
+          ...getDragConstraints(),
+        });
+      });
+    }
+
     controls.start({ scale: resetScale, x: 0, y: 0 }, resetTransition);
+  };
+
+  const getDragConstraints = () => {
+    if (!containerRef.current || !svgContentRef.current) {
+      return { top: 0, right: 0, bottom: 0, left: 0 };
+    }
+
+    const containerBounds = containerRef.current.getBoundingClientRect();
+    const svgBounds = svgContentRef.current.getBoundingClientRect();
+
+    const maxX = (svgBounds.width * currentScale - containerBounds.width) / 2;
+    const maxY = (svgBounds.height * currentScale - containerBounds.height) / 2;
+
+    return {
+      top: -maxY,
+      right: maxX,
+      bottom: maxY,
+      left: -maxX,
+    };
   };
 
   const handleMouseUp = () => {
