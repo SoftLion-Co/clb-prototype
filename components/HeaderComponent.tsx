@@ -11,7 +11,6 @@ import ArrowMenu from "@/images/vectors/arrow-menu.svg";
 import MainButtonComponent from "./MainButtonComponent";
 import { usePathname } from "next/navigation";
 import { useTranslations } from "next-intl";
-import { useLocale } from "next-intl";
 
 import LogoMobile from "@/images/Logo-brokers-mobile.svg";
 import Logo from "@/images/Logo-header-brokers.svg";
@@ -24,7 +23,7 @@ type Country = {
   code: string;
   name: string;
   flag: string;
-  locale: "en" | "es" | "de" | "ua" | "ru" | undefined;
+  locale: "en" | "es" | "de" | "ua" | undefined;
 };
 
 const countriesMenu: Country[] = [
@@ -51,7 +50,6 @@ const servicesMenu = [
 const HeaderComponent = () => {
   const t = useTranslations("header");
   const t1 = useTranslations("servicesMenu");
-  const locale = useLocale();
 
   const pathname = usePathname();
   const pathWithoutLanguage = pathname.replace(/^\/[a-zA-Z]{2}(\/)?/, "/");
@@ -100,6 +98,8 @@ const HeaderComponent = () => {
         setShowHeader(true);
       } else {
         setShowHeader(false);
+        setServicesMenuOpen(false);
+        setFlagDropdownOpen(false);
       }
 
       setLastScrollY(scrolledDistance);
@@ -237,9 +237,7 @@ const HeaderComponent = () => {
           ) : (
             <>
               <div className={s.header__submenu}>
-                <Link className={s.header__text} href={item.link}>
-                  {t(item.title)}
-                </Link>
+                <p className={s.header__text}>{t(item.title)}</p>
                 {item.type === "services" && (
                   <span
                     className={classNames(s.arrow, {
@@ -340,7 +338,6 @@ const HeaderComponent = () => {
       {FlagContent}
 
       <MainButtonComponent
-        // defaultTo="contactUsSection"
         onClick={closeModal}
         text={t("getInTouch")}
         typeButton="MainButton"
