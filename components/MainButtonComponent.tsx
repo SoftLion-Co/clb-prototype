@@ -9,6 +9,7 @@ import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import { Url } from "next/dist/shared/lib/router/router";
 import { Link as ScrollLink, animateScroll as scroll } from "react-scroll";
+import { divide } from "lodash";
 
 interface MainButtonProps {
   text: string;
@@ -93,7 +94,7 @@ const MainButtonComponent: FC<MainButtonProps> = forwardRef(({
     );
   } else if (typeButton === "MainArrowButton") {
     buttonContent = (
-      <div className={s.main__container} style={{ padding: buttonPadding }}>
+      <div ref={ref} className={s.main__container} style={{ padding: buttonPadding }}>
         <p className={s.main__text}>{text}</p>
         <Image src={ArrowWhite} alt="arrow" />
       </div>
@@ -101,6 +102,7 @@ const MainButtonComponent: FC<MainButtonProps> = forwardRef(({
   } else if (typeButton === "MainUsualButton") {
     buttonContent = (
       <p
+      ref={ref}
         className={classNames(s.main__container, s.main__text)}
         style={{ padding: buttonPadding }}
       >
