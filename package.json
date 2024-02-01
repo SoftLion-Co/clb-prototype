@@ -27,6 +27,7 @@
     "embla-carousel-react": "^7.1.0",
     "framer-motion": "^10.18.0",
     "gsap": "^3.12.5",
+    "html-react-parser": "^5.1.1",
     "i18n": "^0.15.1",
     "lodash": "^4.17.21",
     "luxon": "^3.4.4",

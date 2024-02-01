@@ -7,6 +7,7 @@ import SocialLinksSection from "@/app/sections/article_page/SocialLinksSection";
 import useLocale from "@/hooks/useLocale";
 import useDateFormat from "@/hooks/useDateFormat";
 import MotionWrapper from "@/hooks/MotionWrapper";
+import parse from 'html-react-parser';
 
 interface Data {
   data: Blog;
@@ -104,7 +105,7 @@ const MainArticleSection = (data: Data) => {
               customViewport={"1000% 0% -10% 0%"}
               variants
             >
-              {data.data.acf[`text1_${locale}` as keyof Acf]}
+              {parse(`${data.data.acf[`text1_${locale}` as keyof Acf]}`)}
             </MotionWrapper>
             <MotionWrapper
               tag="h2"
@@ -122,7 +123,7 @@ const MainArticleSection = (data: Data) => {
               customViewport={"1000% 0% -10% 0%" }
               variants
             >
-              {data.data.acf[`text2_${locale}` as keyof Acf]}
+              {parse(`${data.data.acf[`text2_${locale}` as keyof Acf]}`)}
             </MotionWrapper>
             <ImageAndTextCardsComponent
               text={data.data.acf[`quote_${locale}` as keyof Acf]}
@@ -147,7 +148,7 @@ const MainArticleSection = (data: Data) => {
               customViewport={"1000% 0% -10% 0%"}
               variants
             >
-              {data.data.acf[`text3_${locale}` as keyof Acf]}
+              {parse(`${data.data.acf[`text3_${locale}` as keyof Acf]}`)}
             </MotionWrapper>
           </div>
           <SocialLinksSection />
