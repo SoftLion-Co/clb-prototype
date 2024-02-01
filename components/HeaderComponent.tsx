@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo, useCallback } from "react";
 import { Link } from "../navigation";
 import Image from "next/image";
 import Modal from "react-modal";
@@ -52,14 +52,22 @@ const HeaderComponent = () => {
   const t1 = useTranslations("servicesMenu");
 
   const pathname = usePathname();
+  const defaultCountry = countriesMenu[4];
   const pathWithoutLanguage = pathname.replace(/^\/[a-zA-Z]{2}(\/)?/, "/");
   const initialLocale = pathname.split("/")[1];
 
-  const defaultCountry = countriesMenu[4];
+  const [isFlagDropdownOpen, setFlagDropdownOpen] = useState(false);
+  const [isServicesMenuOpen, setServicesMenuOpen] = useState(false);
+  const [isArrowRotated, setArrowRotated] = useState(false);
+  const [isModalOpen, setModalOpen] = useState(false);
+  const [showHeader, setShowHeader] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+  const [windowWidth, setWindowWidth] = useState(
+    typeof window !== "undefined" ? window.innerWidth : 0
+  );
   const initialCountry = countriesMenu.find(
     (country) => country.locale === initialLocale
   );
-
   const [selectedCountry, setSelectedCountry] = useState(
     initialCountry || defaultCountry
   );
@@ -76,17 +84,6 @@ const HeaderComponent = () => {
       setSelectedCountry(defaultCountry);
     }
   }, [pathname, defaultCountry]);
-
-  const [isFlagDropdownOpen, setFlagDropdownOpen] = useState(false);
-  const [isServicesMenuOpen, setServicesMenuOpen] = useState(false);
-  const [isArrowRotated, setArrowRotated] = useState(false);
-  const [isModalOpen, setModalOpen] = useState(false);
-  const [windowWidth, setWindowWidth] = useState(
-    typeof window !== "undefined" ? window.innerWidth : 0
-  );
-
-  const [showHeader, setShowHeader] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
 
   const controlHeaderVisibility = () => {
     if (typeof window !== "undefined") {
@@ -169,12 +166,20 @@ const HeaderComponent = () => {
     setArrowRotated(false);
   };
 
-  const handleCountrySelection = (country: any) => {
-    if (country !== selectedCountry) {
-      setFlagDropdownOpen(false);
-      setSelectedCountry(country);
-    }
-  };
+  const handleCountrySelection = useCallback((country: any) => {
+    setSelectedCountry(country);
+    setFlagDropdownOpen(false);
+  }, []);
+
+  const openModal = useCallback(() => {
+    setModalOpen(true);
+    document.body.style.overflow = "hidden";
+  }, []);
+
+  const closeModal = useCallback(() => {
+    setModalOpen(false);
+    document.body.style.overflow = "auto";
+  }, []);
 
   const handleResize = () => {
     setWindowWidth(window.innerWidth);
@@ -193,20 +198,10 @@ const HeaderComponent = () => {
     }
   }, []);
 
-  const openModal = () => {
-    setModalOpen(true);
-    if (windowWidth <= 1280) {
-      document.body.style.overflow = "hidden";
-    }
-  };
-
-  const closeModal = () => {
-    setModalOpen(false);
-    document.body.style.overflow = "auto";
-  };
-
-  const handleLinkClick = () => {
+  const handleLinkClick = (event: any) => {
     closeModal();
+
+    event.preventDefault();
   };
 
   const NavigationContent = (
@@ -215,18 +210,18 @@ const HeaderComponent = () => {
         <li
           key={item.title}
           className={s.header__item}
-          onMouseEnter={() => handleDropdownMouseEnter(item.type)}
-          onMouseLeave={() => handleDropdownMouseLeave(item.type)}
-          onClick={() => {
-            if (item.type === "services") {
-              handleServicesMenuClick();
-            } else {
-              handleDropdownClick(item.type);
-              handleLinkClick();
-            }
-          }}
+          onMouseEnter={() =>
+            item.type === "services"
+              ? handleDropdownMouseEnter(item.type)
+              : null
+          }
+          onMouseLeave={() =>
+            item.type === "services"
+              ? handleDropdownMouseLeave(item.type)
+              : null
+          }
         >
-          {item.type === "link" ? (
+          {item.type !== "services" ? (
             <Link
               className={s.header__text}
               href={item.link}
@@ -237,20 +232,20 @@ const HeaderComponent = () => {
           ) : (
             <>
               <div className={s.header__submenu}>
-                <p className={s.header__text}>{t(item.title)}</p>
-                {item.type === "services" && (
-                  <span
-                    className={classNames(s.arrow, {
-                      [s.arrow__rotated]: isArrowRotated && isServicesMenuOpen,
-                    })}
-                    onClick={handleServicesMenuClick}
-                  >
-                    <Image src={ArrowMenu} alt="⌵" />
-                  </span>
-                )}
+                <p className={s.header__text} onClick={handleServicesMenuClick}>
+                  {t(item.title)}
+                </p>
+                <span
+                  className={classNames(s.arrow, {
+                    [s.arrow__rotated]: isArrowRotated && isServicesMenuOpen,
+                  })}
+                  onClick={handleServicesMenuClick}
+                >
+                  <Image src={ArrowMenu} alt="⌵" />
+                </span>
               </div>
 
-              {item.type === "services" && isServicesMenuOpen && (
+              {isServicesMenuOpen && (
                 <ul className={s.header__dropdown}>
                   {servicesMenu.map((subItem) => (
                     <li className={s.header__dropdown_item} key={subItem.title}>
@@ -336,8 +331,8 @@ const HeaderComponent = () => {
     <>
       {NavigationContent}
       {FlagContent}
-
       <MainButtonComponent
+        defaultTo="contactUsSection"
         onClick={closeModal}
         text={t("getInTouch")}
         typeButton="MainButton"
@@ -375,8 +370,8 @@ const HeaderComponent = () => {
           <div className={s.flag__content}>{FlagContent}</div>
 
           <MainButtonComponent
-            defaultTo="contactUsSection"
             className={s.header__touch}
+            defaultTo="contactUsSection"
             text={t("getInTouch")}
             typeButton="MainButton"
           />
