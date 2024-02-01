@@ -17,7 +17,6 @@ import { useTranslations } from "next-intl";
 import { animateScroll as scroll } from "react-scroll";
 import useLocale from "@/hooks/useLocale";
 import classNames from "classnames";
-import useFramerAnimations from "@/hooks/useFramerAnimations";
 import MotionWrapper from "@/hooks/MotionWrapper";
 
 const socialMediaIcons: { [key: string]: any } = {
@@ -146,6 +145,7 @@ const FooterComponent = () => {
                   className={s.footer__item}
                   variants
                   custom={1}
+                  animation="footer"
                 >
                   <Link
                     className={s.footer__link}
@@ -159,6 +159,7 @@ const FooterComponent = () => {
                   className={s.footer__item}
                   variants
                   custom={2}
+                  animation="footer"
                 >
                   <Link
                     className={s.footer__link}
@@ -174,6 +175,7 @@ const FooterComponent = () => {
                   tag="li"
                   variants
                   custom={3}
+                  animation="footer"
                   className={s.footer__item}
                 >
                   <Link
@@ -188,6 +190,7 @@ const FooterComponent = () => {
                   className={s.footer__item}
                   variants
                   custom={4}
+                  animation="footer"
                 >
                   <Link
                     className={s.footer__link}
@@ -204,6 +207,7 @@ const FooterComponent = () => {
                   className={s.footer__item}
                   variants
                   custom={5}
+                  animation="footer"
                 >
                   <Link className={s.footer__link} href={`/${locale}/about-us`}>
                     {t("aboutUs")}
@@ -215,6 +219,7 @@ const FooterComponent = () => {
                   variants
                   custom={6}
                   className={s.footer__item}
+                  animation="footer"
                 >
                   <Link
                     className={s.footer__link}
@@ -232,6 +237,7 @@ const FooterComponent = () => {
                 <MotionWrapper
                   tag="li"
                   variants
+                  animation="footer"
                   custom={7}
                   className={s.footer__item}
                 >
@@ -242,6 +248,7 @@ const FooterComponent = () => {
                 <MotionWrapper
                   tag="li"
                   variants
+                  animation="footer"
                   custom={8}
                   className={s.footer__item}
                 >
