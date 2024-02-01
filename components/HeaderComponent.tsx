@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState, useMemo, useCallback } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { Link } from "../navigation";
 import Image from "next/image";
 import Modal from "react-modal";
@@ -198,10 +198,8 @@ const HeaderComponent = () => {
     }
   }, []);
 
-  const handleLinkClick = (event: any) => {
+  const handleLinkClick = () => {
     closeModal();
-
-    event.preventDefault();
   };
 
   const NavigationContent = (
@@ -390,6 +388,7 @@ const HeaderComponent = () => {
         isOpen={isModalOpen}
         onRequestClose={closeModal}
         contentLabel="Example Modal"
+        overlayClassName={s.modal__overlay}
       >
         <div className={s.modal__contents}>
           <Link className={s.header__link} href={"/"} onClick={handleLinkClick}>
