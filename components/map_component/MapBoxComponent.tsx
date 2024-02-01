@@ -1,15 +1,8 @@
 import s from "@/components/map_component/MapBoxComponent.module.scss";
-import React, {
-  useState,
-  useEffect,
-  useCallback,
-  useRef,
-  useMemo,
-} from "react";
+import React, { useState, useEffect, useRef, useMemo } from "react";
 
 import { CSSProperties } from "react";
 import { motion, useAnimation, Transition } from "framer-motion";
-import { useGesture } from "react-use-gesture";
 
 import CountryMapSVG from "@/components/map_component/CountryMapSVG";
 import countriesData from "@/components/map_component/countriesData";
@@ -38,36 +31,14 @@ const MapBoxComponent = ({ onCountrySelect }: MapBoxComponentProps) => {
   const svgContentRef = useRef<SVGSVGElement | null>(null);
   const [elementPositions, setElementPositions] = useState<any>({});
   const [currentScale, setCurrentScale] = useState(1);
+  const transformWrapperRef = useRef<ReactZoomPanPinchRef>(null);
+  const [isLargeScreen, setIsLargeScreen] = useState(false);
+  const [scale, setScale] = useState(1);
   const [selectedCountryId, setSelectedCountryId] = useState<string | null>(
     null
   );
 
-  const transformWrapperRef = useRef<ReactZoomPanPinchRef>(null);
-  const [isLargeScreen, setIsLargeScreen] = useState(false);
-
-  const [scale, setScale] = useState(1);
-  const [position, setPosition] = useState({ x: 0, y: 0 });
-
   const controls = useAnimation();
-
-  const getDragConstraints = () => {
-    if (!containerRef.current || !svgContentRef.current) {
-      return { top: 0, right: 0, bottom: 0, left: 0 };
-    }
-
-    const svgBounds = svgContentRef.current.getBoundingClientRect();
-
-    const maxX = Math.max(0, svgBounds.width * currentScale) / 2;
-    const maxY = Math.max(0, svgBounds.height * currentScale) / 2;
-
-    return {
-      top: -maxY,
-      right: maxX,
-      bottom: maxY,
-      left: -maxX,
-    };
-  };
-
   const SCALE_STEP = 0.25;
   const MAX_SCALE = 4;
   const MIN_SCALE = 1;
@@ -88,36 +59,66 @@ const MapBoxComponent = ({ onCountrySelect }: MapBoxComponentProps) => {
     }
   };
 
-  // const resetScaleAndPosition = () => {
-  //   const resetTransition: Transition = {
-  //     type: "spring",
-  //     stiffness: 100,
-  //     damping: 10,
-  //   };
-
-  //   let resetScale = 1;
-  //   if (typeof window !== "undefined") {
-  //     if (window.innerWidth <= 1279.98) {
-  //       resetScale = 1.7;
-  //     }
-  //   }
-
-  //   if (transformWrapperRef.current) {
-  //     transformWrapperRef.current.resetTransform();
-  //   }
-
-  //   setCurrentScale(resetScale);
-  //   setTranslate({ x: 0, y: 0 });
-  //   controls.start({ scale: resetScale, x: 0, y: 0 }, resetTransition);
-  // };
-
   const resetScaleAndPosition = () => {
-    setScale(1);
-    controls.start({
-      scale: 1,
-      x: 0,
-      y: 0,
-    });
+    const resetTransition: Transition = {
+      type: "spring",
+      stiffness: 100,
+      damping: 10,
+    };
+
+    let resetScale = 1;
+    if (typeof window !== "undefined") {
+      if (window.innerWidth <= 1279.98) {
+        resetScale = 1.2;
+      }
+    }
+
+    if (typeof window !== "undefined") {
+      if (window.innerWidth > 1280) {
+        setCurrentScale(resetScale);
+      }
+    }
+
+    if (transformWrapperRef.current) {
+      transformWrapperRef.current.resetTransform();
+      setCurrentScale(1.7);
+      setTranslate({ x: 0, y: 0 });
+      controls.start({
+        scale: resetScale,
+        x: 0,
+        y: 0,
+        transition: { type: "spring", stiffness: 100, damping: 10 },
+      });
+
+      requestAnimationFrame(() => {
+        controls.start({
+          x: 0,
+          y: 0,
+          ...getDragConstraints(),
+        });
+      });
+    }
+
+    controls.start({ scale: resetScale, x: 0, y: 0 }, resetTransition);
+  };
+
+  const getDragConstraints = () => {
+    if (!containerRef.current || !svgContentRef.current) {
+      return { top: 0, right: 0, bottom: 0, left: 0 };
+    }
+
+    const containerBounds = containerRef.current.getBoundingClientRect();
+    const svgBounds = svgContentRef.current.getBoundingClientRect();
+
+    const maxX = (svgBounds.width * currentScale - containerBounds.width) / 2;
+    const maxY = (svgBounds.height * currentScale - containerBounds.height) / 2;
+
+    return {
+      top: -maxY,
+      right: maxX,
+      bottom: maxY,
+      left: -maxX,
+    };
   };
 
   const handleMouseUp = () => {
@@ -183,6 +184,16 @@ const MapBoxComponent = ({ onCountrySelect }: MapBoxComponentProps) => {
     handleResize();
   }, []);
 
+  useEffect(() => {
+    const updateScreenSize = () => {
+      setIsLargeScreen(window.innerWidth > 1279.98);
+    };
+
+    updateScreenSize();
+    window.addEventListener("resize", updateScreenSize);
+    return () => window.removeEventListener("resize", updateScreenSize);
+  }, []);
+
   const defaultStyle: CSSProperties = useMemo(
     () => ({
       cursor: "pointer",
@@ -210,12 +221,6 @@ const MapBoxComponent = ({ onCountrySelect }: MapBoxComponentProps) => {
     ...hoverStyle,
     fill: "#A7B896",
   };
-
-  const buttonsData = [
-    { onClick: zoomIn, text: "+" },
-    { onClick: zoomOut, text: "-" },
-    { onClick: resetScaleAndPosition, text: "𖣓" },
-  ];
 
   return (
     <div
