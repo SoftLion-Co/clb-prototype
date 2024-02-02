@@ -2,13 +2,12 @@
 import React from "react";
 import type { StaticImageData } from "next/image";
 import s from "./OurAdvantagesSection.module.scss";
-import { MMainTitleComponent } from "@/components/MainTitleComponent";
+import MainTitleComponent from "@/components/MainTitleComponent";
 import OurAdvantagesCardComponent from "@/components/about_us/OurAdvantagesCardComponent";
 import AdvantagesImage1 from "@/images/our_advantages_test/advantages-image-1.png";
 import AdvantagesImage2 from "@/images/our_advantages_test/advantages-image-2.png";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
-import useFramerAnimations from "@/hooks/useFramerAnimations";
 import MotionWrapper from "@/hooks/MotionWrapper";
 
 interface AdvantagesItem {
@@ -19,7 +18,6 @@ type AdvantagesContentItem = AdvantagesItem | StaticImageData;
 
 const OurAdvantagesSection = () => {
   const t = useTranslations("aboutUs.ourAdvantages");
-  const defaultAnimation = useFramerAnimations();
 
   const advantagesContent: AdvantagesContentItem[] = [
     {
@@ -48,24 +46,14 @@ const OurAdvantagesSection = () => {
   return (
     <section className={s.box}>
       <div className={s.background}>
-        <MotionWrapper
-          className={s.container}
-          initial
-          viewport
-        >
-          <MMainTitleComponent
-            title={t("ourAdvantagesTitle")}
-            color="blue"
-            variants={defaultAnimation}
-          />
+        <MotionWrapper className={s.container} initial viewport>
+          <MotionWrapper variants>
+            <MainTitleComponent title={t("ourAdvantagesTitle")} color="blue" />
+          </MotionWrapper>
+
           <div className={s.advantages__cards}>
             {contentOrder.map((item, index) => (
-              <MotionWrapper
-                key={index}
-                initial
-                viewport
-                variants
-              >
+              <MotionWrapper key={index} initial viewport variants>
                 {item.type === "blue" && (
                   <OurAdvantagesCardComponent
                     advantages={item.data as AdvantagesItem}

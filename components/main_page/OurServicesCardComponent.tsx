@@ -1,11 +1,10 @@
-"use client";
-import React, { FC, ForwardedRef, forwardRef } from "react";
+"use client"
+import React, { FC } from "react";
 import classNames from "classnames";
 import s from "./OurServicesCardComponent.module.scss";
 import ReadMoreComponent from "@/components/ReadMoreComponent";
 import { useLocale } from "next-intl";
 import Image from "next/image";
-import { motion } from "framer-motion";
 
 interface OurServicesCardProps {
   title: string;
@@ -15,17 +14,17 @@ interface OurServicesCardProps {
   href: string;
 }
 
-const OurServicesCardComponent: FC<OurServicesCardProps> = forwardRef(({
+const OurServicesCardComponent: FC<OurServicesCardProps> = ({
   title,
   text,
   image,
   className,
   href
-}, ref: ForwardedRef<HTMLDivElement> | undefined) => {
+}) => {
   const local = useLocale();
 
   return (
-    <div className={classNames(s.card__container, className)} ref={ref}>
+    <div className={classNames(s.card__container, className)}>
       <div className={s.card__info}>
         <Image className={s.card__image} src={image!} alt="Image" />
         <h3 className={s.card__title}>{title}</h3>
@@ -38,8 +37,6 @@ const OurServicesCardComponent: FC<OurServicesCardProps> = forwardRef(({
       </div>
     </div>
   );
-});
-
-export const MOurServicesCardComponent = motion(OurServicesCardComponent)
+};
 
 export default OurServicesCardComponent;
