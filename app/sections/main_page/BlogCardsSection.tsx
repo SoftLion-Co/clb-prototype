@@ -5,7 +5,7 @@ import classNames from "classnames";
 
 import MainTitleComponent from "@/components/MainTitleComponent";
 import SmallCardBlogComponent from "@/components/blog/SmallCardBlogComponent";
-import { MMainButtonComponent } from "@/components/MainButtonComponent";
+import MainButtonComponent from "@/components/MainButtonComponent";
 import useBlogsData from "@/hooks/useBlogsData";
 import { useTranslations } from "next-intl";
 import useLocale from "@/hooks/useLocale";
@@ -66,9 +66,8 @@ const BlogCardsSection = () => {
               ))}
             </MotionWrapper>
           )}
-          <MotionWrapper initial viewport className={s.blog__button}>
-            <MMainButtonComponent
-              variants={defaultAnimation}
+          <MotionWrapper initial viewport variants animation="footer" className={s.blog__button}>
+            <MainButtonComponent
               text={t1("moreOurNews")}
               href={"/blog"}
               typeButton="MainArrowButton"
