@@ -2,14 +2,12 @@
 import React from "react";
 import s from "./WhyChooseSection.module.scss";
 import ImageAndTextCardsComponent from "@/components/ImageAndTextCardsComponent";
-import { MMainTitleComponent } from "@/components/MainTitleComponent";
+import MainTitleComponent from "@/components/MainTitleComponent";
 import { useTranslations } from "next-intl";
 
 import image1 from "@/images/export_consulting/1.png";
 import image2 from "@/images/export_consulting/2.jpg";
 import image3 from "@/images/export_consulting/3.png";
-import useFramerAnimations from "@/hooks/useFramerAnimations";
-import { motion } from "framer-motion";
 import MotionWrapper from "@/hooks/MotionWrapper";
 
 interface WhyChooseProps {
@@ -20,21 +18,14 @@ interface WhyChooseProps {
 
 function WhyChoose({ text1, text2, text3 }: WhyChooseProps) {
   const t = useTranslations("exportConsulting.whyChoose");
-  const defaultAnimation = useFramerAnimations();
 
   return (
     <section className={s.box}>
       <div className={s.background}>
-        <MotionWrapper
-          className={s.container}
-          initial
-          viewport
-        >
-          <MMainTitleComponent
-            title={t("whyChooseTitle")}
-            color="blue"
-            variants={defaultAnimation}
-          />
+        <MotionWrapper className={s.container} initial viewport>
+          <MotionWrapper variants>
+            <MainTitleComponent title={t("whyChooseTitle")} color="blue" />
+          </MotionWrapper>
           <div className={s.choose}>
             <ImageAndTextCardsComponent
               text={text1}

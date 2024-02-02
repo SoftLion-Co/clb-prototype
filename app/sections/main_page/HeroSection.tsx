@@ -2,7 +2,7 @@
 import React from "react";
 import classNames from "classnames";
 import s from "./HeroSection.module.scss";
-import { MMainButtonComponent } from "@/components/MainButtonComponent";
+import MainButtonComponent from "@/components/MainButtonComponent";
 import { useTranslations } from "next-intl";
 import GetHeroVideoComponent from "@/components/main_page/GetHeroVideoComponent";
 import GetHeroImageComponent from "@/components/main_page/GetHeroImageComponent";
@@ -54,15 +54,13 @@ function HeroSection() {
               {t("heroText2")}
             </MotionWrapper>
           </div>
-
-          <MMainButtonComponent
-            className={s.hero__button}
-            text={t1("ourSercvicesButton")}
-            typeButton="MainUsualButton"
-            variants={defaultAnimation}
-            custom={3}
-            defaultTo="servicesSection"
-          />
+          <MotionWrapper className={s.hero__button} variants custom={3}>
+            <MainButtonComponent
+              text={t1("ourSercvicesButton")}
+              typeButton="MainUsualButton"
+              defaultTo="servicesSection"
+            />
+          </MotionWrapper>
         </div>
       </div>
     </MotionWrapper>

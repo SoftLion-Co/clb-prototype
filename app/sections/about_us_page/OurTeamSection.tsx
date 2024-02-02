@@ -4,13 +4,13 @@ import classNames from "classnames";
 import s from "./OurTeamSection.module.scss";
 import React, { useCallback, useEffect, useState, FC } from "react";
 import { Carousel, Embla } from "@mantine/carousel";
-import { MMainTitleComponent } from "@/components/MainTitleComponent";
+import MainTitleComponent from "@/components/MainTitleComponent";
 import OurTeamCardComponent from "@/components/about_us/OurTeamCardComponent";
 import Arrow from "@/images/vectors/arrow.svg";
 import SectionVector from "@/images/vectors/section-vector.svg";
 import useOurTeamData from "@/hooks/useOurTeamData";
-import useFramerAnimations from "@/hooks/useFramerAnimations";
 import MotionWrapper from "@/hooks/MotionWrapper";
+import { useTranslations } from "next-intl";
 
 interface TeamMember {
   id: number;
@@ -38,7 +38,7 @@ interface TeamMemberAcf {
 }
 
 const OurTeamSection: FC<OurTeamSectionProps> = ({ teamMembers }) => {
-  const defaultAnimation = useFramerAnimations();
+  const t = useTranslations("aboutUs.ourTeam");
   const { team, loading, error } = useOurTeamData();
   const reversedTeam = [...team].reverse();
 
@@ -85,24 +85,16 @@ const OurTeamSection: FC<OurTeamSectionProps> = ({ teamMembers }) => {
   return (
     <section className={s.box}>
       <div className={classNames(s.background, s.team)}>
-        <MotionWrapper
-          className={s.container}
-          initial
-          viewport
-        >
-          <MMainTitleComponent
-            className={s.team__title}
-            title="our team"
-            color="black"
-            variants={defaultAnimation}
-          />
+        <MotionWrapper className={s.container} initial viewport>
+          <MotionWrapper variants>
+            <MainTitleComponent
+              className={s.team__title}
+              title={t("heading")}
+              color="black"
+            />
+          </MotionWrapper>
 
-          <MotionWrapper
-            className={s.team__carousel}
-            initial
-            viewport
-            variants
-          >
+          <MotionWrapper className={s.team__carousel} initial viewport variants>
             <Carousel
               classNames={{
                 control: s.team__control,

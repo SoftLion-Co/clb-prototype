@@ -1,7 +1,7 @@
 "use client";
 import React, { ChangeEvent, useState, useEffect, useRef } from "react";
 import s from "./ContactUsSection.module.scss";
-import { MMainTitleComponent } from "@/components/MainTitleComponent";
+import MainTitleComponent from "@/components/MainTitleComponent";
 import MainButtonComponent from "@/components/MainButtonComponent";
 import Image from "next/image";
 import Picture from "@/images/our_advantages_test/advantages-image-1.png";
@@ -494,15 +494,13 @@ const ContactUsSection = ({ cv, id }: { cv?: boolean; id?: string }) => {
 
   return (
     <section id={"contactUsSection"} className={s.box}>
-      <MotionWrapper
-        className={s.background}
-        initial
-        viewport
-      >
-        <MMainTitleComponent
-          title={cv ? t("letsWorkWithUS") : t("contactUsHeading")}
-          variants={defaultAnimation}
-        />
+      <MotionWrapper className={s.background} initial viewport>
+        <MotionWrapper variants>
+          <MainTitleComponent
+            title={cv ? t("letsWorkWithUS") : t("contactUsHeading")}
+          />
+        </MotionWrapper>
+
         <MotionWrapper
           initial
           viewport

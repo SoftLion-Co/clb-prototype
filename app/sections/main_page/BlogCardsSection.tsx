@@ -3,9 +3,9 @@ import React, { useState, useEffect } from "react";
 import s from "./BlogCardSection.module.scss";
 import classNames from "classnames";
 
-import { MMainTitleComponent } from "@/components/MainTitleComponent";
+import MainTitleComponent from "@/components/MainTitleComponent";
 import SmallCardBlogComponent from "@/components/blog/SmallCardBlogComponent";
-import { MMainButtonComponent } from "@/components/MainButtonComponent";
+import MainButtonComponent from "@/components/MainButtonComponent";
 import useBlogsData from "@/hooks/useBlogsData";
 import { useTranslations } from "next-intl";
 import useLocale from "@/hooks/useLocale";
@@ -44,23 +44,21 @@ const BlogCardsSection = () => {
           initial
           viewport
         >
-          <MMainTitleComponent
-            variants={defaultAnimation}
-            className={s.blog__title}
-            title={t("blogTitle")}
-            color="black"
-            left
-          />
+          <MotionWrapper variants>
+            <MainTitleComponent
+              className={s.blog__title}
+              title={t("blogTitle")}
+              color="black"
+              left
+            />
+          </MotionWrapper>
+
           {
             //TODO: Skeleton when latestBlogs.length === 0}
           }
 
           {latestBlogs.length !== 0 && (
-            <MotionWrapper
-              initial
-              className={s.blog__cards}
-              viewport
-            >
+            <MotionWrapper initial className={s.blog__cards} viewport>
               {latestBlogs.slice(0, cardsToRender).map((blog, index) => (
                 <MotionWrapper key={index} variants custom={index}>
                   <SmallCardBlogComponent info={blog} locale={locale} />
@@ -68,13 +66,11 @@ const BlogCardsSection = () => {
               ))}
             </MotionWrapper>
           )}
-          <MotionWrapper initial viewport className={s.blog__button}>
-            <MMainButtonComponent
-              variants={defaultAnimation}
+          <MotionWrapper initial viewport variants animation="footer" className={s.blog__button}>
+            <MainButtonComponent
               text={t1("moreOurNews")}
               href={"/blog"}
               typeButton="MainArrowButton"
-              
             />
           </MotionWrapper>
         </MotionWrapper>
