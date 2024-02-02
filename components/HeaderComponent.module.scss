@@ -13,7 +13,6 @@
   top: 0;
   left: 0;
   right: 0;
-  z-index: 10;
   transition: transform 0.3s ease-in-out;
   transform: translateY(0);
 
@@ -85,6 +84,7 @@
     flex-direction: column;
     align-items: flex-start;
     font-size: 24px;
+    cursor: pointer;
 
     @include for-size(laptop) {
       display: flex;
@@ -117,7 +117,6 @@
       gap: 16px;
       top: 86px;
       padding: 24px 36px;
-      z-index: 100;
     }
     @include for-size(desktop) {
       border-radius: 32px;
@@ -213,6 +212,7 @@
 }
 
 .flag {
+  cursor: pointer;
   position: relative;
   display: flex;
   align-items: center;
@@ -240,7 +240,6 @@
   }
 
   &__image {
-    cursor: pointer;
     border-radius: 4px;
     user-select: none;
   }
@@ -264,7 +263,6 @@
       gap: 16px;
       position: absolute;
       padding: 24px 36px;
-      z-index: 100;
     }
     @include for-size(desktop) {
       border-radius: 32px;
@@ -309,8 +307,14 @@
   position: fixed;
   height: 100%;
   width: 100%;
-  z-index: 100;
   padding: 0 32px;
+
+  &__overlay {
+    background-color: rgba(255, 255, 255, 0.75);
+    position: fixed;
+    inset: 0px;
+    z-index: 10;
+  }
 
   &__contents {
     display: flex;
