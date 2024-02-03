@@ -19,7 +19,7 @@
 .form {
   border: 2px solid $brandColorDarkGreen;
   border-radius: 24px;
-  background: #fff;
+  background: $classicWhiteBackgroundColor;
   padding: 24px 16px;
   max-width: 952px;
   width: 100%;
@@ -222,7 +222,7 @@
   cursor: pointer;
 
   &__list {
-    background-color: #ebece6;
+    background-color: $backgroundColorGreen;
     color: $brandColorDarkGreen;
     z-index: 10;
 
