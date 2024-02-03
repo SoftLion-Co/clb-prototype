@@ -53,7 +53,7 @@
   }
 
   &.cardWithBorder {
-    border: 2px solid #2a4563;
+    border: 2px solid $backgroundColorDarkBlue;
   }
 
   &__title {
@@ -86,7 +86,6 @@
   &__text {
     font-size: 18px;
     line-height: 130%;
-    
 
     @include for-size(tablet) {
       font-size: 20px;

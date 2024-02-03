@@ -1,4 +1,5 @@
 @import "/style/viewports";
+@import "/style/colors";
 
 .box {
   width: 100%;
@@ -17,7 +18,7 @@
 
 .background {
   padding: 40px 0;
-  background-color: #f6f6f6;
+  background-color: $backgroundColor;
   border-radius: 16px;
 
   @include for-size(laptop) {

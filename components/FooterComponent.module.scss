@@ -1,5 +1,6 @@
 @import "@/style/container";
-@import "@/style//font_default";
+@import "@/style/colors";
+@import "@/style/font_default";
 @import "@/style/viewports";
 
 .box {
@@ -14,7 +15,7 @@
 .footer {
   padding: 20px 16px;
 
-  background-color: #ffffff;
+  background-color: $classicWhiteBackgroundColor;
   border-radius: 16px;
 
   @include for-size(laptop) {
@@ -117,7 +118,7 @@
   }
 
   &__link {
-    color: #2a4563;
+    color: $backgroundColorDarkBlue;
     font-size: 18px;
     font-weight: 400;
     line-height: 150%;
@@ -132,7 +133,7 @@
   }
 
   &__copyright {
-    color: #2a4563;
+    color: $backgroundColorDarkBlue;
     font-size: 16px;
     line-height: 130%;
     text-align: center;

@@ -6,7 +6,7 @@
   z-index: 0;
 
   &__control {
-    border-color: #565f51;
+    border-color: $brandColorDarkGreen;
     border-radius: 20px;
     padding: 11px 27px;
     transition: background-color 0.2s ease-in-out;
@@ -21,7 +21,7 @@
     box-shadow: none;
 
     &:hover {
-      background-color: #565f51;
+      background-color: $brandColorDarkGreen;
 
       .team__arrow {
         filter: invert(97%) sepia(10%) saturate(6%) hue-rotate(103deg)

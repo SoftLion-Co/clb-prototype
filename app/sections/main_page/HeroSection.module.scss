@@ -6,7 +6,7 @@
   position: relative;
 
   @include for-size(laptop) {
-    background-color: #f6f6f6;
+    background-color: $backgroundColor;
     border-radius: 24px;
     padding: 24px 82px;
   }
@@ -18,7 +18,7 @@
     max-height: 1000px;
     min-height: 300px;
     width: 100%;
-    background-color: #f6f6f6;
+    background-color: $backgroundColor;
     transition: height 0.2s ease-in-out;
 
     @include for-size(laptop) {
