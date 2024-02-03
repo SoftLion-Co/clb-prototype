@@ -14,7 +14,7 @@ import ArrowWhite from "@/images/vectors/arrow-white.svg";
 import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import { Url } from "next/dist/shared/lib/router/router";
-import { Link as ScrollLink, animateScroll as scroll } from "react-scroll";
+import { Link as ScrollLink } from "react-scroll";
 
 interface MainButtonProps {
   text: string;
@@ -77,17 +77,85 @@ const MainButtonComponent: FC<MainButtonProps> = forwardRef(
       }
     };
 
-    if (typeButton === "MainButton" || typeButton === "MainContactUsButton") {
+    const animateBackgroundColor = isHovered
+      ? "#desiredColorOnHover"
+      : "#initialColor";
+    const animateX = isHovered ? 40 : 0;
+    const animateRotate = isHovered ? 360 : 180;
+
+    const buttonProps = {
+      type: "submit" as "button" | "submit" | "reset",
+      className: s.main__container,
+      onHoverStart: () => setIsHovered(true),
+      onHoverEnd: () => setIsHovered(false),
+      animate: { backgroundColor: animateBackgroundColor },
+      transition: { duration: 0.3, ease: "easeInOut" },
+    };
+
+    if (typeButton === "MainButton") {
       buttonContent = (
-        <motion.button
-          type="submit"
-          className={s.main__container}
-          onHoverStart={() => setIsHovered(true)}
-          onHoverEnd={() => setIsHovered(false)}
+        <ScrollLink
+          to={defaultTo}
+          spy={true}
+          smooth={true}
+          offset={0}
+          duration={500}
         >
+          <motion.button {...buttonProps}>
+            <motion.p
+              className={s.main__text}
+              animate={{ x: animateX }}
+              transition={{ duration: 0.3, ease: "easeInOut" }}
+            >
+              {t("getInTouch")}
+            </motion.p>
+            <motion.div
+              className={s.main__background}
+              animate={{ x: isHovered ? -textWidth - 25 : 0 }}
+              transition={{ duration: 0.3, ease: "easeInOut" }}
+            >
+              <motion.div
+                className={s.main__arrow}
+                initial={{ rotate: 180 }}
+                animate={{ rotate: animateRotate }}
+                transition={{ duration: 0.3, ease: "easeInOut" }}
+              >
+                <Image src={Arrow} alt="arrow" />
+              </motion.div>
+            </motion.div>
+          </motion.button>
+        </ScrollLink>
+      );
+    } else if (typeButton === "MainArrowButton") {
+      buttonContent = (
+        <div className={s.main__container} style={{ padding: buttonPadding }}>
+          <p className={s.main__text}>{text}</p>
+          <Image src={ArrowWhite} alt="arrow" />
+        </div>
+      );
+    } else if (typeButton === "MainUsualButton") {
+      buttonContent = (
+        <ScrollLink
+          to={defaultTo}
+          spy={true}
+          smooth={true}
+          offset={0}
+          duration={500}
+        >
+          <p
+            className={classNames(s.main__container, s.main__text)}
+            style={{ padding: buttonPadding }}
+          >
+            {text}
+          </p>
+        </ScrollLink>
+      );
+    } else if (typeButton === "MainContactUsButton") {
+      buttonContent = (
+        <motion.button {...buttonProps} onClick={onClick}>
           <motion.p
             className={s.main__text}
-            animate={{ x: isHovered ? 40 : 0 }}
+            animate={{ x: animateX }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
           >
             {t("getInTouch")}
@@ -100,7 +168,7 @@ const MainButtonComponent: FC<MainButtonProps> = forwardRef(
             <motion.div
               className={s.main__arrow}
               initial={{ rotate: 180 }}
-              animate={{ rotate: isHovered ? 360 : 180 }}
+              animate={{ rotate: animateRotate }}
               transition={{ duration: 0.3, ease: "easeInOut" }}
             >
               <Image src={Arrow} alt="arrow" />
@@ -108,48 +176,17 @@ const MainButtonComponent: FC<MainButtonProps> = forwardRef(
           </motion.div>
         </motion.button>
       );
-    } else if (typeButton === "MainArrowButton") {
-      buttonContent = (
-        <div className={s.main__container} style={{ padding: buttonPadding }}>
-          <p className={s.main__text}>{text}</p>
-          <Image src={ArrowWhite} alt="arrow" />
-        </div>
-      );
-    } else if (typeButton === "MainUsualButton") {
-      buttonContent = (
-        <p
-          className={classNames(s.main__container, s.main__text)}
-          style={{ padding: buttonPadding }}
-        >
-          {text}
-        </p>
-      );
     }
 
-    if (typeButton === "MainContactUsButton") {
-      return (
-        <div
-          ref={ref}
-          className={classNames(s.main__button, className)}
-          onClick={onClick}
-        >
-          {buttonContent}
-        </div>
-      );
-    } else {
-      return (
-        <ScrollLink
-          to={defaultTo}
-          spy={true}
-          smooth={true}
-          offset={0}
-          duration={500}
-          className={classNames(s.main__link, className)}
-        >
-          <div onClick={onClick}>{buttonContent}</div>
-        </ScrollLink>
-      );
-    }
+    return (
+      <div
+        ref={ref}
+        className={classNames(s.main__link, className)}
+        onClick={onClick}
+      >
+        {buttonContent}
+      </div>
+    );
   }
 );
 
