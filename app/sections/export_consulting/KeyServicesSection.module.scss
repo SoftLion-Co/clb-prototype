@@ -8,6 +8,7 @@
 }
 
 .brand__element {
+  user-select: none;
   position: absolute;
   z-index: -1;
   height: auto;

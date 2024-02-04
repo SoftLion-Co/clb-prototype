@@ -130,3 +130,47 @@
     }
   }
 }
+
+.background {
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.brand__element {
+  position: absolute;
+  display: none;
+  z-index: -1;
+
+  @include for-size(laptop) {
+    display: block;
+    width: 95%;
+    top: 16%;
+    right: 2.5%;
+  }
+
+  @include for-size(desktop) {
+    width: 85%;
+    top: 22%;
+    right: 7.5%;
+  }
+}
+
+.brand__vector {
+  position: absolute;
+  display: none;
+  z-index: -1;
+
+  @include for-size(laptop) {
+    display: block;
+    width: 95%;
+    top: 16%;
+    right: 2.5%;
+  }
+
+  @include for-size(desktop) {
+    width: 85%;
+    top: 22%;
+    right: 7.5%;
+  }
+}
