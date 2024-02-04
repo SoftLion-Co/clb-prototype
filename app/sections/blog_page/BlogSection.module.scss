@@ -30,3 +30,19 @@
     }
   }
 }
+
+.background {
+  position: relative;
+  z-index: 1;
+}
+
+.brand__element {
+  position: absolute;
+  z-index: -1;
+  top: 0.7%;
+  left: 1.5%;
+
+  @include for-size(tablet) {
+    top: 1%;
+  }
+}
