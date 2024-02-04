@@ -497,7 +497,7 @@ const ContactUsSection = ({ cv, id }: { cv?: boolean; id?: string }) => {
 
   return (
     <section id={"contactUsSection"} className={s.box}>
-      <MotionWrapper className={s.background} initial viewport>
+      <MotionWrapper className={classNames(s.background, s.form__background)} initial viewport>
         <MotionWrapper variants>
           <MainTitleComponent
             title={cv ? t("letsWorkWithUS") : t("contactUsHeading")}

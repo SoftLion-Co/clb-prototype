@@ -1,6 +1,8 @@
 "use client";
 import React from "react";
+import Image from "next/image";
 import s from "./OurCoreServices.module.scss";
+import BrandElement from "@/images/vectors/brand-element-4.svg";
 import MainTitleComponent from "@/components/MainTitleComponent";
 import OurCoreServicesComponent from "@/components/commodity_brokerage_page/OurCoreServicesComponent";
 import { useTranslations } from "next-intl";
@@ -24,6 +26,8 @@ function OurCoreServices() {
           </MotionWrapper>
 
           <OurCoreServicesComponent />
+
+          <Image className={s.brand__element} src={BrandElement} alt={"brand element"} />
         </MotionWrapper>
       </div>
     </section>

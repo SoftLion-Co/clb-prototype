@@ -52,6 +52,11 @@
     padding: 64px;
   }
 
+  &__background {
+    position: relative;
+    overflow: hidden;
+  }
+
   &__container {
     display: flex;
     flex-direction: column;
