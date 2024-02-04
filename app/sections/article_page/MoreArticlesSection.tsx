@@ -5,7 +5,7 @@ import useBlogsData from "@/hooks/useBlogsData";
 import Image from "next/image";
 import Arrow from "@/images/vectors/arrow.svg";
 import useLocale from "@/hooks/useLocale";
-import { MMainTitleComponent } from "@/components/MainTitleComponent";
+import MainTitleComponent from "@/components/MainTitleComponent";
 import { useTranslations } from "next-intl";
 import classNames from "classnames";
 import { Carousel, Embla } from "@mantine/carousel";
@@ -79,14 +79,10 @@ const MoreArticlesSection: FC<MoreArticlesSectionProps> = ({ blogId }) => {
           initial
           viewport
         >
-          <MMainTitleComponent
-            title={t("moreArticles")}
-            left
-            color="green"
-            variants={defaultAnimation}
-          />
-          <MotionWrapper className={s.carousel} initial
-          viewport variants>
+          <MotionWrapper variants>
+            <MainTitleComponent title={t("moreArticles")} left color="green" />
+          </MotionWrapper>
+          <MotionWrapper className={s.carousel} initial viewport variants>
             <Carousel
               classNames={{
                 control: s.control,

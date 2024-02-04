@@ -1,10 +1,13 @@
 "use client";
 import React, { ChangeEvent, useState, useEffect, useRef } from "react";
 import s from "./ContactUsSection.module.scss";
-import { MMainTitleComponent } from "@/components/MainTitleComponent";
+import MainTitleComponent from "@/components/MainTitleComponent";
 import MainButtonComponent from "@/components/MainButtonComponent";
 import Image from "next/image";
+
 import Picture from "@/images/our_advantages_test/advantages-image-1.png";
+import BrandElement from "@/images/vectors/brand-element-2.svg";
+
 import classNames from "classnames";
 import useVacancies from "@/hooks/useVacancies";
 import InputField from "@/components/form/InputField";
@@ -495,14 +498,16 @@ const ContactUsSection = ({ cv, id }: { cv?: boolean; id?: string }) => {
   return (
     <section id={"contactUsSection"} className={s.box}>
       <MotionWrapper
-        className={s.background}
+        className={classNames(s.background, s.form__background)}
         initial
         viewport
       >
-        <MMainTitleComponent
-          title={cv ? t("letsWorkWithUS") : t("contactUsHeading")}
-          variants={defaultAnimation}
-        />
+        <MotionWrapper variants>
+          <MainTitleComponent
+            title={cv ? t("letsWorkWithUS") : t("contactUsHeading")}
+          />
+        </MotionWrapper>
+
         <MotionWrapper
           initial
           viewport
@@ -538,6 +543,19 @@ const ContactUsSection = ({ cv, id }: { cv?: boolean; id?: string }) => {
             </div>
           </form>
           <Image className={s.form__picture} src={Picture} alt="Picture" />
+
+          <Image
+            className={s.brand__element_top}
+            src={BrandElement}
+            alt="Brand element"
+            width="1675"
+          />
+          <Image
+            className={s.brand__element_buttom}
+            src={BrandElement}
+            alt="Brand element"
+            width="1675"
+          />
         </MotionWrapper>
       </MotionWrapper>
     </section>

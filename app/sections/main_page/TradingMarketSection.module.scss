@@ -27,7 +27,6 @@
     padding: 32px 40px;
     display: grid;
     gap: 24px;
-    user-select: none;
 
     @include for-size(desktop) {
       border-radius: 32px;

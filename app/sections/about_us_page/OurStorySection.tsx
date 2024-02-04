@@ -1,30 +1,25 @@
-"use client"
+"use client";
 import s from "./OurStorySection.module.scss";
-import { MMainTitleComponent } from "@/components/MainTitleComponent";
+import MainTitleComponent from "@/components/MainTitleComponent";
 import ThreeCardsComponent from "@/components/ThreeCardsComponent";
 import { useTranslations } from "next-intl";
-import useFramerAnimations from "@/hooks/useFramerAnimations";
 import MotionWrapper from "@/hooks/MotionWrapper";
 
 const OurStorySection = () => {
   const t = useTranslations("aboutUs.ourStory");
-  const defaultAnimation = useFramerAnimations();
 
   return (
     <section className={s.box}>
       <div className={s.background}>
-        <MotionWrapper
-          className={s.container}
-          initial
-          viewport
-        >
-          <MMainTitleComponent
-            title={t("heading")}
-            color="black"
-            left
-            mobileLeft
-            variants={defaultAnimation}
-          />
+        <MotionWrapper className={s.container} initial viewport>
+          <MotionWrapper variants>
+            <MainTitleComponent
+              title={t("heading")}
+              color="black"
+              left
+              mobileLeft
+            />
+          </MotionWrapper>
           <ThreeCardsComponent
             imagePosition={3}
             imageSrc="ourStory"

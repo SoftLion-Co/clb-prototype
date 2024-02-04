@@ -1,11 +1,10 @@
 "use client";
 import React, { useState } from "react";
 import s from "./TradingMarketSection.module.scss";
-import MainTitleComponent, { MMainTitleComponent } from "@/components/MainTitleComponent";
+import MainTitleComponent from "@/components/MainTitleComponent";
 import MapBoxComponent from "@/components/map_component/MapBoxComponent";
 import { useTranslations } from "next-intl";
 import MotionWrapper from "@/hooks/MotionWrapper";
-import useFramerAnimations from "@/hooks/useFramerAnimations";
 interface CountryInfo {
   country: string;
   agriculturalCrops: string[];
@@ -14,7 +13,6 @@ interface CountryInfo {
 
 const TradingMarketSection = () => {
   const t = useTranslations("homePage.tradingMarkets");
-  const defaultAnimation = useFramerAnimations();
 
   const [selectedCountry, setSelectedCountry] = useState<CountryInfo | null>(
     null
@@ -28,7 +26,12 @@ const TradingMarketSection = () => {
     <section className={s.box}>
       <div className={s.background}>
         <MotionWrapper className={s.container} initial viewport>
-          <MMainTitleComponent title={t("tradingMarketsTitle")} color="black" variants={defaultAnimation}/>
+          <MotionWrapper variants>
+            <MainTitleComponent
+              title={t("tradingMarketsTitle")}
+              color="black"
+            />
+          </MotionWrapper>
           <MotionWrapper className={s.map} initial viewport>
             <MotionWrapper className={s.map__container} variants>
               <MapBoxComponent onCountrySelect={handleCountrySelect} />

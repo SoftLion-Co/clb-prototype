@@ -1,6 +1,5 @@
-"use client";
 import s from "./OurServicesSection.module.scss";
-import { MMainTitleComponent } from "@/components/MainTitleComponent";
+import MainTitleComponent from "@/components/MainTitleComponent";
 import OurServicesCardComponent from "@/components/main_page/OurServicesCardComponent";
 import classNames from "classnames";
 import { useTranslations } from "next-intl";
@@ -9,11 +8,9 @@ import GrainsImage from "@/images/icons/Grains.svg";
 import BySeaImage from "@/images/icons/BySea.svg";
 import Execution from "@/images/icons/Execution.svg";
 import ExportConsulting from "@/images/icons/ExportConsulting.svg";
-import useFramerAnimations from "@/hooks/useFramerAnimations";
 
 const OurServicesSection = () => {
   const t = useTranslations("homePage");
-  const defaultAnimation = useFramerAnimations();
 
   const servicesCards = [
     {
@@ -50,11 +47,9 @@ const OurServicesSection = () => {
           initial
           viewport
         >
-          <MMainTitleComponent
-            title={t("servicesHeading")}
-            color="black"
-            variants={defaultAnimation}
-          />
+          <MotionWrapper variants>
+            <MainTitleComponent title={t("servicesHeading")} color="black" />
+          </MotionWrapper>
           <div className={s.services__cards}>
             {servicesCards.map((item, index) => (
               <MotionWrapper initial viewport>

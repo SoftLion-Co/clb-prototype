@@ -3,6 +3,8 @@
 @import "@/style/viewports";
 
 .cards {
+  position: relative;
+  z-index: 1;
   display: grid;
   gap: 16px;
   grid-template-columns: 1fr;
