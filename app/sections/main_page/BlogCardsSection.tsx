@@ -4,10 +4,9 @@ import s from "./BlogCardSection.module.scss";
 import classNames from "classnames";
 
 import Link from "next/link";
-import { MMainTitleComponent } from "@/components/MainTitleComponent";
-import MainTitleComponent from "@/components/MainTitleComponent";
+import MMainTitleComponent from "@/components/MainTitleComponent";
 import SmallCardBlogComponent from "@/components/blog/SmallCardBlogComponent";
-import MainButtonComponent from "@/components/MainButtonComponent";
+import { MMainButtonComponent } from "@/components/MainButtonComponent";
 import useBlogsData from "@/hooks/useBlogsData";
 import { useTranslations } from "next-intl";
 import useLocale from "@/hooks/useLocale";
@@ -46,15 +45,12 @@ const BlogCardsSection = () => {
           initial
           viewport
         >
-          <MotionWrapper variants>
-            <MainTitleComponent
-              className={s.blog__title}
-              title={t("blogTitle")}
-              color="black"
-              left
-            />
-          </MotionWrapper>
-
+          <MMainTitleComponent
+            className={s.blog__title}
+            title={t("blogTitle")}
+            color="black"
+            left
+          />
           {
             //TODO: Skeleton when latestBlogs.length === 0}
           }
@@ -76,13 +72,6 @@ const BlogCardsSection = () => {
                 typeButton="MainArrowButton"
               />
             </Link>
-
-          <MotionWrapper initial viewport variants animation="footer" className={s.blog__button}>
-            <MainButtonComponent
-              text={t1("moreOurNews")}
-              href={"/blog"}
-              typeButton="MainArrowButton"
-            />
           </MotionWrapper>
         </MotionWrapper>
       </div>
