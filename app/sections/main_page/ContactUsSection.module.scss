@@ -17,7 +17,10 @@
 }
 
 .background {
-  padding-bottom: 300px;
+  padding-bottom: 200px;
+  @include for-size(laptop) {
+    padding-bottom: 300px;
+  }
 }
 
 .form {
@@ -155,6 +158,7 @@
 
     @include for-size(phone) {
       width: 100%;
+      min-height: 310px;
     }
     @include for-size(tablet) {
       display: none;
@@ -204,14 +208,42 @@
       flex-direction: row;
     }
   }
+}
 
-  &__brandElement {
+.brand {
+  &__element_top {
     position: absolute;
     z-index: 0;
-    left: 0;
-    top: -230px;
-    max-width: 100%;
     height: auto;
+
+    @include for-size(phone) {
+      left: -70%;
+      top: -15%;
+      min-width: 200%;
+    }
+    @include for-size(tablet) {
+      left: -10%;
+      top: -45%;
+      max-width: 120%;
+    }
+    @include for-size(laptop) {
+      left: -6.5%;
+      top: -45%;
+    }
+  }
+
+  &__element_buttom {
+    @include for-size(phone) {
+      position: absolute;
+      height: auto;
+      z-index: 0;
+      left: -30%;
+      bottom: -19%;
+      min-width: 205%;
+    }
+    @include for-size(tablet) {
+      display: none;
+    }
   }
 }
 

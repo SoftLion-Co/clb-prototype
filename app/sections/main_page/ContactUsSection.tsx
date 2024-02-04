@@ -539,8 +539,15 @@ const ContactUsSection = ({ cv, id }: { cv?: boolean; id?: string }) => {
             </div>
           </form>
           <Image className={s.form__picture} src={Picture} alt="Picture" />
+
           <Image
-            className={s.form__brandElement}
+            className={s.brand__element_top}
+            src={BrandElement}
+            alt="Brand element"
+            width="1675"
+          />
+          <Image
+            className={s.brand__element_buttom}
             src={BrandElement}
             alt="Brand element"
             width="1675"
