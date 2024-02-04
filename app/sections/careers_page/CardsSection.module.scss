@@ -30,8 +30,28 @@
       margin: 0 24px 80px 24px;
     }
 
-    @include for-size(laptop) {
+    @include for-size(desktop) {
       margin: 0 24px 100px 24px;
     }
+  }
+}
+
+.background {
+  position: relative;
+  z-index: 1;
+}
+
+.brand__element {
+  transform: scaleX(-1);
+  user-select: none;
+  position: absolute;
+  z-index: -1;
+  top: 0.7%;
+  right: 1.5%;
+  width: 95%;
+
+  @include for-size(tablet) {
+    top: 1%;
+    width: 43%;
   }
 }

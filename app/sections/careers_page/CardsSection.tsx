@@ -1,9 +1,11 @@
-"use client"
+"use client";
 import s from "./CardsSection.module.scss";
+import Image from "next/image";
 import PageTitleComponent from "@/components/PageTitleComponent";
 import ImageAndTextCardsComponent from "@/components/ImageAndTextCardsComponent";
 import image1 from "@/images/careers/1.png";
 import image2 from "@/images/careers/2.png";
+import BrandElement from "@/images/vectors/brand-element-5.svg";
 import classNames from "classnames";
 import { useTranslations } from "next-intl";
 
@@ -37,6 +39,11 @@ const CardsSection = () => {
             smallFont
           />
         </div>
+        <Image
+          className={s.brand__element}
+          src={BrandElement}
+          alt="brand element"
+        />
       </div>
     </section>
   );

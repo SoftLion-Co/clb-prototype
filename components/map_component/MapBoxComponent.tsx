@@ -1,4 +1,4 @@
-import s from "@/components/map_component/MapBoxComponent.module.scss";
+import s from "./MapBoxComponent.module.scss";
 import React, { useState, useEffect, useRef, useMemo } from "react";
 
 import { CSSProperties } from "react";
