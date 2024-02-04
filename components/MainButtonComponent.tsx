@@ -3,8 +3,6 @@ import React, {
   FC,
   useState,
   useEffect,
-  forwardRef,
-  ForwardedRef,
 } from "react";
 import Image from "next/image";
 import classNames from "classnames";
@@ -29,7 +27,7 @@ interface MainButtonProps {
   onClick?: () => void;
 }
 
-const MainButtonComponent: FC<MainButtonProps> = forwardRef(
+const MainButtonComponent: FC<MainButtonProps> = 
   (
     {
       text,
@@ -38,8 +36,7 @@ const MainButtonComponent: FC<MainButtonProps> = forwardRef(
       typeButton = "MainButton",
       defaultTo = "",
       onClick,
-    },
-    ref: ForwardedRef<HTMLDivElement> | undefined
+    }
   ) => {
     const t = useTranslations("header");
     const linkProps = { href: href || "" };
@@ -180,7 +177,6 @@ const MainButtonComponent: FC<MainButtonProps> = forwardRef(
 
     return (
       <div
-        ref={ref}
         className={classNames(s.main__link, className)}
         onClick={onClick}
       >
@@ -188,8 +184,5 @@ const MainButtonComponent: FC<MainButtonProps> = forwardRef(
       </div>
     );
   }
-);
-
-export const MMainButtonComponent = motion(MainButtonComponent);
 
 export default MainButtonComponent;
