@@ -4,6 +4,9 @@
 .team {
   position: relative;
   z-index: 0;
+  @include for-size(phone) {
+    overflow: hidden;
+  }
 
   &__control {
     border-color: $brandColorDarkGreen;
@@ -68,9 +71,21 @@
   }
 
   &__vector {
-    width: 100%;
     position: absolute;
-    top: -4%;
     z-index: -1;
+    top: 0.7%;
+    min-width: 100%;
+    @include for-size(tablet) {
+      top: -1.8%;
+    }
+    @include for-size(laptop) {
+      min-width: 100%;
+      height: auto;
+      top: -2.5%;
+      left: 0;
+    }
+    @include for-size(desktop) {
+      top: -3%;
+    }
   }
 }

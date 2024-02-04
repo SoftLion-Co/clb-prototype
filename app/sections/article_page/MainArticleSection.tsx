@@ -2,12 +2,14 @@
 import classNames from "classnames";
 import s from "./MainArticleSection.module.scss";
 import Image from "next/image";
+import BrandElement from "@/images/vectors/brand-element-2.svg";
+
 import ImageAndTextCardsComponent from "@/components/ImageAndTextCardsComponent";
 import SocialLinksSection from "@/app/sections/article_page/SocialLinksSection";
 import useLocale from "@/hooks/useLocale";
 import useDateFormat from "@/hooks/useDateFormat";
 import MotionWrapper from "@/hooks/MotionWrapper";
-import parse from 'html-react-parser';
+import parse from "html-react-parser";
 
 interface Data {
   data: Blog;
@@ -69,7 +71,7 @@ const MainArticleSection = (data: Data) => {
             tag="h1"
             className={classNames(s.h1Default, s.article__title)}
             initial
-            customViewport={"1000% 0% -10% 0%" }
+            customViewport={"1000% 0% -10% 0%"}
             variants
           >
             {data.data.acf[`heading_${locale}` as keyof Acf]}
@@ -120,7 +122,7 @@ const MainArticleSection = (data: Data) => {
               tag="p"
               className={s.article__text}
               initial
-              customViewport={"1000% 0% -10% 0%" }
+              customViewport={"1000% 0% -10% 0%"}
               variants
             >
               {parse(`${data.data.acf[`text2_${locale}` as keyof Acf]}`)}
@@ -153,6 +155,11 @@ const MainArticleSection = (data: Data) => {
           </div>
           <SocialLinksSection />
         </div>
+        <Image
+          className={s.brand__element}
+          src={BrandElement}
+          alt="brand element"
+        />
       </div>
     </section>
   );

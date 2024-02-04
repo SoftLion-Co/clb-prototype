@@ -13,6 +13,7 @@ import useScrollToTop from "@/hooks/useScrollToTop";
 import ReactPaginate from "react-paginate";
 import Image from "next/image";
 import Arrow from "@/images/vectors/arrow.svg";
+import BrandElement from "@/images/vectors/brand-element-5.svg";
 import { useMediaQuery } from "@mantine/hooks";
 
 interface PaginationButtonProps {
@@ -86,7 +87,7 @@ const BlogSection: FC<BlogSectionProps> = ({ blogs }) => {
       setGridRows(rowsForMobile);
     } else {
       setGridRows(rowsForTablet);
-    } 
+    }
   }, [visibleItems.length, isMobile, isTablet]);
 
   const renderTabletCard = (data: any, index: number) => {
@@ -178,6 +179,8 @@ const BlogSection: FC<BlogSectionProps> = ({ blogs }) => {
             />
           </PaginationButton>
         </div>
+
+        <Image className={s.brand__element} src={BrandElement} alt="brand element" />
       </div>
     </div>
   );
