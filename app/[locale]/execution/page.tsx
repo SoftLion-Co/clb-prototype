@@ -1,6 +1,7 @@
 import Image from "next/image";
 import s from "./page.module.scss";
 import classNames from "classnames";
+import SectionVector from "@/images/vectors/section-vector.svg";
 import ContactUsSection from "@/app/sections/main_page/ContactUsSection";
 import ThreeCardsComponent from "@/components/ThreeCardsComponent";
 import PageTitleComponent from "@/components/PageTitleComponent";
@@ -27,11 +28,13 @@ const Execution = () => {
             bigText={t("heroBigText")}
             color="blue"
           />
-          <MotionWrapper
-            initial
-            variants
-            viewportLarge
-          >
+          <Image
+            className={s.execution__vector}
+            src={SectionVector}
+            alt="brand element"
+          />
+
+          <MotionWrapper initial variants viewportLarge>
             <Image
               className={classNames(s.execution__incoterms, s.container)}
               src={Incoterms}

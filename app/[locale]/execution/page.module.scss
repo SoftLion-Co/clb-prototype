@@ -1,6 +1,10 @@
 @import "@/style/container";
 @import "@/style/font_default";
 
+.background {
+  position: relative;
+}
+
 .execution {
   &__title {
     margin-bottom: 100px;
@@ -17,5 +21,19 @@
     -moz-user-select: none;
     -webkit-user-select: none;
     -ms-user-select: none;
+  }
+
+  &__vector {
+    position: absolute;
+    z-index: 0;
+    display: none;
+
+    @include for-size(laptop) {
+      display: block;
+      top: 12.5%;
+    }
+    @include for-size(desktop) {
+      top: 12%;
+    }
   }
 }
