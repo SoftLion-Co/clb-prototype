@@ -34,7 +34,7 @@ const CountryMapSVG = ({
   return (
     <svg
       width="100%"
-      height="auto"
+      height="100%"
       viewBox={`0 0 ${originalWidth} ${originalHeight}`}
       style={{
         maxWidth: "100%",
@@ -45,12 +45,12 @@ const CountryMapSVG = ({
       ref={svgContentRef}
       transform={`scale(${currentScale})`}
     >
-      <path
+      {/* <path
         d="M607.785 428.1L608.283 428.5 ... 926.679 472.4Z"
         style={hoverPath["path1"] ? hoverStyle : defaultStyle}
         onMouseEnter={() => handleMouseEnter("path1")}
         onMouseLeave={() => handleMouseLeave("path1")}
-      />
+      /> */}
       <path
         d="M377.212 428.8L374.42 429.9L373.723 429.5V427.4L374.62 426.7L377.212 427.3V428.8Z"
         style={hoverPath["path2"] ? hoverStyle : defaultStyle}
