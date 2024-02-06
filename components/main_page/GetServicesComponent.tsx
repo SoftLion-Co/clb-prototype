@@ -7,11 +7,11 @@ import { useLocale } from "next-intl";
 const reqUrl =
   "https://softlion.blog/wp-json/wp/v2/services?acf_format=standard&_fields=id,acf,title";
 
-export interface Services {
+interface Services {
   id: number;
   acf: Acf;
 }
-export interface Acf {
+interface Acf {
   service_image: string;
   service_heading_en: string;
   service_description_en: string;
@@ -27,7 +27,6 @@ const GetServicesComponent = async () => {
   const req = await fetch(reqUrl);
   const services: Services[] = await req.json();
   const locale = useLocale();
-
 
   const servicesCards = [
     {
@@ -53,13 +52,13 @@ const GetServicesComponent = async () => {
     <div className={s.services__cards}>
       {servicesWithHref.reverse().map((item, index) => (
         <MotionWrapper initial viewport key={index} variants custom={index}>
-            <OurServicesCardComponent
-              href={item.href}
-              key={index}
-              title={(item.acf as any)[`service_heading_${locale}`]}
-              text={(item.acf as any)[`service_description_${locale}`]}
-              image={item.acf.service_image}
-            />
+          <OurServicesCardComponent
+            href={item.href}
+            key={index}
+            title={(item.acf as any)[`service_heading_${locale}`]}
+            text={(item.acf as any)[`service_description_${locale}`]}
+            image={item.acf.service_image}
+          />
         </MotionWrapper>
       ))}
     </div>
