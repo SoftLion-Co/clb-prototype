@@ -26,7 +26,7 @@ const OurServicesCardComponent: FC<OurServicesCardProps> = ({
   return (
     <div className={classNames(s.card__container, className)}>
       <div className={s.card__info}>
-        <Image className={s.card__image} src={image!} alt="Image" />
+        <Image className={s.card__image} src={image!} alt="Image" width={100} height={100}/>
         <h3 className={s.card__title}>{title}</h3>
       </div>
 

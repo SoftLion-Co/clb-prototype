@@ -16,7 +16,6 @@ function HeroSection() {
   const t1 = useTranslations("components");
   const { effectiveType } = useNetwork(); // Get the user's connection type
   const color = useHeroTextColor();
-  const defaultAnimation = useFramerAnimations();
 
   const titleClass = classNames(s.hero__title, {
     [s.lightTitle]: color === "light",

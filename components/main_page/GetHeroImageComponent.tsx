@@ -22,32 +22,22 @@ const GetHeroImageComponent = () => {
       .catch((error) => console.error("Error fetching photo:", error));
   }, []);
 
-  const defaultAnimation = {
-    hidden: {
-      opacity: 0,
-    },
-    visible: {
-      opacity: 1,
-    },
-  };
-
   if (!photo) {
     // Photo data is still being fetched
     return <div className={s.hero__video}></div>; // or display a loading spinner/message
   }
 
   return (
-    <MotionWrapper
-      initial
-      variants
-    >
-      <Image
-        src={photo.acf.hero_photo}
-        alt="Hero Photo"
-        width={2500}
-        height={2000}
-        className={s.hero__video}
-      />
+    <MotionWrapper initial viewport>
+      <MotionWrapper variants>
+        <Image
+          src={photo.acf.hero_photo}
+          alt="Hero Photo"
+          width={2500}
+          height={2000}
+          className={s.hero__video}
+        />
+      </MotionWrapper>
     </MotionWrapper>
   );
 };
