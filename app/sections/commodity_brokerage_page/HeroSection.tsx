@@ -1,25 +1,50 @@
-"use client";
 import React from "react";
 import classNames from "classnames";
 import s from "./HeroSection.module.scss";
 import image from "@/images/commodity_brokerage/1.jpg";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import PageTitleComponent from "@/components/PageTitleComponent";
 import MainButtonComponent from "@/components/MainButtonComponent";
-import { MCommodityHeroImage } from "@/components/commodity_brokerage_page/CommodityHeroImage";
-import useFramerAnimations from "@/hooks/useFramerAnimations";
 import MotionWrapper from "@/hooks/MotionWrapper";
+import Image from "next/image";
+import {getTranslations} from 'next-intl/server';
 
-function HeroSection() {
-  const t = useTranslations("commodityBrokerage");
-  const t1 = useTranslations("header");
-  const defaultAnimation = useFramerAnimations();
+export interface HeroData {
+  id: number;
+  acf: Acf;
+}
+export interface Acf {
+  hero_image: string;
+  hero_title_en: string;
+  hero_subtitle_en: string;
+  hero_text_en: string;
+  hero_title_es: string;
+  hero_subtitle_es: string;
+  hero_text_es: string;
+  hero_title_de: string;
+  hero_subtitle_de: string;
+  hero_text_de: string;
+  hero_title_ua: string;
+  hero_subtitle_ua: string;
+  hero_text_ua: string;
+}
+
+
+const HeroSection = async () => {
+
+  const reqUrl = `https://softlion.blog/wp-json/wp/v2/commodity-hero?acf_format=standard&_fields=id,acf#`;
+
+  const req = await fetch(reqUrl);
+  const heroData: HeroData[] = await req.json();
+  const locale = useLocale();
+
+  const t1 = await getTranslations('header');
 
   return (
     <div className={classNames(s.box)}>
       <div className={s.background}>
         <PageTitleComponent
-          title={t("commodityBrokerageTitle")}
+          title={(heroData[0].acf as any)[`hero_title_${locale}`]}
           className={s.hero__title}
         />
         <MotionWrapper
@@ -34,10 +59,10 @@ function HeroSection() {
               variants
               custom={1}
             >
-              {t("commodityBrokerageSubtitle")}
+              {(heroData[0].acf as any)[`hero_subtitle_${locale}`]}
             </MotionWrapper>
             <MotionWrapper tag="p" variants custom={2} className={s.hero__text}>
-              {t("heroText")}
+              {(heroData[0].acf as any)[`hero_text_${locale}`]}
             </MotionWrapper>
             <MotionWrapper variants custom={3}>
               <MainButtonComponent
@@ -46,15 +71,15 @@ function HeroSection() {
               />
             </MotionWrapper>
           </div>
-          <MCommodityHeroImage
-            className={s.hero__image}
-            src={image}
-            alt="Hero image"
-            width={1000}
-            height={1000}
-            variants={defaultAnimation}
-            custom={1.5}
-          />
+          <MotionWrapper variants custom={1.5}>
+            <Image
+              className={s.hero__image}
+              src={heroData[0].acf.hero_image}
+              alt="Hero image"
+              width={1000}
+              height={1000}
+            />
+          </MotionWrapper>
         </MotionWrapper>
       </div>
     </div>

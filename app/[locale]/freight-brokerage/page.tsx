@@ -5,6 +5,7 @@ import ThreeCardsComponent from "@/components/ThreeCardsComponent";
 import ProductPortfolioSection from "@/app/sections/freight_brokerage/BrokeragePortfolioSection";
 import ContactUsSection from "@/app/sections/main_page/ContactUsSection";
 import { useTranslations } from "next-intl";
+import GetHeroComponent from "@/hooks/GetHeroComponent";
 
 const Freight = () => {
   const t = useTranslations("freightBrokerage");
@@ -13,11 +14,7 @@ const Freight = () => {
     <div>
       <div className={classNames(s.box, s.desktop)}>
         <section className={classNames(s.background, s.freight)}>
-          <PageTitleComponent
-            title={t("freightBrokerageTitle")}
-            text={t("freightBrokerageSubtitle")}
-            className={s.freight__title}
-          />
+          <GetHeroComponent path="freight-hero" className={s.freight__title}/>
           <ThreeCardsComponent
             className={classNames(s.container, s.freight__cards)}
             imagePosition={3}

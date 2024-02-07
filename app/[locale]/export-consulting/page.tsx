@@ -6,6 +6,7 @@ import WhyChoose from "@/app/sections/export_consulting/WhyChooseSection";
 import ContactUsSection from "@/app/sections/main_page/ContactUsSection";
 
 import { useTranslations } from "next-intl";
+import GetHeroComponent from "@/hooks/GetHeroComponent";
 
 const Export = () => {
   const t = useTranslations("exportConsulting");
@@ -14,11 +15,7 @@ const Export = () => {
     <div className={s.export}>
       <div className={s.box}>
         <div className={s.background}>
-          <PageTitleComponent
-            title={t("exportConsultingTitle")}
-            text={t("exportConsultingSubtitle")}
-            className={s.export__title}
-          />
+          <GetHeroComponent path="consulting-hero" className={s.export__title}/>
           <ThreeCardsComponent
             imagePosition={1}
             smallText={t("heroSmallText")}

@@ -8,6 +8,7 @@ import PageTitleComponent from "@/components/PageTitleComponent";
 import { useTranslations } from "next-intl";
 import Incoterms from "@/images/incoterms.svg";
 import MotionWrapper from "@/hooks/MotionWrapper";
+import GetHeroComponent from "@/hooks/GetHeroComponent";
 
 const Execution = () => {
   const t = useTranslations("execution");
@@ -16,11 +17,7 @@ const Execution = () => {
     <div>
       <div className={s.box}>
         <div className={classNames(s.background, s.execution)}>
-          <PageTitleComponent
-            title={t("executionTitle")}
-            text={t("executionSubtitle")}
-            className={s.execution__title}
-          />
+          <GetHeroComponent path="execution-hero" className={s.execution__title}/>
           <ThreeCardsComponent
             className={classNames(s.container, s.execution__cards)}
             imagePosition={2}
