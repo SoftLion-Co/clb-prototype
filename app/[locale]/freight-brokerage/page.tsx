@@ -8,7 +8,6 @@ import { useTranslations } from "next-intl";
 import GetHeroComponent from "@/hooks/GetHeroComponent";
 
 const Freight = () => {
-  const t = useTranslations("freightBrokerage");
 
   return (
     <div>
@@ -17,11 +16,7 @@ const Freight = () => {
           <GetHeroComponent path="freight-hero" className={s.freight__title}/>
           <ThreeCardsComponent
             className={classNames(s.container, s.freight__cards)}
-            imagePosition={3}
-            smallText={t("heroSmallText")}
-            bigText={t("heroBigText")}
-            color="blue"
-            imageSrc="freightBrokerage"
+            path="freight-cards"
           />
           <ProductPortfolioSection />
         </section>
@@ -30,18 +25,10 @@ const Freight = () => {
       <div className={s.mobile}>
         <div className={s.box}>
           <section className={classNames(s.background, s.freight)}>
-            <PageTitleComponent
-              title={t("freightBrokerageTitle")}
-              text={t("freightBrokerageSubtitle")}
-              className={s.freight__title}
-            />
+          <GetHeroComponent path="freight-hero" className={s.freight__title}/>
             <ThreeCardsComponent
               className={classNames(s.container, s.freight__cards)}
-              imagePosition={3}
-              smallText={t("heroSmallText")}
-              bigText={t("heroBigText")}
-              color="blue"
-              imageSrc="freightBrokerage"
+              path="freight-cards"
             />
           </section>
         </div>

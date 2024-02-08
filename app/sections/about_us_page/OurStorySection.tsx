@@ -1,4 +1,3 @@
-"use client";
 import s from "./OurStorySection.module.scss";
 import MainTitleComponent from "@/components/MainTitleComponent";
 import ThreeCardsComponent from "@/components/ThreeCardsComponent";
@@ -20,12 +19,7 @@ const OurStorySection = () => {
               mobileLeft
             />
           </MotionWrapper>
-          <ThreeCardsComponent
-            imagePosition={3}
-            imageSrc="ourStory"
-            smallText={t("smallCard")}
-            bigText={t("bigCard")}
-          />
+          <ThreeCardsComponent path="our-story" />
         </MotionWrapper>
       </div>
     </section>

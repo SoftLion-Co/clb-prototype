@@ -11,8 +11,7 @@ import MotionWrapper from "@/hooks/MotionWrapper";
 import GetHeroComponent from "@/hooks/GetHeroComponent";
 
 const Execution = () => {
-  const t = useTranslations("execution");
-
+  
   return (
     <div>
       <div className={s.box}>
@@ -20,10 +19,7 @@ const Execution = () => {
           <GetHeroComponent path="execution-hero" className={s.execution__title}/>
           <ThreeCardsComponent
             className={classNames(s.container, s.execution__cards)}
-            imagePosition={2}
-            smallText={t("heroSmallText")}
-            bigText={t("heroBigText")}
-            color="blue"
+            path="execution-cards"
           />
           <Image
             className={s.execution__vector}

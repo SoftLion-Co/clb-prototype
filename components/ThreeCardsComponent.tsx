@@ -1,41 +1,45 @@
-"use client";
 import React, { FC } from "react";
 import s from "./ThreeCardsComponent.module.scss";
 import Image from "next/image";
-
-import executionImage from "@/images/home-hero-test.png";
-import exportConsultingImage from "@/images/home-hero-test.png";
-import freightBrokerageImage from "@/images/freight_brokerage/1.png";
-import ourStoryImage from "@/images/home-hero-test.png";
 import classNames from "classnames";
 import MotionWrapper from "@/hooks/MotionWrapper";
+import { useLocale } from "next-intl";
 
-const images = {
-  execution: executionImage,
-  exportConsulting: exportConsultingImage,
-  freightBrokerage: freightBrokerageImage,
-  ourStory: ourStoryImage,
-};
-
-interface ThreeCardsProps {
-  bigText: string;
-  smallText: string;
-  imageSrc?: "execution" | "exportConsulting" | "freightBrokerage" | "ourStory";
-  imagePosition?: 1 | 2 | 3;
-  color?: "blue" | "green";
-  className?: string;
-  container?: boolean;
+export interface OurStory {
+  acf: Acf;
+}
+export interface Acf {
+  cardImage: string;
+  image_position: string;
+  color: string;
+  big_text_en: string;
+  small_text_en: string;
+  big_text_es: string;
+  small_text_es: string;
+  big_text_de: string;
+  small_text_de: string;
+  big_text_ua: string;
+  small_text_ua: string;
 }
 
-const ThreeCardsComponent: FC<ThreeCardsProps> = ({
-  bigText,
-  smallText,
-  imageSrc = "execution",
-  imagePosition = 1,
-  color = "green",
-  className,
-}) => {
-  const selectedImage = images[imageSrc];
+
+interface ThreeCardsProps {
+  path: string;
+  className?: string;
+}
+
+const ThreeCardsComponent: FC<ThreeCardsProps> =  async ({path, className}) => {
+
+  const reqUrl = `https://softlion.blog/wp-json/wp/v2/${path}?acf_format=standard&_fields=acf`
+
+  const req = await fetch(reqUrl);
+  const storyData: OurStory[] = await req.json();
+  const locale = useLocale();
+
+  const imagePosition = parseInt(storyData[0].acf.image_position)
+  const color = storyData[0].acf.color
+  const bigText = (storyData[0].acf as any)[`big_text_${locale}`]
+  const smallText = (storyData[0].acf as any)[`small_text_${locale}`]
 
   const cardStyle = {
     backgroundColor: color === "blue" ? "#ECF1F6" : "#EBECE6",
@@ -45,7 +49,7 @@ const ThreeCardsComponent: FC<ThreeCardsProps> = ({
   const image = (
     <MotionWrapper className={s.cards__image} variants custom={imagePosition}>
       <Image
-        src={selectedImage}
+        src={storyData[0].acf.cardImage}
         alt="Card Image"
         className={s.cards__image}
         width={1400}

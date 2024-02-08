@@ -17,10 +17,7 @@ const Export = () => {
         <div className={s.background}>
           <GetHeroComponent path="consulting-hero" className={s.export__title}/>
           <ThreeCardsComponent
-            imagePosition={1}
-            smallText={t("heroSmallText")}
-            bigText={t("heroBigText")}
-            imageSrc="exportConsulting"
+            path="consulting-cards"
             className={s.container}
           />
         </div>
