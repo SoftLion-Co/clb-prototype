@@ -2,9 +2,7 @@ import React, { FC } from "react";
 import s from "./OurAdvantagesCardComponent.module.scss";
 
 type OurAdvantagesComponentProps = {
-  advantages: {
-    text: string;
-  };
+  advantages: string
 
   colorVariant: "blue" | "white";
   imageSrc?: string;
@@ -30,7 +28,7 @@ const OurAdvantagesCardComponent: FC<OurAdvantagesComponentProps> = ({
       {imageSrc && (
         <img src={imageSrc} alt="Advantage" className={s.advantages__image} />
       )}
-      <p className={s.advantages__text}>{advantages.text}</p>
+      <p className={s.advantages__text}>{advantages}</p>
     </div>
   );
 };
