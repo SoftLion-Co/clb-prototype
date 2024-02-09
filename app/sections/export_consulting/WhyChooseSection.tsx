@@ -1,23 +1,49 @@
-"use client";
 import React from "react";
 import s from "./WhyChooseSection.module.scss";
 import ImageAndTextCardsComponent from "@/components/ImageAndTextCardsComponent";
 import MainTitleComponent from "@/components/MainTitleComponent";
-import { useTranslations } from "next-intl";
+import { useLocale } from "next-intl";
+import {getTranslations} from 'next-intl/server';
 
-import image1 from "@/images/export_consulting/1.png";
-import image2 from "@/images/export_consulting/2.jpg";
-import image3 from "@/images/export_consulting/3.png";
 import MotionWrapper from "@/hooks/MotionWrapper";
 
-interface WhyChooseProps {
-  text1: string;
-  text2: string;
-  text3: string;
+export interface WhyChooseUs {
+  acf: Acf;
+}
+export interface Acf {
+  image1: string;
+  image2: string;
+  image3: string;
+  card1_en: string;
+  card2_en: string;
+  card3_en: string;
+  card1_es: string;
+  card2_es: string;
+  card3_es: string;
+  card1_de: string;
+  card2_de: string;
+  card3_de: string;
+  card1_ua: string;
+  card2_ua: string;
+  card3_ua: string;
 }
 
-function WhyChoose({ text1, text2, text3 }: WhyChooseProps) {
-  const t = useTranslations("exportConsulting.whyChoose");
+const WhyChoose = async () => {
+  const reqUrl = `https://softlion.blog/wp-json/wp/v2/why-choose-us?acf_format=standard&_fields=acf`
+
+  const req = await fetch(reqUrl);
+  const whyChooseData: WhyChooseUs[] = await req.json();
+  const locale = useLocale();
+  const t = await getTranslations("exportConsulting.whyChoose");
+
+  const { acf } = whyChooseData[0];
+
+  const card1Text = (acf as any)[`card1_${locale}`];
+  const card1Image = acf.image1;
+  const card2Text = (acf as any)[`card2_${locale}`];
+  const card2Image = acf.image2;
+  const card3Text = (acf as any)[`card3_${locale}`];
+  const card3Image = acf.image3;
 
   return (
     <section className={s.box}>
@@ -28,16 +54,16 @@ function WhyChoose({ text1, text2, text3 }: WhyChooseProps) {
           </MotionWrapper>
           <div className={s.choose}>
             <ImageAndTextCardsComponent
-              text={text1}
-              image={image1.src}
+              text={card1Text}
+              image={card1Image}
               alt="image"
               color="blue"
               border
               rotateMobile
             />
             <ImageAndTextCardsComponent
-              text={text2}
-              image={image2.src}
+              text={card2Text}
+              image={card2Image}
               alt="image"
               color="white"
               border
@@ -45,8 +71,8 @@ function WhyChoose({ text1, text2, text3 }: WhyChooseProps) {
               rotateMobile
             />
             <ImageAndTextCardsComponent
-              text={text3}
-              image={image3.src}
+              text={card3Text}
+              image={card3Image}
               alt="image"
               color="white"
               border
