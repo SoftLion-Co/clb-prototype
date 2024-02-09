@@ -30,7 +30,7 @@ const GetPartnersComponent = async () => {
     <div className={s.partners__wrapper}>
       {partners.map((partner, index) => (
         <MotionWrapper className={s.partners__image_container} initial customViewport="20% 0% -5% 0%">
-          <MotionWrapper variants custom={index}>
+          <MotionWrapper variants animation="partners" custom={index}>
             <Image
               key={partner.id}
               src={partner.acf.partner_company_logo}

@@ -8,7 +8,7 @@ interface ScrollAnimationWrapperProps extends ComponentProps<"div"> {
   viewport?: boolean;
   viewportLarge?: boolean;
   customViewport?: string;
-  animation?: "default" | "footer";
+  animation?: "default" | "footer" | "partners";
   variants?: boolean;
   initial?: boolean;
   custom?: number;
@@ -45,9 +45,16 @@ const MotionWrapper = ({
 }: PropsWithChildren<ScrollAnimationWrapperProps>) => {
   const defaultAnimation = useFramerAnimations();
   const footerAnimation = useFramerAnimations("lowYMove");
+  const partnersAnimation = useFramerAnimations("partnersDelay");
 
   const resultAnimation =
-    animation === "default" ? defaultAnimation : footerAnimation;
+    animation === "default"
+      ? defaultAnimation
+      : animation === "footer"
+      ? footerAnimation
+      : animation === "partners"
+      ? partnersAnimation
+      : defaultAnimation;
 
   const getViewportStyles = () => {
     if (customViewport) {
