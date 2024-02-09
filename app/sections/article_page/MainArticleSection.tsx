@@ -71,7 +71,7 @@ const MainArticleSection = (data: Data) => {
             tag="h1"
             className={classNames(s.h1Default, s.article__title)}
             initial
-            customViewport={"1000% 0% -10% 0%"}
+            viewport
             variants
           >
             {data.data.acf[`heading_${locale}` as keyof Acf]}
@@ -80,7 +80,7 @@ const MainArticleSection = (data: Data) => {
             tag="p"
             className={classNames(s.article__date)}
             initial
-            customViewport={"1000% 0% -10% 0%"}
+            viewport
             variants
           >
             {formattedDate}
@@ -89,7 +89,7 @@ const MainArticleSection = (data: Data) => {
             <MotionWrapper
               className={s.image__container}
               initial
-              customViewport={"1000% 0% -10% 0%"}
+              viewport
               variants
             >
               <Image
@@ -104,7 +104,7 @@ const MainArticleSection = (data: Data) => {
               tag="p"
               className={s.article__text}
               initial
-              customViewport={"1000% 0% -10% 0%"}
+              viewport
               variants
             >
               {parse(`${data.data.acf[`text1_${locale}` as keyof Acf]}`)}
@@ -113,7 +113,7 @@ const MainArticleSection = (data: Data) => {
               tag="h2"
               className={s.article__subheading}
               initial
-              customViewport={"1000% 0% -10% 0%"}
+              viewport
               variants
             >
               {data.data.acf[`subheading1_${locale}` as keyof Acf]}
@@ -122,7 +122,7 @@ const MainArticleSection = (data: Data) => {
               tag="p"
               className={s.article__text}
               initial
-              customViewport={"1000% 0% -10% 0%"}
+              viewport
               variants
             >
               {parse(`${data.data.acf[`text2_${locale}` as keyof Acf]}`)}
@@ -138,7 +138,7 @@ const MainArticleSection = (data: Data) => {
               tag="h2"
               className={s.article__subheading}
               initial
-              customViewport={"1000% 0% -10% 0%"}
+              viewport
               variants
             >
               {data.data.acf[`subheading2_${locale}` as keyof Acf]}
@@ -147,7 +147,7 @@ const MainArticleSection = (data: Data) => {
               tag="p"
               className={s.article__text}
               initial
-              customViewport={"1000% 0% -10% 0%"}
+              viewport
               variants
             >
               {parse(`${data.data.acf[`text3_${locale}` as keyof Acf]}`)}

@@ -58,7 +58,7 @@ const MotionWrapper = ({
 
   const getViewportStyles = () => {
     if (customViewport) {
-      return { margin: customViewport };
+      return { margin: customViewport }; // Not working 
     } else if (viewport) {
       return { margin: `20% 0% -10% 0%` };
     } else if (viewportLarge) {
