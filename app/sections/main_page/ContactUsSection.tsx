@@ -14,7 +14,6 @@ import InputField from "@/components/form/InputField";
 import { DatePickerInput } from "@mantine/dates";
 import { useTranslations } from "next-intl";
 import useLocale from "@/hooks/useLocale";
-import useFramerAnimations from "@/hooks/useFramerAnimations";
 import MotionWrapper from "@/hooks/MotionWrapper";
 import {
   validateName,
@@ -22,6 +21,7 @@ import {
   validatePhoneNumber,
   validateCompanyName,
 } from "@/hooks/useValidation";
+import useContactUsPhoto from "@/hooks/getContactUsPhoto";
 
 interface FormData {
   firstname: string;
@@ -39,8 +39,11 @@ interface FormData {
 const ContactUsSection = ({ cv, id }: { cv?: boolean; id?: string }) => {
   const locale = useLocale();
   const t = useTranslations("homePage.contactUs");
-  const defaultAnimation = useFramerAnimations();
   const vacancies = useVacancies();
+  const photos = useContactUsPhoto();
+
+  const mainPhoto = photos[0]?.acf.main_photo;
+  const careersPhoto = photos[0]?.acf.careers_photo;
 
   const topics = [
     "generalInquiry",
@@ -543,6 +546,7 @@ const ContactUsSection = ({ cv, id }: { cv?: boolean; id?: string }) => {
             </div>
           </form>
           <Image className={s.form__picture} src={Picture} alt="Picture" />
+          {/* <Image className={s.form__picture} src={cv ? careersPhoto : mainPhoto} alt="Picture"/> */}
 
           <Image
             className={s.brand__element_top}

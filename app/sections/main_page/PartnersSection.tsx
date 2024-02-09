@@ -1,4 +1,3 @@
-"use client";
 import React from "react";
 import s from "./PartnersSection.module.scss";
 import MainTitleComponent from "@/components/MainTitleComponent";
