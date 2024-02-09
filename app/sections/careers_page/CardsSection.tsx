@@ -1,4 +1,3 @@
-"use client";
 import s from "./CardsSection.module.scss";
 import Image from "next/image";
 import PageTitleComponent from "@/components/PageTitleComponent";
@@ -8,6 +7,7 @@ import image2 from "@/images/careers/2.png";
 import BrandElement from "@/images/vectors/brand-element-5.svg";
 import classNames from "classnames";
 import { useTranslations } from "next-intl";
+import GetHeroComponent from "@/hooks/GetHeroComponent";
 
 const CardsSection = () => {
   const t = useTranslations("careers");
@@ -16,11 +16,7 @@ const CardsSection = () => {
     <section className={classNames(s.box, s.cards)}>
       <div className={s.background}>
         <div className={s.cards__title}>
-          <PageTitleComponent
-            title={t("careersTitle")}
-            text={t("careersSubtitle")}
-            className={s.careers__title}
-          />
+          <GetHeroComponent path="careers-hero" className={s.careers__title} />
         </div>
         <div className={classNames(s.container, s.cards__container)}>
           <ImageAndTextCardsComponent
