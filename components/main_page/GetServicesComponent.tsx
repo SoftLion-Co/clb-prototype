@@ -48,8 +48,6 @@ const GetServicesComponent = async () => {
     href: servicesCards[index].href,
   }));
 
-  console.log(servicesWithHref)
-
   return (
     <div className={s.services__cards}>
       {servicesWithHref.reverse().map((item, index) => (
