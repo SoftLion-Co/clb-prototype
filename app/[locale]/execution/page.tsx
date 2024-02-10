@@ -1,22 +1,24 @@
+import React from "react";
 import Image from "next/image";
 import s from "./page.module.scss";
 import classNames from "classnames";
 import SectionVector from "@/images/vectors/section-vector.svg";
 import ContactUsSection from "@/app/sections/main_page/ContactUsSection";
 import ThreeCardsComponent from "@/components/ThreeCardsComponent";
-import PageTitleComponent from "@/components/PageTitleComponent";
-import { useTranslations } from "next-intl";
+
 import Incoterms from "@/images/incoterms.svg";
 import MotionWrapper from "@/hooks/MotionWrapper";
 import GetHeroComponent from "@/hooks/GetHeroComponent";
 
 const Execution = () => {
-  
   return (
-    <div>
-      <div className={s.box}>
+    <React.Fragment>
+      <section className={s.box}>
         <div className={classNames(s.background, s.execution)}>
-          <GetHeroComponent path="execution-hero" className={s.execution__title}/>
+          <GetHeroComponent
+            path="execution-hero"
+            className={s.execution__title}
+          />
           <ThreeCardsComponent
             className={classNames(s.container, s.execution__cards)}
             path="execution-cards"
@@ -37,9 +39,9 @@ const Execution = () => {
             />
           </MotionWrapper>
         </div>
-      </div>
+      </section>
       <ContactUsSection />
-    </div>
+    </React.Fragment>
   );
 };
 

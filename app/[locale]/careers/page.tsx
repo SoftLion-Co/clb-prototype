@@ -1,3 +1,4 @@
+import React from "react";
 import CardsSection from "@/app/sections/careers_page/CardsSection";
 import VacanciesSection from "@/app/sections/careers_page/VacanciesSection";
 import ContactUsSection from "@/app/sections/main_page/ContactUsSection";
@@ -7,11 +8,11 @@ const Careers = () => {
   const t = useTranslations("careers");
 
   return (
-    <div>
+    <React.Fragment>
       <CardsSection />
       <VacanciesSection />
       <ContactUsSection cv />
-    </div>
+    </React.Fragment>
   );
 };
 

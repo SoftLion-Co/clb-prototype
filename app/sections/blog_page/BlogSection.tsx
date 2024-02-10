@@ -68,7 +68,7 @@ const BlogSection: FC<BlogSectionProps> = ({ blogs }) => {
   );
   const { setScrollToTop } = useScrollToTop();
   const [currentPage, setCurrentPage] = useState(0);
-  const blogHero = useBlogHero()
+  const blogHero = useBlogHero();
   const itemsPerPage = 6;
   const handlePageChange = ({ selected }: { selected: number }) => {
     setCurrentPage(selected);
@@ -119,11 +119,10 @@ const BlogSection: FC<BlogSectionProps> = ({ blogs }) => {
     return null; // Повертаємо нуль, якщо дані ще не завантажені або відсутні
   }
 
-
   return (
-    <div className={s.box}>
+    <section className={s.box}>
       <div className={s.background}>
-      <PageTitleComponent
+        <PageTitleComponent
           className={s.blog__title}
           title={(blogHero[0].acf as any)[`hero_title_${locale}`]}
           text={(blogHero[0].acf as any)[`hero_text_${locale}`]}
@@ -206,7 +205,7 @@ const BlogSection: FC<BlogSectionProps> = ({ blogs }) => {
           alt="brand element"
         />
       </div>
-    </div>
+    </section>
   );
 };
 
