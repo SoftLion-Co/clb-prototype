@@ -7,7 +7,7 @@ import PageTitleComponent from "@/components/PageTitleComponent";
 import MainButtonComponent from "@/components/MainButtonComponent";
 import MotionWrapper from "@/hooks/MotionWrapper";
 import Image from "next/image";
-import {getTranslations} from 'next-intl/server';
+import { getTranslations } from "next-intl/server";
 
 export interface HeroData {
   id: number;
@@ -29,19 +29,17 @@ export interface Acf {
   hero_text_ua: string;
 }
 
-
 const HeroSection = async () => {
-
   const reqUrl = `https://softlion.blog/wp-json/wp/v2/commodity-hero?acf_format=standard&_fields=id,acf#`;
 
   const req = await fetch(reqUrl);
   const heroData: HeroData[] = await req.json();
   const locale = useLocale();
 
-  const t1 = await getTranslations('header');
+  const t1 = await getTranslations("header");
 
   return (
-    <div className={classNames(s.box)}>
+    <section className={classNames(s.box)}>
       <div className={s.background}>
         <PageTitleComponent
           title={(heroData[0].acf as any)[`hero_title_${locale}`]}
@@ -82,8 +80,8 @@ const HeroSection = async () => {
           </MotionWrapper>
         </MotionWrapper>
       </div>
-    </div>
+    </section>
   );
-}
+};
 
 export default HeroSection;
