@@ -41,9 +41,17 @@ const ContactUsSection = ({ cv, id }: { cv?: boolean; id?: string }) => {
   const t = useTranslations("homePage.contactUs");
   const vacancies = useVacancies();
   const photos = useContactUsPhoto();
+  const [mainPhoto, setMainPhoto] = useState("");
+  const [careersPhoto, setCareersPhoto] = useState("");
 
-  const mainPhoto = photos[0]?.acf.main_photo;
-  const careersPhoto = photos[0]?.acf.careers_photo;
+  useEffect(() => {
+    if (photos.length > 0) {
+      const { main_photo: mainPhotoUrl, careers_photo: careersPhotoUrl } =
+        photos[0]?.acf || {};
+      setMainPhoto(mainPhotoUrl || "");
+      setCareersPhoto(careersPhotoUrl || "");
+    }
+  }, [photos]);
 
   const topics = [
     "generalInquiry",
@@ -547,13 +555,15 @@ const ContactUsSection = ({ cv, id }: { cv?: boolean; id?: string }) => {
           </form>
 
           <div style={{ zIndex: "1", width: "100%" }}>
-            <Image
-              className={s.form__picture}
-              src={cv ? careersPhoto : mainPhoto}
-              alt="Picture"
-              width={1000}
-              height={1000}
-            />
+            {mainPhoto && careersPhoto && (
+              <Image
+                className={s.form__picture}
+                src={cv ? careersPhoto : mainPhoto}
+                alt="Picture"
+                width={1000}
+                height={1000}
+              />
+            )}
           </div>
 
           <Image
