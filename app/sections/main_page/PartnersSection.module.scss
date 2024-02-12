@@ -1,32 +1,48 @@
-@import "./../../../style/container";
+@import "@/style/container";
+@import "@/style/viewports";
 
 .partners {
-  margin-bottom: 42px;
-
-  &__title {
-    margin-bottom: 68px;
-  }
-
   &__wrapper {
     display: grid;
-    gap: 4.25rem 1.5rem;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+    column-gap: 10px;
+    grid-template-columns: repeat(auto-fit, minmax(65px, 1fr));
+
+    @include for-size(tablet) {
+      gap: 18px;
+      grid-template-columns: repeat(auto-fit, minmax(145px, 1fr));
+    }
+    @include for-size(desktop) {
+      gap: 24px;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    }
   }
 
   &__image {
-    aspect-ratio: 3/2;
-    object-fit: contain;
-    height: 4.25rem;
+    user-select: none;
+    height: 100%;
+    width: 100%;
   }
 
   &__image_container {
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 1px solid black;
-    height: 100%;
     width: 100%;
     transition: all 500ms;
-    padding: 2.125rem 3.75rem;
+    height: 70px;
+    width: 70px;
+    padding: 3px;
+
+    @include for-size(tablet) {
+      padding: 7px;
+      height: 145px;
+      width: 145px;
+    }
+    @include for-size(desktop) {
+      padding: 10px;
+      height: 220px;
+      width: 220px;
+    }
   }
 }

@@ -1,10 +1,30 @@
-.read__link {
-  display: flex;
-  gap: 16px;
-  color: #000;
-  font-size: 12px;
-  font-weight: 600;
-  line-height: 150%;
-  max-width: max-content;
-  text-transform: uppercase;
+@import "@/style/colors";
+
+.read {
+  &__link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: $backgroundColorDarkBlue;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 150%;
+    max-width: max-content;
+    text-transform: uppercase;
+    transition: transform 0.3s ease-in-out;
+
+    &:hover {
+      .read__arrow {
+        transition: transform 0.3s ease-in-out;
+        transform: translateX(50%);
+      }
+    }
+  }
+
+  &__arrow {
+    user-select: none;
+    filter: invert(21%) sepia(95%) saturate(334%) hue-rotate(172deg)
+      brightness(91%) contrast(89%);
+    transition: transform 0.3s ease-in-out;
+  }
 }

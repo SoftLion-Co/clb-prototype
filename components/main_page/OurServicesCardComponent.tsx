@@ -1,42 +1,40 @@
+"use client"
+import React, { FC } from "react";
+import classNames from "classnames";
 import s from "./OurServicesCardComponent.module.scss";
 import ReadMoreComponent from "@/components/ReadMoreComponent";
-import { useTranslations } from "next-intl";
+import { useLocale } from "next-intl";
+import Image from "next/image";
 
-const OurServicesCardComponent = () => {
-  const  t  = useTranslations("homePage");
+interface OurServicesCardProps {
+  title: string;
+  text: string;
+  image: string | undefined;
+  className?: string;
+  href: string;
+}
 
-  const servicesCards = [
-    {
-      title: t("servicesCards.0.title"),
-      text: t("servicesCards.0.text"),
-    },
-    {
-      title: t("servicesCards.1.title"),
-      text: t("servicesCards.1.text"),
-    },
-    {
-      title: t("servicesCards.2.title"),
-      text: t("servicesCards.2.text"),
-    },
-    {
-      title: t("servicesCards.3.title"),
-      text: t("servicesCards.3.text"),
-    },
-  ];
+const OurServicesCardComponent: FC<OurServicesCardProps> = ({
+  title,
+  text,
+  image,
+  className,
+  href
+}) => {
+  const local = useLocale();
 
   return (
-    <div className={s.card}>
-      {servicesCards.map((service, index) => (
-        <div className={s.card__container} key={index}>
-          <h3 className={s.card__title}>{service.title}</h3>
-          <div className={s.card__content}>
-            <p className={s.card__text}>{service.text}</p>
-            <div className={s.card__box}>
-              <ReadMoreComponent href="/" />
-            </div>
-          </div>
-        </div>
-      ))}
+    <div className={classNames(s.card__container, className)}>
+      <div className={s.card__info}>
+        <Image className={s.card__image} src={image!} alt="Image" width={100} height={100}/>
+        <h3 className={s.card__title}>{title}</h3>
+      </div>
+
+      <div className={s.card__content}>
+        <p className={s.card__text}>{text}</p>
+
+        <ReadMoreComponent href={`/${local}/${href}`} />
+      </div>
     </div>
   );
 };

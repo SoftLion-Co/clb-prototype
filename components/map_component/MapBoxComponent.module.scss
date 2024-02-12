@@ -1,0 +1,90 @@
+@import "@/style/colors";
+@import "@/style/container";
+@import "@/style/viewports";
+
+.map {
+  background-color: $classicWhiteBackgroundColor;
+  border: 2px solid $brandColorDarkGreen;
+  border-radius: 24px;
+  position: relative;
+  height: 494px;
+
+  @include for-size(tablet) {
+    height: 524px;
+  }
+  @include for-size(laptop) {
+    min-height: 584px;
+  }
+  @include for-size(desktop) {
+    border-radius: 32px;
+  }
+
+  &__container {
+    display: flex;
+    transform-origin: center center;
+  }
+
+  &__buttons {
+    position: absolute;
+    z-index: 1;
+    margin: 8px 0 0 8px;
+    padding: 6px 4px;
+    background-color: $backgroundColorGreen;
+    border-radius: 16px;
+    width: max-content;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    opacity: 0.9;
+
+    @include for-size(laptop) {
+      padding: 14px 8px;
+      margin: 10px 0 0 10px;
+      border-radius: 24px;
+    }
+  }
+
+  &__button {
+    background-color: $classicWhiteBackgroundColor;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+    opacity: 1;
+
+    cursor: pointer;
+    user-select: none;
+    border: 1px solid $brandColorDarkGreen;
+    border-radius: 20px;
+    padding: 4px 14px;
+
+    @include for-size(laptop) {
+      &:hover {
+        background-color: $brandColorDarkGreen;
+
+        .map__buttonText {
+          color: $classicWhiteBackgroundColor;
+        }
+      }
+    }
+  }
+
+  &__buttonText {
+    transition: color 0.3s ease-in-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    color: $blackTextColor;
+    font-size: 20px;
+    line-height: 130%;
+    font-weight: 700;
+    min-width: 12px;
+    height: 20px;
+    opacity: 1;
+
+    @include for-size(laptop) {
+      font-size: 24px;
+      line-height: 150%;
+      min-width: 14px;
+      height: 22px;
+    }
+  }
+}

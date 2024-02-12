@@ -1,25 +1,26 @@
+import React from "react";
 import s from "./page.module.scss";
-import PageTitleComponent from "@/components/PageTitleComponent";
 import OurStorySection from "@/app/sections/about_us_page/OurStorySection";
 import OurAdvantagesSection from "@/app/sections/about_us_page/OurAdvantagesSection";
 import ContactUsSection from "@/app/sections/main_page/ContactUsSection";
 import OurTeamSection from "@/app/sections/about_us_page/OurTeamSection";
-import { useTranslations } from "next-intl";
+import GetHeroComponent from "@/hooks/GetHeroComponent";
+import classNames from "classnames";
 
 export default function AboutUs() {
-  const t = useTranslations("aboutUs");
-
   return (
-    <div className={s.about}>
-      <PageTitleComponent
-        title={t("aboutUsTitle")}
-        text={t("aboutUsText")}
-        className={s.about__title}
-      />
+    <React.Fragment>
+      <section className={s.box}>
+        <GetHeroComponent
+          path="about-hero"
+          className={classNames(s.background, s.about__container)}
+        />
+      </section>
+
       <OurStorySection />
       <OurTeamSection />
       <OurAdvantagesSection />
       <ContactUsSection />
-    </div>
+    </React.Fragment>
   );
 }

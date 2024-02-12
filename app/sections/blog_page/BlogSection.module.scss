@@ -1,0 +1,51 @@
+@import "@/style/container";
+@import "@/style/font_default";
+@import "@/style/viewports";
+
+.blog {
+  display: flex;
+
+  &__title {
+    margin-bottom: 100px;
+  }
+
+  &__cards {
+    display: grid;
+    grid-gap: 16px;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(6, 1fr);
+    margin-bottom: 40px;
+
+    @include for-size(tablet) {
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(3, 3fr);
+      margin-bottom: 80px;
+    }
+
+    @include for-size(laptop) {
+      grid-gap: 24px;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: repeat(3, 3fr);
+      margin-bottom: 100px;
+    }
+  }
+}
+
+.background {
+  position: relative;
+  z-index: 1;
+}
+
+.brand__element {
+  user-select: none;
+  position: absolute;
+  z-index: -1;
+  top: 0.7%;
+  left: 1.5%;
+  width: 95%;
+
+  @include for-size(tablet) {
+    top: 1%;
+    width: 43%;
+  }
+}

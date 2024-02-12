@@ -3,9 +3,9 @@ import { NextIntlClientProvider } from "next-intl";
 
 import "./../globals.css";
 import s from "./layout.module.scss";
+import classNames from "classnames";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
-import classNames from "classnames";
 import HeaderComponent from "@/components/HeaderComponent";
 import FooterComponent from "@/components/FooterComponent";
 
@@ -58,15 +58,18 @@ export default async function RootLayout({
   }
   return (
     <html lang={locale} className={classNames(manrope.className)}>
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+      ></meta>
+
       <body>
         <NextIntlClientProvider messages={messages}>
-          <div className={s.main}>
-            <HeaderComponent />
-            <div className={s.page} id="layout">
-              {children}
-            </div>
-            <FooterComponent />
-          </div>
+          <HeaderComponent />
+          <main className={classNames(s.page, s.main)} id="layout">
+            {children}
+          </main>
+          <FooterComponent />
         </NextIntlClientProvider>
       </body>
     </html>

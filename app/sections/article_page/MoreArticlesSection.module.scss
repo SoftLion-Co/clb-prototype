@@ -1,13 +1,76 @@
+@import "/style/container";
+
 .articles {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 146px;
-  margin-bottom: 96px;
 
   &__cards {
     display: flex;
     flex-direction: row;
     gap: 24px;
+    margin-bottom: 100px;
+  }
+}
+
+.carousel {
+  width: 100%;
+}
+
+.control {
+  border-color: $brandColorDarkGreen;
+  border-radius: 20px;
+  padding: 11px 27px;
+  transition: background-color 0.2s ease-in-out;
+
+  @include for-size(laptop) {
+    border-radius: 24px;
+    padding: 15px 33px;
+  }
+}
+
+.control {
+  box-shadow: none;
+
+  &:hover {
+    background-color: $brandColorDarkGreen;
+
+    .arrow {
+      filter: invert(97%) sepia(10%) saturate(6%) hue-rotate(103deg)
+        brightness(105%) contrast(100%);
+    }
+  }
+}
+
+.controls {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 40px;
+  padding: 0;
+
+  @include for-size(tablet) {
+    justify-content: center;
+    gap: 170px;
+    margin-top: 60px;
+  }
+
+  @include for-size(laptop) {
+    gap: 270px;
+    margin-top: 100px;
+  }
+}
+
+.arrow {
+  user-select: none;
+  width: 22px;
+  height: 12px;
+  transition: filter 0.2s ease-in-out;
+  filter: invert(36%) sepia(7%) saturate(790%) hue-rotate(55deg) brightness(93%)
+    contrast(88%);
+
+  @include for-size(laptop) {
+    width: 28px;
   }
 }

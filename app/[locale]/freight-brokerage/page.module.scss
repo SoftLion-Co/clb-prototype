@@ -2,9 +2,39 @@
 @import "@/style/font_default";
 
 .freight {
-  margin-top: 99px;
+  display: grid;
+  gap: 40px;
+
+  @include for-size(tablet) {
+    gap: 60px;
+  }
+
+  @include for-size(laptop) {
+    gap: 80px;
+  }
+
+  @include for-size(desktop) {
+    gap: 100px;
+  }
 
   &__title {
-    margin-bottom: 101px;
+    padding: 0 16px;
+    
+    @include for-size(laptop) {
+      padding: 0 24px;
+    }
+  }
+}
+
+.desktop {
+  display: none;
+  @include for-size(tablet) {
+    display: block;
+  }
+}
+
+.mobile {
+  @include for-size(tablet) {
+    display: none;
   }
 }

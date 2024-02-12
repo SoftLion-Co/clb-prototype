@@ -1,0 +1,35 @@
+@import "/style/container";
+@import "/style/viewports";
+
+.background {
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.brand__element {
+  user-select: none;
+  position: absolute;
+  z-index: -1;
+  height: auto;
+
+  @include for-size(phone) {
+    left: -69%;
+    top: -2%;
+    top: -3.7%;
+    min-width: 220%;
+    height: 500px;
+  }
+  @include for-size(tablet) {
+    width: 99%;
+    top: 1%;
+  }
+  @include for-size(laptop) {
+    top: 4%;
+    left: 0.5%;
+  }
+  @include for-size(desktop) {
+    top: 1.5%;
+    left: 6.5%;
+  }
+}

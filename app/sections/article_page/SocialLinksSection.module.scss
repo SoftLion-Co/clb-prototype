@@ -1,12 +1,70 @@
-@import "@/style/font_default";
+@import "@/style/viewports";
+@import "@/style/colors";
 
 .links {
   display: flex;
-  gap: 27px;
+  gap: 16px;
   flex-direction: column;
-  margin-bottom: 131px;
+  margin-top: 40px;
+
+  @include for-size(tablet) {
+    gap: 22px;
+    margin-top: 60px;
+  }
+
+  @include for-size(laptop) {
+    gap: 28px;
+    margin-top: 80px;
+  }
+
+  @include for-size(desktop) {
+    gap: 34px;
+    margin-top: 100px;
+  }
+
   &__list {
     display: flex;
     gap: 24px;
+  }
+
+  &__share {
+    color: $backgroundColorDarkBlue;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 130%;
+    text-transform: uppercase;
+
+    @include for-size(tablet) {
+      font-size: 16px;
+    }
+
+    @include for-size(laptop) {
+      line-height: 150%;
+    }
+
+    @include for-size(desktop) {
+      font-size: 18px;
+    }
+  }
+
+  &__icon {
+    user-select: none;
+    width: 24px;
+    height: 24px;
+
+    @include for-size(tablet) {
+      width: 28px;
+      height: 28px;
+    }
+
+    @include for-size(laptop) {
+      width: 32px;
+      height: 32px;
+    }
+
+    @include for-size(desktop) {
+      width: 36px;
+      height: 36px;
+    }
   }
 }

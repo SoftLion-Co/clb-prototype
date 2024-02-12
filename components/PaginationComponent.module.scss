@@ -1,52 +1,154 @@
+@import "@/style/colors";
+@import "@/style/viewports";
+
 .hidden {
   display: none;
 }
 
 .pagination {
-  user-select: none;
-  font-size: 18px;
-  font-weight: 400;
-  line-height: 150%;
-  list-style: none;
   display: flex;
-  gap: 36px;
-  justify-content: center;
-  align-items: center;
+  justify-content: space-between;
+  font-size: 16px;
+  line-height: 130%;
 
-  &__break {
-    cursor: pointer;
+  @include for-size(tablet) {
+    justify-content: space-evenly;
+    font-size: 18px;
+    line-height: 150%;
+  }
+  @include for-size(laptop) {
+    justify-content: center;
+    gap: 100px;
+    font-size: 18px;
+    line-height: 150%;
   }
 
-  &__pages {
-    cursor: pointer;
+  &__break {
+    color: $brandColorDarkGreen;
+    display: flex;
+    align-items: center;
+    line-height: 100%;
+    font-size: 8px;
 
-    &.active {
-      color: #000000;
-      border: 1px solid #000000;
-      border-radius: 24px;
-      padding: 8.5px 32px;
+    @include for-size(laptop) {
+      font-size: 16px;
     }
   }
 
-  &__arrow_previous {
-    margin-right: 136px;
-    transform: scaleX(-1);
+  &__content {
+    display: flex;
+    align-items: stretch;
+    gap: 14px;
+
+    @include for-size(tablet) {
+      gap: 44px;
+    }
+    @include for-size(laptop) {
+      gap: 36px;
+    }
   }
 
-  &__arrow_next {
-    margin-left: 136px;
+  &__page {
+    min-width: 10px;
+
+    @include for-size(laptop) {
+      min-width: 14px;
+    }
+  }
+
+  &__pages {
+    user-select: none;
+    color: $brandColorDarkGreen;
+    display: flex;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+
+    &::after {
+      content: "";
+      position: absolute;
+      display: block;
+      width: 200%;
+      height: 1px;
+      background: $brandColorDarkGreen;
+      transition: transform 0.3s ease-in-out;
+      left: 50%;
+      bottom: 4px;
+      transform-origin: center;
+      transform: translateX(-50%) scaleX(0);
+    }
+    &:hover::after {
+      transform: translateX(-50%) scaleX(1);
+    }
+
+    &.active {
+      color: $brandColorDarkGreen;
+      border: 1px solid $brandColorDarkGreen;
+      border-radius: 24px;
+      padding: 4px 14px;
+      min-width: 10px;
+      text-align: center;
+
+      &::after {
+        transform: translateX(-50%) scaleX(0);
+        background: transparent;
+      }
+      @include for-size(tablet) {
+        padding: 6px 26px;
+      }
+      @include for-size(laptop) {
+        padding: 7.5px 30px;
+      }
+    }
   }
 
   &__arrow_image {
-    height: 24px;
-    width: 28px;
+    width: 22px;
+    height: 22px;
+    user-select: none;
+    transition: filter 0.2s ease-in-out;
+    filter: invert(34%) sepia(7%) saturate(777%) hue-rotate(55deg)
+      brightness(95%) contrast(84%);
+
+    @include for-size(laptop) {
+      width: 28px;
+      height: 24px;
+    }
   }
 
-  &__arrow_previous,
-  &__arrow_next {
-    border: 1px solid #000000;
+  &__button {
+    border: 1px solid $brandColorDarkGreen;
     border-radius: 24px;
-    padding: 8.5px 32px;
+    padding: 4px 14px;
     max-width: max-content;
+    transition: background-color 0.2s ease-in-out, filter 0.2s ease-in-out;
+    cursor: pointer;
+
+    &:first-child {
+      transform: scaleX(-1);
+    }
+    @include for-size(tablet) {
+      padding: 6px 26px;
+    }
+    @include for-size(laptop) {
+      padding: 7.5px 32px;
+    }
+    &:hover:not(.pagination__arrow_disabled) {
+      background-color: $brandColorDarkGreen;
+      .pagination__arrow_image {
+        filter: invert(100%) sepia(18%) saturate(91%) hue-rotate(287deg)
+          brightness(104%) contrast(104%);
+      }
+    }
+
+    &.pagination__arrow_disabled {
+      cursor: not-allowed;
+      border-color: $disabledColor;
+      background-color: transparent;
+      .pagination__arrow_image {
+        filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg)
+          brightness(86%) contrast(88%);
+      }
+    }
   }
 }

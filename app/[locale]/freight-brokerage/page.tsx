@@ -1,30 +1,47 @@
+import React from "react";
 import s from "./page.module.scss";
-import ContactUsSection from "../../sections/main_page/ContactUsSection";
-import PageTitleComponent from "@/components/PageTitleComponent";
+import classNames from "classnames";
 import ThreeCardsComponent from "@/components/ThreeCardsComponent";
-import ProductPortfolioSection from "../../sections/freight_brokerage/ProductPortfolioSection";
-import { useTranslations } from "next-intl";
+import ProductPortfolioSection from "@/app/sections/freight_brokerage/BrokeragePortfolioSection";
+import ContactUsSection from "@/app/sections/main_page/ContactUsSection";
+import GetHeroComponent from "@/hooks/GetHeroComponent";
 
 const Freight = () => {
-  const t = useTranslations("freightBrokerage");
-
   return (
-    <div className={s.freight}>
-      <div className={s.container}>
-        <PageTitleComponent
-          title={t("freightBrokerageTitle")}
-          text={t("freightBrokerageSubtitle")}
-          className={s.freight__title}
-        />
-        <ThreeCardsComponent
-          imagePosition={1}
-          smallText={t("heroSmallText")}
-          bigText={t("heroBigText")}
-        />
-        <ProductPortfolioSection />
-      </div>
+    <React.Fragment>
+      <section className={classNames(s.box, s.desktop)}>
+        <div className={classNames(s.background, s.freight)}>
+          <GetHeroComponent path="freight-hero" className={s.freight__title} />
+          <ThreeCardsComponent
+            className={classNames(s.container, s.freight__cards)}
+            path="freight-cards"
+          />
+          <ProductPortfolioSection />
+        </div>
+      </section>
+
+      <section className={s.mobile}>
+        <div className={classNames(s.box)}>
+          <section className={classNames(s.background, s.freight)}>
+            <GetHeroComponent
+              path="freight-hero"
+              className={s.freight__title}
+            />
+            <ThreeCardsComponent
+              className={classNames(s.container, s.freight__cards)}
+              path="freight-cards"
+            />
+          </section>
+        </div>
+        <div className={s.box}>
+          <section className={classNames(s.background, s.freight)}>
+            <ProductPortfolioSection />
+          </section>
+        </div>
+      </section>
+
       <ContactUsSection />
-    </div>
+    </React.Fragment>
   );
 };
 

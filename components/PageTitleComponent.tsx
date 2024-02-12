@@ -1,22 +1,41 @@
 import classNames from "classnames";
 import s from "./PageTitleComponent.module.scss";
+import React, { FC } from "react";
+import MotionWrapper from "@/hooks/MotionWrapper";
 
 interface MainTitleProps {
   title: string;
-  text: string;
+  text?: string;
   className?: string;
 }
 
-const PageTitleComponent: React.FC<MainTitleProps> = ({
-  title,
-  text,
-  className,
-}) => {
+const PageTitleComponent: FC<MainTitleProps> = ({ title, text, className }) => {
+
   return (
-    <div className={classNames(s.page, className)}>
-      <h1 className={s.page__title}>{title}</h1>
-      <p className={s.page__text}>{text}</p>
-    </div>
+    <MotionWrapper
+      className={classNames(className)}
+      initial
+      viewport
+    >
+      <div className={classNames(s.page)}>
+        <MotionWrapper tag="h1"
+          className={s.page__title}
+          variants
+          custom={0.2}
+        >
+          {title}
+        </MotionWrapper>
+        {text && (
+          <MotionWrapper tag="p"
+            className={s.page__text}
+            variants
+            custom={1}
+          >
+            {text}
+          </MotionWrapper>
+        )}
+      </div>
+    </MotionWrapper>
   );
 };
 

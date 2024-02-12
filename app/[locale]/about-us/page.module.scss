@@ -1,10 +1,18 @@
-@import "@/style/container";
+@import "/style/container";
+@import "/style/viewports";
 
-.about {
-  margin-top: 90px;
-  margin-bottom: 150px;
+.about__container {
+  padding: 30px 16px;
 
-  &__title {
-    margin-bottom: 140px;
+  @include for-size(tablet) {
+    padding: 50px 0;
+  }
+  
+  @include for-size(laptop) {
+    padding: 100px 0;
+  }
+
+  @include for-size(desktop) {
+    padding: 100px 0;
   }
 }

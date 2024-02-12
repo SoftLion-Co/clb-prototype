@@ -1,0 +1,95 @@
+@import "@/style/colors";
+@import "@/style/viewports";
+
+.services {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(6, 1fr);
+
+  @include for-size(tablet) {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+  }
+
+  @include for-size(laptop) {
+    gap: 24px;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+  }
+}
+
+.card {
+  border-radius: 24px;
+  padding: 40px 20.5px 48px 20.5px;
+  background-color: $additionalBackgroundColor;
+  display: flex;
+  flex-direction: column;
+
+  @include for-size(desktop) {
+    padding: 38px 30px 46px 30px;
+    border-radius: 32px;
+  }
+
+  &__title {
+    text-align: center;
+    font-weight: 600;
+    margin-bottom: 40px;
+    color: $backgroundColorDarkBlue;
+    font-size: 20px;
+    line-height: 130%;
+
+    @include for-size(tablet) {
+      font-size: 22px;
+    }
+
+    @include for-size(laptop) {
+      font-size: 26px;
+      line-height: 150%;
+    }
+
+    @include for-size(desktop) {
+      font-size: 28px;
+    }
+  }
+
+  &.lastServiceCard,
+  &.cardWithBorder {
+    border: 2px solid $backgroundColorDarkBlue;
+  }
+
+  &.whiteCard {
+    background-color: $classicWhiteBackgroundColor;
+  }
+
+  &__list {
+    font-size: 18px;
+    line-height: 130%;
+    padding-left: 26px;
+    list-style-type: initial;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    color: $backgroundColorDarkBlue;
+    gap: 20px;
+
+    @include for-size(tablet) {
+      font-size: 20px;
+      padding-left: 36px;
+      gap: 26px;
+    }
+
+    @include for-size(laptop) {
+      line-height: 150%;
+      font-size: 22px;
+      padding-left: 36px;
+      gap: 32px;
+    }
+
+    @include for-size(desktop) {
+      font-size: 24px;
+      padding-left: 36px;
+      gap: 36px;
+    }
+  }
+}

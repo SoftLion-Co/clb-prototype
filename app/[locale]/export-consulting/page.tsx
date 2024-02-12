@@ -1,33 +1,31 @@
+import React from "react";
 import s from "./page.module.scss";
-import ContactUsSection from "../../sections/main_page/ContactUsSection";
-import PageTitleComponent from "@/components/PageTitleComponent";
 import ThreeCardsComponent from "@/components/ThreeCardsComponent";
-import ProductPortfolioSection from "../../sections/export_consulting/ProductPortfolioSection";
-import OurCoreServices from "../../sections/export_consulting/OurCoreServices";
-import { useTranslations } from "next-intl";
+import KeyServices from "@/app/sections/export_consulting/KeyServicesSection";
+import WhyChoose from "@/app/sections/export_consulting/WhyChooseSection";
+import ContactUsSection from "@/app/sections/main_page/ContactUsSection";
+import GetHeroComponent from "@/hooks/GetHeroComponent";
 
 const Export = () => {
-  const t = useTranslations("exportConsulting");
-  
   return (
-    <div className={s.export}>
-      <div className={s.container}>
-        <PageTitleComponent
-          title={t("exportConsultingTitle")}
-          text={t("exportConsultingSubtitle")}
-          className={s.export__title}
-        />
-        <ThreeCardsComponent
-          imagePosition={2}
-          smallText={t("heroSmallText")}
-          bigText={t("heroBigText")}
-          imageSrc="exportConsulting"
-        />
-        <ProductPortfolioSection />
-        <OurCoreServices />
-      </div>
+    <React.Fragment>
+      <section className={s.box}>
+        <div className={s.background}>
+          <GetHeroComponent
+            path="consulting-hero"
+            className={s.export__title}
+          />
+          <ThreeCardsComponent
+            path="consulting-cards"
+            className={s.container}
+          />
+        </div>
+      </section>
+
+      <KeyServices />
+      <WhyChoose />
       <ContactUsSection />
-    </div>
+    </React.Fragment>
   );
 };
 

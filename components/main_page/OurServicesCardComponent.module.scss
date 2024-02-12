@@ -1,54 +1,94 @@
-@import "./../../style/container";
+@import "@/style/container";
+@import "@/style/colors";
+@import "@/style/viewports";
 
 .card {
-  display: flex;
-  justify-content: space-between;
-
   &__container {
-    background: #e7e7e7;
+    background-color: $backgroundColorGreen;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 28px;
-    width: 342px;
-    padding: 48px;
+    gap: 24px;
     border-radius: 24px;
+    padding: 32px 20px;
+    height: 100%;
+
+    @include for-size(laptop) {
+      justify-content: space-between;
+      align-items: flex-start;
+      padding: 32px;
+    }
+    @include for-size(desktop) {
+      border-radius: 32px;
+    }
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    gap: 24px;
+
+    @include for-size(laptop) {
+      align-items: flex-start;
+    }
+  }
+
+  &__image {
+    height: 68px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: end;
+    user-select: none;
+
+    @include for-size(laptop) {
+      height: 78px;
+    }
   }
 
   &__title {
-    min-height: 94px;
-    width: 173px;
-    color: #000;
-    text-align: center;
-    font-size: 28px;
+    min-height: 52px;
+    color: $brandColorDarkGreen;
+    font-size: 20px;
     font-weight: 600;
-    line-height: 150%;
+    line-height: 130%;
+    max-width: 60%;
+    text-align: center;
+
+    @include for-size(tablet) {
+      min-height: 0;
+      font-size: 22px;
+      max-width: 80%;
+    }
+
+    @include for-size(laptop) {
+      min-height: 78px;
+      font-size: 26px;
+      line-height: 150%;
+      text-align: left;
+    }
+
+    @include for-size(desktop) {
+      min-height: 84px;
+      font-size: 28px;
+    }
   }
 
   &__content {
     display: flex;
     flex-direction: column;
-    gap: 24px;
-  }
-
-  &__text {
-    color: #000;
-    font-size: 18px;
-    font-weight: 400;
-    line-height: 150%;
-  }
-
-  &__box {
-    display: flex;
     gap: 16px;
   }
 
-  &__link {
-    display: flex;
-    color: #000;
-    font-size: 12px;
-    font-weight: 600;
-    line-height: 150%;
-    text-transform: uppercase;
+  &__text {
+    color: $blackTextColor;
+    font-size: 16px;
+    line-height: 130%;
+
+    @include for-size(laptop) {
+      font-size: 18px;
+      line-height: 150%;
+    }
   }
 }

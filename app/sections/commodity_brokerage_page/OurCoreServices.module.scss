@@ -1,0 +1,34 @@
+@import "/style/container";
+@import "/style/viewports";
+
+.background {
+  position: relative;
+  z-index: 1;
+}
+
+.brand__element {
+  user-select: none;
+  position: absolute;
+  z-index: -1;
+
+  @include for-size(phone) {
+    max-width: 95%;
+
+    top: 1%;
+    right: 2%;
+  }
+  @include for-size(tablet) {
+    max-width: 46.5%;
+    top: -3%;
+    right: 2.5%;
+  }
+  @include for-size(laptop) {
+    top: -5%;
+    right: 2.5%;
+  }
+  @include for-size(desktop) {
+    max-width: 100%;
+    top: -13%;
+    right: 3%;
+  }
+}

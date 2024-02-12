@@ -1,10 +1,40 @@
 @import "@/style/container";
 @import "@/style/font_default";
 
-.execution {
-  margin-top: 99px;
+.background {
+  position: relative;
+}
 
+.execution {
   &__title {
-    margin-bottom: 101px;
+    margin-bottom: 100px;
+  }
+
+  .execution__cards {
+    margin-bottom: 180px;
+  }
+
+  &__incoterms {
+    width: 100%;
+    -webkit-user-drag: none;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+  }
+
+  &__vector {
+    position: absolute;
+    z-index: 0;
+    display: none;
+
+    @include for-size(laptop) {
+      display: block;
+      width: 100%;
+      top: 12.5%;
+    }
+    @include for-size(desktop) {
+      top: 11.7%;
+    }
   }
 }

@@ -1,18 +1,18 @@
-"use client"
+"use client";
+import React, { FC } from "react";
 import s from "./page.module.scss";
 import MainArticleSection from "@/app/sections/article_page/MainArticleSection";
-import SocialLinksSection from "@/app/sections/article_page/SocialLinksSection";
 import MoreArticlesSection from "@/app/sections/article_page/MoreArticlesSection";
 import useBlogData from "@/hooks/useBlogData";
+import ContactUsSection from "@/app/sections/main_page/ContactUsSection";
 
 interface BlogArticleParams {
   blogId: string;
 }
 
-const BlogArticle: React.FC<{ params: BlogArticleParams }> = ({ params }) => {
+const BlogArticle: FC<{ params: BlogArticleParams }> = ({ params }) => {
   const blogId = params.blogId;
   const { blog, loading, error } = useBlogData(blogId);
- 
 
   if (loading) {
     return <p>Loading...</p>;
@@ -27,11 +27,11 @@ const BlogArticle: React.FC<{ params: BlogArticleParams }> = ({ params }) => {
   }
 
   return (
-    <div className={s.container}>
-      <MainArticleSection data={blog}/>
-      <SocialLinksSection />
-      <MoreArticlesSection blogId={blogId}/>
-    </div>
+    <React.Fragment>
+      <MainArticleSection data={blog} />
+      <MoreArticlesSection blogId={blogId} />
+      <ContactUsSection />
+    </React.Fragment>
   );
 };
 

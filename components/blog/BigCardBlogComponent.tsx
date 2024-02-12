@@ -15,6 +15,7 @@ interface Blog {
 }
 
 interface Acf {
+  date: string;
   heading_en: string;
   mainimage: string;
   subheading1_en: string;
@@ -26,21 +27,26 @@ interface Acf {
   subheading1_ua: string;
 }
 
-
 const BigCardBlogComponent = (data: Info) => {
-
   const articleLink = `blog/${data.info.id}`;
 
   return (
-    <div className={classNames(s.blog__container)}>
+    <div className={classNames(s.blog__card)}>
       <div className={s.blog}>
         <div className={s.blog__content}>
           <div>
-          <h3 className={s.blog__title}>{data.info.acf[`heading_${data.locale}` as keyof Acf]}</h3>
+            <h3 className={s.blog__title}>
+              {data.info.acf[`heading_${data.locale}` as keyof Acf]}
+            </h3>
           </div>
-          <div>
-          <p className={s.blog__text}>{data.info.acf[`subheading1_${data.locale}` as keyof Acf]}</p>
-            <ReadMoreComponent href={articleLink} />
+          <div className={s.blog__container}>
+            <p className={s.blog__text}>
+              {data.info.acf[`subheading1_${data.locale}` as keyof Acf]}
+            </p>
+            <div className={s.blog__box}>
+              <ReadMoreComponent href={articleLink} />
+              <p className={s.blog__data}>{data.info.acf.date}</p>
+            </div>
           </div>
         </div>
 
@@ -48,8 +54,8 @@ const BigCardBlogComponent = (data: Info) => {
           className={s.blog__picture}
           src={data.info.acf.mainimage}
           alt="Picture"
-          width={500}
-          height={500}
+          width={452}
+          height={551}
         />
       </div>
     </div>

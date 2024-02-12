@@ -17,10 +17,10 @@
     "privacyPolicy": "Política de Privacidad"
   },
   "servicesMenu": {
-    "partners": "Socios",
-    "onlineTrading": "Comercio en línea",
-    "ourBlog": "Nuestro Blog",
-    "contactUs": "Contáctanos"
+    "commodityBrokerage": "Corretaje de productos básicos",
+    "freightBrokerage": "Corretaje de carga",
+    "execution": "Ejecución",
+    "exportСonsulting": "Consultoría de exportación"
   },
   "aboutUsMenu": {
     "aboutUs": "Sobre nosotros",
@@ -30,57 +30,69 @@
   },
   "homePage": {
     "hero": "Commodities & Logistics Brokers",
-    "heroText": "El sol se pone tras el horizonte, pintando el cielo con tonos mágicos. Una brisa suave acaricia delicadamente el rostro. En el parque, la gente disfruta de la tarde.",
+    "heroText1": "Excelencia colaborativa para el futuro.",
+    "heroText2": "Su clave para el mundo de la intermediación moderna.",
     "servicesHeading": "Nuestros Servicios",
     "partnersHeading": "Socios",
-    "blogHeading": "Nuestro Blog",
+    "tradingMarkets": {
+      "tradingMarketsTitle": "Mercados comerciales",
+      "tradingMarketsMessage": "Por favor seleccione un país",
+      "agriculturalCropsTitle": "Culturas",
+      "deliveryOptionsTitle": "Opciones de entrega"
+    },
     "contactUs": {
       "contactUsHeading": "Contáctenos",
-      "firstname": "Nombre",
-      "phone": "Número de teléfono",
-      "lastname": "Apellido",
-      "company": "Nombre de la empresa",
-      "email": "Correo electrónico",
-      "topicOfEnquiry": "Tema de la consulta",
-      "yourMessage": "Su mensaje (opcional)",
-      "time": "Cuándo estás listo para empezar a trabajar",
-      "appliedVacancy": "La vacante para la que estás aplicando",
-      "chooseFile": "Elegir un archivo",
-      "submitButton": "Enviar",
-      "contactUsButton": "Contáctenos",
+      "letsWorkWithUS": "Trabajemos juntos",
+      "firstname": "NOMBRE*",
+      "phone": "NÚMERO DE TELÉFONO",
+      "lastname": "APELLIDO*",
+      "company": "NOMBRE DE LA EMPRESA",
+      "email": "CORREO ELECTRÓNICO*",
+      "topicOfEnquiry": "TEMA DE LA CONSULTA",
+      "yourMessage": "SU MENSAJE (OPCIONAL)",
+      "time": "¿CUÁNDO ESTÁS LISTO PARA TRABAJAR?",
+      "appliedVacancy": "LA VACANTE PARA LA QUE ESTÁS APLICANDO",
+      "chooseFile": "ELEGIR UN ARCHIVO",
+      "submitButton": "ENVIAR FORMULARIO",
+      "contactUsButton": "Ponerse en contacto",
       "topics": {
-        "selectTopic": "Seleccionar un tema",
+        "selectTopic": "SELECCIONAR UN TEMA",
         "": "",
-        "generalInquiry": "Consulta general",
-        "productInformation": "Información del producto",
-        "supportRequest": "Solicitud de soporte",
-        "other": "Otro"
-      }
+        "generalInquiry": "CONSULTA GENERAL",
+        "productInformation": "INFORMACIÓN DEL PRODUCTO",
+        "supportRequest": "SOLICITUD DE SOPORTE",
+        "other": "OTRO"
+      },
+      "fileSize": "ARCHIVO:",
+      "selectingFile": "Seleccione un archivo de hasta 5 MB",
+      "validMessage": "¡El formulario ha sido enviado exitosamente!😉",
+      "invalidMessage": "¡Por favor revise sus entradas!😰"
     },
     "servicesCards": [
       {
         "title": "Corretaje de productos básicos",
-        "text": "Lorem ipsum dolor sit amet consectetur. In ac vitae dignissim placerat. Feugiat sed amet ac massa arcu tristique adipiscing pellentesque elementum."
+        "text": "En el mundo del comercio agrícola, cada detalle cuenta. Commodities Logistics Brokers, como su corredor de productos básicos, hace más que simplemente conectar compradores y vendedores."
       },
       {
         "title": "Corretaje de carga",
-        "text": "Lorem ipsum dolor sit amet consectetur. In ac vitae dignissim placerat. Feugiat sed amet ac massa arcu tristique adipiscing pellentesque elementum."
+        "text": "En el mundo del comercio agrícola, cada detalle cuenta. Commodities Logistics Brokers, como su corredor de productos básicos, hace más que simplemente conectar compradores y vendedores."
       },
       {
         "title": "Ejecución",
-        "text": "Lorem ipsum dolor sit amet consectetur. In ac vitae dignissim placerat. Feugiat sed amet ac massa arcu tristique adipiscing pellentesque elementum."
+        "text": "En el mundo del comercio agrícola, cada detalle cuenta. Commodities Logistics Brokers, como su corredor de productos básicos, hace más que simplemente conectar compradores y vendedores."
       },
       {
         "title": "Asesoramiento en exportaciones",
-        "text": "Lorem ipsum dolor sit amet consectetur. In ac vitae dignissim placerat. Feugiat sed amet ac massa arcu tristique adipiscing pellentesque elementum."
+        "text": "En el mundo del comercio agrícola, cada detalle cuenta. Commodities Logistics Brokers, como su corredor de productos básicos, hace más que simplemente conectar compradores y vendedores."
       }
     ]
   },
   "components": {
     "ourSercvicesButton": "Nuestros Servicios",
     "readMoreButton": "Leer más",
-    "moreInBlog": "Más en el Blog",
-    "share": "Compartir:"
+    "moreOurNews": "Más noticias nuestras",
+    "share": "Compartir:",
+    "moreArticles": "Más artículos"
   },
   "aboutUs": {
     "aboutUsTitle": "Sobre nosotros",
@@ -118,42 +130,119 @@
   },
   "commodityBrokerage": {
     "commodityBrokerageTitle": "Corretaje de productos básicos",
-    "commodityBrokerageSubtitle": "Su enlace entre comprador y vendedor",
-    "heroText": "En el mundo del comercio agrícola, cada detalle cuenta. Commodities Logistics Brokers, como su corredor de productos básicos, hace más que simplemente conectar compradores y vendedores. Actuamos como su socio estratégico, ofreciendo un análisis de mercado profundo y proporcionando condiciones óptimas para ambas partes.",
+    "commodityBrokerageSubtitle": "Su enlace entre el comprador y el vendedor",
+    "heroText": "En el mundo del comercio agrícola, cada detalle cuenta. Commodities Logistics Brokers, como su corredor de productos básicos, hace más que simplemente conectar compradores y vendedores. Actuamos como su socio estratégico, ofreciendo un análisis de mercado profundo y condiciones óptimas para ambas partes.",
     "productPortfolioTitle": "Portafolio de productos",
-    "coreServicesTitle": "Nuestros servicios principales"
-  },
-  "execution": {
-    "executionTitle": "Ejecución",
-    "executionSubtitle": "Lorem ipsum dolor sit amet consectetur.",
-    "heroBigText": "Con conocimientos profesionales sobre las regulaciones de GAFTA y FOSFA, nuestros expertos se someten regularmente a capacitación para mantenerse al tanto de las últimas recomendaciones y cambios en el panorama mundial del comercio.",
-    "heroSmallText": "Experimentados en varios términos de contrato como EXW, FCA, CPT, DAP, FOB, CNF y CIF, garantizamos una ejecución sin problemas y el cumplimiento de todas las estipulaciones en cada etapa del proceso contractual. Reconociendo el papel crucial de la experiencia legal en la gestión de contratos, contamos con un equipo externalizado de abogados experimentados listos para ayudar cuando sea necesario. Este equipo legal, armado con un profundo conocimiento de las leyes de comercio internacional, garantiza la protección de los derechos de nuestros clientes y el cumplimiento de las obligaciones."
-  },
-  "exportConsulting": {
-    "exportConsultingTitle": "Asesoría en Exportaciones",
-    "exportConsultingSubtitle": "Lorem ipsum dolor sit amet consectetur.",
-    "heroBigText": "Con conocimientos profesionales sobre las regulaciones de GAFTA y FOSFA, nuestros expertos se someten regularmente a capacitación para mantenerse al tanto de las últimas recomendaciones y cambios en el panorama mundial del comercio.",
-    "heroSmallText": "Experimentados en varios términos de contrato como EXW, FCA, CPT, DAP, FOB, CNF y CIF, garantizamos una ejecución sin problemas y el cumplimiento de todas las estipulaciones en cada etapa del proceso contractual. Reconociendo el papel crucial de la experiencia legal en la gestión de contratos, contamos con un equipo externalizado de abogados experimentados listos para ayudar cuando sea necesario. Este equipo legal, armado con un profundo conocimiento de las leyes de comercio internacional, garantiza la protección de los derechos de nuestros clientes y el cumplimiento de las obligaciones.",
-    "productPortfolioTitle": "Portafolio de productos",
-    "coreServicesTitle": "Nuestros servicios principales",
+    "grains": "Cereales",
+    "grainsList": {
+      "wheat": "Trigo",
+      "barley": "Cebada",
+      "corn": "Maíz",
+      "sorghum": "Sorgo",
+      "rye": "Centeno",
+      "oats": "Avena"
+    },
+    "oils": "Aceites",
+    "oilsList": {
+      "sunflower": "Girasol",
+      "soybean": "Soja",
+      "rapeseed": "Colza",
+      "linseed": "Lino"
+    },
+    "fertilizers": "Fertilizantes",
+    "fertilizersList": {
+      "nitrogen": "Fertilizantes de nitrógeno",
+      "phosphorus": "Fertilizantes de fósforo",
+      "potassium": "Fertilizantes de potasio",
+      "various": "Varias combinaciones de los mismos"
+    },
+    "processedProducts": "Productos procesados",
+    "processedProductsList": {
+      "sunflowerMeal": "Harina de girasol",
+      "rapeMeal": "Harina de colza",
+      "soybeanMeal": "Harina de soja",
+      "sunflowerAndSoybeanBran": "Bran de girasol y soja",
+      "wheatBran": "Bran de trigo",
+      "SunflowerSoybeanAndRapeOil": "Aceite de girasol, soja y colza"
+    },
+    "ourCoreServicesTitle": "Nuestros servicios principales",
     "services": {
       "title1": "Análisis de mercado",
       "text1": "Nuestro equipo de profesionales estudia las tendencias actuales para proporcionarle la información y recomendaciones más relevantes",
       "title2": "Enfoque personalizado",
       "text2": "Consideramos las necesidades y expectativas de ambas partes para establecer las mejores condiciones de colaboración",
-      "title3": "Soporte para la ejecución de contratos",
+      "title3": "Soporte en la ejecución de contratos",
       "text3": "En cada paso, estamos a su lado, ofreciendo asesoramiento y participación activa en las negociaciones para lograr los mejores términos del acuerdo",
-      "title4": "Geografía de asociaciones",
-      "text4": "Proponemos diversas opciones de posibles socios de diversas regiones, según su estrategia comercial",
+      "title4": "Geografía de la asociación",
+      "text4": "Proponemos diversas opciones de posibles socios de varias regiones, según su estrategia comercial",
       "title5": "Optimización de la política de precios",
-      "text5": "Nuestro objetivo es proporcionarle los mejores precios y condiciones, asegurando que su colaboración sea no solo rentable sino también estable"
+      "text5": "Nuestro objetivo es ofrecerle los mejores precios y condiciones, garantizando que su colaboración sea no solo rentable sino también estable"
+    }
+  },
+  "execution": {
+    "executionTitle": "Ejecución",
+    "executionSubtitle": "Lorem ipsum dolor sit amet consectetur.",
+    "heroBigText": "Con perspicacia profesional en las regulaciones de GAFTA y FOSFA, nuestros expertos se someten regularmente a capacitación para mantenerse al tanto de las últimas recomendaciones y cambios en el panorama comercial global.",
+    "heroSmallText": "Experimentados en varios términos contractuales como EXW, FCA, CPT, DAP, FOB, CNF y CIF, garantizamos una ejecución sin problemas y el cumplimiento de todas las estipulaciones en cada etapa del proceso contractual. Reconociendo el papel crucial de la experiencia legal en la gestión de contratos, contamos con un equipo externo de abogados experimentados listos para ayudar cuando sea necesario. Este equipo legal, armado con una comprensión profunda de las leyes internacionales de comercio, garantiza la protección de los derechos de nuestros clientes y el cumplimiento de las obligaciones."
+  },
+  "exportConsulting": {
+    "exportConsultingTitle": "Servicios de Consultoría en Agricultura",
+    "exportConsultingSubtitle": "Simplificando los procedimientos de exportación desde productores hasta compradores",
+    "heroBigText": "Nos especializamos en brindar servicios de consultoría integral adaptados para satisfacer las necesidades específicas de agricultores, productores y agroempresas. Nuestros especialistas experimentados se centran en encontrar la mejor solución para los bienes del cliente",
+    "heroSmallText": "En Commodity & Logistics Brokers entendemos que la industria agrícola no se trata solo de cultivar cultivos; también se trata de navegar con éxito por el complejo mundo del comercio internacional. Exportar productos agrícolas puede ser un desafío, pero con nuestra experiencia y orientación, facilitamos a los productores llegar a los mercados globales y conectarse con compradores de todo el mundo.",
+    "productPortfolioTitle": "Portafolio de productos",
+    "keyServicesTitle": "Servicios clave",
+    "services": {
+      "title1": "Análisis de mercado:",
+      "text1": "Realizamos investigaciones de mercado en profundidad para identificar mercados internacionales de alta demanda para sus productos agrícolas",
+      "text1_1": "Evaluar tendencias del mercado y preferencias del consumidor para ayudarlo a adaptar sus productos en consecuencia",
+      "title2": "Cumplimiento normativo:",
+      "text2": "Navegar por la complejidad de las regulaciones comerciales internacionales, restricciones de importación y estándares de calidad",
+      "text2_1": "Asegurarse de que sus productos cumplan con todos los requisitos necesarios para la exportación",
+      "title3": "Optimización de la cadena de suministro:",
+      "text3": "Optimice su cadena de suministro para minimizar costos y maximizar la eficiencia",
+      "text3_1": "Recomendar soluciones logísticas para garantizar la entrega segura y oportuna de sus productos a compradores en diferentes bases de entrega",
+      "title4": "Documentación de exportación:",
+      "text4": "Asistir en la preparación de todos los documentos de exportación necesarios, incluidas declaraciones aduaneras, certificados de calidad, fitosanitarios y de origen, etc.",
+      "text4_1": "Asegurar el cumplimiento de todos los requisitos de documentación del comercio internacional",
+      "title5": "Relaciones con los compradores:",
+      "text5": "Identificar y conectarlo con posibles compradores en mercados objetivo",
+      "text5_1": "Brindar orientación sobre negociación, contratos y condiciones de pago para asegurar acuerdos rentables",
+      "title6": "Aseguramiento de la calidad:",
+      "text6": "Implementar medidas de control de calidad para mantener la calidad y frescura de sus productos durante el transporte",
+      "text6_1": "Minimizar pérdidas de productos y garantizar la satisfacción del cliente"
+    },
+    "whyChoose": {
+      "whyChooseTitle": "¿Por qué elegir a Commodity & Logistics Brokers?",
+      "text1": "Nuestro equipo de experimentados consultores agrícolas tiene un profundo entendimiento de la industria y la dinámica del comercio global.",
+      "text2": "Ofrecemos soluciones personalizadas que abordan sus desafíos y objetivos únicos.",
+      "text3": "Nuestra dedicación a la transparencia e integridad garantiza que tenga un socio de confianza en el proceso de comercio y entrega."
     }
   },
   "freightBrokerage": {
-    "freightBrokerageTitle": "Corretaje de Carga",
+    "freightBrokerageTitle": "Corretaje de fletes",
     "freightBrokerageSubtitle": "Lorem ipsum dolor sit amet consectetur.",
     "heroBigText": "Commodities & Logistics Brokers es su socio confiable en el mundo del transporte de carga. Somos de confianza porque ofrecemos soluciones probadas en el tiempo y un enfoque profesional para cada cliente.",
     "heroSmallText": "Lorem ipsum dolor sit amet consectetur. Facilisi consectetur a volutpat odio sit. A senectus ut eget molestie ac commodo feugiat. Lorem viverra nibh suspendisse egestas lacus semper vulputate tincidunt tempus. Id tincidunt faucibus et et pretium tristique habitant eget consequat. Consectetur arcu lectus semper euismod. Blandit quam nulla accumsan ac amet feugiat consectetur mauris. Est sed in donec enim vel condimentum netus cursus pharetra.",
-    "productPortfolioTitle": "Portafolio de productos"
+    "productPortfolioTitle": "Portafolio de productos",
+    "byCar": "Por Carretera",
+    "byCarList": {
+      "hoppers": "Cargadores autodescargables",
+      "semiTrailers": "Remolques semicubiertos con contenedores de bogie"
+    },
+    "byRail": "Por Ferrocarril",
+    "byRailList": {
+      "hopperCars": "Vagones tolva",
+      "closedTypeCars": "Vagones de tipo cerrado"
+    },
+    "byRiver": "Por Río",
+    "byRiverList": {
+      "vesselsFromTheDanubePorts": "Embarcaciones de los puertos del Danubio",
+      "mixedTypeRiverSeaVessels": "Embarcaciones de tipo mixto 'río-mar'"
+    },
+    "bySea": "Por Mar",
+    "bySeaList": {
+      "vesselsForBulkCargo": "Embarcaciones para carga a granel para uno o más viajes"
+    }
   }
 }

@@ -1,39 +1,33 @@
+"use client";
 import s from "./ProductPortfolioSection.module.scss";
 import React from "react";
 import MainTitleComponent from "@/components/MainTitleComponent";
 import ListCardsComponent from "@/components/ListCardsComponent";
-import { useTranslations } from "next-intl";
-
-const data = {
-  Grains: ["Wheat", "Barley", "Corn", "Sorghum", "Rye", "Oats"],
-  Oils: ["Sunflower", "Soybean", "Rapeseed", "Linseed"],
-  Fertilizers: [
-    "Nitrogen Fertilizers",
-    "Phosphorus Fertilizers",
-    "Potassium Fertilizers",
-    "Various combinations thereof",
-  ],
-  "Processed Products": [
-    "Sunflower meal",
-    "Rape meal",
-    "Soybean meal",
-    "Sunflower and soybean bran",
-    "Wheat bran",
-    "Sunflower, soybean, and rape oil",
-  ],
-};
+import { useTranslations, useLocale } from "next-intl";
+import useProductPortfolio from "@/hooks/useProductPortfolio";
+import MotionWrapper from "@/hooks/MotionWrapper";
 
 function ProductPortfolioSection() {
+  const locale = useLocale();
   const t = useTranslations("commodityBrokerage");
+  const { portfolio } = useProductPortfolio(locale);
+  const reversed = portfolio.reverse();
 
   return (
-    <div>
-      <MainTitleComponent
-        title={t("productPortfolioTitle")}
-        className={s.subtitle}
-      />
-      <ListCardsComponent data={data} />
-    </div>
+    <section className={s.box}>
+      <div className={s.background}>
+        <MotionWrapper className={s.container} initial>
+          <MotionWrapper variants>
+            <MainTitleComponent
+              title={t("productPortfolioTitle")}
+              color="black"
+            />
+          </MotionWrapper>
+
+          <ListCardsComponent data={reversed} />
+        </MotionWrapper>
+      </div>
+    </section>
   );
 }
 export default ProductPortfolioSection;

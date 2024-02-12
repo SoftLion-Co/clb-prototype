@@ -1,11 +1,91 @@
-@import "./../../../style/container";
+@import "@/style/container";
+@import "@/style/viewports";
 
 .team {
-  display: grid;
-  gap: 68px;
-  margin-bottom: 140px;
+  position: relative;
+  z-index: 0;
+  @include for-size(phone) {
+    overflow: hidden;
+  }
 
-  //   &__title {
-  //     margin-bottom: 68px;
-  //   }
+  &__control {
+    border-color: $brandColorDarkGreen;
+    border-radius: 20px;
+    padding: 11px 27px;
+    transition: background-color 0.2s ease-in-out;
+
+    @include for-size(laptop) {
+      border-radius: 24px;
+      padding: 15px 33px;
+    }
+  }
+
+  &__control {
+    box-shadow: none;
+
+    &:hover {
+      background-color: $brandColorDarkGreen;
+
+      .team__arrow {
+        filter: invert(97%) sepia(10%) saturate(6%) hue-rotate(103deg)
+          brightness(105%) contrast(100%);
+      }
+    }
+  }
+
+  &__controls {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 40px;
+    padding: 0;
+
+    @include for-size(tablet) {
+      justify-content: center;
+      gap: 170px;
+      margin-top: 80px;
+    }
+
+    @include for-size(laptop) {
+      gap: 270px;
+      margin-top: 100px;
+    }
+  }
+
+  &__cards {
+    display: flex;
+    justify-content: center;
+  }
+
+  &__arrow {
+    width: 22px;
+    height: 12px;
+    transition: filter 0.2s ease-in-out;
+    filter: invert(36%) sepia(7%) saturate(790%) hue-rotate(55deg)
+      brightness(93%) contrast(88%);
+
+    @include for-size(laptop) {
+      width: 28px;
+    }
+  }
+
+  &__vector {
+    position: absolute;
+    z-index: -1;
+    top: 0.7%;
+    min-width: 100%;
+    @include for-size(tablet) {
+      top: -1.8%;
+    }
+    @include for-size(laptop) {
+      min-width: 100%;
+      height: auto;
+      top: -2.5%;
+      left: 0;
+    }
+    @include for-size(desktop) {
+      top: -3%;
+    }
+  }
 }

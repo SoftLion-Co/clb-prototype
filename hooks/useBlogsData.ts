@@ -69,7 +69,7 @@ const useBlogsData = () => {
     fetchBlogs();
   }, []);
 
-  const latestBlogs = blogs.slice(Math.max(blogs.length - 3, 0));
+  const latestBlogs = blogs.slice(Math.max(blogs.length - 3, 0)).reverse();
 
   return { blogs, loading, error, latestBlogs };
 };

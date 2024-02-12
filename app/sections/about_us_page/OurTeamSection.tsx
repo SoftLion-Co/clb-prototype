@@ -1,96 +1,147 @@
 "use client";
-import React, { useState } from "react";
+import Image from "next/image";
 import classNames from "classnames";
 import s from "./OurTeamSection.module.scss";
-import pagination from "@/components/PaginationComponent.module.scss";
-
-import ReactPaginate from "react-paginate";
-import Image from "next/image";
+import React, { useCallback, useEffect, useState, FC } from "react";
+import { Carousel, Embla } from "@mantine/carousel";
 import MainTitleComponent from "@/components/MainTitleComponent";
-import OurTeamComponent from "@/components/about_us/OurTeamComponent";
+import OurTeamCardComponent from "@/components/about_us/OurTeamCardComponent";
 import Arrow from "@/images/vectors/arrow.svg";
-import { useTranslations } from "next-intl";
+import SectionVector from "@/images/vectors/section-vector.svg";
 import useOurTeamData from "@/hooks/useOurTeamData";
+import MotionWrapper from "@/hooks/MotionWrapper";
+import { useTranslations } from "next-intl";
 
-const OurTeamSection = () => {
+interface TeamMember {
+  id: number;
+  acf: TeamMemberAcf;
+}
+
+interface OurTeamSectionProps {
+  teamMembers?: TeamMember[];
+}
+
+interface ArrowProps {
+  className: string;
+}
+
+interface TeamMemberAcf {
+  fullname_en: string;
+  jobtitle_en: string;
+  image: string;
+  fullname_de: string;
+  jobtitle_de: string;
+  fullname_es: string;
+  jobtitle_es: string;
+  fullname_ua: string;
+  jobtitle_ua: string;
+}
+
+const OurTeamSection: FC<OurTeamSectionProps> = ({ teamMembers }) => {
   const t = useTranslations("aboutUs.ourTeam");
-
-  const [currentPage, setCurrentPage] = useState(0);
-  const itemsPerPage = 4;
   const { team, loading, error } = useOurTeamData();
-
   const reversedTeam = [...team].reverse();
 
-  const pageCount = Math.ceil(reversedTeam.length / itemsPerPage);
+  const [embla] = useState<Embla | null>(null);
 
-  const handlePageChange = ({ selected }: { selected: number }) => {
-    console.log("Selected Page:", selected);
-    if (selected === 0) {
-      setCurrentPage(pageCount - 1);
-    } else if (selected === pageCount - 1) {
-      setCurrentPage(0);
-    } else {
-      setCurrentPage(selected);
+  const handleScroll = useCallback(() => {
+    if (!embla) return;
+  }, [embla]);
+
+  useEffect(() => {
+    if (embla) {
+      embla.on("scroll", handleScroll);
+      handleScroll();
     }
+  }, [embla]);
+
+  const NextArrow: FC<ArrowProps> = ({ className }) => {
+    return (
+      <div className={className}>
+        <Image
+          style={{ transform: "rotate(180deg)" }}
+          src={Arrow}
+          alt="Next slide"
+          className={s.arrow}
+          width={28}
+        />
+      </div>
+    );
   };
 
-  const displayedData = reversedTeam.slice(
-    currentPage * itemsPerPage,
-    (currentPage + 1) * itemsPerPage
-  );
-
-  const handlePrevPage = () => {
-    console.log("Previous Page");
-    setCurrentPage((prev) => (prev > 0 ? prev - 1 : pageCount - 1));
-  };
-
-  const handleNextPage = () => {
-    console.log("Next Page");
-    setCurrentPage((prev) => (prev + 1) % pageCount);
+  const PrevArrow: FC<ArrowProps> = ({ className }) => {
+    return (
+      <div className={className}>
+        <Image
+          src={Arrow}
+          alt="Previous slide"
+          className={s.arrow}
+          width={28}
+        />
+      </div>
+    );
   };
 
   return (
-    <section className={classNames(s.container, s.team)}>
-      <MainTitleComponent className={s.team__title} title={t("heading")} />
-      <OurTeamComponent teamMembers={displayedData} />
+    <section className={s.box}>
+      <div className={classNames(s.background, s.team)}>
+        <MotionWrapper className={s.container} initial viewport>
+          <MotionWrapper variants>
+            <MainTitleComponent
+              className={s.team__title}
+              title={t("heading")}
+              color="black"
+            />
+          </MotionWrapper>
 
-      <ReactPaginate
-        previousLabel={
-          <div
-            className={pagination.pagination__arrow_previous}
-            onClick={handlePrevPage}
-          >
-            <Image
-              className={pagination.pagination__arrow_image}
-              src={Arrow}
-              alt="arrow"
-            />
-          </div>
-        }
-        nextLabel={
-          <div
-            className={pagination.pagination__arrow_next}
-            onClick={handleNextPage}
-          >
-            <Image
-              className={pagination.pagination__arrow_image}
-              src={Arrow}
-              alt="arrow"
-            />
-          </div>
-        }
-        breakLabel={"..."}
-        breakClassName={pagination.pagination__break}
-        pageCount={pageCount}
-        marginPagesDisplayed={2}
-        pageRangeDisplayed={3}
-        onPageChange={(selected) => setCurrentPage(selected.selected)}
-        containerClassName={pagination.pagination}
-        pageClassName={pagination.pagination__pages}
-        activeClassName={pagination.pagination__active}
-        pageLinkClassName={pagination.hidden}
-        forcePage={currentPage}
-      />
+          <MotionWrapper className={s.team__carousel} initial viewport variants>
+            <Carousel
+              classNames={{
+                control: s.team__control,
+                controls: s.team__controls,
+              }}
+              height="100%"
+              slideSize="25%"
+              slideGap="md"
+              loop
+              align="start"
+              slidesToScroll={1}
+              previousControlIcon={<NextArrow className={s.team__arrow} />}
+              nextControlIcon={<PrevArrow className={s.team__arrow} />}
+              breakpoints={[
+                {
+                  maxWidth: 767.98,
+                  slideSize: "100%",
+                },
+                {
+                  minWidth: 768,
+                  maxWidth: 998,
+                  slideSize: "50%",
+                },
+                {
+                  minWidth: 998,
+                  maxWidth: 1280,
+                  slideSize: "33.333%",
+                },
+                {
+                  minWidth: 1280,
+                  slideSize: "25%",
+                },
+              ]}
+            >
+              {reversedTeam.map((teamMember) => (
+                <Carousel.Slide key={teamMember.id}>
+                  <OurTeamCardComponent
+                    teamMember={teamMember}
+                    className={s.team__cards}
+                  />
+                </Carousel.Slide>
+              ))}
+            </Carousel>
+          </MotionWrapper>
+        </MotionWrapper>
+        <Image className={s.team__vector} src={SectionVector} alt="vector" />
+      </div>
     </section>
   );
 };

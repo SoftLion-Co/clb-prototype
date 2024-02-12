@@ -1,20 +1,36 @@
-.advantages {
-  
+@import "/style/viewports";
+@import "/style/colors";
 
+.advantages {
   &__content {
     display: flex;
     align-items: center;
-    padding: 48px 52px;
-    border: 1px solid #000;
+    justify-content: center;
     border-radius: 24px;
+    padding: 50px 20px;
+    height: 100%;
+    @include for-size(phone) {
+      height: 212px;
+    }
+    @include for-size(laptop) {
+      padding: 48px 52px;
+    }
+    @include for-size(desktop) {
+      border-radius: 32px;
+    }
   }
 
   &__text {
     text-align: center;
-    color: #000;
-    font-size: 24px;
+    color: $backgroundColorDarkBlue;
+    font-size: 18px;
     font-weight: 400;
-    line-height: 150%;
-    width: 359px;
+    line-height: 130%;
+
+    @include for-size(laptop) {
+      font-size: 24px;
+      font-weight: 400;
+      line-height: 150%;
+    }
   }
 }

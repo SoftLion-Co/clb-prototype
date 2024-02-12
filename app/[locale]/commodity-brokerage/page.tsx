@@ -1,28 +1,20 @@
-import s from "./page.module.scss";
-import ContactUsSection from "../../sections/main_page/ContactUsSection";
-import PageTitleComponent from "@/components/PageTitleComponent";
-import ProductPortfolioSection from "../../sections/commodity_brokerage_page/ProductPortfolioSection";
-import OurCoreServices from "../../sections/export_consulting/OurCoreServices";
-import HeroSection from "../../sections/commodity_brokerage_page/HeroSection";
+import React from "react";
+import ContactUsSection from "@/app/sections/main_page/ContactUsSection";
+import ProductPortfolioSection from "@/app/sections/commodity_brokerage_page/ProductPortfolioSection";
+import HeroSection from "@/app/sections/commodity_brokerage_page/HeroSection";
+import OurCoreServices from "@/app/sections/commodity_brokerage_page/OurCoreServices";
 import { useTranslations } from "next-intl";
 
 const Commodity = () => {
   const t = useTranslations("commodityBrokerage");
 
   return (
-    <div className={s.commodity}>
-      <div className={s.container}>
-        <PageTitleComponent
-          title={t("commodityBrokerageTitle")}
-          text={t("commodityBrokerageSubtitle")}
-          className={s.commodity__title}
-        />
-        <HeroSection />
-        <ProductPortfolioSection />
-        <OurCoreServices />
-      </div>
+    <React.Fragment>
+      <HeroSection />
+      <ProductPortfolioSection />
+      <OurCoreServices />
       <ContactUsSection />
-    </div>
+    </React.Fragment>
   );
 };
 
