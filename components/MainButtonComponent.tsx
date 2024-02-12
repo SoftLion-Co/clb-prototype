@@ -12,7 +12,7 @@ import ArrowWhite from "@/images/vectors/arrow-white.svg";
 import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import { Url } from "next/dist/shared/lib/router/router";
-import { Link as ScrollLink, animateScroll as scroll } from "react-scroll";
+import { Link as ScrollLink } from "react-scroll";
 
 interface MainButtonProps {
   text: string;
@@ -27,120 +27,162 @@ interface MainButtonProps {
   onClick?: () => void;
 }
 
-const MainButtonComponent: FC<MainButtonProps> = ({
-  text,
-  href,
-  className,
-  typeButton = "MainButton",
-  defaultTo = "",
-  onClick,
-}) => {
-  const t = useTranslations("header");
-  const linkProps = { href: href || "" };
-
-  const [isHovered, setIsHovered] = useState(false);
-  const [textWidth, setTextWidth] = useState(0);
-  const [buttonPadding, setButtonPadding] = useState("8px 16px");
-
-  useEffect(() => {
-    const textElement = document.querySelector(`.${s.main__text}`);
-    if (textElement) {
-      setTextWidth(textElement.clientWidth);
+const MainButtonComponent: FC<MainButtonProps> = 
+  (
+    {
+      text,
+      href,
+      className,
+      typeButton = "MainButton",
+      defaultTo = "",
+      onClick,
     }
+  ) => {
+    const t = useTranslations("header");
+    const linkProps = { href: href || "" };
 
-    const updatePadding = () => {
-      if (window.innerWidth <= 1280) {
-        setButtonPadding("6px 12px");
-      } else {
-        setButtonPadding("8px 16px");
+    const [isHovered, setIsHovered] = useState(false);
+    const [textWidth, setTextWidth] = useState(0);
+    const [buttonPadding, setButtonPadding] = useState("8px 16px");
+
+    useEffect(() => {
+      const textElement = document.querySelector(`.${s.main__text}`);
+      if (textElement) {
+        setTextWidth(textElement.clientWidth);
+      }
+
+      const updatePadding = () => {
+        if (window.innerWidth <= 1280) {
+          setButtonPadding("6px 12px");
+        } else {
+          setButtonPadding("8px 16px");
+        }
+      };
+      updatePadding();
+      window.addEventListener("resize", updatePadding);
+      return () => {
+        window.removeEventListener("resize", updatePadding);
+      };
+    }, []);
+
+    let buttonContent;
+
+    const handleClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+      if (onClick) {
+        e.preventDefault();
+        onClick();
       }
     };
-    updatePadding();
-    window.addEventListener("resize", updatePadding);
-    return () => {
-      window.removeEventListener("resize", updatePadding);
+
+    const animateBackgroundColor = isHovered
+      ? "#desiredColorOnHover"
+      : "#initialColor";
+    const animateX = isHovered ? 40 : 0;
+    const animateRotate = isHovered ? 360 : 180;
+
+    const buttonProps = {
+      type: "submit" as "button" | "submit" | "reset",
+      className: s.main__container,
+      onHoverStart: () => setIsHovered(true),
+      onHoverEnd: () => setIsHovered(false),
+      animate: { backgroundColor: animateBackgroundColor },
+      transition: { duration: 0.3, ease: "easeInOut" },
     };
-  }, []);
 
-  let buttonContent;
-
-  const handleClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    if (onClick) {
-      e.preventDefault();
-      onClick();
-    }
-  };
-
-  if (typeButton === "MainButton" || typeButton === "MainContactUsButton") {
-    buttonContent = (
-      <motion.button
-        type="submit"
-        className={s.main__container}
-        onHoverStart={() => setIsHovered(true)}
-        onHoverEnd={() => setIsHovered(false)}
-      >
-        <motion.p
-          className={s.main__text}
-          animate={{ x: isHovered ? 40 : 0 }}
-          transition={{ duration: 0.3, ease: "easeInOut" }}
+    if (typeButton === "MainButton") {
+      buttonContent = (
+        <ScrollLink
+          to={defaultTo}
+          spy={true}
+          smooth={true}
+          offset={0}
+          duration={500}
         >
-          {t("getInTouch")}
-        </motion.p>
-        <motion.div
-          className={s.main__background}
-          animate={{ x: isHovered ? -textWidth - 25 : 0 }}
-          transition={{ duration: 0.3, ease: "easeInOut" }}
+          <motion.button {...buttonProps}>
+            <motion.p
+              className={s.main__text}
+              animate={{ x: animateX }}
+              transition={{ duration: 0.3, ease: "easeInOut" }}
+            >
+              {t("getInTouch")}
+            </motion.p>
+            <motion.div
+              className={s.main__background}
+              animate={{ x: isHovered ? -textWidth - 25 : 0 }}
+              transition={{ duration: 0.3, ease: "easeInOut" }}
+            >
+              <motion.div
+                className={s.main__arrow}
+                initial={{ rotate: 180 }}
+                animate={{ rotate: animateRotate }}
+                transition={{ duration: 0.3, ease: "easeInOut" }}
+              >
+                <Image src={Arrow} alt="arrow" />
+              </motion.div>
+            </motion.div>
+          </motion.button>
+        </ScrollLink>
+      );
+    } else if (typeButton === "MainArrowButton") {
+      buttonContent = (
+        <div className={s.main__container} style={{ padding: buttonPadding }}>
+          <p className={s.main__text}>{text}</p>
+          <Image src={ArrowWhite} alt="arrow" />
+        </div>
+      );
+    } else if (typeButton === "MainUsualButton") {
+      buttonContent = (
+        <ScrollLink
+          to={defaultTo}
+          spy={true}
+          smooth={true}
+          offset={0}
+          duration={500}
         >
-          <motion.div
-            className={s.main__arrow}
-            initial={{ rotate: 180 }}
-            animate={{ rotate: isHovered ? 360 : 180 }}
+          <p
+            className={classNames(s.main__container, s.main__text)}
+            style={{ padding: buttonPadding }}
+          >
+            {text}
+          </p>
+        </ScrollLink>
+      );
+    } else if (typeButton === "MainContactUsButton") {
+      buttonContent = (
+        <motion.button {...buttonProps} onClick={onClick}>
+          <motion.p
+            className={s.main__text}
+            animate={{ x: animateX }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
           >
-            <Image src={Arrow} alt="arrow" />
+            {t("getInTouch")}
+          </motion.p>
+          <motion.div
+            className={s.main__background}
+            animate={{ x: isHovered ? -textWidth - 25 : 0 }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+          >
+            <motion.div
+              className={s.main__arrow}
+              initial={{ rotate: 180 }}
+              animate={{ rotate: animateRotate }}
+              transition={{ duration: 0.3, ease: "easeInOut" }}
+            >
+              <Image src={Arrow} alt="arrow" />
+            </motion.div>
           </motion.div>
-        </motion.div>
-      </motion.button>
-    );
-  } else if (typeButton === "MainArrowButton") {
-    buttonContent = (
-      <div className={s.main__container} style={{ padding: buttonPadding }}>
-        <p className={s.main__text}>{text}</p>
-        <Image src={ArrowWhite} alt="arrow" />
-      </div>
-    );
-  } else if (typeButton === "MainUsualButton") {
-    buttonContent = (
-      <p
-        className={classNames(s.main__container, s.main__text)}
-        style={{ padding: buttonPadding }}
-      >
-        {text}
-      </p>
-    );
-  }
+        </motion.button>
+      );
+    }
 
-  if (typeButton === "MainContactUsButton") {
     return (
-      <div className={classNames(s.main__button, className)} onClick={onClick}>
+      <div
+        className={classNames(s.main__link, className)}
+        onClick={onClick}
+      >
         {buttonContent}
       </div>
     );
-  } else {
-    return (
-      <ScrollLink
-        to={defaultTo}
-        spy={true}
-        smooth={true}
-        offset={0}
-        duration={500}
-        className={classNames(s.main__link, className)}
-      >
-        <div onClick={onClick}>{buttonContent}</div>
-      </ScrollLink>
-    );
   }
-};
-export const MMainButtonComponent = motion(MainButtonComponent);
 
 export default MainButtonComponent;
