@@ -38,9 +38,9 @@ const GetHeroVideoComponent = () => {
 
   return (
     <motion.video
-    initial={"hidden"}
-    whileInView={"visible"}
-    variants={defaultAnimation}
+      initial={"hidden"}
+      whileInView={"visible"}
+      variants={defaultAnimation}
       transition={{ duration: 0.3 }}
       className={s.hero__video}
       width="100%"
