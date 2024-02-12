@@ -1,7 +1,7 @@
 import s from "./SmallCardBlogComponent.module.scss";
 import Image from "next/image";
 import ReadMoreComponent from "@/components/ReadMoreComponent";
-
+import useLocale from "@/hooks/useLocale";
 // Потрібно в вордпресі додати дату додавання статті
 interface Info {
   info: Blog;
@@ -33,6 +33,7 @@ const SmallCardBlogComponent = (data: Info) => {
     : "blog/";
 
   const articleLink = `${blogPagePath}${data.info.id}`;
+  const locale = useLocale();
 
   return (
     <div className={s.blog}>
@@ -54,7 +55,7 @@ const SmallCardBlogComponent = (data: Info) => {
         </div>
 
         <div className={s.blog__box}>
-          <ReadMoreComponent href={articleLink} />
+          <ReadMoreComponent href={`/${locale}/${articleLink}`} />
           <p className={s.blog__data}>{data.info.acf.date}</p>
         </div>
       </div>
