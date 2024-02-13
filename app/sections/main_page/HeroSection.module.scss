@@ -41,10 +41,19 @@
     position: absolute;
     top: 11%;
     width: 83%;
+    font-size: 34px;
     text-align: left;
 
     @include for-size(tablet) {
       text-align: center;
+      width: max-content;
+      font-size: 48px;
+    }
+    @include for-size(laptop) {
+      font-size: 56px;
+    }
+    @include for-size(desktop) {
+      font-size: 76px;
     }
   }
 

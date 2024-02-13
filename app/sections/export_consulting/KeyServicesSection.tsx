@@ -14,9 +14,7 @@ function KeyServices() {
     <section className={s.box}>
       <div className={s.background}>
         <MotionWrapper className={s.container} initial viewport>
-          <MotionWrapper variants>
-            <MainTitleComponent title={t("keyServicesTitle")} left mobileLeft />
-          </MotionWrapper>
+          <MainTitleComponent title={t("keyServicesTitle")} left mobileLeft />
           <KeyServicesComponent />
         </MotionWrapper>
 

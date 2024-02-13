@@ -14,19 +14,21 @@ function OurCoreServices() {
     <section className={s.box}>
       <div className={s.background}>
         <MotionWrapper className={s.container} initial viewport>
-          <MotionWrapper variants>
-            <MainTitleComponent
-              title={t("ourCoreServicesTitle")}
-              className={s.services__title}
-              left
-              color="blue"
-              mobileLeft
-            />
-          </MotionWrapper>
+          <MainTitleComponent
+            title={t("ourCoreServicesTitle")}
+            className={s.services__title}
+            left
+            color="blue"
+            mobileLeft
+          />
 
           <OurCoreServicesComponent />
 
-          <Image className={s.brand__element} src={BrandElement} alt={"brand element"} />
+          <Image
+            className={s.brand__element}
+            src={BrandElement}
+            alt={"brand element"}
+          />
         </MotionWrapper>
       </div>
     </section>
