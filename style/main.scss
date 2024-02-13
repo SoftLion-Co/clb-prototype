@@ -1,6 +1,5 @@
 @import-normalize;
 
-@import "./animations";
 @import "./colors";
 @import "./container";
 @import "./viewports";
@@ -18,6 +17,7 @@ body {
   font-family: "Manrope";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: #a7b896;
   color: $blackTextColor;
 }
 
@@ -41,6 +41,7 @@ h5,
 h6,
 p {
   margin: 0;
+  word-break: break-word;
   color: $blackTextColor;
 }
 
@@ -60,8 +61,11 @@ li {
   list-style: none;
 }
 
+div,
+li,
 a,
 p {
+  color: $blackTextColor;
   font-size: 16px;
   line-height: 130%;
   font-weight: 400;
@@ -73,23 +77,25 @@ p {
 }
 
 h1 {
-  font-size: 34px;
+  color: $brandColorDarkGreen;
+  font-size: 30px;
   font-weight: 700;
   line-height: 130%;
 
   @include for-size(tablet) {
-    font-size: 48px;
+    font-size: 38px;
   }
   @include for-size(laptop) {
-    font-size: 56px;
+    font-size: 46px;
     line-height: 150%;
   }
   @include for-size(desktop) {
-    font-size: 76px;
+    font-size: 58px;
   }
 }
 
 h2 {
+  color: $blackTextColor;
   text-transform: capitalize;
   font-size: 26px;
   line-height: 130%;
@@ -108,6 +114,7 @@ h2 {
 }
 
 h3 {
+  color: $brandColorDarkGreen;
   font-size: 20px;
   font-weight: 600;
   line-height: 130%;
