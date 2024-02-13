@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import s from "./BlogCardSection.module.scss";
 import classNames from "classnames";
 
-import MainTitleComponent from "@/components/MainTitleComponent";
+import Link from "next/link";
 import SmallCardBlogComponent from "@/components/blog/SmallCardBlogComponent";
 import MainButtonComponent from "@/components/MainButtonComponent";
 import useBlogsData from "@/hooks/useBlogsData";
@@ -11,6 +11,7 @@ import { useTranslations } from "next-intl";
 import useLocale from "@/hooks/useLocale";
 import useFramerAnimations from "@/hooks/useFramerAnimations";
 import MotionWrapper from "@/hooks/MotionWrapper";
+import MainTitleComponent from "@/components/MainTitleComponent";
 
 const BlogCardsSection = () => {
   const t = useTranslations("blog");
@@ -52,7 +53,6 @@ const BlogCardsSection = () => {
               left
             />
           </MotionWrapper>
-
           {
             //TODO: Skeleton when latestBlogs.length === 0}
           }
@@ -66,12 +66,14 @@ const BlogCardsSection = () => {
               ))}
             </MotionWrapper>
           )}
-          <MotionWrapper initial viewport variants animation="footer" className={s.blog__button}>
-            <MainButtonComponent
-              text={t1("moreOurNews")}
-              href={"/blog"}
-              typeButton="MainArrowButton"
-            />
+          <MotionWrapper initial viewport variants className={s.blog__button}>
+            
+            <Link href={`/${locale}/blog`}>
+              <MainButtonComponent
+                text={t1("moreOurNews")}
+                typeButton="MainArrowButton"
+              />
+            </Link>
           </MotionWrapper>
         </MotionWrapper>
       </div>

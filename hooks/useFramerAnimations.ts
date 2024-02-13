@@ -15,7 +15,7 @@ const useFramerAnimations = (
       y: 0,
       opacity: 1,
       delay: 1,
-      transition: { delay: custom * 0.2 },
+      transition: { delay: custom * 0.2, duration: 0.25 },
     }),
   };
 
