@@ -9,14 +9,12 @@ import MainButtonComponent from "@/components/MainButtonComponent";
 import useBlogsData from "@/hooks/useBlogsData";
 import { useTranslations } from "next-intl";
 import useLocale from "@/hooks/useLocale";
-import useFramerAnimations from "@/hooks/useFramerAnimations";
 import MotionWrapper from "@/hooks/MotionWrapper";
 import MainTitleComponent from "@/components/MainTitleComponent";
 
 const BlogCardsSection = () => {
   const t = useTranslations("blog");
   const t1 = useTranslations("components");
-  const defaultAnimation = useFramerAnimations();
   const [cardsToRender, setCardsToRender] = useState(3);
   const { latestBlogs } = useBlogsData();
   const locale = useLocale();
@@ -45,17 +43,12 @@ const BlogCardsSection = () => {
           initial
           viewport
         >
-          <MotionWrapper variants>
-            <MainTitleComponent
-              className={s.blog__title}
-              title={t("blogTitle")}
-              color="black"
-              left
-            />
-          </MotionWrapper>
-          {
-            //TODO: Skeleton when latestBlogs.length === 0}
-          }
+          <MainTitleComponent
+            className={s.blog__title}
+            title={t("blogTitle")}
+            color="black"
+            left
+          />
 
           {latestBlogs.length !== 0 && (
             <MotionWrapper initial className={s.blog__cards} viewport>
@@ -67,7 +60,6 @@ const BlogCardsSection = () => {
             </MotionWrapper>
           )}
           <MotionWrapper initial viewport variants className={s.blog__button}>
-            
             <Link href={`/${locale}/blog`}>
               <MainButtonComponent
                 text={t1("moreOurNews")}

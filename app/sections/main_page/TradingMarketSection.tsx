@@ -26,12 +26,8 @@ const TradingMarketSection = () => {
     <section className={s.box}>
       <div className={s.background}>
         <MotionWrapper className={s.container} initial viewport>
-          <MotionWrapper variants>
-            <MainTitleComponent
-              title={t("tradingMarketsTitle")}
-              color="black"
-            />
-          </MotionWrapper>
+          <MainTitleComponent title={t("tradingMarketsTitle")} color="black" />
+
           <MotionWrapper className={s.map} initial viewport>
             <MotionWrapper className={s.map__container} variants>
               <MapBoxComponent onCountrySelect={handleCountrySelect} />

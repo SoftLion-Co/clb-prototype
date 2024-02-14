@@ -1,4 +1,3 @@
-@import "@/style/font_default";
 @import "@/style/colors";
 @import "@/style/container";
 @import "@/style/viewports";
@@ -38,36 +37,13 @@
 
   &__name {
     color: $backgroundColorDarkBlue;
-    font-size: 20px;
-    font-weight: 600;
-    line-height: 130%;
     margin-bottom: 12px;
 
-    @include for-size(tablet) {
-      font-size: 22px;
-      line-height: 130%;
-    }
-
     @include for-size(laptop) {
-      font-size: 24px;
-      line-height: 150%;
       margin-bottom: 14px;
     }
-
     @include for-size(laptop) {
-      font-size: 28px;
-      line-height: 150%;
       margin-bottom: 16px;
-    }
-  }
-
-  &__position {
-    font-size: 16px;
-    line-height: 130%;
-
-    @include for-size(tablet) {
-      font-size: 18px;
-      line-height: 150%;
     }
   }
 }

@@ -35,26 +35,23 @@
   }
 
   &__title {
-    position: absolute;
-    top: 11%;
-    width: 83%;
-    text-align: left;
-    font-size: 34px;
-    font-weight: 700;
-    line-height: 130%;
     color: $backgroundColorDarkBlue;
     transition: color 0.5s ease-in-out;
 
+    position: absolute;
+    top: 11%;
+    width: 83%;
+    font-size: 34px;
+    text-align: left;
+
     @include for-size(tablet) {
       text-align: center;
+      width: max-content;
       font-size: 48px;
     }
-
     @include for-size(laptop) {
       font-size: 56px;
-      line-height: 150%;
     }
-
     @include for-size(desktop) {
       font-size: 76px;
     }
@@ -71,20 +68,16 @@
   }
 
   &__text {
-    font-size: 18px;
-    line-height: 130%;
-    color: $blackTextColor;
     transition: color 0.5s ease-in-out;
+    color: $blackTextColor;
+    font-size: 18px;
 
     @include for-size(tablet) {
       font-size: 20px;
     }
-
     @include for-size(laptop) {
       font-size: 22px;
-      line-height: 150%;
     }
-
     @include for-size(desktop) {
       font-size: 24px;
     }

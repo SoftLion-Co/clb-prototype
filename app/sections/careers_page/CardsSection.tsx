@@ -1,8 +1,7 @@
 import s from "./CardsSection.module.scss";
 import Image from "next/image";
 import ImageAndTextCardsComponent from "@/components/ImageAndTextCardsComponent";
-import image1 from "@/images/careers/1.png";
-import image2 from "@/images/careers/2.png";
+
 import BrandElement from "@/images/vectors/brand-element-5.svg";
 import classNames from "classnames";
 import { useLocale } from "next-intl";
@@ -24,8 +23,8 @@ export interface Acf {
   card2_ua: string;
 }
 
-const CardsSection = async() => {
-  const reqUrl = `https://softlion.blog/wp-json/wp/v2/careers-cards?acf_format=standard&_fields=acf`
+const CardsSection = async () => {
+  const reqUrl = `https://softlion.blog/wp-json/wp/v2/careers-cards?acf_format=standard&_fields=acf`;
 
   const req = await fetch(reqUrl);
   const storyData: CareersCards[] = await req.json();

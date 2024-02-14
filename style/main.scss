@@ -8,13 +8,16 @@ html {
   scroll-behavior: smooth;
 }
 
-*{
-    box-sizing: border-box;
+* {
+  box-sizing: border-box;
 }
 
 body {
   margin: 0;
   font-family: "Manrope";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: #a7b896;
   color: $blackTextColor;
 }
 
@@ -38,6 +41,7 @@ h5,
 h6,
 p {
   margin: 0;
+  word-break: break-word;
   color: $blackTextColor;
 }
 
@@ -55,4 +59,74 @@ img {
 
 li {
   list-style: none;
+}
+
+div,
+li,
+a,
+p {
+  color: $blackTextColor;
+  font-size: 16px;
+  line-height: 130%;
+  font-weight: 400;
+
+  @include for-size(laptop) {
+    font-size: 18px;
+    line-height: 150%;
+  }
+}
+
+h1 {
+  color: $brandColorDarkGreen;
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 130%;
+
+  @include for-size(tablet) {
+    font-size: 38px;
+  }
+  @include for-size(laptop) {
+    font-size: 46px;
+    line-height: 150%;
+  }
+  @include for-size(desktop) {
+    font-size: 58px;
+  }
+}
+
+h2 {
+  color: $blackTextColor;
+  text-transform: capitalize;
+  font-size: 26px;
+  line-height: 130%;
+  font-weight: 600;
+
+  @include for-size(tablet) {
+    font-size: 38px;
+  }
+  @include for-size(laptop) {
+    font-size: 40px;
+    line-height: 150%;
+  }
+  @include for-size(desktop) {
+    font-size: 48px;
+  }
+}
+
+h3 {
+  color: $brandColorDarkGreen;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 130%;
+
+  @include for-size(tablet) {
+    font-size: 22px;
+  }
+  @include for-size(laptop) {
+    font-size: 26px;
+    line-height: 150%;
+  }
+  @include for-size(desktop) {
+    font-size: 28px;
+  }
 }

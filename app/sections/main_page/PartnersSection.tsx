@@ -12,13 +12,8 @@ const PartnersSection = () => {
     <section className={s.box}>
       <div className={s.background}>
         <MotionWrapper className={s.container} initial viewport>
-          <MotionWrapper variants>
-            <MainTitleComponent
-              title={t("partnersHeading")}
-              color="black"
-              left
-            />
-          </MotionWrapper>
+          <MainTitleComponent title={t("partnersHeading")} color="black" left />
+          <MotionWrapper variants></MotionWrapper>
           <GetPartnersComponent />
         </MotionWrapper>
       </div>

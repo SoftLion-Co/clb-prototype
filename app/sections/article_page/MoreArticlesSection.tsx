@@ -9,7 +9,6 @@ import MainTitleComponent from "@/components/MainTitleComponent";
 import { useTranslations } from "next-intl";
 import classNames from "classnames";
 import { Carousel, Embla } from "@mantine/carousel";
-import useFramerAnimations from "@/hooks/useFramerAnimations";
 import MotionWrapper from "@/hooks/MotionWrapper";
 
 interface MoreArticlesSectionProps {
@@ -22,7 +21,6 @@ interface ArrowProps {
 
 const MoreArticlesSection: FC<MoreArticlesSectionProps> = ({ blogId }) => {
   const locale = useLocale();
-  const defaultAnimation = useFramerAnimations();
   const { blogs, loading, error } = useBlogsData();
   const t = useTranslations("components");
 
@@ -79,9 +77,8 @@ const MoreArticlesSection: FC<MoreArticlesSectionProps> = ({ blogId }) => {
           initial
           viewport
         >
-          <MotionWrapper variants>
-            <MainTitleComponent title={t("moreArticles")} left color="green" />
-          </MotionWrapper>
+          <MainTitleComponent title={t("moreArticles")} left color="green" />
+
           <MotionWrapper className={s.carousel} initial viewport variants>
             <Carousel
               classNames={{

@@ -11,14 +11,12 @@ const OurStorySection = () => {
     <section className={s.box}>
       <div className={s.background}>
         <MotionWrapper className={s.container} initial viewport>
-          <MotionWrapper variants>
-            <MainTitleComponent
-              title={t("heading")}
-              color="black"
-              left
-              mobileLeft
-            />
-          </MotionWrapper>
+          <MainTitleComponent
+            title={t("heading")}
+            color="black"
+            left
+            mobileLeft
+          />
           <ThreeCardsComponent path="our-story" />
         </MotionWrapper>
       </div>

@@ -6,10 +6,9 @@ import MainButtonComponent from "@/components/MainButtonComponent";
 import { useTranslations } from "next-intl";
 import GetHeroVideoComponent from "@/components/main_page/GetHeroVideoComponent";
 import GetHeroImageComponent from "@/components/main_page/GetHeroImageComponent";
-import { useNetwork } from "@mantine/hooks"; // Import the useNetwork hook
+import { useNetwork } from "@mantine/hooks";
 import useHeroTextColor from "@/hooks/useHeroTextColor";
 import MotionWrapper from "@/hooks/MotionWrapper";
-import useFramerAnimations from "@/hooks/useFramerAnimations";
 
 function HeroSection() {
   const t = useTranslations("homePage");
@@ -36,6 +35,7 @@ function HeroSection() {
           // Render video if the connection is good
           <GetHeroVideoComponent />
         )}
+
         <div className={s.hero__content}>
           <MotionWrapper tag={"h1"} className={titleClass} variants custom={1}>
             {t("hero")}

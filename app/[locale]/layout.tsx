@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import { NextIntlClientProvider } from "next-intl";
 
 import "./../globals.css";
+import "./../../style/main.scss";
 import s from "./layout.module.scss";
 import classNames from "classnames";
 import type { Metadata } from "next";
@@ -57,13 +58,13 @@ export default async function RootLayout({
     notFound();
   }
   return (
-    <html lang={locale} className={classNames(manrope.className)}>
+    <html lang={locale}>
       <meta
         name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
       ></meta>
 
-      <body>
+      <body className={classNames(manrope.className)}>
         <NextIntlClientProvider messages={messages}>
           <HeaderComponent />
           <main className={classNames(s.page, s.main)} id="layout">

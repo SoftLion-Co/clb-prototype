@@ -3,7 +3,7 @@ import s from "./OurAdvantagesSection.module.scss";
 import MainTitleComponent from "@/components/MainTitleComponent";
 import OurAdvantagesCardComponent from "@/components/about_us/OurAdvantagesCardComponent";
 import { useLocale } from "next-intl";
-import {getTranslations} from 'next-intl/server';
+import { getTranslations } from "next-intl/server";
 import Image from "next/image";
 import MotionWrapper from "@/hooks/MotionWrapper";
 
@@ -32,7 +32,8 @@ export interface Acf {
 }
 
 const OurAdvantagesSection = async () => {
-  const reqUrl = "https://softlion.blog/wp-json/wp/v2/our-advantages?acf_format=standard&_fields=acf";
+  const reqUrl =
+    "https://softlion.blog/wp-json/wp/v2/our-advantages?acf_format=standard&_fields=acf";
   const req = await fetch(reqUrl);
   const advantages: OurAnvantages[] = await req.json();
   const t = await getTranslations("aboutUs.ourAdvantages");
@@ -51,15 +52,16 @@ const OurAdvantagesSection = async () => {
     <section className={s.box}>
       <div className={s.background}>
         <MotionWrapper className={s.container} initial viewport>
-          <MotionWrapper variants>
-            <MainTitleComponent title={t("ourAdvantagesTitle")} color="blue" />
-          </MotionWrapper>
+          <MainTitleComponent title={t("ourAdvantagesTitle")} color="blue" />
 
           <div className={s.advantages__cards}>
             {contentOrder.map((item, index) => (
               <MotionWrapper key={index} initial viewport variants>
                 {item.type === "blue" || item.type === "white" ? (
-                  <OurAdvantagesCardComponent advantages={item.data} colorVariant={item.type} />
+                  <OurAdvantagesCardComponent
+                    advantages={item.data}
+                    colorVariant={item.type}
+                  />
                 ) : (
                   <Image
                     src={item.data}

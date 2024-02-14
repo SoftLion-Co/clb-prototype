@@ -2,10 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
-
 body {
   background: #a7b896;
 }
+
 
 h1,
 h2,

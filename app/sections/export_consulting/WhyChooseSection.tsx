@@ -3,7 +3,7 @@ import s from "./WhyChooseSection.module.scss";
 import ImageAndTextCardsComponent from "@/components/ImageAndTextCardsComponent";
 import MainTitleComponent from "@/components/MainTitleComponent";
 import { useLocale } from "next-intl";
-import {getTranslations} from 'next-intl/server';
+import { getTranslations } from "next-intl/server";
 
 import MotionWrapper from "@/hooks/MotionWrapper";
 
@@ -29,7 +29,7 @@ export interface Acf {
 }
 
 const WhyChoose = async () => {
-  const reqUrl = `https://softlion.blog/wp-json/wp/v2/why-choose-us?acf_format=standard&_fields=acf`
+  const reqUrl = `https://softlion.blog/wp-json/wp/v2/why-choose-us?acf_format=standard&_fields=acf`;
 
   const req = await fetch(reqUrl);
   const whyChooseData: WhyChooseUs[] = await req.json();
@@ -49,9 +49,8 @@ const WhyChoose = async () => {
     <section className={s.box}>
       <div className={s.background}>
         <MotionWrapper className={s.container} initial viewport>
-          <MotionWrapper variants>
-            <MainTitleComponent title={t("whyChooseTitle")} color="blue" />
-          </MotionWrapper>
+          <MainTitleComponent title={t("whyChooseTitle")} color="blue" />
+
           <div className={s.choose}>
             <ImageAndTextCardsComponent
               text={card1Text}
@@ -83,6 +82,6 @@ const WhyChoose = async () => {
       </div>
     </section>
   );
-}
+};
 
 export default WhyChoose;
