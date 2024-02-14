@@ -12,12 +12,11 @@ const VacanciesSection = () => {
     <section id="ourVacancies" className={s.box}>
       <div className={s.background}>
         <MotionWrapper className={s.container} initial viewport>
-          <MotionWrapper variants>
-            <MainTitleComponent
-              title={t("openVacanciesTitle")}
-              className={s.vacancies__title}
-            />
-          </MotionWrapper>
+          <MainTitleComponent
+            title={t("openVacanciesTitle")}
+            className={s.vacancies__title}
+          />
+          <MotionWrapper variants></MotionWrapper>
           <VacanciesCards />
         </MotionWrapper>
       </div>

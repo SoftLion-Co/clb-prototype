@@ -513,12 +513,9 @@ const ContactUsSection = ({ cv, id }: { cv?: boolean; id?: string }) => {
         initial
         viewport
       >
-        <MotionWrapper variants>
-          <MainTitleComponent
-            title={cv ? t("letsWorkWithUS") : t("contactUsHeading")}
-          />
-        </MotionWrapper>
-
+        <MainTitleComponent
+          title={cv ? t("letsWorkWithUS") : t("contactUsHeading")}
+        />
         <MotionWrapper
           initial
           viewport

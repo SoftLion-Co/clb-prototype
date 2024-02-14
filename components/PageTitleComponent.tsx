@@ -10,31 +10,16 @@ interface MainTitleProps {
 }
 
 const PageTitleComponent: FC<MainTitleProps> = ({ title, text, className }) => {
-
   return (
-    <MotionWrapper
-      className={classNames(className)}
-      initial
-      viewport
-    >
-      <div className={classNames(s.page)}>
-        <MotionWrapper tag="h1"
-          className={s.page__title}
-          variants
-          custom={0.2}
-        >
-          {title}
+    <MotionWrapper className={classNames(s.page, className)} initial viewport>
+      <MotionWrapper tag="h1" className={s.page__title} variants custom={0.2}>
+        {title}
+      </MotionWrapper>
+      {text && (
+        <MotionWrapper tag="p" className={s.page__text} variants custom={1}>
+          {text}
         </MotionWrapper>
-        {text && (
-          <MotionWrapper tag="p"
-            className={s.page__text}
-            variants
-            custom={1}
-          >
-            {text}
-          </MotionWrapper>
-        )}
-      </div>
+      )}
     </MotionWrapper>
   );
 };

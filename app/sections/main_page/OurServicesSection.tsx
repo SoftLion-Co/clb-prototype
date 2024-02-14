@@ -16,8 +16,8 @@ const OurServicesSection = () => {
           initial
           viewport
         >
+          <MainTitleComponent title={t("servicesHeading")} color="black" />
           <MotionWrapper variants>
-            <MainTitleComponent title={t("servicesHeading")} color="black" />
             <GetServicesComponent />
           </MotionWrapper>
         </MotionWrapper>

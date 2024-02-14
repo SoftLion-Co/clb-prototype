@@ -31,7 +31,6 @@ function ImageAndTextCardsComponent(props: ImageAndTextCardsProps) {
     mobileTextCenter = false,
   } = props;
 
-  
   // Function which handles different colors and borders from props
 
   const getContainerStyles = () => {
@@ -83,11 +82,7 @@ function ImageAndTextCardsComponent(props: ImageAndTextCardsProps) {
   );
 
   return (
-    <MotionWrapper
-      className={articleClasses}
-      initial
-      viewport
-    >
+    <MotionWrapper className={articleClasses} initial viewport>
       <MotionWrapper
         className={quoteContainerClasses}
         style={containerStyles}
@@ -96,7 +91,7 @@ function ImageAndTextCardsComponent(props: ImageAndTextCardsProps) {
         variants
         custom={rotate ? 2 : 1}
       >
-        <h3 className={quoteClasses}>{text}</h3>
+        <p className={quoteClasses}>{text}</p>
       </MotionWrapper>
 
       <MotionWrapper

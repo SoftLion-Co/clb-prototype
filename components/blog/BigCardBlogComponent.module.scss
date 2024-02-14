@@ -34,14 +34,6 @@
   &__title {
     margin-top: 14px;
     color: $backgroundColorDarkBlue;
-    font-size: 22px;
-    font-weight: 600;
-    line-height: 130%;
-
-    @include for-size(laptop) {
-      font-size: 28px;
-      line-height: 150%;
-    }
   }
 
   &__container {
@@ -49,29 +41,10 @@
     gap: 16px;
   }
 
-  &__text {
-    color: $blackTextColor;
-    font-size: 16px;
-    line-height: 130%;
-
-    @include for-size(laptop) {
-      font-size: 18px;
-      line-height: 150%;
-    }
-  }
-
   &__box {
     display: flex;
     justify-content: space-between;
     align-items: center;
-  }
-
-  &__data {
-    color: $backgroundColorLightGreen;
-    font-size: 12px;
-    font-weight: 500;
-    line-height: 150%;
-    text-transform: uppercase;
   }
 
   &__picture {
@@ -84,5 +57,13 @@
     @include for-size(laptop) {
       border-radius: 20px;
     }
+  }
+
+  &__data {
+    color: $backgroundColorLightGreen;
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 150%;
   }
 }

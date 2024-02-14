@@ -17,12 +17,10 @@ function ProductPortfolioSection() {
     <section className={s.box}>
       <div className={s.background}>
         <MotionWrapper className={s.container} initial>
-          <MotionWrapper variants>
-            <MainTitleComponent
-              title={t("productPortfolioTitle")}
-              color="black"
-            />
-          </MotionWrapper>
+          <MainTitleComponent
+            title={t("productPortfolioTitle")}
+            color="black"
+          />
 
           <ListCardsComponent data={reversed} />
         </MotionWrapper>

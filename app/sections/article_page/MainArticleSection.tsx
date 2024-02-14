@@ -69,7 +69,7 @@ const MainArticleSection = (data: Data) => {
         <div className={classNames(s.container, s.article)}>
           <MotionWrapper
             tag="h1"
-            className={classNames(s.h1Default, s.article__title)}
+            className={s.article__title}
             initial
             viewport
             variants
