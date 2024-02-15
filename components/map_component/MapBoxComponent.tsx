@@ -6,6 +6,7 @@ import { motion, useAnimation, Transition } from "framer-motion";
 
 import CountryMapSVG from "@/components/map_component/CountryMapSVG";
 import countriesData from "@/components/map_component/countriesData";
+import useExcelToJsonHook from "@/hooks/useExelToJson";
 
 import {
   TransformWrapper,
@@ -102,6 +103,12 @@ const MapBoxComponent = ({ onCountrySelect }: MapBoxComponentProps) => {
     controls.start({ scale: resetScale, x: 0, y: 0 }, resetTransition);
   };
 
+  const { data, fetchDataAndReadFile } = useExcelToJsonHook();
+
+  useEffect(() => {
+    fetchDataAndReadFile(); // Викликаємо функцію при старті компонента, можливо використовуючи useEffect
+  }, []);
+
   const getDragConstraints = () => {
     if (!containerRef.current || !svgContentRef.current) {
       return { top: 0, right: 0, bottom: 0, left: 0 };
@@ -138,7 +145,7 @@ const MapBoxComponent = ({ onCountrySelect }: MapBoxComponentProps) => {
       setSelectedCountryId(null);
       onCountrySelect(null);
     } else {
-      const countryData = countriesData.find((c) => c.country === countryId);
+      const countryData = data?.find((c) => c.country === countryId);
       if (countryData) {
         setSelectedCountryId(countryId);
         onCountrySelect(countryData);
