@@ -1,4 +1,4 @@
-import s from "./page.module.scss";
+import React from "react";
 import HeroSection from "../sections/main_page/HeroSection";
 import OurServicesSection from "../sections/main_page/OurServicesSection";
 import PartnersSection from "../sections/main_page/PartnersSection";
@@ -8,13 +8,13 @@ import ContactUsSection from "../sections/main_page/ContactUsSection";
 
 export default function Home() {
   return (
-    <div className={s.home}>
+    <React.Fragment>
       <HeroSection />
       <OurServicesSection />
       <PartnersSection />
       <TradingMarketSection />
       <BlogCardsSection />
       <ContactUsSection />
-    </div>
+    </React.Fragment>
   );
 }

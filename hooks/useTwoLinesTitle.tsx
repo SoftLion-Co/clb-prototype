@@ -1,14 +1,15 @@
-export const useTwoLinesTitle = (title: string) => {
-  const s = title.split(" ");
+export const useTwoLinesTitle = (title: string | undefined) => {
+  if (title && typeof title === "string") {
+    const s = title.split(" ");
 
-  if (s.length > 1) {
-    // Add '<br>' into the center:
-    s.splice(Math.floor(s.length / 2), 0, "<br>");
+    if (s.length > 1) {
+      s.splice(Math.floor(s.length / 2), 0, "<br>");
 
-    // Here is your result. Update HTML tag:
-    return <span dangerouslySetInnerHTML={{ __html: s.join(" ") }} />;
+      return <span dangerouslySetInnerHTML={{ __html: s.join(" ") }} />;
+    } else {
+      return <span dangerouslySetInnerHTML={{ __html: s + "<br>&nbsp;" }} />;
+    }
   } else {
-    return <span dangerouslySetInnerHTML={{ __html: s + "<br>&nbsp;" }} />;
+    return <span dangerouslySetInnerHTML={{ __html: "<br>&nbsp;" }} />;
   }
 };
-

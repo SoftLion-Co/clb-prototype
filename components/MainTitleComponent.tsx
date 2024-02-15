@@ -1,8 +1,10 @@
+"use client";
 import React, { FC } from "react";
 import s from "./MainTitleComponent.module.scss";
 import classNames from "classnames";
 import image from "@/images/vectors/graph.svg";
 import Image from "next/image";
+import MotionWrapper from "@/hooks/MotionWrapper";
 
 interface MainTitleProps {
   title: string;
@@ -26,11 +28,15 @@ const MainTitleComponent: FC<MainTitleProps> = ({
   }[color];
 
   return (
-    <div
+    <MotionWrapper
       className={classNames(s.main, className, {
         [s.left]: left,
         [s.mobileLeft]: mobileLeft,
       })}
+      initial
+      viewport
+      variants
+      custom={1}
     >
       <Image
         className={s.main__image}
@@ -42,7 +48,7 @@ const MainTitleComponent: FC<MainTitleProps> = ({
       <h2 className={s.main__title} style={{ color: titleColor }}>
         {title}
       </h2>
-    </div>
+    </MotionWrapper>
   );
 };
 

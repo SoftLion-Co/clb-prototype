@@ -2,8 +2,8 @@ import React from "react";
 import s from "./PartnersSection.module.scss";
 import MainTitleComponent from "@/components/MainTitleComponent";
 import GetPartnersComponent from "@/components/partners/GetPartnersComponent";
-import classNames from "classnames";
 import { useTranslations } from "next-intl";
+import MotionWrapper from "@/hooks/MotionWrapper";
 
 const PartnersSection = () => {
   const t = useTranslations("homePage");
@@ -11,10 +11,11 @@ const PartnersSection = () => {
   return (
     <section className={s.box}>
       <div className={s.background}>
-        <div className={s.container}>
+        <MotionWrapper className={s.container} initial viewport>
           <MainTitleComponent title={t("partnersHeading")} color="black" left />
+          <MotionWrapper variants></MotionWrapper>
           <GetPartnersComponent />
-        </div>
+        </MotionWrapper>
       </div>
     </section>
   );

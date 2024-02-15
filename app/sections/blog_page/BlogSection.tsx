@@ -13,7 +13,25 @@ import useScrollToTop from "@/hooks/useScrollToTop";
 import ReactPaginate from "react-paginate";
 import Image from "next/image";
 import Arrow from "@/images/vectors/arrow.svg";
+import BrandElement from "@/images/vectors/brand-element-5.svg";
 import { useMediaQuery } from "@mantine/hooks";
+import useBlogHero from "@/hooks/useBlogHero";
+
+interface HeroData {
+  id: number;
+  acf: Acf;
+}
+
+interface Acf {
+  hero_title_en: string;
+  hero_text_en: string | undefined;
+  hero_title_es: string;
+  hero_text_es: string | undefined;
+  hero_title_de: string;
+  hero_text_de: string | undefined;
+  hero_title_ua: string;
+  hero_text_ua: string | undefined;
+}
 
 interface PaginationButtonProps {
   onClick: () => void;
@@ -49,10 +67,9 @@ const BlogSection: FC<BlogSectionProps> = ({ blogs }) => {
     "(min-width: 768px) and (max-width: 1279.98px)"
   );
   const { setScrollToTop } = useScrollToTop();
-
-  const itemsPerPage = 6;
   const [currentPage, setCurrentPage] = useState(0);
-
+  const blogHero = useBlogHero();
+  const itemsPerPage = 6;
   const handlePageChange = ({ selected }: { selected: number }) => {
     setCurrentPage(selected);
     setScrollToTop();
@@ -86,7 +103,7 @@ const BlogSection: FC<BlogSectionProps> = ({ blogs }) => {
       setGridRows(rowsForMobile);
     } else {
       setGridRows(rowsForTablet);
-    } 
+    }
   }, [visibleItems.length, isMobile, isTablet]);
 
   const renderTabletCard = (data: any, index: number) => {
@@ -98,15 +115,18 @@ const BlogSection: FC<BlogSectionProps> = ({ blogs }) => {
     }
   };
 
+  if (!blogHero || blogHero.length === 0) {
+    return null; // Повертаємо нуль, якщо дані ще не завантажені або відсутні
+  }
+
   return (
-    <div className={s.box}>
+    <section className={s.box}>
       <div className={s.background}>
         <PageTitleComponent
           className={s.blog__title}
-          title={t("blogTitle")}
-          text={t("blogSubtitle")}
+          title={(blogHero[0].acf as any)[`hero_title_${locale}`]}
+          text={(blogHero[0].acf as any)[`hero_text_${locale}`]}
         />
-
         <div
           className={classNames(s.container, s.blog__cards)}
           style={{ gridTemplateRows: `repeat(${gridRows}, 1fr)` }}
@@ -178,8 +198,14 @@ const BlogSection: FC<BlogSectionProps> = ({ blogs }) => {
             />
           </PaginationButton>
         </div>
+
+        <Image
+          className={s.brand__element}
+          src={BrandElement}
+          alt="brand element"
+        />
       </div>
-    </div>
+    </section>
   );
 };
 

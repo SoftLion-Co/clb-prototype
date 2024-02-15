@@ -4,6 +4,7 @@ import s from "./TradingMarketSection.module.scss";
 import MainTitleComponent from "@/components/MainTitleComponent";
 import MapBoxComponent from "@/components/map_component/MapBoxComponent";
 import { useTranslations } from "next-intl";
+import MotionWrapper from "@/hooks/MotionWrapper";
 interface CountryInfo {
   country: string;
   agriculturalCrops: string[];
@@ -24,14 +25,15 @@ const TradingMarketSection = () => {
   return (
     <section className={s.box}>
       <div className={s.background}>
-        <div className={s.container}>
+        <MotionWrapper className={s.container} initial viewport>
           <MainTitleComponent title={t("tradingMarketsTitle")} color="black" />
-          <div className={s.map}>
-            <div className={s.map__container}>
-              <MapBoxComponent onCountrySelect={handleCountrySelect} />
-            </div>
 
-            <div className={s.map__content}>
+          <MotionWrapper className={s.map} initial viewport>
+            <MotionWrapper className={s.map__container} variants>
+              <MapBoxComponent onCountrySelect={handleCountrySelect} />
+            </MotionWrapper>
+
+            <MotionWrapper className={s.map__content} variants>
               {selectedCountry ? (
                 <>
                   <h2 className={s.map__title}>{selectedCountry?.country}</h2>
@@ -69,9 +71,9 @@ const TradingMarketSection = () => {
                   <p className={s.map__message}>{t("tradingMarketsMessage")}</p>
                 </div>
               )}
-            </div>
-          </div>
-        </div>
+            </MotionWrapper>
+          </MotionWrapper>
+        </MotionWrapper>
       </div>
     </section>
   );

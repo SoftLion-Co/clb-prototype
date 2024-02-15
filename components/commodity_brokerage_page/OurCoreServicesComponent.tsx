@@ -1,60 +1,66 @@
 import React from "react";
 import s from "./OurCoreServicesComponent.module.scss";
-import image from "@/images/home-hero-test.png";
-import { useTranslations } from "next-intl";
+import { useLocale } from "next-intl";
 import classNames from "classnames";
 import { useTwoLinesTitle } from "@/hooks/useTwoLinesTitle";
+import MotionWrapper from "@/hooks/MotionWrapper";
 
-function OurCoreServicesComponent() {
-  const t = useTranslations("commodityBrokerage.services");
+export interface CoreServices {
+  acf: Acf;
+}
 
-  const data: {
-    title1: string;
-    text1: string;
-    title2: string;
-    text2: string;
-    title3: string;
-    text3: string;
-    title4: string;
-    text4: string;
-    title5: string;
-    text5: string;
-  } = {
-    title1: t("title1"),
-    text1: t("text1"),
-    title2: t("title2"),
-    text2: t("text2"),
-    title3: t("title3"),
-    text3: t("text3"),
-    title4: t("title4"),
-    text4: t("text4"),
-    title5: t("title5"),
-    text5: t("text5"),
-  };
+export interface Acf {
+  card_5_photo: string;
+  card_titles: CardTitle[];
+  card_texts: CardText[];
+}
 
-  const serviceCards = [
-    { title: data.title1, text: data.text1, imageSrc: undefined },
-    { title: data.title2, text: data.text2, imageSrc: undefined },
-    { title: data.title3, text: data.text3, imageSrc: undefined },
-    { title: data.title4, text: data.text4, imageSrc: undefined },
-    { title: undefined, text: undefined, imageSrc: image },
-    { title: data.title5, text: data.text5, imageSrc: undefined },
-  ];
+export interface CardTitle {
+  en: string;
+  es: string;
+  de: string;
+  ua: string;
+}
+
+export interface CardText {
+  en: string;
+  es: string;
+  de: string;
+  ua: string;
+}
+
+const OurCoreServicesComponent = async () => {
+  const reqUrl =
+    "https://softlion.blog/wp-json/wp/v2/core-services?acf_format=standard&_fields=acf";
+  const req = await fetch(reqUrl);
+  const coreServices: CoreServices[] = await req.json();
+  const locale = useLocale();
+
+  const serviceCards = [];
+
+  for (let i = 1; i <= 6; i++) {
+    serviceCards.push({
+      title: (coreServices[0].acf as any)[`card${i}_title_${locale}`],
+      text: (coreServices[0].acf as any)[`card${i}_text_${locale}`],
+      image: i === 5 ? true : false,
+    });
+  }
 
   const cardsWithBorders = [0, 1, 4];
 
-  const imgaeStyling = {
-    backgroundImage: `url(${image.src})`,
+  const imageStyling = {
+    backgroundImage: `url(${coreServices[0].acf.card_5_photo})`,
     backgroundSize: "cover",
     backgroundPosition: "center",
+    height: "100%",
   };
 
   return (
     <div className={s.services}>
-      {serviceCards.map(({ title, text, imageSrc }, index) => (
-        <React.Fragment key={index}>
-          {imageSrc !== undefined ? (
-            <div className={s.card} style={imgaeStyling}></div>
+      {serviceCards.map(({ title, text, image }, index) => (
+        <MotionWrapper key={index} initial viewport variants>
+          {image === true ? (
+            <div className={s.card} style={imageStyling}></div>
           ) : (
             <div
               className={classNames(s.card, {
@@ -65,10 +71,10 @@ function OurCoreServicesComponent() {
               <p className={s.card__text}>{text}</p>
             </div>
           )}
-        </React.Fragment>
+        </MotionWrapper>
       ))}
     </div>
   );
-}
+};
 
 export default OurCoreServicesComponent;

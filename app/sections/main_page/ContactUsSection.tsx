@@ -4,19 +4,24 @@ import s from "./ContactUsSection.module.scss";
 import MainTitleComponent from "@/components/MainTitleComponent";
 import MainButtonComponent from "@/components/MainButtonComponent";
 import Image from "next/image";
+
 import Picture from "@/images/our_advantages_test/advantages-image-1.png";
+import BrandElement from "@/images/vectors/brand-element-2.svg";
+
 import classNames from "classnames";
 import useVacancies from "@/hooks/useVacancies";
 import InputField from "@/components/form/InputField";
 import { DatePickerInput } from "@mantine/dates";
 import { useTranslations } from "next-intl";
 import useLocale from "@/hooks/useLocale";
+import MotionWrapper from "@/hooks/MotionWrapper";
 import {
   validateName,
   validateEmail,
   validatePhoneNumber,
   validateCompanyName,
 } from "@/hooks/useValidation";
+import useContactUsPhoto from "@/hooks/getContactUsPhoto";
 
 interface FormData {
   firstname: string;
@@ -31,10 +36,22 @@ interface FormData {
   cvFile: File | null;
 }
 
-const ContactUsSection = ({ cv }: { cv?: boolean }) => {
+const ContactUsSection = ({ cv, id }: { cv?: boolean; id?: string }) => {
   const locale = useLocale();
   const t = useTranslations("homePage.contactUs");
   const vacancies = useVacancies();
+  const photos = useContactUsPhoto();
+  const [mainPhoto, setMainPhoto] = useState("");
+  const [careersPhoto, setCareersPhoto] = useState("");
+
+  useEffect(() => {
+    if (photos.length > 0) {
+      const { main_photo: mainPhotoUrl, careers_photo: careersPhotoUrl } =
+        photos[0]?.acf || {};
+      setMainPhoto(mainPhotoUrl || "");
+      setCareersPhoto(careersPhotoUrl || "");
+    }
+  }, [photos]);
 
   const topics = [
     "generalInquiry",
@@ -490,14 +507,26 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
   );
 
   return (
-    <section className={s.box}>
-      <div className={s.background}>
+    <section id={"contactUsSection"} className={s.box}>
+      <MotionWrapper
+        className={classNames(s.background, s.form__background)}
+        initial
+        viewport
+      >
         <MainTitleComponent
           title={cv ? t("letsWorkWithUS") : t("contactUsHeading")}
         />
-        <div className={classNames(s.container, s.form__container)}>
+        <MotionWrapper
+          initial
+          viewport
+          variants
+          className={classNames(s.container, s.form__container)}
+        >
           <form
-            className={classNames(s.form, { [s.cv]: cv, [s.form__custom]: cv })}
+            className={classNames(s.form, {
+              [s.cv]: cv,
+              [s.form__custom]: cv,
+            })}
             onSubmit={handleSubmit}
           >
             <div className={s.form__content}>{boxInputs}</div>
@@ -521,9 +550,33 @@ const ContactUsSection = ({ cv }: { cv?: boolean }) => {
               )}
             </div>
           </form>
-          <Image className={s.form__picture} src={Picture} alt="Picture" />
-        </div>
-      </div>
+
+          <div style={{ zIndex: "1", width: "100%" }}>
+            {mainPhoto && careersPhoto && (
+              <Image
+                className={s.form__picture}
+                src={cv ? careersPhoto : mainPhoto}
+                alt="Picture"
+                width={1000}
+                height={1000}
+              />
+            )}
+          </div>
+
+          <Image
+            className={s.brand__element_top}
+            src={BrandElement}
+            alt="Brand element"
+            width="1675"
+          />
+          <Image
+            className={s.brand__element_buttom}
+            src={BrandElement}
+            alt="Brand element"
+            width="1675"
+          />
+        </MotionWrapper>
+      </MotionWrapper>
     </section>
   );
 };

@@ -3,12 +3,14 @@ import React, { useState, useEffect } from "react";
 import s from "./BlogCardSection.module.scss";
 import classNames from "classnames";
 
-import MainTitleComponent from "@/components/MainTitleComponent";
+import Link from "next/link";
 import SmallCardBlogComponent from "@/components/blog/SmallCardBlogComponent";
 import MainButtonComponent from "@/components/MainButtonComponent";
 import useBlogsData from "@/hooks/useBlogsData";
 import { useTranslations } from "next-intl";
 import useLocale from "@/hooks/useLocale";
+import MotionWrapper from "@/hooks/MotionWrapper";
+import MainTitleComponent from "@/components/MainTitleComponent";
 
 const BlogCardsSection = () => {
   const t = useTranslations("blog");
@@ -36,7 +38,11 @@ const BlogCardsSection = () => {
   return (
     <section className={s.box}>
       <div className={s.background}>
-        <div className={classNames(s.container, s.blog__container)}>
+        <MotionWrapper
+          className={classNames(s.container, s.blog__container)}
+          initial
+          viewport
+        >
           <MainTitleComponent
             className={s.blog__title}
             title={t("blogTitle")}
@@ -44,21 +50,24 @@ const BlogCardsSection = () => {
             left
           />
 
-          <div className={s.blog__cards}>
-            {latestBlogs.slice(0, cardsToRender).map((blog, index) => (
-              <div key={index}>
-                <SmallCardBlogComponent info={blog} locale={locale} />
-              </div>
-            ))}
-          </div>
-
-          <MainButtonComponent
-            text={t1("moreOurNews")}
-            href={"/blog"}
-            typeButton="MainArrowButton"
-            className={s.blog__button}
-          />
-        </div>
+          {latestBlogs.length !== 0 && (
+            <MotionWrapper initial className={s.blog__cards} viewport>
+              {latestBlogs.slice(0, cardsToRender).map((blog, index) => (
+                <MotionWrapper key={index} variants custom={index}>
+                  <SmallCardBlogComponent info={blog} locale={locale} />
+                </MotionWrapper>
+              ))}
+            </MotionWrapper>
+          )}
+          <MotionWrapper initial viewport variants className={s.blog__button}>
+            <Link href={`/${locale}/blog`}>
+              <MainButtonComponent
+                text={t1("moreOurNews")}
+                typeButton="MainArrowButton"
+              />
+            </Link>
+          </MotionWrapper>
+        </MotionWrapper>
       </div>
     </section>
   );

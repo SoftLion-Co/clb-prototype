@@ -1,5 +1,5 @@
 @import "@/style/container";
-@import "@/style//font_default";
+@import "@/style/colors";
 @import "@/style/viewports";
 
 .box {
@@ -14,7 +14,7 @@
 .footer {
   padding: 20px 16px;
 
-  background-color: #ffffff;
+  background-color: $classicWhiteBackgroundColor;
   border-radius: 16px;
 
   @include for-size(laptop) {
@@ -73,7 +73,7 @@
 
     @include for-size(laptop) {
       align-items: flex-end;
-      gap: 78px;
+      gap: 80px;
     }
   }
 
@@ -90,7 +90,6 @@
 
     @include for-size(desktop) {
       display: flex;
-      justify-content: flex-start;
       gap: 80px;
     }
   }
@@ -110,35 +109,26 @@
     @include for-size(laptop) {
       display: flex;
       flex-direction: column;
+      justify-content: space-between;
       align-items: flex-start;
       text-align: left;
     }
   }
 
   &__link {
-    color: #2a4563;
+    color: $backgroundColorDarkBlue;
     font-size: 18px;
-    font-weight: 400;
-    line-height: 150%;
 
     @include for-size(laptop) {
       font-size: 20px;
     }
-
     @include for-size(desktop) {
       font-size: 24px;
     }
   }
 
   &__copyright {
-    color: #2a4563;
-    font-size: 16px;
-    line-height: 130%;
+    color: $backgroundColorDarkBlue;
     text-align: center;
-
-    @include for-size(laptop) {
-      font-size: 18px;
-      line-height: 150%;
-    }
   }
 }

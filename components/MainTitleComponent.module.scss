@@ -6,15 +6,17 @@
   align-items: baseline;
   margin-bottom: 40px;
   gap: 16px;
+  position: relative;
+  z-index: 2;
 
   @include for-size(tablet) {
     margin-bottom: 60px;
-    gap: 17px;
+    gap: 18px;
   }
 
   @include for-size(laptop) {
     margin-bottom: 80px;
-    gap: 21px;
+    gap: 22px;
   }
 
   @include for-size(desktop) {
@@ -30,26 +32,6 @@
 
   &.mobileLeft {
     justify-content: flex-start;
-  }
-
-  &__title {
-    text-transform: capitalize;
-    font-weight: 600;
-    font-size: 26px;
-    line-height: 130%;
-
-    @include for-size(tablet) {
-      font-size: 38px;
-    }
-
-    @include for-size(laptop) {
-      font-size: 40px;
-      line-height: 150%;
-    }
-
-    @include for-size(desktop) {
-      font-size: 47px;
-    }
   }
 
   &__image {

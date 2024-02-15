@@ -1,3 +1,4 @@
+import React from "react";
 import ContactUsSection from "@/app/sections/main_page/ContactUsSection";
 import ProductPortfolioSection from "@/app/sections/commodity_brokerage_page/ProductPortfolioSection";
 import HeroSection from "@/app/sections/commodity_brokerage_page/HeroSection";
@@ -8,12 +9,12 @@ const Commodity = () => {
   const t = useTranslations("commodityBrokerage");
 
   return (
-    <div>
+    <React.Fragment>
       <HeroSection />
       <ProductPortfolioSection />
       <OurCoreServices />
       <ContactUsSection />
-    </div>
+    </React.Fragment>
   );
 };
 

@@ -38,7 +38,7 @@ const CountryMapSVG = ({
       viewBox={`0 0 ${originalWidth} ${originalHeight}`}
       style={{
         maxWidth: "100%",
-        // transform: `scale(${currentScale}) translate(${translate.x}px, ${translate.y}px)`,
+        transform: `scale(${currentScale}) translate(${translate.x}px, ${translate.y}px)`,
         transition: "transform 0.3s",
         cursor: "pointer",
       }}

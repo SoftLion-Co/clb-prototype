@@ -1,5 +1,4 @@
 @import "@/style/container";
-@import "@/style/font_default";
 @import "@/style/viewports";
 
 .blog {
@@ -28,5 +27,24 @@
       grid-template-rows: repeat(3, 3fr);
       margin-bottom: 100px;
     }
+  }
+}
+
+.background {
+  position: relative;
+  z-index: 1;
+}
+
+.brand__element {
+  user-select: none;
+  position: absolute;
+  z-index: -1;
+  top: 0.7%;
+  left: 1.5%;
+  width: 95%;
+
+  @include for-size(tablet) {
+    top: 1%;
+    width: 43%;
   }
 }

@@ -48,39 +48,18 @@
   }
 
   &__title {
-    color: $brandColorDarkGreen;
-    font-size: 20px;
-    font-weight: 600;
     margin-bottom: 24px;
-    line-height: 130%;
-    @include for-size(tablet) {
-      font-size: 24px;
-    }
-
-    @include for-size(laptop) {
-      font-size: 26px;
-      line-height: 150%;
-    }
-
-    @include for-size(desktop) {
-      font-size: 28px;
-    }
   }
 
   &__item {
     font-size: 18px;
-    line-height: 130%;
-    color: $blackTextColor;
 
     @include for-size(tablet) {
       font-size: 20px;
     }
-
     @include for-size(laptop) {
       font-size: 22px;
-      line-height: 150%;
     }
-
     @include for-size(desktop) {
       font-size: 24px;
     }

@@ -29,8 +29,8 @@
     border: 2px solid $backgroundColorDarkBlue;
   }
 
-  &.whiteCard{
-    background-color: #fff;
+  &.whiteCard {
+    background-color: $classicWhiteBackgroundColor;
   }
 
   &__list {

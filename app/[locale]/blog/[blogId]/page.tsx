@@ -1,10 +1,10 @@
 "use client";
+import React, { FC } from "react";
 import s from "./page.module.scss";
 import MainArticleSection from "@/app/sections/article_page/MainArticleSection";
 import MoreArticlesSection from "@/app/sections/article_page/MoreArticlesSection";
 import useBlogData from "@/hooks/useBlogData";
 import ContactUsSection from "@/app/sections/main_page/ContactUsSection";
-import React, { FC } from 'react'
 
 interface BlogArticleParams {
   blogId: string;
@@ -27,11 +27,11 @@ const BlogArticle: FC<{ params: BlogArticleParams }> = ({ params }) => {
   }
 
   return (
-    <div>
+    <React.Fragment>
       <MainArticleSection data={blog} />
       <MoreArticlesSection blogId={blogId} />
       <ContactUsSection />
-    </div>
+    </React.Fragment>
   );
 };
 

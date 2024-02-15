@@ -5,6 +5,7 @@ import MainTitleComponent from "@/components/MainTitleComponent";
 import ListCardsComponent from "@/components/ListCardsComponent";
 import { useTranslations, useLocale } from "next-intl";
 import useProductPortfolio from "@/hooks/useProductPortfolio";
+import MotionWrapper from "@/hooks/MotionWrapper";
 
 function ProductPortfolioSection() {
   const locale = useLocale();
@@ -15,13 +16,14 @@ function ProductPortfolioSection() {
   return (
     <section className={s.box}>
       <div className={s.background}>
-        <div className={s.container}>
+        <MotionWrapper className={s.container} initial>
           <MainTitleComponent
             title={t("productPortfolioTitle")}
             color="black"
           />
+
           <ListCardsComponent data={reversed} />
-        </div>
+        </MotionWrapper>
       </div>
     </section>
   );

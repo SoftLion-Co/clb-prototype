@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import s from "@/app/sections/main_page/HeroSection.module.scss";
+import MotionWrapper from "@/hooks/MotionWrapper";
+import { motion } from "framer-motion";
 
 interface PhotoData {
   acf: {
@@ -26,14 +28,28 @@ const GetHeroImageComponent = () => {
     return <div className={s.hero__video}></div>; // or display a loading spinner/message
   }
 
+  const defaultAnimation = {
+    hidden: {
+      opacity: 0,
+    },
+    visible: {
+      opacity: 1,
+    },
+  };
+
   return (
-      <Image
-        src={photo.acf.hero_photo}
-        alt="Hero Photo"
-        width={2500}
-        height={2000}
-        className={s.hero__video}
-      />
+    <MotionWrapper initial viewport>
+      <motion.div variants={defaultAnimation}
+      transition={{ duration: 0.3 }}>
+        <Image
+          src={photo.acf.hero_photo}
+          alt="Hero Photo"
+          width={2500}
+          height={2000}
+          className={s.hero__video}
+        />
+      </motion.div>
+    </MotionWrapper>
   );
 };
 

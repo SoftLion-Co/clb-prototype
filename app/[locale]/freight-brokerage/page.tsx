@@ -1,50 +1,35 @@
+import React from "react";
 import s from "./page.module.scss";
 import classNames from "classnames";
-import PageTitleComponent from "@/components/PageTitleComponent";
 import ThreeCardsComponent from "@/components/ThreeCardsComponent";
 import ProductPortfolioSection from "@/app/sections/freight_brokerage/BrokeragePortfolioSection";
 import ContactUsSection from "@/app/sections/main_page/ContactUsSection";
-import { useTranslations } from "next-intl";
+import GetHeroComponent from "@/hooks/GetHeroComponent";
 
 const Freight = () => {
-  const t = useTranslations("freightBrokerage");
-
   return (
-    <div>
-      <div className={classNames(s.box, s.desktop)}>
-        <section className={classNames(s.background, s.freight)}>
-          <PageTitleComponent
-            title={t("freightBrokerageTitle")}
-            text={t("freightBrokerageSubtitle")}
-            className={s.freight__title}
-          />
+    <React.Fragment>
+      <section className={classNames(s.box, s.desktop)}>
+        <div className={classNames(s.background, s.freight)}>
+          <GetHeroComponent path="freight-hero" className={s.freight__title} />
           <ThreeCardsComponent
             className={classNames(s.container, s.freight__cards)}
-            imagePosition={3}
-            smallText={t("heroSmallText")}
-            bigText={t("heroBigText")}
-            color="blue"
-            imageSrc="freightBrokerage"
+            path="freight-cards"
           />
           <ProductPortfolioSection />
-        </section>
-      </div>
+        </div>
+      </section>
 
-      <div className={s.mobile}>
-        <div className={s.box}>
+      <section className={s.mobile}>
+        <div className={classNames(s.box)}>
           <section className={classNames(s.background, s.freight)}>
-            <PageTitleComponent
-              title={t("freightBrokerageTitle")}
-              text={t("freightBrokerageSubtitle")}
+            <GetHeroComponent
+              path="freight-hero"
               className={s.freight__title}
             />
             <ThreeCardsComponent
               className={classNames(s.container, s.freight__cards)}
-              imagePosition={3}
-              smallText={t("heroSmallText")}
-              bigText={t("heroBigText")}
-              color="blue"
-              imageSrc="freightBrokerage"
+              path="freight-cards"
             />
           </section>
         </div>
@@ -53,10 +38,10 @@ const Freight = () => {
             <ProductPortfolioSection />
           </section>
         </div>
-      </div>
+      </section>
 
       <ContactUsSection />
-    </div>
+    </React.Fragment>
   );
 };
 

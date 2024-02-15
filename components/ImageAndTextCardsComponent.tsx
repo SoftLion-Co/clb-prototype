@@ -2,6 +2,7 @@ import React from "react";
 import s from "./ImageAndTextCardsComponent.module.scss";
 import Image from "next/image";
 import classNames from "classnames";
+import MotionWrapper from "@/hooks/MotionWrapper";
 
 interface ImageAndTextCardsProps {
   text: string;
@@ -13,7 +14,7 @@ interface ImageAndTextCardsProps {
   color?: "blue" | "white" | "green";
   smallFont?: boolean;
   articlePadding?: boolean;
-  mobileTextCenter?:boolean;
+  mobileTextCenter?: boolean;
 }
 
 function ImageAndTextCardsComponent(props: ImageAndTextCardsProps) {
@@ -74,15 +75,32 @@ function ImageAndTextCardsComponent(props: ImageAndTextCardsProps) {
 
   const containerStyles = getContainerStyles();
 
-  const quoteClasses = classNames(s.quote, { [s.quote__smallFont]: smallFont }, { [s.quote__mobileCenter]: mobileTextCenter });
+  const quoteClasses = classNames(
+    s.quote,
+    { [s.quote__smallFont]: smallFont },
+    { [s.quote__mobileCenter]: mobileTextCenter }
+  );
 
   return (
-    <div className={articleClasses}>
-      <div className={quoteContainerClasses} style={containerStyles}>
-        <h3 className={quoteClasses}>{text}</h3>
-      </div>
+    <MotionWrapper className={articleClasses} initial viewport>
+      <MotionWrapper
+        className={quoteContainerClasses}
+        style={containerStyles}
+        initial
+        viewport
+        variants
+        custom={rotate ? 2 : 1}
+      >
+        <p className={quoteClasses}>{text}</p>
+      </MotionWrapper>
 
-      <div className={s.quote__image__container}>
+      <MotionWrapper
+        className={s.quote__image__container}
+        initial
+        viewport
+        variants
+        custom={rotate ? 1 : 2}
+      >
         <Image
           src={image}
           alt={alt}
@@ -90,8 +108,8 @@ function ImageAndTextCardsComponent(props: ImageAndTextCardsProps) {
           height={1000}
           className={s.quote__image}
         />
-      </div>
-    </div>
+      </MotionWrapper>
+    </MotionWrapper>
   );
 }
 

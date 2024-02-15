@@ -1,9 +1,9 @@
+"use client"
+import React, { FC } from "react";
 import classNames from "classnames";
 import s from "./OurServicesCardComponent.module.scss";
 import ReadMoreComponent from "@/components/ReadMoreComponent";
-import { useTranslations } from "next-intl";
-import React, { FC } from "react";
-
+import { useLocale } from "next-intl";
 import Image from "next/image";
 
 interface OurServicesCardProps {
@@ -11,6 +11,7 @@ interface OurServicesCardProps {
   text: string;
   image: string | undefined;
   className?: string;
+  href: string;
 }
 
 const OurServicesCardComponent: FC<OurServicesCardProps> = ({
@@ -18,16 +19,21 @@ const OurServicesCardComponent: FC<OurServicesCardProps> = ({
   text,
   image,
   className,
+  href
 }) => {
-  const t = useTranslations("homePage");
+  const local = useLocale();
 
   return (
     <div className={classNames(s.card__container, className)}>
-      <Image className={s.card__image} src={image!} alt="Image" />
-      <h3 className={s.card__title}>{title}</h3>
+      <div className={s.card__info}>
+        <Image className={s.card__image} src={image!} alt="Image" width={100} height={100}/>
+        <h3 className={s.card__title}>{title}</h3>
+      </div>
+
       <div className={s.card__content}>
         <p className={s.card__text}>{text}</p>
-        <ReadMoreComponent href="/" />
+
+        <ReadMoreComponent href={`/${local}/${href}`} />
       </div>
     </div>
   );

@@ -1,4 +1,3 @@
-"use client";
 import s from "./SocialLinksSection.module.scss";
 import Image from "next/image";
 import telegram from "@/images/footer/icon-telegram.svg";
@@ -13,15 +12,20 @@ import {
   WhatsappShareButton,
   LinkedinShareButton,
 } from "react-share";
-import classNames from "classnames";
+import MotionWrapper from "@/hooks/MotionWrapper";
 
 const SocialLinksSection = () => {
   const t = useTranslations("components");
 
   const currentPath = "clb.com" + window.location.pathname;
-
+  
   return (
-    <section className={s.links}>
+    <MotionWrapper tag="section"
+      className={s.links}
+      initial
+      viewport
+      variants
+    >
       <p className={s.links__share}>{t("share")}</p>
       <div className={s.links__list}>
         <TelegramShareButton
@@ -50,7 +54,7 @@ const SocialLinksSection = () => {
           <Image src={whatsapp} alt={"whatsapp"} className={s.links__icon} />
         </WhatsappShareButton>{" "}
       </div>
-    </section>
+    </MotionWrapper>
   );
 };
 
