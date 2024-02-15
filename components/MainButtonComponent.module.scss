@@ -51,6 +51,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
+
+    display: -webkit-flex;
+    -webkit-align-items: center;
+    -webkit-justify-content: center;
+
     background-color: $classicWhiteBackgroundColor;
     width: 24px;
     height: 24px;

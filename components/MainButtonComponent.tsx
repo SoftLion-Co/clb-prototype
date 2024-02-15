@@ -70,15 +70,15 @@ const MainButtonComponent: FC<MainButtonProps> = ({
     setButtonPadding(updatePadding());
   }, [updatePadding]);
 
-  const handleClick = useCallback(
-    (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-      if (onClick) {
-        e.preventDefault();
-        onClick();
-      }
-    },
-    [onClick]
-  );
+  // const handleClick = useCallback(
+  //   (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+  //     if (onClick) {
+  //       e.preventDefault();
+  //       onClick();
+  //     }
+  //   },
+  //   [onClick]
+  // );
 
   const buttonProps = useMemo(
     () => ({
