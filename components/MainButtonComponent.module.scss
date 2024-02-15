@@ -52,10 +52,6 @@
     align-items: center;
     justify-content: center;
 
-    display: -webkit-flex;
-    -webkit-align-items: center;
-    -webkit-justify-content: center;
-
     background-color: $classicWhiteBackgroundColor;
     width: 24px;
     height: 24px;
@@ -70,6 +66,10 @@
 
   &__arrow {
     display: flex;
+    align-items: center;
+    justify-content: center;
+
+    
     filter: invert(35%) sepia(9%) saturate(695%) hue-rotate(55deg)
       brightness(91%) contrast(79%);
     transition: filter 0.3s ease-in-out;
