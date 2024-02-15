@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useEffect, useState, useCallback, useMemo } from "react";
 import { Link } from "../navigation";
 import Image from "next/image";
 import Modal from "react-modal";
@@ -53,8 +53,11 @@ const HeaderComponent = () => {
 
   const pathname = usePathname();
   const defaultCountry = countriesMenu[4];
-  const pathWithoutLanguage = pathname.replace(/^\/[a-zA-Z]{2}(\/)?/, "/");
-  const initialLocale = pathname.split("/")[1];
+  const pathWithoutLanguage = useMemo(
+    () => pathname.replace(/^\/[a-zA-Z]{2}(\/)?/, "/"),
+    [pathname]
+  );
+  const initialLocale = useMemo(() => pathname.split("/")[1], [pathname]);
 
   const [isFlagDropdownOpen, setFlagDropdownOpen] = useState(false);
   const [isServicesMenuOpen, setServicesMenuOpen] = useState(false);
@@ -65,8 +68,10 @@ const HeaderComponent = () => {
   const [windowWidth, setWindowWidth] = useState(
     typeof window !== "undefined" ? window.innerWidth : 0
   );
-  const initialCountry = countriesMenu.find(
-    (country) => country.locale === initialLocale
+
+  const initialCountry = useMemo(
+    () => countriesMenu.find((country) => country.locale === initialLocale),
+    [initialLocale]
   );
   const [selectedCountry, setSelectedCountry] = useState(
     initialCountry || defaultCountry
@@ -78,95 +83,61 @@ const HeaderComponent = () => {
       (country) => country.locale === locale
     );
 
-    if (matchingCountry) {
-      setSelectedCountry(matchingCountry);
-    } else {
-      setSelectedCountry(defaultCountry);
-    }
+    setSelectedCountry(matchingCountry || defaultCountry);
   }, [pathname, defaultCountry]);
 
-  const controlHeaderVisibility = () => {
+  const controlHeaderVisibility = useCallback(() => {
     if (typeof window !== "undefined") {
       const scrolledDistance = window.scrollY;
-
       const scrollingUp = scrolledDistance < lastScrollY;
 
-      if (scrollingUp || scrolledDistance <= 28) {
-        setShowHeader(true);
-      } else {
-        setShowHeader(false);
-        setServicesMenuOpen(false);
-        setFlagDropdownOpen(false);
-      }
-
+      setShowHeader(scrollingUp || scrolledDistance <= 28);
       setLastScrollY(scrolledDistance);
+      setServicesMenuOpen(false);
+      setFlagDropdownOpen(false);
     }
-  };
+  }, [lastScrollY]);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
       window.addEventListener("scroll", controlHeaderVisibility);
-    }
-
-    return () => {
-      if (typeof window !== "undefined") {
+      return () => {
         window.removeEventListener("scroll", controlHeaderVisibility);
-      }
-    };
-  }, [lastScrollY]);
-
-  const handleDropdownClick = (dropdownType: any) => {
-    switch (dropdownType) {
-      case "flag":
-        setFlagDropdownOpen(!isFlagDropdownOpen);
-        setServicesMenuOpen(false);
-        break;
-      case "services":
-        setServicesMenuOpen(!isServicesMenuOpen);
-        setFlagDropdownOpen(false);
-        break;
-      default:
-        break;
+      };
     }
-    setArrowRotated(!isArrowRotated);
-  };
+  }, [controlHeaderVisibility]);
 
-  const handleDropdownMouseEnter = (dropdownType: any) => {
-    switch (dropdownType) {
-      case "flag":
-        setFlagDropdownOpen(true);
-        setServicesMenuOpen(false);
-        break;
-      case "services":
-        setServicesMenuOpen(true);
-        setFlagDropdownOpen(false);
-        break;
-      default:
-        break;
-    }
+  const handleDropdownClick = useCallback(
+    (dropdownType: string) => {
+      setFlagDropdownOpen(
+        dropdownType === "flag" ? !isFlagDropdownOpen : false
+      );
+      setServicesMenuOpen(
+        dropdownType === "services" ? !isServicesMenuOpen : false
+      );
+      setArrowRotated(!isArrowRotated);
+    },
+    [isFlagDropdownOpen, isServicesMenuOpen, isArrowRotated]
+  );
+
+  const handleDropdownMouseEnter = useCallback((dropdownType: string) => {
+    setFlagDropdownOpen(dropdownType === "flag");
+    setServicesMenuOpen(dropdownType === "services");
     setArrowRotated(true);
-  };
+  }, []);
 
-  const handleServicesMenuClick = () => {
+  const handleServicesMenuClick = useCallback(() => {
     setServicesMenuOpen(!isServicesMenuOpen);
     setFlagDropdownOpen(false);
-  };
+  }, [isServicesMenuOpen]);
 
-  const handleDropdownMouseLeave = (dropdownType: any) => {
-    switch (dropdownType) {
-      case "flag":
-        setFlagDropdownOpen(false);
-        break;
-      case "services":
-        setServicesMenuOpen(false);
-        break;
-      default:
-        break;
-    }
+  const handleDropdownMouseLeave = useCallback((dropdownType: string) => {
+    if (dropdownType === "flag") setFlagDropdownOpen(false);
+    if (dropdownType === "services") setServicesMenuOpen(false);
     setArrowRotated(false);
-  };
+  }, []);
 
-  const handleCountrySelection = useCallback((country: any) => {
+  const handleCountrySelection = useCallback((country: Country) => {
     setSelectedCountry(country);
     setFlagDropdownOpen(false);
   }, []);
@@ -181,12 +152,10 @@ const HeaderComponent = () => {
     document.body.style.overflow = "auto";
   }, []);
 
-  const handleResize = () => {
+  const handleResize = useCallback(() => {
     setWindowWidth(window.innerWidth);
-    if (window.innerWidth > 1280) {
-      closeModal();
-    }
-  };
+    if (window.innerWidth > 1280) closeModal();
+  }, [closeModal]);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -196,146 +165,176 @@ const HeaderComponent = () => {
         window.removeEventListener("resize", handleResize);
       };
     }
-  }, []);
+  }, [handleResize]);
 
-  const handleLinkClick = () => {
+  const handleLinkClick = useCallback(() => {
     closeModal();
-  };
+  }, [closeModal]);
 
-  const NavigationContent = (
-    <ul className={s.header__list}>
-      {menuItems.map((item) => (
-        <li
-          key={item.title}
-          className={s.header__item}
-          onMouseEnter={() =>
-            item.type === "services"
-              ? handleDropdownMouseEnter(item.type)
-              : null
-          }
-          onMouseLeave={() =>
-            item.type === "services"
-              ? handleDropdownMouseLeave(item.type)
-              : null
-          }
-        >
-          {item.type !== "services" ? (
-            <Link
-              className={s.header__text}
-              href={item.link}
-              onClick={handleLinkClick}
-            >
-              {t(item.title)}
-            </Link>
-          ) : (
-            <>
-              <div className={s.header__submenu}>
-                <p className={s.header__text} onClick={handleServicesMenuClick}>
-                  {t(item.title)}
-                </p>
-                <span
-                  className={classNames(s.arrow, {
-                    [s.arrow__rotated]: isArrowRotated && isServicesMenuOpen,
-                  })}
-                  onClick={handleServicesMenuClick}
-                >
-                  <Image src={ArrowMenu} alt="⌵" />
-                </span>
-              </div>
-
-              {isServicesMenuOpen && (
-                <ul className={s.header__dropdown}>
-                  {servicesMenu.map((subItem) => (
-                    <li className={s.header__dropdown_item} key={subItem.title}>
-                      <Link
-                        className={s.header__dropdown_text}
-                        href={subItem.link}
-                        onClick={handleLinkClick}
-                      >
-                        {t1(subItem.title)}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              )}
-            </>
-          )}
-        </li>
-      ))}
-    </ul>
-  );
-
-  const FlagContent = (
-    <div
-      className={s.flag__dropdown}
-      onMouseEnter={() => handleDropdownMouseEnter("flag")}
-      onMouseLeave={() => handleDropdownMouseLeave("flag")}
-      onClick={() => handleDropdownClick("flag")}
-    >
-      <div className={s.flag}>
-        <Link href={""}>
-          <Image
-            className={classNames(s.flag__image, s.flag__custom)}
-            src={selectedCountry.flag}
-            alt={selectedCountry.name}
-            width={30}
-            height={20}
-          />
-        </Link>
-        <p className={s.flag__name}>{selectedCountry.name}</p>
-
-        <span
-          className={classNames(s.arrow, {
-            [s.arrow__rotated]: isFlagDropdownOpen,
-          })}
-        >
-          <Image src={ArrowMenu} alt="⌵" />
-        </span>
-      </div>
-      {isFlagDropdownOpen && (
-        <ul className={s.flag__list}>
-          {countriesMenu.map((country) => {
-            if (country !== selectedCountry) {
-              return (
-                <li
-                  key={country.code}
-                  onClick={() => handleCountrySelection(country)}
-                >
-                  <Link
-                    className={s.flag__link}
-                    href={`/${pathWithoutLanguage}`}
-                    locale={country.locale}
-                  >
-                    <Image
-                      className={s.flag__image}
-                      src={country.flag}
-                      alt={country.name}
-                      width={30}
-                      height={20}
-                    />
-                    <p>{country.name}</p>
-                  </Link>
-                </li>
-              );
+  const NavigationContent = useMemo(
+    () => (
+      <ul className={s.header__list}>
+        {menuItems.map((item) => (
+          <li
+            key={item.title}
+            className={s.header__item}
+            onMouseEnter={() =>
+              item.type === "services" && handleDropdownMouseEnter(item.type)
             }
-            return null;
-          })}
-        </ul>
-      )}
-    </div>
+            onMouseLeave={() =>
+              item.type === "services" && handleDropdownMouseLeave(item.type)
+            }
+          >
+            {item.type !== "services" ? (
+              <Link
+                className={s.header__text}
+                href={item.link}
+                onClick={handleLinkClick}
+              >
+                {t(item.title)}
+              </Link>
+            ) : (
+              <>
+                <div className={s.header__submenu}>
+                  <p
+                    className={s.header__text}
+                    onClick={handleServicesMenuClick}
+                  >
+                    {t(item.title)}
+                  </p>
+                  <span
+                    className={classNames(s.arrow, {
+                      [s.arrow__rotated]: isArrowRotated && isServicesMenuOpen,
+                    })}
+                    onClick={handleServicesMenuClick}
+                  >
+                    <Image src={ArrowMenu} alt="⌵" />
+                  </span>
+                </div>
+
+                {isServicesMenuOpen && (
+                  <ul className={s.header__dropdown}>
+                    {servicesMenu.map((subItem) => (
+                      <li
+                        className={s.header__dropdown_item}
+                        key={subItem.title}
+                      >
+                        <Link
+                          className={s.header__dropdown_text}
+                          href={subItem.link}
+                          onClick={handleLinkClick}
+                        >
+                          {t1(subItem.title)}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </>
+            )}
+          </li>
+        ))}
+      </ul>
+    ),
+    [
+      t,
+      t1,
+      menuItems,
+      isArrowRotated,
+      isServicesMenuOpen,
+      handleDropdownMouseEnter,
+      handleDropdownMouseLeave,
+      handleServicesMenuClick,
+      handleLinkClick,
+    ]
   );
 
-  const ModalContent = (
-    <>
-      {NavigationContent}
-      {FlagContent}
-      <MainButtonComponent
-        defaultTo="contactUsSection"
-        onClick={closeModal}
-        text={t("getInTouch")}
-        typeButton="MainButton"
-      />
-    </>
+  const FlagContent = useMemo(
+    () => (
+      <div
+        className={s.flag__dropdown}
+        onMouseEnter={() => handleDropdownMouseEnter("flag")}
+        onMouseLeave={() => handleDropdownMouseLeave("flag")}
+        onClick={() => handleDropdownClick("flag")}
+      >
+        <div className={s.flag}>
+          <Link href="">
+            <Image
+              className={classNames(s.flag__image, s.flag__custom)}
+              src={selectedCountry.flag}
+              alt={selectedCountry.name}
+              width={30}
+              height={20}
+            />
+          </Link>
+          <p className={s.flag__name}>{selectedCountry.name}</p>
+
+          <span
+            className={classNames(s.arrow, {
+              [s.arrow__rotated]: isFlagDropdownOpen,
+            })}
+          >
+            <Image src={ArrowMenu} alt="⌵" />
+          </span>
+        </div>
+        {isFlagDropdownOpen && (
+          <ul className={s.flag__list}>
+            {countriesMenu.map((country) => {
+              if (country !== selectedCountry) {
+                return (
+                  <li
+                    key={country.code}
+                    onClick={() => handleCountrySelection(country)}
+                  >
+                    <Link
+                      className={s.flag__link}
+                      href={`/${pathWithoutLanguage}`}
+                      locale={country.locale}
+                    >
+                      <Image
+                        className={s.flag__image}
+                        src={country.flag}
+                        alt={country.name}
+                        width={30}
+                        height={20}
+                      />
+                      <p>{country.name}</p>
+                    </Link>
+                  </li>
+                );
+              }
+              return null;
+            })}
+          </ul>
+        )}
+      </div>
+    ),
+    [
+      selectedCountry,
+      countriesMenu,
+      pathWithoutLanguage,
+      isFlagDropdownOpen,
+      handleDropdownMouseEnter,
+      handleDropdownMouseLeave,
+      handleDropdownClick,
+      handleCountrySelection,
+    ]
+  );
+
+  const ModalContent = useMemo(
+    () => (
+      <>
+        {NavigationContent}
+        {FlagContent}
+        <MainButtonComponent
+          defaultTo="contactUsSection"
+          onClick={closeModal}
+          text={t("getInTouch")}
+          typeButton="MainButton"
+        />
+      </>
+    ),
+    [NavigationContent, FlagContent, t, closeModal]
   );
 
   return (
@@ -344,7 +343,7 @@ const HeaderComponent = () => {
       style={{ zIndex: isModalOpen ? -1 : 10 }}
     >
       <div className={s.header__box}>
-        <Link className={s.header__link} href={"/"}>
+        <Link className={s.header__link} href="/">
           <Image
             className={s.header__logo}
             src={Logo}
@@ -391,7 +390,7 @@ const HeaderComponent = () => {
         overlayClassName={s.modal__overlay}
       >
         <div className={s.modal__contents}>
-          <Link className={s.header__link} href={"/"} onClick={handleLinkClick}>
+          <Link className={s.header__link} href="/" onClick={handleLinkClick}>
             <Image
               className={s.header__logo_mobile}
               src={LogoMobile}
