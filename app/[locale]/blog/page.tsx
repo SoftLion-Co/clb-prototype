@@ -11,9 +11,11 @@ export default function Blog() {
 
   return (
     <React.Fragment>
-      {blogs.length === 0 && <BlogSkeleton />}
-      {error && <p>Error: {error}</p>}
-      <BlogSection blogs={blogs} />
+      <div>
+        {blogs.length === 0 && <BlogSkeleton />}
+        {error && <p>Error: {error}</p>}
+        <BlogSection blogs={blogs} />
+      </div>
 
       <ContactUsSection />
     </React.Fragment>

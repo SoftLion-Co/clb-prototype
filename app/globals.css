@@ -6,7 +6,6 @@ body {
   background: #a7b896;
 }
 
-
 h1,
 h2,
 h3,
@@ -16,4 +15,74 @@ h6,
 p {
   margin: 0;
   word-break: break-word;
+}
+
+div,
+li,
+a,
+p {
+  color: #171717;
+  font-size: 16px;
+  line-height: 130%;
+  font-weight: 400;
+
+  @media screen and (min-width: 1280px) {
+    font-size: 18px;
+    line-height: 150%;
+  }
+}
+
+h1 {
+  color: #565f51;
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 130%;
+
+  @media screen and (min-width: 768px) {
+    font-size: 38px;
+  }
+  @media screen and (min-width: 1280px) {
+    font-size: 46px;
+    line-height: 150%;
+  }
+  @media screen and (min-width: 1920px) {
+    font-size: 58px;
+  }
+}
+
+h2 {
+  color: #171717;
+  text-transform: capitalize;
+  font-size: 26px;
+  line-height: 130%;
+  font-weight: 600;
+
+  @media screen and (min-width: 768px) {
+    font-size: 38px;
+  }
+  @media screen and (min-width: 1280px) {
+    font-size: 40px;
+    line-height: 150%;
+  }
+  @media screen and (min-width: 1920px) {
+    font-size: 48px;
+  }
+}
+
+h3 {
+  color: #565f51;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 130%;
+
+  @media screen and (min-width: 768px) {
+    font-size: 22px;
+  }
+  @media screen and (min-width: 1280px) {
+    font-size: 26px;
+    line-height: 150%;
+  }
+  @media screen and (min-width: 1920px) {
+    font-size: 28px;
+  }
 }
