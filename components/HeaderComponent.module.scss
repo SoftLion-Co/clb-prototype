@@ -48,7 +48,6 @@
   }
 
   &__logo_mobile {
-    user-select: none;
 
     @include for-size(laptop) {
       display: none;
@@ -91,7 +90,6 @@
       align-items: center;
       justify-content: center;
       gap: 10px;
-      user-select: none;
       font-size: 18px;
     }
   }
@@ -217,7 +215,6 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  user-select: none;
 
   @include for-size(laptop) {
     position: relative;
