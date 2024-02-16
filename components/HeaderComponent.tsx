@@ -1,6 +1,5 @@
 "use client";
 import React, { useEffect, useState, useCallback, useMemo } from "react";
-import { Link } from "../navigation";
 import Image from "next/image";
 import Modal from "react-modal";
 import classNames from "classnames";
@@ -9,8 +8,10 @@ import Close from "@/images/vectors/close.svg";
 import Burger from "@/images/vectors/burger-menu.svg";
 import ArrowMenu from "@/images/vectors/arrow-menu.svg";
 import MainButtonComponent from "./MainButtonComponent";
+import { Link } from "../navigation";
 import { usePathname } from "next/navigation";
 import { useTranslations } from "next-intl";
+import { motion, AnimatePresence } from "framer-motion";
 
 import LogoMobile from "@/images/Logo-brokers-mobile.svg";
 import Logo from "@/images/Logo-header-brokers.svg";
@@ -65,9 +66,6 @@ const HeaderComponent = () => {
   const [isModalOpen, setModalOpen] = useState(false);
   const [showHeader, setShowHeader] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
-  const [windowWidth, setWindowWidth] = useState(
-    typeof window !== "undefined" ? window.innerWidth : 0
-  );
 
   const initialCountry = useMemo(
     () => countriesMenu.find((country) => country.locale === initialLocale),
@@ -132,9 +130,14 @@ const HeaderComponent = () => {
   }, [isServicesMenuOpen]);
 
   const handleDropdownMouseLeave = useCallback((dropdownType: string) => {
-    if (dropdownType === "flag") setFlagDropdownOpen(false);
-    if (dropdownType === "services") setServicesMenuOpen(false);
-    setArrowRotated(false);
+    if (dropdownType === "flag") {
+      setFlagDropdownOpen(false);
+      setArrowRotated(false);
+    }
+    if (dropdownType === "services") {
+      setServicesMenuOpen(false);
+      setArrowRotated(false);
+    }
   }, []);
 
   const handleCountrySelection = useCallback((country: Country) => {
@@ -151,21 +154,6 @@ const HeaderComponent = () => {
     setModalOpen(false);
     document.body.style.overflow = "auto";
   }, []);
-
-  const handleResize = useCallback(() => {
-    setWindowWidth(window.innerWidth);
-    if (window.innerWidth > 1280) closeModal();
-  }, [closeModal]);
-
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      setWindowWidth(window.innerWidth);
-      window.addEventListener("resize", handleResize);
-      return () => {
-        window.removeEventListener("resize", handleResize);
-      };
-    }
-  }, [handleResize]);
 
   const handleLinkClick = useCallback(() => {
     closeModal();
@@ -212,24 +200,36 @@ const HeaderComponent = () => {
                   </span>
                 </div>
 
-                {isServicesMenuOpen && (
-                  <ul className={s.header__dropdown}>
-                    {servicesMenu.map((subItem) => (
-                      <li
-                        className={s.header__dropdown_item}
-                        key={subItem.title}
-                      >
-                        <Link
-                          className={s.header__dropdown_text}
-                          href={subItem.link}
-                          onClick={handleLinkClick}
+                <AnimatePresence>
+                  {isServicesMenuOpen && (
+                    <motion.ul
+                      className={s.header__dropdown}
+                      initial={{ opacity: 0, scaleY: 0 }}
+                      animate={{ opacity: 1, scaleY: 1 }}
+                      exit={{ opacity: 0, scaleY: 0 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      {servicesMenu.map((subItem) => (
+                        <motion.li
+                          className={s.header__dropdown_item}
+                          key={subItem.title}
+                          initial={{ opacity: 0, y: -10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: -10 }}
+                          transition={{ duration: 0.2 }}
                         >
-                          {t1(subItem.title)}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                )}
+                          <Link
+                            className={s.header__dropdown_text}
+                            href={subItem.link}
+                            onClick={handleLinkClick}
+                          >
+                            {t1(subItem.title)}
+                          </Link>
+                        </motion.li>
+                      ))}
+                    </motion.ul>
+                  )}
+                </AnimatePresence>
               </>
             )}
           </li>
@@ -257,7 +257,13 @@ const HeaderComponent = () => {
         onMouseLeave={() => handleDropdownMouseLeave("flag")}
         onClick={() => handleDropdownClick("flag")}
       >
-        <div className={s.flag}>
+        <motion.div
+          className={s.flag}
+          initial={{ opacity: 0, scaleY: 0 }}
+          animate={{ opacity: 1, scaleY: 1 }}
+          exit={{ opacity: 0, scaleY: 0 }}
+          transition={{ duration: 0.2 }}
+        >
           <Link href="">
             <Image
               className={classNames(s.flag__image, s.flag__custom)}
@@ -276,15 +282,25 @@ const HeaderComponent = () => {
           >
             <Image src={ArrowMenu} alt="⌵" />
           </span>
-        </div>
+        </motion.div>
         {isFlagDropdownOpen && (
-          <ul className={s.flag__list}>
+          <motion.ul
+            className={s.flag__list}
+            initial={{ opacity: 0, scaleY: 0 }}
+            animate={{ opacity: 1, scaleY: 1 }}
+            exit={{ opacity: 0, scaleY: 0 }}
+            transition={{ duration: 0.2 }}
+          >
             {countriesMenu.map((country) => {
               if (country !== selectedCountry) {
                 return (
-                  <li
+                  <motion.li
                     key={country.code}
                     onClick={() => handleCountrySelection(country)}
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.2 }}
                   >
                     <Link
                       className={s.flag__link}
@@ -300,12 +316,12 @@ const HeaderComponent = () => {
                       />
                       <p>{country.name}</p>
                     </Link>
-                  </li>
+                  </motion.li>
                 );
               }
               return null;
             })}
-          </ul>
+          </motion.ul>
         )}
       </div>
     ),

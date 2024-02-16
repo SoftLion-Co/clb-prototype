@@ -48,7 +48,6 @@
   }
 
   &__logo_mobile {
-
     @include for-size(laptop) {
       display: none;
     }
@@ -311,6 +310,11 @@
     position: fixed;
     inset: 0px;
     z-index: 10;
+
+    @include for-size(laptop) {
+      display: none;
+      background-color: transparent;
+    }
   }
 
   &__contents {
