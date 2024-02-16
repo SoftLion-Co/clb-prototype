@@ -3,10 +3,10 @@ import Image from "next/image";
 import s from "./page.module.scss";
 import classNames from "classnames";
 import SectionVector from "@/images/vectors/section-vector.svg";
-import ContactUsSection from "@/app/sections/main_page/ContactUsSection";
 import ThreeCardsComponent from "@/components/ThreeCardsComponent";
+import IncotermsSection from "@/app/sections/execution_page/IncotermsSection";
+import ContactUsSection from "@/app/sections/main_page/ContactUsSection";
 
-import Incoterms from "@/images/incoterms.svg";
 import MotionWrapper from "@/hooks/MotionWrapper";
 import GetHeroComponent from "@/hooks/GetHeroComponent";
 
@@ -30,13 +30,7 @@ const Execution = () => {
           />
 
           <MotionWrapper initial variants viewportLarge>
-            <Image
-              className={classNames(s.execution__incoterms, s.container)}
-              src={Incoterms}
-              alt="Incoterms"
-              width={2000}
-              height={2000}
-            />
+            <IncotermsSection />
           </MotionWrapper>
         </div>
       </section>

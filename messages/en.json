@@ -183,7 +183,20 @@
     "executionTitle": "Execution",
     "executionSubtitle": "Lorem ipsum dolor sit amet consectetur.",
     "heroBigText": "With professional insights into GAFTA and FOSFA regulations, our experts regularly undergo training to stay abreast of the latest recommendations and shifts in the global trade landscape.",
-    "heroSmallText": "Experienced in various contract terms like EXW, FCA, CPT, DAP, FOB, CNF, and CIF, we ensure seamless execution and adherence to all stipulations at every stage of the contractual process. Recognizing the pivotal role of legal expertise in contract management, we have an outsourced team of seasoned attorneys ready to assist when needed. This legal squad, armed with a deep understanding of international trade laws, guarantees the protection of our clients' rights and obligations fulfillment."
+    "heroSmallText": "Experienced in various contract terms like EXW, FCA, CPT, DAP, FOB, CNF, and CIF, we ensure seamless execution and adherence to all stipulations at every stage of the contractual process. Recognizing the pivotal role of legal expertise in contract management, we have an outsourced team of seasoned attorneys ready to assist when needed. This legal squad, armed with a deep understanding of international trade laws, guarantees the protection of our clients' rights and obligations fulfillment.",
+    "incoterms": {
+      "EXW": "EXW (Ex Works) - The buyer assumes responsibility for the goods from the moment they leave the factory.",
+      "FCA": "FCA (Free Carrier) - The seller fulfills their obligation to deliver the goods to a specified point but does not assume risks for their transportation.",
+      "FAS": "FAS (Free Alongside Ship) - The seller delivers the goods alongside the ship at the port of shipment, after which the buyer assumes responsibility for transportation and risks.",
+      "FOB": "FOB (Free on Board) - The seller is responsible for delivering the goods on board the vessel, after which risks and ownership transfer to the buyer.",
+      "CFR": "CFR (Cost and Freight) - The seller covers the cost of transporting the goods to the specified port, but risks transfer to the buyer upon loading.",
+      "CIF": "CIF (Cost, Insurance, and Freight) - The seller pays the cost of transporting and insuring the goods to the specified port, but risks transfer to the buyer upon loading.",
+      "CPT": "CPT (Carriage Paid To) - The seller covers the cost of transporting the goods to the specified destination point, but risks transfer to the buyer upon delivery of the goods to the carrier.",
+      "CIP": "CIP (Carriage and Insurance Paid To) - The seller covers the cost of transporting and insuring the goods to the specified destination point, but risks transfer to the buyer upon delivery of the goods to the carrier.",
+      "DPU": "DPU (Delivered at Place Unloaded) - The seller delivers the goods to the specified place, and unloading occurs under their responsibility, after which risks transfer to the buyer.",
+      "DAP": "DAP (Delivered at Place) - The seller ensures the delivery of the goods to the specified place, but risks and unloading costs transfer to the buyer.",
+      "DDP": "DDP (Delivered Duty Paid) - The seller takes responsibility for delivering the goods to the specified place and pays all necessary duties and taxes, and risks transfer to the buyer after delivery."
+    }
   },
   "exportConsulting": {
     "exportConsultingTitle": "Agriculture Consulting Services",

@@ -10,7 +10,17 @@
   }
 
   .execution__cards {
-    margin-bottom: 180px;
+    margin-bottom: 40px;
+
+    @include for-size(tablet) {
+      margin-bottom: 100px;
+    }
+    @include for-size(laptop) {
+      margin-bottom: 120px;
+    }
+    @include for-size(desktop) {
+      margin-bottom: 180px;
+    }
   }
 
   &__incoterms {
