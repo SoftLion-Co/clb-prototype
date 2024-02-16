@@ -1,7 +1,7 @@
 "use client";
 import classNames from "classnames";
 import s from "./IncotermsComponent.module.scss";
-import React, { useState, useCallback, useMemo } from "react";
+import React, { useEffect, useState, useCallback, useMemo } from "react";
 import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
 
@@ -54,6 +54,17 @@ const IncotermsComponent = () => {
   const handleMouseLeave = useCallback(() => {
     setModalContent(null);
   }, []);
+
+  const closeModalOnScroll = useCallback(() => {
+    setModalContent(null);
+  }, []);
+
+  useEffect(() => {
+    document.addEventListener("scroll", closeModalOnScroll, true);
+    return () => {
+      document.removeEventListener("scroll", closeModalOnScroll, true);
+    };
+  }, [closeModalOnScroll]);
 
   const modal = useMemo(
     () =>
