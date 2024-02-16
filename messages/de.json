@@ -183,7 +183,20 @@
     "executionTitle": "Ausführung",
     "executionSubtitle": "Lorem ipsum dolor sit amet consectetur.",
     "heroBigText": "Mit professionellem Einblick in die GAFTA- und FOSFA-Vorschriften unterziehen sich unsere Experten regelmäßig Schulungen, um auf dem neuesten Stand der neuesten Empfehlungen und Verschiebungen in der globalen Handelslandschaft zu bleiben.",
-    "heroSmallText": "Erfahren in verschiedenen Vertragsbedingungen wie EXW, FCA, CPT, DAP, FOB, CNF und CIF gewährleisten wir eine reibungslose Durchführung und Einhaltung aller Bestimmungen in jeder Phase des Vertragsprozesses. Da wir die entscheidende Rolle der rechtlichen Expertise in der Vertragsverwaltung erkennen, haben wir ein externes Team erfahrener Anwälte bereit, bei Bedarf zu unterstützen. Dieses rechtliche Team, ausgestattet mit einem tiefen Verständnis für internationale Handelsgesetze, garantiert den Schutz der Rechte unserer Kunden und die Erfüllung von Verpflichtungen."
+    "heroSmallText": "Erfahren in verschiedenen Vertragsbedingungen wie EXW, FCA, CPT, DAP, FOB, CNF und CIF gewährleisten wir eine reibungslose Durchführung und Einhaltung aller Bestimmungen in jeder Phase des Vertragsprozesses. Da wir die entscheidende Rolle der rechtlichen Expertise in der Vertragsverwaltung erkennen, haben wir ein externes Team erfahrener Anwälte bereit, bei Bedarf zu unterstützen. Dieses rechtliche Team, ausgestattet mit einem tiefen Verständnis für internationale Handelsgesetze, garantiert den Schutz der Rechte unserer Kunden und die Erfüllung von Verpflichtungen.",
+    "incoterms": {
+      "EXW": "EXW (Ex Works) - Der Käufer trägt die Verantwortung für die Ware ab dem Zeitpunkt, an dem sie das Werk verlässt.",
+      "FCA": "FCA (Free Carrier) - Der Verkäufer erfüllt seine Verpflichtung, die Ware an einen bestimmten Ort zu liefern, übernimmt jedoch keine Risiken für den Transport.",
+      "FAS": "FAS (Free Alongside Ship) - Der Verkäufer liefert die Ware am Hafen des Versandschiffs, wonach der Käufer die Verantwortung für den Transport und die Risiken übernimmt.",
+      "FOB": "FOB (Free on Board) - Der Verkäufer ist verantwortlich für die Lieferung der Ware an Bord des Schiffes, wonach die Risiken und das Eigentum auf den Käufer übergehen.",
+      "CFR": "CFR (Cost and Freight) - Der Verkäufer deckt die Transportkosten der Ware bis zum angegebenen Hafen, aber die Risiken gehen mit dem Laden auf den Käufer über.",
+      "CIF": "CIF (Cost, Insurance, and Freight) - Der Verkäufer bezahlt die Transport- und Versicherungskosten der Ware bis zum angegebenen Hafen, aber die Risiken gehen mit dem Laden auf den Käufer über.",
+      "CPT": "CPT (Carriage Paid To) - Der Verkäufer deckt die Transportkosten der Ware bis zum angegebenen Bestimmungsort, aber die Risiken gehen mit der Übergabe der Ware an den Frachtführer auf den Käufer über.",
+      "CIP": "CIP (Carriage and Insurance Paid To) - Der Verkäufer deckt die Transport- und Versicherungskosten der Ware bis zum angegebenen Bestimmungsort, aber die Risiken gehen mit der Übergabe der Ware an den Frachtführer auf den Käufer über.",
+      "DPU": "DPU (Delivered at Place Unloaded) - Der Verkäufer liefert die Ware an den angegebenen Ort, und das Entladen erfolgt in seiner Verantwortung, wonach die Risiken auf den Käufer übergehen.",
+      "DAP": "DAP (Delivered at Place) - Der Verkäufer ist verantwortlich für die Lieferung der Ware an den angegebenen Ort, aber die Risiken und Kosten für das Entladen gehen auf den Käufer über.",
+      "DDP": "DDP (Delivered Duty Paid) - Der Verkäufer übernimmt die Verantwortung für die Lieferung der Ware an den angegebenen Ort und zahlt alle erforderlichen Zölle und Steuern, und die Risiken gehen nach der Lieferung auf den Käufer über."
+    }
   },
   "exportConsulting": {
     "exportConsultingTitle": "Agrarberatungsdienste",

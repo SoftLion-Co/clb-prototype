@@ -183,7 +183,20 @@
     "executionTitle": "Ejecución",
     "executionSubtitle": "Lorem ipsum dolor sit amet consectetur.",
     "heroBigText": "Con perspicacia profesional en las regulaciones de GAFTA y FOSFA, nuestros expertos se someten regularmente a capacitación para mantenerse al tanto de las últimas recomendaciones y cambios en el panorama comercial global.",
-    "heroSmallText": "Experimentados en varios términos contractuales como EXW, FCA, CPT, DAP, FOB, CNF y CIF, garantizamos una ejecución sin problemas y el cumplimiento de todas las estipulaciones en cada etapa del proceso contractual. Reconociendo el papel crucial de la experiencia legal en la gestión de contratos, contamos con un equipo externo de abogados experimentados listos para ayudar cuando sea necesario. Este equipo legal, armado con una comprensión profunda de las leyes internacionales de comercio, garantiza la protección de los derechos de nuestros clientes y el cumplimiento de las obligaciones."
+    "heroSmallText": "Experimentados en varios términos contractuales como EXW, FCA, CPT, DAP, FOB, CNF y CIF, garantizamos una ejecución sin problemas y el cumplimiento de todas las estipulaciones en cada etapa del proceso contractual. Reconociendo el papel crucial de la experiencia legal en la gestión de contratos, contamos con un equipo externo de abogados experimentados listos para ayudar cuando sea necesario. Este equipo legal, armado con una comprensión profunda de las leyes internacionales de comercio, garantiza la protección de los derechos de nuestros clientes y el cumplimiento de las obligaciones.",
+    "incoterms": {
+      "EXW": "EXW (Ex Works) - El comprador asume la responsabilidad del producto desde que sale de la fábrica.",
+      "FCA": "FCA (Free Carrier) - El vendedor cumple con su obligación de entregar la mercancía en un lugar especificado, pero no asume riesgos por su transporte.",
+      "FAS": "FAS (Free Alongside Ship) - El vendedor entrega la mercancía junto al barco en el puerto de embarque, después de lo cual el comprador asume la responsabilidad del transporte y los riesgos.",
+      "FOB": "FOB (Free on Board) - El vendedor es responsable de entregar la mercancía a bordo del barco, después de lo cual los riesgos y la propiedad pasan al comprador.",
+      "CFR": "CFR (Cost and Freight) - El vendedor cubre los costos de transporte de la mercancía hasta el puerto especificado, pero los riesgos pasan al comprador desde la carga.",
+      "CIF": "CIF (Cost, Insurance, and Freight) - El vendedor paga los costos de transporte y seguro de la mercancía hasta el puerto especificado, pero los riesgos pasan al comprador desde la carga.",
+      "CPT": "CPT (Carriage Paid To) - El vendedor cubre los costos de transporte de la mercancía hasta el lugar de destino especificado, pero los riesgos pasan al comprador desde la entrega de la mercancía al transportista.",
+      "CIP": "CIP (Carriage and Insurance Paid To) - El vendedor cubre los costos de transporte y seguro de la mercancía hasta el lugar de destino especificado, pero los riesgos pasan al comprador desde la entrega de la mercancía al transportista.",
+      "DPU": "DPU (Delivered at Place Unloaded) - El vendedor entrega la mercancía en el lugar especificado, y la descarga se realiza bajo su responsabilidad, después de lo cual los riesgos pasan al comprador.",
+      "DAP": "DAP (Delivered at Place) - El vendedor se encarga de entregar la mercancía en el lugar especificado, pero los riesgos y los costos de descarga pasan al comprador.",
+      "DDP": "DDP (Delivered Duty Paid) - El vendedor asume la responsabilidad de entregar la mercancía en el lugar especificado y paga todos los aranceles e impuestos necesarios, y los riesgos pasan al comprador después de la entrega."
+    }
   },
   "exportConsulting": {
     "exportConsultingTitle": "Servicios de Consultoría en Agricultura",
