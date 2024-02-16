@@ -21,7 +21,7 @@ const IncotermsSvgComponent: FC<IncotermsSvgProps> = ({
       viewBox="0 0 1440 765"
       fill="none"
       clipRule="evenodd"
-      style={{ position: "relative" }}
+      style={{ position: "relative", height: "100%" }}
     >
       <line
         x1="231"
