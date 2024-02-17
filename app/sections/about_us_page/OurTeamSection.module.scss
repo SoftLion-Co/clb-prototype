@@ -73,9 +73,13 @@
   &__vector {
     position: absolute;
     z-index: -1;
-    top: 0.7%;
-    min-width: 100%;
+    top: 1%;
+    min-width: 141%;
+    left: -20.5%;
+
     @include for-size(tablet) {
+      min-width: 100%;
+      right: 0px;
       top: -1.8%;
     }
     @include for-size(laptop) {
