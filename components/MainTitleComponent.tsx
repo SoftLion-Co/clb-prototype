@@ -29,15 +29,18 @@ const MainTitleComponent: FC<MainTitleProps> = ({
 
   return (
     <MotionWrapper
-      className={classNames(s.main, className, {
-        [s.left]: left,
-        [s.mobileLeft]: mobileLeft,
-      })}
+      tag="h2"
       initial
       viewport
       variants
       custom={1}
+      className={classNames(s.main, s.main__title, className, {
+        [s.left]: left,
+        [s.mobileLeft]: mobileLeft,
+      })}
+      style={{ color: titleColor }}
     >
+      {title}
       <Image
         className={s.main__image}
         src={image}
@@ -45,9 +48,6 @@ const MainTitleComponent: FC<MainTitleProps> = ({
         width={44}
         height={67}
       />
-      <h2 className={s.main__title} style={{ color: titleColor }}>
-        {title}
-      </h2>
     </MotionWrapper>
   );
 };
