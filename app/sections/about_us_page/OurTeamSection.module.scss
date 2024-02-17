@@ -36,13 +36,13 @@
   &__controls {
     position: relative;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    gap: 144px;
     align-items: center;
     margin-top: 40px;
     padding: 0;
 
     @include for-size(tablet) {
-      justify-content: center;
       gap: 170px;
       margin-top: 80px;
     }
@@ -72,6 +72,8 @@
 
   &__vector {
     position: absolute;
+    user-select: none;
+    pointer-events: none;
     z-index: -1;
     top: 1%;
     min-width: 141%;

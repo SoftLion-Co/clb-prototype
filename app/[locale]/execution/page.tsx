@@ -23,6 +23,7 @@ const Execution = () => {
             className={classNames(s.container, s.execution__cards)}
             path="execution-cards"
           />
+
           <Image
             className={s.execution__vector}
             src={SectionVector}

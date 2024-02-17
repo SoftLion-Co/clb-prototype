@@ -219,8 +219,11 @@
 }
 
 .brand {
+  pointer-events: none;
+
   &__element_top {
     user-select: none;
+    pointer-events: none;
     position: absolute;
     z-index: 0;
     height: auto;
@@ -243,6 +246,7 @@
 
   &__element_buttom {
     user-select: none;
+    pointer-events: none;
 
     @include for-size(phone) {
       position: absolute;
