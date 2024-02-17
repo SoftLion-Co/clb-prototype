@@ -233,8 +233,8 @@ const ContactUsSection = ({ cv, id }: { cv?: boolean; id?: string }) => {
 
     formData.set(fieldName, selectedDropdownValue || "");
 
-    const url = `https://softlion.blog/wp-json/contact-form-7/v1/contact-forms/${
-      cv ? 342 : 215
+    const url = `https://wp.cl-brokers.com/wp-json/contact-form-7/v1/contact-forms/${
+      cv ? 636 : 13
     }/feedback`;
 
     const reqOptions = {
