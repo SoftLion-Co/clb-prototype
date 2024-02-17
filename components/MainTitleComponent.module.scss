@@ -3,6 +3,7 @@
 .main {
   display: flex;
   justify-content: center;
+  flex-direction: row-reverse;
   align-items: baseline;
   margin-bottom: 40px;
   gap: 16px;
@@ -26,12 +27,12 @@
 
   &.left {
     @include for-size(laptop) {
-      justify-content: flex-start;
+      justify-content: flex-end;
     }
   }
 
   &.mobileLeft {
-    justify-content: flex-start;
+    justify-content: flex-end;
   }
 
   &__image {

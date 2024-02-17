@@ -40,13 +40,16 @@
 
     position: absolute;
     top: 11%;
+    left: 5%;
     width: 83%;
     font-size: 34px;
     text-align: left;
 
     @include for-size(tablet) {
       text-align: center;
-      width: max-content;
+      width: 80%;
+      left: 10%;
+      margin: 0 auto;
       font-size: 48px;
     }
     @include for-size(laptop) {

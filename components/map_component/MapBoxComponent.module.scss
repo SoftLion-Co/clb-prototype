@@ -10,7 +10,8 @@
   height: 494px;
 
   @include for-size(tablet) {
-    height: 524px;
+    height: 100%;
+    min-height: 524px;
   }
   @include for-size(laptop) {
     min-height: 584px;
