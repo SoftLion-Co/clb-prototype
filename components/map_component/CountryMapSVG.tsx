@@ -7,7 +7,6 @@ interface CountryMapSVGProps {
   hoverStyle: CSSProperties;
   activeStyle: CSSProperties;
   defaultStyle: CSSProperties;
-  scale: number;
   currentScale: number;
   translate: { x: number; y: number };
   svgContentRef: React.RefObject<SVGSVGElement>;
@@ -33,30 +32,18 @@ const CountryMapSVG = ({
 
   return (
     <svg
-      width="100%"
-      height="auto"
       viewBox={`0 0 ${originalWidth} ${originalHeight}`}
       style={{
         maxWidth: "100%",
         transform: `scale(${currentScale}) translate(${translate.x}px, ${translate.y}px)`,
         transition: "transform 0.3s",
         cursor: "pointer",
+        width: "100%",
+        height: "auto",
       }}
       ref={svgContentRef}
       transform={`scale(${currentScale})`}
     >
-      <path
-        d="M607.785 428.1L608.283 428.5 ... 926.679 472.4Z"
-        style={hoverPath["path1"] ? hoverStyle : defaultStyle}
-        onMouseEnter={() => handleMouseEnter("path1")}
-        onMouseLeave={() => handleMouseLeave("path1")}
-      />
-      <path
-        d="M377.212 428.8L374.42 429.9L373.723 429.5V427.4L374.62 426.7L377.212 427.3V428.8Z"
-        style={hoverPath["path2"] ? hoverStyle : defaultStyle}
-        onMouseEnter={() => handleMouseEnter("path2")}
-        onMouseLeave={() => handleMouseLeave("path2")}
-      />
       <path
         d="M926.679 472.4L923.489 469.6L921.196 467.9L919.601 467.2L916.112 467.6L913.222 466.7L911.427 465.8L911.926 465.2L910.032 462.2L909.234 460.3L910.231 458.9L910.43 456.6L908.736 453.3L907.041 452.1L905.745 450.5L910.131 450.2L915.415 448.9L918.605 449.2L919.701 449L923.19 448.9L922.692 448.2L924.985 447.7L926.28 449.2L927.875 450.2L926.978 451.1L929.271 452.1H930.467L933.757 454.6V455.3L931.863 456.8L931.663 457.9L934.853 461.3L937.246 462.7L940.436 464.2L940.635 465.1L939.738 467.6H936.747L937.346 468.5L939.24 469.7L945.32 474.1L946.816 473.8L949.009 474.7L949.208 476L948.211 477.4L950.105 478.8L950.903 480.3L949.108 480.8L950.504 482.3L951.003 484.9L948.809 484.8L946.317 485.3L943.327 480.6L943.426 479.6L940.336 477.5L940.436 475.8L939.638 474.6L937.944 474.8L936.05 475.7L933.159 474.1L931.963 474.3L931.663 473.2L929.869 471.5L926.679 472.4Z"
         style={hoverPath["path3"] ? hoverStyle : defaultStyle}
