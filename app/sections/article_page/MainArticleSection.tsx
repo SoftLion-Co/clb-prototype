@@ -94,7 +94,7 @@ const MainArticleSection = (data: Data) => {
             >
               <Image
                 src={data.data.acf.mainimage}
-                alt={data.data.acf[`heading_${locale}` as keyof Acf]}
+                alt={"Article Image"}
                 className={s.image}
                 width={1440}
                 height={649}
