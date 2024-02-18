@@ -64,7 +64,7 @@ const MapBoxComponent = ({ onCountrySelect }: MapBoxComponentProps) => {
     }
   }, [transformWrapperRef, currentScale]);
 
-  const resetScaleAndPosition = () => {
+  const resetScaleAndPosition = useCallback(() => {
     const resetTransition: Transition = {
       type: "spring",
       stiffness: 100,
@@ -105,7 +105,7 @@ const MapBoxComponent = ({ onCountrySelect }: MapBoxComponentProps) => {
     }
 
     controls.start({ scale: resetScale, x: 0, y: 0 }, resetTransition);
-  };
+  }, [controls, setCurrentScale, setTranslate, transformWrapperRef]);
 
   const { data, fetchDataAndReadFile } = useExcelToJsonHook();
 
