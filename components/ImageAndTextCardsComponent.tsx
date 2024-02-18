@@ -81,6 +81,13 @@ function ImageAndTextCardsComponent(props: ImageAndTextCardsProps) {
     { [s.quote__mobileCenter]: mobileTextCenter }
   );
 
+  const imageStyling = {
+    backgroundImage: `url(${image})`,
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    height: "100%",
+  };
+
   return (
     <MotionWrapper className={articleClasses} initial viewport>
       <MotionWrapper
@@ -94,20 +101,8 @@ function ImageAndTextCardsComponent(props: ImageAndTextCardsProps) {
         <p className={quoteClasses}>{text}</p>
       </MotionWrapper>
 
-      <MotionWrapper
-        className={s.quote__image__container}
-        initial
-        viewport
-        variants
-        custom={rotate ? 1 : 2}
-      >
-        <Image
-          src={image}
-          alt={alt}
-          width={1000}
-          height={1000}
-          className={s.quote__image}
-        />
+      <MotionWrapper initial viewport variants custom={rotate ? 1 : 2}>
+        <div className={s.quote__container} style={imageStyling}></div>
       </MotionWrapper>
     </MotionWrapper>
   );

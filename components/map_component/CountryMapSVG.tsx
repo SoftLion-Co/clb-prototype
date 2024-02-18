@@ -28,11 +28,11 @@ const CountryMapSVG = ({
   handleMouseLeave,
 }: CountryMapSVGProps) => {
   const originalWidth = 952;
-  const originalHeight = 584;
+  // const originalHeight = 584;
 
   return (
     <svg
-      viewBox={`0 0 ${originalWidth} ${originalHeight}`}
+      viewBox={`0 0 ${originalWidth} `}
       style={{
         maxWidth: "100%",
         transform: `scale(${currentScale}) translate(${translate.x}px, ${translate.y}px)`,
@@ -40,6 +40,7 @@ const CountryMapSVG = ({
         cursor: "pointer",
         width: "100%",
         height: "auto",
+        userSelect: "none",
       }}
       ref={svgContentRef}
       transform={`scale(${currentScale})`}

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
 const reqUrl =
-  "https://softlion.blog/wp-json/wp/v2/contact-us-photo?acf_format=standard&_fields=acf";
+  "https://wp.cl-brokers.com//wp-json/wp/v2/contact-us-photo?acf_format=standard&_fields=acf";
 
 export interface ContactUsPhoto {
   acf: Acf;

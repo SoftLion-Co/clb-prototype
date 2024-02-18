@@ -5,7 +5,6 @@ import MainTitleComponent from "@/components/MainTitleComponent";
 import MainButtonComponent from "@/components/MainButtonComponent";
 import Image from "next/image";
 
-import Picture from "@/images/our_advantages_test/advantages-image-1.png";
 import BrandElement from "@/images/vectors/brand-element-2.svg";
 
 import classNames from "classnames";
@@ -234,8 +233,8 @@ const ContactUsSection = ({ cv, id }: { cv?: boolean; id?: string }) => {
 
     formData.set(fieldName, selectedDropdownValue || "");
 
-    const url = `https://softlion.blog/wp-json/contact-form-7/v1/contact-forms/${
-      cv ? 342 : 215
+    const url = `https://wp.cl-brokers.com/wp-json/contact-form-7/v1/contact-forms/${
+      cv ? 636 : 13
     }/feedback`;
 
     const reqOptions = {

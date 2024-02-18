@@ -11,6 +11,10 @@ module.exports = withNextIntl(withVideos({
         protocol: "https",
         hostname: "softlion.blog",
       },
+      {
+        protocol: "https",
+        hostname: "wp.cl-brokers.com",
+      },
     ],
   },
 }));
