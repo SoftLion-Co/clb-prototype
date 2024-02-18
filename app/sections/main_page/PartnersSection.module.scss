@@ -33,6 +33,7 @@
     height: 70px;
     width: 70px;
     padding: 3px;
+    mix-blend-mode: multiply;
 
     @include for-size(tablet) {
       padding: 7px;
