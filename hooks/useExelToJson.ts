@@ -12,7 +12,7 @@ const useExcelToJson = () => {
 
     try {
       const request = await fetch(
-        "https://softlion.blog/wp-json/wp/v2/trading-markets?acf_format=standard&_fields=acf.exel_document_input"
+        "https://wp.cl-brokers.com/wp-json/wp/v2/trading-markets?acf_format=standard&_fields=acf.exel_document_input"
       );
       const result = await request.json();
 
@@ -28,14 +28,15 @@ const useExcelToJson = () => {
 
       const excelFileUrl = result[0].acf.exel_document_input;
 
-      // Виділіть частину URL, яка йде після "https://softlion.blog/"
-      const relativePath = excelFileUrl.replace("https://softlion.blog/", "");
+      // Виділіть частину URL, яка йде після "https://wp.cl-brokers.com/"
+      const relativePath = excelFileUrl.replace("https://wp.cl-brokers.com/", "");
 
       // Збережіть нову базову URL
       const baseUrl = "http://localhost:3001/";
 
       // Складіть повний URL для нового запиту
       const newUrl = baseUrl + relativePath;
+      debugger
 
       // Виконайте запит з новим URL
       const response = await fetch(newUrl);
