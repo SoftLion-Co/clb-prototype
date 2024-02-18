@@ -10,7 +10,7 @@ interface VideoData {
 }
 
 const videoReqUrl =
-  "https://softlion.blog/wp-json/wp/v2/videos/500?acf_format=standard&_fields=acf";
+  "https://wp.cl-brokers.com/wp-json/wp/v2/videos/661?acf_format=standard&_fields=acf";
 
 const GetHeroVideoComponent = () => {
   const [video, setVideo] = useState<VideoData | null>(null);
