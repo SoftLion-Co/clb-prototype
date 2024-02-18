@@ -36,7 +36,6 @@ const useExcelToJson = () => {
 
       // Складіть повний URL для нового запиту
       const newUrl = baseUrl + relativePath;
-      debugger
 
       // Виконайте запит з новим URL
       const response = await fetch(newUrl);
