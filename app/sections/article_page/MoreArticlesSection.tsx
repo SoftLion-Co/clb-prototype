@@ -88,7 +88,7 @@ const MoreArticlesSection: FC<MoreArticlesSectionProps> = ({ blogId }) => {
               height="100%"
               slideSize="25%"
               slideGap="md"
-              containScroll="keepSnaps"
+              containScroll="trimSnaps"
               align="center"
               slidesToScroll={1}
               previousControlIcon={<NextArrow className={s.arrow} />}
@@ -117,7 +117,7 @@ const MoreArticlesSection: FC<MoreArticlesSectionProps> = ({ blogId }) => {
               
                 {filteredBlogs.map((blog, index) => (
                   <Carousel.Slide key={index}>
-                    <div key={index}  style={{display: "flex", justifyContent: "center", alignItems: "center"}}>
+                    <div key={index} style={{ height: "100%"}}>
                       <SmallCardBlogComponent info={blog} locale={locale} />
                     </div>
                   </Carousel.Slide>
