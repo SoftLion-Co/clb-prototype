@@ -7,6 +7,10 @@ import OurTeamSection from "@/app/sections/about_us_page/OurTeamSection";
 import GetHeroComponent from "@/hooks/GetHeroComponent";
 import classNames from "classnames";
 
+export async function generateMetadata({}) {
+  return { title: "About Us" };
+}
+
 export default function AboutUs() {
   return (
     <React.Fragment>
