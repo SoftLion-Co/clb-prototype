@@ -77,7 +77,7 @@ const MainArticleSection = (data: Data) => {
             {data.data.acf[`heading_${locale}` as keyof Acf]}
           </MotionWrapper>
           <MotionWrapper
-            tag="p"
+            tag="h2"
             className={classNames(s.article__date)}
             initial
             viewport
@@ -110,7 +110,7 @@ const MainArticleSection = (data: Data) => {
               {parse(`${data.data.acf[`text1_${locale}` as keyof Acf]}`)}
             </MotionWrapper>
             <MotionWrapper
-              tag="h2"
+              tag="h3"
               className={s.article__subheading}
               initial
               viewport
@@ -135,7 +135,7 @@ const MainArticleSection = (data: Data) => {
               articlePadding
             />
             <MotionWrapper
-              tag="h2"
+              tag="h3"
               className={s.article__subheading}
               initial
               viewport

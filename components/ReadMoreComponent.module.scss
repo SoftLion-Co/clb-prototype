@@ -22,7 +22,6 @@
   }
 
   &__arrow {
-    user-select: none;
     filter: invert(21%) sepia(95%) saturate(334%) hue-rotate(172deg)
       brightness(91%) contrast(89%);
     transition: transform 0.3s ease-in-out;
