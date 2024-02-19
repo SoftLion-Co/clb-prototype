@@ -47,7 +47,7 @@ interface Acf {
   text3_ua: string;
 }
 
-const useBlogsData = (reverseOrder = false) => {
+const useBlogsData = (isHomePage: boolean) => {
   const [blogs, setBlogs] = useState<Blog[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -58,11 +58,13 @@ const useBlogsData = (reverseOrder = false) => {
       const req = await fetch(reqUrl, { cache: "no-cache" });
       let fetchedBlogs: Blog[] = await req.json();
 
-      if (reverseOrder) {
-        fetchedBlogs = fetchedBlogs.reverse();
+      if (!isHomePage) {
+        setBlogs(fetchedBlogs);
+      } else {
+        const lastThreeBlogs = fetchedBlogs.slice(0, 3);
+        setBlogs(lastThreeBlogs);
       }
 
-      setBlogs(fetchedBlogs);
       setLoading(false);
     } catch (error: any) {
       setError(error);
@@ -74,9 +76,8 @@ const useBlogsData = (reverseOrder = false) => {
     fetchBlogs();
   }, []);
 
-  const latestBlogs = blogs.slice(0, 3);
-
-  return { blogs, loading, error, latestBlogs };
+  console.log(blogs);
+  return { blogs, loading, error };
 };
 
 export default useBlogsData;
