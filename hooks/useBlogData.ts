@@ -48,7 +48,6 @@ const useBlogData = (name: string) => {
   const [blog, setBlog] = useState<Blog | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  console.log(name)
 
   const fetchBlog = async () => {
     try {

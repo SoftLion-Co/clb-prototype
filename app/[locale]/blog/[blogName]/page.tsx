@@ -33,7 +33,7 @@ const BlogArticle: FC<{ params: BlogArticleParams }> = ({ params }) => {
   return (
     <React.Fragment>
       <MainArticleSection data={blog} />
-      <MoreArticlesSection blogId={blogName} />
+      <MoreArticlesSection blogName={blogName} />
       <ContactUsSection />
     </React.Fragment>
   );

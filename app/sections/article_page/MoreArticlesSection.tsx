@@ -12,14 +12,14 @@ import { Carousel, Embla } from "@mantine/carousel";
 import MotionWrapper from "@/hooks/MotionWrapper";
 
 interface MoreArticlesSectionProps {
-  blogId: string;
+  blogName: string;
 }
 
 interface ArrowProps {
   className: string;
 }
 
-const MoreArticlesSection: FC<MoreArticlesSectionProps> = ({ blogId }) => {
+const MoreArticlesSection: FC<MoreArticlesSectionProps> = ({ blogName }) => {
   const locale = useLocale();
   const { blogs, loading, error } = useBlogsData();
   const t = useTranslations("components");
@@ -65,9 +65,13 @@ const MoreArticlesSection: FC<MoreArticlesSectionProps> = ({ blogId }) => {
   if (error) {
     return <p>Error: {error}</p>;
   }
-  const filteredBlogs = blogs.filter(
-    (blog) => blog.id !== parseInt(blogId, 10)
-  );
+
+  const filteredBlogs = blogs.filter((blog) => {
+    const formattedHeading = blog.acf.heading_en
+      .toLowerCase()
+      .replace(/[^a-zA-Z0-9]+/g, "-");
+    return formattedHeading !== blogName;
+  });
 
   return (
     <section className={s.box}>
@@ -114,15 +118,13 @@ const MoreArticlesSection: FC<MoreArticlesSectionProps> = ({ blogId }) => {
                 },
               ]}
             >
-              
-                {filteredBlogs.map((blog, index) => (
-                  <Carousel.Slide key={index}>
-                    <div key={index} style={{ height: "100%"}}>
-                      <SmallCardBlogComponent info={blog} locale={locale} />
-                    </div>
-                  </Carousel.Slide>
-                ))}
-              
+              {filteredBlogs.map((blog, index) => (
+                <Carousel.Slide key={index}>
+                  <div key={index} style={{ height: "100%" }}>
+                    <SmallCardBlogComponent info={blog} locale={locale} />
+                  </div>
+                </Carousel.Slide>
+              ))}
             </Carousel>
           </MotionWrapper>
         </MotionWrapper>
