@@ -44,18 +44,26 @@ interface Acf {
   text3_ua: string;
 }
 
-const useBlogData = (id: string) => {
+const useBlogData = (name: string) => {
   const [blog, setBlog] = useState<Blog | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  console.log(name)
 
   const fetchBlog = async () => {
     try {
       setLoading(true);
-      const reqUrlWithId = `https://softlion.blog/wp-json/wp/v2/blogs/${id}?acf_format=standard&_fields=acf,id`;
+      const reqUrlWithId = `https://softlion.blog/wp-json/wp/v2/blogs?acf_format=standard&_fields=acf,id`;
       const req = await fetch(reqUrlWithId, { cache: "no-cache" });
-      const fetchedBlog: Blog = await req.json();
-      setBlog(fetchedBlog);
+      const fetchedBlogs: Blog[] = await req.json();
+      const foundBlog = fetchedBlogs.find(
+        (blog) => blog.acf.heading_en.toLowerCase().replace(/[^a-zA-Z0-9]+/g, '-') === name
+      );
+      if (foundBlog) {
+        setBlog(foundBlog);
+      } else {
+        setError(null);
+      }
       setLoading(false);
     } catch (error: any) {
       setError(error);
@@ -65,7 +73,7 @@ const useBlogData = (id: string) => {
 
   useEffect(() => {
     fetchBlog();
-  }, [id]);
+  }, [name]);
 
   return { blog, loading, error };
 };

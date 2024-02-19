@@ -11,13 +11,13 @@ import ContactUsSection from "@/app/sections/main_page/ContactUsSection";
 // }
 
 interface BlogArticleParams {
-  blogId: string;
+  blogName: string;
 }
 
 const BlogArticle: FC<{ params: BlogArticleParams }> = ({ params }) => {
-  const blogId = params.blogId;
-  const { blog, loading, error } = useBlogData(blogId);
-
+  const blogName = params.blogName;
+  const { blog, loading, error } = useBlogData(blogName);
+  
   if (loading) {
     return <p>Loading...</p>;
   }
@@ -33,7 +33,7 @@ const BlogArticle: FC<{ params: BlogArticleParams }> = ({ params }) => {
   return (
     <React.Fragment>
       <MainArticleSection data={blog} />
-      <MoreArticlesSection blogId={blogId} />
+      <MoreArticlesSection blogId={blogName} />
       <ContactUsSection />
     </React.Fragment>
   );
