@@ -6,9 +6,9 @@ import MoreArticlesSection from "@/app/sections/article_page/MoreArticlesSection
 import useBlogData from "@/hooks/useBlogData";
 import ContactUsSection from "@/app/sections/main_page/ContactUsSection";
 
-export async function generateMetadata({}) {
-  return { title: "Article" };
-}
+// export async function generateMetadata({}) {
+//   return { title: "Article" };
+// }
 
 interface BlogArticleParams {
   blogId: string;
