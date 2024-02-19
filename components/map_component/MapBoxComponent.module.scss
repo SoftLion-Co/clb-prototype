@@ -71,9 +71,7 @@
     justify-content: center;
     align-items: center;
 
-    color: $blackTextColor;
     font-size: 20px;
-    line-height: 130%;
     font-weight: 700;
     min-width: 12px;
     height: 20px;
@@ -81,7 +79,6 @@
 
     @include for-size(laptop) {
       font-size: 24px;
-      line-height: 150%;
       min-width: 14px;
       height: 22px;
     }

@@ -9,18 +9,15 @@
   display: flex;
   justify-content: space-between;
   font-size: 16px;
-  line-height: 130%;
 
   @include for-size(tablet) {
     justify-content: space-evenly;
     font-size: 18px;
-    line-height: 150%;
   }
   @include for-size(laptop) {
     justify-content: center;
     gap: 100px;
     font-size: 18px;
-    line-height: 150%;
   }
 
   &__break {
@@ -57,7 +54,6 @@
   }
 
   &__pages {
-    user-select: none;
     color: $brandColorDarkGreen;
     display: flex;
     align-items: center;
@@ -105,7 +101,6 @@
   &__arrow_image {
     width: 22px;
     height: 22px;
-    user-select: none;
     transition: filter 0.2s ease-in-out;
     filter: invert(34%) sepia(7%) saturate(777%) hue-rotate(55deg)
       brightness(95%) contrast(84%);
