@@ -5,6 +5,10 @@ import HeroSection from "@/app/sections/commodity_brokerage_page/HeroSection";
 import OurCoreServices from "@/app/sections/commodity_brokerage_page/OurCoreServices";
 import { useTranslations } from "next-intl";
 
+export async function generateMetadata({}) {
+  return { title: "Commodity Brokerage" };
+}
+
 const Commodity = () => {
   const t = useTranslations("commodityBrokerage");
 

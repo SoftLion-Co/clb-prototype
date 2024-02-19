@@ -10,6 +10,10 @@ import ContactUsSection from "@/app/sections/main_page/ContactUsSection";
 import MotionWrapper from "@/hooks/MotionWrapper";
 import GetHeroComponent from "@/hooks/GetHeroComponent";
 
+export async function generateMetadata({}) {
+  return { title: "Execution" };
+}
+
 const Execution = () => {
   return (
     <React.Fragment>
