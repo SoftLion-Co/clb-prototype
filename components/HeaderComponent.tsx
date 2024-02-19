@@ -11,6 +11,7 @@ import ArrowMenu from "@/images/vectors/arrow-menu.svg";
 import MainButtonComponent from "./MainButtonComponent";
 import { usePathname } from "next/navigation";
 import { useTranslations } from "next-intl";
+import { motion } from "framer-motion";
 
 import LogoMobile from "@/images/Logo-brokers-mobile.svg";
 import Logo from "@/images/Logo-header-brokers.svg";
@@ -171,6 +172,11 @@ const HeaderComponent = () => {
     closeModal();
   }, [closeModal]);
 
+  const handleClose = () => {
+    setFlagDropdownOpen(false);
+    setServicesMenuOpen(false);
+  };
+
   const NavigationContent = useMemo(
     () => (
       <ul className={s.header__list}>
@@ -213,11 +219,21 @@ const HeaderComponent = () => {
                 </div>
 
                 {isServicesMenuOpen && (
-                  <ul className={s.header__dropdown}>
+                  <motion.ul
+                    className={s.header__dropdown}
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.2 }}
+                  >
                     {servicesMenu.map((subItem) => (
-                      <li
+                      <motion.li
                         className={s.header__dropdown_item}
                         key={subItem.title}
+                        initial={{ opacity: 0, y: -10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -10 }}
+                        transition={{ duration: 0.2 }}
                       >
                         <Link
                           className={s.header__dropdown_text}
@@ -226,9 +242,9 @@ const HeaderComponent = () => {
                         >
                           {t1(subItem.title)}
                         </Link>
-                      </li>
+                      </motion.li>
                     ))}
-                  </ul>
+                  </motion.ul>
                 )}
               </>
             )}
@@ -258,15 +274,13 @@ const HeaderComponent = () => {
         onClick={() => handleDropdownClick("flag")}
       >
         <div className={s.flag}>
-          <Link href="">
-            <Image
-              className={classNames(s.flag__image, s.flag__custom)}
-              src={selectedCountry.flag}
-              alt={selectedCountry.name}
-              width={30}
-              height={20}
-            />
-          </Link>
+          <Image
+            className={classNames(s.flag__image, s.flag__custom)}
+            src={selectedCountry.flag}
+            alt={selectedCountry.name}
+            width={30}
+            height={20}
+          />
           <p className={s.flag__name}>{selectedCountry.name}</p>
 
           <span
@@ -277,13 +291,24 @@ const HeaderComponent = () => {
             <Image src={ArrowMenu} alt="⌵" />
           </span>
         </div>
+
         {isFlagDropdownOpen && (
-          <ul className={s.flag__list}>
+          <motion.ul
+            className={s.flag__list}
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.2 }}
+          >
             {countriesMenu.map((country) => {
               if (country !== selectedCountry) {
                 return (
-                  <li
+                  <motion.li
                     key={country.code}
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.2 }}
                     onClick={() => handleCountrySelection(country)}
                   >
                     <Link
@@ -300,12 +325,12 @@ const HeaderComponent = () => {
                       />
                       <p>{country.name}</p>
                     </Link>
-                  </li>
+                  </motion.li>
                 );
               }
               return null;
             })}
-          </ul>
+          </motion.ul>
         )}
       </div>
     ),
@@ -403,8 +428,15 @@ const HeaderComponent = () => {
             <Image src={Close} alt="close" width={20} height={20} />
           </button>
         </div>
-
-        <div className={s.modal__container}>{ModalContent}</div>
+        <motion.div
+          className={s.modal__container}
+          exit={{ opacity: 0, scale: 0.5 }}
+          transition={{ duration: 0.3 }}
+          initial={{ x: -1000 }}
+          animate={{ x: 0 }}
+        >
+          {ModalContent}
+        </motion.div>
       </Modal>
     </header>
   );

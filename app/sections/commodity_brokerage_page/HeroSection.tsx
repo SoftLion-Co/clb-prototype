@@ -65,6 +65,7 @@ const HeroSection = async () => {
             <MotionWrapper variants custom={3}>
               <MainButtonComponent
                 text={t1("getInTouch")}
+                defaultTo="contactUsSection"
                 typeButton="MainUsualButton"
               />
             </MotionWrapper>

@@ -88,8 +88,8 @@ const MoreArticlesSection: FC<MoreArticlesSectionProps> = ({ blogId }) => {
               height="100%"
               slideSize="25%"
               slideGap="md"
-              loop
-              align="start"
+              containScroll="trimSnaps"
+              align="center"
               slidesToScroll={1}
               previousControlIcon={<NextArrow className={s.arrow} />}
               nextControlIcon={<PrevArrow className={s.arrow} />}
@@ -106,21 +106,23 @@ const MoreArticlesSection: FC<MoreArticlesSectionProps> = ({ blogId }) => {
                 {
                   minWidth: 998,
                   maxWidth: 1280,
-                  slideSize: "33.333333%",
+                  slideSize: "33.3%",
                 },
                 {
                   minWidth: 1280,
-                  slideSize: "33.333333%",
+                  slideSize: "33.3%",
                 },
               ]}
             >
-              {filteredBlogs.map((blog, index) => (
-                <Carousel.Slide key={index}>
-                  <div key={index}>
-                    <SmallCardBlogComponent info={blog} locale={locale} />
-                  </div>
-                </Carousel.Slide>
-              ))}
+              
+                {filteredBlogs.map((blog, index) => (
+                  <Carousel.Slide key={index}>
+                    <div key={index} style={{ height: "100%"}}>
+                      <SmallCardBlogComponent info={blog} locale={locale} />
+                    </div>
+                  </Carousel.Slide>
+                ))}
+              
             </Carousel>
           </MotionWrapper>
         </MotionWrapper>
