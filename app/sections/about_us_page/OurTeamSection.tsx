@@ -86,13 +86,11 @@ const OurTeamSection: FC<OurTeamSectionProps> = ({ teamMembers }) => {
     <section className={s.box}>
       <div className={classNames(s.background, s.team)}>
         <MotionWrapper className={s.container} initial viewport>
-          <MotionWrapper variants>
-            <MainTitleComponent
-              className={s.team__title}
-              title={t("heading")}
-              color="black"
-            />
-          </MotionWrapper>
+          <MainTitleComponent
+            className={s.team__title}
+            title={t("heading")}
+            color="black"
+          />
 
           <MotionWrapper className={s.team__carousel} initial viewport variants>
             <Carousel
@@ -139,8 +137,8 @@ const OurTeamSection: FC<OurTeamSectionProps> = ({ teamMembers }) => {
               ))}
             </Carousel>
           </MotionWrapper>
+          <Image className={s.team__vector} src={SectionVector} alt="Vector" />
         </MotionWrapper>
-        <Image className={s.team__vector} src={SectionVector} alt="vector" />
       </div>
     </section>
   );

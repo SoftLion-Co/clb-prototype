@@ -9,11 +9,8 @@
   position: relative;
   height: 494px;
 
-  @include for-size(tablet) {
-    height: 524px;
-  }
   @include for-size(laptop) {
-    min-height: 584px;
+    height: 584px;
   }
   @include for-size(desktop) {
     border-radius: 32px;
@@ -48,7 +45,6 @@
     background-color: $classicWhiteBackgroundColor;
     transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
     opacity: 1;
-
     cursor: pointer;
     user-select: none;
     border: 1px solid $brandColorDarkGreen;
@@ -58,10 +54,13 @@
     @include for-size(laptop) {
       &:hover {
         background-color: $brandColorDarkGreen;
-
         .map__buttonText {
           color: $classicWhiteBackgroundColor;
         }
+      }
+
+      &:active {
+        transform: translateY(1px);
       }
     }
   }

@@ -93,30 +93,10 @@
   }
 
   &__image {
-    height: 100%;
-    object-fit: cover;
     border-radius: 24px;
-    width: 100%;
 
     @include for-size(desktop) {
       border-radius: 32px;
-    }
-
-    &__container {
-      width: 100%;
-      height: 245px;
-
-      @include for-size(tablet) {
-        height: 100%;
-      }
-
-      @include for-size(laptop) {
-        height: 455px;
-      }
-
-      @include for-size(desktop) {
-        height: 566px;
-      }
     }
   }
 }

@@ -8,11 +8,13 @@
 
   @include for-size(tablet) {
     display: grid;
-    gap: 16px;
+    height: 100%;
     grid-template-columns: repeat(3, 1fr);
+    height: 494px;
   }
   @include for-size(laptop) {
     gap: 24px;
+    min-height: 584px;
   }
 
   &__container {
@@ -28,6 +30,9 @@
     display: grid;
     gap: 24px;
 
+    @include for-size(tablet) {
+      overflow-y: auto;
+    }
     @include for-size(desktop) {
       border-radius: 32px;
     }
@@ -87,6 +92,7 @@
 
   &__options {
     display: flex;
+    flex-wrap: wrap;
     gap: 4px;
   }
 

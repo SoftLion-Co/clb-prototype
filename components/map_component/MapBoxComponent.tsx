@@ -1,11 +1,16 @@
 import s from "./MapBoxComponent.module.scss";
-import React, { useState, useEffect, useRef, useMemo } from "react";
+import React, {
+  useState,
+  useEffect,
+  useCallback,
+  useRef,
+  useMemo,
+} from "react";
 
 import { CSSProperties } from "react";
 import { motion, useAnimation, Transition } from "framer-motion";
 
 import CountryMapSVG from "@/components/map_component/CountryMapSVG";
-import countriesData from "@/components/map_component/countriesData";
 import useExcelToJsonHook from "@/hooks/useExelToJson";
 
 import {
@@ -34,7 +39,6 @@ const MapBoxComponent = ({ onCountrySelect }: MapBoxComponentProps) => {
   const [currentScale, setCurrentScale] = useState(1);
   const transformWrapperRef = useRef<ReactZoomPanPinchRef>(null);
   const [isLargeScreen, setIsLargeScreen] = useState(false);
-  const [scale, setScale] = useState(1);
   const [selectedCountryId, setSelectedCountryId] = useState<string | null>(
     null
   );
@@ -44,23 +48,23 @@ const MapBoxComponent = ({ onCountrySelect }: MapBoxComponentProps) => {
   const MAX_SCALE = 4;
   const MIN_SCALE = 1;
 
-  const zoomIn = () => {
+  const zoomIn = useCallback(() => {
     if (transformWrapperRef.current) {
       transformWrapperRef.current.zoomIn(SCALE_STEP, 200);
       const newScale = Math.min(currentScale + SCALE_STEP, MAX_SCALE);
       setCurrentScale(newScale);
     }
-  };
+  }, [transformWrapperRef, currentScale]);
 
-  const zoomOut = () => {
+  const zoomOut = useCallback(() => {
     if (transformWrapperRef.current) {
       transformWrapperRef.current.zoomOut(SCALE_STEP, 200);
       const newScale = Math.max(currentScale - SCALE_STEP, MIN_SCALE);
       setCurrentScale(newScale);
     }
-  };
+  }, [transformWrapperRef, currentScale]);
 
-  const resetScaleAndPosition = () => {
+  const resetScaleAndPosition = useCallback(() => {
     const resetTransition: Transition = {
       type: "spring",
       stiffness: 100,
@@ -101,15 +105,15 @@ const MapBoxComponent = ({ onCountrySelect }: MapBoxComponentProps) => {
     }
 
     controls.start({ scale: resetScale, x: 0, y: 0 }, resetTransition);
-  };
+  }, [controls, setCurrentScale, setTranslate, transformWrapperRef]);
 
   const { data, fetchDataAndReadFile } = useExcelToJsonHook();
 
   useEffect(() => {
-    fetchDataAndReadFile(); // Викликаємо функцію при старті компонента, можливо використовуючи useEffect
+    fetchDataAndReadFile();
   }, []);
 
-  const getDragConstraints = () => {
+  const getDragConstraints = useCallback(() => {
     if (!containerRef.current || !svgContentRef.current) {
       return { top: 0, right: 0, bottom: 0, left: 0 };
     }
@@ -126,32 +130,35 @@ const MapBoxComponent = ({ onCountrySelect }: MapBoxComponentProps) => {
       bottom: maxY,
       left: -maxX,
     };
-  };
+  }, [containerRef, svgContentRef, currentScale]);
 
-  const handleMouseUp = () => {
+  const handleMouseUp = useCallback(() => {
     setStartPos({ x: 0, y: 0 });
-  };
+  }, []);
 
-  const handleMouseEnter = (pathId: string) => {
+  const handleMouseEnter = useCallback((pathId: string) => {
     setHoverPath((prev) => ({ ...prev, [pathId]: true }));
-  };
+  }, []);
 
-  const handleMouseLeave = (pathId: string) => {
+  const handleMouseLeave = useCallback((pathId: string) => {
     setHoverPath((prev) => ({ ...prev, [pathId]: false }));
-  };
+  }, []);
 
-  const handleCountrySelect = (countryId: any) => {
-    if (selectedCountryId === countryId) {
-      setSelectedCountryId(null);
-      onCountrySelect(null);
-    } else {
-      const countryData = data?.find((c) => c.country === countryId);
-      if (countryData) {
-        setSelectedCountryId(countryId);
-        onCountrySelect(countryData);
+  const handleCountrySelect = useCallback(
+    (countryId: any) => {
+      if (selectedCountryId === countryId) {
+        setSelectedCountryId(null);
+        onCountrySelect(null);
+      } else {
+        const countryData = data?.find((c) => c.country === countryId);
+        if (countryData) {
+          setSelectedCountryId(countryId);
+          onCountrySelect(countryData);
+        }
       }
-    }
-  };
+    },
+    [selectedCountryId, onCountrySelect, data]
+  );
 
   useEffect(() => {
     if (svgContentRef.current) {
@@ -288,7 +295,6 @@ const MapBoxComponent = ({ onCountrySelect }: MapBoxComponentProps) => {
               hoverStyle={hoverStyle}
               activeStyle={activeStyle}
               defaultStyle={defaultStyle}
-              scale={scale}
               currentScale={currentScale}
               translate={translate}
               svgContentRef={svgContentRef}

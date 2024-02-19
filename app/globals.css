@@ -6,6 +6,11 @@ body {
   background: #a7b896;
 }
 
+img {
+  pointer-events: none;
+  user-select: none;
+}
+
 h1,
 h2,
 h3,

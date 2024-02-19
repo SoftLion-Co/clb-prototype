@@ -13,7 +13,7 @@ import MotionWrapper from "@/hooks/MotionWrapper";
 function HeroSection() {
   const t = useTranslations("homePage");
   const t1 = useTranslations("components");
-  const { effectiveType } = useNetwork(); // Get the user's connection type
+  const { effectiveType } = useNetwork();
   const color = useHeroTextColor();
 
   const titleClass = classNames(s.hero__title, {
@@ -27,6 +27,10 @@ function HeroSection() {
   return (
     <MotionWrapper tag={"section"} className={s.box} initial>
       <div className={s.hero}>
+        <MotionWrapper tag={"h1"} className={titleClass} variants custom={1}>
+          {t("hero")}
+        </MotionWrapper>
+
         {effectiveType === "slow-2g" ||
         effectiveType === "2g" ||
         effectiveType === "3g" ? ( // Render photo if the connection is bad
@@ -37,9 +41,6 @@ function HeroSection() {
         )}
 
         <div className={s.hero__content}>
-          <MotionWrapper tag={"h1"} className={titleClass} variants custom={1}>
-            {t("hero")}
-          </MotionWrapper>
           <div className={s.hero__text_wrapper}>
             <MotionWrapper tag={"p"} className={textClass} variants custom={2}>
               {t("heroText1")}
