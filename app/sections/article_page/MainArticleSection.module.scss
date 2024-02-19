@@ -55,6 +55,17 @@
 
   &__subheading {
     color: $blackTextColor;
+    font-size: 20px;
+    text-transform: none;
+    @include for-size(tablet) {
+      font-size: 22px;
+    }
+    @include for-size(laptop) {
+      font-size: 26px;
+    }
+    @include for-size(desktop) {
+      font-size: 28px;
+    }
   }
 
   &__text {
