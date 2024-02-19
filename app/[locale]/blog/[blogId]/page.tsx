@@ -1,5 +1,5 @@
 "use client";
-import React, { FC, useEffect, useState } from "react";
+import React, { FC } from "react";
 import { Helmet } from "react-helmet";
 import MainArticleSection from "@/app/sections/article_page/MainArticleSection";
 import MoreArticlesSection from "@/app/sections/article_page/MoreArticlesSection";
@@ -15,18 +15,8 @@ interface BlogArticleParams {
 }
 
 const BlogArticle: FC<{ params: BlogArticleParams }> = ({ params }) => {
-  const [metadata, setMetadata] = useState({ title: "" });
   const blogId = params.blogId;
   const { blog, loading, error } = useBlogData(blogId);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const data = await generateMetadata({});
-      setMetadata(data);
-    };
-
-    fetchData();
-  }, []);
 
   if (loading) {
     return <p>Loading...</p>;
@@ -42,10 +32,6 @@ const BlogArticle: FC<{ params: BlogArticleParams }> = ({ params }) => {
 
   return (
     <React.Fragment>
-      <Helmet>
-        <title>{metadata.title}</title>
-      </Helmet>
-
       <MainArticleSection data={blog} />
       <MoreArticlesSection blogId={blogId} />
       <ContactUsSection />
