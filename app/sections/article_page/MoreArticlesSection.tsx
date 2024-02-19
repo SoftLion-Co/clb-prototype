@@ -66,12 +66,13 @@ const MoreArticlesSection: FC<MoreArticlesSectionProps> = ({ blogName }) => {
     return <p>Error: {error}</p>;
   }
 
-  const filteredBlogs = blogs.filter((blog) => {
-    const formattedHeading = blog.acf.heading_en
-      .toLowerCase()
-      .replace(/[^a-zA-Z0-9]+/g, "-");
-    return formattedHeading !== blogName;
-  });
+  function getBlogIdFromUrl(url: string) {
+    const regex = /-(\d+)$/;
+    const match = url.match(regex);
+    return match ? parseInt(match[1], 10) : null;
+  }
+
+  const filteredBlogs = blogs.filter((blog) => blog.id !== getBlogIdFromUrl(blogName));
 
   return (
     <section className={s.box}>
