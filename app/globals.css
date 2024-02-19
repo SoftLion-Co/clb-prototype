@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+*:focus,
+*:active {
+  -webkit-tap-highlight-color: transparent;
+  tap-highlight-color: transparent;
+}
+
 body {
   background: #a7b896;
 }
