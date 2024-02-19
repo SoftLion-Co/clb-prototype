@@ -1,5 +1,6 @@
 "use client";
 import React, { useEffect, useState, useCallback, useMemo } from "react";
+import { Link } from "../navigation";
 import Image from "next/image";
 import Modal from "react-modal";
 import classNames from "classnames";
@@ -8,10 +9,9 @@ import Close from "@/images/vectors/close.svg";
 import Burger from "@/images/vectors/burger-menu.svg";
 import ArrowMenu from "@/images/vectors/arrow-menu.svg";
 import MainButtonComponent from "./MainButtonComponent";
-import { Link } from "../navigation";
 import { usePathname } from "next/navigation";
 import { useTranslations } from "next-intl";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 
 import LogoMobile from "@/images/Logo-brokers-mobile.svg";
 import Logo from "@/images/Logo-header-brokers.svg";
@@ -66,6 +66,9 @@ const HeaderComponent = () => {
   const [isModalOpen, setModalOpen] = useState(false);
   const [showHeader, setShowHeader] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
+  const [windowWidth, setWindowWidth] = useState(
+    typeof window !== "undefined" ? window.innerWidth : 0
+  );
 
   const initialCountry = useMemo(
     () => countriesMenu.find((country) => country.locale === initialLocale),
@@ -130,14 +133,9 @@ const HeaderComponent = () => {
   }, [isServicesMenuOpen]);
 
   const handleDropdownMouseLeave = useCallback((dropdownType: string) => {
-    if (dropdownType === "flag") {
-      setFlagDropdownOpen(false);
-      setArrowRotated(false);
-    }
-    if (dropdownType === "services") {
-      setServicesMenuOpen(false);
-      setArrowRotated(false);
-    }
+    if (dropdownType === "flag") setFlagDropdownOpen(false);
+    if (dropdownType === "services") setServicesMenuOpen(false);
+    setArrowRotated(false);
   }, []);
 
   const handleCountrySelection = useCallback((country: Country) => {
@@ -155,9 +153,29 @@ const HeaderComponent = () => {
     document.body.style.overflow = "auto";
   }, []);
 
+  const handleResize = useCallback(() => {
+    setWindowWidth(window.innerWidth);
+    if (window.innerWidth > 1280) closeModal();
+  }, [closeModal]);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setWindowWidth(window.innerWidth);
+      window.addEventListener("resize", handleResize);
+      return () => {
+        window.removeEventListener("resize", handleResize);
+      };
+    }
+  }, [handleResize]);
+
   const handleLinkClick = useCallback(() => {
     closeModal();
   }, [closeModal]);
+
+  const handleClose = () => {
+    setFlagDropdownOpen(false);
+    setServicesMenuOpen(false);
+  };
 
   const NavigationContent = useMemo(
     () => (
@@ -200,36 +218,34 @@ const HeaderComponent = () => {
                   </span>
                 </div>
 
-                <AnimatePresence>
-                  {isServicesMenuOpen && (
-                    <motion.ul
-                      className={s.header__dropdown}
-                      initial={{ opacity: 0, scaleY: 0 }}
-                      animate={{ opacity: 1, scaleY: 1 }}
-                      exit={{ opacity: 0, scaleY: 0 }}
-                      transition={{ duration: 0.2 }}
-                    >
-                      {servicesMenu.map((subItem) => (
-                        <motion.li
-                          className={s.header__dropdown_item}
-                          key={subItem.title}
-                          initial={{ opacity: 0, y: -10 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          exit={{ opacity: 0, y: -10 }}
-                          transition={{ duration: 0.2 }}
+                {isServicesMenuOpen && (
+                  <motion.ul
+                    className={s.header__dropdown}
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    {servicesMenu.map((subItem) => (
+                      <motion.li
+                        className={s.header__dropdown_item}
+                        key={subItem.title}
+                        initial={{ opacity: 0, y: -10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -10 }}
+                        transition={{ duration: 0.2 }}
+                      >
+                        <Link
+                          className={s.header__dropdown_text}
+                          href={subItem.link}
+                          onClick={handleLinkClick}
                         >
-                          <Link
-                            className={s.header__dropdown_text}
-                            href={subItem.link}
-                            onClick={handleLinkClick}
-                          >
-                            {t1(subItem.title)}
-                          </Link>
-                        </motion.li>
-                      ))}
-                    </motion.ul>
-                  )}
-                </AnimatePresence>
+                          {t1(subItem.title)}
+                        </Link>
+                      </motion.li>
+                    ))}
+                  </motion.ul>
+                )}
               </>
             )}
           </li>
@@ -257,22 +273,14 @@ const HeaderComponent = () => {
         onMouseLeave={() => handleDropdownMouseLeave("flag")}
         onClick={() => handleDropdownClick("flag")}
       >
-        <motion.div
-          className={s.flag}
-          initial={{ opacity: 0, scaleY: 0 }}
-          animate={{ opacity: 1, scaleY: 1 }}
-          exit={{ opacity: 0, scaleY: 0 }}
-          transition={{ duration: 0.2 }}
-        >
-          <Link href="">
-            <Image
-              className={classNames(s.flag__image, s.flag__custom)}
-              src={selectedCountry.flag}
-              alt={selectedCountry.name}
-              width={30}
-              height={20}
-            />
-          </Link>
+        <div className={s.flag}>
+          <Image
+            className={classNames(s.flag__image, s.flag__custom)}
+            src={selectedCountry.flag}
+            alt={selectedCountry.name}
+            width={30}
+            height={20}
+          />
           <p className={s.flag__name}>{selectedCountry.name}</p>
 
           <span
@@ -282,13 +290,14 @@ const HeaderComponent = () => {
           >
             <Image src={ArrowMenu} alt="⌵" />
           </span>
-        </motion.div>
+        </div>
+
         {isFlagDropdownOpen && (
           <motion.ul
             className={s.flag__list}
-            initial={{ opacity: 0, scaleY: 0 }}
-            animate={{ opacity: 1, scaleY: 1 }}
-            exit={{ opacity: 0, scaleY: 0 }}
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.2 }}
           >
             {countriesMenu.map((country) => {
@@ -296,11 +305,11 @@ const HeaderComponent = () => {
                 return (
                   <motion.li
                     key={country.code}
-                    onClick={() => handleCountrySelection(country)}
                     initial={{ opacity: 0, y: -10 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -10 }}
                     transition={{ duration: 0.2 }}
+                    onClick={() => handleCountrySelection(country)}
                   >
                     <Link
                       className={s.flag__link}
@@ -419,8 +428,15 @@ const HeaderComponent = () => {
             <Image src={Close} alt="close" width={20} height={20} />
           </button>
         </div>
-
-        <div className={s.modal__container}>{ModalContent}</div>
+        <motion.div
+          className={s.modal__container}
+          exit={{ opacity: 0, scale: 0.5 }}
+          transition={{ duration: 0.3 }}
+          initial={{ x: -1000 }}
+          animate={{ x: 0 }}
+        >
+          {ModalContent}
+        </motion.div>
       </Modal>
     </header>
   );
