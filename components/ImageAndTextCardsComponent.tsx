@@ -1,6 +1,5 @@
 import React from "react";
 import s from "./ImageAndTextCardsComponent.module.scss";
-import Image from "next/image";
 import classNames from "classnames";
 import MotionWrapper from "@/hooks/MotionWrapper";
 

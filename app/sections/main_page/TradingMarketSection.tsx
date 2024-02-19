@@ -26,7 +26,7 @@ const TradingMarketSection = () => {
   const agriculturalCropsList = useMemo(() => {
     return selectedCountry ? (
       <div className={s.map__cultures}>
-        <p className={s.map__subtitle}>{t("agriculturalCropsTitle")}:</p>
+        <h4 className={s.map__subtitle}>{t("agriculturalCropsTitle")}:</h4>
         <ul className={s.map__list}>
           {selectedCountry.agriculturalCrops.map((crop) => (
             <li className={s.map__item} key={crop}>
@@ -41,7 +41,7 @@ const TradingMarketSection = () => {
   const deliveryOptionsList = useMemo(() => {
     return selectedCountry ? (
       <div className={s.map__delivery}>
-        <p className={s.map__subtitle}>{t("deliveryOptionsTitle")}:</p>
+        <h4 className={s.map__subtitle}>{t("deliveryOptionsTitle")}:</h4>
         <ul className={s.map__options}>
           {selectedCountry.deliveryOptions.map((option, index) => (
             <li className={s.map__items} key={option}>
@@ -69,7 +69,7 @@ const TradingMarketSection = () => {
             <MotionWrapper className={s.map__content} variants>
               {selectedCountry ? (
                 <>
-                  <h2 className={s.map__title}>{selectedCountry.country}</h2>
+                  <h3 className={s.map__title}>{selectedCountry.country}</h3>
                   {agriculturalCropsList}
                   {deliveryOptionsList}
                 </>
