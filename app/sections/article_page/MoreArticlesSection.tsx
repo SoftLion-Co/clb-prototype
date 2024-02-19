@@ -93,7 +93,7 @@ const MoreArticlesSection: FC<MoreArticlesSectionProps> = ({ blogName }) => {
               slideSize="25%"
               slideGap="md"
               containScroll="trimSnaps"
-              align="center"
+              align="start"
               slidesToScroll={1}
               previousControlIcon={<NextArrow className={s.arrow} />}
               nextControlIcon={<PrevArrow className={s.arrow} />}
