@@ -16,7 +16,7 @@ const BlogCardsSection = () => {
   const t = useTranslations("blog");
   const t1 = useTranslations("components");
   const [cardsToRender, setCardsToRender] = useState(3);
-  const { blogs: latestBlogs, loading, error } = useBlogsData(true);
+  const { latestBlogs } = useBlogsData();
   const locale = useLocale();
 
   useEffect(() => {
@@ -52,17 +52,15 @@ const BlogCardsSection = () => {
 
           {latestBlogs.length !== 0 && (
             <MotionWrapper initial className={s.blog__cards} viewport>
-              {latestBlogs
-                .slice(0, cardsToRender)
-                .map((blog: any, index: any) => (
-                  <MotionWrapper key={index} variants custom={index}>
-                    <SmallCardBlogComponent info={blog} locale={locale} />
-                  </MotionWrapper>
-                ))}
+              {latestBlogs.slice(0, cardsToRender).map((blog, index) => (
+                <MotionWrapper key={index} variants custom={index}>
+                  <SmallCardBlogComponent info={blog} locale={locale} />
+                </MotionWrapper>
+              ))}
             </MotionWrapper>
           )}
           <MotionWrapper initial viewport variants className={s.blog__button}>
-            <Link href={`/${locale}/blog`} >
+            <Link href={`/${locale}/blog`}>
               <MainButtonComponent
                 text={t1("moreOurNews")}
                 typeButton="MainArrowButton"
