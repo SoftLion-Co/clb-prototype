@@ -24,7 +24,7 @@ export interface Acf {
 }
 
 const CardsSection = async () => {
-  const reqUrl = `https://softlion.blog/wp-json/wp/v2/careers-cards?acf_format=standard&_fields=acf`;
+  const reqUrl = `https://wp.cl-brokers.com/wp-json/wp/v2/careers-cards?acf_format=standard&_fields=acf`;
 
   const req = await fetch(reqUrl);
   const storyData: CareersCards[] = await req.json();

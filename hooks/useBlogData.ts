@@ -52,7 +52,7 @@ const useBlogData = (id: string) => {
   const fetchBlog = async () => {
     try {
       setLoading(true);
-      const reqUrlWithId = `https://softlion.blog/wp-json/wp/v2/blogs/${id}?acf_format=standard&_fields=acf,id`;
+      const reqUrlWithId = `https://wp.cl-brokers.com/wp-json/wp/v2/blogs/${id}?acf_format=standard&_fields=acf,id`;
       const req = await fetch(reqUrlWithId, { cache: "no-cache" });
       const fetchedBlog: Blog = await req.json();
       setBlog(fetchedBlog);

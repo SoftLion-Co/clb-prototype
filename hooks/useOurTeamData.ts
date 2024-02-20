@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
 const teamReqUrl =
-  "https://softlion.blog/wp-json/wp/v2/our-team?per_page=100&acf_format=standard&_fields=id,acf,title";
+  "https://wp.cl-brokers.com/wp-json/wp/v2/our-team?per_page=100&acf_format=standard&_fields=id,acf,title";
 
 interface TeamMember {
   id: number;

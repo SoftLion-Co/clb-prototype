@@ -33,7 +33,7 @@ export interface Acf {
 
 const OurAdvantagesSection = async () => {
   const reqUrl =
-    "https://softlion.blog/wp-json/wp/v2/our-advantages?acf_format=standard&_fields=acf";
+    "https://wp.cl-brokers.com/wp-json/wp/v2/our-advantages?acf_format=standard&_fields=acf";
   const req = await fetch(reqUrl);
   const advantages: OurAnvantages[] = await req.json();
   const t = await getTranslations("aboutUs.ourAdvantages");

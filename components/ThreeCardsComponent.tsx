@@ -30,7 +30,7 @@ interface ThreeCardsProps {
 
 const ThreeCardsComponent: FC<ThreeCardsProps> =  async ({path, className}) => {
 
-  const reqUrl = `https://softlion.blog/wp-json/wp/v2/${path}?acf_format=standard&_fields=acf`
+  const reqUrl = `https://wp.cl-brokers.com/wp-json/wp/v2/${path}?acf_format=standard&_fields=acf`
 
   const req = await fetch(reqUrl);
   const storyData: OurStory[] = await req.json();
