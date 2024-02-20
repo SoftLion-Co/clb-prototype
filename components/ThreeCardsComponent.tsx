@@ -53,8 +53,8 @@ const ThreeCardsComponent: FC<ThreeCardsProps> = async ({
         src={storyData[0].acf.cardImage}
         alt="Card Image"
         className={s.cards__image}
-        width={466}
-        height={348}
+        width={464}
+        height={366}
       />
     </MotionWrapper>
   );
