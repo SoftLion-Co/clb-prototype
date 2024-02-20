@@ -62,7 +62,7 @@ const BlogCardsSection = () => {
             </MotionWrapper>
           )}
           <MotionWrapper initial viewport variants className={s.blog__button}>
-            <Link href={`/${locale}/blog`}>
+            <Link href={`/${locale}/blog`} >
               <MainButtonComponent
                 text={t1("moreOurNews")}
                 typeButton="MainArrowButton"
