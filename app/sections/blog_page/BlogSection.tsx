@@ -16,6 +16,7 @@ import Arrow from "@/images/vectors/arrow.svg";
 import BrandElement from "@/images/vectors/brand-element-5.svg";
 import { useMediaQuery } from "@mantine/hooks";
 import useBlogHero from "@/hooks/useBlogHero";
+import useBlogsData from "@/hooks/useBlogsData";
 
 interface HeroData {
   id: number;
@@ -59,7 +60,9 @@ interface BlogSectionProps {
   blogs: Array<any>;
 }
 
-const BlogSection: FC<BlogSectionProps> = ({ blogs }) => {
+const BlogSection: FC<BlogSectionProps> = ({}) => {
+  const { blogs, loading, error } = useBlogsData(false);
+
   const t = useTranslations("blog");
   const locale = useLocale();
   const isMobile = useMediaQuery("(max-width: 767.98px)");
@@ -116,7 +119,7 @@ const BlogSection: FC<BlogSectionProps> = ({ blogs }) => {
   };
 
   if (!blogHero || blogHero.length === 0) {
-    return null; // Повертаємо нуль, якщо дані ще не завантажені або відсутні
+    return null;
   }
 
   return (

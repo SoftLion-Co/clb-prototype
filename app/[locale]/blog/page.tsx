@@ -7,19 +7,17 @@ import ContactUsSection from "@/app/sections/main_page/ContactUsSection";
 import useBlogsData from "@/hooks/useBlogsData";
 import BlogSkeleton from "@/components/skeleton/BlogSkeleton";
 
-// export async function generateMetadata({}) {
-//   return { title: "Blog" };
-// }
+export default function Blog() {
+  const { blogs, loading, error } = useBlogsData(true);
 
-export default function Blog({}) {
-  const { blogs, loading, error } = useBlogsData();
+  const latestBlogs = blogs.slice(0, 3);
 
   return (
     <React.Fragment>
       <div>
-        {blogs.length === 0 && <BlogSkeleton />}
+        {loading && <BlogSkeleton />}
         {error && <p>Error: {error}</p>}
-        <BlogSection blogs={blogs} />
+        {!loading && <BlogSection blogs={latestBlogs} />}
       </div>
 
       <ContactUsSection />

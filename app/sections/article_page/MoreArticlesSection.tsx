@@ -21,7 +21,7 @@ interface ArrowProps {
 
 const MoreArticlesSection: FC<MoreArticlesSectionProps> = ({ blogName }) => {
   const locale = useLocale();
-  const { blogs, loading, error } = useBlogsData();
+  const { blogs, loading, error } = useBlogsData(false);
   const t = useTranslations("components");
 
   const [embla] = useState<Embla | null>(null);
