@@ -556,8 +556,8 @@ const ContactUsSection = ({ cv, id }: { cv?: boolean; id?: string }) => {
                 className={s.form__picture}
                 src={cv ? careersPhoto : mainPhoto}
                 alt="Picture"
-                width={1000}
-                height={1000}
+                width={464}
+                height={520}
               />
             )}
           </div>
