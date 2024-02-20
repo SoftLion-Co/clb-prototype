@@ -43,14 +43,12 @@ function HeroSection() {
             <p className={textClass}>{t("heroText1")}</p>
             <p className={textClass}>{t("heroText2")}</p>
           </div>
-          {/* <MotionWrapper className={s.hero__button} variants custom={3}> */}
           <MainButtonComponent
             className={s.hero__button}
             text={t1("ourSercvicesButton")}
             typeButton="MainUsualButton"
             defaultTo="servicesSection"
           />
-          {/* </MotionWrapper> */}
         </div>
       </div>
     </MotionWrapper>
