@@ -49,20 +49,20 @@ const useBlogData = (name: string) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
+  function getBlogIdFromUrl(url: string) {
+    const regex = /-(\d+)$/;
+    const match = url.match(regex);
+    return match ? parseInt(match[1], 10) : null;
+  }
+
   const fetchBlog = async () => {
     try {
       setLoading(true);
-      const reqUrlWithId = `https://softlion.blog/wp-json/wp/v2/blogs?acf_format=standard&_fields=acf,id`;
+      const blogId = getBlogIdFromUrl(name);
+      const reqUrlWithId = `https://softlion.blog/wp-json/wp/v2/blogs/${blogId}?acf_format=standard&_fields=acf,id`;
       const req = await fetch(reqUrlWithId, { cache: "no-cache" });
-      const fetchedBlogs: Blog[] = await req.json();
-      const foundBlog = fetchedBlogs.find(
-        (blog) => blog.acf.heading_en.toLowerCase().replace(/[^a-zA-Z0-9]+/g, '-') === name
-      );
-      if (foundBlog) {
-        setBlog(foundBlog);
-      } else {
-        setError(null);
-      }
+      const fetchedBlog: Blog = await req.json();
+      setBlog(fetchedBlog);
       setLoading(false);
     } catch (error: any) {
       setError(error);
