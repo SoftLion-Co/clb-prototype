@@ -12,7 +12,6 @@
     display: grid;
     gap: 5rem;
   }
-
   @include for-size(laptop) {
     grid-template-columns: repeat(2, 1fr);
     display: flex;
@@ -26,12 +25,14 @@
     margin-bottom: 20px;
     height: 364px;
     width: 300px;
-    user-select: none;
 
     @include for-size(tablet) {
       margin-bottom: 32px;
       height: 400px;
       width: 342px;
+    }
+    @include for-size(desktop) {
+      border-radius: 32px;
     }
   }
 

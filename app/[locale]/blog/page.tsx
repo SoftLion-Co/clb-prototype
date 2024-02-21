@@ -1,12 +1,17 @@
 "use client";
 
 import React from "react";
+import { Helmet } from "react-helmet";
 import BlogSection from "@/app/sections/blog_page/BlogSection";
 import ContactUsSection from "@/app/sections/main_page/ContactUsSection";
 import useBlogsData from "@/hooks/useBlogsData";
 import BlogSkeleton from "@/components/skeleton/BlogSkeleton";
 
-export default function Blog() {
+// export async function generateMetadata({}) {
+//   return { title: "Blog" };
+// }
+
+export default function Blog({}) {
   const { blogs, loading, error } = useBlogsData();
 
   return (

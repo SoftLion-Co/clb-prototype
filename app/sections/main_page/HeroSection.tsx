@@ -27,9 +27,7 @@ function HeroSection() {
   return (
     <MotionWrapper tag={"section"} className={s.box} initial>
       <div className={s.hero}>
-        <MotionWrapper tag={"h1"} className={titleClass} variants custom={1}>
-          {t("hero")}
-        </MotionWrapper>
+        <h1 className={titleClass}>{t("hero")}</h1>
 
         {effectiveType === "slow-2g" ||
         effectiveType === "2g" ||
@@ -42,25 +40,15 @@ function HeroSection() {
 
         <div className={s.hero__content}>
           <div className={s.hero__text_wrapper}>
-            <MotionWrapper tag={"p"} className={textClass} variants custom={2}>
-              {t("heroText1")}
-            </MotionWrapper>
-            <MotionWrapper
-              tag={"p"}
-              className={textClass}
-              variants
-              custom={2.5}
-            >
-              {t("heroText2")}
-            </MotionWrapper>
+            <p className={textClass}>{t("heroText1")}</p>
+            <p className={textClass}>{t("heroText2")}</p>
           </div>
-          <MotionWrapper className={s.hero__button} variants custom={3}>
-            <MainButtonComponent
-              text={t1("ourSercvicesButton")}
-              typeButton="MainUsualButton"
-              defaultTo="servicesSection"
-            />
-          </MotionWrapper>
+          <MainButtonComponent
+            className={s.hero__button}
+            text={t1("ourSercvicesButton")}
+            typeButton="MainUsualButton"
+            defaultTo="servicesSection"
+          />
         </div>
       </div>
     </MotionWrapper>

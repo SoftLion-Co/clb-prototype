@@ -28,7 +28,12 @@ interface Acf {
 }
 
 const BigCardBlogComponent = (data: Info) => {
-  const articleLink = `blog/${data.info.id}`;
+  const blogUrl = data.info.acf.heading_en
+    .toLowerCase()
+    .replace(/[^a-zA-Z0-9]+/g, "-");
+  const blogId = data.info.id;
+
+  const articleLink = `blog/${blogUrl}-${blogId}`;
 
   return (
     <div className={classNames(s.blog__card)}>

@@ -1,10 +1,14 @@
 "use client";
 import React, { FC } from "react";
-import s from "./page.module.scss";
+import { Helmet } from "react-helmet";
 import MainArticleSection from "@/app/sections/article_page/MainArticleSection";
 import MoreArticlesSection from "@/app/sections/article_page/MoreArticlesSection";
 import useBlogData from "@/hooks/useBlogData";
 import ContactUsSection from "@/app/sections/main_page/ContactUsSection";
+
+// export async function generateMetadata({}) {
+//   return { title: "Article" };
+// }
 
 interface BlogArticleParams {
   blogId: string;
@@ -13,7 +17,7 @@ interface BlogArticleParams {
 const BlogArticle: FC<{ params: BlogArticleParams }> = ({ params }) => {
   const blogId = params.blogId;
   const { blog, loading, error } = useBlogData(blogId);
-
+  
   if (loading) {
     return <p>Loading...</p>;
   }
@@ -29,7 +33,7 @@ const BlogArticle: FC<{ params: BlogArticleParams }> = ({ params }) => {
   return (
     <React.Fragment>
       <MainArticleSection data={blog} />
-      <MoreArticlesSection blogId={blogId} />
+      <MoreArticlesSection blogName={blogId} />
       <ContactUsSection />
     </React.Fragment>
   );

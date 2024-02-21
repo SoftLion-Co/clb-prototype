@@ -22,7 +22,6 @@ export interface Acf {
   small_text_ua: string;
 }
 
-
 interface ThreeCardsProps {
   path: string;
   className?: string;
@@ -36,10 +35,10 @@ const ThreeCardsComponent: FC<ThreeCardsProps> =  async ({path, className}) => {
   const storyData: OurStory[] = await req.json();
   const locale = useLocale();
 
-  const imagePosition = parseInt(storyData[0].acf.image_position)
-  const color = storyData[0].acf.color
-  const bigText = (storyData[0].acf as any)[`big_text_${locale}`]
-  const smallText = (storyData[0].acf as any)[`small_text_${locale}`]
+  const imagePosition = parseInt(storyData[0].acf.image_position);
+  const color = storyData[0].acf.color;
+  const bigText = (storyData[0].acf as any)[`big_text_${locale}`];
+  const smallText = (storyData[0].acf as any)[`small_text_${locale}`];
 
   const cardStyle = {
     backgroundColor: color === "blue" ? "#ECF1F6" : "#EBECE6",
@@ -52,18 +51,14 @@ const ThreeCardsComponent: FC<ThreeCardsProps> =  async ({path, className}) => {
         src={storyData[0].acf.cardImage}
         alt="Card Image"
         className={s.cards__image}
-        width={1400}
-        height={1400}
+        width={464}
+        height={366}
       />
     </MotionWrapper>
   );
 
   return (
-    <MotionWrapper
-      className={classNames(s.cards, className)}
-      initial
-      viewport
-    >
+    <MotionWrapper className={classNames(s.cards, className)} initial viewport>
       {imagePosition === 1 && image}
       <MotionWrapper
         className={classNames(s.cards__card, {

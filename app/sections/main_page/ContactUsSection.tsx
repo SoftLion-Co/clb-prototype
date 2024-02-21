@@ -550,14 +550,14 @@ const ContactUsSection = ({ cv, id }: { cv?: boolean; id?: string }) => {
             </div>
           </form>
 
-          <div style={{ zIndex: "1", width: "100%" }}>
+          <div style={{ zIndex: "-1", width: "100%" }}>
             {mainPhoto && careersPhoto && (
               <Image
                 className={s.form__picture}
                 src={cv ? careersPhoto : mainPhoto}
                 alt="Picture"
-                width={1000}
-                height={1000}
+                width={464}
+                height={520}
               />
             )}
           </div>

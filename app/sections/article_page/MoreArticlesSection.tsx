@@ -12,16 +12,16 @@ import { Carousel, Embla } from "@mantine/carousel";
 import MotionWrapper from "@/hooks/MotionWrapper";
 
 interface MoreArticlesSectionProps {
-  blogId: string;
+  blogName: string;
 }
 
 interface ArrowProps {
   className: string;
 }
 
-const MoreArticlesSection: FC<MoreArticlesSectionProps> = ({ blogId }) => {
+const MoreArticlesSection: FC<MoreArticlesSectionProps> = ({ blogName }) => {
   const locale = useLocale();
-  const { blogs, loading, error } = useBlogsData();
+  const { blogs, loading, error } = useBlogsData(false);
   const t = useTranslations("components");
 
   const [embla] = useState<Embla | null>(null);
@@ -65,9 +65,14 @@ const MoreArticlesSection: FC<MoreArticlesSectionProps> = ({ blogId }) => {
   if (error) {
     return <p>Error: {error}</p>;
   }
-  const filteredBlogs = blogs.filter(
-    (blog) => blog.id !== parseInt(blogId, 10)
-  );
+
+  function getBlogIdFromUrl(url: string) {
+    const regex = /-(\d+)$/;
+    const match = url.match(regex);
+    return match ? parseInt(match[1], 10) : null;
+  }
+
+  const filteredBlogs = blogs.filter((blog) => blog.id !== getBlogIdFromUrl(blogName));
 
   return (
     <section className={s.box}>
@@ -88,7 +93,7 @@ const MoreArticlesSection: FC<MoreArticlesSectionProps> = ({ blogId }) => {
               height="100%"
               slideSize="25%"
               slideGap="md"
-              loop
+              containScroll="trimSnaps"
               align="start"
               slidesToScroll={1}
               previousControlIcon={<NextArrow className={s.arrow} />}
@@ -106,17 +111,17 @@ const MoreArticlesSection: FC<MoreArticlesSectionProps> = ({ blogId }) => {
                 {
                   minWidth: 998,
                   maxWidth: 1280,
-                  slideSize: "33.333333%",
+                  slideSize: "33.3%",
                 },
                 {
                   minWidth: 1280,
-                  slideSize: "33.333333%",
+                  slideSize: "33.3%",
                 },
               ]}
             >
               {filteredBlogs.map((blog, index) => (
                 <Carousel.Slide key={index}>
-                  <div key={index}>
+                  <div key={index} style={{ height: "100%" }}>
                     <SmallCardBlogComponent info={blog} locale={locale} />
                   </div>
                 </Carousel.Slide>

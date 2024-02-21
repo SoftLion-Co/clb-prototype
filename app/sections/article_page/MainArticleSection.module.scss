@@ -56,9 +56,9 @@
   &__subheading {
     color: $blackTextColor;
     font-size: 20px;
-
+    text-transform: none;
     @include for-size(tablet) {
-      font-size: 24px;
+      font-size: 22px;
     }
     @include for-size(laptop) {
       font-size: 26px;
@@ -74,30 +74,24 @@
 }
 
 .image {
-  height: 100%;
   object-fit: cover;
   border-radius: 24px;
   user-select: none;
 
-  @include for-size(desktop) {
-    border-radius: 32px;
+  width: 100%;
+  height: 245px;
+
+  @include for-size(tablet) {
+    height: 380px;
   }
 
-  &__container {
-    width: 100%;
-    height: 245px;
+  @include for-size(laptop) {
+    height: 515px;
+  }
 
-    @include for-size(tablet) {
-      height: 380px;
-    }
-
-    @include for-size(laptop) {
-      height: 515px;
-    }
-
-    @include for-size(desktop) {
-      height: 648px;
-    }
+  @include for-size(desktop) {
+    height: 648px;
+    border-radius: 32px;
   }
 }
 

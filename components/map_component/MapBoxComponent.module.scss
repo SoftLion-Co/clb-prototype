@@ -9,12 +9,8 @@
   position: relative;
   height: 494px;
 
-  @include for-size(tablet) {
-    height: 100%;
-    min-height: 524px;
-  }
   @include for-size(laptop) {
-    min-height: 584px;
+    height: 584px;
   }
   @include for-size(desktop) {
     border-radius: 32px;
@@ -49,7 +45,6 @@
     background-color: $classicWhiteBackgroundColor;
     transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
     opacity: 1;
-
     cursor: pointer;
     user-select: none;
     border: 1px solid $brandColorDarkGreen;
@@ -59,10 +54,13 @@
     @include for-size(laptop) {
       &:hover {
         background-color: $brandColorDarkGreen;
-
         .map__buttonText {
           color: $classicWhiteBackgroundColor;
         }
+      }
+
+      &:active {
+        transform: translateY(1px);
       }
     }
   }
@@ -73,9 +71,7 @@
     justify-content: center;
     align-items: center;
 
-    color: $blackTextColor;
     font-size: 20px;
-    line-height: 130%;
     font-weight: 700;
     min-width: 12px;
     height: 20px;
@@ -83,7 +79,6 @@
 
     @include for-size(laptop) {
       font-size: 24px;
-      line-height: 150%;
       min-width: 14px;
       height: 22px;
     }

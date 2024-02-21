@@ -36,8 +36,8 @@ const OurTeamCardComponent = ({
           className={s.team__picture}
           src={teamMember.acf.image}
           alt="Company employee"
-          width={800}
-          height={800}
+          width={342}
+          height={400}
         />
         <h3 className={s.team__name}>
           {teamMember.acf[`fullname_${locale}` as keyof TeamMemberAcf]}

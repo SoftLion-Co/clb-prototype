@@ -28,11 +28,14 @@ interface Acf {
 
 const SmallCardBlogComponent = (data: Info) => {
   // Отримуємо частину URL, що вказує на сторінку блогу
-  const blogPagePath = window.location.pathname.includes("blog/")
-    ? ""
-    : "blog/";
 
-  const articleLink = `${blogPagePath}${data.info.id}`;
+  const blogUrl = data.info.acf.heading_en
+    .toLowerCase()
+    .replace(/[^a-zA-Z0-9]+/g, "-");
+
+  const blogId = data.info.id;
+
+  const articleLink = `blog/${blogUrl}-${blogId}`;
   const locale = useLocale();
 
   return (
@@ -42,7 +45,7 @@ const SmallCardBlogComponent = (data: Info) => {
           <Image
             className={s.blog__picture}
             src={data.info.acf.mainimage}
-            alt="Picture"
+            alt="Blog Picture"
             width={416}
             height={250}
           />

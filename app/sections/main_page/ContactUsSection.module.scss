@@ -4,7 +4,6 @@
 
 .text {
   font-size: 14px;
-  line-height: 130%;
   font-weight: 500;
 
   @include for-size(tablet) {
@@ -12,7 +11,6 @@
   }
   @include for-size(laptop) {
     font-size: 18px;
-    line-height: 150%;
   }
 }
 
@@ -30,7 +28,6 @@
   padding: 24px 16px;
   max-width: 952px;
   width: 100%;
-  user-select: none;
   position: relative;
   z-index: 1;
   grid-column: span 2;
@@ -159,7 +156,6 @@
   }
 
   &__picture {
-    user-select: none;
     object-fit: cover;
     border-radius: 24px;
     z-index: 1;
@@ -222,10 +218,9 @@
   pointer-events: none;
 
   &__element_top {
-    user-select: none;
     pointer-events: none;
     position: absolute;
-    z-index: 0;
+    z-index: -2;
     height: auto;
 
     @include for-size(phone) {
@@ -245,13 +240,12 @@
   }
 
   &__element_buttom {
-    user-select: none;
     pointer-events: none;
 
     @include for-size(phone) {
       position: absolute;
       height: auto;
-      z-index: 0;
+      z-index: -2;
       left: -30%;
       bottom: -19%;
       min-width: 205%;
@@ -288,7 +282,7 @@
   &__list {
     background-color: $backgroundColorGreen;
     color: $brandColorDarkGreen;
-    z-index: 10;
+    z-index: 100;
 
     position: absolute;
     display: grid;
@@ -310,9 +304,13 @@
 }
 
 .arrow {
-  font-size: 20px;
+  font-size: 16px;
   font-weight: 900;
   transition: transform 0.3s ease;
+
+  @include for-size(laptop) {
+    font-size: 20px;
+  }
 
   &__open {
     transform: rotate(180deg);
@@ -346,6 +344,14 @@
       }
     }
   }
+
+  span {
+    font-size: 16px;
+
+    @include for-size(laptop) {
+      font-size: 18px;
+    }
+  }
 }
 
 .date {
@@ -360,26 +366,13 @@
   &__input {
     color: $backgroundColorLightGreen;
     padding: 0 0 6.5px 0;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 130%;
 
     @include for-size(laptop) {
       padding: 0 0 9px 0;
-      font-size: 18px;
-      line-height: 150%;
     }
   }
 
   &__placeholder {
     color: $backgroundColorDarkBlue;
-    font-size: 16px;
-    line-height: 130%;
-    font-weight: 400;
-
-    @include for-size(laptop) {
-      font-size: 18px;
-      line-height: 150%;
-    }
   }
 }

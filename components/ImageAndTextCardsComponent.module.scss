@@ -15,8 +15,6 @@
   }
 
   &__rotate {
-    user-select: none;
-
     @include for-size(tablet) {
       .quote__container {
         order: 2;
@@ -29,8 +27,6 @@
   }
 
   &__rotate_mobile {
-    user-select: none;
-
     @include for-size(phone) {
       .quote__container {
         order: 2;

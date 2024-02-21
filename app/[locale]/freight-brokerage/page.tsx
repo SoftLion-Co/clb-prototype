@@ -6,6 +6,10 @@ import ProductPortfolioSection from "@/app/sections/freight_brokerage/BrokerageP
 import ContactUsSection from "@/app/sections/main_page/ContactUsSection";
 import GetHeroComponent from "@/hooks/GetHeroComponent";
 
+export async function generateMetadata({}) {
+  return { title: "Freight Brokerage" };
+}
+
 const Freight = () => {
   return (
     <React.Fragment>

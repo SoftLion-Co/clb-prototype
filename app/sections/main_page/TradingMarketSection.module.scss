@@ -10,10 +10,11 @@
     display: grid;
     height: 100%;
     grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(1, 1fr);
+    height: 494px;
   }
   @include for-size(laptop) {
     gap: 24px;
+    min-height: 584px;
   }
 
   &__container {
@@ -29,6 +30,9 @@
     display: grid;
     gap: 24px;
 
+    @include for-size(tablet) {
+      overflow-y: auto;
+    }
     @include for-size(desktop) {
       border-radius: 32px;
     }
@@ -36,35 +40,16 @@
 
   &__title {
     color: $brandColorDarkGreen;
-    font-size: 20px;
-    font-weight: 600;
-    line-height: 130%;
 
     &::first-letter {
       text-transform: uppercase;
-    }
-
-    @include for-size(tablet) {
-      font-size: 22px;
-    }
-    @include for-size(laptop) {
-      font-size: 28px;
-      line-height: 150%;
     }
   }
 
   &__subtitle {
     color: $blackTextColor;
     text-transform: uppercase;
-    font-weight: 500;
-    font-size: 14px;
-    line-height: 130%;
     margin-bottom: 10px;
-
-    @include for-size(laptop) {
-      font-size: 18px;
-      line-height: 150%;
-    }
   }
 
   &__list {
@@ -74,14 +59,9 @@
 
   &__item {
     list-style-type: disc;
-    color: $blackTextColor;
-    font-size: 16px;
-    line-height: 130%;
     margin-left: 20px;
 
     @include for-size(laptop) {
-      font-size: 18px;
-      line-height: 150%;
       margin-left: 22px;
     }
   }
@@ -104,18 +84,17 @@
   }
 
   &__message {
-    color: $blackTextColor;
     font-size: 16px;
-    line-height: 130%;
     font-weight: 500;
+    text-align: center;
+    text-transform: uppercase;
+
     display: flex;
     justify-content: center;
     align-items: center;
-    text-transform: uppercase;
-    text-align: center;
+
     @include for-size(laptop) {
       font-size: 28px;
-      line-height: 150%;
     }
   }
 }

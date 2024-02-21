@@ -44,15 +44,22 @@ interface Acf {
   text3_ua: string;
 }
 
-const useBlogData = (id: string) => {
+const useBlogData = (name: string) => {
   const [blog, setBlog] = useState<Blog | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
+  function getBlogIdFromUrl(url: string) {
+    const regex = /-(\d+)$/;
+    const match = url.match(regex);
+    return match ? parseInt(match[1], 10) : null;
+  }
+
   const fetchBlog = async () => {
     try {
       setLoading(true);
-      const reqUrlWithId = `https://wp.cl-brokers.com/wp-json/wp/v2/blogs/${id}?acf_format=standard&_fields=acf,id`;
+      const blogId = getBlogIdFromUrl(name);
+      const reqUrlWithId = `https:///wp.cl-brokers.com/wp-json/wp/v2/blogs/${blogId}?acf_format=standard&_fields=acf,id`;
       const req = await fetch(reqUrlWithId, { cache: "no-cache" });
       const fetchedBlog: Blog = await req.json();
       setBlog(fetchedBlog);
@@ -65,7 +72,7 @@ const useBlogData = (id: string) => {
 
   useEffect(() => {
     fetchBlog();
-  }, [id]);
+  }, [name]);
 
   return { blog, loading, error };
 };

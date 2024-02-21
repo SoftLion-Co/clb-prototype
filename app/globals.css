@@ -2,8 +2,23 @@
 @tailwind components;
 @tailwind utilities;
 
+*:focus,
+*:active {
+  -webkit-tap-highlight-color: transparent;
+  tap-highlight-color: transparent;
+}
+
 body {
   background: #a7b896;
+}
+
+img {
+  pointer-events: none;
+  user-select: none;
+}
+
+svg {
+  user-select: none;
 }
 
 h1,
@@ -15,6 +30,8 @@ h6,
 p {
   margin: 0;
   word-break: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
 }
 
 div,
@@ -84,5 +101,20 @@ h3 {
   }
   @media screen and (min-width: 1920px) {
     font-size: 28px;
+  }
+}
+
+h4 {
+  color: #171717;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 130%;
+
+  @media screen and (min-width: 768px) {
+    font-size: 16px;
+  }
+  @media screen and (min-width: 1280px) {
+    font-size: 18px;
+    line-height: 150%;
   }
 }

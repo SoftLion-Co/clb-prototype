@@ -6,6 +6,10 @@ import WhyChoose from "@/app/sections/export_consulting/WhyChooseSection";
 import ContactUsSection from "@/app/sections/main_page/ContactUsSection";
 import GetHeroComponent from "@/hooks/GetHeroComponent";
 
+export async function generateMetadata({}) {
+  return { title: "Export Сonsulting" };
+}
+
 const Export = () => {
   return (
     <React.Fragment>

@@ -33,24 +33,8 @@
 
   &__title {
     text-align: center;
-    font-weight: 600;
     margin-bottom: 40px;
     color: $backgroundColorDarkBlue;
-    font-size: 20px;
-    line-height: 130%;
-
-    @include for-size(tablet) {
-      font-size: 22px;
-    }
-
-    @include for-size(laptop) {
-      font-size: 26px;
-      line-height: 150%;
-    }
-
-    @include for-size(desktop) {
-      font-size: 28px;
-    }
   }
 
   &.lastServiceCard,
@@ -63,33 +47,37 @@
   }
 
   &__list {
-    font-size: 18px;
-    line-height: 130%;
     padding-left: 26px;
     list-style-type: initial;
     text-align: left;
     display: flex;
     flex-direction: column;
-    color: $backgroundColorDarkBlue;
     gap: 20px;
 
     @include for-size(tablet) {
-      font-size: 20px;
       padding-left: 36px;
       gap: 26px;
     }
-
     @include for-size(laptop) {
-      line-height: 150%;
-      font-size: 22px;
-      padding-left: 36px;
       gap: 32px;
     }
+    @include for-size(desktop) {
+      gap: 36px;
+    }
+  }
 
+  &__item {
+    color: $backgroundColorDarkBlue;
+    font-size: 18px;
+
+    @include for-size(tablet) {
+      font-size: 20px;
+    }
+    @include for-size(laptop) {
+      font-size: 22px;
+    }
     @include for-size(desktop) {
       font-size: 24px;
-      padding-left: 36px;
-      gap: 36px;
     }
   }
 }

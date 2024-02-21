@@ -16,8 +16,9 @@ const VacanciesSection = () => {
             title={t("openVacanciesTitle")}
             className={s.vacancies__title}
           />
-          <MotionWrapper variants></MotionWrapper>
-          <VacanciesCards />
+          <MotionWrapper variants>
+            <VacanciesCards />
+          </MotionWrapper>
         </MotionWrapper>
       </div>
     </section>

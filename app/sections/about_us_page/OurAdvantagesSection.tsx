@@ -67,8 +67,8 @@ const OurAdvantagesSection = async () => {
                     src={item.data}
                     alt={`Advantages Image ${index}`}
                     className={s.advantages__image}
-                    width={1000}
-                    height={1000}
+                    width={464}
+                    height={301}
                   />
                 )}
               </MotionWrapper>

@@ -15,7 +15,7 @@ const VacanciesCards = () => {
   const vacancies = useVacancies();
   const locale = useLocale();
 
-  return (
+  return vacancies.length !== 0 ? (
     <MotionWrapper
       initial
       viewport
@@ -32,7 +32,7 @@ const VacanciesCards = () => {
         </MotionWrapper>
       ))}
     </MotionWrapper>
-  );
+  ) : null;
 };
 
 export default VacanciesCards;

@@ -65,6 +65,7 @@ const HeroSection = async () => {
             <MotionWrapper variants custom={3}>
               <MainButtonComponent
                 text={t1("getInTouch")}
+                defaultTo="contactUsSection"
                 typeButton="MainUsualButton"
               />
             </MotionWrapper>
@@ -74,8 +75,8 @@ const HeroSection = async () => {
               className={s.hero__image}
               src={heroData[0].acf.hero_image}
               alt="Hero image"
-              width={1000}
-              height={1000}
+              width={720}
+              height={575}
             />
           </MotionWrapper>
         </MotionWrapper>

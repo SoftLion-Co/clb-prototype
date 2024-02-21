@@ -104,8 +104,9 @@ const MainButtonComponent: FC<MainButtonProps> = ({
             smooth={true}
             offset={0}
             duration={500}
+            alt="Get In Touch"
           >
-            <motion.button {...buttonProps}>
+            <motion.div {...buttonProps}>
               <motion.p
                 className={s.main__text}
                 animate={{ x: isHovered ? 40 : 0 }}
@@ -128,7 +129,7 @@ const MainButtonComponent: FC<MainButtonProps> = ({
                   <Image src={Arrow} alt="arrow" />
                 </motion.div>
               </motion.div>
-            </motion.button>
+            </motion.div>
           </ScrollLink>
         );
       case "MainArrowButton":
@@ -146,6 +147,7 @@ const MainButtonComponent: FC<MainButtonProps> = ({
             smooth={true}
             offset={0}
             duration={500}
+            alt="Click on me"
           >
             <p
               className={classNames(s.main__container, s.main__text)}
