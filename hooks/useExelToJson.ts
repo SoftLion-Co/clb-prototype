@@ -1,3 +1,4 @@
+import { useLocale } from "next-intl";
 import { useState } from "react";
 import * as XLSX from "xlsx";
 
@@ -5,6 +6,7 @@ const useExcelToJson = () => {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState<any[] | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const locale = useLocale();
 
   const fetchDataAndReadFile = async () => {
     setLoading(true);
@@ -43,11 +45,30 @@ const useExcelToJson = () => {
       const data = new Uint8Array(arrayBuffer);
 
       const workbook = XLSX.read(data, { type: "array" });
-      const sheetName = workbook.SheetNames[0];
+      // Determine sheet name based on locale
+      let sheetName: string;
+      switch (locale) {
+        case 'en':
+          sheetName = 'English';
+          break;
+        case 'es':
+          sheetName = 'Spain';
+          break;
+        case 'de':
+          sheetName = 'Deutch';
+          break;
+        case 'ua':
+          sheetName = 'Ukraine';
+          break;
+        default:
+          throw new Error(`Unsupported locale: ${locale}`);
+      }
+
       const sheet = workbook.Sheets[sheetName];
 
-      // Отримуємо дані без транспонування
+      // Get data without transposition
       const jsonData = XLSX.utils.sheet_to_json(sheet, { header: 1 });
+
 
       // Групуємо дані за країнами
       const groupedData: any[] = [];
