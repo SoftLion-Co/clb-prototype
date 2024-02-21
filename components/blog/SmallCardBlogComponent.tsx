@@ -53,7 +53,7 @@ const SmallCardBlogComponent = (data: Info) => {
             {data.info.acf[`heading_${data.locale}` as keyof Acf]}
           </h3>
           <p className={s.blog__text}>
-            {data.info.acf[`subheading1_${data.locale}` as keyof Acf]}
+            {data.info.acf[`text1_${data.locale}` as keyof Acf]}
           </p>
         </div>
 
