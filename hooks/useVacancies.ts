@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
 const reqUrl =
-  "https://softlion.blog/wp-json/wp/v2/vacancies?acf_format=standard&_fields=acf,id";
+  "https://wp.cl-brokers.com/wp-json/wp/v2/vacancies?acf_format=standard&_fields=acf,id";
 
 interface Vacancies {
   id: number;

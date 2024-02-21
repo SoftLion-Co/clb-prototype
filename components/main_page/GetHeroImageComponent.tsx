@@ -11,7 +11,7 @@ interface PhotoData {
 }
 
 const photoReqUrl =
-  "https://softlion.blog/wp-json/wp/v2/videos/531?acf_format=standard&_fields=acf";
+  "https://wp.cl-brokers.com/wp-json/wp/v2/videos/664?acf_format=standard&_fields=acf";
 
 const GetHeroImageComponent = () => {
   const [photo, setPhoto] = useState<PhotoData | null>(null);

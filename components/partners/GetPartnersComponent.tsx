@@ -4,7 +4,7 @@ import MotionWrapper from "@/hooks/MotionWrapper";
 import Image from "next/image";
 
 const reqUrl =
-  "https://softlion.blog/wp-json/wp/v2/partners?per_page=100&acf_format=standard&_fields=id,acf,title";
+  "https://wp.cl-brokers.com/wp-json/wp/v2/partners?per_page=100&acf_format=standard&_fields=id,acf,title";
 
 interface Partners {
   title: Rendered;

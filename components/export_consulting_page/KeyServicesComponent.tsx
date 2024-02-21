@@ -21,7 +21,7 @@ interface Card {
 
 const KeyServicesComponent = async () => {
   const reqUrl =
-    "https://softlion.blog/wp-json/wp/v2/key-services?acf_format=standard&_fields=acf";
+    "https://wp.cl-brokers.com/wp-json/wp/v2/key-services?acf_format=standard&_fields=acf";
   const req = await fetch(reqUrl);
   const keyServices: KeyServices[] = await req.json();
   const locale = useLocale();

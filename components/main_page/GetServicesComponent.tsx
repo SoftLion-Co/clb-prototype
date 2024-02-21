@@ -5,7 +5,7 @@ import OurServicesCardComponent from "./OurServicesCardComponent";
 import { useLocale } from "next-intl";
 
 const reqUrl =
-  "https://softlion.blog/wp-json/wp/v2/services?acf_format=standard&_fields=id,acf,title";
+  "https://wp.cl-brokers.com/wp-json/wp/v2/services?acf_format=standard&_fields=id,acf,title";
 
 interface Services {
   id: number;

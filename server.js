@@ -3,7 +3,7 @@ const { createProxyMiddleware } = require("http-proxy-middleware");
 
 const app = express();
 
-const targetUrl = 'https://softlion.blog';
+const targetUrl = 'https://wp.cl-brokers.com';
 
   app.use('/', (req, res, next) => {
     console.log('Requested URL:', req.url);
