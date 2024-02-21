@@ -42,15 +42,15 @@ const ContactUsSection = ({ cv, id }: { cv?: boolean; id?: string }) => {
   const photos = useContactUsPhoto();
   const [mainPhoto, setMainPhoto] = useState("");
   const [careersPhoto, setCareersPhoto] = useState("");
-
-  useEffect(() => {
-    if (photos.length > 0) {
-      const { main_photo: mainPhotoUrl, careers_photo: careersPhotoUrl } =
-        photos[0]?.acf || {};
-      setMainPhoto(mainPhotoUrl || "");
-      setCareersPhoto(careersPhotoUrl || "");
-    }
-  }, [photos]);
+  const [cvFileInputKey, setCvFileInputKey] = useState(0);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isFormValid, setIsFormValid] = useState(false);
+  const [selectedDropdownValue, setSelectedDropdownValue] = useState("");
+  const [isValid, isSetVaid] = useState(false);
+  const [isDisabled, isSetDisabled] = useState(false);
+  const [validationErrors, setValidationErrors] = useState<ValidationErrors>(
+    {}
+  );
 
   const topics = [
     "generalInquiry",
@@ -61,18 +61,14 @@ const ContactUsSection = ({ cv, id }: { cv?: boolean; id?: string }) => {
 
   const translatedTopics = topics.map((topic) => t(`topics.${topic}`));
 
-  const [cvFileInputKey, setCvFileInputKey] = useState(0);
-  const [isDateSelected, setIsDateSelected] = useState(false);
-
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [formMessage, setFormMessage] = useState("");
-  const [selectedDropdownValue, setSelectedDropdownValue] = useState("");
-  const [validationErrors, setValidationErrors] = useState<ValidationErrors>(
-    {}
-  );
-
-  const [isValid, isSetVaid] = useState(false);
-  const [isDisabled, isSetDisabled] = useState(false);
+  useEffect(() => {
+    if (photos.length > 0) {
+      const { main_photo: mainPhotoUrl, careers_photo: careersPhotoUrl } =
+        photos[0]?.acf || {};
+      setMainPhoto(mainPhotoUrl || "");
+      setCareersPhoto(careersPhotoUrl || "");
+    }
+  }, [photos]);
 
   const [formData, setFormData] = useState<FormData>({
     firstname: "",
@@ -210,20 +206,12 @@ const ContactUsSection = ({ cv, id }: { cv?: boolean; id?: string }) => {
     return Object.values(errors).every((error) => !error);
   };
 
-  const [isFormValid, setIsFormValid] = useState(false);
   const handleFormSubmission = async () => {
     const isFormValid = await validateForm();
 
     if (isFormValid) {
-      setFormMessage(t("validMessage"));
       setIsFormValid(true);
-
-      setTimeout(() => {
-        setFormMessage("");
-        setIsFormValid(false);
-      }, 10000);
     } else {
-      setFormMessage(t("invalidMessage"));
       setIsFormValid(false);
     }
   };
@@ -285,7 +273,6 @@ const ContactUsSection = ({ cv, id }: { cv?: boolean; id?: string }) => {
   const handleTimeChange = (date: Date | null) => {
     const formattedDate = date ? date.toISOString() : "";
     setFormData({ ...formData, time: date });
-    setIsDateSelected(!!date);
 
     if (formDataRef.current) {
       (formDataRef.current as any).set("time", formattedDate);
@@ -333,8 +320,10 @@ const ContactUsSection = ({ cv, id }: { cv?: boolean; id?: string }) => {
     }
 
     const isTouched = touchedFields[field.name as keyof typeof touchedFields];
-    const isValid =
-      !validationErrors[field.name as keyof typeof validationErrors];
+    const fields = cv ? fieldsCV : fieldsWithoutCV;
+
+    // const isValid =
+    //   !validationErrors[field.name as keyof typeof validationErrors];
     const shouldShowValidation = isTouched;
 
     const fieldValue = formData[field.name as keyof typeof formData];
@@ -356,13 +345,10 @@ const ContactUsSection = ({ cv, id }: { cv?: boolean; id?: string }) => {
     );
   };
 
+  const fields = cv ? fieldsCV : fieldsWithoutCV;
+
   const renderTextarea = () => {
-    const isTouched = touchedFields.message;
-    const isValid = !validationErrors.message;
-    const textareaClassNames = classNames(s.form__message, s.text, {
-      [s.inputValid]: isTouched && isValid,
-      [s.inputInvalid]: isTouched && !isValid,
-    });
+    const textareaClassNames = classNames(s.form__message, s.text);
 
     return (
       <div className={s.form__textarea}>
@@ -495,8 +481,6 @@ const ContactUsSection = ({ cv, id }: { cv?: boolean; id?: string }) => {
     );
   };
 
-  const fields = cv ? fieldsCV : fieldsWithoutCV;
-
   const boxInputs = (
     <div className={s.form__box}>
       <div className={s.form__inputs}>
@@ -540,16 +524,6 @@ const ContactUsSection = ({ cv, id }: { cv?: boolean; id?: string }) => {
                 typeButton="MainContactUsButton"
                 onClick={handleFormSubmission}
               />
-
-              {formMessage && (
-                <p
-                  className={
-                    isFormValid ? " " + s.inputValid : " " + s.inputInvalid
-                  }
-                >
-                  {formMessage}
-                </p>
-              )}
             </div>
           </form>
 

@@ -140,10 +140,12 @@ const MainButtonComponent: FC<MainButtonProps> = ({
         );
       case "MainArrowButton":
         return (
-          <div className={s.main__container} style={{ padding: buttonPadding }}>
-            <p className={s.main__text}>{text}</p>
-            <Image src={ArrowWhite} alt="arrow" />
-          </div>
+          <p
+            className={classNames(s.main__text, s.main__container)}
+            style={{ padding: buttonPadding }}
+          >
+            {text} <Image className={s.arrow} src={ArrowWhite} alt="arrow" />
+          </p>
         );
       case "MainUsualButton":
         return (
