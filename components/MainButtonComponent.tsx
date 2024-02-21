@@ -35,6 +35,9 @@ const MainButtonComponent: FC<MainButtonProps> = ({
   const linkProps = useMemo(() => ({ href: href || "" }), [href]);
 
   const [isHovered, setIsHovered] = useState(false);
+  const [isInvalid, setIsInvalid] = useState(false);
+  const [isDisabled, setIsDisabled] = useState(false);
+
   const [textWidth, setTextWidth] = useState(0);
   const [buttonPadding, setButtonPadding] = useState("8px 16px");
 
@@ -83,7 +86,10 @@ const MainButtonComponent: FC<MainButtonProps> = ({
   const buttonProps = useMemo(
     () => ({
       type: "submit" as "button" | "submit" | "reset",
-      className: s.main__container,
+      className: classNames(s.main__container, {
+        [s.invalid]: isInvalid,
+        [s.disabled]: isDisabled,
+      }),
       onHoverStart: () => setIsHovered(true),
       onHoverEnd: () => setIsHovered(false),
       animate: {
@@ -91,7 +97,7 @@ const MainButtonComponent: FC<MainButtonProps> = ({
       },
       transition: { duration: 0.3, ease: "easeInOut" },
     }),
-    [isHovered]
+    [isHovered, isInvalid, isDisabled]
   );
 
   const buttonContent = useMemo(() => {

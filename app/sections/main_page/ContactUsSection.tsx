@@ -1,5 +1,5 @@
 "use client";
-import React, { ChangeEvent, useState, useEffect, useRef } from "react";
+import React, { ChangeEvent, useState, useEffect, useRef, use } from "react";
 import s from "./ContactUsSection.module.scss";
 import MainTitleComponent from "@/components/MainTitleComponent";
 import MainButtonComponent from "@/components/MainButtonComponent";
@@ -70,6 +70,9 @@ const ContactUsSection = ({ cv, id }: { cv?: boolean; id?: string }) => {
   const [validationErrors, setValidationErrors] = useState<ValidationErrors>(
     {}
   );
+
+  const [isValid, isSetVaid] = useState(false);
+  const [isDisabled, isSetDisabled] = useState(false);
 
   const [formData, setFormData] = useState<FormData>({
     firstname: "",
