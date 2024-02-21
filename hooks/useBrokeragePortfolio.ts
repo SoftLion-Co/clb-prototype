@@ -32,7 +32,7 @@ const useBrokeragePortfolio = (lang: string) => {
   const fetchPortfolio = async () => {
     try {
       setLoading(true);
-      const reqUrl = `https://softlion.blog/wp-json/wp/v2/brokerage-portfolio?acf_format=standard&_fields=acf,title.rendered`;
+      const reqUrl = `https://wp.cl-brokers.com/wp-json/wp/v2/brokerage-portfolio?acf_format=standard&_fields=acf,title.rendered`;
       const req = await fetch(reqUrl);
       const fetchedPortfolio = await req.json();
 

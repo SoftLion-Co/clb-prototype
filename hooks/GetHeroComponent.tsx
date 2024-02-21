@@ -23,7 +23,7 @@ interface HeroSectionProps {
 }
 
 const GetHeroComponent = async ({ path, className }: HeroSectionProps) => {
-  const reqUrl = `https://softlion.blog/wp-json/wp/v2/${path}?acf_format=standard&_fields=id,acf`;
+  const reqUrl = `https://wp.cl-brokers.com/wp-json/wp/v2/${path}?acf_format=standard&_fields=id,acf`;
 
   const req = await fetch(reqUrl);
   const heroData: HeroData[] = await req.json();

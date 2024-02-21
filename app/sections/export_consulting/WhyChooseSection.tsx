@@ -29,7 +29,7 @@ export interface Acf {
 }
 
 const WhyChoose = async () => {
-  const reqUrl = `https://softlion.blog/wp-json/wp/v2/why-choose-us?acf_format=standard&_fields=acf`;
+  const reqUrl = `https://wp.cl-brokers.com/wp-json/wp/v2/why-choose-us?acf_format=standard&_fields=acf`;
 
   const req = await fetch(reqUrl);
   const whyChooseData: WhyChooseUs[] = await req.json();

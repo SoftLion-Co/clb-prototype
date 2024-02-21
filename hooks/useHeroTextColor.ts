@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 
 const colorReqUrl =
-  "https://softlion.blog/wp-json/wp/v2/videos/531?acf_format=standard&_fields=acf.text_color";
+  "https://wp.cl-brokers.com/wp-json/wp/v2/videos/664?acf_format=standard&_fields=acf.text_color";
 
 interface ColorData {
   acf: ColorDataAfc;

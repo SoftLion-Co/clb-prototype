@@ -31,7 +31,7 @@ export interface CardText {
 
 const OurCoreServicesComponent = async () => {
   const reqUrl =
-    "https://softlion.blog/wp-json/wp/v2/core-services?acf_format=standard&_fields=acf";
+    "https://wp.cl-brokers.com/wp-json/wp/v2/core-services?acf_format=standard&_fields=acf";
   const req = await fetch(reqUrl);
   const coreServices: CoreServices[] = await req.json();
   const locale = useLocale();
