@@ -17,7 +17,7 @@ import MotionWrapper from "@/hooks/MotionWrapper";
 const SocialLinksSection = () => {
   const t = useTranslations("components");
 
-  const currentPath = "clb.com" + window.location.pathname;
+  const currentPath = `${window.location}`;
   
   return (
     <MotionWrapper tag="section"
