@@ -8,7 +8,6 @@ import ImageAndTextCardsComponent from "@/components/ImageAndTextCardsComponent"
 import SocialLinksSection from "@/app/sections/article_page/SocialLinksSection";
 import useLocale from "@/hooks/useLocale";
 import useDateFormat from "@/hooks/useDateFormat";
-import MotionWrapper from "@/hooks/MotionWrapper";
 import parse from "html-react-parser";
 import React from "react";
 
