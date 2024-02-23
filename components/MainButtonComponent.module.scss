@@ -1,6 +1,10 @@
 @import "@/style/colors";
 @import "@/style/viewports";
 
+.arrow {
+  transition: transform 0.3s ease-in-out;
+}
+
 .main {
   &__container {
     transition: background-color 0.3s ease-in-out;
@@ -28,10 +32,16 @@
         border-radius: 50%;
         transition: background-color 0.3s ease-in-out;
       }
+
       .main__arrow {
         filter: invert(100%) sepia(0%) saturate(7476%) hue-rotate(46deg)
           brightness(107%) contrast(104%);
         transition: filter 0.3s ease-in-out;
+      }
+
+      .arrow {
+        transition: transform 0.3s ease-in-out;
+        transform: translateX(40%);
       }
     }
   }
@@ -44,6 +54,9 @@
 
   &__text {
     color: $classicWhiteBackgroundColor;
+    display: flex;
+    align-items: center;
+    gap: 8px;
   }
 
   &__background {
@@ -68,7 +81,6 @@
     align-items: center;
     justify-content: center;
 
-    
     filter: invert(35%) sepia(9%) saturate(695%) hue-rotate(55deg)
       brightness(91%) contrast(79%);
     transition: filter 0.3s ease-in-out;
@@ -80,4 +92,14 @@
       height: 20px;
     }
   }
+}
+
+.disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+  pointer-events: none; // Це перешкодить користувачеві взаємодіяти з кнопкою, якщо вона відключена.
+}
+
+.invalid {
+  background-color: red; // Приклад стилів для виділення невірних полів червоними рамками.
 }

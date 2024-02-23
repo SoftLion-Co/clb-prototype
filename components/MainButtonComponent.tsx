@@ -70,16 +70,6 @@ const MainButtonComponent: FC<MainButtonProps> = ({
     setButtonPadding(updatePadding());
   }, [updatePadding]);
 
-  // const handleClick = useCallback(
-  //   (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-  //     if (onClick) {
-  //       e.preventDefault();
-  //       onClick();
-  //     }
-  //   },
-  //   [onClick]
-  // );
-
   const buttonProps = useMemo(
     () => ({
       type: "submit" as "button" | "submit" | "reset",
@@ -108,6 +98,7 @@ const MainButtonComponent: FC<MainButtonProps> = ({
           >
             <motion.div {...buttonProps}>
               <motion.p
+                {...buttonProps}
                 className={s.main__text}
                 animate={{ x: isHovered ? 40 : 0 }}
                 transition={{ duration: 0.3, ease: "easeInOut" }}
@@ -132,13 +123,17 @@ const MainButtonComponent: FC<MainButtonProps> = ({
             </motion.div>
           </ScrollLink>
         );
+
       case "MainArrowButton":
         return (
-          <div className={s.main__container} style={{ padding: buttonPadding }}>
-            <p className={s.main__text}>{text}</p>
-            <Image src={ArrowWhite} alt="arrow" />
-          </div>
+          <p
+            className={classNames(s.main__container, s.main__text)}
+            style={{ padding: buttonPadding }}
+          >
+            {text} <Image className={s.arrow} src={ArrowWhite} alt="arrow" />
+          </p>
         );
+
       case "MainUsualButton":
         return (
           <ScrollLink
@@ -157,6 +152,7 @@ const MainButtonComponent: FC<MainButtonProps> = ({
             </p>
           </ScrollLink>
         );
+
       case "MainContactUsButton":
         return (
           <motion.button {...buttonProps} onClick={onClick}>

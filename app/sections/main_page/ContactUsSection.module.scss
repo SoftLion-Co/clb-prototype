@@ -376,3 +376,17 @@
     color: $backgroundColorDarkBlue;
   }
 }
+
+.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.MainContactUsButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.MainContactUsButton:invalid {
+  border-color: red;
+}
