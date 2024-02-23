@@ -81,13 +81,13 @@ const MainArticleSection = (data: Data) => {
               width={1440}
               height={649}
             />
-            <div>
+            <div className={s.article__paragraph}>
               {parse(`${data.data.acf[`text1_${locale}` as keyof Acf]}`)}
             </div>
             <h2 className={s.article__subheading}>
               {data.data.acf[`subheading1_${locale}` as keyof Acf]}
             </h2>
-            <div>
+            <div className={s.article__paragraph}>
               {parse(`${data.data.acf[`text2_${locale}` as keyof Acf]}`)}
             </div>
             <ImageAndTextCardsComponent
@@ -100,7 +100,7 @@ const MainArticleSection = (data: Data) => {
             <h2 className={s.article__subheading}>
               {data.data.acf[`subheading2_${locale}` as keyof Acf]}
             </h2>
-            <div>
+            <div className={s.article__paragraph}>
               {parse(`${data.data.acf[`text3_${locale}` as keyof Acf]}`)}
             </div>
           </div>
