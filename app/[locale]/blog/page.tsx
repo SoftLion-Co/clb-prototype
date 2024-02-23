@@ -8,7 +8,7 @@ import useBlogsData from "@/hooks/useBlogsData";
 import BlogSkeleton from "@/components/skeleton/BlogSkeleton";
 
 async function generateMetadata({}) {
-  return { title: "Blog" };
+  return { title: "Blog - Commodities & Logistics Brokers" };
 }
 
 export default function Blog({}) {
