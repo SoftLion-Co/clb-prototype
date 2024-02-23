@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState, useEffect, FC } from "react";
 import s from "./BlogSection.module.scss";
 import classNames from "classnames";

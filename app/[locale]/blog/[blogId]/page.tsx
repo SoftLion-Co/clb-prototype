@@ -6,7 +6,7 @@ import MoreArticlesSection from "@/app/sections/article_page/MoreArticlesSection
 import useBlogData from "@/hooks/useBlogData";
 import ContactUsSection from "@/app/sections/main_page/ContactUsSection";
 
-export async function generateMetadata({}) {
+async function generateMetadata({}) {
   return { title: "Article" };
 }
 

@@ -7,7 +7,7 @@ import ContactUsSection from "@/app/sections/main_page/ContactUsSection";
 import useBlogsData from "@/hooks/useBlogsData";
 import BlogSkeleton from "@/components/skeleton/BlogSkeleton";
 
-export async function generateMetadata({}) {
+async function generateMetadata({}) {
   return { title: "Blog" };
 }
 
