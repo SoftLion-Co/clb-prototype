@@ -65,8 +65,8 @@
       },
       "fileSize": "ARCHIVO:",
       "selectingFile": "Seleccione un archivo de hasta 5 MB",
-      "validMessage": "¡El formulario ha sido enviado exitosamente!😉",
-      "invalidMessage": "¡Por favor revise sus entradas!😰"
+      "validMessage": "¡El formulario ha sido enviado exitosamente!",
+      "invalidMessage": "¡Por favor revise sus entradas!"
     },
     "servicesCards": [
       {

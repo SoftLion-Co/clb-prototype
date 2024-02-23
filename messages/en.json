@@ -65,8 +65,8 @@
       },
       "fileSize": "FILE:",
       "selectingFile": "Select a file up to 5MB",
-      "validMessage": "The form has been sent successfully!😉",
-      "invalidMessage": "Please check your inputs!😰"
+      "validMessage": "The form has been sent successfully!",
+      "invalidMessage": "Please check your inputs!"
     },
     "servicesCards": [
       {
