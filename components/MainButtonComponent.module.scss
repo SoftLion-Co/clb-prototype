@@ -8,8 +8,6 @@
 .main {
   &__container {
     transition: background-color 0.3s ease-in-out;
-    transition: transform 0.3s ease-in-out;
-
     background-color: $brandColorDarkGreen;
     padding: 6px 6px 6px 12px;
     display: flex;
@@ -26,7 +24,6 @@
 
     &:hover {
       transition: background-color 0.3s ease-in-out;
-
       background-color: $backgroundColorLightGreen;
 
       .main__background {
@@ -35,6 +32,7 @@
         border-radius: 50%;
         transition: background-color 0.3s ease-in-out;
       }
+
       .main__arrow {
         filter: invert(100%) sepia(0%) saturate(7476%) hue-rotate(46deg)
           brightness(107%) contrast(104%);
@@ -96,10 +94,12 @@
   }
 }
 
-.main__container.invalid {
-  background-color: red;
+.disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+  pointer-events: none; // Це перешкодить користувачеві взаємодіяти з кнопкою, якщо вона відключена.
 }
 
-.main__container.disabled {
-  background-color: gray;
+.invalid {
+  background-color: red; // Приклад стилів для виділення невірних полів червоними рамками.
 }
