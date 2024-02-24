@@ -13,6 +13,7 @@ async function generateMetadata({}) {
 
 export default function Blog({}) {
   const [title, setTitle] = useState("");
+  const { blogs, loading, error } = useBlogsData();
 
   useEffect(() => {
     async function fetchData() {
@@ -21,9 +22,8 @@ export default function Blog({}) {
     }
 
     fetchData();
+    window.scrollTo(0, 0);
   }, []);
-
-  const { blogs, loading, error } = useBlogsData();
 
   return (
     <React.Fragment>
