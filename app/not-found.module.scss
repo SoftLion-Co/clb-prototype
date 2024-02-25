@@ -1,0 +1,68 @@
+@import "@/style/container";
+@import "@/style/viewports";
+@import "@/style/colors";
+
+.container {
+  display: flex;
+  align-items: center;
+}
+
+.error {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 60px;
+
+  @include for-size(tablet) {
+    margin-top: 80px;
+  }
+  @include for-size(laptop) {
+    margin-top: 90px;
+  }
+  @include for-size(desktop) {
+    margin-top: 100px;
+  }
+
+  &__image {
+    margin-bottom: 24px;
+
+    @include for-size(tablet) {
+      margin-bottom: 40px;
+    }
+    @include for-size(laptop) {
+      margin-bottom: 60px;
+    }
+    @include for-size(desktop) {
+      margin-bottom: 80px;
+    }
+  }
+
+  &__title {
+    color: $backgroundColorGreen;
+    text-align: center;
+    margin-bottom: 44px;
+
+    @include for-size(tablet) {
+      margin-bottom: 60px;
+    }
+    @include for-size(laptop) {
+      margin-bottom: 80px;
+    }
+    @include for-size(desktop) {
+      margin-bottom: 100px;
+    }
+  }
+
+  &__link {
+    color: $backgroundColorGreen;
+    border-bottom: 1px solid $backgroundColorGreen;
+    transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+    font-weight: 700;
+
+    &:hover {
+      color: $backgroundColorDarkBlue;
+      border-color: $backgroundColorDarkBlue;
+    }
+  }
+}
