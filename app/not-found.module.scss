@@ -5,13 +5,13 @@
 .container {
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 
 .error {
   display: flex;
   align-items: center;
   flex-direction: column;
-  justify-content: center;
   margin-top: 60px;
 
   @include for-size(tablet) {
@@ -26,12 +26,15 @@
 
   &__image {
     margin-bottom: 24px;
-
+    width: 100%;
+    height: 160px;
     @include for-size(tablet) {
       margin-bottom: 40px;
+      height: 200px;
     }
     @include for-size(laptop) {
       margin-bottom: 60px;
+      height: 200px;
     }
     @include for-size(desktop) {
       margin-bottom: 80px;
@@ -39,9 +42,9 @@
   }
 
   &__title {
-    color: $backgroundColorGreen;
+    color: $brandColorDarkGreen;
     text-align: center;
-    margin-bottom: 44px;
+    margin: 0 0 44px 0;
 
     @include for-size(tablet) {
       margin-bottom: 60px;
@@ -55,10 +58,12 @@
   }
 
   &__link {
-    color: $backgroundColorGreen;
-    border-bottom: 1px solid $backgroundColorGreen;
+    color: $brandColorDarkGreen;
+    border-bottom: 1px solid $brandColorDarkGreen;
     transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+    text-decoration: none;
     font-weight: 700;
+    padding-bottom: 2px;
 
     &:hover {
       color: $backgroundColorDarkBlue;
