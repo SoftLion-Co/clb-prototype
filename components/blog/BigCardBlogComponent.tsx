@@ -35,18 +35,25 @@ const BigCardBlogComponent = (data: Info) => {
 
   const articleLink = `blog/${blogUrl}-${blogId}`;
 
+  function stripHtmlTags(html: string): string {
+    const doc = new DOMParser().parseFromString(html, "text/html");
+    return doc.body.textContent || "";
+  }
+  const cardHeading = data.info.acf[`heading_${data.locale}` as keyof Acf]
+  const cardText = stripHtmlTags(data.info.acf[`text1_${data.locale}` as keyof Acf]);
+
   return (
     <div className={classNames(s.blog__card)}>
       <div className={s.blog}>
         <div className={s.blog__content}>
           <div>
             <h3 className={s.blog__title}>
-              {data.info.acf[`heading_${data.locale}` as keyof Acf]}
+              {cardHeading}
             </h3>
           </div>
           <div className={s.blog__container}>
             <p className={s.blog__text}>
-              {data.info.acf[`subheading1_${data.locale}` as keyof Acf]}
+              {cardText}
             </p>
             <div className={s.blog__box}>
               <ReadMoreComponent href={articleLink} />

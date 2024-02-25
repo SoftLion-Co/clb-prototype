@@ -6,10 +6,6 @@ import MoreArticlesSection from "@/app/sections/article_page/MoreArticlesSection
 import useBlogData from "@/hooks/useBlogData";
 import ContactUsSection from "@/app/sections/main_page/ContactUsSection";
 
-export async function generateMetadata({}) {
-  return { title: "Article" };
-}
-
 interface BlogArticleParams {
   blogId: string;
 }
@@ -19,14 +15,22 @@ const BlogArticle: FC<{ params: BlogArticleParams }> = ({ params }) => {
   const { blog, loading, error } = useBlogData(blogId);
   const [title, setTitle] = useState("");
 
+  async function generateMetadata({ heading_en }: { heading_en: string }) {
+    return { title: heading_en };
+  }
+
   useEffect(() => {
     async function fetchData() {
-      const metadata = await generateMetadata({});
-      setTitle(metadata.title);
+      if (blog) {
+        const metadata = await generateMetadata({
+          heading_en: blog.acf.heading_en,
+        });
+        setTitle(metadata.title);
+      }
     }
 
     fetchData();
-  }, []);
+  }, [blog]);
 
   if (loading) {
     return <p>Loading...</p>;

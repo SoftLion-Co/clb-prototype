@@ -7,12 +7,13 @@ import ContactUsSection from "@/app/sections/main_page/ContactUsSection";
 import useBlogsData from "@/hooks/useBlogsData";
 import BlogSkeleton from "@/components/skeleton/BlogSkeleton";
 
-export async function generateMetadata({}) {
-  return { title: "Blog" };
+async function generateMetadata({}) {
+  return { title: "Blog - Commodities & Logistics Brokers" };
 }
 
 export default function Blog({}) {
   const [title, setTitle] = useState("");
+  const { blogs, loading, error } = useBlogsData();
 
   useEffect(() => {
     async function fetchData() {
@@ -21,9 +22,8 @@ export default function Blog({}) {
     }
 
     fetchData();
+    window.scrollTo(0, 0);
   }, []);
-
-  const { blogs, loading, error } = useBlogsData();
 
   return (
     <React.Fragment>

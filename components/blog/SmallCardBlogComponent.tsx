@@ -27,7 +27,7 @@ interface Acf {
 }
 
 const SmallCardBlogComponent = (data: Info) => {
-  // Отримуємо частину URL, що вказує на сторінку блогу
+  const locale = useLocale();
 
   const blogUrl = data.info.acf.heading_en
     .toLowerCase()
@@ -36,7 +36,13 @@ const SmallCardBlogComponent = (data: Info) => {
   const blogId = data.info.id;
 
   const articleLink = `blog/${blogUrl}-${blogId}`;
-  const locale = useLocale();
+  
+  function stripHtmlTags(html: string): string {
+    const doc = new DOMParser().parseFromString(html, "text/html");
+    return doc.body.textContent || "";
+  }
+  const cardHeading = data.info.acf[`heading_${data.locale}` as keyof Acf]
+  const cardText = stripHtmlTags(data.info.acf[`text1_${data.locale}` as keyof Acf]);
 
   return (
     <div className={s.blog}>
@@ -50,10 +56,10 @@ const SmallCardBlogComponent = (data: Info) => {
             height={250}
           />
           <h3 className={s.blog__title}>
-            {data.info.acf[`heading_${data.locale}` as keyof Acf]}
+            {cardHeading}
           </h3>
           <p className={s.blog__text}>
-            {data.info.acf[`text1_${data.locale}` as keyof Acf]}
+            {cardText}
           </p>
         </div>
 

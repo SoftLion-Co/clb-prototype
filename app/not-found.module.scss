@@ -1,0 +1,73 @@
+@import "@/style/container";
+@import "@/style/viewports";
+@import "@/style/colors";
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.error {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 60px;
+
+  @include for-size(tablet) {
+    margin-top: 80px;
+  }
+  @include for-size(laptop) {
+    margin-top: 90px;
+  }
+  @include for-size(desktop) {
+    margin-top: 100px;
+  }
+
+  &__image {
+    margin-bottom: 24px;
+    width: 100%;
+    height: 160px;
+    @include for-size(tablet) {
+      margin-bottom: 40px;
+      height: 200px;
+    }
+    @include for-size(laptop) {
+      margin-bottom: 60px;
+      height: 200px;
+    }
+    @include for-size(desktop) {
+      margin-bottom: 80px;
+    }
+  }
+
+  &__title {
+    color: $brandColorDarkGreen;
+    text-align: center;
+    margin: 0 0 44px 0;
+
+    @include for-size(tablet) {
+      margin-bottom: 60px;
+    }
+    @include for-size(laptop) {
+      margin-bottom: 80px;
+    }
+    @include for-size(desktop) {
+      margin-bottom: 100px;
+    }
+  }
+
+  &__link {
+    color: $brandColorDarkGreen;
+    border-bottom: 1px solid $brandColorDarkGreen;
+    transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+    text-decoration: none;
+    font-weight: 700;
+    padding-bottom: 2px;
+
+    &:hover {
+      color: $backgroundColorLightGreen;
+      border-color: $backgroundColorLightGreen;
+    }
+  }
+}

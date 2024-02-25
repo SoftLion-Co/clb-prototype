@@ -31,7 +31,7 @@
     gap: 24px;
 
     @include for-size(tablet) {
-      overflow-y: auto;
+      overflow-y: scroll;
     }
     @include for-size(desktop) {
       border-radius: 32px;
