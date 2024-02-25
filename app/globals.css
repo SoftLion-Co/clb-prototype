@@ -10,6 +10,17 @@
 
 html {
   height: 100%;
+
+  ::-webkit-scrollbar {
+    width: 12px;
+  }
+  ::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: #565f51;
+    border-radius: 12px;
+  }
 }
 
 body {
