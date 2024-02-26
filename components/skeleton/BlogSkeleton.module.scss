@@ -3,13 +3,16 @@
 @import "/style/container";
 
 .container {
-  margin-top: 114px;
+  margin-top: 200px;
 
   @include for-size(tablet) {
     margin-top: 214px;
   }
   @include for-size(laptop) {
-    margin-top: 284px;
+    margin-top: 260px;
+  }
+  @include for-size(desktop) {
+    margin-top: 280px;
   }
 }
 
