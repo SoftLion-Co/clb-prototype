@@ -31,11 +31,19 @@ const useExcelToJson = () => {
       const excelFileUrl = result[0].acf.exel_document_input;
 
       // Виділіть частину URL, яка йде після "https://wp.cl-brokers.com/"
-      const relativePath = excelFileUrl.replace("https://wp.cl-brokers.com/", "");
+      const relativePath = excelFileUrl.replace(
+        "https://wp.cl-brokers.com/",
+        ""
+      );
 
       // Збережіть нову базову URL
-      const baseUrl = "http://localhost:3001/";
+      const protocol = window.location.protocol;
+      const hostname = window.location.hostname;
+      const port = 3001;
 
+      // Якщо вам потрібно врахувати порт, використовуйте його, якщо він не 80 або 443 (залежно від протоколу)
+      const baseUrl = `${protocol}//${hostname}${port ? `:${port}` : ""}/`;
+      alert(baseUrl)
       // Складіть повний URL для нового запиту
       const newUrl = baseUrl + relativePath;
 
@@ -48,17 +56,17 @@ const useExcelToJson = () => {
       // Determine sheet name based on locale
       let sheetName: string;
       switch (locale) {
-        case 'en':
-          sheetName = 'English';
+        case "en":
+          sheetName = "English";
           break;
-        case 'es':
-          sheetName = 'Spain';
+        case "es":
+          sheetName = "Spain";
           break;
-        case 'de':
-          sheetName = 'Deutch';
+        case "de":
+          sheetName = "Deutch";
           break;
-        case 'ua':
-          sheetName = 'Ukraine';
+        case "ua":
+          sheetName = "Ukraine";
           break;
         default:
           throw new Error(`Unsupported locale: ${locale}`);
@@ -68,7 +76,6 @@ const useExcelToJson = () => {
 
       // Get data without transposition
       const jsonData = XLSX.utils.sheet_to_json(sheet, { header: 1 });
-
 
       // Групуємо дані за країнами
       const groupedData: any[] = [];
