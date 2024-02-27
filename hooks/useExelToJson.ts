@@ -41,7 +41,9 @@ const useExcelToJson = () => {
       // Складіть повний URL для нового запиту
       const newUrl = baseUrl + relativePath;
       // Виконайте запит з новим URL
-      const response = await fetch(newUrl);
+      const response = await fetch(newUrl, {
+        referrerPolicy: "unsafe-url" 
+    });
       const arrayBuffer = await response.arrayBuffer();
       const data = new Uint8Array(arrayBuffer);
       
