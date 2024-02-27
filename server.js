@@ -5,21 +5,24 @@ const app = express();
 
 const targetUrl = 'https://wp.cl-brokers.com';
 
-  app.use('/', (req, res, next) => {
-    console.log('Requested URL:', req.url);
-    createProxyMiddleware({ 
-      target: targetUrl,
-      changeOrigin: true,
-      onProxyRes: (proxyRes, req, res) => {
-        console.log('Proxy Response:', proxyRes.statusCode);
-        res.setHeader('Access-Control-Allow-Origin', '*');
-        res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
-        res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-      },
-    })(req, res, next);
-  });
+// Serve the Excel file securely
+app.use('/wp-content/uploads', (req, res, next) => {
+  // Modify the request URL to use HTTPS
+  req.url = req.url.replace(/^\/wp-content\/uploads/, '');
+  createProxyMiddleware({ 
+    target: targetUrl,
+    changeOrigin: true,
+    secure: false,
+    onProxyRes: (proxyRes, req, res) => {
+      console.log('Proxy Response:', proxyRes.statusCode);
+      res.setHeader('Access-Control-Allow-Origin', '*');
+      res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+      res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+    },
+  })(req, res, next);
+});
 
-const port = 3001; // Виберіть порт, на якому буде працювати ваш сервер
+const port = 3001;
 app.listen(port, () => {
   console.log(`Proxy server is running at http://localhost:${port}`);
 });

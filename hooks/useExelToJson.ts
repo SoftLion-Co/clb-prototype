@@ -37,7 +37,7 @@ const useExcelToJson = () => {
       );
 
       // Збережіть нову базову URL
-      const baseUrl = "http://46.175.148.107:3001/";
+      const baseUrl = "http://cl-brokers.com:3001/";
       // Складіть повний URL для нового запиту
       const newUrl = baseUrl + relativePath;
       // Виконайте запит з новим URL
