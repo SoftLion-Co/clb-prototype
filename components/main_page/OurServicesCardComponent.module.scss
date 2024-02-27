@@ -15,7 +15,7 @@
 
     @include for-size(laptop) {
       justify-content: space-between;
-      align-items: flex-start;
+      align-items: start;
       padding: 32px;
     }
     @include for-size(desktop) {
@@ -31,14 +31,14 @@
     gap: 24px;
 
     @include for-size(laptop) {
-      align-items: flex-start;
+      align-items: start;
     }
   }
 
   &__image {
     height: 68px;
     display: flex;
-    align-items: flex-start;
+    align-items: start;
     justify-content: end;
 
     @include for-size(laptop) {
