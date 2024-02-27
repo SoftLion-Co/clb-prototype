@@ -64,55 +64,6 @@ const MapBoxComponent = ({ onCountrySelect }: MapBoxComponentProps) => {
     }
   }, [transformWrapperRef, currentScale]);
 
-  const resetScaleAndPosition = useCallback(() => {
-    const resetTransition: Transition = {
-      type: "spring",
-      stiffness: 100,
-      damping: 10,
-    };
-
-    let resetScale = 1;
-    if (typeof window !== "undefined") {
-      if (window.innerWidth <= 1279.98) {
-        resetScale = 1.2;
-      }
-    }
-
-    if (typeof window !== "undefined") {
-      if (window.innerWidth > 1280) {
-        setCurrentScale(resetScale);
-      }
-    }
-
-    if (transformWrapperRef.current) {
-      transformWrapperRef.current.resetTransform();
-      setCurrentScale(1.7);
-      setTranslate({ x: 0, y: 0 });
-      controls.start({
-        scale: resetScale,
-        x: 0,
-        y: 0,
-        transition: { type: "spring", stiffness: 100, damping: 10 },
-      });
-
-      requestAnimationFrame(() => {
-        controls.start({
-          x: 0,
-          y: 0,
-          ...getDragConstraints(),
-        });
-      });
-    }
-
-    controls.start({ scale: resetScale, x: 0, y: 0 }, resetTransition);
-  }, [controls, setCurrentScale, setTranslate, transformWrapperRef]);
-
-  const { data, fetchDataAndReadFile } = useExcelToJsonHook();
-
-  useEffect(() => {
-    fetchDataAndReadFile();
-  }, []);
-
   const getDragConstraints = useCallback(() => {
     if (!containerRef.current || !svgContentRef.current) {
       return { top: 0, right: 0, bottom: 0, left: 0 };
@@ -131,6 +82,55 @@ const MapBoxComponent = ({ onCountrySelect }: MapBoxComponentProps) => {
       left: -maxX,
     };
   }, [containerRef, svgContentRef, currentScale]);
+
+  const resetScaleAndPosition = useCallback(() => {
+    const resetTransition: Transition = {
+      type: "spring",
+      stiffness: 100,
+      damping: 10,
+    };
+
+    let resetScale = 1;
+    if (typeof window !== "undefined" && window.innerWidth > 1280) {
+      resetScale = 1;
+    } else {
+      resetScale = 1.7;
+    }
+
+    if (transformWrapperRef.current) {
+      transformWrapperRef.current.resetTransform();
+      setCurrentScale(resetScale);
+      setTranslate({ x: 0, y: 0 });
+      controls.start({
+        scale: resetScale,
+        x: 0,
+        y: 0,
+        transition: { type: "spring", stiffness: 100, damping: 10 },
+      });
+
+      requestAnimationFrame(() => {
+        controls.start({
+          x: 0,
+          y: 0,
+          ...getDragConstraints(),
+        });
+      });
+    }
+
+    controls.start({ scale: resetScale, x: 0, y: 0 }, resetTransition);
+  }, [
+    controls,
+    setCurrentScale,
+    setTranslate,
+    transformWrapperRef,
+    getDragConstraints,
+  ]);
+
+  const { data, fetchDataAndReadFile } = useExcelToJsonHook();
+
+  useEffect(() => {
+    fetchDataAndReadFile();
+  }, []);
 
   const handleMouseUp = useCallback(() => {
     setStartPos({ x: 0, y: 0 });

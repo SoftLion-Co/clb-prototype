@@ -64,7 +64,7 @@
     @media screen and (max-width: 1279.98px) {
       display: flex;
       flex-direction: column;
-      align-items: flex-start;
+      align-items: start;
       gap: 24px;
       margin-bottom: 40px;
     }
@@ -79,7 +79,7 @@
     display: flex;
     gap: 20px;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: start;
     font-size: 24px;
     cursor: pointer;
 
@@ -93,7 +93,7 @@
 
   &__dropdown {
     display: flex;
-    align-items: flex-start;
+    align-items: start;
     flex-direction: column;
     margin-left: 16px;
     gap: 4px;
@@ -224,7 +224,7 @@
 
   &__list {
     display: flex;
-    align-items: flex-start;
+    align-items: start;
     flex-direction: column;
     gap: 16px;
     margin-left: 16px;
@@ -234,7 +234,7 @@
       background-color: $backgroundColorGreen;
       margin-left: 0;
       display: flex;
-      align-items: flex-start;
+      align-items: start;
       flex-direction: column;
       top: 88px;
       gap: 16px;
@@ -259,7 +259,7 @@
 
   &__link {
     display: flex;
-    justify-content: flex-start;
+    justify-content: start;
     gap: 8px;
   }
 
@@ -276,7 +276,7 @@
   background-color: $classicWhiteBackgroundColor;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: start;
   gap: 60px;
   position: fixed;
   height: 100%;
