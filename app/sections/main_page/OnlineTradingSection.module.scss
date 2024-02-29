@@ -1,0 +1,12 @@
+@import "@/style/container";
+@import "@/style/viewports";
+
+.trading {
+  &__platform {
+    border-radius: 24px;
+
+    @include for-size(desktop) {
+      border-radius: 32px;
+    }
+  }
+}
