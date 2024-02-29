@@ -219,6 +219,7 @@
   }
 
   &__image {
+    height: max-content;
     border-radius: 4px;
   }
 
@@ -260,6 +261,7 @@
   &__link {
     display: flex;
     justify-content: start;
+    align-items: center;
     gap: 8px;
   }
 
