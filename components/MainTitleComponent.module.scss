@@ -27,12 +27,12 @@
 
   &.left {
     @include for-size(laptop) {
-      justify-content: end;
+      justify-content: start;
     }
   }
 
   &.mobileLeft {
-    justify-content: end;
+    justify-content: start;
   }
 
   &__image {
