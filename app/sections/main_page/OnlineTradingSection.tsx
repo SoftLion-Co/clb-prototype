@@ -11,7 +11,7 @@ const OnlineTradingSection = () => {
     <section className={s.box}>
       <div className={s.background}>
         <div className={s.container}>
-          <MainTitleComponent title={t("partnersHeading")} color="black" />
+          <MainTitleComponent title={t("onlineTrading")} color="black" />
 
           <MotionWrapper
             className={s.trading__container}
